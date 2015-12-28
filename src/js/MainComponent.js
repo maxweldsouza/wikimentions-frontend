@@ -54,67 +54,6 @@ var MainComponent = React.createClass({
         var appstate = store.get('appstate');
         this.setState(appstate);
     },
-    onToggleSidebar: function () {
-        this.setState({
-            sidebar: !this.state.sidebar
-        });
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'MainComponent',
-            eventAction: 'toggle-sidebar'
-        });
-    },
-    onToggleShortlist: function () {
-        this.setState({
-            shortlistHidden: !this.state.shortlistHidden
-        });
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'MainComponent',
-            eventAction: 'toggle-shortlist'
-        });
-    },
-    onShortlistEdit: function (category, product) {
-        var temp = {
-            shortlist: this.state.shortlist
-        };
-        var i = temp.shortlist[category].indexOf(product);
-        if (i >= 0) {
-            temp.shortlist[category].splice(i, 1);
-            ga('send', {
-                hitType: 'event',
-                eventCategory: 'MainComponent',
-                eventAction: 'remove-shortlist',
-                eventLabel: product
-            });
-        } else {
-            if (temp.shortlist[category].length > 4) {
-                return;
-            }
-            temp.shortlistHidden = false;
-            temp.shortlist[category].push(product);
-            ga('send', {
-                hitType: 'event',
-                eventCategory: 'MainComponent',
-                eventAction: 'add-shortlist',
-                eventLabel: product
-            });
-        }
-        this.setState(temp);
-    },
-    onShortlistClear: function (category) {
-        var shortlist = this.state.shortlist;
-        shortlist[category] = [];
-        this.setState({
-            shortlist: shortlist,
-            shortlistHidden: true
-        });
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'MainComponent',
-            eventAction: 'clear-shortlist'
-        });
-    },
     render: function () {
         var Component = require('./' + this.props.component);
         return (
