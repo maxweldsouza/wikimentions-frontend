@@ -23,6 +23,11 @@ var uncache = require('gulp-uncache');
 
 var production = process.env.NODE_ENV === 'production';
 
+var sassPaths = [
+    'node_modules/foundation-sites/scss',
+    'node_modules/motion-ui/src'
+];
+
 // Javascript
 global.assert = require("chai").assert;
 
@@ -76,9 +81,9 @@ gulp.task('scss-lint', function() {
 
 gulp.task('compile-scss', function() {
 return gulp.src('src/styles/main.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(gulpif(!production, sourcemaps.write()))
+    .pipe(sass({
+        includePaths: sassPaths
+    }))
     .pipe(gulp.dest('src/css'))
     .pipe(autoprefixer())
     .pipe(minifycss())
