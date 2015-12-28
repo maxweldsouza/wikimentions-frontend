@@ -33,7 +33,6 @@ var AppState = (function () {
         fetchData: function (embeddedData) {
             this.component = this.urlToComponent(this.url);
             var Component = require('./' + this.component);
-            console.log(this.component);
             var resources = Component.resources(this);
             var additionalData = resources.data;
             validateResources(resources);
