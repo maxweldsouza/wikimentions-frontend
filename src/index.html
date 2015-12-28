@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head itemscope itemtype="http://schema.org/WebSite">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <link href="" rel="canonical"></link>
+        <!-- build:include zopim.html -->
+        <!-- /build -->
+
+        <link rel="apple-touch-icon" sizes="57x57" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/apple-touch-icon-57x57.png">
+        <!-- Icons -->
+        <link rel="apple-touch-icon" sizes="57x57" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/android-chrome-192x192.png" sizes="192x192">
+        <link rel="icon" type="image/png" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/favicon-16x16.png" sizes="16x16">
+        <link rel="icon" type="image/x-icon" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/favicon.ico" />
+        <link rel="manifest" href="https://s3-ap-southeast-1.amazonaws.com/scantuary/manifest.json">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-TileImage" content="https://s3-ap-southeast-1.amazonaws.com/scantuary/mstile-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <title></title>
+        <meta name="browser-tags" content="">
+
+        <!-- CDN -->
+        <!-- build:remove -->
+        <!-- /build -->
+
+        <link href="/minified/jquery.nouislider.css" rel="stylesheet">
+
+        <!-- build:include cssimports.html -->
+        <!-- /build -->
+        <!-- build:remove -->
+        <link href="/minified/bootstrap.min.css" rel="stylesheet">
+        <!-- /build -->
+
+        <!-- modified animate.css using github fork -->
+        <!-- build:css inline -->
+        <link href="/minified/hint.base.min.css" rel="stylesheet">
+        <link href="/minified/gemini-scrollbar.css" rel="stylesheet">
+        <!-- /build -->
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!--
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel='stylesheet' type='text/css'>
+        Temporarily disabled
+        -->
+
+        <!--uncache-->
+        <link href="/css/main.css" rel="stylesheet">
+        <!--enduncache-->
+
+        <script>
+            // Console-polyfill. MIT license.
+            // https://github.com/paulmillr/console-polyfill
+            // Make it safe to do console.log() always.
+            (function(global) {
+            'use strict';
+            global.console = global.console || {};
+            var con = global.console;
+            var prop, method;
+            var empty = {};
+            var dummy = function() {};
+            var properties = 'memory'.split(',');
+            var methods = ('assert,clear,count,debug,dir,dirxml,error,exception,group,' +
+                'groupCollapsed,groupEnd,info,log,markTimeline,profile,profiles,profileEnd,' +
+                'show,table,time,timeEnd,timeline,timelineEnd,timeStamp,trace,warn').split(',');
+            while (prop = properties.pop()) if (!con[prop]) con[prop] = empty;
+            while (method = methods.pop()) if (typeof con[method] !== 'function') con[method] = dummy;
+            // Using `this` for web workers & supports Browserify / Webpack.
+            })(typeof window === 'undefined' ? this : window);
+        </script>
+
+        <!-- Concatenate and inline -->
+        <!-- build:js inline -->
+        <!-- /build -->
+
+        <script defer src="/minified/modernizr-custom.js"></script>
+
+        <!-- build:include jsimports.html -->
+        <!-- /build -->
+        <!-- build:remove -->
+        <script defer src="/minified/jquery-2.1.4.min.js"></script>
+        <!-- /build -->
+
+        <!-- TODO Minify -->
+        <script defer src="/minified/jquery.nouislider.min.js"></script>
+
+        <!--uncache-->
+        <script defer src="/js-bundle/bundle.js"></script>
+        <!--enduncache-->
+
+        <script id='api-data' type='application/json'>
+        </script>
+
+        </head>
+
+        <body>
+        <div class="width-scale"></div>
+        <div class="height-scale"></div>
+
+        <div class="modal fade fullscreen" id="criteria-modal" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content" id="criteria-modal-content">
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div id="page-wrapper">
+            <div id="page-container">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- build:include analytics.html -->
+    <!-- /build -->
+    <script>
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
+
+    </body>
+</html>
