@@ -21,13 +21,16 @@ var HomePage = React.createClass({
                     link={[
                         {'rel': 'canonical', 'href': ''}
                     ]}
-                />
-                <h1>h1. This is a very large header.</h1>
-                <h2>h2. This is a large header.</h2>
-                <h3>h3. This is a medium header.</h3>
-                <h4>h4. This is a moderate header.</h4>
-                <h5>h5. This is a small header.</h5>
-                <h6>h6. This is a tiny header.</h6>
+                    />
+                <h1>Mentions</h1>
+                <div className="row">
+                    <div className="small-2 columns">2 columns</div>
+                    <div className="small-10 columns">10 columns</div>
+                </div>
+                <div className="row">
+                    <div className="small-3 columns">3 columns</div>
+                    <div className="small-9 columns">9 columns</div>
+                </div>
             </span>
         );
     }
