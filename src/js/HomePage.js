@@ -1,5 +1,7 @@
 var React = require('react');
 var Helmet = require('react-helmet');
+var Navbar = require('./Navbar');
+var Login = require('./Login');
 
 var HomePage = React.createClass({
     statics: {
@@ -22,23 +24,8 @@ var HomePage = React.createClass({
                         {'rel': 'canonical', 'href': ''}
                     ]}
                     />
-                <div className='top-bar'>
-                    <div className='top-bar-left'>
-                        <ul className='dropdown menu' data-dropdown-menu>
-                            <li className='menu-text'>Mentions</li>
-                            <li><a href='#'>New</a></li>
-                            <li><a href='#'>Popular</a></li>
-                        </ul>
-                    </div>
-                    <div className='top-bar-right'>
-                        <ul className='menu'>
-                            <li><input type='search' placeholder='Search' /></li>
-                            <li><button type='button' className='button'>Search</button></li>
-                            <li><a href='#'>Login</a></li>
-                            <li><a href='#'>Signup</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <Navbar />
+                <Login />
                 <div className='row'>
                     <div className='small-12 columns'>
                         <h2>Top Mentions</h2>
