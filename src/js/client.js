@@ -116,10 +116,6 @@ $(document).on('click', 'a', function (e) {
         return;
     } else if (LinkChecker.samePage(url)) {
         e.preventDefault();
-        // smooth scroll
-        $('html, body').animate({
-            scrollTop: $( $.attr(this, 'href') ).offset().top - 80
-        }, 200, 'easeOutQuart');
     } else if (!LinkChecker.isExternal(url) && $(this).attr('target') !== '_blank') {
         startLoading();
         e.preventDefault();
