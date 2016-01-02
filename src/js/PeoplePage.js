@@ -3,7 +3,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 
-var BookPage = React.createClass({
+var PeoplePage = React.createClass({
     statics: {
         resources (appstate) {
             return {
@@ -32,8 +32,7 @@ var BookPage = React.createClass({
                                 <img className="thumbnail" src="/assets/pluto.jpg" alt="Photo of Pluto."/>
                             </div>
                             <div className='small-12 medium-8 columns'>
-                                <h1>Phantoms in the brain</h1>
-                                Author: V.S. Ramachandran
+                                <h1>Richard Dawkins</h1>
                                 Description: Phantoms in the brain is a collection of the main work of neuroscientist V.S. Ramachandran. He describes his work on the mirror box and intriguing neurological disorders that reveal the secrets of how the human brain works.
                                 <div className='row'>
                                         <div className='small-12 columns'>
@@ -62,4 +61,4 @@ var BookPage = React.createClass({
     }
 });
 
-module.exports = BookPage;
+module.exports = PeoplePage;

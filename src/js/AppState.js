@@ -3,6 +3,7 @@ var parallelRequest = require('./parallelRequest');
 var _ = require('underscore');
 var HomePage = require('./HomePage');
 var BookPage = require('./BookPage');
+var PeoplePage = require('./PeoplePage');
 var Login = require('./Login');
 var Signup = require('./Signup');
 
@@ -94,6 +95,8 @@ var AppState = (function () {
                 componentName = 'Signup';
             } else if (/^books\/(.*)$/.test(x)) {
                 componentName = 'BookPage';
+            } else if (/^people\/(.*)$/.test(x)) {
+                componentName = 'PeoplePage';
             }
             return componentName;
         },
