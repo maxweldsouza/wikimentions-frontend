@@ -6,6 +6,7 @@ var React = require('react');
 /* components need to be required because they are used indirectly */
 var Spinner = require('./Spinner');
 var HomePage = require('./HomePage');
+var BookPage = require('./BookPage');
 var Login = require('./Login');
 var Signup = require('./Signup');
 
