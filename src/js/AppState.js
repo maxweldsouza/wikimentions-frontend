@@ -2,6 +2,8 @@ var request = require('superagent');
 var parallelRequest = require('./parallelRequest');
 var _ = require('underscore');
 var HomePage = require('./HomePage');
+var Login = require('./Login');
+var Signup = require('./Signup');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -85,6 +87,10 @@ var AppState = (function () {
             var componentName;
             if (x === '') {
                 componentName = 'HomePage';
+            } else if (x === 'login') {
+                componentName = 'Login';
+            } else if (x === 'signup') {
+                componentName = 'Signup';
             }
             return componentName;
         },

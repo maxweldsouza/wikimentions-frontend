@@ -2,6 +2,7 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Login = require('./Login');
+var Signup = require('./Signup');
 
 var HomePage = React.createClass({
     statics: {
@@ -24,8 +25,7 @@ var HomePage = React.createClass({
                         {'rel': 'canonical', 'href': ''}
                     ]}
                     />
-                <Navbar />
-                <Login />
+                <Navbar/>
                 <div className='row'>
                     <div className='small-12 columns'>
                         <h2>Top Mentions</h2>
@@ -35,6 +35,13 @@ var HomePage = React.createClass({
                             </div>
                             <div className='small-12 columns'>
                                 "The marco polo of neuroscience"
+                            </div>
+                        </div>
+                    </div>
+                    <div className='small-12 columns'>
+                        <div className='row'>
+                            <div className='small-12 columns'>
+                                1200 mentions, 1300 mentioned, 3000 books
                             </div>
                         </div>
                     </div>
