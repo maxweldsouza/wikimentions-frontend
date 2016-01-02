@@ -64,6 +64,8 @@ var MainComponent = React.createClass({
             <div>
                 <Spinner />
                 <Component
+                    data={this.props.data}
+                    path={this.props.path}
                 />
             </div>
         );
