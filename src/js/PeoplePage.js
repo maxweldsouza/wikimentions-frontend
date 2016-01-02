@@ -6,24 +6,47 @@ var Mention = require('./Mention');
 var PeoplePage = React.createClass({
     statics: {
         resources (appstate) {
+            var vsrama = {
+                name: 'V.S. Ramachandran',
+                description: 'Phantoms in the brain is a collection of the main work of neuroscientist V.S. Ramachandran. He describes his work on the mirror box and intriguing neurological disorders that reveal the secrets of how the human brain works.',
+                mentionedby: [
+                    {
+                        name: 'Richard Dawkins',
+                        text: 'The marco polo of neuroscience'
+                    }
+                ],
+                mentions: [
+                    {
+                        name: 'Richard Dawkins',
+                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.'
+                    }
+                ]
+            }
+            var dawkins = {
+                name: 'Richard Dawkins',
+                description: 'Author of The Selfish Gene',
+                mentionedby: [
+                    {
+                        name: 'V.S. Ramachandran',
+                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.'
+                    }
+                ],
+                mentions: [
+                    {
+                        name: 'Richard Dawkins',
+                        text: 'The marco polo of neuroscience'
+                    }
+                ]
+            }
+            var data;
+            if (appstate.url === 'people/richard-dawkins') {
+                data = dawkins;
+            } else if (appstate.url === 'people/vs-ramachandran') {
+                data = vsrama;
+            }
             return {
                 api: [],
-                data: {
-                    name: 'V.S. Ramachandran',
-                    description: 'Phantoms in the brain is a collection of the main work of neuroscientist V.S. Ramachandran. He describes his work on the mirror box and intriguing neurological disorders that reveal the secrets of how the human brain works.',
-                    mentionedby: [
-                        {
-                            name: 'Richard Dawkins',
-                            text: 'The marco polo of neuroscience'
-                        }
-                    ],
-                    mentions: [
-                        {
-                            name: 'Richard Dawkins',
-                            text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.'
-                        }
-                    ]
-                }
+                data: data
             };
         }
     },

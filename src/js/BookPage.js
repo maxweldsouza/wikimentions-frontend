@@ -6,8 +6,48 @@ var Mention = require('./Mention');
 var BookPage = React.createClass({
     statics: {
         resources (appstate) {
+            var phantoms = {
+                name: 'Phantoms in the Brain',
+                author: 'V.S. Ramachandran',
+                mentionedby: [
+                    {
+                        name: 'Richard Dawkins',
+                        text: 'The marco polo of neuroscience'
+                    }
+                ],
+                mentions: [
+                    {
+                        name: 'Richard Dawkins',
+                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.'
+                    }
+                ]
+            };
+            var goddelusion = {
+                name: 'The God Delusion',
+                author: 'Richad Dawkins',
+                mentionedby: [
+                    {
+                        name: 'Richard Dawkins',
+                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.'
+                    }
+                ],
+                mentions: [
+                    {
+                        name: 'Richard Dawkins',
+                        text: 'The marco polo of neuroscience'
+                    }
+                ]
+            };
+
+            var data;
+            if (appstate.url === 'books/the-god-delusion') {
+                data = goddelusion;
+            } else if (appstate.url === 'books/phantoms-in-the-brain') {
+                data = phantoms;
+            }
             return {
-                api: []
+                api: [],
+                data: data
             };
         }
     },
@@ -25,38 +65,35 @@ var BookPage = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <div className='row'>
-                    <div className='small-12 columns'>
-                        <div className='row'>
-                            <div className='small-12 medium-4 columns'>
-                                <img className="thumbnail" src="/assets/pluto.jpg" alt="Photo of Pluto."/>
-                            </div>
-                            <div className='small-12 medium-8 columns'>
-                                <h1>Phantoms in the brain</h1>
-                                Author: V.S. Ramachandran
-                                Description: Phantoms in the brain is a collection of the main work of neuroscientist V.S. Ramachandran. He describes his work on the mirror box and intriguing neurological disorders that reveal the secrets of how the human brain works.
-                                <div className='row'>
+                    <div className='row'>
+                        <div className='small-12 columns'>
+                            <div className='row'>
+                                <div className='small-12 medium-4 columns'>
+                                    <img className="thumbnail" src="/assets/pluto.jpg" alt="Photo of Pluto."/>
+                                </div>
+                                <div className='small-12 medium-8 columns'>
+                                    <h1>{this.props.data.name}</h1>
+                                    {this.props.data.author}
+                                    <div className='row'>
                                         <div className='small-12 columns'>
                                             <h2>Mentioned by</h2>
                                         </div>
-                                    <Mention mentioner={'Richard Dawkins'} mentioned={'V S Ramachandran'} text={'The marco polo of neuroscience'}/>
-                                    <Mention mentioner={'Oliver Sacks'} mentioned={'V S Ramachandran'} text={'One of the most accessible neurological books of our generation.'}/>
-                                    <Mention mentioner={'Richard Dawkins'} mentioned={'V S Ramachandran'} text={'The marco polo of neuroscience'}/>
-                                    <Mention mentioner={'Oliver Sacks'} mentioned={'V S Ramachandran'} text={'The simplest introduction to neuroscience.'}/>
-                                </div>
-                                <div className='row'>
+                                        {this.props.data.mentionedby.map((x) => {
+                                            return <Mention mentioner={x.name} text={x.text}/>;
+                                        })}
+                                    </div>
+                                    <div className='row'>
                                         <div className='small-12 columns'>
                                             <h2>Mentions</h2>
                                         </div>
-                                    <Mention mentioner={'Richard Dawkins'} mentioned={'V S Ramachandran'} text={'The marco polo of neuroscience'}/>
-                                    <Mention mentioner={'Oliver Sacks'} mentioned={'V S Ramachandran'} text={'The simplest introduction to neuroscience.'}/>
-                                    <Mention mentioner={'Richard Dawkins'} mentioned={'V S Ramachandran'} text={'The marco polo of neuroscience'}/>
-                                    <Mention mentioner={'Oliver Sacks'} mentioned={'V S Ramachandran'} text={'The simplest introduction to neuroscience.'}/>
+                                        {this.props.data.mentions.map((x) => {
+                                            return <Mention mentioner={x.name} text={x.text}/>;
+                                        })}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </span>
         );
     }
