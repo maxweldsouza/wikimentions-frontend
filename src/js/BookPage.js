@@ -78,7 +78,7 @@ var BookPage = React.createClass({
                         <div className='small-12 columns'>
                             <div className='row'>
                                 <div className='small-12 medium-4 columns'>
-                                    <img className="thumbnail" src="/assets/pluto.jpg" alt="Photo of Pluto."/>
+                                    <img className="thumbnail" src="/assets/placeholder.png" alt="Photo of Pluto."/>
                                 </div>
                                 <div className='small-12 medium-8 columns'>
                                     <h1>{this.props.data.name}</h1>
