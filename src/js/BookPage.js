@@ -29,16 +29,21 @@ var BookPage = React.createClass({
                 author: 'Richard Dawkins',
                 mentionedby: [
                     {
-                        name: 'Richard Dawkins',
-                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.',
-                        url: '/people/vs-ramachandran'
+                        name: 'Derren Brown',
+                        text: 'This is my favourite book of all time',
+                        url: '/people/derren-brown'
+                    },
+                    {
+                        name: 'Steven Weinberg',
+                        text: 'The God Delusion is a runaway bestseller',
+                        url: '/people/steven-weinberg'
                     }
                 ],
                 mentions: [
                     {
-                        name: 'Richard Dawkins',
-                        text: 'The marco polo of neuroscience',
-                        url: '/people/vs-ramachandran'
+                        name: 'Carl Sagan',
+                        text: 'Carl Sagan said in the Pale Blue Dot',
+                        url: '/people/carl-sagan'
                     }
                 ]
             };
