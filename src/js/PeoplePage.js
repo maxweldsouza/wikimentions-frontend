@@ -22,6 +22,20 @@ var PeoplePage = React.createClass({
                         text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.',
                         url: '/people/richard-dawkins'
                     }
+                ],
+                books: [
+                    {
+                        name: 'Phantoms in the Brain',
+                        url: '/books/phantoms-in-the-brain'
+                    },
+                    {
+                        name: 'The Tell Tale Brain',
+                        url: '/books/the-tell-tale-brain'
+                    },
+                    {
+                        name: 'A Brief tour of Human Consciousness',
+                        url: '/books/a-brief-tour-of-human-consciousness'
+                    }
                 ]
             }
             var dawkins = {
@@ -40,6 +54,20 @@ var PeoplePage = React.createClass({
                         name: 'VS Ramachandran',
                         text: 'The marco polo of neuroscience',
                         url: '/people/vs-ramachandran'
+                    }
+                ],
+                books: [
+                    {
+                        name: 'The Selfish Gene',
+                        url: '/books/the-selfish-gene'
+                    },
+                    {
+                        name: 'The God Delusion',
+                        url: '/books/the-god-delusion'
+                    },
+                    {
+                        name: 'The Magic of Reality',
+                        url: '/books/the-magic-of-reality'
                     }
                 ]
             }
@@ -100,7 +128,7 @@ var PeoplePage = React.createClass({
                                     </div>
                                     {this.props.data.books.map((x) => {
                                         return <div className='small-12 columns'>
-                                            {x}
+                                            <a href={x.url}>{x.name}</a>
                                         </div>;
                                     })}
                                 </div>
