@@ -12,29 +12,33 @@ var BookPage = React.createClass({
                 mentionedby: [
                     {
                         name: 'Richard Dawkins',
-                        text: 'The marco polo of neuroscience'
+                        text: 'The marco polo of neuroscience',
+                        url: '/people/richard-dawkins'
                     }
                 ],
                 mentions: [
                     {
                         name: 'Richard Dawkins',
-                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.'
+                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.',
+                        url: '/people/richard-dawkins'
                     }
                 ]
             };
             var goddelusion = {
                 name: 'The God Delusion',
-                author: 'Richad Dawkins',
+                author: 'Richard Dawkins',
                 mentionedby: [
                     {
                         name: 'Richard Dawkins',
-                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.'
+                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.',
+                        url: '/people/vs-ramachandran'
                     }
                 ],
                 mentions: [
                     {
                         name: 'Richard Dawkins',
-                        text: 'The marco polo of neuroscience'
+                        text: 'The marco polo of neuroscience',
+                        url: '/people/vs-ramachandran'
                     }
                 ]
             };
@@ -79,7 +83,7 @@ var BookPage = React.createClass({
                                             <h2>Mentioned by</h2>
                                         </div>
                                         {this.props.data.mentionedby.map((x) => {
-                                            return <Mention mentioner={x.name} text={x.text}/>;
+                                            return <Mention url={x.url} mentioner={x.name} text={x.text}/>;
                                         })}
                                     </div>
                                     <div className='row'>
@@ -87,7 +91,7 @@ var BookPage = React.createClass({
                                             <h2>Mentions</h2>
                                         </div>
                                         {this.props.data.mentions.map((x) => {
-                                            return <Mention mentioner={x.name} text={x.text}/>;
+                                            return <Mention url={x.url} mentioner={x.name} text={x.text}/>;
                                         })}
                                     </div>
                                 </div>

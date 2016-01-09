@@ -12,29 +12,34 @@ var PeoplePage = React.createClass({
                 mentionedby: [
                     {
                         name: 'Richard Dawkins',
-                        text: 'The marco polo of neuroscience'
+                        text: 'The marco polo of neuroscience',
+                        url: '/people/richard-dawkins'
                     }
                 ],
                 mentions: [
                     {
                         name: 'Richard Dawkins',
-                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.'
+                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.',
+                        url: '/people/richard-dawkins'
                     }
                 ]
             }
             var dawkins = {
                 name: 'Richard Dawkins',
                 description: 'Author of The Selfish Gene',
+                books: ['The God Delusion', 'The Selfish Gene', 'The Extended Phenotype'],
                 mentionedby: [
                     {
                         name: 'V.S. Ramachandran',
-                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.'
+                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.',
+                        url: '/people/vs-ramachandran'
                     }
                 ],
                 mentions: [
                     {
-                        name: 'Richard Dawkins',
-                        text: 'The marco polo of neuroscience'
+                        name: 'VS Ramachandran',
+                        text: 'The marco polo of neuroscience',
+                        url: '/people/vs-ramachandran'
                     }
                 ]
             }
@@ -78,7 +83,7 @@ var PeoplePage = React.createClass({
                                         <h2>Mentioned by</h2>
                                     </div>
                                     {this.props.data.mentionedby.map((x) => {
-                                        return <Mention mentioner={x.name} text={x.text}/>;
+                                        return <Mention url={x.url} mentioner={x.name} text={x.text}/>;
                                     })}
                                 </div>
                                 <div className='row'>
@@ -86,7 +91,17 @@ var PeoplePage = React.createClass({
                                         <h2>Mentions</h2>
                                     </div>
                                     {this.props.data.mentions.map((x) => {
-                                        return <Mention mentioner={x.name} text={x.text}/>;
+                                        return <Mention url={x.url} mentioner={x.name} text={x.text}/>;
+                                    })}
+                                </div>
+                                <div className='row'>
+                                    <div className='small-12 columns'>
+                                        <h2>Books</h2>
+                                    </div>
+                                    {this.props.data.books.map((x) => {
+                                        return <div className='small-12 columns'>
+                                            {x}
+                                        </div>;
                                     })}
                                 </div>
                             </div>

@@ -6,7 +6,7 @@ var Mention = React.createClass({
             <div className='small-12 columns'>
                 <div className='row'>
                     <div className='small-12 columns'>
-                        <a href='/people/richard-dawkins'>{this.props.mentioner}</a>
+                        <a href={this.props.url}>{this.props.mentioner}</a>
                     </div>
                     <div className='small-12 columns'>
                         "{this.props.text}"
