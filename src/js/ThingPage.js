@@ -11,6 +11,10 @@ var ThingPage = React.createClass({
             return {
                 api: [
                     {
+                        name: 'thing',
+                        path: '/api/v1/thing/' + id
+                    },
+                    {
                         name: 'mentions',
                         path: '/api/v1/mentions/' + id
                     },
@@ -43,8 +47,7 @@ var ThingPage = React.createClass({
                                     <img className="thumbnail" src="/assets/placeholder.png" alt="Photo of Pluto."/>
                                 </div>
                                 <div className='small-12 medium-8 columns'>
-                                    <h1>{this.props.data.name}</h1>
-                                    {this.props.data.author}
+                                    <h1>{this.props.data.thing.thing_title}</h1>
                                     <div className='row'>
                                         <div className='small-12 columns'>
                                             <h2>Mentioned by</h2>
