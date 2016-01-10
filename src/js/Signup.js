@@ -25,20 +25,20 @@ var Signup = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <form>
+                <form action='/api/v1/register' method='post'>
                     <div className="row">
                         <div className="small-12 medium-6 columns">
                             <h2>Sign Up</h2>
                             <label>E-mail
-                                <input type="text" placeholder="" />
+                                <input type="email" name='email' placeholder="" required />
                             </label>
                             <label>Password
-                                <input type="text" placeholder="" />
+                                <input type="password" name='password' placeholder="" required/>
                             </label>
                             <label>Retype Password
-                                <input type="text" placeholder="" />
+                                <input type="password" placeholder="" required/>
                             </label>
-                            <button type="button" className="success button">Save</button>
+                            <button type="submit" className="success button">Save</button>
                         </div>
                     </div>
                 </form>

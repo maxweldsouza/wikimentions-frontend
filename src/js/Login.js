@@ -26,17 +26,17 @@ var Login = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <form>
+                <form action='/api/v1/login' method='post'>
                     <div className="row">
                         <div className="small-12 medium-6 columns">
                             <h2>Login</h2>
                             <label>E-mail
-                                <input type="text" placeholder="" />
+                                <input type="email" name='email' placeholder="" />
                             </label>
                             <label>Password
-                                <input type="text" placeholder="" />
+                                <input type="password" name='password' placeholder="" />
                             </label>
-                            <button type="button" className="success button">Save</button>
+                            <button type="submit" className="success button">Save</button>
                         </div>
                     </div>
                 </form>

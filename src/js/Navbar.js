@@ -1,4 +1,5 @@
 var React = require('react');
+var cookies = require('browser-cookies');
 
 var Navbar = React.createClass({
     statics: {
@@ -8,7 +9,37 @@ var Navbar = React.createClass({
             };
         }
     },
+    getInitialState: function() {
+        return {
+            loggedin: false
+        };
+    },
+    componentDidMount () {
+        var session = cookies.get('mentions');
+        this.setState({
+            loggedin: session ? true : false
+        });
+    },
     render () {
+        var user;
+        if (this.state.loggedin) {
+            user = <ul className='menu'>
+                <li><input type='search' placeholder='Search' /></li>
+                <li><button type='button' className='button'>Search</button></li>
+                <li>
+                    <form action='/api/v1/logout' method='post'>
+                        <button type='submit'>Logout</button>
+                    </form>
+                </li>
+            </ul>;
+        } else {
+            user = <ul className='menu'>
+                <li><input type='search' placeholder='Search' /></li>
+                <li><button type='button' className='button'>Search</button></li>
+                <li><a href='/login'>Login</a></li>
+                <li><a href='/signup'>Signup</a></li>
+            </ul>;
+        }
         return (
             <div className='top-bar'>
                 <div className='top-bar-left'>
@@ -19,12 +50,7 @@ var Navbar = React.createClass({
                     </ul>
                 </div>
                 <div className='top-bar-right'>
-                    <ul className='menu'>
-                        <li><input type='search' placeholder='Search' /></li>
-                        <li><button type='button' className='button'>Search</button></li>
-                        <li><a href='/login'>Login</a></li>
-                        <li><a href='/signup'>Signup</a></li>
-                    </ul>
+                    {user}
                 </div>
             </div>
         );
