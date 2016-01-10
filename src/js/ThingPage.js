@@ -3,64 +3,26 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 
-var BookPage = React.createClass({
+var ThingPage = React.createClass({
     statics: {
         resources (appstate) {
-            var phantoms = {
-                name: 'Phantoms in the Brain',
-                author: 'V.S. Ramachandran',
-                mentionedby: [
+            var data;
+            var id = appstate.url.split('/')[1];
+            return {
+                api: [
                     {
-                        name: 'Richard Dawkins',
-                        text: 'The marco polo of neuroscience',
-                        url: '/people/richard-dawkins'
-                    }
-                ],
-                mentions: [
-                    {
-                        name: 'Richard Dawkins',
-                        text: 'As the social critic Richard Dawkins have said there is little difference in saying that the sun goes around the earth.',
-                        url: '/people/richard-dawkins'
-                    }
-                ]
-            };
-            var goddelusion = {
-                name: 'The God Delusion',
-                author: 'Richard Dawkins',
-                mentionedby: [
-                    {
-                        name: 'Derren Brown',
-                        text: 'This is my favourite book of all time',
-                        url: '/people/derren-brown'
+                        name: 'mentions',
+                        path: '/api/v1/mentions/' + id
                     },
                     {
-                        name: 'Steven Weinberg',
-                        text: 'The God Delusion is a runaway bestseller',
-                        url: '/people/steven-weinberg'
-                    }
-                ],
-                mentions: [
-                    {
-                        name: 'Carl Sagan',
-                        text: 'Carl Sagan said in the Pale Blue Dot',
-                        url: '/people/carl-sagan'
+                        name: 'mentionedby',
+                        path: '/api/v1/mentioned/' + id
                     }
                 ]
-            };
-
-            var data;
-            if (appstate.url === 'books/the-god-delusion') {
-                data = goddelusion;
-            } else if (appstate.url === 'books/phantoms-in-the-brain') {
-                data = phantoms;
-            }
-            return {
-                api: [],
-                data: data
             };
         }
     },
-    render: function () {
+    render () {
         return (
             <span>
                 <Helmet
@@ -88,7 +50,7 @@ var BookPage = React.createClass({
                                             <h2>Mentioned by</h2>
                                         </div>
                                         {this.props.data.mentionedby.map((x) => {
-                                            return <Mention url={x.url} mentioner={x.name} text={x.text}/>;
+                                            return <Mention url={'/pages/' + x.mentioner_id + '/' + x.thing_name} mentioner={x.thing_title} text={x.mention_description}/>;
                                         })}
                                     </div>
                                     <div className='row'>
@@ -96,7 +58,7 @@ var BookPage = React.createClass({
                                             <h2>Mentions</h2>
                                         </div>
                                         {this.props.data.mentions.map((x) => {
-                                            return <Mention url={x.url} mentioner={x.name} text={x.text}/>;
+                                            return <Mention url={'/pages/' + x.mentioned_id + '/' + x.thing_name} mentioner={x.thing_title} text={x.mention_description}/>;
                                         })}
                                     </div>
                                 </div>
@@ -108,4 +70,4 @@ var BookPage = React.createClass({
     }
 });
 
-module.exports = BookPage;
+module.exports = ThingPage;

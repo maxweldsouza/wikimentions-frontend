@@ -2,8 +2,7 @@ var request = require('superagent');
 var parallelRequest = require('./parallelRequest');
 var _ = require('underscore');
 var HomePage = require('./HomePage');
-var BookPage = require('./BookPage');
-var PeoplePage = require('./PeoplePage');
+var ThingPage = require('./ThingPage');
 var Login = require('./Login');
 var Signup = require('./Signup');
 
@@ -93,10 +92,8 @@ var AppState = (function () {
                 componentName = 'Login';
             } else if (x === 'signup') {
                 componentName = 'Signup';
-            } else if (/^books\/(.*)$/.test(x)) {
-                componentName = 'BookPage';
-            } else if (/^people\/(.*)$/.test(x)) {
-                componentName = 'PeoplePage';
+            } else if (/^pages\/([0-9]+)\/(.*)$/.test(x)) {
+                componentName = 'ThingPage';
             }
             return componentName;
         },
