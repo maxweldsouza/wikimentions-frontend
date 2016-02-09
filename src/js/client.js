@@ -41,7 +41,7 @@ window.Mentions = {
         if (str(url).endsWith('/')) {
             url = url.substring(0, url.length - 1);
         }
-	var routeObj = {
+        var routeObj = {
             url: url,
             onUpdate: (robj) => {
                 ReactDOM.render(<MainComponent data={robj.data} path={robj.url} component={robj.component}/>, document.getElementById('page-container'));

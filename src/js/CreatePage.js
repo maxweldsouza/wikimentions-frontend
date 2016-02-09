@@ -26,26 +26,31 @@ var HomePage = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <div className='row'>
-                    <div className='small-12 columns'>
-                        <h2>Create Page</h2>
-                        <div className='row'>
-                            <div className='small-12 columns'>
-                                <a href='/pages/1/richard-dawkins'>Richard Dawkins</a> mentioned <a href='/books/phantoms-in-the-brain'>Phantoms in the brain</a>
-                            </div>
-                            <div className='small-12 columns'>
-                                "The marco polo of neuroscience"
-                            </div>
+                <form action='/api/v1/login' method='post'>
+                    <div className='row'>
+                        <div className='small-12 medium-6 columns'>
+                            <h2>Create Page</h2>
+                            <label>Title
+                                <input type='text' name='title' placeholder='' />
+                            </label>
+                            <label>Short Description
+                                <input type='text' name='description' placeholder='' />
+                            </label>
+                            <label>Type
+                                <select>
+                                    <option value="person">Person</option>
+                                    <option value="book">Book</option>
+                                </select>
+                            </label>
+                            <label>ISBN
+                                <input type='text' name='ISBN' placeholder='' />
+                            </label>
+                            <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
+      <input type="file" id="exampleFileUpload" className="show-for-sr"/>
+                            <button type='submit' className='success button'>Submit</button>
                         </div>
                     </div>
-                    <div className='small-12 columns'>
-                        <div className='row'>
-                            <div className='small-12 columns'>
-                                1200 mentions, 1300 mentioned, 3000 books
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </span>
         );
     }
