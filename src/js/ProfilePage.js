@@ -26,7 +26,36 @@ var ProfilePage = React.createClass({
         var tab, tabContent;
         if (this.state.tab === 'edits') {
             tabContent = <div className="tabs-panel is-active">
-                <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width={200}>Table Header</th>
+                            <th>Table Header</th>
+                            <th width={150}>Table Header</th>
+                            <th width={150}>Table Header</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Content Goes Here</td>
+                            <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
+                            <td>Content Goes Here</td>
+                            <td>Content Goes Here</td>
+                        </tr>
+                        <tr>
+                            <td>Content Goes Here</td>
+                            <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+                            <td>Content Goes Here</td>
+                            <td>Content Goes Here</td>
+                        </tr>
+                        <tr>
+                            <td>Content Goes Here</td>
+                            <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+                            <td>Content Goes Here</td>
+                            <td>Content Goes Here</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>;
         } else if (this.state.tab === 'changepassword') {
             tabContent = <div className="tabs-panel is-active">
