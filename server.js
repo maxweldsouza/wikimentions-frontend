@@ -7,7 +7,6 @@ var compress = require('compression');
 var cookieParser = require('cookie-parser');
 var app = express();
 var fs = require('fs');
-var cheerio = require('cheerio');
 var _ = require("underscore");
 var str = require('string');
 var request = require('superagent');
@@ -16,11 +15,29 @@ var Log = require('log')
   , log = new Log('info', fs.createWriteStream('googlebot.log', {flags: 'a'}));
 
 global.localStorage = require('localStorage');
-require('node-jsx').install();
-
-var AppState = require('./src/js/AppState');
-
 var production = process.env.NODE_ENV === 'production';
+
+var plugins = [
+    // react
+    'syntax-flow',
+    'syntax-jsx',
+    'transform-flow-strip-types',
+    'transform-react-jsx',
+    'transform-react-display-name',
+    'transform-react-constant-elements'
+];
+if (production) {
+    plugins.push("transform-react-inline-elements");
+}
+require("babel-register")({
+    plugins: plugins,
+    presets: ["es2015"]
+});
+
+var Router = require('./src/js/Router');
+/* Incorrect configuration lead to huge problems */
+Router.setBaseUrl('127.0.0.1:8001');
+
 var sourceDir = production ? 'dist': 'src';
 
 function readFullFile (file) {
@@ -31,24 +48,8 @@ function readFullFile (file) {
     }
 }
 
-function googleBotLogger (req, res, next) {
-    var ua = req.headers['user-agent'];
-    if (ua && ua.indexOf('Googlebot') >= 0) {
-        var path = req.originalUrl;
-        var timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
-        request
-            .post('http://localhost:8001/api/v2/googlebot')
-            .type('form')
-            .send({ path: req.originalUrl, ua: ua, timestamp: timestamp })
-            .end(function(err, res){
-            });
-    }
-    next();
-}
-
 app.use(compress());
 app.use(cookieParser());
-app.use(googleBotLogger);
 app.disable('x-powered-by');
 
 var eightdays = {
@@ -65,10 +66,10 @@ var nocache = {
 app.use('/favicon.ico', express.static(__dirname + '/favicon.ico', eightdays));
 app.use('/robots.txt', express.static(__dirname + '/robots.txt', nocache));
 app.use('/js-bundle', express.static(path.join(__dirname, sourceDir, 'js-bundle'), eightdays));
-app.use('/assets', express.static(path.join(__dirname, sourceDir, 'assets'), eightdays));
-app.use('/js', express.static(path.join(__dirname, sourceDir, 'js'), eightdays));
-app.use('/css', express.static(path.join(__dirname, sourceDir, 'css'), eightdays));
-app.use('/minified', express.static(path.join(__dirname, sourceDir, 'minified'), eightdays));
+app.use('/assets', express.static(path.join(__dirname, sourceDir, 'assets'), farfuture));
+app.use('/js', express.static(path.join(__dirname, sourceDir, 'js'), farfuture));
+app.use('/css', express.static(path.join(__dirname, sourceDir, 'css'), farfuture));
+app.use('/minified', express.static(path.join(__dirname, sourceDir, 'minified'), farfuture));
 
 // for uptime robot
 app.head('/', function (req, res) {
@@ -77,34 +78,39 @@ app.head('/', function (req, res) {
 
 var indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
 var MainComponent = require(path.join(__dirname, sourceDir, 'js', 'MainComponent'));
+var compiledTemplate = _.template(indexHtml);
 
 app.get(/^(.+)$/, function(req, res, next) {
     /* Server specific isomorphic code */
     try {
-        var $ = cheerio.load(indexHtml);
-
-        AppState.dataDidUpdate(() => {
-            try {
-                var content = ReactDOMServer.renderToString(React.createElement(MainComponent, {
-                    data: AppState.data,
-                    path: AppState.url,
-                    component: AppState.component,
-                }))
-                $('#page-container').html(content);
-                $('#api-data').html(JSON.stringify(AppState.data));
-
-                var head = Helmet.rewind();
-                // var canonical = routeObj.canonical ? routeObj.canonical : req.originalUrl;
-                // canonical = 'https://comparnion.com' + canonical;
-                // $('link[rel=canonical]').attr('href', canonical);
-                $('title').replaceWith(head.title.toString());
-                $('meta[name=browser-tags]').replaceWith(head.meta.toString());
-                res.send($.html());
-            } catch (err) {
-                return next(err);
+        var routeObj = {
+            url: req.originalUrl,
+            onUpdate: (routeObj) => {
+                try {
+                    var content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
+                        data: routeObj.data,
+                        path: routeObj.url,
+                        component: routeObj.component,
+                    }));
+                    var head = Helmet.rewind();
+                    if (routeObj.maxAge > 0) {
+                        res.set('Cache-Control', 'public, max-age=' + routeObj.maxAge);
+                    } else {
+                        res.set('Cache-Control', 'no-cache');
+                    }
+                    res.send(compiledTemplate({
+                        title: head.title.toString(),
+                        meta: head.meta.toString(),
+                        link: head.link.toString(),
+                        apidata: JSON.stringify(routeObj.data),
+                        content: content
+                    }));
+                } catch (err) {
+                    return next(err);
+                }
             }
-        });
-        AppState.route(req.originalUrl);
+        };
+        Router.route(routeObj);
     } catch (err) {
         if (err) {
             return next(err);
@@ -122,14 +128,10 @@ app.use(function(err, req, res, next) {
             message = 'Internal Error';
         }
         res.status(status);
-        if (production) {
-            res.send({
-                message: message,
-                status: status
-            });
-        } else {
-            next(err);
-        }
+        res.send({
+            message: message,
+            status: status
+        });
     }
 });
 

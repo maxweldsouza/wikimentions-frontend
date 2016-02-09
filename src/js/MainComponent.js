@@ -7,6 +7,7 @@ var React = require('react');
 var Spinner = require('./Spinner');
 var HomePage = require('./HomePage');
 var ThingPage = require('./ThingPage');
+var EditPage = require('./EditPage');
 var Login = require('./Login');
 var Signup = require('./Signup');
 

@@ -5,7 +5,7 @@ var _ = require('underscore');
 var $ = require('jquery-easing');
 var str = require('string');
 var MainComponent = require('./MainComponent');
-var AppState = require('./AppState.js');
+var Router = require('./Router.js');
 
 /*
 in console type Perf.printWasted();
@@ -41,15 +41,14 @@ window.Mentions = {
         if (str(url).endsWith('/')) {
             url = url.substring(0, url.length - 1);
         }
-        AppState.dataDidUpdate(() => {
-            ReactDOM.render(<MainComponent data={AppState.data} path={AppState.url} component={AppState.component}/>, document.getElementById('page-container'));
-            if (window.location.pathname[0] !== url[0]) {
-                window.scrollTo(0, 0);
+	var routeObj = {
+            url: url,
+            onUpdate: (robj) => {
+                ReactDOM.render(<MainComponent data={robj.data} path={robj.url} component={robj.component}/>, document.getElementById('page-container'));
+                stopLoading();
             }
-            ga('send', 'pageview');
-            stopLoading();
-        });
-        AppState.route(url);
+        };
+        Router.route(routeObj);
         return;
     },
     firstLoad: function (url) {
@@ -59,12 +58,16 @@ window.Mentions = {
         } catch (e) {
             Mentions.route(url);
         }
-        AppState.dataDidUpdate(() => {
-            ReactDOM.render(<MainComponent data={AppState.data} path={AppState.url} component={AppState.component}/>, document.getElementById('page-container'));
-            ga('send', 'pageview');
-            stopLoading();
-        });
-        AppState.firstLoad(url, data);
+        var routeObj = {
+            url: url,
+            embeddedData: data,
+            onUpdate: (robj) => {
+                // Dont need to send ga pagview on first load
+                ReactDOM.render(<MainComponent data={robj.data} path={robj.url} component={robj.component}/>, document.getElementById('page-container'));
+                stopLoading();
+            }
+        };
+        Router.route(routeObj);
         return;
     }
 };
@@ -116,10 +119,20 @@ $(document).on('click', 'a', function (e) {
         return;
     } else if (LinkChecker.samePage(url)) {
         e.preventDefault();
+        // smooth scroll
+        $('html, body').animate({
+            scrollTop: $( $.attr(this, 'href') ).offset().top - 80
+        }, 200, 'easeOutQuart');
     } else if (!LinkChecker.isExternal(url) && $(this).attr('target') !== '_blank') {
         startLoading();
-        e.preventDefault();
+        var parseUrl = document.createElement('a');
+        parseUrl.href = window.location.origin + url;
+        if (window.location.pathname !== parseUrl.pathname) {
+            window.scrollTo(0, 0);
+            ga('send', 'pageview');
+        }
         history.pushState(null, null, url);
+        e.preventDefault();
         setTimeout(function () {
             Mentions.route(url);
         }, 0);

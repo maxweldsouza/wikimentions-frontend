@@ -3,7 +3,7 @@ var gulp = require('gulp');
 var checkPages = require("check-pages");
 
 // Include Our Plugins
-var minifyhtml = require('gulp-minify-html');
+var minifyhtml = require('gulp-htmlmin');
 var mocha = require('gulp-mocha');
 var eslint = require('gulp-eslint');
 var scsslint = require('gulp-scss-lint');
@@ -51,6 +51,19 @@ gulp.task('es-lint-tests', function() {
         .pipe(eslint.format());
 });
 
+var plugins = [
+    // react
+    'syntax-flow',
+    'syntax-jsx',
+    'transform-flow-strip-types',
+    'transform-react-jsx',
+    'transform-react-display-name',
+    'transform-react-constant-elements'
+];
+if (production) {
+    plugins.push("transform-react-inline-elements");
+}
+
 gulp.task("browserify", function () {
     return browserify({
         debug: !production,
@@ -58,7 +71,8 @@ gulp.task("browserify", function () {
         entries: ["src/js/client.js"]
     })
     .transform(babelify.configure({
-        blacklist: ["es6.classes"]
+        plugins: plugins,
+        presets: ["es2015"]
     }))
     .bundle()
     .on("error", function (err) {
