@@ -41,7 +41,6 @@ var Login = React.createClass({
                     </div>
                 </form>
             </span>
-
         );
     }
 });

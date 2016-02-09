@@ -26,6 +26,7 @@ var Navbar = React.createClass({
             user = <ul className='menu'>
                 <li><input type='search' placeholder='Search' /></li>
                 <li><button type='button' className='button'>Search</button></li>
+                <li><a href='/users/1/maxweldsouza'>maxweldsouza</a></li>
                 <li>
                     <form action='/api/v1/logout' method='post'>
                         <button type='submit'>Logout</button>

@@ -3,12 +3,13 @@ var parallelRequest = require('./parallelRequest');
 var _ = require('underscore');
 
 var CreatePage = require('./CreatePage');
-var Spinner = require('./Spinner');
-var HomePage = require('./HomePage');
-var ThingPage = require('./ThingPage');
 var EditPage = require('./EditPage');
+var HomePage = require('./HomePage');
 var Login = require('./Login');
+var ProfilePage = require('./ProfilePage');
 var Signup = require('./Signup');
+var Spinner = require('./Spinner');
+var ThingPage = require('./ThingPage');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -31,14 +32,14 @@ var getComponent = function (routeObj) {
     } else if (/^create$/.test(x)) {
         componentName = 'CreatePage';
         routeObj.maxAge = 3600;
-    } else if (x === 'sitemap') {
-        componentName = 'Sitemap';
+    } else if (/^login$/.test(x)) {
+        componentName = 'Login';
         routeObj.maxAge = 3600;
-    } else if (/^(mobiles)\/(.*)\/specifications$/.test(x)) {
-        componentName = 'ProductPage';
+    } else if (/^signup$/.test(x)) {
+        componentName = 'Signup';
         routeObj.maxAge = 3600;
-    } else if (/^(mobiles)\/(.*)$/.test(x)) {
-        componentName = 'ProductPage';
+    } else if (/^users\/([0-9]+)\/(.*)$/.test(x)) {
+        componentName = 'ProfilePage';
         routeObj.maxAge = 0;
     } else if (/^compare\/(mobiles)(.*)$/.test(x)) {
         componentName = 'ComparePage';
