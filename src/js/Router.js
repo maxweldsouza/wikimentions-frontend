@@ -2,6 +2,8 @@ var request = require('superagent');
 var parallelRequest = require('./parallelRequest');
 var _ = require('underscore');
 
+var CreatePage = require('./CreatePage');
+var Spinner = require('./Spinner');
 var HomePage = require('./HomePage');
 var ThingPage = require('./ThingPage');
 var EditPage = require('./EditPage');
@@ -26,8 +28,8 @@ var getComponent = function (routeObj) {
     if (x === '') {
         componentName = 'HomePage';
         routeObj.maxAge = 0;
-    } else if (textPages.indexOf(x) >= 0) {
-        componentName = 'TextPage';
+    } else if (/^create$/.test(x)) {
+        componentName = 'CreatePage';
         routeObj.maxAge = 3600;
     } else if (x === 'sitemap') {
         componentName = 'Sitemap';
