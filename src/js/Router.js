@@ -48,8 +48,8 @@ var getComponent = function (routeObj) {
     } else if (/^mentions\/([0-9]+)$/.test(x)) {
         componentName = 'AddMention';
         routeObj.maxAge = 0;
-    } else if (/^mobiles\/(.+)$/.test(x)) {
-        componentName = 'AppPage';
+    } else if (/^pages\/edit\/([0-9]+)\/(.*)$/.test(x)) {
+        componentName = 'EditPage';
         routeObj.maxAge = 0;
     } else if (/^mobiles[?](.+)$/.test(x)) {
         componentName = 'AppPage';
