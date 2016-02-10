@@ -106,61 +106,61 @@ var data = {
             id: 18,
             type: 'person',
             name: 'Richard Dawkins',
-            books: []
+            books: [1, 6, 9, 10, 11, 15]
         },
         {
             id: 19,
             type: 'person',
             name: 'VS Ramachanran',
-            books: []
+            books: [2]
         },
         {
             id: 20,
             type: 'person',
             name: 'Francis Crick',
-            books: []
+            books: [3, 4]
         },
         {
             id: 21,
             type: 'person',
             name: 'Oliver Sacks',
-            books: []
+            books: [16]
         },
         {
             id: 22,
             type: 'person',
             name: 'Alan Turing',
-            books: []
+            books: [5]
         },
         {
             id: 23,
             type: 'person',
             name: 'Erwin Schrodinger',
-            books: []
+            books: [7]
         },
         {
             id: 24,
             type: 'person',
             name: 'George Gamow',
-            books: []
+            books: [8]
         },
         {
             id: 25,
             type: 'person',
             name: 'Lawrence Krauss',
-            books: []
+            books: [12]
         },
         {
             id: 26,
             type: 'person',
             name: 'Richard Feynman',
-            books: []
+            books: [13, 17]
         },
         {
             id: 27,
             type: 'person',
             name: 'Bertrand Russell',
-            books: []
+            books: [14]
         }
     ],
     mentions: [
