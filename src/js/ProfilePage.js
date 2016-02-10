@@ -25,6 +25,14 @@ var ProfilePage = React.createClass({
     render () {
         var tab, tabContent;
         if (this.state.tab === 'edits') {
+            tab = <ul className="tabs" data-tabs id="example-tabs">
+                <li className="tabs-title is-active">
+                    <a onClick={this.changeTab.bind(null, 'edits')} aria-selected="true">Edits</a>
+                </li>
+                <li className="tabs-title">
+                    <a onClick={this.changeTab.bind(null, 'changepassword')}>Change Password</a>
+                </li>
+            </ul>;
             tabContent = <div className="tabs-panel is-active">
                 <table>
                     <thead>
@@ -54,6 +62,14 @@ var ProfilePage = React.createClass({
                 </table>
             </div>;
         } else if (this.state.tab === 'changepassword') {
+            tab = <ul className="tabs" data-tabs id="example-tabs">
+                <li className="tabs-title">
+                    <a onClick={this.changeTab.bind(null, 'edits')}>Edits</a>
+                </li>
+                <li className="tabs-title is-active">
+                    <a onClick={this.changeTab.bind(null, 'changepassword')} aria-selected="true">Change Password</a>
+                </li>
+            </ul>;
             tabContent = <div className="tabs-panel is-active">
                 <div className='row'>
                     <div className='small-12 medium-6 columns'>
@@ -89,14 +105,7 @@ var ProfilePage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1>maxweldsouza</h1>
-                                <ul className="tabs" data-tabs id="example-tabs">
-                                    <li className="tabs-title is-active">
-                                        <a onClick={this.changeTab.bind(null, 'edits')} aria-selected="true">Edits</a>
-                                    </li>
-                                    <li className="tabs-title">
-                                        <a onClick={this.changeTab.bind(null, 'changepassword')}>Change Password</a>
-                                    </li>
-                                </ul>
+                                {tab}
                             </div>
                             <div className="tabs-content" data-tabs-content="example-tabs">
                                 {tabContent}
