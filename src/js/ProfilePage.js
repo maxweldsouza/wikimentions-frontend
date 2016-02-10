@@ -29,30 +29,26 @@ var ProfilePage = React.createClass({
                 <table>
                     <thead>
                         <tr>
-                            <th width={200}>Table Header</th>
-                            <th>Table Header</th>
-                            <th width={150}>Table Header</th>
-                            <th width={150}>Table Header</th>
+                            <th width={200}>Page</th>
+                            <th>Type</th>
+                            <th width={150}>Updated</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Content Goes Here</td>
-                            <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
-                            <td>Content Goes Here</td>
-                            <td>Content Goes Here</td>
+                            <td>The God Delusion</td>
+                            <td>Mention</td>
+                            <td>2 mins ago</td>
                         </tr>
                         <tr>
-                            <td>Content Goes Here</td>
-                            <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-                            <td>Content Goes Here</td>
-                            <td>Content Goes Here</td>
+                            <td>The Selfish Gene</td>
+                            <td>Page</td>
+                            <td>12 mins ago</td>
                         </tr>
                         <tr>
-                            <td>Content Goes Here</td>
-                            <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
-                            <td>Content Goes Here</td>
-                            <td>Content Goes Here</td>
+                            <td>Phantoms in the Brain</td>
+                            <td>Book</td>
+                            <td>3 days ago</td>
                         </tr>
                     </tbody>
                 </table>
@@ -91,14 +87,17 @@ var ProfilePage = React.createClass({
                 <div className='row'>
                     <div className='small-12 columns'>
                         <div className='row'>
-                            <ul className="tabs" data-tabs id="example-tabs">
-                                <li className="tabs-title is-active">
-                                    <a onClick={this.changeTab.bind(null, 'edits')} aria-selected="true">Edits</a>
-                                </li>
-                                <li className="tabs-title">
-                                    <a onClick={this.changeTab.bind(null, 'changepassword')}>Change Password</a>
-                                </li>
-                            </ul>
+                            <div className='small-12 columns'>
+                                <h1>maxweldsouza</h1>
+                                <ul className="tabs" data-tabs id="example-tabs">
+                                    <li className="tabs-title is-active">
+                                        <a onClick={this.changeTab.bind(null, 'edits')} aria-selected="true">Edits</a>
+                                    </li>
+                                    <li className="tabs-title">
+                                        <a onClick={this.changeTab.bind(null, 'changepassword')}>Change Password</a>
+                                    </li>
+                                </ul>
+                            </div>
                             <div className="tabs-content" data-tabs-content="example-tabs">
                                 {tabContent}
                             </div>
