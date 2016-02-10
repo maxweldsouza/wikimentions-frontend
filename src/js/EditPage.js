@@ -2,6 +2,7 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Mention = require('./Mention');
+var DATA = require('./dummy');
 
 var EditPage = React.createClass({
     statics: {

@@ -22,6 +22,36 @@ var data = {
             name: 'What Mad Pursuit',
         },
         {
+            id: 4,
+            type: 'book',
+            name: 'The Annotated Turing',
+        },
+        {
+            id: 4,
+            type: 'book',
+            name: 'The Magic of Reality',
+        },
+        {
+            id: 4,
+            type: 'book',
+            name: 'What Is Life?',
+        },
+        {
+            id: 4,
+            type: 'book',
+            name: 'The Birth and Death of the Sun',
+        },
+        {
+            id: 4,
+            type: 'book',
+            name: 'The Greatest Show on Earth',
+        },
+        {
+            id: 4,
+            type: 'book',
+            name: 'Surely you\'re joking Mr Feynman',
+        },
+        {
             id: 5,
             type: 'person',
             name: 'Richard Dawkins',
