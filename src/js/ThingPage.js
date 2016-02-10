@@ -71,6 +71,37 @@ var ThingPage = React.createClass({
                                         <button type='button' className='button'>Add</button>
                                     </div>
                                 </div>
+                                <div className='row'>
+                                    <div className='small-12 columns'>
+                                        <h2>Discuss</h2>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="small-6 columns">maxweldsouza</div>
+                                    <div className="small-6 columns text-right">1 hour ago</div>
+                                </div>
+                                <div className="row">
+                                    <div className="small-12 columns">We should add some more books of this author !</div>
+                                </div>
+                                <div className="row">
+                                    <div className="small-6 columns">someuser</div>
+                                    <div className="small-6 columns text-right">2 hours ago</div>
+                                </div>
+                                <div className="row">
+                                    <div className="small-12 columns">Sure !</div>
+                                </div>
+                                <form action='' method='post'>
+                                    <div className="row">
+                                        <div className="small-12 columns">
+                                            <label>Reply
+                                                <input type="text"></input>
+                                            </label>
+                                        </div>
+                                        <div className="small-12 columns">
+                                            <button type='button' className='button'>Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

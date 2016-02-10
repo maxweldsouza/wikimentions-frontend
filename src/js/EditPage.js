@@ -41,18 +41,18 @@ var EditPage = React.createClass({
                             <div className='small-12 medium-8 columns'>
                                 <h1>{this.props.data.thing.thing_title}</h1>
                                 <form action='' method='post'>
-                                    <div class="row">
-                                        <div class="medium-6 columns">
+                                    <div className="row">
+                                        <div className="small-12 columns">
                                             <label>Page Title
                                                 <input type="text"></input>
                                             </label>
                                         </div>
-                                        <div class="medium-6 columns">
+                                        <div className="small-12 columns">
                                             <label>Page Type
                                                 <input type="text"></input>
                                             </label>
                                         </div>
-                                        <div class="medium-6 columns">
+                                        <div className="small-12 columns">
                                             <label>Page Url
                                                 <input type="text"></input>
                                             </label>
