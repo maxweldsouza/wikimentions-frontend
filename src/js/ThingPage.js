@@ -57,7 +57,7 @@ var ThingPage = React.createClass({
                                         return <Mention url={'/pages/' + x.mentioner_id + '/' + x.thing_name} mentioner={x.thing_title} text={x.mention_description}/>;
                                     })}
                                     <div className='small-12 columns'>
-                                        <button type='button' className='button'>Add</button>
+                                        <a href='/mentions/1' className='button'>Add</a>
                                     </div>
                                 </div>
                                 <div className='row'>

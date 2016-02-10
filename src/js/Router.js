@@ -3,6 +3,7 @@ var parallelRequest = require('./parallelRequest');
 var _ = require('underscore');
 
 var CreatePage = require('./CreatePage');
+var AddMention = require('./AddMention');
 var EditPage = require('./EditPage');
 var HomePage = require('./HomePage');
 var Login = require('./Login');
@@ -44,8 +45,8 @@ var getComponent = function (routeObj) {
     } else if (/^pages\/([0-9]+)\/(.*)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
-    } else if (/^mobiles()$/.test(x)) {
-        componentName = 'AppPage';
+    } else if (/^mentions\/([0-9]+)$/.test(x)) {
+        componentName = 'AddMention';
         routeObj.maxAge = 0;
     } else if (/^mobiles\/(.+)$/.test(x)) {
         componentName = 'AppPage';
