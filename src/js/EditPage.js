@@ -9,12 +9,7 @@ var EditPage = React.createClass({
             var data;
             var id = appstate.url.split('/')[2];
             return {
-                api: [
-                    {
-                        name: 'thing',
-                        path: '/api/v1/thing/' + id
-                    }
-                ]
+                api: []
             };
         }
     },
@@ -39,7 +34,7 @@ var EditPage = React.createClass({
                                 <img className="thumbnail" src="/assets/placeholder.png" alt="Photo of Pluto."/>
                             </div>
                             <div className='small-12 medium-8 columns'>
-                                <h1>{this.props.data.thing.thing_title}</h1>
+                                <h1></h1>
                                 <form action='' method='post'>
                                     <div className="row">
                                         <div className="small-12 columns">
