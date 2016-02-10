@@ -31,18 +31,18 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^create$/.test(x)) {
         componentName = 'CreatePage';
-        routeObj.maxAge = 3600;
+        routeObj.maxAge = 0;
     } else if (/^login$/.test(x)) {
         componentName = 'Login';
-        routeObj.maxAge = 3600;
+        routeObj.maxAge = 0;
     } else if (/^signup$/.test(x)) {
         componentName = 'Signup';
-        routeObj.maxAge = 3600;
+        routeObj.maxAge = 0;
     } else if (/^users\/([0-9]+)\/(.*)$/.test(x)) {
         componentName = 'ProfilePage';
         routeObj.maxAge = 0;
-    } else if (/^compare\/(mobiles)(.*)$/.test(x)) {
-        componentName = 'ComparePage';
+    } else if (/^pages\/([0-9]+)\/(.*)$/.test(x)) {
+        componentName = 'ThingPage';
         routeObj.maxAge = 0;
     } else if (/^mobiles()$/.test(x)) {
         componentName = 'AppPage';
