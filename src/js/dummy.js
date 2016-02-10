@@ -4,70 +4,163 @@ var data = {
             id: 1,
             type: 'book',
             name: 'The God Delusion',
-            authors: [1]
+            authors: [18]
         },
         {
             id: 2,
             type: 'book',
             name: 'Phantoms in the Brain',
+            authors: [19]
         },
         {
             id: 3,
             type: 'book',
             name: 'The Astonishing Hypothesis',
+            authors: [21]
         },
         {
             id: 4,
             type: 'book',
             name: 'What Mad Pursuit',
-        },
-        {
-            id: 4,
-            type: 'book',
-            name: 'The Annotated Turing',
-        },
-        {
-            id: 4,
-            type: 'book',
-            name: 'The Magic of Reality',
-        },
-        {
-            id: 4,
-            type: 'book',
-            name: 'What Is Life?',
-        },
-        {
-            id: 4,
-            type: 'book',
-            name: 'The Birth and Death of the Sun',
-        },
-        {
-            id: 4,
-            type: 'book',
-            name: 'The Greatest Show on Earth',
-        },
-        {
-            id: 4,
-            type: 'book',
-            name: 'Surely you\'re joking Mr Feynman',
+            authors: [21]
         },
         {
             id: 5,
-            type: 'person',
-            name: 'Richard Dawkins',
-            books: [1]
+            type: 'book',
+            name: 'The Annotated Turing',
+            authors: [22]
         },
         {
             id: 6,
-            type: 'person',
-            name: 'VS Ramachanran',
-            books: [2]
+            type: 'book',
+            name: 'The Magic of Reality',
+            authors: [18]
         },
         {
             id: 7,
+            type: 'book',
+            name: 'What Is Life?',
+            books: [23]
+        },
+        {
+            id: 8,
+            type: 'book',
+            name: 'The Birth and Death of the Sun',
+            authors: [24]
+        },
+        {
+            id: 9,
+            type: 'book',
+            name: 'The Greatest Show on Earth',
+            authors: [18]
+        },
+        {
+            id: 10,
+            type: 'book',
+            name: 'An Apetite for Wonder',
+            authors: [18]
+        },
+        {
+            id: 11,
+            type: 'book',
+            name: 'The Ancestors Tale',
+            authors: [18]
+        },
+        {
+            id: 12,
+            type: 'book',
+            name: 'Fear of Physics',
+            authors: [25]
+        },
+        {
+            id: 13,
+            type: 'book',
+            name: 'QED',
+            authors: [26]
+        },
+        {
+            id: 14,
+            type: 'book',
+            name: 'Why I am not a Christian',
+            authors: [27]
+        },
+        {
+            id: 15,
+            type: 'book',
+            name: 'The Extended Phenotype',
+            authors: [18]
+        },
+        {
+            id: 16,
+            type: 'book',
+            name: 'Awakenings',
+            authors: [21]
+        },
+        {
+            id: 17,
+            type: 'book',
+            name: 'Surely you\'re joking Mr Feynman',
+            authors: [26]
+        },
+        {
+            id: 18,
+            type: 'person',
+            name: 'Richard Dawkins',
+            books: []
+        },
+        {
+            id: 19,
+            type: 'person',
+            name: 'VS Ramachanran',
+            books: []
+        },
+        {
+            id: 20,
             type: 'person',
             name: 'Francis Crick',
-            books: [2]
+            books: []
+        },
+        {
+            id: 21,
+            type: 'person',
+            name: 'Oliver Sacks',
+            books: []
+        },
+        {
+            id: 22,
+            type: 'person',
+            name: 'Alan Turing',
+            books: []
+        },
+        {
+            id: 23,
+            type: 'person',
+            name: 'Erwin Schrodinger',
+            books: []
+        },
+        {
+            id: 24,
+            type: 'person',
+            name: 'George Gamow',
+            books: []
+        },
+        {
+            id: 25,
+            type: 'person',
+            name: 'Lawrence Krauss',
+            books: []
+        },
+        {
+            id: 26,
+            type: 'person',
+            name: 'Richard Feynman',
+            books: []
+        },
+        {
+            id: 27,
+            type: 'person',
+            name: 'Bertrand Russell',
+            books: []
         }
     ],
     mentions: [
