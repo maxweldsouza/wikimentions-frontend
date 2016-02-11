@@ -124,6 +124,7 @@ var data = {
             type: 'person',
             name: 'Richard Dawkins',
             slug: 'richard-dawkins',
+            description: 'Evolutionary Biologist',
             books: [1, 6, 9, 10, 11, 15]
         },
         {
@@ -131,6 +132,7 @@ var data = {
             type: 'person',
             name: 'VS Ramachanran',
             slug: 'vs-ramachandran',
+            description: 'Neuroscientist',
             books: [2]
         },
         {
@@ -138,6 +140,7 @@ var data = {
             type: 'person',
             name: 'Francis Crick',
             slug: 'francis-crick',
+            description: 'Molecular Biologist',
             books: [3, 4]
         },
         {
@@ -145,6 +148,7 @@ var data = {
             type: 'person',
             name: 'Oliver Sacks',
             slug: 'oliver-sacks',
+            description: 'Neuroscientist',
             books: [16]
         },
         {
@@ -152,6 +156,7 @@ var data = {
             type: 'person',
             name: 'Alan Turing',
             slug: 'alan-turing',
+            description: 'Mathematician',
             books: [5]
         },
         {
@@ -159,6 +164,7 @@ var data = {
             type: 'person',
             name: 'Erwin Schrodinger',
             slug: 'erwin-schrodinger',
+            description: 'Physicist',
             books: [7]
         },
         {
@@ -166,6 +172,7 @@ var data = {
             type: 'person',
             name: 'George Gamow',
             slug: 'george-gamow',
+            description: 'Physicist',
             books: [8]
         },
         {
@@ -173,6 +180,7 @@ var data = {
             type: 'person',
             name: 'Lawrence Krauss',
             slug: 'lawrence-krauss',
+            description: 'Physicist',
             books: [12]
         },
         {
@@ -180,6 +188,7 @@ var data = {
             type: 'person',
             name: 'Richard Feynman',
             slug: 'richard-feynman',
+            description: 'Physicist',
             books: [13, 17]
         },
         {
@@ -187,6 +196,7 @@ var data = {
             type: 'person',
             name: 'Bertrand Russell',
             slug: 'bertrand-russell',
+            description: 'Mathematician',
             books: [14]
         }
     ],
@@ -200,6 +210,11 @@ var data = {
             mentionedby: 19,
             mentioned: 18,
             description: 'As the social critic Richard Dawkins has pointed out'
+        },
+        {
+            mentionedby: 18,
+            mentioned: 20,
+            description: 'As Francis Crick just said'
         }
     ],
     users: [

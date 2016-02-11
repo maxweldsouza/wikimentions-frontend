@@ -31,6 +31,22 @@ var ThingPage = React.createClass({
         var books = _.filter(DATA.things,function (x) {
             return entry.books.indexOf(x.id) > 0;
         });
+        var mentions = _.filter(DATA.mentions, function (x) {
+            return x.mentioned === id;
+        });
+        mentions = _.map(mentions, function (x) {
+            return _.find(DATA.things, function (y) {
+                return y.id === x.mentionedby;
+            });
+        });
+        var mentionedby = _.filter(DATA.mentions, function (x) {
+            return x.mentionedby === id;
+        });
+        mentionedby = _.map(mentionedby, function (x) {
+            return _.find(DATA.things, function (y) {
+                return y.id === x.mentioned;
+            });
+        });
         var tabs = ['mentioned', 'mentionedby', 'books', 'discuss'];
         var tabTitles = {
             'mentioned': 'Mentioned',
@@ -55,11 +71,35 @@ var ThingPage = React.createClass({
         if (this.state.tab === 'mentioned') {
             tabContent = <div className='row'>
                 <div className='small-12 columns'>
+                    {mentions.map((x) => {
+                        return <div className='row'>
+                            <div className='small-12 columns'>
+                            {x.name}
+                            </div>
+                            <div className='small-12 columns'>
+                            {x.description}
+                            </div>
+                        </div>;
+                    })}
+                </div>
+                <div className='small-12 columns'>
                     <a href='/mentions/1' className='button'>Add</a>
                 </div>
             </div>;
         } else if (this.state.tab === 'mentionedby') {
             tabContent = <div className='row'>
+                <div className='small-12 columns'>
+                    {mentionedby.map((x) => {
+                        return <div className='row'>
+                            <div className='small-12 columns'>
+                            {x.name}
+                            </div>
+                            <div className='small-12 columns'>
+                            {x.description}
+                            </div>
+                        </div>;
+                    })}
+                </div>
                 <div className='small-12 columns'>
                     <button type='button' className='button'>Add</button>
                 </div>
