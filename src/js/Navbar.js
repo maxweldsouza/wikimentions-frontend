@@ -9,7 +9,7 @@ var Navbar = React.createClass({
             };
         }
     },
-    getInitialState: function() {
+    getInitialState () {
         return {
             loggedin: false
         };

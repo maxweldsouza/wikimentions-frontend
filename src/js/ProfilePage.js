@@ -7,11 +7,6 @@ var DATA = require('./dummy');
 var _ = require('underscore');
 
 var ProfilePage = React.createClass({
-    getInitialState () {
-        return {
-            tab: 'edits'
-        };
-    },
     statics: {
         resources (appstate) {
             return {
@@ -19,7 +14,12 @@ var ProfilePage = React.createClass({
             };
         }
     },
-    changeTab(tab) {
+    getInitialState () {
+        return {
+            tab: 'edits'
+        };
+    },
+    changeTab (tab) {
         this.setState({
             tab: tab
         });

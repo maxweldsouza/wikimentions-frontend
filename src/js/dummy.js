@@ -252,6 +252,6 @@ var data = {
             posted: '2016-02-11T14:38:24+00:00'
         }
     ]
-}
+};
 
 module.exports = data;

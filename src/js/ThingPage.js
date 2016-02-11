@@ -19,7 +19,7 @@ var ThingPage = React.createClass({
             tab: 'mentionedby'
         };
     },
-    changeTab(x) {
+    changeTab (x) {
         this.setState({
             tab: x
         });
@@ -29,7 +29,7 @@ var ThingPage = React.createClass({
         var entry = _.find(DATA.things, function (x) {
             return x.id === id;
         });
-        var books = _.filter(DATA.things,function (x) {
+        var books = _.filter(DATA.things, function (x) {
             return entry.books.indexOf(x.id) > 0;
         });
         var mentions = _.filter(DATA.mentions, function (x) {
