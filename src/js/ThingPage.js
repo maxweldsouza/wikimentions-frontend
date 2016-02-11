@@ -61,6 +61,17 @@ var ThingPage = React.createClass({
                                 </div>
                                 <div className='row'>
                                     <div className='small-12 columns'>
+                                        <h2>Books</h2>
+                                    {books.map((x) => {
+                                        return <div>{x.name}</div>;
+                                    })}
+                                    </div>
+                                    <div className='small-12 columns'>
+                                        <a href='/mentions/1' className='button'>Add</a>
+                                    </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='small-12 columns'>
                                         <h2>Discuss</h2>
                                     </div>
                                 </div>
