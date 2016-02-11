@@ -89,7 +89,7 @@ var ThingPage = React.createClass({
                     {mentions.map((x) => {
                         var path;
                         if (x.type === 'book') {
-                            path = '/book/' + x.id + '/' + x.slug;
+                            path = '/books/' + x.id + '/' + x.slug;
                         } else if (x.type === 'person') {
                             path = '/pages/' + x.id + '/' + x.slug;
                         }
@@ -116,7 +116,7 @@ var ThingPage = React.createClass({
                     {mentionedby.map((x) => {
                         var path;
                         if (x.type === 'book') {
-                            path = '/book/' + x.id + '/' + x.slug;
+                            path = '/books/' + x.id + '/' + x.slug;
                         } else if (x.type === 'person') {
                             path = '/pages/' + x.id + '/' + x.slug;
                         }
