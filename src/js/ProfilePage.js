@@ -3,6 +3,8 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Login = require('./Login');
+var DATA = require('./dummy');
+var _ = require('underscore');
 
 var ProfilePage = React.createClass({
     getInitialState () {
@@ -23,6 +25,10 @@ var ProfilePage = React.createClass({
         });
     },
     render () {
+        var id = Number(this.props.path.split('/')[1]);
+        var user = _.find(DATA.users, function (x) {
+            return x.id === id;
+        });
         var tab, tabContent;
         if (this.state.tab === 'edits') {
             tab = <ul className="tabs" data-tabs id="example-tabs">
@@ -104,7 +110,7 @@ var ProfilePage = React.createClass({
                     <div className='small-12 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <h1>maxweldsouza</h1>
+                                <h1>{user.name}</h1>
                                 {tab}
                             </div>
                             <div className="tabs-content" data-tabs-content="example-tabs">
