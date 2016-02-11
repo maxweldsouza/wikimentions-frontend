@@ -4,6 +4,7 @@ var _ = require('underscore');
 
 var CreatePage = require('./CreatePage');
 var AddMention = require('./AddMention');
+var EditMention = require('./EditMention');
 var EditPage = require('./EditPage');
 var HomePage = require('./HomePage');
 var Login = require('./Login');
@@ -51,17 +52,9 @@ var getComponent = function (routeObj) {
     } else if (/^mentions\/([0-9]+)$/.test(x)) {
         componentName = 'AddMention';
         routeObj.maxAge = 0;
-    } else if (/^pages\/edit\/([0-9]+)\/(.*)$/.test(x)) {
-        componentName = 'EditPage';
+    } else if (/^mentions\/([0-9]+)\/edit$/.test(x)) {
+        componentName = 'EditMention';
         routeObj.maxAge = 0;
-    } else if (/^mobiles[?](.+)$/.test(x)) {
-        componentName = 'AppPage';
-        routeObj.maxAge = 0;
-    } else if (x === 'ui-kit') {
-        componentName = 'UiKit';
-    } else if (/^lists\/mobiles\/([^\/]*)$/.test(x)) {
-        componentName = 'AppPage';
-        routeObj.maxAge = 3600;
     } else {
         throw { status: 404, message: 'Count not find what you were looking for'};
     }

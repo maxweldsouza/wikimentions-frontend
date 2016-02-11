@@ -6,6 +6,7 @@ var React = require('react');
 /* components need to be required because they are used indirectly */
 var CreatePage = require('./CreatePage');
 var AddMention = require('./AddMention');
+var EditMention = require('./EditMention');
 var EditPage = require('./EditPage');
 var HomePage = require('./HomePage');
 var Login = require('./Login');

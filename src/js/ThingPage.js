@@ -98,7 +98,7 @@ var ThingPage = React.createClass({
                                 <a href={path}>{x.name}</a>
                             </div>
                             <div className="small-6 columns text-right">
-                                <a href='/edit'>Edit</a>
+                                <a href={'/mentions/' + x.id + '/edit'}>Edit</a>
                             </div>
                             <div className='small-12 columns'>
                                 {x.description}
@@ -128,7 +128,7 @@ var ThingPage = React.createClass({
                                 <a href={path}>{x.name}</a>
                             </div>
                             <div className="small-6 columns text-right">
-                                <a href='/edit'>Edit</a>
+                                <a href={'/mentions/' + x.id + '/edit'}>Edit</a>
                             </div>
                             <div className='small-12 columns'>
                                 {x.description}
