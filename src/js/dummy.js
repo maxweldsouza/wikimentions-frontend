@@ -222,11 +222,13 @@ var data = {
     users: [
         {
             id: 1,
-            name: 'maxweldsouza'
+            name: 'maxweldsouza',
+            joined: '2015-02-11'
         },
         {
             id: 2,
-            name: 'someuser'
+            name: 'someuser',
+            joined: '2014-02-11'
         }
     ],
     discussions: [
