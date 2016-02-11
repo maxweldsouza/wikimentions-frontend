@@ -88,7 +88,7 @@ var ThingPage = React.createClass({
                 <div className='small-12 columns'>
                     {mentions.map((x) => {
                         var path;
-                        if (x.type == 'book') {
+                        if (x.type === 'book') {
                             path = '/book/' + x.id + '/' + x.slug;
                         } else if (x.type === 'person') {
                             path = '/pages/' + x.id + '/' + x.slug;
@@ -115,7 +115,7 @@ var ThingPage = React.createClass({
                 <div className='small-12 columns'>
                     {mentionedby.map((x) => {
                         var path;
-                        if (x.type == 'book') {
+                        if (x.type === 'book') {
                             path = '/book/' + x.id + '/' + x.slug;
                         } else if (x.type === 'person') {
                             path = '/pages/' + x.id + '/' + x.slug;
