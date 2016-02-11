@@ -165,8 +165,14 @@ var data = {
     ],
     mentions: [
         {
-            mentionedby: 1,
-            mentioned: 2
+            mentionedby: 18,
+            mentioned: 19,
+            description: 'The marco polo of neuroscience'
+        },
+        {
+            mentionedby: 19,
+            mentioned: 18,
+            description: 'As the social critic Richard Dawkins has pointed out'
         }
     ],
     users: [
