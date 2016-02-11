@@ -87,9 +87,15 @@ var ThingPage = React.createClass({
             tabContent = <div className='row'>
                 <div className='small-12 columns'>
                     {mentions.map((x) => {
+                        var path;
+                        if (x.type == 'book') {
+                            path = '/book/' + x.id + '/' + x.slug;
+                        } else if (x.type === 'person') {
+                            path = '/pages/' + x.id + '/' + x.slug;
+                        }
                         return <div className='row'>
                             <div className='small-12 columns'>
-                            {x.name}
+                                <a href={path}>{x.name}</a>
                             </div>
                             <div className='small-12 columns'>
                             {x.description}
@@ -108,9 +114,15 @@ var ThingPage = React.createClass({
             tabContent = <div className='row'>
                 <div className='small-12 columns'>
                     {mentionedby.map((x) => {
+                        var path;
+                        if (x.type == 'book') {
+                            path = '/book/' + x.id + '/' + x.slug;
+                        } else if (x.type === 'person') {
+                            path = '/pages/' + x.id + '/' + x.slug;
+                        }
                         return <div className='row'>
                             <div className='small-12 columns'>
-                            {x.name}
+                                <a href={path}>{x.name}</a>
                             </div>
                             <div className='small-12 columns'>
                             {x.description}
