@@ -35,17 +35,21 @@ var ThingPage = React.createClass({
             return x.mentioned === id;
         });
         mentions = _.map(mentions, function (x) {
-            return _.find(DATA.things, function (y) {
+            var result = _.find(DATA.things, function (y) {
                 return y.id === x.mentionedby;
             });
+            result.quote = x.quote;
+            return result;
         });
         var mentionedby = _.filter(DATA.mentions, function (x) {
             return x.mentionedby === id;
         });
         mentionedby = _.map(mentionedby, function (x) {
-            return _.find(DATA.things, function (y) {
+            var result = _.find(DATA.things, function (y) {
                 return y.id === x.mentioned;
             });
+            result.quote = x.quote;
+            return result;
         });
         var tabs = ['mentioned', 'mentionedby', 'books', 'discuss'];
         var tabTitles = {
@@ -79,6 +83,9 @@ var ThingPage = React.createClass({
                             <div className='small-12 columns'>
                             {x.description}
                             </div>
+                            <div className='small-12 columns'>
+                            {x.quote}
+                            </div>
                         </div>;
                     })}
                 </div>
@@ -96,6 +103,9 @@ var ThingPage = React.createClass({
                             </div>
                             <div className='small-12 columns'>
                             {x.description}
+                            </div>
+                            <div className='small-12 columns'>
+                            {x.quote}
                             </div>
                         </div>;
                     })}

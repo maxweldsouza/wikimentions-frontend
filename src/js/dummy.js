@@ -204,17 +204,17 @@ var data = {
         {
             mentionedby: 18,
             mentioned: 19,
-            description: 'The marco polo of neuroscience'
+            quote: 'The marco polo of neuroscience'
         },
         {
             mentionedby: 19,
             mentioned: 18,
-            description: 'As the social critic Richard Dawkins has pointed out'
+            quote: 'As the social critic Richard Dawkins has pointed out'
         },
         {
             mentionedby: 18,
             mentioned: 20,
-            description: 'As Francis Crick just said'
+            quote: 'As Francis Crick just said'
         }
     ],
     users: [
