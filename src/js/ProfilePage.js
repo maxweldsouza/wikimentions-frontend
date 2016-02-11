@@ -5,6 +5,7 @@ var Navbar = require('./Navbar');
 var Login = require('./Login');
 var DATA = require('./dummy');
 var _ = require('underscore');
+var moment = require('moment');
 
 var ProfilePage = React.createClass({
     statics: {
@@ -111,7 +112,7 @@ var ProfilePage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1>{user.name}</h1>
-                                Joined: {user.joined}
+                                Joined {moment(user.joined).format("MMMM Do YYYY")}
                                 {tab}
                             </div>
                             <div className="tabs-content" data-tabs-content="example-tabs">
