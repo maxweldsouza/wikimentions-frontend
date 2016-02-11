@@ -200,6 +200,14 @@ var data = {
             slug: 'bertrand-russell',
             description: 'Mathematician',
             books: [14]
+        },
+        {
+            id: 28,
+            type: 'person',
+            name: 'Venkatraman Ramakrishnan',
+            slug: 'venkatraman-ramakrishnan',
+            description: 'Molecular Biologist',
+            books: []
         }
     ],
     mentions: [
@@ -217,6 +225,16 @@ var data = {
             mentionedby: 18,
             mentioned: 20,
             quote: 'As Francis Crick just said'
+        },
+        {
+            mentionedby: 28,
+            mentioned: 27,
+            quote: 'Bertrand Russell had once said'
+        },
+        {
+            mentionedby: 28,
+            mentioned: 20,
+            quote: 'Probably the greatest molecular biologist of all time'
         }
     ],
     users: [
