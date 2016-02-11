@@ -94,14 +94,17 @@ var ThingPage = React.createClass({
                             path = '/pages/' + x.id + '/' + x.slug;
                         }
                         return <div className='row mention-block'>
-                            <div className='small-12 columns'>
+                            <div className='small-6 columns'>
                                 <a href={path}>{x.name}</a>
                             </div>
-                            <div className='small-12 columns'>
-                            {x.description}
+                            <div className="small-6 columns text-right">
+                                <a href='/edit'>Edit</a>
                             </div>
                             <div className='small-12 columns'>
-                            {x.quote}
+                                {x.description}
+                            </div>
+                            <div className='small-12 columns'>
+                                {x.quote}
                             </div>
                         </div>;
                     })}
@@ -121,14 +124,17 @@ var ThingPage = React.createClass({
                             path = '/pages/' + x.id + '/' + x.slug;
                         }
                         return <div className='row mention-block'>
-                            <div className='small-12 columns'>
+                            <div className='small-6 columns'>
                                 <a href={path}>{x.name}</a>
                             </div>
-                            <div className='small-12 columns'>
-                            {x.description}
+                            <div className="small-6 columns text-right">
+                                <a href='/edit'>Edit</a>
                             </div>
                             <div className='small-12 columns'>
-                            {x.quote}
+                                {x.description}
+                            </div>
+                            <div className='small-12 columns'>
+                                {x.quote}
                             </div>
                         </div>;
                     })}

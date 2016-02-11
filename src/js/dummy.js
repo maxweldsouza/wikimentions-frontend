@@ -28,7 +28,7 @@ var data = {
             type: 'book',
             name: 'What Mad Pursuit',
             slug: 'what-mad-pursuit',
-            authors: [21]
+            authors: [20]
         },
         {
             id: 5,
