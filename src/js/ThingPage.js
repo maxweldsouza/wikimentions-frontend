@@ -17,7 +17,10 @@ var ThingPage = React.createClass({
         var id = Number(this.props.path.split('/')[1]);
         var entry = _.find(DATA.things, function (x) {
             return x.id === id;
-        })
+        });
+        var books = _.filter(DATA.things,function (x) {
+            return entry.books.indexOf(x.id) > 0;
+        });
         return (
             <span>
                 <Helmet
