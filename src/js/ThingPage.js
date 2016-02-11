@@ -55,6 +55,13 @@ var ThingPage = React.createClass({
         var discussions = _.filter(DATA.discussions, function (x) {
             return x.page_id === id;
         });
+        discussions = _.map(discussions, function (x) {
+            var user = _.find(DATA.users, function (y) {
+                return y.id === x.user;
+            });
+            x.name = user.name;
+            return x;
+        });
         var tabs = ['mentioned', 'mentionedby', 'books', 'discuss'];
         var tabTitles = {
             'mentioned': 'Mentioned',
@@ -138,7 +145,7 @@ var ThingPage = React.createClass({
                     updated = moment(updated).fromNow();
                     return <div className='small-12 columns'>
                         <div className="row">
-                            <div className="small-6 columns">{x.user}</div>
+                            <div className="small-6 columns">{x.name}</div>
                             <div className="small-6 columns text-right">{updated}</div>
                         </div>
                         <div className="row">
