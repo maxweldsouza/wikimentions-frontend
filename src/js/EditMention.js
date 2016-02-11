@@ -28,7 +28,7 @@ var EditMention = React.createClass({
                 <form action='/api/v1/register' method='post'>
                     <div className='row'>
                         <div className='small-12 medium-6 columns'>
-                            <h2>Edit Mention</h2>
+                            <h1>Edit Mention</h1>
                             Mention: Richard Dawkins
                             <label>Mentioned by
                                 <input type='text' name='mentionedby' placeholder='' required />
