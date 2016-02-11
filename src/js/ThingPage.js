@@ -145,7 +145,9 @@ var ThingPage = React.createClass({
                     updated = moment(updated).fromNow();
                     return <div className='small-12 columns'>
                         <div className="row">
-                            <div className="small-6 columns">{x.name}</div>
+                            <div className="small-6 columns">
+                                <a href={'/users/' + x.id + '/' + x.name}>{x.name}</a>
+                            </div>
                             <div className="small-6 columns text-right">{updated}</div>
                         </div>
                         <div className="row">
