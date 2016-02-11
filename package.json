@@ -47,7 +47,7 @@
     "localStorage": "^1.0.3",
     "log": "^1.4.0",
     "marked": "^0.3.5",
-    "moment": "^2.10.6",
+    "moment": "^2.11.2",
     "motion-ui": "^1.1.1",
     "node-jsx": "~0.13.3",
     "nouislider": "^8.0.2",

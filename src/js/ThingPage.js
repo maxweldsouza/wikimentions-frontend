@@ -4,6 +4,7 @@ var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var DATA = require('./dummy');
 var _ = require('underscore');
+var moment = require('moment');
 
 var ThingPage = React.createClass({
     statics: {
@@ -50,6 +51,9 @@ var ThingPage = React.createClass({
             });
             result.quote = x.quote;
             return result;
+        });
+        var discussions = _.filter(DATA.discussions, function (x) {
+            return x.page_id === id;
         });
         var tabs = ['mentioned', 'mentionedby', 'books', 'discuss'];
         var tabTitles = {
@@ -129,21 +133,20 @@ var ThingPage = React.createClass({
             </div>;
         } else if (this.state.tab === 'discuss') {
             tabContent = <div className='row'>
+                {discussions.map((x) => {
+                    var updated = x.posted;
+                    updated = moment(updated).fromNow();
+                    return <div className='small-12 columns'>
+                        <div className="row">
+                            <div className="small-6 columns">{x.user}</div>
+                            <div className="small-6 columns text-right">{updated}</div>
+                        </div>
+                        <div className="row">
+                            <div className="small-12 columns">{x.text}</div>
+                        </div>
+                    </div>;
+                })}
                 <div className='small-12 columns'>
-                    <div className="row">
-                        <div className="small-6 columns">maxweldsouza</div>
-                        <div className="small-6 columns text-right">1 hour ago</div>
-                    </div>
-                    <div className="row">
-                        <div className="small-12 columns">We should add some more books of this author !</div>
-                    </div>
-                    <div className="row">
-                        <div className="small-6 columns">someuser</div>
-                        <div className="small-6 columns text-right">2 hours ago</div>
-                    </div>
-                    <div className="row">
-                        <div className="small-12 columns">Sure !</div>
-                    </div>
                     <form action='' method='post'>
                         <div className="row">
                             <div className="small-12 columns">

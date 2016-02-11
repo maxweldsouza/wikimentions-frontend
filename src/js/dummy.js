@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 var data = {
     things: [
         {
@@ -227,7 +229,22 @@ var data = {
             name: 'someuser'
         }
     ],
-    discussions: []
+    discussions: [
+        {
+            id: 1,
+            page_id: 18,
+            user: 1,
+            text: 'We should add some more books of this author !',
+            posted: '2016-02-04T18:35:24+00:00'
+        },
+        {
+            id: 2,
+            page_id: 18,
+            user: 2,
+            text: 'Sure !',
+            posted: '2016-02-04T18:35:24+00:00'
+        }
+    ]
 }
 
 module.exports = data;
