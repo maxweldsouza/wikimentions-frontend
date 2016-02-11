@@ -132,7 +132,7 @@ var data = {
         {
             id: 19,
             type: 'person',
-            name: 'VS Ramachanran',
+            name: 'VS Ramachandran',
             slug: 'vs-ramachandran',
             description: 'Neuroscientist',
             books: [2]
@@ -235,6 +235,11 @@ var data = {
             mentionedby: 28,
             mentioned: 20,
             quote: 'Probably the greatest molecular biologist of all time'
+        },
+        {
+            mentionedby: 7,
+            mentioned: 20,
+            quote: 'Inspired by this book, which led to the discovery of structure of DNA'
         }
     ],
     users: [
