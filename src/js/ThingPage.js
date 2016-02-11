@@ -3,6 +3,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var DATA = require('./dummy');
+var _ = require('underscore');
 
 var ThingPage = React.createClass({
     statics: {
@@ -13,6 +14,10 @@ var ThingPage = React.createClass({
         }
     },
     render () {
+        var id = Number(this.props.path.split('/')[1]);
+        var entry = _.find(DATA.things, function (x) {
+            return x.id === id;
+        })
         return (
             <span>
                 <Helmet
@@ -33,7 +38,7 @@ var ThingPage = React.createClass({
                                 <img className="thumbnail" src="/assets/placeholder.png" alt="Photo of Pluto."/>
                             </div>
                             <div className='small-12 medium-8 columns'>
-                                <h1></h1>
+                                <h1>{entry.name}</h1>
                                 <a href={'/pages/edit/'}>Edit Page</a>
                                 <div className='row'>
                                     <div className='small-12 columns'>
