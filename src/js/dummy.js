@@ -235,14 +235,21 @@ var data = {
             page_id: 18,
             user: 1,
             text: 'We should add some more books of this author !',
-            posted: '2016-02-04T18:35:24+00:00'
+            posted: '2016-02-11T14:35:24+00:00'
         },
         {
             id: 2,
             page_id: 18,
             user: 2,
             text: 'Sure !',
-            posted: '2016-02-04T18:35:24+00:00'
+            posted: '2016-02-11T14:36:24+00:00'
+        },
+        {
+            id: 3,
+            page_id: 18,
+            user: 1,
+            text: 'Alright, done',
+            posted: '2016-02-11T14:38:24+00:00'
         }
     ]
 }
