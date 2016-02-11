@@ -93,7 +93,7 @@ var ThingPage = React.createClass({
                         } else if (x.type === 'person') {
                             path = '/pages/' + x.id + '/' + x.slug;
                         }
-                        return <div className='row'>
+                        return <div className='row mention-block'>
                             <div className='small-12 columns'>
                                 <a href={path}>{x.name}</a>
                             </div>
@@ -120,7 +120,7 @@ var ThingPage = React.createClass({
                         } else if (x.type === 'person') {
                             path = '/pages/' + x.id + '/' + x.slug;
                         }
-                        return <div className='row'>
+                        return <div className='row mention-block'>
                             <div className='small-12 columns'>
                                 <a href={path}>{x.name}</a>
                             </div>
