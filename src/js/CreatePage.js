@@ -12,7 +12,7 @@ var HomePage = React.createClass({
             };
         }
     },
-    render: function () {
+    render () {
         return (
             <span>
                 <Helmet

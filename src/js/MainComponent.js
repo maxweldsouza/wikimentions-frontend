@@ -14,6 +14,7 @@ var ProfilePage = require('./ProfilePage');
 var Signup = require('./Signup');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
+var HistoryPage = require('./HistoryPage');
 
 var store = require('store');
 

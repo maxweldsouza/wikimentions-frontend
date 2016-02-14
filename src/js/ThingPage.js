@@ -97,13 +97,13 @@ var ThingPage = React.createClass({
                             <div className='small-6 columns'>
                                 <a href={path}>{x.name}</a>
                             </div>
-                            <div className="small-6 columns text-right">
+                            <div className="small-6 columns text-right mention-edit">
                                 <a href={'/mentions/' + x.id + '/edit'}>Edit</a>
                             </div>
-                            <div className='small-12 columns'>
+                            <div className='small-12 columns mention-short-description'>
                                 {x.description}
                             </div>
-                            <div className='small-12 columns'>
+                            <div className='small-12 columns mention-quote'>
                                 {x.quote}
                             </div>
                         </div>;
@@ -127,13 +127,13 @@ var ThingPage = React.createClass({
                             <div className='small-6 columns'>
                                 <a href={path}>{x.name}</a>
                             </div>
-                            <div className="small-6 columns text-right">
+                            <div className="small-6 columns text-right mention-edit">
                                 <a href={'/mentions/' + x.id + '/edit'}>Edit</a>
                             </div>
-                            <div className='small-12 columns'>
+                            <div className='small-12 columns mention-description'>
                                 {x.description}
                             </div>
-                            <div className='small-12 columns'>
+                            <div className='small-12 columns mention-quote'>
                                 {x.quote}
                             </div>
                         </div>;
@@ -163,12 +163,12 @@ var ThingPage = React.createClass({
                     updated = moment(updated).fromNow();
                     return <div className='small-12 columns discuss-comment'>
                         <div className="row">
-                            <div className="small-6 columns">
+                            <div className="small-6 columns discuss-username">
                                 <a href={'/users/' + x.id + '/' + x.name}>{x.name}</a>
                             </div>
-                            <div className="small-6 columns text-right">{updated}</div>
+                            <div className="small-6 columns text-right discuss-updated">{updated}</div>
                         </div>
-                        <div className="row">
+                        <div className="row discuss-text">
                             <div className="small-12 columns">{x.text}</div>
                         </div>
                     </div>;
