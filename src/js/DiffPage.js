@@ -5,7 +5,7 @@ var Mention = require('./Mention');
 var DATA = require('./dummy');
 var _ = require('underscore');
 
-var HistoryPage = React.createClass({
+var DiffPage = React.createClass({
     statics: {
         resources (appstate) {
             return {
@@ -35,24 +35,16 @@ var HistoryPage = React.createClass({
                     <div className='small-12 columns'>
                         <div className='row'>
                             <div className='small-12 medium-8 columns'>
-                                <h1>{entry.name}</h1>
-                                <h2>History</h2>
-                                <form action='' method='post'>
-                                    <div className="row">
-                                        <fieldset className="small-2 columns">
-                                            <input type="radio" name="" defaultValue="" required /><label htmlFor=""></label>
-                                            <input type="radio" name="" defaultValue=""/><label htmlFor=""></label>
-                                        </fieldset>
-                                        <div className="small-3 columns">
-                                            maxweldsouza
-                                        </div>
-                                        <div className="small-7 columns">
-                                            13th January 2015
-                                        </div>
-                                        <div className="small-12 columns">
-                                            <a href={'/pages/' + entry.id + '/' + entry.slug + '/diff/1/2'} className='button'>Diff</a>
-                                        </div>
+                                <h1>Diff</h1>
+                                <div className="row">
+                                    <div className="small-6 columns">
+                                        V.S. Ramachandran
                                     </div>
+                                    <div className="small-6 columns">
+                                        V.S. Ramachandran
+                                    </div>
+                                </div>
+                                <form action='' method='post'>
                                 </form>
                             </div>
                         </div>
@@ -63,4 +55,4 @@ var HistoryPage = React.createClass({
     }
 });
 
-module.exports = HistoryPage;
+module.exports = DiffPage;
