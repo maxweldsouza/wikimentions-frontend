@@ -35,7 +35,7 @@ var EditPage = React.createClass({
                                 <img className="thumbnail" src="/assets/placeholder.png" alt="Photo of Pluto."/>
                             </div>
                             <div className='small-12 medium-8 columns'>
-                                <h1></h1>
+                                <h1>Edit Page</h1>
                                 <form action='' method='post'>
                                     <div className="row">
                                         <div className="small-12 columns">

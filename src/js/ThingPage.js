@@ -211,7 +211,7 @@ var ThingPage = React.createClass({
                             <div className='small-12 medium-8 columns'>
                                 <h1>{entry.name}</h1>
                                 {entry.description}
-                                <div><a href={'/pages/edit/'}>Edit Page</a> | <a href={'/pages/' + entry.id + '/' + entry.slug + '/history'}>History</a> | <a href={'/pages/edit/'}>Discuss</a></div>
+                                <div><a href={'/pages/edit/1/richard-dawkins'}>Edit Page</a> | <a href={'/pages/' + entry.id + '/' + entry.slug + '/history'}>History</a> | <a href={'/pages/edit/'}>Discuss</a></div>
                                 <div>
                                     {tab}
                                     <div className="tabs-content" data-tabs-content="example-tabs">

@@ -39,7 +39,7 @@ var HistoryPage = React.createClass({
                                 <div className="row">
                                     <div className="small-12 columns">
                                         By
-                                        <a href='#'>maxweldsouza</a>
+                                        <a href={'/users/1/maxweldsouza'}>maxweldsouza</a>
                                         4 days ago
                                     </div>
                                     <div className="small-12 columns">
