@@ -29,35 +29,29 @@ var EditPage = React.createClass({
                     />
                 <Navbar/>
                 <div className='row'>
-                    <div className='small-12 columns'>
-                        <div className='row'>
-                            <div className='small-12 medium-4 columns'>
-                                <img className="thumbnail" src="/assets/placeholder.png" alt="Photo of Pluto."/>
+                    <div className='small-12 medium-6 columns'>
+
+                        <h1>Edit Page</h1>
+                        <form action='' method='post'>
+                            <div className="row">
+                                <div className="small-12 columns">
+                                    <label>Page Title
+                                        <input type="text"></input>
+                                    </label>
+                                </div>
+                                <div className="small-12 columns">
+                                    <label>Page Type
+                                        <input type="text"></input>
+                                    </label>
+                                </div>
+                                <div className="small-12 columns">
+                                    <label>Page Url
+                                        <input type="text"></input>
+                                    </label>
+                                    <button type='button' className='button'>Submit</button>
+                                </div>
                             </div>
-                            <div className='small-12 medium-8 columns'>
-                                <h1>Edit Page</h1>
-                                <form action='' method='post'>
-                                    <div className="row">
-                                        <div className="small-12 columns">
-                                            <label>Page Title
-                                                <input type="text"></input>
-                                            </label>
-                                        </div>
-                                        <div className="small-12 columns">
-                                            <label>Page Type
-                                                <input type="text"></input>
-                                            </label>
-                                        </div>
-                                        <div className="small-12 columns">
-                                            <label>Page Url
-                                                <input type="text"></input>
-                                            </label>
-                                            <button type='button' className='button'>Submit</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </span>
