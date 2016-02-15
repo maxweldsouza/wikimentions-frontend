@@ -32,6 +32,7 @@ var EditPage = React.createClass({
                     <div className='small-12 medium-6 columns'>
 
                         <h1>Edit Page</h1>
+                        <a href={'/pages/18/richard-dawkins/history'}>History</a> 
                         <form action='' method='post'>
                             <div className="row">
                                 <div className="small-12 columns">
