@@ -38,7 +38,7 @@ var HistoryPage = React.createClass({
                             <div className='small-6 columns'>
                                 <div className="row">
                                     <div className="small-12 columns">
-                                        Edited by
+                                        By
                                         <a href='#'>maxweldsouza</a>
                                         4 days ago
                                     </div>
