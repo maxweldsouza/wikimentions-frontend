@@ -33,27 +33,64 @@ var HistoryPage = React.createClass({
                 <Navbar/>
                 <div className='row'>
                     <div className='small-12 columns'>
+                        <h1>History</h1>
                         <div className='row'>
-                            <div className='small-12 medium-8 columns'>
-                                <h1>{entry.name}</h1>
-                                <h2>History</h2>
-                                <form action='' method='post'>
-                                    <div className="row">
-                                        <fieldset className="small-2 columns">
-                                            <input type="radio" name="" defaultValue="" required /><label htmlFor=""></label>
-                                            <input type="radio" name="" defaultValue=""/><label htmlFor=""></label>
-                                        </fieldset>
-                                        <div className="small-3 columns">
-                                            maxweldsouza
-                                        </div>
-                                        <div className="small-7 columns">
-                                            13th January 2015
-                                        </div>
-                                        <div className="small-12 columns">
-                                            <a href={'/pages/' + entry.id + '/' + entry.slug + '/diff/1/2'} className='button'>Diff</a>
-                                        </div>
+                            <div className='small-6 columns'>
+                                <div className="row">
+                                    <div className="small-12 columns">
+                                        Edited by
+                                        <a href='#'>maxweldsouza</a>
+                                        4 days ago
                                     </div>
-                                </form>
+                                    <div className="small-12 columns">
+                                        Title: V.S. Ramachandran
+                                    </div>
+                                    <div className="small-12 columns">
+                                        Short Description: V.S. Ramachandran
+                                    </div>
+                                    <div className="small-12 columns">
+                                        Type: Book
+                                    </div>
+                                    <div className="small-12 columns">
+                                        Slug: v-s-ramachandran
+                                    </div>
+                                    <div className="small-12 columns">
+                                        ISBN: 123456789
+                                    </div>
+                                </div>
+                                <div className="row ">
+                                    <div className="small-12 columns">
+
+                                        <a href='#'>Restore</a>
+                                        <a href='#'>Report abuse</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='small-6 columns'>
+                                <div className="row">
+                                    <div className="small-12 columns">
+                                        Title: V.S. Ramachandran
+                                    </div>
+                                    <div className="small-12 columns">
+                                        Short Description: V.S. Ramachandran
+                                    </div>
+                                    <div className="small-12 columns">
+                                        Type: Book
+                                    </div>
+                                    <div className="small-12 columns">
+                                        Slug: v-s-ramachandran
+                                    </div>
+                                    <div className="small-12 columns">
+                                        ISBN: 123456789
+                                    </div>
+                                </div>
+                                <div className="row ">
+                                    <div className="small-12 columns">
+                                        4 days ago
+                                        <a href='#'>Restore</a>
+                                        <a href='#'>Report abuse</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
