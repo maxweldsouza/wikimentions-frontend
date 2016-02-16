@@ -125,6 +125,7 @@ var ThingPage = React.createClass({
                         }
                         return <div className='row mention-block'>
                             <div className='small-6 columns'>
+
                                 <a href={path}>{x.name}</a>
                             </div>
                             <div className="small-6 columns text-right mention-edit">
@@ -145,13 +146,16 @@ var ThingPage = React.createClass({
             </div>;
         } else if (this.state.tab === 'books') {
             tabContent = <div className='row'>
-                <div className='small-12 columns'>
                     {books.map((x) => {
-                        return <div>
-                            <a href={'/books/' + x.id + '/' + x.slug}>{x.name}</a>
+                        return <div className='small-4 columns'>
+                            <div>
+                                <img src='/assets/book.png'></img>
+                            </div>
+                            <div>
+                                <a href={'/books/' + x.id + '/' + x.slug}>{x.name}</a>
+                            </div>
                         </div>;
                     })}
-                </div>
                 <div className='small-12 columns'>
                     <a href='/mentions/1' className='button'>Add</a>
                 </div>
