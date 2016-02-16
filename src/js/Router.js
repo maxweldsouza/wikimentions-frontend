@@ -2,17 +2,18 @@ var request = require('superagent');
 var parallelRequest = require('./parallelRequest');
 var _ = require('underscore');
 
-var CreatePage = require('./CreatePage');
 var AddMention = require('./AddMention');
+var CreatePage = require('./CreatePage');
+var DiscussPage = require('./DiscussPage');
 var EditMention = require('./EditMention');
 var EditPage = require('./EditPage');
+var HistoryPage = require('./HistoryPage');
 var HomePage = require('./HomePage');
 var Login = require('./Login');
 var ProfilePage = require('./ProfilePage');
 var Signup = require('./Signup');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
-var HistoryPage = require('./HistoryPage');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -44,13 +45,16 @@ var getComponent = function (routeObj) {
     } else if (/^users\/([0-9]+)\/(.*)$/.test(x)) {
         componentName = 'ProfilePage';
         routeObj.maxAge = 0;
-    } else if (/^pages\/([0-9]+)\/(.*)\/history$/.test(x)) {
+    } else if (/^history\/([0-9]+)\/(.*)$/.test(x)) {
         componentName = 'HistoryPage';
         routeObj.maxAge = 0;
     } else if (/^books\/([0-9]+)\/(.*)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
-    } else if (/^pages\/edit\/([0-9]+)\/(.*)$/.test(x)) {
+    } else if (/^discuss\/([0-9]+)\/(.*)$/.test(x)) {
+        componentName = 'DiscussPage';
+        routeObj.maxAge = 0;
+    } else if (/^edit\/([0-9]+)\/(.*)$/.test(x)) {
         componentName = 'EditPage';
         routeObj.maxAge = 0;
     } else if (/^pages\/([0-9]+)\/(.*)$/.test(x)) {

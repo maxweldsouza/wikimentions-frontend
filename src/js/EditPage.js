@@ -30,9 +30,10 @@ var EditPage = React.createClass({
                 <Navbar/>
                 <div className='row'>
                     <div className='small-12 medium-6 columns'>
-
                         <h1>Edit Page</h1>
-                        <a href={'/pages/18/richard-dawkins/history'}>History</a> 
+                        <a href={'/discuss/18/richard-dawkins'}>Discuss</a>
+                        {' | '}
+                        <a href={'/history/18/richard-dawkins'}>History</a>
                         <form action='' method='post'>
                             <div className="row">
                                 <div className="small-12 columns">

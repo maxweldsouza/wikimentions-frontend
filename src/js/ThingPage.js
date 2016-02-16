@@ -195,7 +195,7 @@ var ThingPage = React.createClass({
                                 <h1>{entry.name}</h1>
                                 {entry.description}
                                 <div>
-                                    <a href={'/pages/edit/1/richard-dawkins'}>Edit Page</a>
+                                    <a href={'/edit/1/richard-dawkins'}>Edit Page</a>
                                 </div>
                                 {tab}
                                 <div className="tabs-content" data-tabs-content="example-tabs">

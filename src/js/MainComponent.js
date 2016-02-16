@@ -4,17 +4,18 @@
 var React = require('react');
 
 /* components need to be required because they are used indirectly */
-var CreatePage = require('./CreatePage');
 var AddMention = require('./AddMention');
+var CreatePage = require('./CreatePage');
+var DiscussPage = require('./DiscussPage');
 var EditMention = require('./EditMention');
 var EditPage = require('./EditPage');
+var HistoryPage = require('./HistoryPage');
 var HomePage = require('./HomePage');
 var Login = require('./Login');
 var ProfilePage = require('./ProfilePage');
 var Signup = require('./Signup');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
-var HistoryPage = require('./HistoryPage');
 
 var store = require('store');
 
