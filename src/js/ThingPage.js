@@ -4,7 +4,9 @@ var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var DATA = require('./dummy');
 var _ = require('underscore');
-var moment = require('moment');
+
+var Comment = require('./Comment');
+var Book = require('./Book');
 
 var ThingPage = React.createClass({
     statics: {
@@ -147,14 +149,11 @@ var ThingPage = React.createClass({
         } else if (this.state.tab === 'books') {
             tabContent = <div className='row'>
                     {books.map((x) => {
-                        return <div className='small-4 columns'>
-                            <div>
-                                <img src='/assets/book.png'></img>
-                            </div>
-                            <div>
-                                <a href={'/books/' + x.id + '/' + x.slug}>{x.name}</a>
-                            </div>
-                        </div>;
+                        return <Book
+                            id={x.id}
+                            slug={x.slug}
+                            name={x.name}
+                            />;
                     })}
                 <div className='small-12 columns'>
                     <a href='/mentions/1' className='button'>Add</a>
@@ -163,19 +162,12 @@ var ThingPage = React.createClass({
         } else if (this.state.tab === 'discuss') {
             tabContent = <div className='row'>
                 {discussions.map((x) => {
-                    var updated = x.posted;
-                    updated = moment(updated).fromNow();
-                    return <div className='small-12 columns discuss-comment'>
-                        <div className="row">
-                            <div className="small-6 columns discuss-username">
-                                <a href={'/users/' + x.id + '/' + x.name}>{x.name}</a>
-                            </div>
-                            <div className="small-6 columns text-right discuss-updated">{updated}</div>
-                        </div>
-                        <div className="row discuss-text">
-                            <div className="small-12 columns">{x.text}</div>
-                        </div>
-                    </div>;
+                    return <Comment
+                        id={x.id}
+                        name={x.name}
+                        text={x.text}
+                        posted={x.posted}
+                        />;
                 })}
                 <div className='small-12 columns'>
                     <form action='' method='post'>
