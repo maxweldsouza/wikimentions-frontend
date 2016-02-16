@@ -5,7 +5,6 @@ var Mention = require('./Mention');
 var DATA = require('./dummy');
 var _ = require('underscore');
 
-var Comment = require('./Comment');
 var Book = require('./Book');
 
 var ThingPage = React.createClass({
@@ -54,17 +53,7 @@ var ThingPage = React.createClass({
             result.quote = x.quote;
             return result;
         });
-        var discussions = _.filter(DATA.discussions, function (x) {
-            return x.page_id === id;
-        });
-        discussions = _.map(discussions, function (x) {
-            var user = _.find(DATA.users, function (y) {
-                return y.id === x.user;
-            });
-            x.name = user.name;
-            return x;
-        });
-        var tabs = ['mentioned', 'mentionedby', 'books', 'discuss'];
+        var tabs = ['mentioned', 'mentionedby', 'books'];
         var tabTitles = {
             'mentioned': 'Mentioned',
             'mentionedby': 'Mentioned By',
@@ -144,31 +133,6 @@ var ThingPage = React.createClass({
                 })}
                 <div className='small-12 columns'>
                     <a href='/mentions/1' className='button'>Add</a>
-                </div>
-            </div>;
-        } else if (this.state.tab === 'discuss') {
-            tabContent = <div className='row'>
-                {discussions.map((x) => {
-                    return <Comment
-                        id={x.id}
-                        name={x.name}
-                        text={x.text}
-                        posted={x.posted}
-                        />;
-                })}
-                <div className='small-12 columns'>
-                    <form action='' method='post'>
-                        <div className="row">
-                            <div className="small-12 columns">
-                                <label>Reply
-                                    <input type="text"></input>
-                                </label>
-                            </div>
-                            <div className="small-12 columns">
-                                <button type='button' className='button'>Submit</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>;
         }
