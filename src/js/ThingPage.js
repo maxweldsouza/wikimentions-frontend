@@ -60,15 +60,15 @@ var ThingPage = React.createClass({
             'books': 'Books',
             'discuss': 'Discuss'
         };
-        var tab = <ul className="tabs" data-tabs id="example-tabs">
+        var tab = <ul className="tabs">
             {tabs.map((x) => {
                 var cls, aria;
                 if (x === this.state.tab) {
-                    return <li className='tabs-title is-active' key={x}>
+                    return <li className='mention-tab tabs-title is-active' key={x}>
                         <a aria-selected="true" onClick={this.changeTab.bind(null, x)}>{tabTitles[x]}</a>
                     </li>;
                 }
-                return <li className='tabs-title' key={x}>
+                return <li className='mention-tab tabs-title' key={x}>
                     <a onClick={this.changeTab.bind(null, x)}>{tabTitles[x]}</a>
                 </li>;
             })}
