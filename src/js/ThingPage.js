@@ -135,7 +135,7 @@ var ThingPage = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <div className='row'>
+                <div className='row page-body'>
                     <div className='small-12 columns'>
                         <div className='row'>
                             <div className='small-12 medium-4 columns'>
