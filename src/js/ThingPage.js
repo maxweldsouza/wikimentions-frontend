@@ -95,27 +95,13 @@ var ThingPage = React.createClass({
             tabContent = <div className='row'>
                 <div className='small-12 columns'>
                     {mentionedby.map((x) => {
-                        var path;
-                        if (x.type === 'book') {
-                            path = '/books/' + x.id + '/' + x.slug;
-                        } else if (x.type === 'person') {
-                            path = '/pages/' + x.id + '/' + x.slug;
-                        }
-                        return <div className='row mention-block'>
-                            <div className='small-6 columns'>
-
-                                <a href={path}>{x.name}</a>
-                            </div>
-                            <div className="small-6 columns text-right mention-edit">
-                                <a href={'/mentions/' + x.id + '/edit'}>Edit</a>
-                            </div>
-                            <div className='small-12 columns mention-description'>
-                                {x.description}
-                            </div>
-                            <div className='small-12 columns mention-quote'>
-                                {x.quote}
-                            </div>
-                        </div>;
+                        return <Mention
+                            id={x.id}
+                            slug={x.slug}
+                            name={x.name}
+                            description={x.description}
+                            quote={x.quote}
+                            />;
                     })}
                 </div>
                 <div className='small-12 columns'>
