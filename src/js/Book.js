@@ -6,11 +6,11 @@ var Navbar = require('./Navbar');
 var Book = React.createClass({
     render () {
         return (
-            <div className='small-4 columns text-center'>
+            <div className='book-card small-4 columns'>
                 <div>
                     <img src='/assets/book.png'></img>
                 </div>
-                <div className=''>
+                <div className='book-title'>
                     <a href={'/books/' + this.props.id + '/' + this.props.slug}>{this.props.name}</a>
                 </div>
             </div>
