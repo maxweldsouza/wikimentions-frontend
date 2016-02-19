@@ -65,7 +65,7 @@ var ThingPage = React.createClass({
             'books': 'Books',
             'discuss': 'Discuss'
         };
-        var tab = <ul className="tabs">
+        var tab = <ul className="tabs mention-tab-header">
             {tabs.map((x) => {
                 var cls, aria;
                 if (x === this.state.tab) {

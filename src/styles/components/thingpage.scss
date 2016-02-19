@@ -8,11 +8,17 @@
     margin-bottom: $global-margin;
 }
 
+.mention-tab-header {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
 .mention-tab > a {
     font-size: 15px;
     padding-top: 11px;
     border: none;
-    padding-bottom: 10px;
+    padding-bottom: 7px;
     padding-right: 0;
     padding-left: 0;
     margin-right: 40px;

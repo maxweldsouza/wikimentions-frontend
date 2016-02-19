@@ -7,12 +7,14 @@ var Book = React.createClass({
     render () {
         return (
             <div className='book-card small-12 medium-6 large-4 columns'>
+                <a href={'/books/' + this.props.id + '/' + this.props.slug}>
                 <div>
                     <img src='/assets/book.png'></img>
                 </div>
                 <div className='book-title'>
-                    <a href={'/books/' + this.props.id + '/' + this.props.slug}>{this.props.name}</a>
+                    {this.props.name}
                 </div>
+                </a>
             </div>
         );
     }
