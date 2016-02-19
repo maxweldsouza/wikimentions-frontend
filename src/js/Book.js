@@ -6,7 +6,7 @@ var Navbar = require('./Navbar');
 var Book = React.createClass({
     render () {
         return (
-            <div className='book-card small-4 columns'>
+            <div className='book-card small-12 medium-6 large-4 columns'>
                 <div>
                     <img src='/assets/book.png'></img>
                 </div>

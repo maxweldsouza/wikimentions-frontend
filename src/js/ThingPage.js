@@ -145,18 +145,18 @@ var ThingPage = React.createClass({
                 <div className='row page-body'>
                     <div className='small-12 columns'>
                         <div className='row'>
-                            <div className='small-12 medium-4 columns'>
+                            <div className='small-12 large-4 columns'>
                                 <img className="thumbnail" src="/assets/placeholder.png" alt="Photo of Pluto."/>
                             </div>
-                            <div className='small-12 medium-8 columns'>
+                            <div className='small-12 large-8 columns'>
                                 <h1>{entry.name}</h1>
                                 {entry.description}
                                 <div>
                                     <a href={'/edit/1/richard-dawkins'}>Edit Page</a>
                                 </div>
                                 {tab}
-                                <div className="tabs-content" data-tabs-content="example-tabs">
-                                    <div className="tabs-panel is-active" id="panel1">
+                                <div className="tabs-content">
+                                    <div className="tabs-panel is-active">
                                         {tabContent}
                                     </div>
                                 </div>
