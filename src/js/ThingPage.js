@@ -36,21 +36,21 @@ var ThingPage = React.createClass({
             }
         });
         var mentions = _.filter(DATA.mentions, function (x) {
-            return x.mentioned === id;
+            return x.mentionedby === id;
         });
         mentions = _.map(mentions, function (x) {
             var result = _.find(DATA.things, function (y) {
-                return y.id === x.mentionedby;
+                return y.id === x.mentioned;
             });
             result.quote = x.quote;
             return result;
         });
         var mentionedby = _.filter(DATA.mentions, function (x) {
-            return x.mentionedby === id;
+            return x.mentioned === id;
         });
         mentionedby = _.map(mentionedby, function (x) {
             var result = _.find(DATA.things, function (y) {
-                return y.id === x.mentioned;
+                return y.id === x.mentionedby;
             });
             result.quote = x.quote;
             return result;
@@ -89,6 +89,7 @@ var ThingPage = React.createClass({
                             name={x.name}
                             description={x.description}
                             quote={x.quote}
+                            type={x.type}
                             />;
                     })}
                 </div>
@@ -106,6 +107,7 @@ var ThingPage = React.createClass({
                             name={x.name}
                             description={x.description}
                             quote={x.quote}
+                            type={x.type}
                             />;
                     })}
                 </div>
