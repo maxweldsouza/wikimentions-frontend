@@ -10,10 +10,10 @@ var Mention = React.createClass({
         }
         return (
             <div className='row mention-block'>
-                <div className='small-6 columns'>
+                <div className='small-10 columns mention-title'>
                     <a href={path}>{this.props.name}</a>
                 </div>
-                <div className="small-6 columns text-right mention-edit">
+                <div className="small-2 columns text-right mention-edit">
                     <a href={'/mentions/' + this.props.id + '/edit'}>Edit</a>
                 </div>
                 <div className='small-12 columns mention-short-description'>

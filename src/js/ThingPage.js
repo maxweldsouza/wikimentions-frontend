@@ -146,11 +146,13 @@ var ThingPage = React.createClass({
                     <div className='small-12 columns'>
                         <div className='row'>
                             <div className='small-12 large-4 columns'>
-                                <img className="thumbnail" src="/assets/placeholder.png" alt="Photo of Pluto."/>
+                                <img className="" src="/assets/placeholder.png" alt="Photo of Pluto."/>
                             </div>
                             <div className='small-12 large-8 columns'>
-                                <h1>{entry.name}</h1>
-                                {entry.description}
+                                <h1 className='thing-title'>{entry.name}</h1>
+                                    <span className='thing-description'>
+                                        {entry.description}
+                                    </span>
                                 <div>
                                     <a href={'/edit/1/richard-dawkins'}>Edit Page</a>
                                 </div>

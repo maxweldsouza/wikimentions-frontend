@@ -2,6 +2,14 @@
     margin-top: 2 * $global-margin;
 }
 
+.thing-title {
+    font-size: 36px;
+    margin-bottom: 0;
+}
+
+.thing-description {
+}
+
 .discuss-comment {
     border-bottom: solid 1px $medium-gray;
     padding-bottom: $global-padding;
@@ -35,16 +43,20 @@
     margin-bottom: $global-margin;
 }
 
-.mention-short-description {
+.mention-title {
+    font-size: 18px;
+}
 
+.mention-short-description {
+    font-size: 13px;
 }
 
 .mention-quote {
-
+    margin-top: 8px;
 }
 
 .mention-edit {
-
+    font-size: 13px;
 }
 
 .book-card {
