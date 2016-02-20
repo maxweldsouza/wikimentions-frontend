@@ -17,13 +17,13 @@
     margin-top: $global-margin;
 }
 
-.mention-tab-header {
+.tabs {
     border-top: none;
     border-left: none;
     border-right: none;
 }
 
-.mention-tab > a {
+.tabs-title > a {
     font-size: 15px;
     padding-top: 11px;
     border: none;
@@ -33,9 +33,21 @@
     margin-right: 40px;
 }
 
-.mention-tab.is-active > a{
+.tabs-title.is-active > a{
     background: none;
     border-bottom: solid 4px;
+}
+
+thead,
+tbody {
+    font-weight: normal;
+    border: none;
+    background: none;
+}
+
+tbody tr:nth-child(even) {
+    border: none;
+    background: none;
 }
 
 .mention-block {

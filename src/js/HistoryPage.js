@@ -35,7 +35,7 @@ var HistoryPage = React.createClass({
                     <div className='small-12 columns'>
                         <h1 className='page-title'>History</h1>
                         <div className='row'>
-                            <div className='small-6 columns'>
+                            <div className='small-12 large-6 columns'>
                                 <div className="row">
                                     <div className="small-12 columns">
                                         By
@@ -66,8 +66,13 @@ var HistoryPage = React.createClass({
                                     </div>
                                 </div>
                             </div>
-                            <div className='small-6 columns'>
+                            <div className='small-12 large-6 columns'>
                                 <div className="row">
+                                    <div className="small-12 columns">
+                                        By
+                                        <a href={'/users/1/maxweldsouza'}>maxweldsouza</a>
+                                        4 days ago
+                                    </div>
                                     <div className="small-12 columns">
                                         Title: V.S. Ramachandran
                                     </div>
@@ -86,13 +91,12 @@ var HistoryPage = React.createClass({
                                 </div>
                                 <div className="row ">
                                     <div className="small-12 columns">
-                                        4 days ago
+
                                         <a href='#'>Restore</a>
                                         <a href='#'>Report abuse</a>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div className='small-12 columns'>
