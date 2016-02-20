@@ -100,7 +100,10 @@ var HistoryPage = React.createClass({
                         </div>
                     </div>
                     <div className='small-12 columns'>
-                        <Pagination />
+                        <Pagination
+                            pages={5}
+                            current={1}
+                            />
                     </div>
                 </div>
             </span>
