@@ -26,10 +26,10 @@ var HomePage = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <form action='/api/v1/login' method='post'>
-                    <div className='row'>
-                        <div className='small-12 medium-6 columns'>
-                            <h2>Create Page</h2>
+                <div className='row page-body'>
+                    <div className='small-12 large-6 large-centered columns'>
+                        <form action='/api/v1/login' method='post'>
+                            <h1 className='page-title'>Create Page</h1>
                             <label>Title
                                 <input type='text' name='title' placeholder='' />
                             </label>
@@ -46,11 +46,11 @@ var HomePage = React.createClass({
                                 <input type='text' name='ISBN' placeholder='' />
                             </label>
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
-      <input type="file" id="exampleFileUpload" className="show-for-sr"/>
+                            <input type="file" id="exampleFileUpload" className="show-for-sr"/>
                             <button type='submit' className='success button'>Submit</button>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </span>
         );
     }

@@ -35,12 +35,15 @@ var ThingPage = React.createClass({
                 return entry.authors.indexOf(x.id) >= 0;
             }
         });
-        authors = authors.map(function (x) {
-            var path = '/pages/' + x.id + '/' + x.slug;
-            return <a href={path}>
-                {x.name}
-            </a>;
-        });
+        authors = <span>
+            {'by '}
+            {authors.map(function (x) {
+                var path = '/pages/' + x.id + '/' + x.slug;
+                return <a href={path}>
+                    {x.name}
+                </a>;
+            })}
+        </span>;
         var books = _.filter(DATA.things, function (x) {
             if (entry.books) {
                 return entry.books.indexOf(x.id) >= 0;
@@ -160,11 +163,11 @@ var ThingPage = React.createClass({
                                 <img className="" src="/assets/placeholder.png" alt="Photo of Pluto."/>
                             </div>
                             <div className='small-12 large-8 columns'>
-                                <h1 className='thing-title'>{entry.name}</h1>
-                                    <span className='thing-description'>
-                                        {entry.description}
-                                        {authors}
-                                    </span>
+                                <h1 className='page-title'>{entry.name}</h1>
+                                <span className='thing-description'>
+                                    {entry.description}
+                                    {authors}
+                                </span>
                                 <div>
                                     <a href={'/edit/1/richard-dawkins'}>Edit Page</a>
                                 </div>

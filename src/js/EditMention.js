@@ -25,10 +25,10 @@ var EditMention = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <form action='/api/v1/register' method='post'>
-                    <div className='row'>
-                        <div className='small-12 medium-6 columns'>
-                            <h1>Edit Mention</h1>
+                <div className='row page-body'>
+                    <div className='small-12 large-6 large-centered columns'>
+                        <form action='/api/v1/register' method='post'>
+                            <h1 className='page-title'>Edit Mention</h1>
                             Mention: Richard Dawkins
                             <label>Mentioned by
                                 <input type='text' name='mentionedby' placeholder='' required />
@@ -40,9 +40,9 @@ var EditMention = React.createClass({
                                 <input type='text' placeholder='' required/>
                             </label>
                             <button type='submit' className='success button'>Save</button>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </span>
         );
     }

@@ -28,9 +28,9 @@ var EditPage = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <div className='row'>
-                    <div className='small-12 medium-6 columns'>
-                        <h1>Edit Page</h1>
+                <div className='row page-body'>
+                    <div className='small-12 large-6 large-centered columns'>
+                        <h1 className='page-title'>Edit Page</h1>
                         <a href={'/discuss/18/richard-dawkins'}>Discuss</a>
                         {' | '}
                         <a href={'/history/18/richard-dawkins'}>History</a>

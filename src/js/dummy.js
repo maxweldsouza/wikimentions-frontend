@@ -328,9 +328,100 @@ var data = {
             slug: 'dreams-of-a-final-theory',
             description: '',
             authors: [41]
+        },
+        {
+            id: 44,
+            type: 'person',
+            name: 'Albert Einstien',
+            slug: 'albert-einstien',
+            description: 'Physicist',
+            books: []
+        },
+        {
+            id: 45,
+            type: 'person',
+            name: 'Daniel Dennett',
+            slug: 'daniel-dennett',
+            description: '',
+            books: []
+        },
+        {
+            id: 46,
+            type: 'person',
+            name: 'Benjamin Franklin',
+            slug: 'benjamin-franklin',
+            description: '',
+            books: []
+        },
+        {
+            id: 47,
+            type: 'person',
+            name: 'T. H. Huxley',
+            slug: 'th-huxley',
+            description: 'Biologist',
+            books: []
+        },
+        {
+            id: 48,
+            type: 'person',
+            name: 'Stephen Jay Gould',
+            slug: 'stephen-jay-gould',
+            description: 'Biologist',
+            books: []
+        },
+        {
+            id: 49,
+            type: 'person',
+            name: 'Martin Rees',
+            slug: 'martin-rees',
+            description: 'Astronomer',
+            books: [50]
+        },
+        {
+            id: 50,
+            type: 'book',
+            name: 'Our Cosmic Habitat',
+            slug: 'our-cosmic-habitat',
+            description: '',
+            authors: [49]
         }
     ],
     mentions: [
+        {
+            mentionedby: 1,
+            mentioned: 49,
+            quote: ''
+        },
+        {
+            mentionedby: 1,
+            mentioned: 50,
+            quote: ''
+        },
+        {
+            mentionedby: 1,
+            mentioned: 46,
+            quote: ''
+        },
+        {
+            mentionedby: 1,
+            mentioned: 47,
+            quote: ''
+        },
+        {
+            mentionedby: 1,
+            mentioned: 48,
+            quote: ''
+        },
+        {
+            mentionedby: 1,
+            mentioned: 44,
+            quote: ''
+        },
+        {
+            mentionedby: 1,
+            mentioned: 45,
+            quote: ''
+        },
         {
             mentionedby: 1,
             mentioned: 42,

@@ -31,9 +31,9 @@ var HistoryPage = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <div className='row'>
+                <div className='row page-body'>
                     <div className='small-12 columns'>
-                        <h1>History</h1>
+                        <h1 className='page-title'>History</h1>
                         <div className='row'>
                             <div className='small-6 columns'>
                                 <div className="row">
