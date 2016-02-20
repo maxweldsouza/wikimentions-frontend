@@ -94,6 +94,9 @@ var ThingPage = React.createClass({
                 </li>;
             })}
         </ul>;
+        var nodata = <div className="small-12 columns">
+                <p>No mentions have been added yet. You can help us by adding some.</p>
+            </div>;
         var tabContent;
         if (this.state.tab === 'mentioned') {
             tabContent = <div className='row'>
@@ -109,6 +112,7 @@ var ThingPage = React.createClass({
                             />;
                     })}
                 </div>
+                {mentions.length === 0 ? nodata : null}
                 <div className='small-12 columns'>
                     <a href='/mentions/1' className='button'>Add</a>
                 </div>
@@ -127,6 +131,7 @@ var ThingPage = React.createClass({
                             />;
                     })}
                 </div>
+                {mentionedby.length === 0 ? nodata : null}
                 <div className='small-12 columns'>
                     <button type='button' className='button'>Add</button>
                 </div>
