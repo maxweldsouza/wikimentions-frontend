@@ -1,0 +1,32 @@
+.tabs {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.tabs-title > a {
+    font-size: 15px;
+    padding-top: 11px;
+    border: none;
+    padding-bottom: 7px;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 40px;
+}
+
+.tabs-title.is-active > a{
+    background: none;
+    border-bottom: solid 4px;
+}
+
+thead,
+tbody {
+    font-weight: normal;
+    border: none;
+    background: none;
+}
+
+tbody tr:nth-child(even) {
+    border: none;
+    background: none;
+}
