@@ -40,7 +40,12 @@ var DiscussPage = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                    <div className='row'>
+                <div className='row page-body'>
+                    <div className='small-12 large-8 large-centered columns'>
+                        <h1 className='page-title'>Page Discussion</h1>
+                        <a href={'/discuss/18/richard-dawkins'}>Discuss</a>
+                        {' | '}
+                        <a href={'/history/18/richard-dawkins'}>History</a>
                         {discussions.map((x) => {
                             return <Comment
                                 id={x.id}
@@ -64,8 +69,8 @@ var DiscussPage = React.createClass({
                             </form>
                         </div>
                     </div>
+                </div>
             </span>
-
         );
     }
 });
