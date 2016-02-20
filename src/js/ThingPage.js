@@ -35,15 +35,17 @@ var ThingPage = React.createClass({
                 return entry.authors.indexOf(x.id) >= 0;
             }
         });
-        authors = <span>
-            {'by '}
-            {authors.map(function (x) {
-                var path = '/pages/' + x.id + '/' + x.slug;
-                return <a href={path}>
-                    {x.name}
-                </a>;
-            })}
-        </span>;
+        if (authors.length > 0) {
+            authors = <span>
+                {'by '}
+                {authors.map(function (x) {
+                    var path = '/pages/' + x.id + '/' + x.slug;
+                    return <a href={path}>
+                        {x.name}
+                    </a>;
+                })}
+            </span>;
+        }
         var books = _.filter(DATA.things, function (x) {
             if (entry.books) {
                 return entry.books.indexOf(x.id) >= 0;

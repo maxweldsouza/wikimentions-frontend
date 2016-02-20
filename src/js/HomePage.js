@@ -34,9 +34,6 @@ var HomePage = React.createClass({
                 <Navbar/>
                 <div className='row page-body'>
                     <div className='small-12 columns'>
-                        <pre><code>
-                            {JSON.stringify(result, null, 2)}
-                        </code></pre>
                         <h2>Top Mentions</h2>
                         <div className='row'>
                             <div className='small-12 columns'>
