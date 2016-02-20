@@ -79,7 +79,7 @@ var ProfilePage = React.createClass({
             </ul>;
             tabContent = <div className="tabs-panel is-active">
                 <div className='row'>
-                    <div className='small-12 medium-6 columns'>
+                    <div className='small-12 columns'>
                         <label>Old Password
                             <input type='password' name='password' placeholder='' />
                         </label>
