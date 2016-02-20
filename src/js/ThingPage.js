@@ -40,7 +40,7 @@ var ThingPage = React.createClass({
                 {'by '}
                 {authors.map(function (x) {
                     var path = '/pages/' + x.id + '/' + x.slug;
-                    return <a href={path}>
+                    return <a href={path} key={x.name}>
                         {x.name}
                     </a>;
                 })}
@@ -72,7 +72,7 @@ var ThingPage = React.createClass({
             return result;
         });
         var tabs = ['mentioned', 'mentionedby'];
-        if (books.length > 0) {
+        if ('books' in entry) {
             tabs.push('books');
         }
         var tabTitles = {
@@ -96,6 +96,9 @@ var ThingPage = React.createClass({
         </ul>;
         var nodata = <div className="small-12 columns">
                 <p>No mentions have been added yet. You can help us by adding some.</p>
+            </div>;
+        var emptybooks = <div className="small-12 columns">
+                <p>No books have been added for this author. You can help us by adding some.</p>
             </div>;
         var tabContent;
         if (this.state.tab === 'mentioned') {
@@ -145,6 +148,7 @@ var ThingPage = React.createClass({
                         name={x.name}
                         />;
                 })}
+                {books.length === 0 ? emptybooks : null}
                 <div className='small-12 columns'>
                     <a href='/mentions/1' className='button'>Add</a>
                 </div>
