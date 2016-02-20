@@ -108,15 +108,15 @@ var ProfilePage = React.createClass({
                     />
                 <Navbar/>
                 <div className='row page-body'>
-                    <div className='small-12 columns'>
+                    <div className='small-12 large-8 large-centered columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1 className='page-title'>{user.name}</h1>
                                 Joined {moment(user.joined).format('MMMM Do YYYY')}
                                 {tab}
-                            </div>
-                            <div className="tabs-content" data-tabs-content="example-tabs">
-                                {tabContent}
+                                <div className="tabs-content" data-tabs-content="example-tabs">
+                                    {tabContent}
+                                </div>
                             </div>
                         </div>
                     </div>
