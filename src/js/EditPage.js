@@ -42,17 +42,17 @@ var EditPage = React.createClass({
                         <form action='' method='post'>
                             <div className="row">
                                 <div className="small-12 columns">
-                                    <label>Page Title
+                                    <label>Title
                                         <input type="text"></input>
                                     </label>
                                 </div>
                                 <div className="small-12 columns">
-                                    <label>Page Type
+                                    <label>Type
                                         <input type="text"></input>
                                     </label>
                                 </div>
                                 <div className="small-12 columns">
-                                    <label>Page Url
+                                    <label>Url
                                         <input type="text"></input>
                                     </label>
                                     <button type='button' className='button'>Submit</button>
