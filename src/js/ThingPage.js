@@ -17,7 +17,7 @@ var ThingPage = React.createClass({
     },
     getInitialState () {
         return {
-            tab: 'mentionedby'
+            tab: 'mentioned'
         };
     },
     changeTab (x) {
@@ -30,9 +30,20 @@ var ThingPage = React.createClass({
         var entry = _.find(DATA.things, function (x) {
             return x.id === id;
         });
+        var authors = _.filter(DATA.things, function (x) {
+            if (entry.authors) {
+                return entry.authors.indexOf(x.id) >= 0;
+            }
+        });
+        authors = authors.map(function (x) {
+            var path = '/pages/' + x.id + '/' + x.slug;
+            return <a href={path}>
+                {x.name}
+            </a>;
+        });
         var books = _.filter(DATA.things, function (x) {
             if (entry.books) {
-                return entry.books.indexOf(x.id) > 0;
+                return entry.books.indexOf(x.id) >= 0;
             }
         });
         var mentions = _.filter(DATA.mentions, function (x) {
@@ -152,6 +163,7 @@ var ThingPage = React.createClass({
                                 <h1 className='thing-title'>{entry.name}</h1>
                                     <span className='thing-description'>
                                         {entry.description}
+                                        {authors}
                                     </span>
                                 <div>
                                     <a href={'/edit/1/richard-dawkins'}>Edit Page</a>
