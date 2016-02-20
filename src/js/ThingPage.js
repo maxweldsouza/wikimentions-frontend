@@ -180,7 +180,7 @@ var ThingPage = React.createClass({
                                     {authors}
                                 </span>
                                 <div>
-                                    <a href={'/edit/1/richard-dawkins'}>Edit Page</a>
+                                    <a href={'/edit/' + id + '/' + entry.slug}>Edit Page</a>
                                 </div>
                                 {tab}
                                 <div className="tabs-content">

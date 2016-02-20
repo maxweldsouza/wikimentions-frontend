@@ -3,6 +3,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var DATA = require('./dummy');
+var _ = require('underscore');
 
 var EditPage = React.createClass({
     statics: {
@@ -15,6 +16,10 @@ var EditPage = React.createClass({
         }
     },
     render () {
+        var id = Number(this.props.path.split('/')[1]);
+        var entry = _.find(DATA.things, function (x) {
+            return x.id === id;
+        });
         return (
             <span>
                 <Helmet
@@ -31,9 +36,9 @@ var EditPage = React.createClass({
                 <div className='row page-body'>
                     <div className='small-12 large-6 large-centered columns'>
                         <h1 className='page-title'>Edit Page</h1>
-                        <a href={'/discuss/18/richard-dawkins'}>Discuss</a>
+                        <a href={'/discuss/' + id + '/' + entry.slug}>Discuss</a>
                         {' | '}
-                        <a href={'/history/18/richard-dawkins'}>History</a>
+                        <a href={'/history/' + id + '/' + entry.slug}>History</a>
                         <form action='' method='post'>
                             <div className="row">
                                 <div className="small-12 columns">
