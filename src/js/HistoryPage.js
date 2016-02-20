@@ -100,7 +100,7 @@ var HistoryPage = React.createClass({
                         </div>
                     </div>
                     <div className='small-12 columns'>
-                        <ul className="pagination" role="navigation" aria-label="Pagination">
+                        <ul className="pagination text-center" role="navigation" aria-label="Pagination">
                             <li className="pagination-previous disabled">Previous <span className="show-for-sr">page</span></li>
                             <li className="current"><span className="show-for-sr">You're on page</span> 1</li>
                             <li><a href="#" aria-label="Page 2">2</a></li>
