@@ -36,9 +36,11 @@ var EditPage = React.createClass({
                 <div className='row page-body'>
                     <div className='small-12 large-8 large-centered columns'>
                         <h1 className='page-title'>Edit</h1>
-                        <a href={'/discuss/' + id + '/' + entry.slug}>Discuss</a>
-                        {' | '}
-                        <a href={'/history/' + id + '/' + entry.slug}>History</a>
+                        <span className='edit-links'>
+                            <a href={'/discuss/' + id + '/' + entry.slug}>Discuss</a>
+                            {' | '}
+                            <a href={'/history/' + id + '/' + entry.slug}>History</a>
+                        </span>
                         <form action='' method='post'>
                             <div className="row">
                                 <div className="small-12 columns">

@@ -179,7 +179,7 @@ var ThingPage = React.createClass({
                                     {entry.description}
                                     {authors}
                                 </span>
-                                <div>
+                                <div className='edit-links'>
                                     <a href={'/edit/' + id + '/' + entry.slug}>Edit</a>
                                     {' | '}
                                     <a href={'/history/' + id + '/' + entry.slug}>History</a>

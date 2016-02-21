@@ -43,9 +43,11 @@ var DiscussPage = React.createClass({
                 <div className='row page-body'>
                     <div className='small-12 large-8 large-centered columns'>
                         <h1 className='page-title'>Page Discussion</h1>
-                        <a href={'/edit/18/richard-dawkins'}>Edit</a>
-                        {' | '}
-                        <a href={'/history/18/richard-dawkins'}>History</a>
+                        <span className='edit-links'>
+                            <a href={'/edit/18/richard-dawkins'}>Edit</a>
+                            {' | '}
+                            <a href={'/history/18/richard-dawkins'}>History</a>
+                        </span>
                         {discussions.map((x) => {
                             return <Comment
                                 id={x.id}

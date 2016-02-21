@@ -49,7 +49,7 @@ var data = {
             type: 'book',
             name: 'What Is Life?',
             slug: 'what-is-life',
-            books: [23]
+            authors: [23]
         },
         {
             id: 8,
