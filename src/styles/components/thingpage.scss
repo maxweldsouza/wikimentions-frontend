@@ -12,14 +12,10 @@
     font-size: 17px;
 }
 
-.edit-links {
+.edit-links,
+.edit-links > a {
     font-size: 14px;
-}
-
-.discuss-comment {
-    border-top: solid 1px #cacaca;
-    padding-top: $global-margin;
-    margin-top: $global-margin;
+    color: $dark-gray;
 }
 
 .mention-block {
@@ -54,16 +50,26 @@
     margin-top: 5px;
 }
 
-.discuss-comment {
+.discuss-comment + .discuss-comment {
+    border-bottom: solid 1px #cacaca;
+    padding-top: $global-margin;
+    padding-bottom: $global-margin;
+}
 
+.discuss-comment:first-of-type {
+    border-top: solid 1px #cacaca;
+    padding-top: $global-margin;
+    padding-bottom: $global-margin;
+    border-bottom: solid 1px #cacaca;
 }
 
 .discuss-username {
-
+    font-weight: bold;
 }
 
 .discuss-updated {
-
+    color: #888;
+    font-size: 14px;
 }
 
 .discuss-text {
