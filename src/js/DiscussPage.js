@@ -56,7 +56,7 @@ var DiscussPage = React.createClass({
                                 posted={x.posted}
                                 />;
                         })}
-                        <div className='small-12 columns'>
+                        <div className='discuss-reply small-12 columns'>
                             <form action='' method='post'>
                                 <div className="row">
                                     <div className="small-12 columns">
