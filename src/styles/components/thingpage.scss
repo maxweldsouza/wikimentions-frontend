@@ -26,18 +26,21 @@
 
 .mention-title {
     font-size: 18px;
+    font-weight: bold;
 }
 
 .mention-short-description {
-    font-size: 13px;
+    font-size: 15px;
+    color: #888;
 }
 
 .mention-quote {
     margin-top: 8px;
 }
 
-.mention-edit {
+.mention-edit > a {
     font-size: 13px;
+    color: #888;
 }
 
 .book-card {
