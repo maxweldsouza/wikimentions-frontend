@@ -12,7 +12,7 @@ var Comment = React.createClass({
             <div className='small-12 columns discuss-comment'>
                 <div className="row">
                     <div className="small-6 columns discuss-username">
-                        <a href={'/users/' + this.props.id + '/' + this.props.name}>{this.props.name}</a>
+                        <a href={'/users/' + this.props.user + '/' + this.props.name}>{this.props.name}</a>
                     </div>
                     <div className="small-6 columns text-right discuss-updated">{updated}</div>
                 </div>
