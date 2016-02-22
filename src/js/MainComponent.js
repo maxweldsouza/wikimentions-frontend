@@ -16,7 +16,7 @@ var ProfilePage = require('./ProfilePage');
 var Signup = require('./Signup');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
-var Sidebar = require('react-sidebar');
+var Menu = require('react-burger-menu').slide;
 
 var store = require('store');
 
@@ -37,9 +37,13 @@ var MainComponent = React.createClass({
     },
     render () {
         var Component = require('./' + this.props.component);
-        var sidebarContent = <b>Sidebar content</b>;
         return (
             <div>
+                <Menu isOpen={true}>
+                    <a id="home" className="menu-item" href="/">Home</a>
+                    <a id="about" className="menu-item" href="/about">About</a>
+                    <a id="contact" className="menu-item" href="/contact">Contact</a>
+                </Menu>
                 <Spinner />
                 <Component
                     data={this.props.data}
