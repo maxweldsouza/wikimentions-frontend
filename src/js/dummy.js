@@ -384,9 +384,38 @@ var data = {
             slug: 'our-cosmic-habitat',
             description: '',
             authors: [49]
+        },
+        {
+            id: 51,
+            type: 'person',
+            name: 'Martin Gardner',
+            slug: 'martin-gardner',
+            description: 'Popular Science Writer',
+            books: []
+        },
+        {
+            id: 52,
+            type: 'person',
+            name: 'Karl Fulves',
+            slug: 'karl-fulves',
+            description: 'Magician',
+            books: [53]
+        },
+        {
+            id: 53,
+            type: 'book',
+            name: 'Self-Working Card Tricks',
+            slug: 'self-working-card-tricks',
+            description: '',
+            authors: [52]
         }
     ],
     mentions: [
+        {
+            mentionedby: 53,
+            mentioned: 51,
+            quote: ''
+        },
         {
             mentionedby: 1,
             mentioned: 49,
