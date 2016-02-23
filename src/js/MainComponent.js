@@ -16,7 +16,7 @@ var ProfilePage = require('./ProfilePage');
 var Signup = require('./Signup');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
-var Menu = require('react-burger-menu').slide;
+var Menu = require('react-burger-menu').push;
 
 var store = require('store');
 
@@ -39,16 +39,20 @@ var MainComponent = React.createClass({
         var Component = require('./' + this.props.component);
         return (
             <div>
-                <Menu isOpen={false}>
-                    <a id="home" className="menu-item" href="/">Home</a>
-                    <a id="about" className="menu-item" href="/about">About</a>
-                    <a id="contact" className="menu-item" href="/contact">Contact</a>
-                </Menu>
-                <Spinner />
-                <Component
-                    data={this.props.data}
-                    path={this.props.path}
-                    />
+                <div id="outer-container">
+                    <Menu isOpen={false} pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }>
+                        <a id="home" className="menu-item" href="/">Home</a>
+                        <a id="about" className="menu-item" href="/create">Create Page</a>
+                        <a id="contact" className="menu-item" href="/contact">Contact</a>
+                    </Menu>
+                  <main id="page-wrap">
+                    <Spinner />
+                    <Component
+                        data={this.props.data}
+                        path={this.props.path}
+                        />
+                  </main>
+                </div>
             </div>
         );
     }
