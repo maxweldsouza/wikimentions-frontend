@@ -44,7 +44,7 @@ var Navbar = React.createClass({
         return (
             <div className='top-bar'>
                 <div className='top-bar-left'>
-                    <ul className='dropdown menu' data-dropdown-menu>
+                    <ul className='menu icon-top'>
                         <li className='menu-text'><a href='/'>Mentions</a></li>
                         <li><a href='#'>New</a></li>
                         <li><a href='#'>Popular</a></li>
