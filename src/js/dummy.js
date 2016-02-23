@@ -561,7 +561,7 @@ var data = {
             id: 2,
             page_id: 18,
             user: 2,
-            text: 'Sure !',
+            text: 'Sure ! [This link](http://example.net/)',
             posted: '2016-02-11T14:36:24+00:00'
         },
         {

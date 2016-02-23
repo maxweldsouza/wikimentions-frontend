@@ -60,13 +60,11 @@
 .discuss-comment + .discuss-comment {
     border-bottom: solid 1px #cacaca;
     padding-top: $global-margin;
-    padding-bottom: $global-margin;
 }
 
 .discuss-comment:first-of-type {
     border-top: solid 1px #cacaca;
     padding-top: $global-margin;
-    padding-bottom: $global-margin;
     border-bottom: solid 1px #cacaca;
 }
 

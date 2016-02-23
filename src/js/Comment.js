@@ -3,6 +3,7 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var moment = require('moment');
+var Markdown = require('./Markdown');
 
 var Comment = React.createClass({
     render () {
@@ -17,7 +18,11 @@ var Comment = React.createClass({
                     <div className="small-6 columns text-right discuss-updated">{updated}</div>
                 </div>
                 <div className="row discuss-text">
-                    <div className="small-12 columns">{this.props.text}</div>
+                    <div className="small-12 columns">
+                        <Markdown
+                            markdown={this.props.text}
+                            />
+                    </div>
                 </div>
             </div>
         );
