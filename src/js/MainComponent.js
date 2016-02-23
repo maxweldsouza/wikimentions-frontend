@@ -41,9 +41,10 @@ var MainComponent = React.createClass({
             <div>
                 <div id="outer-container">
                     <Menu isOpen={false} pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }>
-                        <a id="home" className="menu-item" href="/">Home</a>
-                        <a id="about" className="menu-item" href="/create">Create Page</a>
-                        <a id="contact" className="menu-item" href="/contact">Contact</a>
+                        <a id="home" className="menu-item" href="/">
+                            <span className='ion-android-home menu-item-icon'/>Home</a>
+                        <a id="about" className="menu-item" href="/create"><span className='ion-android-create menu-item-icon'/>Create Page</a>
+                        <a id="contact" className="menu-item" href="/contact"><span className='ion-android-contact menu-item-icon'/>Contact</a>
                     </Menu>
                   <main id="page-wrap">
                     <Spinner />
