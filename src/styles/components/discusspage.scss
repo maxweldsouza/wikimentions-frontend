@@ -1,0 +1,23 @@
+.discuss-comment + .discuss-comment {
+    border-bottom: solid 1px #cacaca;
+    padding-top: $global-margin;
+}
+
+.discuss-comment:first-of-type {
+    border-top: solid 1px #cacaca;
+    padding-top: $global-margin;
+    border-bottom: solid 1px #cacaca;
+}
+
+.discuss-username {
+    font-weight: bold;
+}
+
+.discuss-updated {
+    color: #888;
+    font-size: 14px;
+}
+
+.discuss-reply {
+    margin-top: $global-margin;
+}
