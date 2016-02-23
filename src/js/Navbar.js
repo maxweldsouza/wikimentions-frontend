@@ -46,8 +46,6 @@ var Navbar = React.createClass({
                 <div className='top-bar-left'>
                     <ul className='menu icon-top'>
                         <li className='menu-text'><a href='/'>Mentions</a></li>
-                        <li><a href='#'>New</a></li>
-                        <li><a href='#'>Popular</a></li>
                         <li><a href='/create'>Create Page</a></li>
                     </ul>
                 </div>
