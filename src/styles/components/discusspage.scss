@@ -1,3 +1,7 @@
+.discuss-empty {
+    margin-top: $global-margin;
+}
+
 .discuss-comment + .discuss-comment {
     border-bottom: solid 1px #cacaca;
     padding-top: $global-margin;

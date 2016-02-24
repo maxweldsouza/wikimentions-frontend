@@ -27,6 +27,25 @@ var DiscussPage = React.createClass({
             x.name = user.name;
             return x;
         });
+        discussions = [];
+        var main;
+        if (discussions.length > 0) {
+            main = <div>
+                {discussions.map((x) => {
+                    return <Comment
+                        id={x.id}
+                        user={x.user}
+                        name={x.name}
+                        text={x.text}
+                        posted={x.posted}
+                        />;
+                })}
+            </div>;
+        } else {
+            main = <div className='discuss-empty callout primary'>
+                There are no discussions here. You can start one !
+            </div>;
+        }
         return (
             <span>
                 <Helmet
@@ -48,15 +67,7 @@ var DiscussPage = React.createClass({
                             {' | '}
                             <a href={'/history/18/richard-dawkins'}>History</a>
                         </span>
-                        {discussions.map((x) => {
-                            return <Comment
-                                id={x.id}
-                                user={x.user}
-                                name={x.name}
-                                text={x.text}
-                                posted={x.posted}
-                                />;
-                        })}
+                        {main}
                         <div className="row">
                             <div className='discuss-reply small-12 columns'>
                                 <form action='' method='post'>
