@@ -39,6 +39,7 @@ var HistoryPage = React.createClass({
                             <a href={'/edit/18/richard-dawkins'}>Edit</a>
                             {' | '}
                             <a href={'/discuss/18/richard-dawkins'}>Discuss</a>
+                            {' | History'}
                         </span>
                         <div className='row'>
                             <div className='small-12 large-6 columns'>

@@ -64,7 +64,7 @@ var DiscussPage = React.createClass({
                         <h1 className='page-title'>Page Discussion</h1>
                         <span className='edit-links'>
                             <a href={'/edit/18/richard-dawkins'}>Edit</a>
-                            {' | '}
+                            {' | Discuss | '}
                             <a href={'/history/18/richard-dawkins'}>History</a>
                         </span>
                         {main}
