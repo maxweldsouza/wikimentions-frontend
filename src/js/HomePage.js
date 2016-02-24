@@ -37,7 +37,7 @@ var HomePage = React.createClass({
                         <h2>Top Mentions</h2>
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <a href='/pages/18/richard-dawkins'>Richard Dawkins</a> mentioned <a href='/books/phantoms-in-the-brain'>Phantoms in the brain</a>
+                                <a href='/pages/18/richard-dawkins'>Richard Dawkins</a> mentioned <a href='/books/2/phantoms-in-the-brain'>Phantoms in the brain</a>
                             </div>
                             <div className='small-12 columns'>
                                 "The marco polo of neuroscience"
