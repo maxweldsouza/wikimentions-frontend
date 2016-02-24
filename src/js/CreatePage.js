@@ -12,6 +12,16 @@ var HomePage = React.createClass({
             };
         }
     },
+    getInitialState: function() {
+        return {
+            type: 'book'
+        };
+    },
+    onChangeType (e) {
+        this.setState({
+            type: e.currentTarget.value
+        });
+    },
     render () {
         return (
             <span>
@@ -37,17 +47,19 @@ var HomePage = React.createClass({
                                 <input type='text' name='description' placeholder='' />
                             </label>
                             <label>Type
-                                <select>
-                                    <option value="person">Person</option>
+                                <select onChange={this.onChangeType}>
                                     <option value="book">Book</option>
+                                    <option value="person">Person</option>
                                 </select>
                             </label>
-                            <label>ISBN
+                            {this.state.type === 'book' ? <label>ISBN
                                 <input type='text' name='ISBN' placeholder='' />
-                            </label>
+                            </label> : null}
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
                             <input type="file" id="exampleFileUpload" className="show-for-sr"/>
-                            <button type='submit' className='success button'>Submit</button>
+                            <div>
+                                <button type='submit' className='success button'>Submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>
