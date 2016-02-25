@@ -5,6 +5,7 @@ var Login = require('./Login');
 var Signup = require('./Signup');
 var _ = require('underscore');
 var DATA = require('./dummy');
+var Mention = require('./Mention');
 
 var HomePage = React.createClass({
     statics: {
@@ -18,7 +19,16 @@ var HomePage = React.createClass({
         var result = _.filter(DATA.things, function (x) {
             return x.id === 18 && x.type === 'book';
         });
-
+        var mentions = _.filter(DATA.mentions, function (x) {
+            return x.mentionedby === 1;
+        });
+        mentions = _.map(mentions, function (x) {
+            var result = _.find(DATA.things, function (y) {
+                return y.id === x.mentioned;
+            });
+            result.quote = x.quote;
+            return result;
+        });
         return (
             <span>
                 <Helmet
@@ -36,18 +46,29 @@ var HomePage = React.createClass({
                     <div className='small-12 columns'>
                         <h2>Top Mentions</h2>
                         <div className='row'>
-                            <div className='small-12 columns'>
-                                <a href='/pages/18/richard-dawkins'>Richard Dawkins</a> mentioned <a href='/books/2/phantoms-in-the-brain'>Phantoms in the brain</a>
+                            <div className='small-12 medium-6 columns'>
+                                {mentions.map((x) => {
+                                    return <Mention
+                                        id={x.id}
+                                        slug={x.slug}
+                                        name={x.name}
+                                        description={x.description}
+                                        quote={x.quote}
+                                        type={x.type}
+                                        />;
+                                })}
                             </div>
-                            <div className='small-12 columns'>
-                                "The marco polo of neuroscience"
-                            </div>
-                        </div>
-                    </div>
-                    <div className='small-12 columns'>
-                        <div className='row'>
-                            <div className='small-12 columns'>
-                                1200 mentions, 1300 mentioned, 3000 books
+                            <div className='small-12 medium-6 columns'>
+                                {mentions.map((x) => {
+                                    return <Mention
+                                        id={x.id}
+                                        slug={x.slug}
+                                        name={x.name}
+                                        description={x.description}
+                                        quote={x.quote}
+                                        type={x.type}
+                                        />;
+                                })}
                             </div>
                         </div>
                     </div>
