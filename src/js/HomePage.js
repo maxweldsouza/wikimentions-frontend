@@ -16,9 +16,6 @@ var HomePage = React.createClass({
         }
     },
     render () {
-        var result = _.filter(DATA.things, function (x) {
-            return x.id === 18 && x.type === 'book';
-        });
         var mentions = _.filter(DATA.mentions, function (x) {
             return x.mentionedby === 1;
         });

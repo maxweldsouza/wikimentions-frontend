@@ -11,15 +11,15 @@ var Pagination = React.createClass({
             return i + 1;
         });
         return (
-            <ul className="pagination text-center" role="navigation" aria-label="Pagination">
-                <li className="pagination-previous disabled">Previous <span className="show-for-sr">page</span></li>
+            <ul className='pagination text-center' role='navigation' aria-label='Pagination'>
+                <li className='pagination-previous disabled'>Previous <span className='show-for-sr'>page</span></li>
                 {pages.map((x) => {
                     if (x === this.props.current) {
-                        return <li className="current"                            key={x}><span className="show-for-sr">You're on page</span> {x}</li>;
+                        return <li className='current' key={x}><span className='show-for-sr'>You're on page</span> {x}</li>;
                     }
-                    return <li key={x}><a aria-label={"Page " + x} onClick={this.props.onChange}>{x}</a></li>;
+                    return <li key={x}><a aria-label={'Page ' + x} onClick={this.props.onChange}>{x}</a></li>;
                 })}
-                <li className="pagination-next"><a aria-label="Next page" onClick={this.props.onNext}>Next <span className="show-for-sr">page</span></a></li>
+                <li className='pagination-next'><a aria-label='Next page' onClick={this.props.onNext}>Next <span className='show-for-sr'>page</span></a></li>
             </ul>
         );
     }

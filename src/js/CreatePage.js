@@ -12,7 +12,7 @@ var HomePage = React.createClass({
             };
         }
     },
-    getInitialState: function() {
+    getInitialState () {
         return {
             type: 'book'
         };
