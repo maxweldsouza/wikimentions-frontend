@@ -26,7 +26,7 @@ var EditMention = React.createClass({
                     />
                 <Navbar/>
                 <div className='row page-body'>
-                    <div className='small-12 large-6 large-centered columns'>
+                    <div className='small-12 large-8 large-centered columns'>
                         <form action='/api/v1/register' method='post'>
                             <h1 className='page-title'>Edit Mention</h1>
                             Mention: Richard Dawkins
