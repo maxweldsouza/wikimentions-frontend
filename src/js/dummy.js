@@ -541,11 +541,13 @@ var data = {
         {
             id: 1,
             name: 'maxweldsouza',
+            level: 3,
             joined: '2015-02-11'
         },
         {
             id: 2,
             name: 'someuser',
+            level: 1,
             joined: '2014-02-11'
         }
     ],

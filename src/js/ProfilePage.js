@@ -112,7 +112,10 @@ var ProfilePage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1 className='page-title'>{user.name}</h1>
-                                Joined {moment(user.joined).format('MMMM Do YYYY')}
+                                <div>
+                                    Joined {moment(user.joined).format('MMMM Do YYYY')}
+                                </div>
+                                <div>Level {user.level}</div>
                                 {tab}
                                 <div className="tabs-content" data-tabs-content="example-tabs">
                                     {tabContent}
