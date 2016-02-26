@@ -46,8 +46,8 @@ var ThingPage = React.createClass({
                 {'by '}
                 {authors.map(function (x) {
                     var path = '/pages/' + x.id + '/' + x.slug;
-                    return <a href={path} key={x.name}>
-                        {x.name}
+                    return <a href={path} key={x.title}>
+                        {x.title}
                     </a>;
                 })}
             </span>;
