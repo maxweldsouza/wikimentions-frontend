@@ -10,8 +10,14 @@ var Book = require('./Book');
 var ThingPage = React.createClass({
     statics: {
         resources (appstate) {
+            var id = appstate.url.split('/')[1];
             return {
-                api: []
+                api: [
+                    {
+                        name: 'thing',
+                        path: '/api/v1/thingpage/' + id
+                    }
+                ]
             };
         }
     },
@@ -26,15 +32,15 @@ var ThingPage = React.createClass({
         });
     },
     render () {
-        var id = Number(this.props.path.split('/')[1]);
+        var thing = this.props.data.thing;
+        var id = Number(thing.id);
         var entry = _.find(DATA.things, function (x) {
             return x.id === id;
         });
-        var authors = _.filter(DATA.things, function (x) {
-            if (entry.authors) {
-                return entry.authors.indexOf(x.id) >= 0;
-            }
-        });
+        var authors = [];
+        if (thing.authors) {
+            authors = thing.authors;
+        }
         if (authors.length > 0) {
             authors = <span>
                 {'by '}
@@ -51,16 +57,7 @@ var ThingPage = React.createClass({
                 return entry.books.indexOf(x.id) >= 0;
             }
         });
-        var mentions = _.filter(DATA.mentions, function (x) {
-            return x.mentionedby === id;
-        });
-        mentions = _.map(mentions, function (x) {
-            var result = _.find(DATA.things, function (y) {
-                return y.id === x.mentioned;
-            });
-            result.quote = x.quote;
-            return result;
-        });
+        var mentions = thing.mentions;
         var mentionedby = _.filter(DATA.mentions, function (x) {
             return x.mentioned === id;
         });
@@ -108,7 +105,7 @@ var ThingPage = React.createClass({
                         return <Mention
                             id={x.id}
                             slug={x.slug}
-                            name={x.name}
+                            title={x.title}
                             description={x.description}
                             quote={x.quote}
                             type={x.type}
@@ -127,7 +124,7 @@ var ThingPage = React.createClass({
                         return <Mention
                             id={x.id}
                             slug={x.slug}
-                            name={x.name}
+                            title={x.title}
                             description={x.description}
                             quote={x.quote}
                             type={x.type}
@@ -174,17 +171,17 @@ var ThingPage = React.createClass({
                                 <img className="" src="/assets/placeholder.png" alt="Photo of Pluto."/>
                             </div>
                             <div className='small-12 large-8 columns'>
-                                <h1 className='page-title'>{entry.name}</h1>
+                                <h1 className='page-title'>{thing.title}</h1>
                                 <span className='thing-description'>
-                                    {entry.description}
+                                    {thing.description}
                                     {authors}
                                 </span>
                                 <div className='edit-links'>
-                                    <a href={'/edit/' + id + '/' + entry.slug}>Edit</a>
+                                    <a href={'/edit/' + id + '/' + thing.slug}>Edit</a>
                                     {' | '}
-                                    <a href={'/history/' + id + '/' + entry.slug}>History</a>
+                                    <a href={'/history/' + id + '/' + thing.slug}>History</a>
                                     {' | '}
-                                    <a href={'/discuss/' + id + '/' + entry.slug}>Discuss</a>
+                                    <a href={'/discuss/' + id + '/' + thing.slug}>Discuss</a>
                                 </div>
                                 {tab}
                                 <div className="tabs-content">
