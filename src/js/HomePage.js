@@ -48,7 +48,7 @@ var HomePage = React.createClass({
                                     return <Mention
                                         id={x.id}
                                         slug={x.slug}
-                                        name={x.name}
+                                        title={x.name}
                                         description={x.description}
                                         quote={x.quote}
                                         type={x.type}
@@ -60,7 +60,7 @@ var HomePage = React.createClass({
                                     return <Mention
                                         id={x.id}
                                         slug={x.slug}
-                                        name={x.name}
+                                        title={x.name}
                                         description={x.description}
                                         quote={x.quote}
                                         type={x.type}

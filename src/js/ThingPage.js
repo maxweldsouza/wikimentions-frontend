@@ -58,16 +58,7 @@ var ThingPage = React.createClass({
             }
         });
         var mentions = thing.mentions;
-        var mentionedby = _.filter(DATA.mentions, function (x) {
-            return x.mentioned === id;
-        });
-        mentionedby = _.map(mentionedby, function (x) {
-            var result = _.find(DATA.things, function (y) {
-                return y.id === x.mentionedby;
-            });
-            result.quote = x.quote;
-            return result;
-        });
+        var mentionedby = thing.mentioned_by;
         var tabs = ['mentioned', 'mentionedby'];
         if ('books' in entry) {
             tabs.push('books');
