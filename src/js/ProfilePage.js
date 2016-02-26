@@ -10,8 +10,14 @@ var moment = require('moment');
 var ProfilePage = React.createClass({
     statics: {
         resources (appstate) {
+            var id = appstate.url.split('/')[1];
             return {
-                api: []
+                api: [
+                    {
+                        name: 'user',
+                        path: '/api/v1/userpage/' + id
+                    }
+                ]
             };
         }
     },
@@ -27,9 +33,7 @@ var ProfilePage = React.createClass({
     },
     render () {
         var id = Number(this.props.path.split('/')[1]);
-        var user = _.find(DATA.users, function (x) {
-            return x.id === id;
-        });
+        var user = this.props.data.user;
         var tab, tabContent;
         if (this.state.tab === 'edits') {
             tab = <ul className="tabs" data-tabs id="example-tabs">
