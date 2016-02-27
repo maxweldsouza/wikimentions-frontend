@@ -10,35 +10,32 @@ var _ = require('underscore');
 var DiscussPage = React.createClass({
     statics: {
         resources (appstate) {
+            var id = appstate.url.split('/')[1];
             return {
-                api: []
+                api: [
+                    {
+                        name: 'discuss',
+                        path: '/api/v1/discusspage/' + id
+                    }
+                ]
             };
         }
     },
     render () {
+        var discuss = this.props.data.discuss;
         var id = Number(this.props.path.split('/')[1]);
         var entry = _.find(DATA.things, function (x) {
             return x.id === id;
         });
-        var discussions = _.filter(DATA.discussions, function (x) {
-            return x.page_id === id;
-        });
-        discussions = _.map(discussions, function (x) {
-            var user = _.find(DATA.users, function (y) {
-                return y.id === x.user;
-            });
-            x.name = user.name;
-            return x;
-        });
-        discussions = [];
+        var discussions = discuss;
         var main;
         if (discussions.length > 0) {
             main = <div>
                 {discussions.map((x) => {
                     return <Comment
                         id={x.id}
-                        user={x.user}
-                        name={x.name}
+                        user={x.user_id}
+                        name={x.username}
                         text={x.text}
                         posted={x.posted}
                         />;
