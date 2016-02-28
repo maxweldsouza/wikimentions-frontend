@@ -44,6 +44,7 @@ var HomePage = React.createClass({
                         <h2>Top Mentions</h2>
                         <div className='row'>
                             <div className='small-12 medium-6 columns'>
+                                <a href='/pages/57/charles-petzold'>Charles Petzold</a>
                                 {mentions.map((x) => {
                                     return <Mention
                                         id={x.id}

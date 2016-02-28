@@ -38,7 +38,7 @@ var HomePage = React.createClass({
                 <Navbar/>
                 <div className='row page-body'>
                     <div className='small-12 large-8 large-centered columns'>
-                        <form action='/api/v1/login' method='post'>
+                        <form action='/api/v1/thingpage' method='post'>
                             <h1 className='page-title'>Create Page</h1>
                             <label>Title
                                 <input type='text' name='title' placeholder='' />
@@ -46,14 +46,17 @@ var HomePage = React.createClass({
                             <label>Short Description
                                 <input type='text' name='description' placeholder='' />
                             </label>
+                            <label>Slug
+                                <input type='text' name='slug' placeholder='' />
+                            </label>
                             <label>Type
-                                <select onChange={this.onChangeType}>
+                                <select name='type' onChange={this.onChangeType}>
                                     <option value="book">Book</option>
                                     <option value="person">Person</option>
                                 </select>
                             </label>
                             {this.state.type === 'book' ? <label>ISBN
-                                <input type='text' name='ISBN' placeholder='' />
+                                <input type='text' name='isbn' placeholder='' />
                             </label> : null}
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
                             <input type="file" id="exampleFileUpload" className="show-for-sr"/>

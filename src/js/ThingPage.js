@@ -34,9 +34,6 @@ var ThingPage = React.createClass({
     render () {
         var thing = this.props.data.thing;
         var id = Number(thing.id);
-        var entry = _.find(DATA.things, function (x) {
-            return x.id === id;
-        });
         var authors = [];
         if (thing.authors) {
             authors = thing.authors;
@@ -52,16 +49,13 @@ var ThingPage = React.createClass({
                 })}
             </span>;
         }
-        var books = _.filter(DATA.things, function (x) {
-            if (entry.books) {
-                return entry.books.indexOf(x.id) >= 0;
-            }
-        });
         var mentions = thing.mentions;
         var mentionedby = thing.mentioned_by;
         var tabs = ['mentioned', 'mentionedby'];
-        if ('books' in entry) {
+        var books;
+        if ('books' in thing) {
             tabs.push('books');
+            books = thing.books;
         }
         var tabTitles = {
             'mentioned': 'Mentioned',
