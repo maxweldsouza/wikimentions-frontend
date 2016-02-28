@@ -23,10 +23,9 @@ var DiscussPage = React.createClass({
     },
     render () {
         var discuss = this.props.data.discuss;
-        var id = Number(this.props.path.split('/')[1]);
-        var entry = _.find(DATA.things, function (x) {
-            return x.id === id;
-        });
+        var parts = this.props.path.split('/');
+        var id = Number(parts[1]);
+        var slug = parts[2];
         var discussions = discuss;
         var main;
         if (discussions.length > 0) {
@@ -63,9 +62,9 @@ var DiscussPage = React.createClass({
                     <div className='small-12 large-8 large-centered columns'>
                         <h1 className='page-title'>Page Discussion</h1>
                         <span className='edit-links'>
-                            <a href={'/edit/' + id + '/' + entry.slug}>Edit</a>
+                            <a href={'/edit/' + id + '/' + slug}>Edit</a>
                             {' | Discuss | '}
-                            <a href={'/history/' + id + '/' + entry.slug}>History</a>
+                            <a href={'/history/' + id + '/' + slug}>History</a>
                         </span>
                         {main}
                         <div className="row">
