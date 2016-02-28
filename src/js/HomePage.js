@@ -11,7 +11,12 @@ var HomePage = React.createClass({
     statics: {
         resources (appstate) {
             return {
-                api: []
+                api: [
+                    {
+                        name: 'new',
+                        path: '/api/v1/new/10/0'
+                    }
+                ]
             };
         }
     },
@@ -44,16 +49,8 @@ var HomePage = React.createClass({
                         <h2>Top Mentions</h2>
                         <div className='row'>
                             <div className='small-12 medium-6 columns'>
-                                <a href='/pages/57/charles-petzold'>Charles Petzold</a>
-                                {mentions.map((x) => {
-                                    return <Mention
-                                        id={x.id}
-                                        slug={x.slug}
-                                        title={x.name}
-                                        description={x.description}
-                                        quote={x.quote}
-                                        type={x.type}
-                                        />;
+                                {this.props.data.new.map((x) => {
+                                    return <div><a href={'/pages/' + x.id + '/' + x.slug}>{x.title}</a></div>;
                                 })}
                             </div>
                             <div className='small-12 medium-6 columns'>
