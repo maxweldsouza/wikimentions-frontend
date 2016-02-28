@@ -53,7 +53,7 @@ var ThingPage = React.createClass({
         var mentionedby = thing.mentioned_by;
         var tabs = ['mentioned', 'mentionedby'];
         var books;
-        if ('books' in thing) {
+        if (thing.type === 'person') {
             tabs.push('books');
             books = thing.books;
         }
@@ -127,11 +127,12 @@ var ThingPage = React.createClass({
                     return <Book
                         id={x.id}
                         slug={x.slug}
-                        name={x.name}
+                        title={x.title}
                         />;
                 })}
                 {books.length === 0 ? emptybooks : null}
                 <div className='small-12 columns'>
+                    <input type='text'/>
                     <a href='/mentions/1' className='button'>Add</a>
                 </div>
             </div>;

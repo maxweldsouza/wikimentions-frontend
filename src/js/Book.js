@@ -12,7 +12,7 @@ var Book = React.createClass({
                     <img src='/assets/book.png'></img>
                 </div>
                 <div className='book-title'>
-                    {this.props.name}
+                    {this.props.title}
                 </div>
                 </a>
             </div>
