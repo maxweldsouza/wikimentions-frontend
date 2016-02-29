@@ -11,8 +11,8 @@ var Select = React.createClass({
         };
     },
     onSearchTextChanged (e) {
-        if (this.state.searchText.length > 1) {
-            this.loadData();
+        if (e.target.value.length > 1) {
+            this.loadData(e.target.value);
         } else {
             this.setState({
                 options: []
@@ -29,8 +29,8 @@ var Select = React.createClass({
             value: x.id
         });
     },
-    loadData () {
-        requests.get('/api/v1/search/' + this.state.searchText).end((err, res) => {
+    loadData (x) {
+        requests.get('/api/v1/search/' + x).end((err, res) => {
             this.setState({
                 options: res.body
             });
