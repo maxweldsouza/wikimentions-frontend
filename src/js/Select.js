@@ -52,6 +52,7 @@ var Select = React.createClass({
                         onChange={this.onSearchTextChanged}></input>
                     {this.state.searchText.length > 0 ? <span onClick={this.onClear} className='ion-backspace select-clear'/> : null}
                     <input
+                        name={this.props.name}
                         type='hidden'
                         value={this.state.value}
                     />

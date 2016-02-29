@@ -154,10 +154,12 @@ var ThingPage = React.createClass({
                 })}
                 {books.length === 0 ? emptybooks : null}
                 <div className='small-12 columns'>
+                    <form method='post' action={'/api/v1/book/' + id}>
                     <Select
-                    name="selected-state"
+                    name='book_id'
                     />
-                    <a href='/mentions/1' className='button'>Add</a>
+                    <button type='submit' className='button'>Add</button>
+                    </form>
                 </div>
             </div>;
         }
