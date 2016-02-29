@@ -2,9 +2,9 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Mention = require('./Mention');
-var DATA = require('./dummy');
+var requests = require('superagent');
 var _ = require('underscore');
-
+var Select = require('./Select');
 var Book = require('./Book');
 
 var ThingPage = React.createClass({
@@ -23,12 +23,27 @@ var ThingPage = React.createClass({
     },
     getInitialState () {
         return {
-            tab: 'mentioned'
+            tab: 'mentioned',
+            books: [],
+            searchText: '',
+            isLoadingExternally: true
         };
     },
     changeTab (x) {
         this.setState({
             tab: x
+        });
+    },
+    onSearchTextChanged (x) {
+        console.log(x);
+        this.setState({
+            searchText: x
+        });
+        requests.get('/api/v1/search/' + x).end((err, res) => {
+            this.setState({
+                books: res.body,
+                isLoadingExternally: false
+            });
         });
     },
     render () {
@@ -83,6 +98,13 @@ var ThingPage = React.createClass({
                 <p>No books have been added for this author. You can help us by adding some.</p>
             </div>;
         var tabContent;
+        var options;
+        options = _.map(this.state.books, function (x) {
+            return {
+                    value: x.id,
+                    label: x.title
+                }
+            });
         if (this.state.tab === 'mentioned') {
             tabContent = <div className='row'>
                 <div className='small-12 columns'>
@@ -132,7 +154,9 @@ var ThingPage = React.createClass({
                 })}
                 {books.length === 0 ? emptybooks : null}
                 <div className='small-12 columns'>
-                    <input type='text'/>
+                    <Select
+                    name="selected-state"
+                    />
                     <a href='/mentions/1' className='button'>Add</a>
                 </div>
             </div>;

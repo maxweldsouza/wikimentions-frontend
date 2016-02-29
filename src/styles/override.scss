@@ -1,3 +1,17 @@
+.select-options {
+    position: absolute;
+    background: #fefefe;
+    top: 100%;
+    width: 100%;
+    border: solid 1px #ddd;
+}
+
+.select-option {
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 a:hover {
     color: #999;
 }
