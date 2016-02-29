@@ -12,6 +12,15 @@
     padding-bottom: 5px;
 }
 
+.select-clear {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 15px;
+    height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
+    line-height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
+}
+
 a:hover {
     color: #999;
 }

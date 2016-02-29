@@ -36,6 +36,12 @@ var Select = React.createClass({
             });
         })
     },
+    onClear () {
+        this.setState({
+            searchText: '',
+            options: []
+        });
+    },
     render () {
         return (
             <label style={{position: 'relative'}}>
@@ -44,6 +50,7 @@ var Select = React.createClass({
                         role='combobox'
                         value={this.state.searchText}
                         onChange={this.onSearchTextChanged}></input>
+                    {this.state.searchText.length > 0 ? <span onClick={this.onClear} className='ion-backspace select-clear'/> : null}
                     <input
                         type='hidden'
                         value={this.state.value}
