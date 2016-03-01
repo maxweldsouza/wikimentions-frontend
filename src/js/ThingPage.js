@@ -143,7 +143,7 @@ var ThingPage = React.createClass({
                     <button type='button' className='button'>Add</button>
                 </div>
             </div>;
-        } else if (this.state.tab === 'books') {
+        } else if (this.state.tab === 'books' && thing.type === 'person') {
             tabContent = <div className='row'>
                 {books.map((x) => {
                     return <Book
@@ -155,6 +155,7 @@ var ThingPage = React.createClass({
                 {books.length === 0 ? emptybooks : null}
                 <div className='small-12 columns'>
                     <form method='post' action={'/api/v1/book/' + id}>
+                    Search for the title of a book to add
                     <Select
                     name='book_id'
                     />

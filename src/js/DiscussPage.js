@@ -10,12 +10,13 @@ var _ = require('underscore');
 var DiscussPage = React.createClass({
     statics: {
         resources (appstate) {
+            var data;
             var id = appstate.url.split('/')[1];
             return {
                 api: [
                     {
                         name: 'discuss',
-                        path: '/api/v1/discusspage/' + id
+                        path: '/api/v1/thing/' + id
                     }
                 ]
             };

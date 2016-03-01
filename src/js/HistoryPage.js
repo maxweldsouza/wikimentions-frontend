@@ -9,16 +9,20 @@ var Pagination = require('./Pagination');
 var HistoryPage = React.createClass({
     statics: {
         resources (appstate) {
+            var id = appstate.url.split('/')[1];
             return {
-                api: []
+                api: [
+                    {
+                        name: 'history',
+                        path: '/api/v1/thing/' + id
+                    }
+                ]
             };
         }
     },
     render () {
         var id = Number(this.props.path.split('/')[1]);
-        var entry = _.find(DATA.things, function (x) {
-            return x.id === id;
-        });
+        var entry = this.props.data.history;
         return (
             <span>
                 <Helmet
