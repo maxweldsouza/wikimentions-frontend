@@ -46,20 +46,20 @@ var EditPage = React.createClass({
                             <a href={'/history/' + id + '/' + entry.slug}>History</a>
                         </span>
                         <form action='' method='post'>
-                            <div className="row">
-                                <div className="small-12 columns">
+                            <div className='row'>
+                                <div className='small-12 columns'>
                                     <label>Title
-                                        <input type="text"></input>
+                                        <input type='text' name='title'></input>
                                     </label>
                                 </div>
-                                <div className="small-12 columns">
+                                <div className='small-12 columns'>
                                     <label>Type
-                                        <input type="text"></input>
+                                        <input type='text' name='type'></input>
                                     </label>
                                 </div>
-                                <div className="small-12 columns">
-                                    <label>Url
-                                        <input type="text"></input>
+                                <div className='small-12 columns'>
+                                    <label>Slug
+                                        <input type='text' name='slug'></input>
                                     </label>
                                     <button type='button' className='button'>Submit</button>
                                 </div>
