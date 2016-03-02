@@ -20,6 +20,16 @@ var EditPage = React.createClass({
             };
         }
     },
+    getInitialState () {
+        return {
+            type: this.props.data.thing.type
+        };
+    },
+    onChangeType (e) {
+        this.setState({
+            type: e.currentTarget.value
+        });
+    },
     render () {
         var id = Number(this.props.path.split('/')[1]);
         var entry = this.props.data.thing;
@@ -45,24 +55,29 @@ var EditPage = React.createClass({
                             {' | '}
                             <a href={'/history/' + id + '/' + entry.slug}>History</a>
                         </span>
-                        <form action='' method='post'>
-                            <div className='row'>
-                                <div className='small-12 columns'>
-                                    <label>Title
-                                        <input type='text' name='title'></input>
-                                    </label>
-                                </div>
-                                <div className='small-12 columns'>
-                                    <label>Type
-                                        <input type='text' name='type'></input>
-                                    </label>
-                                </div>
-                                <div className='small-12 columns'>
-                                    <label>Slug
-                                        <input type='text' name='slug'></input>
-                                    </label>
-                                    <button type='button' className='button'>Submit</button>
-                                </div>
+                        <form action={'/api/v1/editpage/' + id} method='post'>
+                            <label>Title
+                                <input type='text' name='title' placeholder='' defaultValue={this.props.data.thing.title}/>
+                            </label>
+                            <label>Short Description
+                                <input type='text' name='description' placeholder='' defaultValue={this.props.data.thing.description}/>
+                            </label>
+                            <label>Slug
+                                <input type='text' name='slug' placeholder='' defaultValue={this.props.data.thing.slug}/>
+                            </label>
+                            <label>Type
+                                <select name='type' onChange={this.onChangeType} value={this.state.type}>
+                                    <option value="book">Book</option>
+                                    <option value="person">Person</option>
+                                </select>
+                            </label>
+                            {this.state.type === 'book' ? <label>ISBN
+                                <input type='text' name='isbn' placeholder='' defaultValue={this.props.data.thing.isbn}/>
+                            </label> : null}
+                            <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
+                            <input type="file" id="exampleFileUpload" className="show-for-sr"/>
+                            <div>
+                                <button type='submit' className='success button'>Submit</button>
                             </div>
                         </form>
                     </div>
