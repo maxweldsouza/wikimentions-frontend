@@ -121,7 +121,7 @@ var ThingPage = React.createClass({
                 </div>
                 {mentions.length === 0 ? nodata : null}
                 <div className='small-12 columns'>
-                    <a href='/mentions/1' className='button'>Add</a>
+                    <a href={'/mentions/' + id} className='button'>Add</a>
                 </div>
             </div>;
         } else if (this.state.tab === 'mentionedby') {
@@ -139,9 +139,6 @@ var ThingPage = React.createClass({
                     })}
                 </div>
                 {mentionedby.length === 0 ? nodata : null}
-                <div className='small-12 columns'>
-                    <button type='button' className='button'>Add</button>
-                </div>
             </div>;
         } else if (this.state.tab === 'books' && thing.type === 'person') {
             tabContent = <div className='row'>
@@ -159,7 +156,8 @@ var ThingPage = React.createClass({
                     <Select
                     name='book_id'
                     />
-                    <button type='submit' className='button'>Add</button>
+                    <button type='submit' className='button'>Add Existing</button>
+                    <button className='button'>Add New</button>
                     </form>
                 </div>
             </div>;

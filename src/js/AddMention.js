@@ -2,6 +2,7 @@ var React = require('react');
 
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
+var Select = require('./Select');
 
 var AddMention = React.createClass({
     statics: {
@@ -11,7 +12,26 @@ var AddMention = React.createClass({
             };
         }
     },
+    getInitialState: function() {
+        return {
+            autocomplete: [],
+            searchText: ''
+        };
+    },
+    onSearchTextChanged (x) {
+        this.setState({
+            searchText: x
+        });
+        requests.get('/api/v1/search/' + x).end((err, res) => {
+            this.setState({
+                autocomplete: res.body,
+                isLoadingExternally: false
+            });
+        });
+    },
     render () {
+        var parts = this.props.path.split('/');
+        var id = Number(parts[1]);
         return (
             <span>
                 <Helmet
@@ -27,17 +47,19 @@ var AddMention = React.createClass({
                 <Navbar/>
                 <div className='row page-body'>
                     <div className='small-12 large-8 large-centered columns'>
-                        <form action='/api/v1/register' method='post'>
+                        <form action={'/api/v1/addmention/' + id} method='post'>
                             <h1 className='page-title'>Add Mention</h1>
-                            Mention: Richard Dawkins
-                            <label>Mentioned by
-                                <input type='text' name='mentionedby' placeholder='' required />
+                            Mention: TODO
+                            <label>Mentioned
+                                <Select
+                                name='mentioned'
+                                />
                             </label>
                             <label>Description
-                                <input type='text' name='password' placeholder='' required/>
+                                <input type='text' name='description' placeholder=''/>
                             </label>
                             <label>References
-                                <input type='text' placeholder='' required/>
+                                <input type='text' placeholder=''/>
                             </label>
                             <button type='submit' className='success button'>Save</button>
                         </form>
