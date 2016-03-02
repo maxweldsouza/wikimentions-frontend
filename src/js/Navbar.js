@@ -1,5 +1,6 @@
 var React = require('react');
 var cookies = require('browser-cookies');
+var Select = require('./Select');
 
 var Navbar = React.createClass({
     statics: {
@@ -11,7 +12,7 @@ var Navbar = React.createClass({
     },
     getInitialState () {
         return {
-            loggedin: false
+            loggedin: false,
         };
     },
     componentDidMount () {
@@ -20,22 +21,18 @@ var Navbar = React.createClass({
             loggedin: session ? true : false
         });
     },
+    onSelectSearchResult (x) {
+        var path = '/pages/' + x.id + '/' + x.slug
+        history.pushState(null, null, path);
+        Mentions.route(path);
+    },
     render () {
         var user;
         if (this.state.loggedin) {
-            user = <ul className='menu'>
-                <li><input type='search' placeholder='Search' /></li>
-                <li><button type='button' className='button'>Search</button></li>
-                <li><a href='/users/1/maxweldsouza'>maxweldsouza</a></li>
-                <li>
-                    <form action='/api/v1/logout' method='post'>
-                        <button type='submit'>Logout</button>
-                    </form>
-                </li>
-            </ul>;
+            user = null;
         } else {
             user = <ul className='menu'>
-                <li><input type='search' placeholder='Search' /></li>
+                <li><Select name='book_id'/></li>
                 <li><button type='button' className='button'>Search</button></li>
                 <li><a href='/login'>Login</a></li>
                 <li><a href='/signup'>Signup</a></li>
@@ -50,7 +47,15 @@ var Navbar = React.createClass({
                     </ul>
                 </div>
                 <div className='top-bar-right'>
-                    {user}
+                    <ul className='menu'>
+                        <li><Select name='mentioned' onSelectValue={this.onSelectSearchResult}/></li>
+                        <li><a href='/users/1/maxweldsouza'>maxweldsouza</a></li>
+                        <li>
+                            <form action='/api/v1/logout' method='post'>
+                                <button type='submit'>Logout</button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </div>
         );

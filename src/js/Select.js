@@ -28,6 +28,14 @@ var Select = React.createClass({
             searchText: x.title,
             value: x.id
         });
+        if (this.props.onSelectValue) {
+            this.props.onSelectValue(x);
+            this.setState({
+                options: [],
+                searchText: '',
+                value: ''
+            });
+        }
     },
     loadData (x) {
         requests.get('/api/v1/search/' + x).end((err, res) => {

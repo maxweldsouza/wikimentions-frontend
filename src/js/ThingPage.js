@@ -35,7 +35,6 @@ var ThingPage = React.createClass({
         });
     },
     onSearchTextChanged (x) {
-        console.log(x);
         this.setState({
             searchText: x
         });

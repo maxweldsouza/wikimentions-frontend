@@ -21,16 +21,7 @@ var HomePage = React.createClass({
         }
     },
     render () {
-        var mentions = _.filter(DATA.mentions, function (x) {
-            return x.mentionedby === 1;
-        });
-        mentions = _.map(mentions, function (x) {
-            var result = _.find(DATA.things, function (y) {
-                return y.id === x.mentioned;
-            });
-            result.quote = x.quote;
-            return result;
-        });
+        var mentions = this.props.data.new;
         return (
             <span>
                 <Helmet
@@ -58,7 +49,7 @@ var HomePage = React.createClass({
                                     return <Mention
                                         id={x.id}
                                         slug={x.slug}
-                                        title={x.name}
+                                        title={x.title}
                                         description={x.description}
                                         quote={x.quote}
                                         type={x.type}

@@ -21,6 +21,10 @@
     line-height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
 }
 
+.top-bar input {
+    margin-right: 0;
+}
+
 a:hover {
     color: #999;
 }
