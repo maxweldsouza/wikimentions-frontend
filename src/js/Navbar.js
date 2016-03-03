@@ -48,7 +48,7 @@ var Navbar = React.createClass({
                 </div>
                 <div className='top-bar-right'>
                     <ul className='menu'>
-                        <li><Select name='mentioned' onSelectValue={this.onSelectSearchResult}/></li>
+                        <li><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
                         <li><a href='/users/1/maxweldsouza'>maxweldsouza</a></li>
                         <li>
                             <form action='/api/v1/logout' method='post'>

@@ -57,6 +57,7 @@ var Select = React.createClass({
                         type='text'
                         role='combobox'
                         value={this.state.searchText}
+                        placeholder={this.props.placeholder}
                         onChange={this.onSearchTextChanged}></input>
                     {this.state.searchText.length > 0 ? <span onClick={this.onClear} className='ion-backspace select-clear'/> : null}
                     <input
