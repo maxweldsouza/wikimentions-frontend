@@ -52,13 +52,14 @@ var ThingPage = React.createClass({
         if (thing.authors) {
             authors = thing.authors;
         }
+        var authorCount = authors.length;
         if (authors.length > 0) {
             authors = <span>
                 {'by '}
-                {authors.map(function (x) {
+                {authors.map(function (x, i) {
                     var path = '/pages/' + x.id + '/' + x.slug;
                     return <a href={path} key={x.title}>
-                        {x.title}
+                        {x.title}{i === authorCount - 1 ? '' : ', '}
                     </a>;
                 })}
             </span>;
