@@ -14,7 +14,7 @@ var EditPage = React.createClass({
                 api: [
                     {
                         name: 'thing',
-                        path: '/api/v1/thing/' + id
+                        path: '/api/v1/editpage/' + id
                     }
                 ]
             };
