@@ -22,28 +22,30 @@ var Mention = React.createClass({
         }
         return (
             <div className='row mention-block'>
-                <div className='small-10 columns mention-title'>
+                <div className='small-12 columns mention-title'>
                     <a href={path}>{this.props.title}</a>
-                </div>
-                <div className="small-2 columns text-right mention-edit">
-                    <a href={'/mentions/' + this.props.mention_id + '/edit'}>Edit</a>
                 </div>
                 <div className='small-12 columns mention-short-description'>
                     <span className='mention-icon'>
                         <span className={icon}/>
                     </span>{description}
                 </div>
-                <div className='small-3 columns'>
-                   {' Books '}{this.props.type === 'person' ? <span className="badge">{this.props.books}</span> : null}
-                </div>
-                <div className='small-3 columns'>
-                    {' Videos '}<span className="badge">0</span>
-                </div>
-                <div className='small-3 columns text-right'>
-                    {' References '}<span className="badge">{referencesCount}</span>
-                </div>
                 <div className='small-12 columns mention-quote'>
                     {this.props.quote}
+                </div>
+                <div className='small-6 columns'>
+                    {this.props.type === 'person' ? <span className='mention-links'>
+                        {' Books '}<span className="badge">{this.props.books}</span>
+                    </span> : null}
+                    <span className='mention-links'>
+                        {' Videos '}<span className="badge">0</span>
+                    </span>
+                    <span className='mention-links'>
+                        {' References '}<span className="badge">{referencesCount}</span>
+                    </span>
+                </div>
+                <div className="small-6 columns mention-edit text-right">
+                    <a href={'/mentions/' + this.props.mention_id + '/edit'}>Edit</a>
                 </div>
             </div>
         );

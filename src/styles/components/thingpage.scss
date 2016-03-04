@@ -43,11 +43,16 @@
 }
 
 .mention-quote {
-    margin-top: 8px;
 }
 
 .mention-edit > a {
     font-size: 13px;
+    color: #888;
+}
+
+.mention-links {
+    margin-right: $global-margin;
+    font-size: 14px;
     color: #888;
 }
 
