@@ -91,19 +91,19 @@ var ThingPage = React.createClass({
             })}
         </ul>;
         var nodata = <div className="small-12 columns">
-                <p>No mentions have been added yet. You can help us by adding some.</p>
-            </div>;
+            <p>No mentions have been added yet. You can help us by adding some.</p>
+        </div>;
         var emptybooks = <div className="small-12 columns">
-                <p>No books have been added for this author. You can help us by adding some.</p>
-            </div>;
+            <p>No books have been added for this author. You can help us by adding some.</p>
+        </div>;
         var tabContent;
         var options;
         options = _.map(this.state.books, function (x) {
             return {
-                    value: x.id,
-                    label: x.title
-                }
-            });
+                value: x.id,
+                label: x.title
+            };
+        });
         if (this.state.tab === 'mentioned') {
             tabContent = <div className='row'>
                 <div className='small-12 columns'>
@@ -153,12 +153,12 @@ var ThingPage = React.createClass({
                 {books.length === 0 ? emptybooks : null}
                 <div className='small-12 columns'>
                     <form method='post' action={'/api/v1/book/' + id}>
-                    Search for the title of a book to add
-                    <Select
-                    name='book_id'
-                    />
-                    <button type='submit' className='button'>Add Existing</button>
-                    <button className='button'>Add New</button>
+                        Search for the title of a book to add
+                        <Select
+                            name='book_id'
+                            />
+                        <button type='submit' className='button'>Add Existing</button>
+                        <button className='button'>Add New</button>
                     </form>
                 </div>
             </div>;

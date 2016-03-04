@@ -12,7 +12,7 @@ var Navbar = React.createClass({
     },
     getInitialState () {
         return {
-            loggedin: false,
+            loggedin: false
         };
     },
     componentDidMount () {
