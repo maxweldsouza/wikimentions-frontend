@@ -36,15 +36,10 @@ var HomePage = React.createClass({
                     />
                 <Navbar/>
                 <div className='row page-body'>
-                    <div className='small-12 columns'>
+                    <div className='small-12 large-8 large-centered columns'>
                         <h2>Top Mentions</h2>
                         <div className='row'>
-                            <div className='small-12 medium-6 columns'>
-                                {this.props.data.new.map((x) => {
-                                    return <div><a href={'/pages/' + x.id + '/' + x.slug}>{x.title}</a></div>;
-                                })}
-                            </div>
-                            <div className='small-12 medium-6 columns'>
+                            <div className='small-12 columns'>
                                 {mentions.map((x) => {
                                     return <Mention
                                         id={x.id}
