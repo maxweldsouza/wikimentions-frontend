@@ -63,6 +63,8 @@ var DiscussPage = React.createClass({
                     <div className='small-12 large-8 large-centered columns'>
                         <h1 className='page-title'>Page Discussion</h1>
                         <span className='edit-links'>
+                            <a href={'/pages/' + id + '/' + slug}>Page</a>
+                            {' | '}
                             <a href={'/edit/' + id + '/' + slug}>Edit</a>
                             {' | Discuss | '}
                             <a href={'/history/' + id + '/' + slug}>History</a>

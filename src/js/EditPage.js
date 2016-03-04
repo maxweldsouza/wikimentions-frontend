@@ -50,7 +50,8 @@ var EditPage = React.createClass({
                     <div className='small-12 large-8 large-centered columns'>
                         <h1 className='page-title'>Edit</h1>
                         <span className='edit-links'>
-                            {'Edit | '}
+                            <a href={'/pages/' + id + '/' + entry.slug}>Page</a>
+                            {' | Edit | '}
                             <a href={'/discuss/' + id + '/' + entry.slug}>Discuss</a>
                             {' | '}
                             <a href={'/history/' + id + '/' + entry.slug}>History</a>

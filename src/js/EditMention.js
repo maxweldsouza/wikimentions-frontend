@@ -2,16 +2,24 @@ var React = require('react');
 
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
+var Select = require('./Select');
 
 var EditMention = React.createClass({
     statics: {
         resources (appstate) {
+            var id = appstate.url.split('/')[1];
             return {
-                api: []
+                api: [
+                    {
+                        name: 'mention',
+                        path: '/api/v1/editmention/' + id
+                    }
+                ]
             };
         }
     },
     render () {
+        var mention = this.props.data.mention;
         return (
             <span>
                 <Helmet
@@ -27,17 +35,27 @@ var EditMention = React.createClass({
                 <Navbar/>
                 <div className='row page-body'>
                     <div className='small-12 large-8 large-centered columns'>
-                        <form action='/api/v1/register' method='post'>
+                        <form action={'/api/v1/editmention/' + mention.id} method='post'>
                             <h1 className='page-title'>Edit Mention</h1>
-                            Mention: Richard Dawkins
+                            <label>Mentioned
+                                <Select
+                                name='mentioned'
+                                initialValue={mention.mentioned.id}
+                                initialLabel={mention.mentioned.title}
+                                />
+                            </label>
                             <label>Mentioned by
-                                <input type='text' name='mentionedby' placeholder='' required />
+                                <Select
+                                name='mentioned_by'
+                                initialValue={mention.mentioner.id}
+                                initialLabel={mention.mentioner.title}
+                                />
                             </label>
                             <label>Description
-                                <input type='text' name='password' placeholder='' required/>
+                                <input type='text' name='description' placeholder='' defaultValue={mention.quote}/>
                             </label>
                             <label>References
-                                <input type='text' placeholder='' required/>
+                                <input type='text' placeholder='' />
                             </label>
                             <button type='submit' className='success button'>Save</button>
                         </form>

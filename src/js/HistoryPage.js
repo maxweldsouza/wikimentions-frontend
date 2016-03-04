@@ -40,6 +40,8 @@ var HistoryPage = React.createClass({
                     <div className='small-12 large-8 large-centered columns'>
                         <h1 className='page-title'>History</h1>
                         <span className='edit-links'>
+                            <a href={'/pages/' + id + '/' + entry.slug}>Page</a>
+                            {' | '}
                             <a href={'/edit/' + id + '/' + entry.slug}>Edit</a>
                             {' | '}
                             <a href={'/discuss/' + id + '/' + entry.slug}>Discuss</a>

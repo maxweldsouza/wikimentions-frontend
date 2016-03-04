@@ -109,6 +109,7 @@ var ThingPage = React.createClass({
                 <div className='small-12 columns'>
                     {mentions.map((x) => {
                         return <Mention
+                            mention_id={x.mention_id}
                             id={x.id}
                             slug={x.slug}
                             title={x.title}
@@ -128,6 +129,7 @@ var ThingPage = React.createClass({
                 <div className='small-12 columns'>
                     {mentionedby.map((x) => {
                         return <Mention
+                            mention_id={x.mention_id}
                             id={x.id}
                             slug={x.slug}
                             title={x.title}

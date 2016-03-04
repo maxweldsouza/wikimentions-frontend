@@ -5,8 +5,8 @@ var _ = require('underscore');
 var Select = React.createClass({
     getInitialState: function() {
         return {
-            searchText: '',
-            value: '',
+            searchText: this.props.initialLabel ? this.props.initialLabel : '',
+            value: this.props.initialValue ? this.props.initialValue : '',
             options: []
         };
     },

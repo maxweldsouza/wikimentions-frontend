@@ -20,7 +20,7 @@ var Mention = React.createClass({
                     <a href={path}>{this.props.title}</a>
                 </div>
                 <div className="small-2 columns text-right mention-edit">
-                    <a href={'/mentions/' + this.props.id + '/edit'}>Edit</a>
+                    <a href={'/mentions/' + this.props.mention_id + '/edit'}>Edit</a>
                 </div>
                 <div className='small-12 columns mention-short-description'>
                     <span className='mention-icon'>
