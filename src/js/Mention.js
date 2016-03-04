@@ -34,7 +34,7 @@ var Mention = React.createClass({
                     </span>{description}
                 </div>
                 <div className='small-3 columns'>
-                    {' Books '}<span className="badge">{this.props.books}</span>
+                   {' Books '}{this.props.type === 'person' ? <span className="badge">{this.props.books}</span> : null}
                 </div>
                 <div className='small-3 columns'>
                     {' Videos '}<span className="badge">0</span>
