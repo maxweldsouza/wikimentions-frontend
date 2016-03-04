@@ -53,6 +53,7 @@ var HomePage = React.createClass({
                                         description={x.description}
                                         quote={x.quote}
                                         type={x.type}
+                                        books={x.books}
                                         />;
                                 })}
                             </div>
