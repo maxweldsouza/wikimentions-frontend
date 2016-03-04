@@ -22,7 +22,7 @@ var Navbar = React.createClass({
         });
     },
     onSelectSearchResult (x) {
-        var path = '/pages/' + x.id + '/' + x.slug
+        var path = '/pages/' + x.id + '/' + x.slug;
         history.pushState(null, null, path);
         Mentions.route(path);
     },

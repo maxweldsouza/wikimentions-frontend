@@ -16,7 +16,7 @@ var Mention = React.createClass({
         }
         var referencesCount;
         if (this.props.references) {
-            referencesCount =  this.props.references.split(/\r\n|\r|\n/).length;
+            referencesCount = this.props.references.split(/\r\n|\r|\n/).length;
         } else {
             referencesCount = 0;
         }

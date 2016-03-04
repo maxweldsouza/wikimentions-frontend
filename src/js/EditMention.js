@@ -39,17 +39,17 @@ var EditMention = React.createClass({
                             <h1 className='page-title'>Edit Mention</h1>
                             <label>Mentioned
                                 <Select
-                                name='mentioned'
-                                initialValue={mention.mentioned.id}
-                                initialLabel={mention.mentioned.title}
-                                />
+                                    name='mentioned'
+                                    initialValue={mention.mentioned.id}
+                                    initialLabel={mention.mentioned.title}
+                                    />
                             </label>
                             <label>Mentioned by
                                 <Select
-                                name='mentioned_by'
-                                initialValue={mention.mentioner.id}
-                                initialLabel={mention.mentioner.title}
-                                />
+                                    name='mentioned_by'
+                                    initialValue={mention.mentioner.id}
+                                    initialLabel={mention.mentioner.title}
+                                    />
                             </label>
                             <label>Description
                                 <input type='text' name='description' placeholder='' defaultValue={mention.quote}/>
