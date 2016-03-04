@@ -14,6 +14,12 @@ var Mention = React.createClass({
             icon = 'ion-person';
             description = this.props.description;
         }
+        var referencesCount;
+        if (this.props.references) {
+            referencesCount =  this.props.references.split(/\r\n|\r|\n/).length;
+        } else {
+            referencesCount = 0;
+        }
         return (
             <div className='row mention-block'>
                 <div className='small-10 columns mention-title'>
@@ -26,6 +32,15 @@ var Mention = React.createClass({
                     <span className='mention-icon'>
                         <span className={icon}/>
                     </span>{description}
+                </div>
+                <div className='small-3 columns'>
+                    {' Books '}<span className="badge">{this.props.books}</span>
+                </div>
+                <div className='small-3 columns'>
+                    {' Videos '}<span className="badge">0</span>
+                </div>
+                <div className='small-3 columns text-right'>
+                    {' References '}<span className="badge">{referencesCount}</span>
                 </div>
                 <div className='small-12 columns mention-quote'>
                     {this.props.quote}

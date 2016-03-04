@@ -55,7 +55,7 @@ var EditMention = React.createClass({
                                 <input type='text' name='description' placeholder='' defaultValue={mention.quote}/>
                             </label>
                             <label>References
-                                <input type='text' placeholder='' />
+                                <input type='text' name='references' defaultValue={mention.references} placeholder='' />
                             </label>
                             <button type='submit' className='success button'>Save</button>
                         </form>

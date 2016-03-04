@@ -59,7 +59,7 @@ var AddMention = React.createClass({
                                 <input type='text' name='description' placeholder=''/>
                             </label>
                             <label>References
-                                <input type='text' placeholder=''/>
+                                <input type='text' name='references' placeholder=''/>
                             </label>
                             <button type='submit' className='success button'>Save</button>
                         </form>

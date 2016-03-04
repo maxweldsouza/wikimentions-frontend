@@ -115,6 +115,8 @@ var ThingPage = React.createClass({
                             title={x.title}
                             description={x.description}
                             quote={x.quote}
+                            references={x.references}
+                            books={x.books}
                             type={x.type}
                             />;
                     })}
@@ -135,6 +137,8 @@ var ThingPage = React.createClass({
                             title={x.title}
                             description={x.description}
                             quote={x.quote}
+                            references={x.references}
+                            books={x.books}
                             type={x.type}
                             />;
                     })}
