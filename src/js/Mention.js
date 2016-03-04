@@ -37,15 +37,17 @@ var Mention = React.createClass({
                     {this.props.type === 'person' ? <span className='mention-links'>
                         {' Books '}<span className="badge">{this.props.books}</span>
                     </span> : null}
-                    <span className='mention-links'>
+                    {this.props.type === 'person' ? <span className='mention-links'>
                         {' Videos '}<span className="badge">0</span>
-                    </span>
+                    </span> : null}
+                </div>
+                <div className="small-6 columns text-right">
                     <span className='mention-links'>
                         {' References '}<span className="badge">{referencesCount}</span>
                     </span>
-                </div>
-                <div className="small-6 columns mention-edit text-right">
-                    <a href={'/mentions/' + this.props.mention_id + '/edit'}>Edit</a>
+                    <span className='mention-edit mention-links'>
+                        <a href={'/mentions/' + this.props.mention_id + '/edit'}>Edit</a>
+                    </span>
                 </div>
             </div>
         );
