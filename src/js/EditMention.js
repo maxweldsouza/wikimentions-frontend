@@ -59,6 +59,9 @@ var EditMention = React.createClass({
                             </label>
                             <button type='submit' className='success button'>Save</button>
                         </form>
+                        <form action={'/api/v1/deletemention/' + mention.id} method='post'>
+                            <button type='submit' className='success button'>Delete</button>
+                        </form>
                     </div>
                 </div>
             </span>
