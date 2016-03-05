@@ -12,7 +12,7 @@ var Pagination = React.createClass({
         });
         return (
             <ul className='pagination text-center' role='navigation' aria-label='Pagination'>
-                <li className='pagination-previous disabled'>Previous <span className='show-for-sr'>page</span></li>
+                <li className='pagination-previous disabled'><a aria-label='Previous page' onClick={this.props.onPrev}>Previous <span className='show-for-sr'>page</span></a></li>
                 {pages.map((x) => {
                     if (x === this.props.current) {
                         return <li className='current' key={x}><span className='show-for-sr'>You're on page</span> {x}</li>;

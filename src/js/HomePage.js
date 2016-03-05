@@ -6,6 +6,8 @@ var Signup = require('./Signup');
 var _ = require('underscore');
 var DATA = require('./dummy');
 var Mention = require('./Mention');
+var Pagination = require('./Pagination');
+var requests = require('superagent');
 
 var HomePage = React.createClass({
     statics: {
@@ -20,8 +22,28 @@ var HomePage = React.createClass({
             };
         }
     },
+    getInitialState () {
+        return {
+            pageno: 0,
+            newmentions: this.props.data.new
+        };
+    },
+    loadData (pageno) {
+        requests.get('/api/v1/new/10/' + pageno).end((err, res) => {
+            this.setState({
+                newmentions: res.body,
+                pageno: pageno
+            });
+        });
+    },
+    onPrevPage () {
+        this.loadData(this.state.pageno - 1);
+    },
+    onNextPage () {
+        this.loadData(this.state.pageno + 1);
+    },
     render () {
-        var mentions = this.props.data.new;
+        var mentions = this.state.newmentions;
         return (
             <span>
                 <Helmet
@@ -37,7 +59,7 @@ var HomePage = React.createClass({
                 <Navbar/>
                 <div className='row page-body'>
                     <div className='small-12 large-8 large-centered columns'>
-                        <h2>Top Mentions</h2>
+                        <h2>New Mentions</h2>
                         <div className='row'>
                             <div className='small-12 columns'>
                                 {mentions.map((x) => {
@@ -51,6 +73,10 @@ var HomePage = React.createClass({
                                         books={x.books}
                                         />;
                                 })}
+                            <Pagination
+                                current={this.state.pageno}
+                                onPrev={this.onPrevPage}
+                                onNext={this.onNextPage}/>
                             </div>
                         </div>
                     </div>

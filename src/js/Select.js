@@ -69,6 +69,7 @@ var Select = React.createClass({
                 {this.state.options.length > 0 ? <div className='select-options'>
                     {this.state.options.map((x) => {
                         return <div
+                            key={x.id}
                             className='select-option'
                             value={x.id}
                             onClick={this.onSelectValue.bind(null, x)}>
