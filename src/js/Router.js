@@ -3,6 +3,7 @@ var parallelRequest = require('./parallelRequest');
 var _ = require('underscore');
 
 var AddMention = require('./AddMention');
+var AddVideo = require('./AddVideo');
 var CreatePage = require('./CreatePage');
 var DiscussPage = require('./DiscussPage');
 var EditMention = require('./EditMention');
@@ -65,6 +66,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^mentions\/([0-9]+)\/edit$/.test(x)) {
         componentName = 'EditMention';
+        routeObj.maxAge = 0;
+    } else if (/^videos\/([0-9]+)$/.test(x)) {
+        componentName = 'AddVideo';
         routeObj.maxAge = 0;
     } else {
         throw { status: 404, message: 'Count not find what you were looking for'};

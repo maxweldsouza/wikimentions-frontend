@@ -5,6 +5,7 @@ var React = require('react');
 
 /* components need to be required because they are used indirectly */
 var AddMention = require('./AddMention');
+var AddVideo = require('./AddVideo');
 var CreatePage = require('./CreatePage');
 var DiscussPage = require('./DiscussPage');
 var EditMention = require('./EditMention');

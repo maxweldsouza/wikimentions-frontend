@@ -68,15 +68,18 @@ var ThingPage = React.createClass({
         var mentionedby = thing.mentioned_by;
         var tabs = ['mentioned', 'mentionedby'];
         var books;
+        var videos;
         if (thing.type === 'person') {
             tabs.push('books');
+            tabs.push('videos');
             books = thing.books;
+            videos = thing.videos;
         }
         var tabTitles = {
             'mentioned': 'Mentioned',
             'mentionedby': 'Mentioned By',
             'books': 'Books',
-            'discuss': 'Discuss'
+            'videos': 'Videos'
         };
         var tab = <ul className="tabs">
             {tabs.map((x) => {
@@ -96,6 +99,9 @@ var ThingPage = React.createClass({
         </div>;
         var emptybooks = <div className="small-12 columns">
             <p>No books have been added for this author. You can help us by adding some.</p>
+        </div>;
+        var emptyvideos = <div className="small-12 columns">
+            <p>No videos have been added for this author. You can help us by adding some.</p>
         </div>;
         var tabContent;
         var options;
@@ -165,6 +171,18 @@ var ThingPage = React.createClass({
                         <button type='submit' className='button'>Add Existing</button>
                         <button className='button'>Add New</button>
                     </form>
+                </div>
+            </div>;
+        } else if (this.state.tab === 'videos' && thing.type === 'person') {
+            tabContent = <div className='row'>
+                {videos.length === 0 ? emptyvideos : null}
+                {videos.map((x) => {
+                    return <div className='small-12 columns'>
+                        <a href={x.url}>{x.url}</a>
+                    </div>;
+                })}
+                <div className='small-12 columns'>
+                        <a href={'/videos/' + id} className='button'>Add</a>
                 </div>
             </div>;
         }
