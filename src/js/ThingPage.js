@@ -178,7 +178,7 @@ var ThingPage = React.createClass({
                 {videos.length === 0 ? emptyvideos : null}
                 {videos.map((x) => {
                     return <div className='small-12 columns'>
-                        <a href={x.url}>{x.url}</a>
+                        <a href={x.url}>{x.title}</a>
                     </div>;
                 })}
                 <div className='small-12 columns'>

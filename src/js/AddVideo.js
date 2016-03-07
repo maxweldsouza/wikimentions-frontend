@@ -32,6 +32,9 @@ var AddVideo = React.createClass({
                     <div className='small-12 large-8 large-centered columns'>
                         <form action={'/api/v1/videos/' + id} method='post'>
                             <h1 className='page-title'>Add Video</h1>
+                            <label>Video Title
+                                <input type='text' name='title' placeholder=''/>
+                            </label>
                             <label>Video Url
                                 <input type='text' name='url' placeholder=''/>
                             </label>
