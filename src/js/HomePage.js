@@ -14,10 +14,10 @@ var HomePage = React.createClass({
         resources (appstate) {
             return {
                 api: [
-                    {
-                        name: 'new',
-                        path: '/api/v1/new/10/0'
-                    }
+                    // {
+                    //     name: 'new',
+                    //     path: '/api/v1/new/10/0'
+                    // }
                 ]
             };
         }
@@ -29,12 +29,12 @@ var HomePage = React.createClass({
         };
     },
     loadData (pageno) {
-        requests.get('/api/v1/new/10/' + pageno).end((err, res) => {
-            this.setState({
-                newmentions: res.body,
-                pageno: pageno
-            });
-        });
+        // requests.get('/api/v1/new/10/' + pageno).end((err, res) => {
+        //     this.setState({
+        //         newmentions: res.body,
+        //         pageno: pageno
+        //     });
+        // });
     },
     onPrevPage () {
         this.loadData(this.state.pageno - 1);
@@ -43,7 +43,7 @@ var HomePage = React.createClass({
         this.loadData(this.state.pageno + 1);
     },
     render () {
-        var mentions = this.state.newmentions;
+        var mentions = [];//this.state.newmentions;
         return (
             <span>
                 <Helmet
@@ -62,6 +62,7 @@ var HomePage = React.createClass({
                         <h2>New Mentions</h2>
                         <div className='row'>
                             <div className='small-12 columns'>
+                                <a href='/pages/108/richard-dawkins'>Richard Dawkins</a>
                                 {mentions.map((x) => {
                                     return <Mention
                                         id={x.id}

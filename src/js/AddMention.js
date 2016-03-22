@@ -12,7 +12,7 @@ var AddMention = React.createClass({
             };
         }
     },
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             autocomplete: [],
             searchText: ''

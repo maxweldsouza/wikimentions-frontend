@@ -29,6 +29,7 @@ var Signup = React.createClass({
                     <div className='row'>
                         <div className='small-12 medium-6 columns'>
                             <h2>Sign Up</h2>
+                            You will be user #23 TODO
                             <label>E-mail
                                 <input type='email' name='email' placeholder='' required />
                             </label>
