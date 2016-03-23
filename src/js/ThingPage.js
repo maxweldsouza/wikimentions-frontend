@@ -178,7 +178,7 @@ var ThingPage = React.createClass({
                 {videos.length === 0 ? emptyvideos : null}
                 {videos.map((x) => {
                     return <div className='small-12 columns'>
-                        <a href={x.url}>{x.title}</a>
+                        <a href={'/videos/' + x.id + '/' + x.slug}>{x.title}</a>
                     </div>;
                 })}
                 <div className='small-12 columns'>
@@ -218,6 +218,9 @@ var ThingPage = React.createClass({
                                     {' | '}
                                     <a href={'/discuss/' + id + '/' + thing.slug}>Discuss</a>
                                 </div>
+                                {thing.type === 'video' ? <div>
+                                    <img className="" src="/assets/placeholder.png" alt="Photo of Pluto."/>
+                                </div> : null}
                                 {tab}
                                 <div className="tabs-content">
                                     <div className="tabs-panel is-active">
