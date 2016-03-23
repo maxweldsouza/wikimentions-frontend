@@ -6,6 +6,7 @@ var requests = require('superagent');
 var _ = require('underscore');
 var Select = require('./Select');
 var Book = require('./Book');
+var Video = require('./Video');
 
 var ThingPage = React.createClass({
     statics: {
@@ -177,9 +178,11 @@ var ThingPage = React.createClass({
             tabContent = <div className='row'>
                 {videos.length === 0 ? emptyvideos : null}
                 {videos.map((x) => {
-                    return <div className='small-12 columns'>
-                        <a href={'/videos/' + x.id + '/' + x.slug}>{x.title}</a>
-                    </div>;
+                    return <Video
+                            id={x.id}
+                            slug={x.slug}
+                            title={x.title}
+                            />;
                 })}
                 <div className='small-12 columns'>
                         <a href={'/videos/' + id} className='button'>Add</a>
