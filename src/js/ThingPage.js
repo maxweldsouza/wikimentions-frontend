@@ -203,7 +203,8 @@ var ThingPage = React.createClass({
                     <div className='small-12 columns'>
                         <div className='row'>
                             <div className='small-12 large-4 columns'>
-                                <img className="" src="/assets/placeholder.png" alt="Photo of Pluto."/>
+                                {thing.type !== 'video' ?
+                                <img className="" src="/assets/placeholder.png" alt=""/> : null}
                             </div>
                             <div className='small-12 large-8 columns'>
                                 <h1 className='page-title'>{thing.title}</h1>
@@ -219,7 +220,7 @@ var ThingPage = React.createClass({
                                     <a href={'/discuss/' + id + '/' + thing.slug}>Discuss</a>
                                 </div>
                                 {thing.type === 'video' ? <div>
-                                    <img className="" src="/assets/placeholder.png" alt="Photo of Pluto."/>
+                                    <img className="" src="/assets/video.png" alt=""/>
                                 </div> : null}
                                 {tab}
                                 <div className="tabs-content">
