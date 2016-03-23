@@ -220,7 +220,7 @@ var ThingPage = React.createClass({
                                     <a href={'/discuss/' + id + '/' + thing.slug}>Discuss</a>
                                 </div>
                                 {thing.type === 'video' ? <div>
-                                    <img className="" src="/assets/video.png" alt=""/>
+                                    <a href={thing.url}><img className="" src="/assets/video.png" alt=""/></a>
                                 </div> : null}
                                 {tab}
                                 <div className="tabs-content">
