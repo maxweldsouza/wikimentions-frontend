@@ -22,13 +22,15 @@
     color: $primary-color;
 }
 
+.video-block,
 .mention-block {
     border-bottom: solid 1px $light-gray;
     padding-bottom: $global-padding;
     margin-bottom: $global-margin;
 }
 
-.mention-title {
+.mention-title,
+.video-title {
     font-size: 18px;
     font-weight: bold;
 }
