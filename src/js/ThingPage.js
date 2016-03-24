@@ -1,12 +1,13 @@
 var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
-var Mention = require('./Mention');
 var requests = require('superagent');
 var _ = require('underscore');
-var Select = require('./Select');
-var Book = require('./Book');
-var Video = require('./Video');
+
+var ThingMentionTab = require('./ThingMentionTab');
+var ThingMentionedByTab = require('./ThingMentionedByTab');
+var ThingBookTab = require('./ThingBookTab');
+var ThingVideoTab = require('./ThingVideoTab');
 
 var ThingPage = React.createClass({
     statics: {
@@ -95,15 +96,6 @@ var ThingPage = React.createClass({
                 </li>;
             })}
         </ul>;
-        var nodata = <div className="small-12 columns">
-            <p>No mentions have been added yet. You can help us by adding some.</p>
-        </div>;
-        var emptybooks = <div className="small-12 columns">
-            <p>No books have been added for this author. You can help us by adding some.</p>
-        </div>;
-        var emptyvideos = <div className="small-12 columns">
-            <p>No videos have been added for this author. You can help us by adding some.</p>
-        </div>;
         var tabContent;
         var options;
         options = _.map(this.state.books, function (x) {
@@ -113,81 +105,25 @@ var ThingPage = React.createClass({
             };
         });
         if (this.state.tab === 'mentioned') {
-            tabContent = <div className='row'>
-                <div className='small-12 columns'>
-                    {mentions.map((x) => {
-                        return <Mention
-                            mention_id={x.mention_id}
-                            id={x.id}
-                            slug={x.slug}
-                            title={x.title}
-                            description={x.props.description}
-                            quote={x.quote}
-                            references={x.references}
-                            books={x.books}
-                            type={x.type}
+            tabContent = <ThingMentionTab
+                            mentions={mentions}
+                            id={id}
                             />;
-                    })}
-                </div>
-                {mentions.length === 0 ? nodata : null}
-                <div className='small-12 columns'>
-                    <a href={'/mentions/' + id} className='button'>Add</a>
-                </div>
-            </div>;
         } else if (this.state.tab === 'mentionedby') {
-            tabContent = <div className='row'>
-                <div className='small-12 columns'>
-                    {mentionedby.map((x) => {
-                        return <Mention
-                            mention_id={x.mention_id}
-                            id={x.id}
-                            slug={x.slug}
-                            title={x.title}
-                            description={x.props.description}
-                            quote={x.quote}
-                            references={x.references}
-                            books={x.books}
-                            type={x.type}
+            tabContent = <ThingMentionedByTab
+                            id={id}
+                            mentionedby={mentionedby}
                             />;
-                    })}
-                </div>
-                {mentionedby.length === 0 ? nodata : null}
-            </div>;
         } else if (this.state.tab === 'books' && thing.type === 'person') {
-            tabContent = <div className='row'>
-                {books.map((x) => {
-                    return <Book
-                        id={x.id}
-                        slug={x.slug}
-                        title={x.title}
-                        />;
-                })}
-                {books.length === 0 ? emptybooks : null}
-                <div className='small-12 columns'>
-                    <form method='post' action={'/api/v1/book/' + id}>
-                        Search for the title of a book to add
-                        <Select
-                            name='book_id'
-                            />
-                        <button type='submit' className='button'>Add Existing</button>
-                        <button className='button'>Add New</button>
-                    </form>
-                </div>
-            </div>;
-        } else if (this.state.tab === 'videos' && thing.type === 'person') {
-            tabContent = <div className='row'>
-                {videos.length === 0 ? emptyvideos : null}
-                {videos.map((x) => {
-                    return <Video
-                            id={x.id}
-                            slug={x.slug}
-                            title={x.title}
+            tabContent = <ThingBookTab
+                            id={id}
+                            books={books}
                             />;
-                })}
-                <div className='small-12 columns'>
-                        <a href={'/videos/' + id} className='button'>Add</a>
-                </div>
-            </div>;
+        } else if (this.state.tab === 'videos' && thing.type === 'person') {
+            tabContent = <ThingVideoTab
+                            id={id}
+                            videos={videos}
+                            />;
         }
         return (
             <span>
