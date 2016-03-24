@@ -2,7 +2,6 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Mention = require('./Mention');
-var DATA = require('./dummy');
 var _ = require('underscore');
 
 var EditPage = React.createClass({

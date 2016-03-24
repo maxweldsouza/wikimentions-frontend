@@ -3,7 +3,6 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Login = require('./Login');
-var DATA = require('./dummy');
 var _ = require('underscore');
 var moment = require('moment');
 

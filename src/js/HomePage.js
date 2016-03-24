@@ -4,7 +4,6 @@ var Navbar = require('./Navbar');
 var Login = require('./Login');
 var Signup = require('./Signup');
 var _ = require('underscore');
-var DATA = require('./dummy');
 var Mention = require('./Mention');
 var Pagination = require('./Pagination');
 var requests = require('superagent');
