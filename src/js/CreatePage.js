@@ -46,13 +46,11 @@ var HomePage = React.createClass({
                             <label>Short Description
                                 <input type='text' name='description' placeholder='' />
                             </label>
-                            <label>Slug
-                                <input type='text' name='slug' placeholder='' />
-                            </label>
                             <label>Type
                                 <select name='type' onChange={this.onChangeType}>
                                     <option value="book">Book</option>
                                     <option value="person">Person</option>
+                                    <option value="video">Video</option>
                                 </select>
                             </label>
                             {this.state.type === 'book' ? <label>ISBN
