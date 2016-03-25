@@ -17,7 +17,23 @@ var ThingPage = React.createClass({
                 api: [
                     {
                         name: 'thing',
-                        path: '/api/v1/thingpage/' + id
+                        path: '/api/v1/thing/' + id
+                    },
+                    {
+                        name: 'books',
+                        path: '/api/v1/thing/' + id + '/books'
+                    },
+                    {
+                        name: 'videos',
+                        path: '/api/v1/thing/' + id + '/videos'
+                    },
+                    {
+                        name: 'mentions',
+                        path: '/api/v1/mentions/' + id
+                    },
+                    {
+                        name: 'mentionedby',
+                        path: '/api/v1/mentionedby/' + id
                     }
                 ]
             };
@@ -66,16 +82,16 @@ var ThingPage = React.createClass({
                 })}
             </span>;
         }
-        var mentions = thing.mentions;
-        var mentionedby = thing.mentioned_by;
+        var mentions = this.props.data.mentions;
+        var mentionedby = this.props.data.mentionedby;
         var tabs = ['mentioned', 'mentionedby'];
         var books;
         var videos;
         if (thing.type === 'person') {
             tabs.push('books');
             tabs.push('videos');
-            books = thing.books;
-            videos = thing.videos;
+            books = this.props.data.books;
+            videos = this.props.data.videos;
         }
         var tabTitles = {
             'mentioned': 'Mentioned',
