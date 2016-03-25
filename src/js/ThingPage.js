@@ -34,6 +34,14 @@ var ThingPage = React.createClass({
                     {
                         name: 'mentionedby',
                         path: '/api/v1/mentionedby/' + id
+                    },
+                    {
+                        name: 'bookauthors',
+                        path: '/api/v1/thing/' + id + '/booksby'
+                    },
+                    {
+                        name: 'videoauthors',
+                        path: '/api/v1/thing/' + id + '/videosby'
                     }
                 ]
             };
@@ -67,8 +75,11 @@ var ThingPage = React.createClass({
         var thing = this.props.data.thing;
         var id = Number(thing.id);
         var authors = [];
-        if (thing.authors) {
-            authors = thing.authors;
+        if (this.props.data.bookauthors) {
+            authors = this.props.data.bookauthors;
+        }
+        if (this.props.data.videoauthors) {
+            authors = this.props.data.videoauthors;
         }
         var authorCount = authors.length;
         if (authors.length > 0) {
