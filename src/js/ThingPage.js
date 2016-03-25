@@ -77,8 +77,7 @@ var ThingPage = React.createClass({
         var authors = [];
         if (this.props.data.bookauthors) {
             authors = this.props.data.bookauthors;
-        }
-        if (this.props.data.videoauthors) {
+        } else if (this.props.data.videoauthors) {
             authors = this.props.data.videoauthors;
         }
         var authorCount = authors.length;

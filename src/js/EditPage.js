@@ -7,13 +7,12 @@ var _ = require('underscore');
 var EditPage = React.createClass({
     statics: {
         resources (appstate) {
-            var data;
             var id = appstate.url.split('/')[1];
             return {
                 api: [
                     {
                         name: 'thing',
-                        path: '/api/v1/editpage/' + id
+                        path: '/api/v1/thing/' + id
                     }
                 ]
             };
@@ -55,15 +54,13 @@ var EditPage = React.createClass({
                             {' | '}
                             <a href={'/history/' + id + '/' + entry.slug}>History</a>
                         </span>
-                        <form action={'/api/v1/editpage/' + id} method='post'>
+                        <form action={'/api/v1/thing/' + id} method='post'>
+                            <input type='hidden' name='action' value='update'/>
                             <label>Title
                                 <input type='text' name='title' placeholder='' defaultValue={this.props.data.thing.title}/>
                             </label>
                             <label>Short Description
                                 <input type='text' name='description' placeholder='' defaultValue={this.props.data.thing.description}/>
-                            </label>
-                            <label>Slug
-                                <input type='text' name='slug' placeholder='' defaultValue={this.props.data.thing.slug}/>
                             </label>
                             <label>Type
                                 <select name='type' onChange={this.onChangeType} value={this.state.type}>
