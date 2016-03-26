@@ -38,7 +38,8 @@ var HomePage = React.createClass({
                 <Navbar/>
                 <div className='row page-body'>
                     <div className='small-12 large-8 large-centered columns'>
-                        <form action='/api/v1/createpage' method='post'>
+                        <form action='/api/v1/thing' method='post'>
+                            <input type='hidden' name='action' value='create'/>
                             <h1 className='page-title'>Create Page</h1>
                             <label>Title
                                 <input type='text' name='title' placeholder='' />
