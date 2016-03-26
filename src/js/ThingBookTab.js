@@ -20,7 +20,7 @@ var ThingBookTab = React.createClass({
                 })}
                 {books.length === 0 ? emptybooks : null}
                 <div className='small-12 columns'>
-                    <form method='post' action={'/api/v1/book/' + id}>
+                    <form method='post' action={'/api/v1/thing/' + id + '/books'}>
                         Search for the title of a book to add
                         <Select
                             name='book_id'
