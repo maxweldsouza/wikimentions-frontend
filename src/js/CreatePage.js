@@ -3,6 +3,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Login = require('./Login');
 var Signup = require('./Signup');
+var cookies = require('browser-cookies');
 
 var HomePage = React.createClass({
     statics: {
@@ -40,6 +41,7 @@ var HomePage = React.createClass({
                     <div className='small-12 large-8 large-centered columns'>
                         <form action='/api/v1/thing' method='post'>
                             <input type='hidden' name='action' value='create'/>
+                            <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
                             <h1 className='page-title'>Create Page</h1>
                             <label>Title
                                 <input type='text' name='title' placeholder='' />

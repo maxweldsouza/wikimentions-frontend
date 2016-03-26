@@ -3,6 +3,7 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Select = require('./Select');
+var cookies = require('browser-cookies');
 
 var AddMention = React.createClass({
     statics: {
@@ -48,6 +49,7 @@ var AddMention = React.createClass({
                 <div className='row page-body'>
                     <div className='small-12 large-8 large-centered columns'>
                         <form action={'/api/v1/addmention/' + id} method='post'>
+                            <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
                             <h1 className='page-title'>Add Mention</h1>
                             Mention: TODO
                             <label>Mentioned

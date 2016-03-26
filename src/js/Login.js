@@ -3,6 +3,7 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Login = require('./Login');
+var cookies = require('browser-cookies');
 
 var Login = React.createClass({
     statics: {
@@ -27,6 +28,7 @@ var Login = React.createClass({
                     />
                 <Navbar/>
                 <form action='/api/v1/login' method='post'>
+                    <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
                     <div className='row'>
                         <div className='small-12 medium-6 columns'>
                             <h2>Login</h2>
