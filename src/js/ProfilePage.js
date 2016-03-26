@@ -14,7 +14,7 @@ var ProfilePage = React.createClass({
                 api: [
                     {
                         name: 'user',
-                        path: '/api/v1/userpage/' + id
+                        path: '/api/v1/user/' + id
                     }
                 ]
             };
