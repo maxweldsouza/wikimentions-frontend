@@ -1,6 +1,7 @@
 var React = require('react');
 var Select = require('./Select');
 var Book = require('./Book');
+var cookies = require('browser-cookies');
 
 var ThingBookTab = React.createClass({
     render () {
@@ -21,6 +22,7 @@ var ThingBookTab = React.createClass({
                 {books.length === 0 ? emptybooks : null}
                 <div className='small-12 columns'>
                     <form method='post' action={'/api/v1/thing/' + id + '/books'}>
+                        <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
                         Search for the title of a book to add
                         <Select
                             name='book_id'

@@ -48,8 +48,9 @@ var AddMention = React.createClass({
                 <Navbar/>
                 <div className='row page-body'>
                     <div className='small-12 large-8 large-centered columns'>
-                        <form action={'/api/v1/addmention/' + id} method='post'>
+                        <form action={'/api/v1/mentions/' + id} method='post'>
                             <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
+                            <input type='hidden' name='action' value='create'/>
                             <h1 className='page-title'>Add Mention</h1>
                             Mention: TODO
                             <label>Mentioned
