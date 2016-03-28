@@ -31,17 +31,15 @@ var AddVideo = React.createClass({
                 <Navbar/>
                 <div className='row page-body'>
                     <div className='small-12 large-8 large-centered columns'>
-                        <form action={'/api/v1/videos/' + id} method='post'>
+                        <form action={'/api/v1/thing/' + id + '/videos'} method='post'>
                             <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
+                            <input type='hidden' name='action' value='create'/>
                             <h1 className='page-title'>Add Video</h1>
-                            <label>Video Title
+                            <label>Title
                                 <input type='text' name='title' placeholder=''/>
                             </label>
-                            <label>Video Url
+                            <label>Url
                                 <input type='text' name='url' placeholder=''/>
-                            </label>
-                            <label>Video Platform
-                                <input type='text' name='platform' placeholder=''/>
                             </label>
                             <button type='submit' className='success button'>Save</button>
                         </form>
