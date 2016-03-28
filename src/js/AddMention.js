@@ -53,6 +53,11 @@ var AddMention = React.createClass({
                             <input type='hidden' name='action' value='create'/>
                             <h1 className='page-title'>Add Mention</h1>
                             Mention: TODO
+                            <label>Mentioned In
+                                <Select
+                                name='mentioned_in'
+                                />
+                            </label>
                             <label>Mentioned
                                 <Select
                                 name='mentioned'

@@ -94,15 +94,16 @@ var ThingPage = React.createClass({
         }
         var mentions = this.props.data.mentions;
         var mentionedby = this.props.data.mentionedby;
-        var tabs = ['mentioned', 'mentionedby'];
+        var tabs = [];
         var books;
         var videos;
         if (thing.type === 'person') {
-            tabs.push('books');
             tabs.push('videos');
+            tabs.push('books');
             books = this.props.data.books;
             videos = this.props.data.videos;
         }
+        tabs = tabs.concat(['mentioned', 'mentionedby']);
         var tabTitles = {
             'mentioned': 'Mentioned',
             'mentionedby': 'Mentioned By',
