@@ -34,8 +34,8 @@ var EditMention = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <div className='row page-body'>
-                    <div className='small-12 large-8 large-centered columns'>
+                <div className='row page-body align-center'>
+                    <div className='small-12 large-8 columns'>
                         <form action={'/api/v1/editmention/' + mention.id} method='post'>
                             <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
                             <h1 className='page-title'>Edit Mention</h1>

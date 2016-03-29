@@ -45,8 +45,8 @@ var EditPage = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <div className='row page-body'>
-                    <div className='small-12 large-8 large-centered columns'>
+                <div className='row page-body align-center'>
+                    <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>Edit</h1>
                         <span className='edit-links'>
                             <a href={'/pages/' + id + '/' + entry.slug}>Page</a>

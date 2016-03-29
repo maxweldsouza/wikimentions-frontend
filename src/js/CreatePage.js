@@ -37,8 +37,8 @@ var HomePage = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <div className='row page-body'>
-                    <div className='small-12 large-8 large-centered columns'>
+                <div className='row page-body align-center'>
+                    <div className='small-12 large-8 columns'>
                         <form action='/api/v1/thing' method='post'>
                             <input type='hidden' name='action' value='create'/>
                             <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>

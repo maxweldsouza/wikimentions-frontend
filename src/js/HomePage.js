@@ -56,8 +56,8 @@ var HomePage = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <div className='row page-body'>
-                    <div className='small-12 large-8 large-centered columns'>
+                <div className='row page-body align-center'>
+                    <div className='small-12 large-8 columns'>
                         <h2>New Mentions</h2>
                         <div className='row'>
                             <div className='small-12 columns'>
