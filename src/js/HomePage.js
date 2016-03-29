@@ -17,6 +17,10 @@ var HomePage = React.createClass({
                     //     name: 'new',
                     //     path: '/api/v1/new/10/0'
                     // }
+                    {
+                        name: 'stats',
+                        path: '/api/v1/stats'
+                    }
                 ]
             };
         }
@@ -43,6 +47,7 @@ var HomePage = React.createClass({
     },
     render () {
         var mentions = [];//this.state.newmentions;
+        var stats = this.props.data.stats;
         return (
             <span>
                 <Helmet
@@ -62,6 +67,18 @@ var HomePage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <a href='/pages/108/richard-dawkins'>Richard Dawkins</a>
+                                <div>
+                                    people: {stats.people}
+                                </div>
+                                <div>
+                                    videos: {stats.videos}
+                                </div>
+                                <div>
+                                    books: {stats.books}
+                                </div>
+                                <div>
+                                    mentions: {stats.mentions}
+                                </div>
                                 {mentions.map((x) => {
                                     return <Mention
                                         id={x.id}
