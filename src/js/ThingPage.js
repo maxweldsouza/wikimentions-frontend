@@ -75,9 +75,9 @@ var ThingPage = React.createClass({
         var thing = this.props.data.thing;
         var id = Number(thing.id);
         var authors = [];
-        if (this.props.data.bookauthors) {
+        if (this.props.data.bookauthors.length > 0) {
             authors = this.props.data.bookauthors;
-        } else if (this.props.data.videoauthors) {
+        } else if (this.props.data.videoauthors.length > 0) {
             authors = this.props.data.videoauthors;
         }
         var authorCount = authors.length;
