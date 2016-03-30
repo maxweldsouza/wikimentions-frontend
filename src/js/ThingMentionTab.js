@@ -1,5 +1,6 @@
 var React = require('react');
 var Mention = require('./Mention');
+var AddMention = require('./AddMention');
 
 var ThingMentionTab = React.createClass({
     render () {
@@ -25,9 +26,8 @@ var ThingMentionTab = React.createClass({
                     })}
                 </div>
                 {mentions.length === 0 ? nodata : null}
-                <div className='small-12 columns'>
-                    <a href={'/mentions/' + this.props.id} className='button'>Add</a>
-                </div>
+                <AddMention id={this.props.id}/>
+
             </div>
         );
     }
