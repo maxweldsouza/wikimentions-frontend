@@ -30,11 +30,6 @@ var Select = React.createClass({
         });
         if (this.props.onSelectValue) {
             this.props.onSelectValue(x);
-            this.setState({
-                options: [],
-                searchText: '',
-                value: ''
-            });
         }
     },
     loadData (x) {

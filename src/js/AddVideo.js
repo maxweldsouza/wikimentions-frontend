@@ -36,6 +36,7 @@ var AddVideo = React.createClass({
         .send({
             title: this.state.title,
             url: this.state.url,
+            action: 'create',
             _xsrf: cookies.get('_xsrf')
         })
         .end((err, res) => {
@@ -49,20 +50,16 @@ var AddVideo = React.createClass({
         var result;
         if (this.state.opened) {
             result = <div className='small-12 columns'>
-                <form action={'/api/v1/thing/' + id + '/videos'} method='post'>
-                    <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
-                    <input type='hidden' name='action' value='create'/>
-                    <label>Title
-                        <input type='text' name='title' placeholder='' onChange={this.onChangeText}/>
-                    </label>
-                    <label>Url
-                        <input type='text' name='url' placeholder='' onChange={this.onChangeText}/>
-                    </label>
-                    <div className="small button-group">
-                        <button type="button" className="button" onClick={this.onSubmit}>Submit</button>
-                        <button type="button" className="button" onClick={this.onClose}>Close</button>
-                    </div>
-                </form>
+                <label>Title
+                    <input type='text' name='title' placeholder='' onChange={this.onChangeText}/>
+                </label>
+                <label>Url
+                    <input type='text' name='url' placeholder='' onChange={this.onChangeText}/>
+                </label>
+                <div className="small button-group">
+                    <button type="button" className="button" onClick={this.onSubmit}>Submit</button>
+                    <button type="button" className="button" onClick={this.onClose}>Close</button>
+                </div>
             </div>;
         } else {
             result = <div className='small-12 columns'>
