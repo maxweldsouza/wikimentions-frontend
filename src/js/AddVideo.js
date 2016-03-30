@@ -21,6 +21,9 @@ var AddVideo = React.createClass({
             opened: false
         });
     },
+    onSubmit () {
+
+    },
     render () {
         var id = this.props.id;
         var result;
