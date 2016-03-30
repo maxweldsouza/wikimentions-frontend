@@ -1,5 +1,6 @@
 var React = require('react');
 var Video = require('./Video');
+var AddVideo = require('./AddVideo');
 
 var ThingVideoTab = React.createClass({
     render () {
@@ -18,9 +19,7 @@ var ThingVideoTab = React.createClass({
                             title={x.title}
                             />;
                 })}
-                <div className='small-12 columns'>
-                    <a href={'/videos/' + id} className='button'>Add</a>
-                </div>
+                <AddVideo id={this.props.id} />
             </div>
         );
     }

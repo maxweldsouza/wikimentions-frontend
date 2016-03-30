@@ -27,7 +27,6 @@ var ThingMentionTab = React.createClass({
                 </div>
                 {mentions.length === 0 ? nodata : null}
                 <AddMention id={this.props.id}/>
-
             </div>
         );
     }
