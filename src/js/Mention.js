@@ -9,6 +9,10 @@ var Mention = React.createClass({
             path = '/books/' + this.props.id + '/' + this.props.slug;
             icon = 'ion-ios-book';
             description = 'Book';
+        } else if (this.props.type === 'video') {
+            path = '/videos/' + this.props.id + '/' + this.props.slug;
+            icon = 'ion-ios-videocam';
+            description = 'Video';
         } else if (this.props.type === 'person') {
             path = '/pages/' + this.props.id + '/' + this.props.slug;
             icon = 'ion-person';

@@ -8,6 +8,7 @@ var ThingMentionTab = require('./ThingMentionTab');
 var ThingMentionedByTab = require('./ThingMentionedByTab');
 var ThingBookTab = require('./ThingBookTab');
 var ThingVideoTab = require('./ThingVideoTab');
+var AddAuthors = require('./AddAuthors');
 
 var ThingPage = React.createClass({
     statics: {
@@ -90,6 +91,7 @@ var ThingPage = React.createClass({
                         {x.title}{i === authorCount - 1 ? '' : ', '}
                     </a>;
                 })}
+                <AddAuthors id={id}/>
             </span>;
         }
         var mentions = this.props.data.mentions;
