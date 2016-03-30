@@ -40,9 +40,7 @@ var AddVideo = React.createClass({
         })
         .end((err, res) => {
             if (!err) {
-                this.setState({
-                    opened: false
-                });
+                Mentions.route(window.location.pathname + window.location.search);
             }
         })
     },
