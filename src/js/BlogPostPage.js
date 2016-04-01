@@ -49,10 +49,10 @@ var BlogPostPage = React.createClass({
                     total={0}
                     navButton={this.props.navButton}
                     />
-                <div className='home-body'>
-                    <div className='container'>
-                        <div className='fx-row fx-middle-xxs fx-center-xxs'>
-                            <div className='fx-col-xxs-12'>
+                <div className='row page-body align-center'>
+                    <div className='small-8 columns'>
+                        <div className='rows'>
+                            <div className='small-12 columns'>
                                 <div className='text-page-article'>
                                     <BlogPost
                                         title={this.props.data.post.title}

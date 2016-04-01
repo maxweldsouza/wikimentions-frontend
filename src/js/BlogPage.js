@@ -59,10 +59,10 @@ var BlogPage = React.createClass({
                     total={0}
                     navButton={this.props.navButton}
                     />
-                <div className='home-body'>
-                    <div className='container'>
-                        <div className='fx-row fx-middle-xxs fx-center-xxs'>
-                            <div className='fx-col-xxs-12'>
+                <div className='row page-body align-center'>
+                    <div className='small-8 columns'>
+                        <div className='row'>
+                            <div className='small-12 columns'>
                                 <div className='text-page-article'>
                                     {this.props.data.posts.length === 0 ? <div><h1>Thats all!</h1><div className='alert alert-default'>There are no more posts to show</div></div> : null}
                                     {this.props.data.posts.map((x) => {
@@ -75,11 +75,11 @@ var BlogPage = React.createClass({
                                             next={x.next}
                                             showComments={false}/>;
                                     })}
-                                    <div className='fx-row'>
-                                        <div className='fx-col-xxs-6'>
+                                    <div className='row'>
+                                        <div className='small-12 columns'>
                                             {newerPosts}
                                         </div>
-                                        <div className='fx-col-xxs-6 text-align-right-xxs'>
+                                        <div className='small-12 columns'>
                                             {this.props.data.posts.length > 0 ? <a href={'/blog/page/' + (page + 1)}>Older Posts</a> : null}
                                         </div>
                                     </div>

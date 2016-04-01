@@ -15,11 +15,11 @@ var BlogPost = React.createClass({
                 <hr/>
                 <Markdown markdown={this.props.content}/>
                 <hr/>
-                <div className='fx-row'>
-                    <div className='fx-col-xxs-6'>
+                <div className='row'>
+                    <div className='small-6 columns'>
                         {this.props.prev ? <a href={'/blog/' + this.props.prev} className=''>Previous Post</a> : null}
                     </div>
-                    <div className='fx-col-xxs-6 text-align-right-xxs'>
+                    <div className='small-6 columns'>
                         {this.props.next ? <a href={'/blog/' + this.props.next} className=''>Next Post</a> : null}
                         <span className='blog-social'>
                             <a href={'http://www.facebook.com/sharer/sharer.php?u=https://comparnion.com' + path + '&title=' + this.props.title}><i className='ion-social-facebook'></i></a>
