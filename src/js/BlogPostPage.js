@@ -50,7 +50,7 @@ var BlogPostPage = React.createClass({
                     navButton={this.props.navButton}
                     />
                 <div className='row page-body align-center'>
-                    <div className='small-8 columns'>
+                    <div className='small-12 large-8 columns'>
                         <div className='rows'>
                             <div className='small-12 columns'>
                                 <div className=''>
