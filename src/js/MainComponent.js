@@ -19,6 +19,7 @@ var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
 var BlogPostPage = require('./BlogPostPage');
 var BlogPage = require('./BlogPage');
+var BlogPostCreate = require('./BlogPostCreate');
 
 var Menu = require('react-burger-menu').push;
 
@@ -48,6 +49,7 @@ var MainComponent = React.createClass({
                         <a id="home" className="menu-item" href="/"><span className='ion-android-home menu-item-icon'/>Home</a>
                         <a id="about" className="menu-item" href="/create"><span className='ion-android-search menu-item-icon'/>Search</a>
                         <a id="about" className="menu-item" href="/blog"><span className='ion-edit menu-item-icon'/>Blog</a>
+                        <a id="about" className="menu-item" href="/blog/newpost"><span className='ion-edit menu-item-icon'/>New Blog Post</a>
                         <a id="about" className="menu-item" href="/create"><span className='ion-android-create menu-item-icon'/>Create Page</a>
                         <a id="contact" className="menu-item" href="/contact"><span className='ion-android-contact menu-item-icon'/>Contact</a>
                     </Menu>

@@ -22,7 +22,6 @@ var BlogPostPage = React.createClass({
         }
     },
     render () {
-
         return (
             <div className='flex-wrapper'>
                 <Helmet

@@ -17,6 +17,7 @@ var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
 var BlogPostPage = require('./BlogPostPage');
 var BlogPage = require('./BlogPage');
+var BlogPostCreate = require('./BlogPostCreate');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -71,6 +72,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^blog$/.test(x)) {
         componentName = 'BlogPage';
+        routeObj.maxAge = 0;
+    } else if (/^blog\/newpost$/.test(x)) {
+        componentName = 'BlogPostCreate';
         routeObj.maxAge = 0;
     } else if (/^blog\/page\/([0-9]+)$/.test(x)) {
         componentName = 'BlogPage';
