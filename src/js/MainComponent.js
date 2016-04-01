@@ -17,6 +17,9 @@ var ProfilePage = require('./ProfilePage');
 var Signup = require('./Signup');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
+var BlogPostPage = require('./BlogPostPage');
+var BlogPage = require('./BlogPage');
+
 var Menu = require('react-burger-menu').push;
 
 var store = require('store');

@@ -15,6 +15,8 @@ var ProfilePage = require('./ProfilePage');
 var Signup = require('./Signup');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
+var BlogPostPage = require('./BlogPostPage');
+var BlogPage = require('./BlogPage');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -66,6 +68,15 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^mentions\/([0-9]+)\/edit$/.test(x)) {
         componentName = 'EditMention';
+        routeObj.maxAge = 0;
+    } else if (/^blog$/.test(x)) {
+        componentName = 'BlogPage';
+        routeObj.maxAge = 0;
+    } else if (/^blog\/page\/([0-9]+)$/.test(x)) {
+        componentName = 'BlogPage';
+        routeObj.maxAge = 0;
+    } else if (/^blog\/(.*)$/.test(x)) {
+        componentName = 'BlogPostPage';
         routeObj.maxAge = 0;
     } else {
         throw { status: 404, message: 'Count not find what you were looking for'};

@@ -1,0 +1,96 @@
+var React = require('react');
+
+var Helmet = require('react-helmet');
+var _ = require('underscore');
+
+var Navbar = require('./Navbar');
+
+var BlogPost = require('./BlogPost');
+
+var pageNoFromPath = function (path) {
+    var parts = path.split('/');
+    var page;
+    if (parts.length > 2) {
+        page = Number(parts[2]);
+    } else {
+        page = 0;
+    }
+    return page;
+}
+
+var BlogPage = React.createClass({
+    statics: {
+        resources (routeObj) {
+            var page = pageNoFromPath(routeObj.url);
+            return {
+                api: [
+                    {
+                        name: 'posts',
+                        path: '/api/v1/blog/' + page
+                    }
+                ]
+            };
+        }
+    },
+    render () {
+        var page = pageNoFromPath(this.props.path);
+        var newerPosts;
+        if (page === 0) {
+            newerPosts = null;
+        } else if (page === 1) {
+            newerPosts = <a href='/blog'>Newer Posts</a>;
+        } else {
+            newerPosts = <a href={'/blog/page/' + (page - 1)}>Newer Posts</a>;
+        }
+        return (
+            <div className='flex-wrapper'>
+                <Helmet
+                    title='Blog'
+                    titleTemplate='%s - Comparnion Blog'
+                    meta={[
+                        {'name': 'description', 'content': ''}
+                    ]}
+                    link={[
+                        {'rel': 'canonical', 'href': 'https://comparnion.com/' + this.props.path}
+                    ]}
+                    />
+                <Navbar
+                    count={0}
+                    total={0}
+                    navButton={this.props.navButton}
+                    />
+                <div className='home-body'>
+                    <div className='container'>
+                        <div className='fx-row fx-middle-xxs fx-center-xxs'>
+                            <div className='fx-col-xxs-12'>
+                                <div className='text-page-article'>
+                                    {this.props.data.posts.length === 0 ? <div><h1>Thats all!</h1><div className='alert alert-default'>There are no more posts to show</div></div> : null}
+                                    {this.props.data.posts.map((x) => {
+                                        return <BlogPost
+                                            title={x.title}
+                                            content={x.content}
+                                            added={x.added}
+                                            slug={x.slug}
+                                            prev={x.prev}
+                                            next={x.next}
+                                            showComments={false}/>;
+                                    })}
+                                    <div className='fx-row'>
+                                        <div className='fx-col-xxs-6'>
+                                            {newerPosts}
+                                        </div>
+                                        <div className='fx-col-xxs-6 text-align-right-xxs'>
+                                            {this.props.data.posts.length > 0 ? <a href={'/blog/page/' + (page + 1)}>Older Posts</a> : null}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+});
+
+module.exports = BlogPage;
