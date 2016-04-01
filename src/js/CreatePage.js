@@ -49,16 +49,22 @@ var HomePage = React.createClass({
                             <label>Short Description
                                 <input type='text' name='description' placeholder='' />
                             </label>
-                            <label>Type
-                                <select name='type' onChange={this.onChangeType}>
-                                    <option value="book">Book</option>
-                                    <option value="person">Person</option>
-                                    <option value="video">Video</option>
-                                </select>
-                            </label>
-                            {this.state.type === 'book' ? <label>ISBN
-                                <input type='text' name='isbn' placeholder='' />
-                            </label> : null}
+                            <div className='row'>
+                                <div className='small-12 medium-6 columns'>
+                                    <label>Type
+                                        <select name='type' onChange={this.onChangeType}>
+                                            <option value="book">Book</option>
+                                            <option value="person">Person</option>
+                                            <option value="video">Video</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                <div className='small-12 medium-6 columns'>
+                                    {this.state.type === 'book' ? <label>ISBN
+                                        <input type='text' name='isbn' placeholder='' />
+                                    </label> : null}
+                                </div>
+                            </div>
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
                             <input type="file" id="exampleFileUpload" className="show-for-sr"/>
                             <div>
