@@ -19,7 +19,7 @@ var BlogPost = React.createClass({
                     <div className='small-6 columns'>
                         {this.props.prev ? <a href={'/blog/' + this.props.prev} className=''>Previous Post</a> : null}
                     </div>
-                    <div className='small-6 columns'>
+                    <div className='small-6 columns text-right'>
                         {this.props.next ? <a href={'/blog/' + this.props.next} className=''>Next Post</a> : null}
                         <span className='blog-social'>
                             <a href={'http://www.facebook.com/sharer/sharer.php?u=https://comparnion.com' + path + '&title=' + this.props.title}><i className='ion-social-facebook'></i></a>
@@ -27,9 +27,6 @@ var BlogPost = React.createClass({
                         </span>
                     </div>
                 </div>
-                {this.props.showComments ? <div className='blog-comments'>
-                    <div className="fb-comments" data-href={'https://comparnion.com' + path} data-width="100%" data-numposts="5"></div>
-                </div> : null}
             </div>
         );
     }

@@ -63,8 +63,8 @@ var BlogPage = React.createClass({
                     <div className='small-8 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <div className='text-page-article'>
-                                    {this.props.data.posts.length === 0 ? <div><h1>Thats all!</h1><div className='alert alert-default'>There are no more posts to show</div></div> : null}
+                                <div className=''>
+                                    {this.props.data.posts.length === 0 ? <div><h1>Thats all!</h1><div className='callout'>There are no more posts to show</div></div> : null}
                                     {this.props.data.posts.map((x) => {
                                         return <BlogPost
                                             title={x.title}

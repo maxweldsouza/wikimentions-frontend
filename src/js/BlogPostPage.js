@@ -53,7 +53,7 @@ var BlogPostPage = React.createClass({
                     <div className='small-8 columns'>
                         <div className='rows'>
                             <div className='small-12 columns'>
-                                <div className='text-page-article'>
+                                <div className=''>
                                     <BlogPost
                                         title={this.props.data.post.title}
                                         slug={this.props.data.post.slug}
