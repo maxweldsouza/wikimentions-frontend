@@ -73,6 +73,8 @@ var BlogPage = React.createClass({
                                             slug={x.slug}
                                             prev={x.prev}
                                             next={x.next}
+                                            author={x.author}
+                                            authorId={x.authorId}
                                             showComments={false}/>;
                                     })}
                                     <div className='row'>

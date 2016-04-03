@@ -60,6 +60,8 @@ var BlogPostPage = React.createClass({
                                         added={this.props.data.post.added}
                                         prev={this.props.data.post.prev}
                                         next={this.props.data.post.next}
+                                        author={this.props.data.post.author}
+                                        authorId={this.props.data.post.authorId}
                                         showComments={true}
                                         showCta={true}/>
                                 </div>
