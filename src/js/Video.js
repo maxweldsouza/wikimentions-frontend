@@ -3,8 +3,8 @@ var React = require('react');
 var Video = React.createClass({
     render () {
         return (
-            <div className='small-12 columns video-block'>
-                <div className='row'>
+            <div className='small-12 columns'>
+                <div className='row video-block'>
                     <div className='shrink columns'>
                         <img className="" src="/assets/video.png" alt=""/>
                     </div>
