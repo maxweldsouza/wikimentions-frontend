@@ -15,6 +15,7 @@ var ProfilePage = require('./ProfilePage');
 var Signup = require('./Signup');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
+var VideoPage = require('./VideoPage');
 var BlogPostPage = require('./BlogPostPage');
 var BlogPage = require('./BlogPage');
 var BlogPostCreate = require('./BlogPostCreate');
@@ -65,7 +66,7 @@ var getComponent = function (routeObj) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
     } else if (/^videos\/([0-9]+)\/(.*)$/.test(x)) {
-        componentName = 'ThingPage';
+        componentName = 'VideoPage';
         routeObj.maxAge = 0;
     } else if (/^mentions\/([0-9]+)\/edit$/.test(x)) {
         componentName = 'EditMention';
