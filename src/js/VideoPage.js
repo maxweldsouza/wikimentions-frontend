@@ -8,7 +8,7 @@ var ThingMentionTab = require('./ThingMentionTab');
 var ThingMentionedByTab = require('./ThingMentionedByTab');
 var ThingBookTab = require('./ThingBookTab');
 var ThingVideoTab = require('./ThingVideoTab');
-var AddAuthors = require('./AddAuthors');
+var Authors = require('./Authors');
 var YoutubeEmbed = require('./YoutubeEmbed');
 var queryString = require('query-string');
 
@@ -60,20 +60,9 @@ var ThingPage = React.createClass({
     render () {
         var thing = this.props.data.thing;
         var id = Number(thing.id);
-        var authors = [];
-        authors = this.props.data.videoauthors;
-        var authorCount = authors.length;
+        var authors = this.props.data.videoauthors;
         if (authors.length > 0) {
-            authors = <span>
-                {'by '}
-                {authors.map(function (x, i) {
-                    var path = '/pages/' + x.id + '/' + x.slug;
-                    return <a href={path} key={x.title}>
-                        {x.title}{i === authorCount - 1 ? '' : ', '}
-                    </a>;
-                })}
-                <AddAuthors id={id}/>
-            </span>;
+            authors = <Authors authors={authors} id={id}/>;
         }
         var mentions = this.props.data.mentions;
         var mentionedby = this.props.data.mentionedby;
