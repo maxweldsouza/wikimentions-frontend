@@ -51,25 +51,11 @@ var ThingPage = React.createClass({
     getInitialState () {
         return {
             tab: 'mentioned',
-            books: [],
-            searchText: '',
-            isLoadingExternally: true
         };
     },
     changeTab (x) {
         this.setState({
             tab: x
-        });
-    },
-    onSearchTextChanged (x) {
-        this.setState({
-            searchText: x
-        });
-        requests.get('/api/v1/search/' + x).end((err, res) => {
-            this.setState({
-                books: res.body,
-                isLoadingExternally: false
-            });
         });
     },
     render () {
