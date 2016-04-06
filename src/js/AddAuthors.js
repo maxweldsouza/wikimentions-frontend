@@ -30,8 +30,8 @@ var AddAuthors = React.createClass({
     render () {
         var id = this.props.id;
         return (
-            <div>
-                {this.state.opened ? <div>
+            <span>
+                {this.state.opened ? <span>
                     <form action='' method='post'>
                         Add Author
                         <Select name='author'/>
@@ -40,12 +40,12 @@ var AddAuthors = React.createClass({
                             <button type="button" className="button" onClick={this.onClose}>Close</button>
                         </div>
                     </form>
-                </div> : <div>
-                <button className='tiny button' onClick={this.onOpen}>Add Authors <span className='ion-plus-round'></span></button>
-            </div>}
-        </div>
-    );
-}
+                    </span> : <span>
+                    <button className='tiny button' onClick={this.onOpen}>Add Authors <span className='ion-plus-round'></span></button>
+                </span>}
+            </span>
+        );
+    }
 });
 
 module.exports = AddAuthors;

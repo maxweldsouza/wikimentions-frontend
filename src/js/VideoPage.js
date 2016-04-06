@@ -114,6 +114,9 @@ var ThingPage = React.createClass({
                     <div className='small-12 columns'>
                         <div className='row align-center'>
                             <div className='small-12 large-8 columns'>
+                                <div>
+                                    <a href={thing.url}><img className="" src="/assets/videolarge.png" alt=""/></a>
+                                </div>
                                 <h1 className='page-title'>{thing.title}</h1>
                                 <span className='thing-description'>
                                     {thing.description}
@@ -126,9 +129,6 @@ var ThingPage = React.createClass({
                                     {' | '}
                                     <a href={'/discuss/' + id + '/' + thing.slug}>Discuss</a>
                                 </div>
-                                {thing.type === 'video' ? <div>
-                                    <a href={thing.url}><img className="" src="/assets/video.png" alt=""/></a>
-                                </div> : null}
                                 {tab}
                                 <div className="tabs-content">
                                     <div className="tabs-panel is-active">
