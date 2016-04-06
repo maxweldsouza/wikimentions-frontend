@@ -9,6 +9,7 @@ var ThingMentionedByTab = require('./ThingMentionedByTab');
 var ThingBookTab = require('./ThingBookTab');
 var ThingVideoTab = require('./ThingVideoTab');
 var AddAuthors = require('./AddAuthors');
+var YoutubeEmbed = require('./YoutubeEmbed');
 
 var ThingPage = React.createClass({
     statics: {
@@ -116,6 +117,7 @@ var ThingPage = React.createClass({
                             <div className='small-12 large-8 columns'>
                                 <div>
                                     <a href={thing.url}><img className="" src="/assets/videolarge.png" alt=""/></a>
+                                    <YoutubeEmbed videoId='UXqiTt9rpqM'/>
                                 </div>
                                 <h1 className='page-title'>{thing.title}</h1>
                                 <span className='thing-description'>
