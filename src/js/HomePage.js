@@ -7,6 +7,7 @@ var _ = require('underscore');
 var Mention = require('./Mention');
 var Pagination = require('./Pagination');
 var requests = require('superagent');
+var ButtonSelect = require('./ButtonSelect');
 
 var HomePage = React.createClass({
     statics: {
@@ -48,6 +49,7 @@ var HomePage = React.createClass({
     render () {
         var mentions = [];//this.state.newmentions;
         var stats = this.props.data.stats;
+        var options = ['Add New', 'Add Existing'];
         return (
             <span>
                 <Helmet
@@ -64,6 +66,7 @@ var HomePage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h2>New Mentions</h2>
+                        <ButtonSelect options={options}/>
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <a href='/pages/108/richard-dawkins'>Richard Dawkins</a>
