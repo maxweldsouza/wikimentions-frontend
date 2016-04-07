@@ -9,17 +9,7 @@ var ThingMentionedByTab = require('./ThingMentionedByTab');
 var ThingBookTab = require('./ThingBookTab');
 var ThingVideoTab = require('./ThingVideoTab');
 var Authors = require('./Authors');
-var YoutubeEmbed = require('./YoutubeEmbed');
-var queryString = require('query-string');
-
-var parseUrl = function (url) {
-    var parser = document.createElement('a');
-    parser.href = url;
-    return {
-        hostname: parser.hostname,
-        search: parser.search
-    };
-}
+var VideoEmbed = require('./VideoEmbed');
 
 var ThingPage = React.createClass({
     statics: {
@@ -90,20 +80,12 @@ var ThingPage = React.createClass({
             tabContent = <ThingMentionTab
                             mentions={mentions}
                             id={id}
-                            />;
+                        />;
         } else if (this.state.tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
                             id={id}
                             mentionedby={mentionedby}
-                            />;
-        }
-        var embed;
-        var parsed = parseUrl(this.props.data.thing.url);
-        if (parsed.hostname === 'www.youtube.com') {
-            var queryObject = queryString.parse(parsed.search);
-            embed = <YoutubeEmbed videoId={queryObject.v}/>;
-        } else {
-            embed = <a href={thing.url}><img className="" src="/assets/videolarge.png" alt=""/></a>;
+                        />;
         }
         return (
             <span>
@@ -123,7 +105,7 @@ var ThingPage = React.createClass({
                         <div className='row align-center'>
                             <div className='small-12 large-8 columns'>
                                 <div>
-                                    {embed}
+                                    <VideoEmbed url={this.props.data.thing.url}/>
                                 </div>
                                 <h1 className='page-title'>{thing.title}</h1>
                                 <span className='thing-description'>

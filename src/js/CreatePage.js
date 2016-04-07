@@ -4,6 +4,7 @@ var Navbar = require('./Navbar');
 var Login = require('./Login');
 var Signup = require('./Signup');
 var cookies = require('browser-cookies');
+var ButtonSelect = require('./ButtonSelect');
 
 var HomePage = React.createClass({
     statics: {
@@ -15,15 +16,16 @@ var HomePage = React.createClass({
     },
     getInitialState () {
         return {
-            type: 'book'
+            type: 'Person'
         };
     },
-    onChangeType (e) {
+    onChangeType (x) {
         this.setState({
-            type: e.currentTarget.value
+            type: x
         });
     },
     render () {
+        var options = ['Book', 'Person', 'Video'];
         return (
             <span>
                 <Helmet
@@ -52,15 +54,11 @@ var HomePage = React.createClass({
                             <div className='row'>
                                 <div className='small-12 medium-6 columns'>
                                     <label>Type
-                                        <select name='type' onChange={this.onChangeType}>
-                                            <option value="book">Book</option>
-                                            <option value="person">Person</option>
-                                            <option value="video">Video</option>
-                                        </select>
+                                        <ButtonSelect options={options}  onChange={this.onChangeType}/>
                                     </label>
                                 </div>
                                 <div className='small-12 medium-6 columns'>
-                                    {this.state.type === 'book' ? <label>ISBN
+                                    {this.state.type === 'Book' ? <label>ISBN
                                         <input type='text' name='isbn' placeholder='' />
                                     </label> : null}
                                 </div>

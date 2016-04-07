@@ -14,7 +14,7 @@ var ButtonSelect = React.createClass({
     },
     render () {
         return (
-            <span>
+            <div>
                 {this.props.options.map((x) => {
                     var cls;
                     if (this.state.selected === x) {
@@ -22,9 +22,9 @@ var ButtonSelect = React.createClass({
                     } else {
                         cls = 'button';
                     }
-                    return <button className={cls} onClick={this.onChangeSelected.bind(null, x)}>{x}</button>
+                    return <button type='button' className={cls} onClick={this.onChangeSelected.bind(null, x)}>{x}</button>
                 })}
-            </span>
+            </div>
         );
     }
 });
