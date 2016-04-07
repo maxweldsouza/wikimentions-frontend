@@ -33,8 +33,7 @@ var AddAuthors = React.createClass({
             <span>
                 {this.state.opened ? <span>
                     <form action='' method='post'>
-                        Add Author
-                        <Select name='author'/>
+                        <Select name='author' placeholder='Author'/>
                         <div className="small button-group">
                             <button type="button" className="button" onClick={this.onSubmit}>Submit</button>
                             <button type="button" className="button" onClick={this.onClose}>Close</button>

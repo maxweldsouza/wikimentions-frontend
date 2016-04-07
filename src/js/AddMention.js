@@ -71,30 +71,20 @@ var AddMention = React.createClass({
         var result;
         if (this.state.opened) {
             result = <div className='small-12 columns'>
-                {this.props.mentioned_by ? null : <label>Mentioned By
-                    <Select
+                {this.props.mentioned_by ? null : <Select
                     name='mentioned_by'
-                    placeholder='Person'
-                    onSelectValue={this.onChangeMentionedBy}/>
-                </label>}
-                {this.props.mentioned_in ? null : <label>Mentioned In
-                    <Select
+                    placeholder='Mentioned By (Person)'
+                    onSelectValue={this.onChangeMentionedBy}/>}
+                {this.props.mentioned_in ? null :<Select
                     name='mentioned_in'
-                    placeholder='Book or Video'
-                    onSelectValue={this.onChangeMentionedIn}/>
-                </label>}
-                {this.props.mentioned ? null : <label>Mentioned
-                    <Select
+                    placeholder='Mentioned In (Book or Video)'
+                    onSelectValue={this.onChangeMentionedIn}/>}
+                {this.props.mentioned ? null :<Select
                     name='mentioned'
-                    placeholder='Person or Book or Video'
-                    onSelectValue={this.onChangeMentioned}/>
-                </label>}
-                <label>Description
-                    <input type='text' name='description' placeholder='' onChange={this.onChangeText}/>
-                </label>
-                <label>References
-                    <input type='text' name='references' placeholder='' onChange={this.onChangeText}/>
-                </label>
+                    placeholder='Mentioned (Person or Book or Video)'
+                    onSelectValue={this.onChangeMentioned}/>}
+                <input type='text' name='description' placeholder='Description' onChange={this.onChangeText}/>
+                <input type='text' name='references' placeholder='References' onChange={this.onChangeText}/>
                 <div className="button-group">
                     <button type="button" className="button" onClick={this.onSubmit}>Submit</button>
                     <button type="button" className="button" onClick={this.onClose}>Close</button>

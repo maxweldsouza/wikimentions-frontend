@@ -45,12 +45,8 @@ var HomePage = React.createClass({
                             <input type='hidden' name='action' value='create'/>
                             <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
                             <h1 className='page-title'>Create Page</h1>
-                            <label>Title
-                                <input type='text' name='title' placeholder='' />
-                            </label>
-                            <label>Short Description
-                                <input type='text' name='description' placeholder='' />
-                            </label>
+                            <input type='text' name='title' placeholder='Title' />
+                            <input type='text' name='description' placeholder='Description' />
                             <div className='row'>
                                 <div className='small-12 medium-6 columns'>
                                     <label>Type
@@ -58,9 +54,7 @@ var HomePage = React.createClass({
                                     </label>
                                 </div>
                                 <div className='small-12 medium-6 columns'>
-                                    {this.state.type === 'Book' ? <label>ISBN
-                                        <input type='text' name='isbn' placeholder='' />
-                                    </label> : null}
+                                    {this.state.type === 'Book' ? <input type='text' name='isbn' placeholder='ISBN' /> : null}
                                 </div>
                             </div>
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>

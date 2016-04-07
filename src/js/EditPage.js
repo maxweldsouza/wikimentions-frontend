@@ -58,21 +58,13 @@ var EditPage = React.createClass({
                         <form action={'/api/v1/thing/' + id} method='post'>
                             <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
                             <input type='hidden' name='action' value='update'/>
-                            <label>Title
-                                <input type='text' name='title' placeholder='' defaultValue={this.props.data.thing.title}/>
-                            </label>
-                            <label>Short Description
-                                <input type='text' name='description' placeholder='' defaultValue={this.props.data.thing.description}/>
-                            </label>
-                            <label>Type
-                                <select name='type' onChange={this.onChangeType} value={this.state.type}>
-                                    <option value="book">Book</option>
-                                    <option value="person">Person</option>
-                                </select>
-                            </label>
-                            {this.state.type === 'book' ? <label>ISBN
-                                <input type='text' name='isbn' placeholder='' defaultValue={this.props.data.thing.isbn}/>
-                            </label> : null}
+                            <input type='text' name='title' placeholder='Title' defaultValue={this.props.data.thing.title}/>
+                                <input type='text' name='description' placeholder='Description' defaultValue={this.props.data.thing.description}/>
+                            <select name='type' onChange={this.onChangeType} value={this.state.type} placeholder='Type'>
+                                <option value="book">Book</option>
+                                <option value="person">Person</option>
+                            </select>
+                            {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' defaultValue={this.props.data.thing.isbn}/> : null}
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
                             <input type="file" id="exampleFileUpload" className="show-for-sr"/>
                             <div>

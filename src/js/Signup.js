@@ -32,15 +32,9 @@ var Signup = React.createClass({
                         <div className='small-12 medium-6 columns'>
                             <h2>Sign Up</h2>
                             You will be user #23 TODO
-                            <label>E-mail
-                                <input type='email' name='email' placeholder='' required />
-                            </label>
-                            <label>Password
-                                <input type='password' name='password' placeholder='' required/>
-                            </label>
-                            <label>Retype Password
-                                <input type='password' placeholder='' required/>
-                            </label>
+                            <input type='email' name='email' placeholder='E-mail' required />
+                            <input type='password' name='password' placeholder='Password' required/>
+                            <input type='password' placeholder='Retype Password' required/>
                             <button type='submit' className='success button'>Save</button>
                         </div>
                     </div>

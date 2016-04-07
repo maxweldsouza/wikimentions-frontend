@@ -39,26 +39,20 @@ var EditMention = React.createClass({
                         <form action={'/api/v1/editmention/' + mention.id} method='post'>
                             <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
                             <h1 className='page-title'>Edit Mention</h1>
-                            <label>Mentioned
-                                <Select
+                            <Select
                                     name='mentioned'
                                     initialValue={mention.mentioned.id}
                                     initialLabel={mention.mentioned.title}
+                                    placeholder='Mentioned'
                                     />
-                            </label>
-                            <label>Mentioned by
-                                <Select
+                            <Select
                                     name='mentioned_by'
                                     initialValue={mention.mentioner.id}
                                     initialLabel={mention.mentioner.title}
-                                    />
-                            </label>
-                            <label>Description
-                                <input type='text' name='description' placeholder='' defaultValue={mention.quote}/>
-                            </label>
-                            <label>References
-                                <input type='text' name='references' defaultValue={mention.references} placeholder='' />
-                            </label>
+                                    placeholder='Mentioned By'
+                                />
+                            <input type='text' name='description' placeholder='Description' defaultValue={mention.quote}/>
+                            <input type='text' name='references' defaultValue={mention.references} placeholder='References' />
                             <button type='submit' className='success button'>Save</button>
                         </form>
                         <form action={'/api/v1/deletemention/' + mention.id} method='post'>

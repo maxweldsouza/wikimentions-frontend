@@ -32,12 +32,8 @@ var Login = React.createClass({
                     <div className='row'>
                         <div className='small-12 medium-6 columns'>
                             <h2>Login</h2>
-                            <label>E-mail
-                                <input type='email' name='email' placeholder='' />
-                            </label>
-                            <label>Password
-                                <input type='password' name='password' placeholder='' />
-                            </label>
+                            <input type='email' name='email' placeholder='E-mail' />
+                            <input type='password' name='password' placeholder='Password' />
                             <button type='submit' className='success button'>Submit</button>
                         </div>
                     </div>

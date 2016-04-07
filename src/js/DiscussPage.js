@@ -74,9 +74,7 @@ var DiscussPage = React.createClass({
                                 <form action='' method='post'>
                                     <div className="row">
                                         <div className="small-12 columns">
-                                            <label>Reply
-                                                <input type="text"></input>
-                                            </label>
+                                            <input type="text" placeholder='Reply'></input>
                                         </div>
                                         <div className="small-12 columns">
                                             <button type='button' className='button'>Submit</button>

@@ -50,12 +50,8 @@ var AddVideo = React.createClass({
         var result;
         if (this.state.opened) {
             result = <div className='small-12 columns'>
-                <label>Title
-                    <input type='text' name='title' placeholder='' onChange={this.onChangeText}/>
-                </label>
-                <label>Url
-                    <input type='text' name='url' placeholder='' onChange={this.onChangeText}/>
-                </label>
+                <input type='text' name='title' placeholder='Title' onChange={this.onChangeText}/>
+                <input type='text' name='url' placeholder='Url' onChange={this.onChangeText}/>
                 <div className="button-group">
                     <button type="button" className="button" onClick={this.onSubmit}>Submit</button>
                     <button type="button" className="button" onClick={this.onClose}>Close</button>
