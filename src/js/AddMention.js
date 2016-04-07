@@ -72,18 +72,21 @@ var AddMention = React.createClass({
         if (this.state.opened) {
             result = <div className='small-12 columns'>
                 {this.props.mentioned_by ? null : <label>Mentioned By
-                        <Select
-                        name='mentioned_by'
-                        onSelectValue={this.onChangeMentionedBy}/>
+                    <Select
+                    name='mentioned_by'
+                    placeholder='Person'
+                    onSelectValue={this.onChangeMentionedBy}/>
                 </label>}
                 {this.props.mentioned_in ? null : <label>Mentioned In
                     <Select
                     name='mentioned_in'
+                    placeholder='Book or Video'
                     onSelectValue={this.onChangeMentionedIn}/>
                 </label>}
                 {this.props.mentioned ? null : <label>Mentioned
                     <Select
                     name='mentioned'
+                    placeholder='Person or Book or Video'
                     onSelectValue={this.onChangeMentioned}/>
                 </label>}
                 <label>Description
