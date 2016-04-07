@@ -3,7 +3,7 @@ var React = require('react');
 var ButtonSelect = React.createClass({
     getInitialState () {
         return {
-            selected: null
+            selected: this.props.default
         };
     },
     onChangeSelected (x) {
