@@ -8,6 +8,12 @@ var ThingMentionTab = React.createClass({
         var nodata = <div className="small-12 columns">
             <p>No mentions have been added yet. You can help us by adding some.</p>
         </div>;
+        var addmention;
+        if (this.props.type === 'person') {
+            addmention = <AddMention id={this.props.id} mentioned_by={this.props.id}/>;
+        } else {
+            addmention = <AddMention id={this.props.id} mentioned_in={this.props.id}/>;
+        }
         return (
             <div className='row'>
                 <div className='small-12 columns'>
@@ -26,7 +32,7 @@ var ThingMentionTab = React.createClass({
                     })}
                 </div>
                 {mentions.length === 0 ? nodata : null}
-                <AddMention id={this.props.id}/>
+                {addmention}
             </div>
         );
     }

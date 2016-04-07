@@ -111,13 +111,15 @@ var ThingPage = React.createClass({
         });
         if (this.state.tab === 'mentioned') {
             tabContent = <ThingMentionTab
-                            mentions={mentions}
                             id={id}
+                            mentions={mentions}
+                            type={thing.type}
                             />;
         } else if (this.state.tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
                             id={id}
                             mentionedby={mentionedby}
+                            type={thing.type}
                             />;
         } else if (this.state.tab === 'books' && thing.type === 'person') {
             tabContent = <ThingBookTab

@@ -10,8 +10,9 @@ var AddMention = React.createClass({
     getInitialState: function() {
         return {
             opened: false,
-            mentioned_id: null,
-            mentioned: null,
+            mentioned_by: this.props.mentioned_by,
+            mentioned_in: this.props.mentioned_in,
+            mentioned: this.props.mentioned,
             description: '',
             references: ''
         };
@@ -39,6 +40,7 @@ var AddMention = React.createClass({
             action: 'create',
             description: this.state.description,
             references: this.state.references,
+            mentioned_by: this.state.mentioned_by,
             mentioned_in: this.state.mentioned_in,
             mentioned: this.state.mentioned,
             _xsrf: cookies.get('_xsrf')
@@ -48,6 +50,11 @@ var AddMention = React.createClass({
                 Mentions.route(window.location.pathname + window.location.search);
             }
         })
+    },
+    onChangeMentionedBy (x) {
+        this.setState({
+            mentioned_by: x.id
+        });
     },
     onChangeMentionedIn (x) {
         this.setState({
@@ -64,19 +71,21 @@ var AddMention = React.createClass({
         var result;
         if (this.state.opened) {
             result = <div className='small-12 columns'>
-                Mention: TODO
-                <label>Mentioned In
+                {this.props.mentioned_by ? null : <label>Mentioned By
+                        <Select
+                        name='mentioned_by'
+                        onSelectValue={this.onChangeMentionedBy}/>
+                </label>}
+                {this.props.mentioned_in ? null : <label>Mentioned In
                     <Select
-                        name='mentioned_in'
-                        onSelectValue={this.onChangeMentionedIn}
-                        />
-                </label>
-                <label>Mentioned
+                    name='mentioned_in'
+                    onSelectValue={this.onChangeMentionedIn}/>
+                </label>}
+                {this.props.mentioned ? null : <label>Mentioned
                     <Select
-                        name='mentioned'
-                        onSelectValue={this.onChangeMentioned}
-                        />
-                </label>
+                    name='mentioned'
+                    onSelectValue={this.onChangeMentioned}/>
+                </label>}
                 <label>Description
                     <input type='text' name='description' placeholder='' onChange={this.onChangeText}/>
                 </label>

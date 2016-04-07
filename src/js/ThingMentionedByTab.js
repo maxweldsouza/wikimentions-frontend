@@ -1,5 +1,6 @@
 var React = require('react');
 var Mention = require('./Mention');
+var AddMention = require('./AddMention');
 
 var ThingMentionTab = React.createClass({
     render () {
@@ -25,6 +26,7 @@ var ThingMentionTab = React.createClass({
                     })}
                 </div>
                 {mentionedby.length === 0 ? nodata : null}
+                <AddMention id={this.props.id} mentioned={this.props.id}/>
             </div>
         );
     }
