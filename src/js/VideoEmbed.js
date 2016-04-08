@@ -38,11 +38,12 @@ var YoutubeEmbed = React.createClass({
             embed = <iframe src={this.props.url}
                 width="640"
                 height="360"
-                frameborder="0"
+                frameBorder="0"
                 scrolling="no"
-                webkitAllowFullScreen
+                webkitallowfullscreen
                 mozallowfullscreen
-                allowFullScreen></iframe>
+                allowFullScreen></iframe>;
+                <iframe src="https://embed-ssl.ted.com/talks/james_watson_on_how_he_discovered_dna.html" width={640} height={360} frameBorder={0} scrolling="no" webkitallowfullscreen mozallowfullscreen allowFullScreen />
         } else if (parsed.hostname = 'vimeo.com') {
             var id = parsed.pathname.split('/')[2];
             embed = <iframe

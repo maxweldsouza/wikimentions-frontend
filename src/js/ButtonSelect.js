@@ -15,6 +15,11 @@ var ButtonSelect = React.createClass({
     render () {
         return (
             <div>
+                <input
+                    type='hidden'
+                    name={this.props.name}
+                    value={this.state.selected}
+                />
                 {this.props.options.map((x) => {
                     var cls;
                     if (this.state.selected === x) {

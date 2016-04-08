@@ -50,7 +50,10 @@ var HomePage = React.createClass({
                             <div className='row'>
                                 <div className='small-12 medium-6 columns'>
                                     <label>Type
-                                        <ButtonSelect options={options}  onChange={this.onChangeType}/>
+                                        <ButtonSelect
+                                            name='type'
+                                            options={options}
+                                            onChange={this.onChangeType}/>
                                     </label>
                                 </div>
                                 <div className='small-12 medium-6 columns'>
