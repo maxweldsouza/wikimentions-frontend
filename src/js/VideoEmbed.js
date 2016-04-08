@@ -34,7 +34,7 @@ var YoutubeEmbed = React.createClass({
                 width={this.props.width}
                 height={this.props.height}
                 src={'http://www.youtube.com/embed/' + queryObject.v + '?autoplay=1'} frameBorder={0}></iframe>;
-        } else if (parsed.hostname = 'embed-ssl.ted.com') {
+        } else if (parsed.hostname === 'embed-ssl.ted.com') {
             embed = <iframe src={this.props.url}
                 width="640"
                 height="360"
@@ -43,7 +43,7 @@ var YoutubeEmbed = React.createClass({
                 webkitallowfullscreen
                 mozallowfullscreen
                 allowFullScreen></iframe>;
-        } else if (parsed.hostname = 'vimeo.com') {
+        } else if (parsed.hostname === 'vimeo.com') {
             var id = parsed.pathname.split('/')[2];
             embed = <iframe
                 src={"https://player.vimeo.com/video/" + id}
