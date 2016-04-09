@@ -22,12 +22,12 @@ var ButtonSelect = React.createClass({
                 />
                 {this.props.options.map((x) => {
                     var cls;
-                    if (this.state.selected === x) {
+                    if (this.state.selected === x.value) {
                         cls = 'button success';
                     } else {
                         cls = 'button';
                     }
-                    return <button type='button' className={cls} onClick={this.onChangeSelected.bind(null, x)}>{x}</button>
+                    return <button type='button' className={cls} onClick={this.onChangeSelected.bind(null, x.value)}>{x.name}</button>
                 })}
             </div>
         );

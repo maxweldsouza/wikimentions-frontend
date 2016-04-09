@@ -17,7 +17,7 @@ var HomePage = React.createClass({
     },
     getInitialState () {
         return {
-            type: 'Person'
+            type: 'person'
         };
     },
     onChangeType (x) {
@@ -26,7 +26,9 @@ var HomePage = React.createClass({
         });
     },
     render () {
-        var options = ['Book', 'Person', 'Video'];
+        var options = [{name: 'Book', value: 'book'},
+            {name: 'Person', value: 'person'},
+            {name: 'Video', value: 'video'}];
         return (
             <span>
                 <Helmet
@@ -58,7 +60,7 @@ var HomePage = React.createClass({
                                     </label>
                                 </div>
                                 <div className='small-12 medium-6 columns'>
-                                    {this.state.type === 'Book' ? <input type='text' name='isbn' placeholder='ISBN' /> : null}
+                                    {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' /> : null}
                                 </div>
                             </div>
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
