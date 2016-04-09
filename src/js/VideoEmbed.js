@@ -54,7 +54,7 @@ var YoutubeEmbed = React.createClass({
                 mozallowfullscreen
                 allowfullscreen></iframe>
         } else {
-            embed = <a href={thing.url}>
+            embed = <a href={this.props.url}>
                 <img className="" src="/assets/videolarge.png" alt=""/>
             </a>;
         }
