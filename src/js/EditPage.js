@@ -4,6 +4,7 @@ var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var _ = require('underscore');
 var cookies = require('browser-cookies');
+var Xsrf = require('./Xsrf');
 
 var EditPage = React.createClass({
     statics: {
@@ -56,7 +57,7 @@ var EditPage = React.createClass({
                             <a href={'/history/' + id + '/' + entry.slug}>History</a>
                         </span>
                         <form action={'/api/v1/thing/' + id} method='post'>
-                            <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
+                            <Xsrf/>
                             <input type='hidden' name='action' value='update'/>
                             <input type='text' name='title' placeholder='Title' defaultValue={this.props.data.thing.title}/>
                                 <input type='text' name='description' placeholder='Description' defaultValue={this.props.data.thing.description}/>

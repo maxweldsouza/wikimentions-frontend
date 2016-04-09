@@ -1,6 +1,7 @@
 var React = require('react');
 var Select = require('./Select');
 var requests = require('superagent');
+var Xsrf = require('./Xsrf');
 
 var AddAuthors = React.createClass({
     getInitialState: function() {
@@ -33,6 +34,7 @@ var AddAuthors = React.createClass({
             <span>
                 {this.state.opened ? <span>
                     <form action='' method='post'>
+                        <Xsrf/>
                         <Select name='author' placeholder='Author'/>
                         <div className="small button-group">
                             <button type="button" className="button" onClick={this.onSubmit}>Submit</button>

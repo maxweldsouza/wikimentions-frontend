@@ -4,6 +4,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Select = require('./Select');
 var cookies = require('browser-cookies');
+var Xsrf = require('./Xsrf');
 
 var EditMention = React.createClass({
     statics: {
@@ -37,7 +38,7 @@ var EditMention = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <form action={'/api/v1/editmention/' + mention.id} method='post'>
-                            <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
+                            <Xsrf/>
                             <h1 className='page-title'>Edit Mention</h1>
                             <Select
                                     name='mentioned'

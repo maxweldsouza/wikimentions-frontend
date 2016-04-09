@@ -2,6 +2,7 @@ var React = require('react');
 var cookies = require('browser-cookies');
 var ButtonSelect = require('./ButtonSelect');
 var Select = require('./Select');
+var Xsrf = require('./Xsrf');
 
 var AddBook = React.createClass({
     getInitialState: function() {
@@ -34,7 +35,7 @@ var AddBook = React.createClass({
                     </form>
                 </div> : <span>
                 <form action='/api/v1/thing' method='post'>
-                    <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
+                    <Xsrf/>
                     Search for the title of a book to add
                     <Select name='book_id' placeholder='Search for book'/>
                     <button type='submit' className='button'>Save</button>

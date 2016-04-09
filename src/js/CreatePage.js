@@ -5,6 +5,7 @@ var Login = require('./Login');
 var Signup = require('./Signup');
 var cookies = require('browser-cookies');
 var ButtonSelect = require('./ButtonSelect');
+var Xsrf = require('./Xsrf');
 
 var HomePage = React.createClass({
     statics: {
@@ -43,7 +44,7 @@ var HomePage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <form action='/api/v1/thing' method='post'>
                             <input type='hidden' name='action' value='create'/>
-                            <input type='hidden' name='_xsrf' value={cookies.get('_xsrf')}/>
+                            <Xsrf/>
                             <h1 className='page-title'>Create Page</h1>
                             <input type='text' name='title' placeholder='Title' />
                             <input type='text' name='description' placeholder='Description' />

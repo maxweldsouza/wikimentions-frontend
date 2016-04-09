@@ -1,6 +1,9 @@
 var React = require('react');
 var cookies = require('browser-cookies');
 var Select = require('./Select');
+var cookies = require('browser-cookies');
+var isNode = require('./isNode');
+var Xsrf = require('./Xsrf');
 
 var Navbar = React.createClass({
     statics: {
@@ -11,15 +14,13 @@ var Navbar = React.createClass({
         }
     },
     getInitialState () {
+        var session;
+        if (isNode.isBrowser()) {
+            session = cookies.get('mentions');
+        }
         return {
-            loggedin: false
-        };
-    },
-    componentDidMount () {
-        var session = cookies.get('mentions');
-        this.setState({
             loggedin: session ? true : false
-        });
+        };
     },
     onSelectSearchResult (x) {
         var path = '/pages/' + x.id + '/' + x.slug;
@@ -46,6 +47,7 @@ var Navbar = React.createClass({
                         <li className='show-for-large'><a href='/create'>Create Page</a></li>
                     </ul>
                 </div>
+                {this.state.loggedin}
                 <div className='top-bar-right'>
                     <ul className='menu'>
                         <li className='show-for-large'><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
@@ -58,6 +60,7 @@ var Navbar = React.createClass({
                         <li  className='show-for-large'><a href='/users/1/maxweldsouza'>maxweldsouza</a></li>
                         <li className='show-for-large'>
                             <form action='/api/v1/logout' method='post'>
+                                <Xsrf/>
                                 <button type='submit'>Logout</button>
                             </form>
                         </li>
