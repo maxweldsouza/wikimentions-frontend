@@ -32,20 +32,20 @@ var Signup = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <form action='/api/v1/signup' method='post'>
-                    <Xsrf/>
-                    <div className='row'>
-                        <div className='small-12 medium-6 columns'>
-                            <h2>Sign Up</h2>
-                            You will be user #{this.props.data.signup.count} if you sign up now
+                <div className='row page-body align-center'>
+                    <div className='small-12 large-6 columns'>
+                        <h2>Sign Up</h2>
+                        You will be user #{this.props.data.signup.count} if you sign up now
+                        <form action='/api/v1/signup' method='post'>
+                            <Xsrf/>
                             <input type='text' name='username' placeholder='Username' required />
                             <input type='text' name='email' placeholder='E-mail' />
                             <input type='password' name='password' placeholder='Password' required/>
                             <input type='password' placeholder='Retype Password' required/>
                             <button type='submit' className='success button'>Save</button>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </span>
 
         );

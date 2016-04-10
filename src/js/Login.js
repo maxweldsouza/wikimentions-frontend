@@ -28,17 +28,17 @@ var Login = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <form action='/api/v1/login' method='post'>
-                    <Xsrf/>
-                    <div className='row'>
-                        <div className='small-12 medium-6 columns'>
+                <div className='row page-body align-center'>
+                    <div className='small-12 large-6 columns'>
+                        <form action='/api/v1/login' method='post'>
+                            <Xsrf/>
                             <h2>Login</h2>
                             <input type='text' name='username' placeholder='Username' />
                             <input type='password' name='password' placeholder='Password' />
                             <button type='submit' className='success button'>Submit</button>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </span>
         );
     }
