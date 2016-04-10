@@ -7,13 +7,24 @@ var Xsrf = require('./Xsrf');
 
 var Navbar = React.createClass({
     getInitialState () {
-        var session;
+        return {
+            loggedin: false,
+            username: '',
+            userid: ''
+        };
+    },
+    componentWillMount: function() {
+        var session, username, userid;
         if (isNode.isBrowser()) {
             session = cookies.get('mentions');
+            username = cookies.get('username');
+            userid = cookies.get('userid');
         }
-        return {
-            loggedin: session ? true : false
-        };
+        this.setState({
+            loggedin: session ? true : false,
+            username: username,
+            userid: userid
+        });
     },
     onSelectSearchResult (x) {
         var path = '/pages/' + x.id + '/' + x.slug;
@@ -31,7 +42,7 @@ var Navbar = React.createClass({
                 <li className='hide-for-large navbar-icon'>
                     <i className='ion-android-person'/>
                 </li>
-                <li  className='show-for-large'><a href='/users/1/maxweldsouza'>maxweldsouza</a></li>
+                <li  className='show-for-large'><a href={'/users/' + this.state.userid + '/' + this.state.username}>{this.state.username}</a></li>
                 <li className='show-for-large'>
                     <form action='/api/v1/logout' method='post'>
                         <Xsrf/>
@@ -60,7 +71,6 @@ var Navbar = React.createClass({
                         <li className='show-for-large'><a href='/create'>Create Page</a></li>
                     </ul>
                 </div>
-                {this.state.loggedin}
                 <div className='top-bar-right'>
                     {user}
                 </div>
