@@ -83,15 +83,9 @@ var ProfilePage = React.createClass({
             tabContent = <div className="tabs-panel is-active">
                 <div className='row'>
                     <div className='small-12 columns'>
-                        <label>Old Password
-                            <input type='password' name='password' placeholder='' />
-                        </label>
-                        <label>New Password
-                            <input type='password' name='password' placeholder='' />
-                        </label>
-                        <label>Repeat Password
-                            <input type='password' name='password' placeholder='' />
-                        </label>
+                        <input type='password' name='old' placeholder='Old Password' />
+                        <input type='password' name='new' placeholder='New Password' />
+                        <input type='password' name='repeat' placeholder='Repeat Password' />
                         <button type='submit' className='success button'>Submit</button>
                     </div>
                 </div>
