@@ -38,7 +38,7 @@ var BlogPostCreate = React.createClass({
                                 <input type='text' name='title' placeholder='Title' />
                                 <textarea name='content' placeholder='Content' />
                                 <div>
-                                    <button type='submit' className='success button'>Submit</button>
+                                    <button type='submit' className='success button'>Create</button>
                                 </div>
                             </form>
                         </div>

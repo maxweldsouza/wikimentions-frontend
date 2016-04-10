@@ -53,7 +53,7 @@ var AddVideo = React.createClass({
                 <input type='text' name='title' placeholder='Title' onChange={this.onChangeText}/>
                 <input type='text' name='url' placeholder='Url' onChange={this.onChangeText}/>
                 <div className="button-group">
-                    <button type="button" className="button" onClick={this.onSubmit}>Submit</button>
+                    <button type="button" className="button" onClick={this.onSubmit}>Add</button>
                     <button type="button" className="button" onClick={this.onClose}>Close</button>
                 </div>
             </div>;

@@ -73,7 +73,7 @@ var EditPage = React.createClass({
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
                             <input type="file" id="exampleFileUpload" className="show-for-sr"/>
                             <div>
-                                <button type='submit' className='success button'>Submit</button>
+                                <button type='submit' className='success button'>Save Changes</button>
                             </div>
                         </form>
                     </div>

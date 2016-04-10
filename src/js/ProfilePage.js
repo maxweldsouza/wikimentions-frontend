@@ -86,7 +86,7 @@ var ProfilePage = React.createClass({
                         <input type='password' name='old' placeholder='Old Password' />
                         <input type='password' name='new' placeholder='New Password' />
                         <input type='password' name='repeat' placeholder='Repeat Password' />
-                        <button type='submit' className='success button'>Submit</button>
+                        <button type='submit' className='success button'>Change Password</button>
                     </div>
                 </div>
             </div>;

@@ -37,12 +37,12 @@ var AddAuthors = React.createClass({
                         <Xsrf/>
                         <Select name='author' placeholder='Author'/>
                         <div className="small button-group">
-                            <button type="button" className="button" onClick={this.onSubmit}>Submit</button>
+                            <button type="button" className="button" onClick={this.onSubmit}>Add this author</button>
                             <button type="button" className="button" onClick={this.onClose}>Close</button>
                         </div>
                     </form>
                     </span> : <span>
-                    <button className='tiny button' onClick={this.onOpen}>Add Authors <span className='ion-plus-round'></span></button>
+                    <button className='tiny button' onClick={this.onOpen}>Add authors <span className='ion-plus-round'></span></button>
                 </span>}
             </span>
         );

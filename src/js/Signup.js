@@ -42,7 +42,7 @@ var Signup = React.createClass({
                             <input type='text' name='email' placeholder='E-mail (optional)' />
                             <input type='password' name='password' placeholder='Password' required/>
                             <input type='password' placeholder='Retype Password' required/>
-                            <button type='submit' className='success button'>Save</button>
+                            <button type='submit' className='success button'>Sign Up</button>
                         </form>
                     </div>
                 </div>
