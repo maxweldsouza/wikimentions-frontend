@@ -16,7 +16,7 @@ var AddBook = React.createClass({
         });
     },
     render () {
-        var options = ['New', 'Existing'];
+        var options = [{name:'New', value: 'New'}, {name: 'Existing', value:'Existing'}];
         return (
             <div>
                 Add a book by this author
