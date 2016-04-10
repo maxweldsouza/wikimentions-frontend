@@ -39,7 +39,7 @@ var Signup = React.createClass({
                         <form action='/api/v1/signup' method='post'>
                             <Xsrf/>
                             <input type='text' name='username' placeholder='Username' required />
-                            <input type='text' name='email' placeholder='E-mail' />
+                            <input type='text' name='email' placeholder='E-mail (optional)' />
                             <input type='password' name='password' placeholder='Password' required/>
                             <input type='password' placeholder='Retype Password' required/>
                             <button type='submit' className='success button'>Save</button>
