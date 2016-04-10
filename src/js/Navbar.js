@@ -6,13 +6,6 @@ var isNode = require('./isNode');
 var Xsrf = require('./Xsrf');
 
 var Navbar = React.createClass({
-    statics: {
-        resources (appstate) {
-            return {
-                api: []
-            };
-        }
-    },
     getInitialState () {
         var session;
         if (isNode.isBrowser()) {
