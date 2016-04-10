@@ -4,6 +4,7 @@ var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var _ = require('underscore');
 var cookies = require('browser-cookies');
+var ButtonSelect = require('./ButtonSelect');
 var Xsrf = require('./Xsrf');
 
 var EditPage = React.createClass({
@@ -25,14 +26,17 @@ var EditPage = React.createClass({
             type: this.props.data.thing.type
         };
     },
-    onChangeType (e) {
+    onChangeType (x) {
         this.setState({
-            type: e.currentTarget.value
+            type: x
         });
     },
     render () {
         var id = Number(this.props.path.split('/')[1]);
         var entry = this.props.data.thing;
+        var options = [{name: 'Book', value: 'book'},
+            {name: 'Person', value: 'person'},
+            {name: 'Video', value: 'video'}];
         return (
             <span>
                 <Helmet
@@ -60,11 +64,11 @@ var EditPage = React.createClass({
                             <Xsrf/>
                             <input type='hidden' name='action' value='update'/>
                             <input type='text' name='title' placeholder='Title' defaultValue={this.props.data.thing.title}/>
-                                <input type='text' name='description' placeholder='Description' defaultValue={this.props.data.thing.description}/>
-                            <select name='type' onChange={this.onChangeType} value={this.state.type} placeholder='Type'>
-                                <option value="book">Book</option>
-                                <option value="person">Person</option>
-                            </select>
+                            <input type='text' name='description' placeholder='Description' defaultValue={this.props.data.thing.description}/>
+                            <ButtonSelect
+                                name='type'
+                                options={options}
+                                onChange={this.onChangeType}/>
                             {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' defaultValue={this.props.data.thing.isbn}/> : null}
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
                             <input type="file" id="exampleFileUpload" className="show-for-sr"/>

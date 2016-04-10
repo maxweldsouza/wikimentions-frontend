@@ -9,7 +9,12 @@ var Signup = React.createClass({
     statics: {
         resources (appstate) {
             return {
-                api: []
+                api: [
+                    {
+                        name: 'signup',
+                        path: '/api/v1/signup'
+                    }
+                ]
             };
         }
     },
@@ -27,13 +32,14 @@ var Signup = React.createClass({
                     ]}
                     />
                 <Navbar/>
-                <form action='/api/v1/register' method='post'>
+                <form action='/api/v1/signup' method='post'>
                     <Xsrf/>
                     <div className='row'>
                         <div className='small-12 medium-6 columns'>
                             <h2>Sign Up</h2>
-                            You will be user #23 TODO
-                            <input type='email' name='email' placeholder='E-mail' required />
+                            You will be user #{this.props.data.signup.count} if you sign up now
+                            <input type='text' name='username' placeholder='Username' required />
+                            <input type='text' name='email' placeholder='E-mail' />
                             <input type='password' name='password' placeholder='Password' required/>
                             <input type='password' placeholder='Retype Password' required/>
                             <button type='submit' className='success button'>Save</button>

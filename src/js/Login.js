@@ -33,7 +33,7 @@ var Login = React.createClass({
                     <div className='row'>
                         <div className='small-12 medium-6 columns'>
                             <h2>Login</h2>
-                            <input type='email' name='email' placeholder='E-mail' />
+                            <input type='text' name='username' placeholder='Username' />
                             <input type='password' name='password' placeholder='Password' />
                             <button type='submit' className='success button'>Submit</button>
                         </div>
