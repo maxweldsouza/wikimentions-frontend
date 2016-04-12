@@ -67,6 +67,7 @@ var EditPage = React.createClass({
                             <input type='text' name='description' placeholder='Description' defaultValue={this.props.data.thing.description}/>
                             <ButtonSelect
                                 name='type'
+                                default={this.props.data.thing.type}
                                 options={options}
                                 onChange={this.onChangeType}/>
                             {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' defaultValue={this.props.data.thing.isbn}/> : null}
