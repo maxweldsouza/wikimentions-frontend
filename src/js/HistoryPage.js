@@ -39,69 +39,11 @@ var HistoryPage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>History</h1>
                         <div className='row'>
-                            <div className='small-12 large-6 columns'>
-                                <div className="row">
-                                    <div className="small-12 columns">
-                                        {history.map((x) => {
-                                            return <div>{x.value}</div>;
-                                        })}
-                                        By
-                                        <a href={'/users/1/maxweldsouza'}>maxweldsouza</a>
-                                        4 days ago
-                                    </div>
-                                    <div className="small-12 columns">
-                                        Title: V.S. Ramachandran
-                                    </div>
-                                    <div className="small-12 columns">
-                                        Short Description: V.S. Ramachandran
-                                    </div>
-                                    <div className="small-12 columns">
-                                        Type: Book
-                                    </div>
-                                    <div className="small-12 columns">
-                                        Slug: v-s-ramachandran
-                                    </div>
-                                    <div className="small-12 columns">
-                                        ISBN: 123456789
-                                    </div>
-                                </div>
-                                <div className="row ">
-                                    <div className="small-12 columns">
-
-                                        <a href='#'>Restore</a>
-                                        <a href='#'>Report abuse</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='small-12 large-6 columns'>
-                                <div className="row">
-                                    <div className="small-12 columns">
-                                        By
-                                        <a href={'/users/1/maxweldsouza'}>maxweldsouza</a>
-                                        4 days ago
-                                    </div>
-                                    <div className="small-12 columns">
-                                        Title: V.S. Ramachandran
-                                    </div>
-                                    <div className="small-12 columns">
-                                        Short Description: V.S. Ramachandran
-                                    </div>
-                                    <div className="small-12 columns">
-                                        Type: Book
-                                    </div>
-                                    <div className="small-12 columns">
-                                        Slug: v-s-ramachandran
-                                    </div>
-                                    <div className="small-12 columns">
-                                        ISBN: 123456789
-                                    </div>
-                                </div>
-                                <div className="row ">
-                                    <div className="small-12 columns">
-                                        <a href='#'>Restore</a>
-                                        <a href='#'>Report abuse</a>
-                                    </div>
-                                </div>
+                            <div className="small-12 columns">
+                                {history.history.map((x) => {
+                                    var added = x.deleted ? 'deleted' : 'added';
+                                    return <div><a href={'/users/' + x.user + '/' + x.username}>{x.username}</a> {added} at {x.timestamp}</div>;
+                                })}
                             </div>
                         </div>
                     </div>
