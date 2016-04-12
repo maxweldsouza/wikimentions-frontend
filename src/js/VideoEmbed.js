@@ -1,20 +1,6 @@
 var React = require('react');
 var queryString = require('query-string');
-
-var parseUrl = function (url) {
-    var parser = document.createElement('a');
-    parser.href = url;
-    return {
-        protocol: parser.protocol,
-        host: parser.host,
-        hostname: parser.hostname,
-        port: parser.port,
-        pathname: parser.pathname,
-        hash: parser.hash,
-        search: parser.search,
-        origin: parser.origin
-    };
-}
+var parseUrl = require('url-parse');
 
 var YoutubeEmbed = React.createClass({
     getDefaultProps () {
@@ -27,7 +13,7 @@ var YoutubeEmbed = React.createClass({
         var embed;
         var parsed = parseUrl(this.props.url);
         if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
-            var queryObject = queryString.parse(parsed.search);
+            var queryObject = queryString.parse(parsed.query);
             embed = <iframe
                 id='ytplayer'
                 type='text/html'
