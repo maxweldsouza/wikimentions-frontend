@@ -13,7 +13,7 @@ var HistoryPage = React.createClass({
                 api: [
                     {
                         name: 'history',
-                        path: '/api/v1/thing/' + id
+                        path: '/api/v1/history/' + id
                     }
                 ]
             };
@@ -21,7 +21,7 @@ var HistoryPage = React.createClass({
     },
     render () {
         var id = Number(this.props.path.split('/')[1]);
-        var entry = this.props.data.history;
+        var history = this.props.data.history;
         return (
             <span>
                 <Helmet
@@ -38,18 +38,13 @@ var HistoryPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>History</h1>
-                        <span className='edit-links'>
-                            <a href={'/pages/' + id + '/' + entry.slug}>Page</a>
-                            {' | '}
-                            <a href={'/edit/' + id + '/' + entry.slug}>Edit</a>
-                            {' | '}
-                            <a href={'/discuss/' + id + '/' + entry.slug}>Discuss</a>
-                            {' | History'}
-                        </span>
                         <div className='row'>
                             <div className='small-12 large-6 columns'>
                                 <div className="row">
                                     <div className="small-12 columns">
+                                        {history.map((x) => {
+                                            return <div>{x.value}</div>;
+                                        })}
                                         By
                                         <a href={'/users/1/maxweldsouza'}>maxweldsouza</a>
                                         4 days ago
