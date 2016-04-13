@@ -5,6 +5,7 @@ var Navbar = require('./Navbar');
 var moment = require('moment');
 var Comment = require('./Comment');
 var _ = require('underscore');
+var Xsrf = require('./Xsrf');
 
 var DiscussPage = React.createClass({
     statics: {
@@ -15,7 +16,7 @@ var DiscussPage = React.createClass({
                 api: [
                     {
                         name: 'discuss',
-                        path: '/api/v1/thing/' + id
+                        path: '/api/v1/discuss/' + id
                     }
                 ]
             };
@@ -33,10 +34,10 @@ var DiscussPage = React.createClass({
                 {discussions.map((x) => {
                     return <Comment
                         id={x.id}
-                        user={x.user_id}
+                        user={x.user}
                         name={x.username}
-                        text={x.text}
-                        posted={x.posted}
+                        text={x.content}
+                        posted={x.created}
                         />;
                 })}
             </div>;
@@ -71,13 +72,14 @@ var DiscussPage = React.createClass({
                         {main}
                         <div className="row">
                             <div className='discuss-reply small-12 columns'>
-                                <form action='' method='post'>
+                                <form action={'/api/v1/discuss/' + id} method='post'>
+                                    <Xsrf/>
                                     <div className="row">
                                         <div className="small-12 columns">
-                                            <input type="text" placeholder='Reply'></input>
+                                            <input type="text" name='content' placeholder='Reply'></input>
                                         </div>
                                         <div className="small-12 columns">
-                                            <button type='button' className='button'>Submit</button>
+                                            <button type='submit' className='button'>Submit</button>
                                         </div>
                                     </div>
                                 </form>
