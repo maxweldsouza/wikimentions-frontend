@@ -60,6 +60,7 @@ var Select = React.createClass({
                     name={this.props.name}
                     type='hidden'
                     value={this.state.value}
+                    required={this.props.required}
                     />
                 {this.state.options.length > 0 ? <div className='select-options'>
                     {this.state.options.map((x) => {

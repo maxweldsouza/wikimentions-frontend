@@ -43,31 +43,43 @@ var AddMention = React.createClass({
         });
     },
     onSubmit () {
-        requests
-        .post('/api/v1/mentions/' + this.props.id)
-        .type('form')
-        .send({
-            action: 'create',
-            description: this.state.description,
-            references: this.state.references,
-            mentioned_by: this.state.mentioned_by,
-            mentioned_in: this.state.mentioned_in,
-            mentioned: this.state.mentioned,
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
+        if (!this.state.mentioned_by) {
             this.setState({
-                submiting: false
+                error: true,
+                message: 'Mentioned By is empty'
             });
-            if (err.status) {
+        } else if (!this.state.mentioned){
+            this.setState({
+                error: true,
+                message: 'Mentioned is empty'
+            });
+        } else {
+            requests
+            .post('/api/v1/mentions/' + this.props.id)
+            .type('form')
+            .send({
+                action: 'create',
+                description: this.state.description,
+                references: this.state.references,
+                mentioned_by: this.state.mentioned_by,
+                mentioned_in: this.state.mentioned_in,
+                mentioned: this.state.mentioned,
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end((err, res) => {
                 this.setState({
-                    error: true,
-                    message: res.body.message
+                    submiting: false
                 });
-            } else {
-                Mentions.route(window.location.pathname + window.location.search);
-            }
-        })
+                if (err.status) {
+                    this.setState({
+                        error: true,
+                        message: res.body.message
+                    });
+                } else {
+                    Mentions.route(window.location.pathname + window.location.search);
+                }
+            })
+        }
     },
     onChangeMentionedBy (x) {
         this.setState({
