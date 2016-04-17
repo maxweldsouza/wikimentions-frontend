@@ -121,6 +121,7 @@ app.get(/^(.+)$/, function(req, res, next) {
 app.use(function(err, req, res, next) {
     if (err) {
         var message;
+        var content;
         var status = err.status || 500;
         if (err.status === 404) {
             message = 'Not found';
@@ -128,10 +129,13 @@ app.use(function(err, req, res, next) {
             message = 'Internal Error';
         }
         res.status(status);
-        res.send({
-            message: message,
-            status: status
-        });
+        res.send(compiledTemplate({
+            title: message,
+            meta: '',
+            link: '',
+            apidata: {},
+            content: message
+        }));
     }
 });
 
