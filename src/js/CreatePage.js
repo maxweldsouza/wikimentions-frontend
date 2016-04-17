@@ -53,6 +53,7 @@ var HomePage = React.createClass({
         .send({
             title: this.state.title,
             description: this.state.description,
+            type: this.state.type,
             isbn: this.state.isbn,
             action: 'create',
             _xsrf: cookies.get('_xsrf')
