@@ -5,6 +5,7 @@ var Navbar = require('./Navbar');
 var Select = require('./Select');
 var cookies = require('browser-cookies');
 var requests = require('superagent');
+var Notification = require('./Notification');
 
 var AddMention = React.createClass({
     getInitialState: function() {
@@ -14,7 +15,10 @@ var AddMention = React.createClass({
             mentioned_in: this.props.mentioned_in,
             mentioned: this.props.mentioned,
             description: '',
-            references: ''
+            references: '',
+            submiting: false,
+            error: false,
+            message: ''
         };
     },
     onOpen () {
@@ -32,6 +36,12 @@ var AddMention = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
+    onCloseError () {
+        this.setState({
+            error: false,
+            message: ''
+        });
+    },
     onSubmit () {
         requests
         .post('/api/v1/mentions/' + this.props.id)
@@ -46,7 +56,15 @@ var AddMention = React.createClass({
             _xsrf: cookies.get('_xsrf')
         })
         .end((err, res) => {
-            if (!err) {
+            this.setState({
+                submiting: false
+            });
+            if (err.status) {
+                this.setState({
+                    error: true,
+                    message: res.body.message
+                });
+            } else {
                 Mentions.route(window.location.pathname + window.location.search);
             }
         })
@@ -71,6 +89,7 @@ var AddMention = React.createClass({
         var result;
         if (this.state.opened) {
             result = <div className='small-12 columns'>
+                <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                 {this.props.mentioned_by ? null : <Select
                     name='mentioned_by'
                     placeholder='Mentioned By (Person)'
