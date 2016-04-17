@@ -46,7 +46,7 @@ var BlogPage = React.createClass({
             <div className='flex-wrapper'>
                 <Helmet
                     title='Blog'
-                    titleTemplate='%s - Comparnion Blog'
+                    titleTemplate='%s - Mentions'
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
