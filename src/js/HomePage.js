@@ -47,7 +47,7 @@ var HomePage = React.createClass({
         this.loadData(this.state.pageno + 1);
     },
     render () {
-        var mentions = [];//this.state.newmentions;
+        var mentions = [];// this.state.newmentions;
         var stats = this.props.data.stats;
         var options = ['Add New', 'Add Existing'];
         return (

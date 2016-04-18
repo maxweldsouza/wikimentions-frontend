@@ -7,7 +7,7 @@ var cookies = require('browser-cookies');
 var requests = require('superagent');
 
 var AddVideo = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             opened: false,
             title: '',
@@ -43,7 +43,7 @@ var AddVideo = React.createClass({
             if (!err) {
                 Mentions.route(window.location.pathname + window.location.search);
             }
-        })
+        });
     },
     render () {
         var id = this.props.id;

@@ -16,7 +16,7 @@ var pageNoFromPath = function (path) {
         page = 0;
     }
     return page;
-}
+};
 
 var BlogPage = React.createClass({
     statics: {

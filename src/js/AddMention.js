@@ -8,7 +8,7 @@ var requests = require('superagent');
 var Notification = require('./Notification');
 
 var AddMention = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             opened: false,
             mentioned_by: this.props.mentioned_by,
@@ -48,7 +48,7 @@ var AddMention = React.createClass({
                 error: true,
                 message: 'Mentioned By is empty'
             });
-        } else if (!this.state.mentioned){
+        } else if (!this.state.mentioned) {
             this.setState({
                 error: true,
                 message: 'Mentioned is empty'
@@ -78,7 +78,7 @@ var AddMention = React.createClass({
                 } else {
                     Mentions.route(window.location.pathname + window.location.search);
                 }
-            })
+            });
         }
     },
     onChangeMentionedBy (x) {
@@ -106,11 +106,11 @@ var AddMention = React.createClass({
                     name='mentioned_by'
                     placeholder='Mentioned By (Person)'
                     onSelectValue={this.onChangeMentionedBy}/>}
-                {this.props.mentioned ? null :<Select
+                {this.props.mentioned ? null : <Select
                     name='mentioned'
                     placeholder='Mentioned (Person or Book or Video)'
                     onSelectValue={this.onChangeMentioned}/>}
-                {this.props.mentioned_in ? null :<Select
+                {this.props.mentioned_in ? null : <Select
                     name='mentioned_in'
                     placeholder='Mentioned In (Book or Video)'
                     onSelectValue={this.onChangeMentionedIn}/>}

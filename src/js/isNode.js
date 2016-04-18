@@ -9,4 +9,4 @@ var isNode = function () {
 module.exports = {
     isNode: isNode,
     isBrowser: isBrowser
-}
+};

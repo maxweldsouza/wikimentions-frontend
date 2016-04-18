@@ -8,7 +8,7 @@ var Notification = React.createClass({
                     {this.props.message}
                     {this.props.closeable ? <button className="close-button" aria-label="Dismiss alert" type="button" onClick={this.props.onClose}>
                     <span aria-hidden="true">&times;</span>
-                    </button>: null}
+                    </button> : null}
                 </div>
             );
         }

@@ -39,7 +39,7 @@ var ThingPage = React.createClass({
     },
     getInitialState () {
         return {
-            tab: 'mentioned',
+            tab: 'mentioned'
         };
     },
     changeTab (x) {
@@ -60,7 +60,7 @@ var ThingPage = React.createClass({
         tabs = tabs.concat(['mentioned', 'mentionedby']);
         var tabTitles = {
             'mentioned': 'Mentioned',
-            'mentionedby': 'Mentioned By',
+            'mentionedby': 'Mentioned By'
         };
         var tab = <ul className="tabs">
             {tabs.map((x) => {

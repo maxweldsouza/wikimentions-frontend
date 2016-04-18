@@ -50,7 +50,7 @@ var ThingPage = React.createClass({
     },
     getInitialState () {
         return {
-            tab: 'mentioned',
+            tab: 'mentioned'
         };
     },
     changeTab (x) {

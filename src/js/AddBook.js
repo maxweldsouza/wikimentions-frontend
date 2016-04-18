@@ -5,7 +5,7 @@ var AddBookExisting = require('./AddBookExisting');
 var Notification = require('./Notification');
 
 var AddBook = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             type: 'New'
         };
@@ -16,7 +16,7 @@ var AddBook = React.createClass({
         });
     },
     render () {
-        var options = [{name:'New', value: 'New'}, {name: 'Existing', value:'Existing'}];
+        var options = [{ name: 'New', value: 'New' }, { name: 'Existing', value: 'Existing' }];
         return (
             <div>
                 Add a book by this author

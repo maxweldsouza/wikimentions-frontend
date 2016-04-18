@@ -7,7 +7,7 @@ var YoutubeEmbed = React.createClass({
         return {
             width: 640,
             height: 390
-        }
+        };
     },
     render () {
         var embed;
@@ -22,26 +22,26 @@ var YoutubeEmbed = React.createClass({
                 src={'http://www.youtube.com/embed/' + queryObject.v + '?autoplay=1'} frameBorder={0}></iframe>;
         } else if (parsed.hostname === 'embed-ssl.ted.com') {
             embed = <iframe src={this.props.url}
-                width="640"
-                height="360"
-                frameBorder="0"
-                scrolling="no"
-                webkitallowfullscreen
-                mozallowfullscreen
+                width='640'
+                height='360'
+                frameBorder='0'
+                scrolling='no'
+                webkitAllowFullScreen
+                mozAllowFullScreen
                 allowFullScreen></iframe>;
         } else if (parsed.hostname === 'vimeo.com') {
             var id = parsed.pathname.split('/')[2];
             embed = <iframe
-                src={"https://player.vimeo.com/video/" + id}
-                width="500"
-                height="281"
-                frameborder="0"
-                webkitallowfullscreen
-                mozallowfullscreen
-                allowfullscreen></iframe>
+                src={'https://player.vimeo.com/video/' + id}
+                width='500'
+                height='281'
+                frameBorder='0'
+                webkitAllowFullScreen
+                mozAllowFullScreen
+                allowFullScreen></iframe>;
         } else {
             embed = <a href={this.props.url}>
-                <img className="" src="/assets/videolarge.png" alt=""/>
+                <img className='' src='/assets/videolarge.png' alt=''/>
             </a>;
         }
         return (

@@ -4,7 +4,7 @@ var requests = require('superagent');
 var Xsrf = require('./Xsrf');
 
 var AddAuthors = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             opened: false
         };
@@ -24,7 +24,7 @@ var AddAuthors = React.createClass({
         .post('/api')
         .send({ name: 'Manny', species: 'cat' })
         .set('Accept', 'application/json')
-        .end(function(err, res){
+        .end(function (err, res) {
             // Calling the end function will send the request
         });
     },

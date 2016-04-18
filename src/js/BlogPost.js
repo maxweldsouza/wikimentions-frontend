@@ -6,7 +6,7 @@ var Markdown = require('./Markdown');
 var BlogPost = React.createClass({
     render () {
         var added = moment(this.props.added + '+0000');
-        added = added.format("MMMM Do YYYY");
+        added = added.format('MMMM Do YYYY');
         var path = '/blog/' + this.props.slug;
         return (
             <div className='blog-post'>

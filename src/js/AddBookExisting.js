@@ -6,7 +6,7 @@ var Notification = require('./Notification');
 var SubmitButton = require('./SubmitButton');
 
 var AddBookExisting = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             book_id: '',
             error: false,

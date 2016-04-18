@@ -33,7 +33,7 @@ var HomePage = React.createClass({
         });
     },
     onChangeText (e) {
-        var temp = {}
+        var temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
@@ -70,7 +70,7 @@ var HomePage = React.createClass({
             } else {
                 Mentions.route(res.body.redirect);
             }
-        })
+        });
     },
     render () {
         var options = [{name: 'Book', value: 'book'},
@@ -95,7 +95,7 @@ var HomePage = React.createClass({
                             <h1 className='page-title'>Create Page</h1>
                             <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                             <input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} required/>
-                            <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description}  onChange={this.onChangeText}/>
+                            <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
                             <div className='row'>
                                 <div className='small-12 medium-6 columns'>
                                     <label>Type
