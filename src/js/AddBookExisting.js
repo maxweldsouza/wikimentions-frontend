@@ -3,16 +3,18 @@ var cookies = require('browser-cookies');
 var requests = require('superagent');
 var Select = require('./Select');
 var Notification = require('./Notification');
+var SubmitButton = require('./SubmitButton');
 
 var AddBookExisting = React.createClass({
     getInitialState: function() {
         return {
             book_id: '',
             error: false,
-            message: ''
+            message: '',
+            submitting: false
         };
     },
-    onSelect () {
+    onSelect (x) {
         this.setState({
             book_id: x.id
         });
@@ -24,6 +26,9 @@ var AddBookExisting = React.createClass({
         });
     },
     onSubmit () {
+        this.setState({
+            submitting: true
+        });
         requests
         .post('/api/v1/thing/' + this.props.id + '/books')
         .type('form')
@@ -33,7 +38,7 @@ var AddBookExisting = React.createClass({
         })
         .end((err, res) => {
             this.setState({
-                submiting: false
+                submitting: false
             });
             if (err.status) {
                 this.setState({
@@ -43,7 +48,7 @@ var AddBookExisting = React.createClass({
             } else {
                 Mentions.route(window.location.pathname + window.location.search);
             }
-        })
+        });
     },
     render () {
         return (
@@ -51,7 +56,7 @@ var AddBookExisting = React.createClass({
                 <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                 Search for the title of a book to add
                 <Select name='book_id' placeholder='Search for book' onSelectValue={this.onSelect}/>
-                <button type='button' className='button' onClick={this.onSubmit}>Save</button>
+                <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </form>
         );
     }
