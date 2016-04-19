@@ -1,16 +1,21 @@
+.discuss-card {
+    background: $white;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
 .discuss-empty {
     margin-top: $global-margin;
 }
 
 .discuss-comment + .discuss-comment {
-    border-bottom: solid 1px #cacaca;
+    border-bottom: solid 1px $medium-gray;
     padding-top: $global-margin;
 }
 
 .discuss-comment:first-of-type {
-    border-top: solid 1px #cacaca;
+    border-top: solid 1px $medium-gray;
     padding-top: $global-margin;
-    border-bottom: solid 1px #cacaca;
+    border-bottom: solid 1px $medium-gray;
 }
 
 .discuss-username {

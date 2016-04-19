@@ -69,20 +69,24 @@ var DiscussPage = React.createClass({
                             {' | Discuss | '}
                             <a href={'/history/' + id + '/' + slug}>History</a>
                         </span>
-                        {main}
-                        <div className="row">
-                            <div className='discuss-reply small-12 columns'>
-                                <form action={'/api/v1/discuss/' + id} method='post'>
-                                    <Xsrf/>
-                                    <div className="row">
-                                        <div className="small-12 columns">
-                                            <input type="text" name='content' placeholder='Reply'></input>
-                                        </div>
-                                        <div className="small-12 columns">
-                                            <button type='submit' className='button'>Submit</button>
-                                        </div>
+                        <div className='row'>
+                            <div className='small-12 columns'>
+                                <div className='discuss-card'>
+                                    {main}
+                                    <div className='discuss-reply small-12 columns'>
+                                        <form action={'/api/v1/discuss/' + id} method='post'>
+                                            <Xsrf/>
+                                            <div className='row'>
+                                                <div className='small-12 columns'>
+                                                    <input type='text' name='content' placeholder='Reply'></input>
+                                                </div>
+                                                <div className='small-12 columns'>
+                                                    <button type='submit' className='button'>Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>

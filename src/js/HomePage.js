@@ -68,6 +68,13 @@ var HomePage = React.createClass({
                         <h2>New Mentions</h2>
                         <div className='row'>
                             <div className='small-12 columns'>
+                                <button type="button" className="primary button">Primary</button>
+                                <button type="button" className="secondary button">Secondary</button>
+                                <button type="button" className="success button">Success</button>
+                                <button type="button" className="alert button">Alert</button>
+                                <button type="button" className="warning button">Warning</button>
+                            </div>
+                            <div classNameName='small-12 columns'>
                                 <a href='/pages/108/richard-dawkins'>Richard Dawkins</a>
                                 <div>
                                     people: {stats.people}
