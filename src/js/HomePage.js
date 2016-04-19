@@ -8,6 +8,7 @@ var Mention = require('./Mention');
 var Pagination = require('./Pagination');
 var requests = require('superagent');
 var ButtonSelect = require('./ButtonSelect');
+var config = require('./config');
 
 var HomePage = React.createClass({
     statics: {
@@ -67,6 +68,7 @@ var HomePage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <h2>New Mentions</h2>
                         <div className='row'>
+                            {config.twitter}
                             <div className='small-12 columns'>
                                 <button type="button" className="primary button">Primary</button>
                                 <button type="button" className="secondary button">Secondary</button>
