@@ -25,7 +25,24 @@ var DiscussReply = React.createClass({
             message: ''
         });
     },
+    validateForm () {
+        var message;
+        if (!this.state.content) {
+            message = 'Your post is empty';
+        }
+        if (message) {
+            this.setState({
+                error: true,
+                message: message
+            });
+            return false;
+        }
+        return true;
+    },
     onSubmit () {
+        if (!this.validateForm()) {
+            return;
+        }
         this.setState({
             submitting: true
         });
@@ -58,7 +75,7 @@ var DiscussReply = React.createClass({
                     <div className='row'>
                         <div className='small-12 columns'>
                             <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
-                            <input type='text' name='content' placeholder='Reply' value={this.state.content} onChange={this.onChangeText}></input>
+                            <textarea type='text' name='content' placeholder='Write your post  here (Markdown is supported)' value={this.state.content} onChange={this.onChangeText} rows='5'></textarea>
                         </div>
                         <div className='small-12 columns'>
                             <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
