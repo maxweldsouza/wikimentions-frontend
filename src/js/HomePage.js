@@ -66,7 +66,6 @@ var HomePage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h2>New Mentions</h2>
-                        <ButtonSelect options={options}/>
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <a href='/pages/108/richard-dawkins'>Richard Dawkins</a>
