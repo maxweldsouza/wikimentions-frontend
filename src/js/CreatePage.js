@@ -33,7 +33,10 @@ var HomePage = React.createClass({
         });
     },
     onChangeText (e) {
-        var temp = {};
+        var temp = {
+            error: false,
+            message: ''
+        };
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
@@ -43,7 +46,24 @@ var HomePage = React.createClass({
             message: ''
         });
     },
+    validateForm () {
+        var message;
+        if (!this.state.title) {
+            message = 'You need to provide a title'
+        }
+        if (message) {
+            this.setState({
+                error: true,
+                message: message
+            });
+            return false;
+        }
+        return true;
+    },
     onSubmit () {
+        if (!this.validateForm()) {
+            return;
+        }
         this.setState({
             submiting: true
         });
