@@ -1,12 +1,19 @@
 var React = require('react');
-var Select = require('./Select');
+var ButtonSelect = require('./ButtonSelect');
+var cookies = require('browser-cookies');
+var Notification = require('./Notification');
 var requests = require('superagent');
-var Xsrf = require('./Xsrf');
+var Select = require('./Select');
+var SubmitButton = require('./SubmitButton');
 
 var AddAuthors = React.createClass({
     getInitialState () {
         return {
-            opened: false
+            opened: false,
+            author: '',
+            submiting: false,
+            error: false,
+            message: ''
         };
     },
     onOpen () {
@@ -19,14 +26,45 @@ var AddAuthors = React.createClass({
             opened: false
         });
     },
-    onSubmit () {
-        requests
-        .post('/api')
-        .send({ name: 'Manny', species: 'cat' })
-        .set('Accept', 'application/json')
-        .end(function (err, res) {
-            // Calling the end function will send the request
+    onChangeAuthor (x) {
+        this.setState({
+            author: x.id
         });
+    },
+    onCloseError () {
+        this.setState({
+            error: false,
+            message: ''
+        });
+    },
+    onSubmit () {
+        if (!this.state.author) {
+            this.setState({
+                error: true,
+                message: 'You need to add an author'
+            });
+        } else {
+            requests
+            .post('/api/v1/thing/' + this.props.id + '/booksby')
+            .type('form')
+            .send({
+                author_id: this.state.author,
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end((err, res) => {
+                this.setState({
+                    submiting: false
+                });
+                if (err && err.status) {
+                    this.setState({
+                        error: true,
+                        message: res.body.message
+                    });
+                } else {
+                    Mentions.route(window.location.pathname + window.location.search);
+                }
+            });
+        }
     },
     render () {
         var id = this.props.id;
@@ -34,10 +72,12 @@ var AddAuthors = React.createClass({
             <span>
                 {this.state.opened ? <span>
                     <form action='' method='post'>
-                        <Xsrf/>
-                        <Select name='author' placeholder='Author'/>
+                        <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
+                        <Select name='author'
+                            placeholder='Author'
+                            onSelectValue={this.onChangeAuthor}/>
                         <div className="small button-group">
-                            <button type="button" className="button" onClick={this.onSubmit}>Add this author</button>
+                            <SubmitButton title='Add Author' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                             <button type="button" className="button" onClick={this.onClose}>Close</button>
                         </div>
                     </form>
