@@ -30,6 +30,8 @@ var AddVideo = React.createClass({
         this.setState(temp);
     },
     onSubmit () {
+        console.log('TODO add video new and existing');
+        return;
         requests
         .post('/api/v1/thing/' + this.props.id + '/videos')
         .type('form')
