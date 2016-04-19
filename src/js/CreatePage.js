@@ -7,6 +7,7 @@ var cookies = require('browser-cookies');
 var ButtonSelect = require('./ButtonSelect');
 var Notification = require('./Notification');
 var requests = require('superagent');
+var SubmitButton = require('./SubmitButton');
 
 var HomePage = React.createClass({
     statics: {
@@ -132,7 +133,7 @@ var HomePage = React.createClass({
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
                             <input type="file" id="exampleFileUpload" className="show-for-sr"/>
                             <div>
-                                {this.state.submiting ? <button type='button' className='success button disabled' onClick={this.onSubmit}>Create</button> : <button type='button' className='success button' onClick={this.onSubmit}>Create</button>}
+                                <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                             </div>
                         </form>
                     </div>
