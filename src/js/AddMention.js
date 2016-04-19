@@ -70,7 +70,7 @@ var AddMention = React.createClass({
                 this.setState({
                     submiting: false
                 });
-                if (err.status) {
+                if (err && err.status) {
                     this.setState({
                         error: true,
                         message: res.body.message

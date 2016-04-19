@@ -5,7 +5,9 @@ var Mention = require('./Mention');
 var _ = require('underscore');
 var cookies = require('browser-cookies');
 var ButtonSelect = require('./ButtonSelect');
-var Xsrf = require('./Xsrf');
+var Notification = require('./Notification');
+var SubmitButton = require('./SubmitButton');
+var requests = require('superagent');
 
 var EditPage = React.createClass({
     statics: {
@@ -23,12 +25,78 @@ var EditPage = React.createClass({
     },
     getInitialState () {
         return {
-            type: this.props.data.thing.type
+            type: this.props.data.thing.type,
+            title: this.props.data.thing.title,
+            description: this.props.data.thing.description,
+            isbn: this.props.data.thing.isbn,
+            submiting: false,
+            error: false,
+            message: ''
         };
     },
     onChangeType (x) {
         this.setState({
             type: x
+        });
+    },
+    onChangeText (e) {
+        var temp = {
+            error: false,
+            message: ''
+        };
+        temp[e.target.name] = e.target.value;
+        this.setState(temp);
+    },
+    onCloseError () {
+        this.setState({
+            error: false,
+            message: ''
+        });
+    },
+    validateForm () {
+        var message;
+        if (!this.state.title) {
+            message = 'You need to provide a title'
+        }
+        if (message) {
+            this.setState({
+                error: true,
+                message: message
+            });
+            return false;
+        }
+        return true;
+    },
+    onSubmit () {
+        if (!this.validateForm()) {
+            return;
+        }
+        this.setState({
+            submiting: true
+        });
+        requests
+        .post('/api/v1/thing')
+        .type('form')
+        .send({
+            title: this.state.title,
+            description: this.state.description,
+            type: this.state.type,
+            isbn: this.state.isbn,
+            action: 'update',
+            _xsrf: cookies.get('_xsrf')
+        })
+        .end((err, res) => {
+            this.setState({
+                submiting: false
+            });
+            if (err && err.status) {
+                this.setState({
+                    error: true,
+                    message: res.body.message
+                });
+            } else {
+                Mentions.route(res.body.redirect);
+            }
         });
     },
     render () {
@@ -61,10 +129,9 @@ var EditPage = React.createClass({
                             <a href={'/history/' + id + '/' + entry.slug}>History</a>
                         </span>
                         <form action={'/api/v1/thing/' + id} method='post'>
-                            <Xsrf/>
-                            <input type='hidden' name='action' value='update'/>
-                            <input type='text' name='title' placeholder='Title' defaultValue={this.props.data.thing.title}/>
-                            <input type='text' name='description' placeholder='Description' defaultValue={this.props.data.thing.description}/>
+                            <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
+                            <input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} required/>
+                            <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
                             <ButtonSelect
                                 name='type'
                                 default={this.props.data.thing.type}
@@ -73,9 +140,7 @@ var EditPage = React.createClass({
                             {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' defaultValue={this.props.data.thing.isbn}/> : null}
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
                             <input type="file" id="exampleFileUpload" className="show-for-sr"/>
-                            <div>
-                                <button type='submit' className='success button'>Save Changes</button>
-                            </div>
+                            <SubmitButton title='Save' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                         </form>
                     </div>
                 </div>
