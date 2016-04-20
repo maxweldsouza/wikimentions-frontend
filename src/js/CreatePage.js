@@ -118,16 +118,15 @@ var HomePage = React.createClass({
                             <input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} required/>
                             <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
                             <div className='row'>
-                                <div className='small-12 medium-6 columns'>
+                                <div className='small-12 columns'>
                                     <label>Type
                                         <ButtonSelect
                                             name='type'
                                             options={options}
                                             onChange={this.onChangeType}/>
                                     </label>
-                                </div>
-                                <div className='small-12 medium-6 columns'>
                                     {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/> : null}
+                                    {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
                                 </div>
                             </div>
                             <label htmlFor="exampleFileUpload" className="button">Upload Image</label>

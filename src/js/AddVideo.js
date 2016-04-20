@@ -2,16 +2,20 @@ var React = require('react');
 
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
-var Select = require('./Select');
 var cookies = require('browser-cookies');
 var requests = require('superagent');
+var Select = require('./Select');
+var Notification = require('./Notification');
+var SubmitButton = require('./SubmitButton');
 
 var AddVideo = React.createClass({
     getInitialState () {
         return {
             opened: false,
-            title: '',
-            url: ''
+            video_id: '',
+            error: false,
+            message: '',
+            submitting: false
         };
     },
     onOpen () {
@@ -24,21 +28,23 @@ var AddVideo = React.createClass({
             opened: false
         });
     },
-    onChangeText (e) {
-        var temp = {};
-        temp[e.target.name] = e.target.value;
-        this.setState(temp);
+    onSelect (x) {
+        this.setState({
+            video_id: x.id
+        });
+    },
+    onCloseError () {
+        this.setState({
+            error: false,
+            message: ''
+        });
     },
     onSubmit () {
-        console.log('TODO add video new and existing');
-        return;
         requests
         .post('/api/v1/thing/' + this.props.id + '/videos')
         .type('form')
         .send({
-            title: this.state.title,
-            url: this.state.url,
-            action: 'create',
+            video_id: this.state.video_id,
             _xsrf: cookies.get('_xsrf')
         })
         .end((err, res) => {
@@ -52,12 +58,9 @@ var AddVideo = React.createClass({
         var result;
         if (this.state.opened) {
             result = <div className='small-12 columns'>
-                <input type='text' name='title' placeholder='Title' onChange={this.onChangeText}/>
-                <input type='text' name='url' placeholder='Url' onChange={this.onChangeText}/>
-                <div className="button-group">
-                    <button type="button" className="button" onClick={this.onSubmit}>Add</button>
-                    <button type="button" className="button" onClick={this.onClose}>Close</button>
-                </div>
+                <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
+                <Select name='video_id' placeholder='Search for video' onSelectValue={this.onSelect}/>
+                <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </div>;
         } else {
             result = <div className='small-12 columns'>
