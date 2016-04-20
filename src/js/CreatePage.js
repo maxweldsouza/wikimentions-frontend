@@ -23,6 +23,7 @@ var HomePage = React.createClass({
             title: '',
             description: '',
             isbn: '',
+            url: '',
             submiting: false,
             error: false,
             message: ''
@@ -76,6 +77,7 @@ var HomePage = React.createClass({
             description: this.state.description,
             type: this.state.type,
             isbn: this.state.isbn,
+            url: this.state.url,
             action: 'create',
             _xsrf: cookies.get('_xsrf')
         })
