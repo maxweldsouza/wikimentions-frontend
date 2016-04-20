@@ -23,9 +23,9 @@ var ButtonSelect = React.createClass({
                 {this.props.options.map((x) => {
                     var cls;
                     if (this.state.selected === x.value) {
-                        cls = 'button primary';
+                        cls = 'button small primary';
                     } else {
-                        cls = 'button secondary';
+                        cls = 'button small secondary hollow';
                     }
                     return <button type='button' className={cls} onClick={this.onChangeSelected.bind(null, x.value)}>{x.name}</button>;
                 })}
