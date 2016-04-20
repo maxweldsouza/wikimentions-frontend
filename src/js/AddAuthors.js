@@ -49,6 +49,7 @@ var AddAuthors = React.createClass({
             .type('form')
             .send({
                 author_id: this.state.author,
+                action: 'add',
                 _xsrf: cookies.get('_xsrf')
             })
             .end((err, res) => {
