@@ -40,6 +40,9 @@ var AddVideo = React.createClass({
         });
     },
     onSubmit () {
+        this.setState({
+            submitting: true
+        });
         requests
         .post('/api/v1/thing/' + this.props.id + '/videos')
         .type('form')
@@ -48,7 +51,16 @@ var AddVideo = React.createClass({
             _xsrf: cookies.get('_xsrf')
         })
         .end((err, res) => {
-            if (!err) {
+            this.setState({
+                submitting: false
+            });
+            if (err && err.status) {
+                this.setState({
+                    error: true,
+                    video_id: '',
+                    message: res.body.message
+                });
+            } else {
                 Mentions.route(window.location.pathname + window.location.search);
             }
         });
