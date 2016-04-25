@@ -14,6 +14,7 @@ var ThingVideoTab = React.createClass({
                 {videos.length === 0 ? emptyvideos : null}
                 {videos.map((x) => {
                     return <Video
+                            key={x.id}
                             id={x.id}
                             slug={x.slug}
                             title={x.title}

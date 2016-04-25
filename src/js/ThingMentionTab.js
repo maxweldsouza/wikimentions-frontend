@@ -19,8 +19,9 @@ var ThingMentionTab = React.createClass({
                 <div className='small-12 columns'>
                     {mentions.map((x) => {
                         return <Mention
-                            mention_id={x.mention_id}
                             id={x.id}
+                            key={x.id}
+                            mention_id={x.mention_id}
                             slug={x.slug}
                             title={x.title}
                             description={x.props.description}

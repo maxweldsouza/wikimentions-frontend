@@ -67,6 +67,7 @@ var BlogPage = React.createClass({
                                     {this.props.data.posts.length === 0 ? <div><h1>Thats all!</h1><div className='callout'>There are no more posts to show</div></div> : null}
                                     {this.props.data.posts.map((x) => {
                                         return <BlogPost
+                                            key={x.slug}
                                             title={x.title}
                                             content={x.content}
                                             added={x.added}

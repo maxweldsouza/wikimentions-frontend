@@ -12,6 +12,7 @@ var ThingBookTab = React.createClass({
             <div className='row'>
                 {books.map((x) => {
                     return <Book
+                        key={x.id}
                         id={x.id}
                         slug={x.slug}
                         title={x.title}

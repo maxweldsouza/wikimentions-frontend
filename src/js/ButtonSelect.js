@@ -27,7 +27,7 @@ var ButtonSelect = React.createClass({
                     } else {
                         cls = 'button small secondary hollow';
                     }
-                    return <button type='button' className={cls} onClick={this.onChangeSelected.bind(null, x.value)}>{x.name}</button>;
+                    return <button type='button' className={cls} onClick={this.onChangeSelected.bind(null, x.value)} key={x.value}>{x.name}</button>;
                 })}
             </div>
         );
