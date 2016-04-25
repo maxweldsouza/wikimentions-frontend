@@ -34,6 +34,7 @@ var DiscussPage = React.createClass({
                 {discussions.map((x) => {
                     return <Comment
                         id={x.id}
+                        key={x.id}
                         user={x.user}
                         name={x.username}
                         text={x.content}

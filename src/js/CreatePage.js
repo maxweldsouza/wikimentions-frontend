@@ -51,7 +51,7 @@ var HomePage = React.createClass({
     validateForm () {
         var message;
         if (!this.state.title) {
-            message = 'You need to provide a title'
+            message = 'You need to provide a title';
         }
         if (message) {
             this.setState({
