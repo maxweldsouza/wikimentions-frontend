@@ -78,7 +78,7 @@ var DiscussReply = React.createClass({
                             <textarea type='text' name='content' placeholder='Write your post  here (Markdown is supported)' value={this.state.content} onChange={this.onChangeText} rows='5'></textarea>
                         </div>
                         <div className='small-12 columns'>
-                            <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                            <SubmitButton title='Submit' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                         </div>
                     </div>
                 </form>
