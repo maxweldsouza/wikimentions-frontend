@@ -84,19 +84,15 @@ tbody tr:nth-child(even) {
     padding-right: 0;
     padding-left: 0;
     margin-right: 40px;
-
-    &:hover {
-        color: #aaa;
-    }
 }
 
 .tabs-title.is-active > a{
     background: none;
     border-bottom: solid 4px;
+}
 
-    &:hover {
-        color: $primary-color;
-    }
+.tabs-title > a:hover {
+    background: transparent;
 }
 
 .tabs-content {
