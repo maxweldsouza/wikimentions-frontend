@@ -98,8 +98,8 @@ var HomePage = React.createClass({
         });
     },
     render () {
-        var options = [{name: 'Book', value: 'book'},
-            {name: 'Person', value: 'person'},
+        var options = [{name: 'Person', value: 'person'},
+            {name: 'Book', value: 'book'},
             {name: 'Video', value: 'video'}];
         return (
             <span>

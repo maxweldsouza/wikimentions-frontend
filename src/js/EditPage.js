@@ -105,8 +105,8 @@ var EditPage = React.createClass({
     render () {
         var id = Number(this.props.path.split('/')[1]);
         var entry = this.props.data.thing;
-        var options = [{name: 'Book', value: 'book'},
-            {name: 'Person', value: 'person'},
+        var options = [{name: 'Person', value: 'person'},
+            {name: 'Book', value: 'book'},
             {name: 'Video', value: 'video'}];
         return (
             <span>
