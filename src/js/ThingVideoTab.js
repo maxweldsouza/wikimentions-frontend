@@ -18,6 +18,7 @@ var ThingVideoTab = React.createClass({
                             id={x.id}
                             slug={x.slug}
                             title={x.title}
+                            image={x.images[0]}
                             />;
                 })}
                 <AddVideo id={this.props.id} />
