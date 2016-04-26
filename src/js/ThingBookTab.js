@@ -16,6 +16,8 @@ var ThingBookTab = React.createClass({
                         id={x.id}
                         slug={x.slug}
                         title={x.title}
+                        isbn={x.isbn}
+                        isbn13={x.isbn13}
                         />;
                 })}
                 {books.length === 0 ? emptybooks : null}
