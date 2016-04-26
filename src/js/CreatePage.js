@@ -134,8 +134,6 @@ var HomePage = React.createClass({
                                     {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
                                 </div>
                             </div>
-                            <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
-                            <input type="file" id="exampleFileUpload" className="show-for-sr"/>
                             <div>
                                 <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                             </div>
