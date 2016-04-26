@@ -43,12 +43,10 @@ var DiscussPage = React.createClass({
                 })}
             </div>;
         } else {
-            main = <div className='row'>
-                <div className='small-12 columns'>
+            main = <div className='small-12 columns'>
                     <div className='discuss-empty callout primary'>
                     There are no discussions here. You can start one !
                     </div>
-                </div>
             </div>;
         }
         return (
