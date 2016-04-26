@@ -23,6 +23,7 @@ var HomePage = React.createClass({
             title: '',
             description: '',
             isbn: '',
+            isbn13: '',
             url: '',
             submiting: false,
             error: false,
@@ -77,6 +78,7 @@ var HomePage = React.createClass({
             description: this.state.description,
             type: this.state.type,
             isbn: this.state.isbn,
+            isbn13: this.state.isbn13,
             url: this.state.url,
             action: 'create',
             _xsrf: cookies.get('_xsrf')
@@ -128,6 +130,7 @@ var HomePage = React.createClass({
                                             onChange={this.onChangeType}/>
                                     </label>
                                     {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/> : null}
+                                    {this.state.type === 'book' ? <input type='text' name='isbn13' placeholder='ISBN-13' value={this.state.isbn13} onChange={this.onChangeText}/> : null}
                                     {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
                                 </div>
                             </div>

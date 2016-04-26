@@ -29,6 +29,7 @@ var EditPage = React.createClass({
             title: this.props.data.thing.title,
             description: this.props.data.thing.description,
             isbn: this.props.data.thing.isbn,
+            isbn13: this.props.data.thing.isbn13,
             submiting: false,
             error: false,
             message: ''
@@ -68,6 +69,7 @@ var EditPage = React.createClass({
         return true;
     },
     onSubmit () {
+        var id = Number(this.props.path.split('/')[1]);
         if (!this.validateForm()) {
             return;
         }
@@ -75,13 +77,14 @@ var EditPage = React.createClass({
             submiting: true
         });
         requests
-        .post('/api/v1/thing')
+        .post('/api/v1/thing/' + id)
         .type('form')
         .send({
             title: this.state.title,
             description: this.state.description,
             type: this.state.type,
             isbn: this.state.isbn,
+            isbn13: this.state.isbn13,
             action: 'update',
             _xsrf: cookies.get('_xsrf')
         })
@@ -129,18 +132,45 @@ var EditPage = React.createClass({
                             <a href={'/history/' + id + '/' + entry.slug}>History</a>
                         </span>
                         <form action={'/api/v1/thing/' + id} method='post'>
-                            <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
-                            <input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} required/>
-                            <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
+                            <Notification
+                            level='alert'
+                            message={this.state.message}
+                            showing={this.state.error}
+                            onClose={this.onCloseError}
+                            closeable/>
+                            <input
+                                type='text'
+                                name='title'
+                                placeholder='Title'
+                                value={this.state.title} onChange={this.onChangeText}
+                                required/>
+                            <input
+                                type='text'
+                                name='description'
+                                placeholder='Description (Optional)'
+                                value={this.state.description}
+                                onChange={this.onChangeText}/>
                             <ButtonSelect
                                 name='type'
                                 default={this.props.data.thing.type}
                                 options={options}
                                 onChange={this.onChangeType}/>
-                            {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' defaultValue={this.props.data.thing.isbn}/> : null}
-                            <label htmlFor="exampleFileUpload" className="button">Upload Image</label>
-                            <input type="file" id="exampleFileUpload" className="show-for-sr"/>
-                            <SubmitButton title='Save' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                            {this.state.type === 'book' ? <input
+                                type='text'
+                                name='isbn'
+                                placeholder='ISBN'
+                                value={this.state.isbn}
+                                onChange={this.onChangeText}/> : null}
+                            {this.state.type === 'book' ? <input
+                                type='text'
+                                name='isbn13'
+                                placeholder='ISBN-13'
+                                value={this.state.isbn13}
+                                onChange={this.onChangeText}/> : null}
+                            <SubmitButton
+                                title='Save'
+                                submitting={this.state.submitting}
+                                onSubmit={this.onSubmit}/>
                         </form>
                     </div>
                 </div>
