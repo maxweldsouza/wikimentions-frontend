@@ -82,8 +82,8 @@ var AddAuthors = React.createClass({
                             <button type="button" className="button" onClick={this.onClose}>Close</button>
                         </div>
                     </form>
-                    </span> : <span>
-                    <button className='tiny button' onClick={this.onOpen}>Add authors <span className='ion-plus-round'></span></button>
+                </span> : <span className='edit-links'>{' '}
+                    <a onClick={this.onOpen}>Add Authors <span className='ion-plus-round'></span></a>
                 </span>}
             </span>
         );
