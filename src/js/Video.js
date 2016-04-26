@@ -1,5 +1,6 @@
 var React = require('react');
 var Image = require('./Image');
+var parseUrl = require('url-parse');
 
 var Video = React.createClass({
     render () {
@@ -10,6 +11,7 @@ var Video = React.createClass({
         } else {
             image = <img src='/assets/video.png'/>;
         }
+        var parsed = parseUrl(this.props.url);
         return (
             <div className='small-12 columns'>
                 <div className='row video-block'>
@@ -18,6 +20,7 @@ var Video = React.createClass({
                     </div>
                     <div className='columns'>
                         <a className='video-title' href={'/videos/' + this.props.id + '/' + this.props.slug}>{this.props.title}</a>
+                        <div className='video-url'>{'[' + parsed.hostname + ']'}</div>
                     </div>
                 </div>
             </div>
