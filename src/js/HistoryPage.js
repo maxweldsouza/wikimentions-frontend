@@ -4,6 +4,7 @@ var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var _ = require('underscore');
 var Pagination = require('./Pagination');
+var moment = require('moment');
 
 var HistoryPage = React.createClass({
     statics: {
@@ -42,7 +43,13 @@ var HistoryPage = React.createClass({
                             <div className="small-12 columns">
                                 {history.history.map((x) => {
                                     var added = x.deleted ? 'deleted' : 'added';
-                                    return <div><a href={'/users/' + x.user + '/' + x.username}>{x.username}</a> {added} at {x.timestamp}</div>;
+                                    var item;
+                                    if (x.entry && x.entry.type === 'video_author') {
+                                        item = <span>{x.entry.source} as author to video  {x.entry.destination}</span>;
+                                    }
+                                    return <div>
+                                        <a href={'/users/' + x.user + '/' + x.username}>{x.username}</a> {added} {item} at {moment(x.timestamp).fromNow()}
+                                    </div>;
                                 })}
                             </div>
                         </div>
