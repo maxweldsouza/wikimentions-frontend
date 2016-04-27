@@ -22,6 +22,7 @@ var HistoryPage = React.createClass({
     },
     render () {
         var id = Number(this.props.path.split('/')[1]);
+        var slug = this.props.data.history.slug;
         var history = this.props.data.history.history;
         var nodata;
         if (history.length === 0) {
@@ -45,6 +46,15 @@ var HistoryPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>History</h1>
+                        <span className='edit-links'>
+                            <a href={'/pages/' + id + '/' + slug}>Page</a>
+                            {' | '}
+                            <a href={'/edit/' + id + '/' + slug}>Edit</a>
+                            {' | '}
+                            <a href={'/discuss/' + id + '/' + slug}>Discuss</a>
+                            {' | '}
+                            <a href={'/history/' + id + '/' + slug}>History</a>
+                        </span>
                         <div className="history-card">
                             <div>
                                 {nodata}
