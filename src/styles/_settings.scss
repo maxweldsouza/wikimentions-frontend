@@ -549,6 +549,10 @@ $topbar-link-color: $primary-color;
 $topbar-input-width: 200px;
 
 // Custom Settings
+
+$global-border: solid 1px $medium-gray;
+$global-card-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
 $page-title-font-size: 24px;
 $card-title-font-size: 16px;
 $card-description-font-size: 14px;
+$timestamp-color: $secondary-color;

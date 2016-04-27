@@ -45,13 +45,13 @@
 }
 
 .mention-edit > a {
-    font-size: 13px;
+    font-size: $card-description-font-size;
     color: $secondary-color;
 }
 
 .mention-links {
     margin-right: $global-margin;
-    font-size: 14px;
+    font-size: $card-description-font-size;
     color: $secondary-color;
 }
 
