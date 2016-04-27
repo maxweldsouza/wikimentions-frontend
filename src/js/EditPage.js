@@ -8,6 +8,7 @@ var ButtonSelect = require('./ButtonSelect');
 var Notification = require('./Notification');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
+var PageBar = require('./PageBar');
 
 var EditPage = React.createClass({
     statics: {
@@ -124,13 +125,11 @@ var EditPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>Edit</h1>
-                        <span className='edit-links'>
-                            <a href={'/pages/' + id + '/' + entry.slug}>Page</a>
-                            {' | Edit | '}
-                            <a href={'/discuss/' + id + '/' + entry.slug}>Discuss</a>
-                            {' | '}
-                            <a href={'/history/' + id + '/' + entry.slug}>History</a>
-                        </span>
+                            <PageBar
+                                id={id}
+                                slug={entry.slug}
+                                type={entry.type}
+                                />
                         <form action={'/api/v1/thing/' + id} method='post'>
                             <Notification
                             level='alert'
