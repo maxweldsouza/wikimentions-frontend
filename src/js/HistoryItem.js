@@ -1,5 +1,6 @@
 var React = require('react');
 var moment = require('moment');
+var Link = require('./Link');
 
 var HistoryCard = React.createClass({
     render () {
@@ -7,7 +8,17 @@ var HistoryCard = React.createClass({
         var item;
         if (this.props.entry && this.props.entrytype === 'video_author') {
             item = <span>
-                <a href={'/pages/' + this.props.entry.source + '/' + this.props.entry.source_slug}>{this.props.entry.source_title}</a> as author to video <a href={'/videos/' + this.props.entry.destination + '/'  +  this.props.entry.destination_slug}>{this.props.entry.destination_title}</a>;
+                <Link
+                    id={this.props.entry.source}
+                    slug={this.props.entry.source_slug}
+                    title={this.props.entry.source_title}
+                    type={this.props.entry.source_type}
+                    /> as author to video <Link
+                        id={this.props.entry.destination}
+                        slug={this.props.entry.destination_slug}
+                        title={this.props.entry.destination_title}
+                        type={this.props.entry.destination_type}
+                        />;
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'book_author') {
             item = <span>
