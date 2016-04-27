@@ -5,7 +5,7 @@ var Navbar = require('./Navbar');
 
 var Book = React.createClass({
     render () {
-        var message
+        var message;
         if (!(this.props.isbn || this.props.isbn13)) {
             message = <span className="ion-alert-circled"></span>;
         }

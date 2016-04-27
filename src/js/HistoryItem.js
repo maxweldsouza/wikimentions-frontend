@@ -7,16 +7,16 @@ var HistoryCard = React.createClass({
         var item;
         if (this.props.entry && this.props.entrytype === 'video_author') {
             item = <span>
-                <a href={'/pages/' + this.props.entry.source + '/'  + this.props.entry.source_slug}>{this.props.entry.source_title}</a> as author to video <a href={'/videos/' + this.props.entry.destination + '/'  + this.props.entry.destination_slug}>{this.props.entry.destination_title}</a>
+                <a href={'/pages/' + this.props.entry.source + '/' + this.props.entry.source_slug}>{this.props.entry.source_title}</a> as author to video <a href={'/videos/' + this.props.entry.destination + '/'  +  this.props.entry.destination_slug}>{this.props.entry.destination_title}</a>;
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'book_author') {
             item = <span>
-                <a href={'/pages/' + this.props.entry.source + '/'  + this.props.entry.source_slug}>{this.props.entry.source_title}</a> as author to book <a href={'/books/' + this.props.entry.destination + '/'  + this.props.entry.destination_slug}>{this.props.entry.destination_title}</a>
+                <a href={'/pages/' + this.props.entry.source + '/' + this.props.entry.source_slug}>{this.props.entry.source_title}</a> as author to book <a href={'/books/' + this.props.entry.destination + '/' + this.props.entry.destination_slug}>{this.props.entry.destination_title}</a>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'prop') {
             item = <span>
                 set {this.props.entry.key} to {this.props.entry.value}
-            </span>
+            </span>;
         } else if (this.props.entry && this.props.entrytype === 'mention') {
             item = <span>
                 <a href={'/pages/' + this.props.entry.mentioned_by + '/' + this.props.entry.mentioned_by_slug}>
@@ -26,7 +26,7 @@ var HistoryCard = React.createClass({
                 </a> in <a href={'/pages/' + this.props.entry.mentioned_in + '/' + this.props.entry.mentioned_in_slug}>
                     {this.props.entry.mentioned_in_title}
                 </a>
-            </span>
+            </span>;
         }
         return (
             <div className='history-item small-12-columns'>

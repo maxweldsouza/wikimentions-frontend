@@ -66,9 +66,6 @@ var HistoryPage = React.createClass({
                                         entrytype={x.entrytype}
                                         timestamp={x.timestamp}
                                         />;
-                                    return <div>
-                                        <a href={'/users/' + x.user + '/' + x.username}>{x.username}</a> {added} {item}  {moment(x.timestamp).fromNow()}
-                                    </div>;
                                 })}
                             </div>
                         </div>
