@@ -5,6 +5,7 @@ var Mention = require('./Mention');
 var _ = require('underscore');
 var Pagination = require('./Pagination');
 var HistoryItem = require('./HistoryItem');
+var PageBar = require('./PageBar');
 
 var HistoryPage = React.createClass({
     statics: {
@@ -46,15 +47,10 @@ var HistoryPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>History</h1>
-                        <span className='edit-links'>
-                            <a href={'/pages/' + id + '/' + slug}>Page</a>
-                            {' | '}
-                            <a href={'/edit/' + id + '/' + slug}>Edit</a>
-                            {' | '}
-                            <a href={'/discuss/' + id + '/' + slug}>Discuss</a>
-                            {' | '}
-                            <a href={'/history/' + id + '/' + slug}>History</a>
-                        </span>
+                        <PageBar
+                            id={id}
+                            slug={slug}
+                            />
                         <div className="history-card">
                             <div>
                                 {nodata}

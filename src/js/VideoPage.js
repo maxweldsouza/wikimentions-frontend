@@ -10,6 +10,7 @@ var ThingBookTab = require('./ThingBookTab');
 var ThingVideoTab = require('./ThingVideoTab');
 var Authors = require('./Authors');
 var VideoEmbed = require('./VideoEmbed');
+var PageBar = require('./PageBar');
 
 var ThingPage = React.createClass({
     statics: {
@@ -112,13 +113,10 @@ var ThingPage = React.createClass({
                                     {thing.description}
                                     {authors}
                                 </span>
-                                <div className='edit-links'>
-                                    <a href={'/edit/' + id + '/' + thing.slug}>Edit</a>
-                                    {' | '}
-                                    <a href={'/history/' + id + '/' + thing.slug}>History</a>
-                                    {' | '}
-                                    <a href={'/discuss/' + id + '/' + thing.slug}>Discuss</a>
-                                </div>
+                                <PageBar
+                                    id={id}
+                                    slug={thing.slug}
+                                    />
                                 {tab}
                                 <div className="tabs-content">
                                     <div className="tabs-panel is-active">

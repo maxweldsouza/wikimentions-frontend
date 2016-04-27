@@ -6,6 +6,7 @@ var moment = require('moment');
 var Comment = require('./Comment');
 var _ = require('underscore');
 var DiscussReply = require('./DiscussReply');
+var PageBar = require('./PageBar');
 
 var DiscussPage = React.createClass({
     statics: {
@@ -65,13 +66,10 @@ var DiscussPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>Page Discussion</h1>
-                        <span className='edit-links'>
-                            <a href={'/pages/' + id + '/' + slug}>Page</a>
-                            {' | '}
-                            <a href={'/edit/' + id + '/' + slug}>Edit</a>
-                            {' | Discuss | '}
-                            <a href={'/history/' + id + '/' + slug}>History</a>
-                        </span>
+                        <PageBar
+                            id={id}
+                            slug={slug}
+                            />
                         <div className='discuss-card'>
                             {main}
                             <DiscussReply id={id}/>
