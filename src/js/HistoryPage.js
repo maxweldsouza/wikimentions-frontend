@@ -4,7 +4,7 @@ var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var _ = require('underscore');
 var Pagination = require('./Pagination');
-var moment = require('moment');
+var HistoryCard = require('./HistoryCard');
 
 var HistoryPage = React.createClass({
     statics: {
@@ -22,7 +22,13 @@ var HistoryPage = React.createClass({
     },
     render () {
         var id = Number(this.props.path.split('/')[1]);
-        var history = this.props.data.history;
+        var history = this.props.data.history.history;
+        var nodata;
+        if (history.length === 0) {
+            nodata = <div className='callout primary'>
+                    Nothing to show here.
+                    </div>;
+        }
         return (
             <span>
                 <Helmet
@@ -39,20 +45,16 @@ var HistoryPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>History</h1>
-                        <div className='row'>
-                            <div className="small-12 columns">
-                                {history.history.map((x) => {
-                                    var added = x.deleted ? 'deleted' : 'added';
-                                    var item;
-                                    if (x.entry && x.entry.type === 'video_author') {
-                                        item = <span>
-                                            <a href={'/pages/' + x.entry.source + '/'  + x.entry.source_slug}>{x.entry.source_title}</a> as author to video <a href={'/videos/' + x.entry.destination + '/'  + x.entry.destination_slug}>{x.entry.destination_title}</a>
-                                        </span>;
-                                    } else if (x.entry && x.entry.type === 'book_author') {
-                                        item = <span>
-                                            <a href={'/pages/' + x.entry.source + '/'  + x.entry.source_slug}>{x.entry.source_title}</a> as author to book <a href={'/books/' + x.entry.destination + '/'  + x.entry.destination_slug}>{x.entry.destination_title}</a>
-                                        </span>;
-                                    }
+                        <div className="history-card">
+                            <div>
+                                {nodata}
+                                {history.map((x) => {
+                                    return <HistoryCard
+                                        user={x.user}
+                                        username={x.username}
+                                        entry={x.entry}
+                                        timestamp={x.timestamp}
+                                        />;
                                     return <div>
                                         <a href={'/users/' + x.user + '/' + x.username}>{x.username}</a> {added} {item}  {moment(x.timestamp).fromNow()}
                                     </div>;
