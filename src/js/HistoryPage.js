@@ -4,7 +4,7 @@ var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var _ = require('underscore');
 var Pagination = require('./Pagination');
-var HistoryCard = require('./HistoryCard');
+var HistoryItem = require('./HistoryItem');
 
 var HistoryPage = React.createClass({
     statics: {
@@ -49,7 +49,7 @@ var HistoryPage = React.createClass({
                             <div>
                                 {nodata}
                                 {history.map((x) => {
-                                    return <HistoryCard
+                                    return <HistoryItem
                                         user={x.user}
                                         username={x.username}
                                         entry={x.entry}

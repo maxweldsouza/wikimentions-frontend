@@ -1,0 +1,23 @@
+.history-card {
+    background: $white;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.history-item + .history-item {
+    border-bottom: solid 1px $medium-gray;
+    padding-top: $global-margin;
+}
+
+.history-item:first-of-type {
+    border-top: solid 1px $medium-gray;
+    padding-top: $global-margin;
+    border-bottom: solid 1px $medium-gray;
+}
+
+.history-item {
+    padding: $global-margin;
+}
+
+.history-user {
+
+}
