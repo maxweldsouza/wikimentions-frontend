@@ -103,7 +103,7 @@ var BlogPostCreate = React.createClass({
                             <form action='/api/v1/blog' method='post'>
                                 <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                                 <input type='hidden' name='action' value='create'/>
-                                <h1 className='page-title'>Create Post</h1>
+                                <h1 className='blog-title'>Create Post</h1>
                                 <input type='text' name='title' placeholder='Title' />
                                 <textarea name='content' placeholder='Content' />
                                 <div>

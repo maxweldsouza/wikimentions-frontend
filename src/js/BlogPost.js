@@ -10,7 +10,7 @@ var BlogPost = React.createClass({
         var path = '/blog/' + this.props.slug;
         return (
             <div className='blog-post'>
-                <a href={path}><h1>{this.props.title}</h1></a>
+                <a href={path}><h1 className='blog-title'>{this.props.title}</h1></a>
                 <a className='blog-author' href={'/users/' + this.props.authorId + '/' + this.props.author}>{this.props.author}</a> on <span className='blog-timestamp'>{added}</span>
                 <hr/>
                 <Markdown markdown={this.props.content}/>
