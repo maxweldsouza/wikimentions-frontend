@@ -53,6 +53,7 @@ var HistoryPage = React.createClass({
                                         user={x.user}
                                         username={x.username}
                                         entry={x.entry}
+                                        entrytype={x.entrytype}
                                         timestamp={x.timestamp}
                                         />;
                                     return <div>
