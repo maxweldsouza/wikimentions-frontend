@@ -1,3 +1,5 @@
+@import 'settings';
+
 .button-group .button:first-child {
     border-top-left-radius: $global-radius;
     border-bottom-left-radius: $global-radius;
@@ -47,7 +49,7 @@
 }
 
 a:hover {
-    color: #999;
+    color: $anchor-color-hover;
 }
 
 thead,

@@ -1,0 +1,9 @@
+.page-bar,
+.page-bar > a {
+    font-size: 14px;
+    color: $dark-gray;
+}
+
+.page-bar > a:hover {
+    color: $primary-color;
+}

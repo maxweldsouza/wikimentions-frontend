@@ -17,7 +17,7 @@ var PageBar = React.createClass({
             console.warn('No page type specified for PageBar');
         }
         return (
-            <div className='edit-links'>
+            <div className='page-bar'>
                 <a href={pagepath + id + '/' + slug}>Page</a>
                 {' | '}
                 <a href={'/edit/' + id + '/' + slug}>Edit</a>
