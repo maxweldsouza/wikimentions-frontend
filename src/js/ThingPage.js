@@ -162,6 +162,7 @@ var ThingPage = React.createClass({
                                 <PageBar
                                     id={id}
                                     slug={thing.slug}
+                                    type={thing.type}
                                     />
                                 {thing.type === 'video' ? <div>
                                     <a href={thing.url}><img className="" src="/assets/video.png" alt=""/></a>

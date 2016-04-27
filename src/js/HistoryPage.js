@@ -24,6 +24,7 @@ var HistoryPage = React.createClass({
     render () {
         var id = Number(this.props.path.split('/')[1]);
         var slug = this.props.data.history.slug;
+        var type = this.props.data.history.type;
         var history = this.props.data.history.history;
         var nodata;
         if (history.length === 0) {
@@ -50,6 +51,7 @@ var HistoryPage = React.createClass({
                         <PageBar
                             id={id}
                             slug={slug}
+                            type={type}
                             />
                         <div className="history-card">
                             <div>

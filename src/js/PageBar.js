@@ -5,9 +5,20 @@ var PageBar = React.createClass({
         var id = this.props.id;
         var slug = this.props.slug;
         var type = this.props.type;
+        var pagepath;
+        if (type === 'video') {
+            pagepath = '/videos/';
+        } else if (type === 'book') {
+            pagepath = '/books/';
+        } else if (type === 'person') {
+            pagepath = '/pages/';
+        } else {
+            pagepath = '/pages/';
+            console.warn('No page type specified for PageBar');
+        }
         return (
             <div className='edit-links'>
-                <a href={'/pages/' + id + '/' + slug}>Page</a>
+                <a href={pagepath + id + '/' + slug}>Page</a>
                 {' | '}
                 <a href={'/edit/' + id + '/' + slug}>Edit</a>
                 {' | '}

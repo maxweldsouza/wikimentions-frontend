@@ -116,6 +116,7 @@ var ThingPage = React.createClass({
                                 <PageBar
                                     id={id}
                                     slug={thing.slug}
+                                    type='video'
                                     />
                                 {tab}
                                 <div className="tabs-content">
