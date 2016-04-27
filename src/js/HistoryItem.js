@@ -14,15 +14,25 @@ var HistoryCard = React.createClass({
                     title={this.props.entry.source_title}
                     type={this.props.entry.source_type}
                     /> as author to video <Link
-                        id={this.props.entry.destination}
-                        slug={this.props.entry.destination_slug}
-                        title={this.props.entry.destination_title}
-                        type={this.props.entry.destination_type}
-                        />;
+                    id={this.props.entry.destination}
+                    slug={this.props.entry.destination_slug}
+                    title={this.props.entry.destination_title}
+                    type={this.props.entry.destination_type}
+                    />;
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'book_author') {
             item = <span>
-                <a href={'/pages/' + this.props.entry.source + '/' + this.props.entry.source_slug}>{this.props.entry.source_title}</a> as author to book <a href={'/books/' + this.props.entry.destination + '/' + this.props.entry.destination_slug}>{this.props.entry.destination_title}</a>
+                <Link
+                    id={this.props.entry.source}
+                    slug={this.props.entry.source_slug}
+                    title={this.props.entry.source_title}
+                    type={this.props.entry.source_type}
+                    /> as author to book <Link
+                    id={this.props.entry.destination}
+                    slug={this.props.entry.destination_slug}
+                    title={this.props.entry.destination_title}
+                    type={this.props.entry.destination_type}
+                    />
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'prop') {
             item = <span>
@@ -30,13 +40,22 @@ var HistoryCard = React.createClass({
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'mention') {
             item = <span>
-                <a href={'/pages/' + this.props.entry.mentioned_by + '/' + this.props.entry.mentioned_by_slug}>
-                    {this.props.entry.mentioned_by_title}
-                </a> mentioned <a href={'/pages/' + this.props.entry.mentioned + '/' + this.props.entry.mentioned_slug}>
-                    {this.props.entry.mentioned_title}
-                </a> in <a href={'/pages/' + this.props.entry.mentioned_in + '/' + this.props.entry.mentioned_in_slug}>
-                    {this.props.entry.mentioned_in_title}
-                </a>
+                <Link
+                    id={this.props.entry.mentioned_by}
+                    slug={this.props.entry.mentioned_by_slug}
+                    title={this.props.entry.mentioned_by_title}
+                    type={this.props.entry.mentioned_by_type}
+                    /> mentioned <Link
+                    id={this.props.entry.mentioned}
+                    slug={this.props.entry.mentioned_slug}
+                    title={this.props.entry.mentioned_title}
+                    type={this.props.entry.mentioned_type}
+                    /> in <Link
+                    id={this.props.entry.mentioned_in}
+                    slug={this.props.entry.mentioned_in_slug}
+                    title={this.props.entry.mentioned_in_title}
+                    type={this.props.entry.mentioned_in_type}
+                    />
             </span>;
         }
         return (
