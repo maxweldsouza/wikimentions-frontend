@@ -4,12 +4,13 @@
 }
 
 .page-title {
-    font-size: 24px;
+    font-size: $page-title-font-size;
     font-weight: bold;
+    margin-bottom: 0;
 }
 
 .thing-description {
-    font-size: 16px;
+    font-size: $card-title-font-size;
 }
 
 
@@ -22,13 +23,13 @@
 
 .mention-title,
 .video-title {
-    font-size: 16px;
+    font-size: $card-title-font-size;
     font-weight: bold;
 }
 
 .video-url {
-    color: $dark-gray;
-    font-size: 14px;
+    color: $secondary-color;
+    font-size: $card-description-font-size;
 }
 
 .mention-icon {
@@ -36,8 +37,8 @@
 }
 
 .mention-short-description {
-    font-size: 14px;
-    color: #888;
+    font-size: $card-description-font-size;
+    color: $secondary-color;
 }
 
 .mention-quote {
@@ -45,13 +46,13 @@
 
 .mention-edit > a {
     font-size: 13px;
-    color: #888;
+    color: $secondary-color;
 }
 
 .mention-links {
     margin-right: $global-margin;
     font-size: 14px;
-    color: #888;
+    color: $secondary-color;
 }
 
 .book-card {
