@@ -17,6 +17,16 @@ var HistoryCard = React.createClass({
             item = <span>
                 set {this.props.entry.key} to {this.props.entry.value}
             </span>
+        } else if (this.props.entry && this.props.entrytype === 'mention') {
+            item = <span>
+                <a href={'/pages/' + this.props.entry.mentioned_by + '/' + this.props.entry.mentioned_by_slug}>
+                    {this.props.entry.mentioned_by_title}
+                </a> mentioned <a href={'/pages/' + this.props.entry.mentioned + '/' + this.props.entry.mentioned_slug}>
+                    {this.props.entry.mentioned_title}
+                </a> in <a href={'/pages/' + this.props.entry.mentioned_in + '/' + this.props.entry.mentioned_in_slug}>
+                    {this.props.entry.mentioned_in_title}
+                </a>
+            </span>
         }
         return (
             <div className='history-item small-12-columns'>
