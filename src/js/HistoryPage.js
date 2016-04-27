@@ -48,6 +48,10 @@ var HistoryPage = React.createClass({
                                         item = <span>
                                             <a href={'/pages/' + x.entry.source + '/'  + x.entry.source_slug}>{x.entry.source_title}</a> as author to video <a href={'/videos/' + x.entry.destination + '/'  + x.entry.destination_slug}>{x.entry.destination_title}</a>
                                         </span>;
+                                    } else if (x.entry && x.entry.type === 'book_author') {
+                                        item = <span>
+                                            <a href={'/pages/' + x.entry.source + '/'  + x.entry.source_slug}>{x.entry.source_title}</a> as author to book <a href={'/books/' + x.entry.destination + '/'  + x.entry.destination_slug}>{x.entry.destination_title}</a>
+                                        </span>;
                                     }
                                     return <div>
                                         <a href={'/users/' + x.user + '/' + x.username}>{x.username}</a> {added} {item}  {moment(x.timestamp).fromNow()}
