@@ -4,14 +4,14 @@
 }
 
 .history-item + .history-item {
-    border-bottom: solid 1px $medium-gray;
+    border-bottom: $global-border;
     padding-top: $global-margin;
 }
 
 .history-item:first-of-type {
-    border-top: solid 1px $medium-gray;
+    border-top: $global-border;
     padding-top: $global-margin;
-    border-bottom: solid 1px $medium-gray;
+    border-bottom: $global-border;
 }
 
 .history-item {

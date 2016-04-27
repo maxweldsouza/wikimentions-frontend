@@ -16,7 +16,7 @@
 
 .video-block,
 .mention-block {
-    border-bottom: solid 1px $medium-gray;
+    border-bottom: $global-border;
     padding-bottom: $global-padding;
     margin-bottom: $global-margin;
 }

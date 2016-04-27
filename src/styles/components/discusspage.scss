@@ -1,6 +1,6 @@
 .discuss-card {
     background: $white;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: $global-card-shadow;
     padding-top: 1px;
 }
 
@@ -9,14 +9,14 @@
 }
 
 .discuss-comment + .discuss-comment {
-    border-bottom: solid 1px $medium-gray;
+    border-bottom: $global-border;
     padding-top: $global-margin;
 }
 
 .discuss-comment:first-of-type {
-    border-top: solid 1px $medium-gray;
+    border-top: $global-border;
     padding-top: $global-margin;
-    border-bottom: solid 1px $medium-gray;
+    border-bottom: $global-border;
 }
 
 .discuss-username {
@@ -25,7 +25,7 @@
 
 .discuss-updated {
     color: $secondary-color;
-    font-size: 14px;
+    font-size: $card-description-font-size;
 }
 
 .discuss-reply {
