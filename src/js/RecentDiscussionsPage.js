@@ -50,6 +50,28 @@ var RecentDiscussions = React.createClass({
                                     1 min ago
                                 </div>
                             </div>
+                            <div className='card'>
+                                <div className='discuss-topic small-8 columns'>
+                                    Richard Dawkins
+                                </div>
+                                <div className='discuss-posts small-2 column'>
+                                    4 Posts
+                                </div>
+                                <div className='discuss-time small-2 column'>
+                                    1 min ago
+                                </div>
+                            </div>
+                            <div className='card'>
+                                <div className='discuss-topic small-8 columns'>
+                                    Richard Dawkins
+                                </div>
+                                <div className='discuss-posts small-2 column'>
+                                    4 Posts
+                                </div>
+                                <div className='discuss-time small-2 column'>
+                                    1 min ago
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
