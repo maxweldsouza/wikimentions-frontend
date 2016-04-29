@@ -22,6 +22,7 @@ var BlogPostCreate = require('./BlogPostCreate');
 var ContributePage = require('./ContributePage');
 var RecentChangesPage = require('./RecentChangesPage');
 var RecentDiscussionsPage = require('./RecentDiscussionsPage');
+var SiteStatsPage = require('./SiteStatsPage');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -94,6 +95,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^recentdiscussions$/.test(x)) {
         componentName = 'RecentDiscussionsPage';
+        routeObj.maxAge = 0;
+    } else if (/^sitestats$/.test(x)) {
+        componentName = 'SiteStatsPage';
         routeObj.maxAge = 0;
     } else {
         throw { status: 404, message: 'Count not find what you were looking for'};

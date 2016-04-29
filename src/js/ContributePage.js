@@ -50,6 +50,9 @@ var ContributePage = React.createClass({
                                 <div>
                                     <a href='/recentdiscussions'>Recent Discussions</a>
                                 </div>
+                                <div>
+                                    <a href='/sitestats'>Site Statistics</a>
+                                </div>
                             </div>
                         </div>
                     </div>
