@@ -22,32 +22,6 @@ var RecentDiscussions = React.createClass({
         }
     },
     render () {
-        var discuss = this.props.data.discuss;
-        var parts = this.props.path.split('/');
-        var id = Number(parts[1]);
-        var slug = parts[2];
-        var discussions = discuss;
-        var main;
-        if (discussions.length > 0) {
-            main = <div>
-                {discussions.map((x) => {
-                    return <Comment
-                        id={x.id}
-                        key={x.id}
-                        user={x.user}
-                        name={x.username}
-                        text={x.content}
-                        posted={x.created}
-                        />;
-                })}
-            </div>;
-        } else {
-            main = <div className='small-12 columns'>
-                    <div className='discuss-empty callout primary'>
-                    There are no discussions here. You can start one !
-                    </div>
-            </div>;
-        }
         return (
             <span>
                 <Helmet
@@ -63,14 +37,17 @@ var RecentDiscussions = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>Page Discussion</h1>
-                        <PageBar
-                            id={id}
-                            slug={slug}
-                            />
-                        <div className='discuss-card'>
-                            {main}
-                            <DiscussReply id={id}/>
+                        <h1 className='page-title'>Recent Discussions</h1>
+                        <div className='discuss-card row'>
+                            <div className='discuss-topic small-8 columns'>
+                                Richard Dawkins
+                            </div>
+                            <div className='discuss-posts small-2 column'>
+                                4 Posts
+                            </div>
+                            <div className='discuss-time small-2 column'>
+                                1 min ago
+                            </div>
                         </div>
                     </div>
                 </div>
