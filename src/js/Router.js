@@ -19,6 +19,7 @@ var VideoPage = require('./VideoPage');
 var BlogPostPage = require('./BlogPostPage');
 var BlogPage = require('./BlogPage');
 var BlogPostCreate = require('./BlogPostCreate');
+var ContributePage = require('./ContributePage');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -82,6 +83,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^blog\/(.*)$/.test(x)) {
         componentName = 'BlogPostPage';
+        routeObj.maxAge = 0;
+    } else if (/^contribute$/.test(x)) {
+        componentName = 'ContributePage';
         routeObj.maxAge = 0;
     } else {
         throw { status: 404, message: 'Count not find what you were looking for'};
