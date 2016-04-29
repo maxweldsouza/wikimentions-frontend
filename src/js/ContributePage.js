@@ -48,7 +48,7 @@ var ContributePage = React.createClass({
                                     <a href='/recentchanges'>Recent Changes</a>
                                 </div>
                                 <div>
-                                    <a href=''>Recent Discussions</a>
+                                    <a href='/recentdiscussions'>Recent Discussions</a>
                                 </div>
                             </div>
                         </div>
