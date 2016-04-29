@@ -30,27 +30,25 @@ var RecentChangesPage = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <div className='row'>
-                            <div className='small-12 columns'>
-                                <h1 className='page-title'>Recent Changes</h1>
-                                <div className='card-container'>
-                                    <div className="card">
-                                            <span className="small-8 columns"><a className="history-user" href="/users/2/maxweldsouza">maxweldsouza</a></span><span className="history-timestamp small-4 columns text-right">21 hours ago</span>
-                                            <span className="small-12 columns">
-                                                <span className="history-added"><span className="ion-plus-circled" /></span>
-                                                    <span>
-                                                        <a href="/pages/530/christopher-hitchens">Christopher Hitchens</a> mentioned <a href="/pages/108/richard-dawkins">Richard Dawkins</a> in <a href="/videos/531/hitchens-talks-at-google">Hitchens | Talks at Google</a>
-                                                    </span>
-                                                </span>
-                                        </div>
-                                    </div>
+                        <h1 className='page-title'>Recent Changes</h1>
+                        <div className='small-12 columns'>
+                            <div className='card-container'>
+                                <div className="card">
+                                    <span className="small-8 columns"><a className="history-user" href="/users/2/maxweldsouza">maxweldsouza</a></span><span className="history-timestamp small-4 columns text-right">21 hours ago</span>
+                                    <span className="small-12 columns">
+                                        <span className="history-added"><span className="ion-plus-circled" /></span>
+                                        <span>
+                                            <a href="/pages/530/christopher-hitchens">Christopher Hitchens</a> mentioned <a href="/pages/108/richard-dawkins">Richard Dawkins</a> in <a href="/videos/531/hitchens-talks-at-google">Hitchens | Talks at Google</a>
+                                        </span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </span>
-            );
-        }
-    });
+                </div>
+            </span>
+        );
+    }
+});
 
-    module.exports = RecentChangesPage;
+module.exports = RecentChangesPage;
