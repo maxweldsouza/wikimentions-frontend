@@ -9,11 +9,6 @@
     margin-bottom: 0;
 }
 
-.thing-description {
-    font-size: $card-title-font-size;
-}
-
-
 .video-block,
 .mention-block {
     border-bottom: $global-border;
@@ -23,7 +18,6 @@
 
 .video-url {
     color: $secondary-color;
-    font-size: $card-description-font-size;
 }
 
 .mention-icon {
@@ -31,7 +25,6 @@
 }
 
 .mention-short-description {
-    font-size: $card-description-font-size;
     color: $secondary-color;
 }
 
@@ -39,13 +32,11 @@
 }
 
 .mention-edit > a {
-    font-size: $card-description-font-size;
     color: $secondary-color;
 }
 
 .mention-links {
     margin-right: $global-margin;
-    font-size: $card-description-font-size;
     color: $secondary-color;
 }
 
