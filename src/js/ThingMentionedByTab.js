@@ -5,29 +5,29 @@ var AddMention = require('./AddMention');
 var ThingMentionTab = React.createClass({
     render () {
         var mentionedby = this.props.mentionedby;
-        var nodata = <div className="small-12 columns">
+        var nodata = <div className="card">
             <p>No mentions have been added yet. You can help us by adding some.</p>
         </div>;
         return (
-            <div className='row'>
-                <div className='small-12 columns'>
-                    {mentionedby.map((x) => {
-                        return <Mention
-                            id={x.id}
-                            key={x.id}
-                            mention_id={x.mention_id}
-                            slug={x.slug}
-                            title={x.title}
-                            description={x.props.description}
-                            quote={x.quote}
-                            references={x.references}
-                            books={x.books}
-                            type={x.type}
-                            />;
-                    })}
-                </div>
+            <div className='card-container'>
+                {mentionedby.map((x) => {
+                    return <Mention
+                        id={x.id}
+                        key={x.id}
+                        mention_id={x.mention_id}
+                        slug={x.slug}
+                        title={x.title}
+                        description={x.props.description}
+                        quote={x.quote}
+                        references={x.references}
+                        books={x.books}
+                        type={x.type}
+                        />;
+                })}
                 {mentionedby.length === 0 ? nodata : null}
-                <AddMention id={this.props.id} mentioned={this.props.id}/>
+                <div className='card'>
+                    <AddMention id={this.props.id} mentioned={this.props.id}/>
+                </div>
             </div>
         );
     }

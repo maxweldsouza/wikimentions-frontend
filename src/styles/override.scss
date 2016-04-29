@@ -82,6 +82,10 @@ tbody tr:nth-child(even) {
     border-right: none;
 }
 
+.tabs-panel {
+    padding-top: 0;
+}
+
 .tabs-title > a {
     font-size: 14px;
     padding-top: 11px;
@@ -102,5 +106,4 @@ tbody tr:nth-child(even) {
 }
 
 .tabs-content {
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
 }

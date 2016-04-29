@@ -25,7 +25,7 @@ var Mention = React.createClass({
             referencesCount = 0;
         }
         return (
-            <div className='row mention-block'>
+            <div className='card'>
                 <div className='small-12 columns mention-title'>
                     <a href={path}>{this.props.title}</a>
                 </div>
