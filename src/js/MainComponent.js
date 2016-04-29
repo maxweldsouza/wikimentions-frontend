@@ -22,6 +22,7 @@ var BlogPostPage = require('./BlogPostPage');
 var BlogPage = require('./BlogPage');
 var BlogPostCreate = require('./BlogPostCreate');
 var ContributePage = require('./ContributePage');
+var RecentChangesPage = require('./RecentChangesPage');
 
 var Menu = require('react-burger-menu').push;
 
