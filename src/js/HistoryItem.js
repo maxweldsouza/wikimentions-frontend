@@ -59,8 +59,7 @@ var HistoryCard = React.createClass({
             </span>;
         }
         return (
-            <div className='history-item small-12-columns'>
-                <div className='row'>
+            <div className='card'>
                     <span className='small-8 columns'>
                         <a className='history-user'href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a>
                     </span>
@@ -68,7 +67,6 @@ var HistoryCard = React.createClass({
                     <span className='small-12 columns'>
                         <span className='history-added'>{added}</span> {item}
                     </span>
-                </div>
             </div>
         );
     }

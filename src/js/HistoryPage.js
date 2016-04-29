@@ -53,8 +53,8 @@ var HistoryPage = React.createClass({
                             slug={slug}
                             type={type}
                             />
-                        <div className="history-card">
-                            <div>
+                        <div className='small-12 columns'>
+                            <div className="card-container">
                                 {nodata}
                                 {history.map((x) => {
                                     return <HistoryItem
