@@ -22,7 +22,7 @@ var ProfilePage = React.createClass({
     },
     getInitialState () {
         return {
-            tab: 'edits'
+            tab: 'stats'
         };
     },
     changeTab (tab) {
@@ -34,16 +34,23 @@ var ProfilePage = React.createClass({
         var id = Number(this.props.path.split('/')[1]);
         var user = this.props.data.user;
         var tab, tabContent;
+        tab = <ul className="tabs" data-tabs id="example-tabs">
+            <li className="tabs-title is-active">
+                <a onClick={this.changeTab.bind(null, 'edits')} aria-selected="true">Edits</a>
+            </li>
+            <li className="tabs-title">
+                <a onClick={this.changeTab.bind(null, 'changepassword')}>Change Password</a>
+            </li>
+            <li className="tabs-title">
+                <a onClick={this.changeTab.bind(null, 'changeusername')}>Change Username</a>
+            </li>
+            <li className="tabs-title">
+                <a onClick={this.changeTab.bind(null, 'stats')}>Stats</a>
+            </li>
+        </ul>;
         if (this.state.tab === 'edits') {
-            tab = <ul className="tabs" data-tabs id="example-tabs">
-                <li className="tabs-title is-active">
-                    <a onClick={this.changeTab.bind(null, 'edits')} aria-selected="true">Edits</a>
-                </li>
-                <li className="tabs-title">
-                    <a onClick={this.changeTab.bind(null, 'changepassword')}>Change Password</a>
-                </li>
-            </ul>;
-            tabContent = <div className="tabs-panel is-active">
+            tabContent = <div className="card">
+                <div className='small-12 columns'>
                 <table>
                     <thead>
                         <tr>
@@ -70,24 +77,27 @@ var ProfilePage = React.createClass({
                         </tr>
                     </tbody>
                 </table>
+                </div>
             </div>;
         } else if (this.state.tab === 'changepassword') {
-            tab = <ul className="tabs" data-tabs id="example-tabs">
-                <li className="tabs-title">
-                    <a onClick={this.changeTab.bind(null, 'edits')}>Edits</a>
-                </li>
-                <li className="tabs-title is-active">
-                    <a onClick={this.changeTab.bind(null, 'changepassword')} aria-selected="true">Change Password</a>
-                </li>
-            </ul>;
-            tabContent = <div className="tabs-panel is-active">
-                <div className='row'>
-                    <div className='small-12 columns'>
-                        <input type='password' name='old' placeholder='Old Password' />
-                        <input type='password' name='new' placeholder='New Password' />
-                        <input type='password' name='repeat' placeholder='Repeat Password' />
-                        <button type='submit' className='success button'>Change Password</button>
-                    </div>
+            tabContent = <div className="card">
+                <div className='small-12 columns'>
+                    <input type='password' name='old' placeholder='Old Password' />
+                    <input type='password' name='new' placeholder='New Password' />
+                    <input type='password' name='repeat' placeholder='Repeat Password' />
+                    <button type='submit' className='success button'>Change Password</button>
+                </div>
+            </div>;
+        } else if (this.state.tab === 'changeusername') {
+            tabContent = <div className="card">
+                <div className='small-12 columns'>
+                    Change Username
+                </div>
+            </div>;
+        } else if (this.state.tab === 'stats') {
+            tabContent = <div className="card">
+                <div className='small-12 columns'>
+                    Stats
                 </div>
             </div>;
         }
@@ -115,7 +125,11 @@ var ProfilePage = React.createClass({
                                 <div>Level {user.level}</div>
                                 {tab}
                                 <div className="tabs-content" data-tabs-content="example-tabs">
-                                    {tabContent}
+                                    <div className='tabs-panel is-active'>
+                                        <div className='card-container'>
+                                            {tabContent}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
