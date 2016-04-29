@@ -6,7 +6,9 @@ var ThingMentionTab = React.createClass({
     render () {
         var mentionedby = this.props.mentionedby;
         var nodata = <div className="card">
-            <p>No mentions have been added yet. You can help us by adding some.</p>
+            <div className='small-12 columns'>
+            No mentions have been added yet. You can help us by adding some.
+            </div>
         </div>;
         return (
             <div className='card-container'>

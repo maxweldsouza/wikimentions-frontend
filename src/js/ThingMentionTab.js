@@ -5,8 +5,10 @@ var AddMention = require('./AddMention');
 var ThingMentionTab = React.createClass({
     render () {
         var mentions = this.props.mentions;
-        var nodata = <div className="card">
-            <p>No mentions have been added yet. You can help us by adding some.</p>
+        var nodata = <div className='card'>
+            <div className='small-12 columns'>
+            No mentions have been added yet. You can help us by adding some.
+            </div>
         </div>;
         var addmention;
         if (this.props.type === 'person') {
@@ -16,20 +18,20 @@ var ThingMentionTab = React.createClass({
         }
         return (
             <div className='card-container'>
-                    {mentions.map((x) => {
-                        return <Mention
-                            id={x.id}
-                            key={x.id}
-                            mention_id={x.mention_id}
-                            slug={x.slug}
-                            title={x.title}
-                            description={x.props.description}
-                            quote={x.quote}
-                            references={x.references}
-                            books={x.books}
-                            type={x.type}
-                            />;
-                    })}
+                {mentions.map((x) => {
+                    return <Mention
+                        id={x.id}
+                        key={x.id}
+                        mention_id={x.mention_id}
+                        slug={x.slug}
+                        title={x.title}
+                        description={x.props.description}
+                        quote={x.quote}
+                        references={x.references}
+                        books={x.books}
+                        type={x.type}
+                        />;
+                })}
                 {mentions.length === 0 ? nodata : null}
                 <div className='card'>
                     {addmention}
