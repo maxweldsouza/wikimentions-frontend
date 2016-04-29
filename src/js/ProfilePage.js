@@ -98,6 +98,8 @@ var ProfilePage = React.createClass({
             tabContent = <div className="card">
                 <div className='small-12 columns'>
                     Stats
+                    Contributions: 12
+                    Last Active: 12th Jan 2013
                 </div>
             </div>;
         }
@@ -123,6 +125,10 @@ var ProfilePage = React.createClass({
                                     Joined {moment(user.joined).format('MMMM Do YYYY')}
                                 </div>
                                 <div>Level {user.level}</div>
+                                <div class="button-group small">
+                                    <button className='button warning'>Report</button>
+                                    <button className='button alert'>Block</button>
+                                </div>
                                 {tab}
                                 <div className="tabs-content" data-tabs-content="example-tabs">
                                     <div className='tabs-panel is-active'>
