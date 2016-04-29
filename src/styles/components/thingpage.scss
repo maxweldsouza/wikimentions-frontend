@@ -3,29 +3,8 @@
     margin-bottom: 2 * $global-margin;
 }
 
-.page-title {
-    font-size: $page-title-font-size;
-    font-weight: bold;
-    margin-bottom: 0;
-}
-
-.video-block,
-.mention-block {
-    border-bottom: $global-border;
-    padding-bottom: $global-padding;
-    margin-bottom: $global-margin;
-}
-
 .mention-icon {
     margin-right: 8px;
-}
-
-.mention-edit > a {
-    color: $secondary-color;
-}
-
-.mention-links {
-    margin-right: $global-margin;
 }
 
 .book-card {
