@@ -10,8 +10,7 @@ var ThingVideoTab = React.createClass({
             <p>No videos have been added for this author. You can help us by adding some.</p>
         </div>;
         return (
-            <div className='row'>
-                {videos.length === 0 ? emptyvideos : null}
+            <div className='card-container'>
                 {videos.map((x) => {
                     return <Video
                             key={x.id}
@@ -22,7 +21,10 @@ var ThingVideoTab = React.createClass({
                             url={x.url}
                             />;
                 })}
-                <AddVideo id={this.props.id} />
+                <div className='card'>
+                    {videos.length === 0 ? emptyvideos : null}
+                    <AddVideo id={this.props.id} />
+                </div>
             </div>
         );
     }

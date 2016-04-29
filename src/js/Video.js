@@ -13,8 +13,8 @@ var Video = React.createClass({
         }
         var parsed = parseUrl(this.props.url);
         return (
-            <div className='small-12 columns'>
-                <div className='row video-block'>
+            <div className='card'>
+                <div className=''>
                     <div className='shrink columns'>
                         {image}
                     </div>

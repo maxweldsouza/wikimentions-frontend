@@ -9,20 +9,24 @@ var ThingBookTab = React.createClass({
             <p>No books have been added for this author. You can help us by adding some.</p>
         </div>;
         return (
-            <div className='row'>
-                {books.map((x) => {
-                    return <Book
-                        key={x.id}
-                        id={x.id}
-                        slug={x.slug}
-                        title={x.title}
-                        isbn={x.isbn}
-                        isbn13={x.isbn13}
-                        />;
-                })}
-                {books.length === 0 ? emptybooks : null}
-                <div className='small-12 columns'>
-                    <AddBook id={this.props.id}/>
+            <div className='card-container'>
+                <div className='card'>
+                    {books.map((x) => {
+                        return <Book
+                            key={x.id}
+                            id={x.id}
+                            slug={x.slug}
+                            title={x.title}
+                            isbn={x.isbn}
+                            isbn13={x.isbn13}
+                            />;
+                    })}
+                </div>
+                <div className='card'>
+                    {books.length === 0 ? emptybooks : null}
+                    <div className='small-12 columns'>
+                        <AddBook id={this.props.id}/>
+                    </div>
                 </div>
             </div>
         );
