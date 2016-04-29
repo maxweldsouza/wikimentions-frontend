@@ -29,23 +29,10 @@ var DiscussPage = React.createClass({
         var id = Number(parts[1]);
         var slug = parts[2];
         var discussions = discuss;
-        var main;
-        if (discussions.length > 0) {
-            main = <div>
-                {discussions.map((x) => {
-                    return <Comment
-                        id={x.id}
-                        key={x.id}
-                        user={x.user}
-                        name={x.username}
-                        text={x.content}
-                        posted={x.created}
-                        />;
-                })}
-            </div>;
-        } else {
-            main = <div className='small-12 columns'>
-                    <div className='discuss-empty callout primary'>
+        var nodata;
+        if (discussions.length === 0) {
+            nodata = <div className='card'>
+                    <div className='small-12 columns discuss-empty callout primary'>
                     There are no discussions here. You can start one !
                     </div>
             </div>;
@@ -70,9 +57,21 @@ var DiscussPage = React.createClass({
                             id={id}
                             slug={slug}
                             />
-                        <div className='discuss-card'>
-                            {main}
-                            <DiscussReply id={id}/>
+                        <div className='small-12 columns'>
+                            <div className='card-container'>
+                                {discussions.map((x) => {
+                                        return <Comment
+                                            id={x.id}
+                                            key={x.id}
+                                            user={x.user}
+                                            name={x.username}
+                                            text={x.content}
+                                            posted={x.created}
+                                            />;
+                                    })}
+                                {nodata}
+                                <DiscussReply id={id}/>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -10,19 +10,15 @@ var Comment = React.createClass({
         var updated = this.props.posted;
         updated = moment(updated).fromNow();
         return (
-            <div className='small-12 columns discuss-comment'>
-                <div className="row">
-                    <div className="small-6 columns discuss-username">
-                        <a href={'/users/' + this.props.user + '/' + this.props.name}>{this.props.name}</a>
-                    </div>
-                    <div className="small-6 columns text-right discuss-updated">{updated}</div>
+            <div className='card'>
+                <div className="small-6 columns discuss-username">
+                    <a href={'/users/' + this.props.user + '/' + this.props.name}>{this.props.name}</a>
                 </div>
-                <div className="row discuss-text">
-                    <div className="small-12 columns">
-                        <Markdown
-                            markdown={this.props.text}
-                            />
-                    </div>
+                <div className="small-6 columns text-right discuss-updated">{updated}</div>
+                <div className="small-12 columns discuss-text">
+                    <Markdown
+                        markdown={this.props.text}
+                        />
                 </div>
             </div>
         );
