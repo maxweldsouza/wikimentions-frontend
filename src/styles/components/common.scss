@@ -20,3 +20,11 @@
     font-size: $card-title-font-size;
     font-weight: bold;
 }
+
+a.secondary {
+    color: $secondary-color;
+
+    &:hover {
+        color: darken($secondary-color, 5%);
+    }
+}

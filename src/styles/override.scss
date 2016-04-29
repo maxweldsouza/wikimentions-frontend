@@ -6,51 +6,52 @@ h1 {
 }
 
 .button-group .button:first-child {
-    border-top-left-radius: $global-radius;
     border-bottom-left-radius: $global-radius;
+    border-top-left-radius: $global-radius;
 }
 
 .button-group .button:last-child {
-    border-top-right-radius: $global-radius;
     border-bottom-right-radius: $global-radius;
+    border-top-right-radius: $global-radius;
 }
 
 .button-group .button {
     border-radius: 0;
 }
+
 .button-group .button:not(:last-child) {
     margin-right: 0;
 }
 
 .badge {
-    padding: .1em;
     background: $light-gray;
     border-radius: 1em;
     color: $black;
+    padding: .1em;
 }
 
 .select-options {
+    background: $light-gray;
+    border: $global-border;
     position: absolute;
-    background: #fefefe;
     top: 100%;
     width: 100%;
-    border: solid 1px #ddd;
     z-index: 1;
 }
 
 .select-option {
+    padding-bottom: 5px;
     padding-left: $global-margin;
     padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 .select-clear {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding-right: $global-margin;
     height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
     line-height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
+    padding-right: $global-margin;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 a:hover {
@@ -59,18 +60,18 @@ a:hover {
 
 thead,
 tbody {
-    font-weight: normal;
-    border: none;
     background: none;
+    border: 0;
+    font-weight: normal;
 }
 
 tbody tr:nth-child(even) {
-    border: none;
     background: none;
+    border: 0;
 }
 
 .callout {
-    border: none;
+    border: 0;
 }
 
 .pagination {
@@ -78,9 +79,9 @@ tbody tr:nth-child(even) {
 }
 
 .tabs {
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
 }
 
 .tabs-panel {
@@ -88,16 +89,16 @@ tbody tr:nth-child(even) {
 }
 
 .tabs-title > a {
+    border: 0;
     font-size: 14px;
-    padding-top: 11px;
-    border: none;
-    padding-bottom: 7px;
-    padding-right: 0;
-    padding-left: 0;
     margin-right: 40px;
+    padding-bottom: 7px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 11px;
 }
 
-.tabs-title.is-active > a{
+.tabs-title.is-active > a {
     background: none;
     border-bottom: solid 4px;
 }

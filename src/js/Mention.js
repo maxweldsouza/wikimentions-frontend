@@ -50,7 +50,7 @@ var Mention = React.createClass({
                         {' References '}<span className="badge">{referencesCount}</span>
                     </span>
                     <span>
-                        <a href={'/mentions/' + this.props.mention_id + '/edit'}>Edit</a>
+                        <a className='secondary' href={'/mentions/' + this.props.mention_id + '/edit'}>Edit</a>
                     </span>
                 </div>
             </div>
