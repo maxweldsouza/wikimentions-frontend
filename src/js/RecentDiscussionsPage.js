@@ -38,38 +38,40 @@ var RecentDiscussions = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>Recent Discussions</h1>
-                        <div className='card-container'>
-                            <div className='card'>
-                                <div className='discuss-topic small-8 columns'>
-                                    Richard Dawkins
+                        <div className='small-12 columns'>
+                            <div className='card-container'>
+                                <div className='card'>
+                                    <div className='discuss-topic small-8 columns'>
+                                        Richard Dawkins
+                                    </div>
+                                    <div className='discuss-posts small-2 column'>
+                                        4 Posts
+                                    </div>
+                                    <div className='discuss-time small-2 column'>
+                                        1 min ago
+                                    </div>
                                 </div>
-                                <div className='discuss-posts small-2 column'>
-                                    4 Posts
+                                <div className='card'>
+                                    <div className='discuss-topic small-8 columns'>
+                                        Richard Dawkins
+                                    </div>
+                                    <div className='discuss-posts small-2 column'>
+                                        4 Posts
+                                    </div>
+                                    <div className='discuss-time small-2 column'>
+                                        1 min ago
+                                    </div>
                                 </div>
-                                <div className='discuss-time small-2 column'>
-                                    1 min ago
-                                </div>
-                            </div>
-                            <div className='card'>
-                                <div className='discuss-topic small-8 columns'>
-                                    Richard Dawkins
-                                </div>
-                                <div className='discuss-posts small-2 column'>
-                                    4 Posts
-                                </div>
-                                <div className='discuss-time small-2 column'>
-                                    1 min ago
-                                </div>
-                            </div>
-                            <div className='card'>
-                                <div className='discuss-topic small-8 columns'>
-                                    Richard Dawkins
-                                </div>
-                                <div className='discuss-posts small-2 column'>
-                                    4 Posts
-                                </div>
-                                <div className='discuss-time small-2 column'>
-                                    1 min ago
+                                <div className='card'>
+                                    <div className='discuss-topic small-8 columns'>
+                                        Richard Dawkins
+                                    </div>
+                                    <div className='discuss-posts small-2 column'>
+                                        4 Posts
+                                    </div>
+                                    <div className='discuss-time small-2 column'>
+                                        1 min ago
+                                    </div>
                                 </div>
                             </div>
                         </div>
