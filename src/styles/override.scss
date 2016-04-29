@@ -38,7 +38,7 @@ h1 {
 }
 
 .select-option {
-    padding-left: 15px;
+    padding-left: $global-margin;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -47,7 +47,7 @@ h1 {
     position: absolute;
     top: 0;
     right: 0;
-    padding-right: 15px;
+    padding-right: $global-margin;
     height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
     line-height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
 }
@@ -106,4 +106,5 @@ tbody tr:nth-child(even) {
 }
 
 .tabs-content {
+    background: transparent;
 }
