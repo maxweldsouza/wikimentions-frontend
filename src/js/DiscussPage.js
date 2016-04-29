@@ -32,7 +32,7 @@ var DiscussPage = React.createClass({
         var nodata;
         if (discussions.length === 0) {
             nodata = <div className='card'>
-                    <div className='small-12 columns discuss-empty callout primary'>
+                    <div className='small-12 columns'>
                     There are no discussions here. You can start one !
                     </div>
             </div>;

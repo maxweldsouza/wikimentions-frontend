@@ -28,9 +28,11 @@ var HistoryPage = React.createClass({
         var history = this.props.data.history.history;
         var nodata;
         if (history.length === 0) {
-            nodata = <div className='callout primary'>
+            nodata = <div className='card'>
+                    <div className='small-12 columns'>
                     Nothing to show here.
-                    </div>;
+                    </div>
+                </div>;
         }
         return (
             <span>
