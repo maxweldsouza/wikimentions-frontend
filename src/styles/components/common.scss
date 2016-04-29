@@ -12,3 +12,8 @@
     padding-top: $global-margin;
     border-bottom: $global-border;
 }
+
+.card-title {
+    font-size: $card-title-font-size;
+    font-weight: bold;
+}

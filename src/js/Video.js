@@ -19,7 +19,7 @@ var Video = React.createClass({
                         {image}
                     </div>
                     <div className='columns'>
-                        <a className='video-title' href={'/videos/' + this.props.id + '/' + this.props.slug}>{this.props.title}</a>
+                        <a className='card-title' href={'/videos/' + this.props.id + '/' + this.props.slug}>{this.props.title}</a>
                         <div className='video-url'>{'[' + parsed.hostname + ']'}</div>
                     </div>
                 </div>

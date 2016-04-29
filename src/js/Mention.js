@@ -26,7 +26,7 @@ var Mention = React.createClass({
         }
         return (
             <div className='card'>
-                <div className='small-12 columns mention-title'>
+                <div className='small-12 columns card-title'>
                     <a href={path}>{this.props.title}</a>
                 </div>
                 <div className='small-12 columns mention-short-description'>

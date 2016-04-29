@@ -15,7 +15,7 @@ var Book = React.createClass({
                 <div>
                     <img src='/assets/book.png'></img>
                 </div>
-                <div className='book-title'>
+                <div className='card-title'>
                     {this.props.title} {message}
                 </div>
                 </a>
