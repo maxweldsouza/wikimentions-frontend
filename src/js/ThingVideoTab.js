@@ -6,8 +6,10 @@ var ThingVideoTab = React.createClass({
     render () {
         var videos = this.props.videos;
         var id = this.props.id;
-        var emptyvideos = <div className="small-12 columns">
+        var emptyvideos = <div className='card'>
+            <div className="small-12 columns">
             No videos have been added for this author. You can help us by adding some.
+            </div>
         </div>;
         return (
             <div className='card-container'>
@@ -21,9 +23,7 @@ var ThingVideoTab = React.createClass({
                             url={x.url}
                             />;
                 })}
-                <div className='card'>
-                    {videos.length === 0 ? emptyvideos : null}
-                </div>
+                {videos.length === 0 ? emptyvideos : null}
                 <div className='card'>
                     <AddVideo id={this.props.id} />
                 </div>
