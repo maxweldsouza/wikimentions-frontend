@@ -45,13 +45,13 @@ var ContributePage = React.createClass({
                             <div className='small-12 columns'>
                                 <h1 className='page-title'>Contribute</h1>
                                 <div>
-                                    <a href='/recentchanges'>Recent Changes</a>
+                                    <a href='/recent-changes'>Recent Changes</a>
                                 </div>
                                 <div>
-                                    <a href='/recentdiscussions'>Recent Discussions</a>
+                                    <a href='/recent-discussions'>Recent Discussions</a>
                                 </div>
                                 <div>
-                                    <a href='/sitestats'>Site Statistics</a>
+                                    <a href='/site-stats'>Site Statistics</a>
                                 </div>
                             </div>
                         </div>

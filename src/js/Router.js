@@ -90,13 +90,13 @@ var getComponent = function (routeObj) {
     } else if (/^contribute$/.test(x)) {
         componentName = 'ContributePage';
         routeObj.maxAge = 0;
-    } else if (/^recentchanges$/.test(x)) {
+    } else if (/^recent-changes$/.test(x)) {
         componentName = 'RecentChangesPage';
         routeObj.maxAge = 0;
-    } else if (/^recentdiscussions$/.test(x)) {
+    } else if (/^recent-discussions$/.test(x)) {
         componentName = 'RecentDiscussionsPage';
         routeObj.maxAge = 0;
-    } else if (/^sitestats$/.test(x)) {
+    } else if (/^site-stats$/.test(x)) {
         componentName = 'SiteStatsPage';
         routeObj.maxAge = 0;
     } else {
