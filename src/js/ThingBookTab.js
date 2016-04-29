@@ -6,7 +6,7 @@ var ThingBookTab = React.createClass({
     render () {
         var books = this.props.books;
         var emptybooks = <div className="small-12 columns">
-            <p>No books have been added for this author. You can help us by adding some.</p>
+            No books have been added for this author. You can help us by adding some.
         </div>;
         return (
             <div className='card-container'>
@@ -21,9 +21,9 @@ var ThingBookTab = React.createClass({
                             isbn13={x.isbn13}
                             />;
                     })}
+                    {books.length === 0 ? emptybooks : null}
                 </div>
                 <div className='card'>
-                    {books.length === 0 ? emptybooks : null}
                     <div className='small-12 columns'>
                         <AddBook id={this.props.id}/>
                     </div>
