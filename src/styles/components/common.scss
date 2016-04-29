@@ -1,0 +1,14 @@
+.card-container {
+    background: $white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    margin-left: -$global-margin;
+    margin-right: -$global-margin;
+    padding-top: $global-margin;
+}
+
+.card {
+    display: flex;
+    margin-top: -$global-margin;
+    padding-bottom: $global-margin;
+    padding-top: $global-margin;
+}
