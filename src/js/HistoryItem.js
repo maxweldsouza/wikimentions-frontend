@@ -61,11 +61,11 @@ var HistoryCard = React.createClass({
         return (
             <div className='card'>
                     <span className='small-8 columns'>
-                        <a className='history-user'href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a>
+                        <a href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a>
                     </span>
-                    <span className='history-timestamp small-4 columns text-right'>{moment(this.props.timestamp).fromNow()}</span>
+                    <span className='small-4 columns text-right'>{moment(this.props.timestamp).fromNow()}</span>
                     <span className='small-12 columns'>
-                        <span className='history-added'>{added}</span> {item}
+                        <span>{added}</span> {item}
                     </span>
             </div>
         );
