@@ -53,6 +53,19 @@ var ContributePage = React.createClass({
                                 <div>
                                     <a href='/site-stats'>Site Statistics</a>
                                 </div>
+                                <div>
+                                    <a href='/site-stats'>Dead End Pages</a>
+                                </div>
+                                <div>
+                                    <a href='/site-stats'>Missing ISBN</a>
+                                </div>
+                                <h2>Reported</h2>
+                                <div>
+                                    <a href='/site-stats'>Incorrect Info</a>
+                                </div>
+                                <div>
+                                    <a href='/site-stats'>Missing Books</a>
+                                </div>
                             </div>
                         </div>
                     </div>

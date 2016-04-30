@@ -1,19 +1,22 @@
 .card-container {
     background: $white;
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    border: $global-border;
     margin-left: -$global-margin;
     margin-right: -$global-margin;
 }
 
 .card {
+    border-bottom: $global-border;
+    color: $secondary-color;
     display: flex;
     flex-flow: row wrap;
+    font-size: $card-description-font-size;
     padding-bottom: $global-margin;
     padding-top: $global-margin;
-    border-bottom: $global-border;
+}
 
-    font-size: $card-description-font-size;
-    color: $secondary-color;
+.card:last-of-type {
+    border-bottom: 0;
 }
 
 .card-title {

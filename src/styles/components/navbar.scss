@@ -1,12 +1,16 @@
 .top-bar {
     padding-top: 0;
     padding-bottom: 0;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-bottom: solid 2px $medium-gray;
     background: $white;
 }
 
 .top-bar, .top-bar ul {
     height: 50px;
+}
+
+ .top-bar ul {
+    background: none;
 }
 
 .top-bar input {
