@@ -30,8 +30,8 @@ var Mention = React.createClass({
                     <a href={path}>{this.props.title}</a>
                 </div>
                 <div className='small-12 columns'>
-                    <span className='mention-icon'>
-                        <span className={icon}/>
+                    <span>
+                        <span className={icon}/>{' '}
                     </span>{description}
                 </div>
                 <div className='small-12 columns'>
