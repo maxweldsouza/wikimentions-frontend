@@ -27,7 +27,6 @@ var RecentDiscussionsPage = require('./RecentDiscussionsPage');
 var SiteStatsPage = require('./SiteStatsPage');
 
 var Menu = require('react-burger-menu').slide;
-
 var store = require('store');
 
 var MainComponent = React.createClass({
@@ -49,24 +48,22 @@ var MainComponent = React.createClass({
         var Component = require('./' + this.props.component);
         return (
             <div>
-                <div id="outer-container">
-                    <Menu isOpen={false} pageWrapId={"page-wrap"} outerContainerId={"outer-container"}>
-                        <a id="home" className="menu-item" href="/"><span className='ion-android-home menu-item-icon'/>Home</a>
-                        <a id="about" className="menu-item" href="/create"><span className='ion-android-search menu-item-icon'/>Search</a>
-                        <a id="about" className="menu-item" href="/blog"><span className='ion-edit menu-item-icon'/>Blog</a>
-                        <a id="about" className="menu-item" href="/blog/newpost"><span className='ion-edit menu-item-icon'/>New Blog Post</a>
-                        <a id="about" className="menu-item" href="/contribute"><span className='ion-edit menu-item-icon'/>Contribute</a>
-                        <a id="about" className="menu-item" href="/create"><span className='ion-android-create menu-item-icon'/>Create Page</a>
-                        <a id="contact" className="menu-item" href="/contact"><span className='ion-android-contact menu-item-icon'/>Contact</a>
-                    </Menu>
-                  <main id="page-wrap">
-                    <Spinner />
-                    <Component
-                        data={this.props.data}
-                        path={this.props.path}
-                        />
-                  </main>
-                </div>
+                <Menu
+                    isOpen={false}
+                    >
+                    <a id="home" className="menu-item" href="/"><span className='ion-android-home menu-item-icon'/>Home</a>
+                    <a id="about" className="menu-item" href="/create"><span className='ion-android-search menu-item-icon'/>Search</a>
+                    <a id="about" className="menu-item" href="/blog"><span className='ion-edit menu-item-icon'/>Blog</a>
+                    <a id="about" className="menu-item" href="/blog/newpost"><span className='ion-edit menu-item-icon'/>New Blog Post</a>
+                    <a id="about" className="menu-item" href="/contribute"><span className='ion-edit menu-item-icon'/>Contribute</a>
+                    <a id="about" className="menu-item" href="/create"><span className='ion-android-create menu-item-icon'/>Create Page</a>
+                    <a id="contact" className="menu-item" href="/contact"><span className='ion-android-contact menu-item-icon'/>Contact</a>
+                </Menu>
+                <Spinner />
+                <Component
+                    data={this.props.data}
+                    path={this.props.path}
+                    />
             </div>
         );
     }
