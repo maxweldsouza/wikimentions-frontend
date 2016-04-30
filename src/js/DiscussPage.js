@@ -18,6 +18,10 @@ var DiscussPage = React.createClass({
                     {
                         name: 'discuss',
                         path: '/api/v1/discuss/' + id
+                    },
+                    {
+                        name: 'thing',
+                        path: '/api/v1/thing/' + id
                     }
                 ]
             };
@@ -52,7 +56,7 @@ var DiscussPage = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>Page Discussion</h1>
+                        <h1 className='page-title'>{'Discussion - ' + this.props.data.thing.title}</h1>
                         <PageBar
                             id={id}
                             slug={slug}

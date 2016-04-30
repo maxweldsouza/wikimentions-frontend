@@ -16,6 +16,10 @@ var HistoryPage = React.createClass({
                     {
                         name: 'history',
                         path: '/api/v1/history/' + id
+                    },
+                    {
+                        name: 'thing',
+                        path: '/api/v1/thing/' + id
                     }
                 ]
             };
@@ -49,7 +53,7 @@ var HistoryPage = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>History</h1>
+                        <h1 className='page-title'>{'History - ' + this.props.data.thing.title}</h1>
                         <PageBar
                             id={id}
                             slug={slug}

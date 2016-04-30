@@ -124,7 +124,7 @@ var EditPage = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>Edit</h1>
+                        <h1 className='page-title'>{'Edit - ' + entry.title}</h1>
                             <PageBar
                                 id={id}
                                 slug={entry.slug}
