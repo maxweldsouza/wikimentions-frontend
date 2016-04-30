@@ -5,24 +5,6 @@ h1 {
     margin-bottom: 0;
 }
 
-.button-group .button:first-child {
-    border-bottom-left-radius: $global-radius;
-    border-top-left-radius: $global-radius;
-}
-
-.button-group .button:last-child {
-    border-bottom-right-radius: $global-radius;
-    border-top-right-radius: $global-radius;
-}
-
-.button-group .button {
-    border-radius: 0;
-}
-
-.button-group .button:not(:last-child) {
-    margin-right: 0;
-}
-
 .badge {
     background: $light-gray;
     border-radius: 1em;
@@ -30,44 +12,8 @@ h1 {
     padding: .1em;
 }
 
-.select-options {
-    background: $light-gray;
-    border: $global-border;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    z-index: 1;
-}
-
-.select-option {
-    padding-bottom: 5px;
-    padding-left: $global-margin;
-    padding-top: 5px;
-}
-
-.select-clear {
-    height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
-    line-height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
-    padding-right: $global-margin;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
 a:hover {
     color: $anchor-color-hover;
-}
-
-thead,
-tbody {
-    background: none;
-    border: 0;
-    font-weight: normal;
-}
-
-tbody tr:nth-child(even) {
-    background: none;
-    border: 0;
 }
 
 .callout {
@@ -76,36 +22,4 @@ tbody tr:nth-child(even) {
 
 .pagination {
     margin-top: 45px;
-}
-
-.tabs {
-    border: 0;
-}
-
-.tabs-panel {
-    padding-top: 0;
-}
-
-.tabs-title > a {
-    border: 0;
-    font-size: 14px;
-    margin-right: 40px;
-    padding-bottom: 7px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 11px;
-}
-
-.tabs-title.is-active > a {
-    background: none;
-    border-bottom: solid 4px;
-}
-
-.tabs-title > a:hover {
-    background: transparent;
-}
-
-.tabs-content {
-    background: transparent;
-    border: none;
 }

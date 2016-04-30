@@ -59,6 +59,9 @@ var ContributePage = React.createClass({
                                 <div>
                                     <a href='/site-stats'>Missing ISBN</a>
                                 </div>
+                                <div>
+                                    <a href='/site-stats'>Without Description</a>
+                                </div>
                                 <h2>Reported</h2>
                                 <div>
                                     <a href='/site-stats'>Incorrect Info</a>

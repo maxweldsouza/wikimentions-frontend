@@ -1,0 +1,11 @@
+thead,
+tbody {
+    background: none;
+    border: 0;
+    font-weight: normal;
+}
+
+tbody tr:nth-child(even) {
+    background: none;
+    border: 0;
+}

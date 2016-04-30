@@ -1,0 +1,17 @@
+.button-group .button:first-child {
+    border-bottom-left-radius: $global-radius;
+    border-top-left-radius: $global-radius;
+}
+
+.button-group .button:last-child {
+    border-bottom-right-radius: $global-radius;
+    border-top-right-radius: $global-radius;
+}
+
+.button-group .button {
+    border-radius: 0;
+}
+
+.button-group .button:not(:last-child) {
+    margin-right: 0;
+}
