@@ -9,9 +9,9 @@ var BlogPost = React.createClass({
         added = added.format('MMMM Do YYYY');
         var path = '/blog/' + this.props.slug;
         return (
-            <div className='blog-post'>
-                <a href={path}><h1 className='blog-title'>{this.props.title}</h1></a>
-                <a className='blog-author' href={'/users/' + this.props.authorId + '/' + this.props.author}>{this.props.author}</a> on <span className='blog-timestamp'>{added}</span>
+            <div>
+                <a href={path}><h1>{this.props.title}</h1></a>
+                <a href={'/users/' + this.props.authorId + '/' + this.props.author}>{this.props.author}</a> on <span>{added}</span>
                 <hr/>
                 <Markdown markdown={this.props.content}/>
                 <hr/>
@@ -21,7 +21,7 @@ var BlogPost = React.createClass({
                     </div>
                     <div className='small-6 columns text-right'>
                         {this.props.next ? <a href={'/blog/' + this.props.next} className=''>Next Post</a> : null}
-                        <span className='blog-social'>
+                        <span>
                             <a href={'http://www.facebook.com/sharer/sharer.php?u=https://comparnion.com' + path + '&title=' + this.props.title}><i className='ion-social-facebook'></i></a>
                             <a href={'http://twitter.com/intent/tweet?status=' + this.props.title + '+' + 'https://comparnion.com' + path}><i className='ion-social-twitter'></i></a>
                         </span>
