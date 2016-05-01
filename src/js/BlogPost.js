@@ -23,7 +23,7 @@ var BlogPost = React.createClass({
                     <div className='small-6 columns text-right'>
                         {this.props.next ? <a href={'/blog/' + this.props.next} className=''>Next Post</a> : null}
                         <div className='row'>
-                            <div className='small-12 columns text-right'>
+                            <div className='small-12 columns'>
                                 <Share />
                             </div>
                         </div>

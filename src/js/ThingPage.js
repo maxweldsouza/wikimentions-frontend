@@ -166,7 +166,7 @@ var ThingPage = React.createClass({
                                     type={thing.type}
                                     />
                                 <div className='row'>
-                                    <div className='small-12 columns text-right'>
+                                    <div className='small-12 columns'>
                                         <Share />
                                     </div>
                                 </div>
