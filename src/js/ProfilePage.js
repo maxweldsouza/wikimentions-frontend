@@ -133,7 +133,7 @@ var ProfilePage = React.createClass({
                                     Joined {moment(user.joined).format('MMMM Do YYYY')}
                                 </div>
                                 <div>Level {user.level}</div>
-                                <div class="button-group small">
+                                <div className="button-group small">
                                     <button className='button warning'>Report</button>
                                     <button className='button alert'>Block</button>
                                 </div>

@@ -170,6 +170,8 @@ var EditPage = React.createClass({
                                 title='Save'
                                 submitting={this.state.submitting}
                                 onSubmit={this.onSubmit}/>
+                            <button className='button warning'>Report</button>
+                            <button className='button alert'>Delete Page</button>
                         </form>
                     </div>
                 </div>
