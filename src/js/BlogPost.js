@@ -27,10 +27,6 @@ var BlogPost = React.createClass({
                                 <Share />
                             </div>
                         </div>
-                        <span>
-                            <a href={'http://www.facebook.com/sharer/sharer.php?u=https://comparnion.com' + path + '&title=' + this.props.title}><i className='ion-social-facebook'></i></a>
-                            <a href={'http://twitter.com/intent/tweet?status=' + this.props.title + '+' + 'https://comparnion.com' + path}><i className='ion-social-twitter'></i></a>
-                        </span>
                     </div>
                 </div>
             </div>

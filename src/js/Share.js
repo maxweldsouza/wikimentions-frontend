@@ -1,4 +1,5 @@
 var React = require('react');
+var config = require('./config');
 
 var Share= React.createClass({
     getInitialState () {
@@ -10,12 +11,18 @@ var Share= React.createClass({
         return (
             <span>
                 <div className='button-group small float-right'>
-                    <button className='button' style={{'background': '#3b5998'}}>
+                    <a
+                        href={'http://www.facebook.com/sharer/sharer.php?u=' + config.url + this.props.path + '&title=' + this.props.title}
+                        className='button'
+                        style={{'background': '#3b5998'}}>
                         <span className='ion-social-facebook'/>  Share
-                    </button>
-                    <button className='button' style={{'background': '#55aace'}}>
+                    </a>
+                    <a
+                        href={'http://twitter.com/intent/tweet?status=' + this.props.title + '+' + config.url + this.props.path}
+                        className='button'
+                        style={{'background': '#55aace'}}>
                         <span className='ion-social-twitter'/>  Tweet
-                    </button>
+                    </a>
                 </div>
             </span>
         );
