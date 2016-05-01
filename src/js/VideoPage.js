@@ -11,6 +11,7 @@ var ThingVideoTab = require('./ThingVideoTab');
 var Authors = require('./Authors');
 var VideoEmbed = require('./VideoEmbed');
 var PageBar = require('./PageBar');
+var Share = require('./Share');
 
 var ThingPage = React.createClass({
     statics: {
@@ -113,6 +114,7 @@ var ThingPage = React.createClass({
                                     {thing.description}
                                     {authors}
                                 </span>
+                                <Share />
                                 <PageBar
                                     id={id}
                                     slug={thing.slug}
