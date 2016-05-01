@@ -2,6 +2,7 @@ var React = require('react');
 
 var moment = require('moment');
 var Markdown = require('./Markdown');
+var Share = require('./Share');
 
 var BlogPost = React.createClass({
     render () {
@@ -21,6 +22,11 @@ var BlogPost = React.createClass({
                     </div>
                     <div className='small-6 columns text-right'>
                         {this.props.next ? <a href={'/blog/' + this.props.next} className=''>Next Post</a> : null}
+                        <div className='row'>
+                            <div className='small-12 columns text-right'>
+                                <Share />
+                            </div>
+                        </div>
                         <span>
                             <a href={'http://www.facebook.com/sharer/sharer.php?u=https://comparnion.com' + path + '&title=' + this.props.title}><i className='ion-social-facebook'></i></a>
                             <a href={'http://twitter.com/intent/tweet?status=' + this.props.title + '+' + 'https://comparnion.com' + path}><i className='ion-social-twitter'></i></a>
