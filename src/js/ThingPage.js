@@ -10,6 +10,7 @@ var ThingBookTab = require('./ThingBookTab');
 var ThingVideoTab = require('./ThingVideoTab');
 var Authors = require('./Authors');
 var PageBar = require('./PageBar');
+var Share = require('./Share');
 
 var ThingPage = React.createClass({
     statics: {
@@ -164,6 +165,11 @@ var ThingPage = React.createClass({
                                     slug={thing.slug}
                                     type={thing.type}
                                     />
+                                <div className='row'>
+                                    <div className='small-12 columns text-right'>
+                                        <Share />
+                                    </div>
+                                </div>
                                 {thing.type === 'video' ? <div>
                                     <a href={thing.url}><img className="" src="/assets/video.png" alt=""/></a>
                                 </div> : null}
