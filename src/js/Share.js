@@ -8,9 +8,14 @@ var Share= React.createClass({
     },
     render () {
         return (
-            <button className='button'>
-                Share <span className='ion-share'/>
-            </button>
+            <span>
+                <button className='button'>
+                    Share <span className='ion-social-facebook'/>
+                </button>
+                <button className='button'>
+                    Tweet <span className='ion-social-twitter'/>
+                </button>
+            </span>
         );
     }
 });
