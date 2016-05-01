@@ -156,17 +156,19 @@ var ThingPage = React.createClass({
                             </div>
                             <div className='small-12 large-8 columns'>
                                 <h1 className='page-title'>{thing.title}</h1>
-                                <span className='thing-description'>
-                                    {thing.description}
-                                    {authors}
-                                </span>
-                                <PageBar
-                                    id={id}
-                                    slug={thing.slug}
-                                    type={thing.type}
-                                    />
                                 <div className='row'>
-                                    <div className='small-12 columns'>
+                                    <div className='small-6 columns'>
+                                        <span className='thing-description'>
+                                            {thing.description}
+                                            {authors}
+                                        </span>
+                                        <PageBar
+                                            id={id}
+                                            slug={thing.slug}
+                                            type={thing.type}
+                                            />
+                                    </div>
+                                    <div className='small-6 columns'>
                                         <Share />
                                     </div>
                                 </div>
