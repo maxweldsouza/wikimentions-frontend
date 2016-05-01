@@ -114,12 +114,16 @@ var ThingPage = React.createClass({
                                     {thing.description}
                                     {authors}
                                 </span>
-                                <Share />
                                 <PageBar
                                     id={id}
                                     slug={thing.slug}
                                     type='video'
                                     />
+                                <div className='row'>
+                                    <div className='small-12 columns text-right'>
+                                        <Share />
+                                    </div>
+                                </div>
                                 {tab}
                                 <div className="tabs-content">
                                     <div className="tabs-panel is-active">
