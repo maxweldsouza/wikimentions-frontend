@@ -22,7 +22,7 @@ var ProfilePage = React.createClass({
     },
     getInitialState () {
         return {
-            tab: 'stats'
+            tab: 'Stats'
         };
     },
     changeTab (tab) {
@@ -33,20 +33,19 @@ var ProfilePage = React.createClass({
     render () {
         var id = Number(this.props.path.split('/')[1]);
         var user = this.props.data.user;
+        var tabs = ['Edits', 'Profile', 'Stats'];
+
         var tab, tabContent;
-        tab = <ul className="tabs" data-tabs id="example-tabs">
-            <li className="tabs-title is-active">
-                <a onClick={this.changeTab.bind(null, 'edits')} aria-selected="true">Edits</a>
-            </li>
-            <li className="tabs-title">
-                <a onClick={this.changeTab.bind(null, 'profile')}>Profile</a>
-            </li>
-            <li className="tabs-title">
-                <a onClick={this.changeTab.bind(null, 'stats')}>Stats</a>
-            </li>
+        tab = <ul className='tabs' data-tabs id='example-tabs'>
+            {tabs.map((x) => {
+                var cls = this.state.tab === x ? 'tabs-title is-active' : 'tabs-title';
+                return <li className={cls}>
+                    <a onClick={this.changeTab.bind(null, x)} aria-selected='true'>{x}</a>
+                </li>;
+            })}
         </ul>;
-        if (this.state.tab === 'edits') {
-            tabContent = <div className="card">
+        if (this.state.tab === 'Edits') {
+            tabContent = <div className='card'>
                 <div className='small-12 columns'>
                 <table>
                     <thead>
@@ -76,9 +75,9 @@ var ProfilePage = React.createClass({
                 </table>
                 </div>
             </div>;
-        } else if (this.state.tab === 'profile') {
+        } else if (this.state.tab === 'Profile') {
             tabContent = <div>
-                <div className="card">
+                <div className='card'>
                     <div className='small-12 columns'>
                         <h2>Change Password</h2>
                         <input type='password' name='old' placeholder='Old Password' />
@@ -87,14 +86,14 @@ var ProfilePage = React.createClass({
                         <button type='submit' className='success button'>Change Password</button>
                     </div>
                 </div>
-                <div className="card">
+                <div className='card'>
                     <div className='small-12 columns'>
                         <h2>Change Username</h2>
                         <input type='text' name='username' placeholder='New Username' />
                         <button type='submit' className='success button'>Change Username</button>
                     </div>
                 </div>
-                <div className="card">
+                <div className='card'>
                     <div className='small-12 columns'>
                         <h2>Verify E-mail</h2>
                         <p>An email with a verification link will be sent to you.</p>
@@ -102,8 +101,8 @@ var ProfilePage = React.createClass({
                     </div>
                 </div>
             </div>;
-        } else if (this.state.tab === 'stats') {
-            tabContent = <div className="card">
+        } else if (this.state.tab === 'Stats') {
+            tabContent = <div className='card'>
                 <div className='small-12 columns'>
                     Stats
                     Contributions: 12
@@ -133,12 +132,12 @@ var ProfilePage = React.createClass({
                                     Joined {moment(user.joined).format('MMMM Do YYYY')}
                                 </div>
                                 <div>Level {user.level}</div>
-                                <div className="button-group small">
+                                <div className='button-group small'>
                                     <button className='button warning'>Report</button>
                                     <button className='button alert'>Block</button>
                                 </div>
                                 {tab}
-                                <div className="tabs-content" data-tabs-content="example-tabs">
+                                <div className='tabs-content' data-tabs-content='example-tabs'>
                                     <div className='tabs-panel is-active'>
                                         <div className='card-container'>
                                             {tabContent}
