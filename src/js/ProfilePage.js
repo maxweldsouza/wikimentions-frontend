@@ -33,8 +33,7 @@ var ProfilePage = React.createClass({
     render () {
         var id = Number(this.props.path.split('/')[1]);
         var user = this.props.data.user;
-        var tabs = ['Edits', 'Profile', 'Stats'];
-
+        var tabs = ['Stats', 'Edits', 'Profile'];
         var tab, tabContent;
         tab = <ul className='tabs' data-tabs id='example-tabs'>
             {tabs.map((x) => {
@@ -79,6 +78,13 @@ var ProfilePage = React.createClass({
             tabContent = <div>
                 <div className='card'>
                     <div className='small-12 columns'>
+                        <h2>Verify E-mail</h2>
+                        <p>An email with a verification link will be sent to you.</p>
+                        <button type='submit' className='success button'>Verify</button>
+                    </div>
+                </div>
+                <div className='card'>
+                    <div className='small-12 columns'>
                         <h2>Change Password</h2>
                         <input type='password' name='old' placeholder='Old Password' />
                         <input type='password' name='new' placeholder='New Password' />
@@ -91,13 +97,6 @@ var ProfilePage = React.createClass({
                         <h2>Change Username</h2>
                         <input type='text' name='username' placeholder='New Username' />
                         <button type='submit' className='success button'>Change Username</button>
-                    </div>
-                </div>
-                <div className='card'>
-                    <div className='small-12 columns'>
-                        <h2>Verify E-mail</h2>
-                        <p>An email with a verification link will be sent to you.</p>
-                        <button type='submit' className='success button'>Verify</button>
                     </div>
                 </div>
             </div>;
