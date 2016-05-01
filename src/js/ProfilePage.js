@@ -39,10 +39,7 @@ var ProfilePage = React.createClass({
                 <a onClick={this.changeTab.bind(null, 'edits')} aria-selected="true">Edits</a>
             </li>
             <li className="tabs-title">
-                <a onClick={this.changeTab.bind(null, 'changepassword')}>Change Password</a>
-            </li>
-            <li className="tabs-title">
-                <a onClick={this.changeTab.bind(null, 'changeusername')}>Change Username</a>
+                <a onClick={this.changeTab.bind(null, 'profile')}>Profile</a>
             </li>
             <li className="tabs-title">
                 <a onClick={this.changeTab.bind(null, 'stats')}>Stats</a>
@@ -79,19 +76,30 @@ var ProfilePage = React.createClass({
                 </table>
                 </div>
             </div>;
-        } else if (this.state.tab === 'changepassword') {
-            tabContent = <div className="card">
-                <div className='small-12 columns'>
-                    <input type='password' name='old' placeholder='Old Password' />
-                    <input type='password' name='new' placeholder='New Password' />
-                    <input type='password' name='repeat' placeholder='Repeat Password' />
-                    <button type='submit' className='success button'>Change Password</button>
+        } else if (this.state.tab === 'profile') {
+            tabContent = <div>
+                <div className="card">
+                    <div className='small-12 columns'>
+                        <h2>Change Password</h2>
+                        <input type='password' name='old' placeholder='Old Password' />
+                        <input type='password' name='new' placeholder='New Password' />
+                        <input type='password' name='repeat' placeholder='Repeat Password' />
+                        <button type='submit' className='success button'>Change Password</button>
+                    </div>
                 </div>
-            </div>;
-        } else if (this.state.tab === 'changeusername') {
-            tabContent = <div className="card">
-                <div className='small-12 columns'>
-                    Change Username
+                <div className="card">
+                    <div className='small-12 columns'>
+                        <h2>Change Username</h2>
+                        <input type='text' name='username' placeholder='New Username' />
+                        <button type='submit' className='success button'>Change Username</button>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className='small-12 columns'>
+                        <h2>Verify E-mail</h2>
+                        <p>An email with a verification link will be sent to you.</p>
+                        <button type='submit' className='success button'>Verify</button>
+                    </div>
                 </div>
             </div>;
         } else if (this.state.tab === 'stats') {
