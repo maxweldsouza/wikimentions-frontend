@@ -33,6 +33,6 @@ a.secondary {
     color: $secondary-color;
 
     &:hover {
-        color: darken($secondary-color, 5%);
+        color: lighten($secondary-color, 10%);
     }
 }

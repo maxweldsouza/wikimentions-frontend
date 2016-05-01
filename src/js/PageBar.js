@@ -18,13 +18,13 @@ var PageBar = React.createClass({
         }
         return (
             <div className='page-bar'>
-                <a href={pagepath + id + '/' + slug}>Page</a>
+                <a className='secondary' href={pagepath + id + '/' + slug}>Page</a>
                 {' | '}
-                <a href={'/edit/' + id + '/' + slug}>Edit</a>
+                <a className='secondary' href={'/edit/' + id + '/' + slug}>Edit</a>
                 {' | '}
-                <a href={'/discuss/' + id + '/' + slug}>Discuss</a>
+                <a className='secondary' href={'/discuss/' + id + '/' + slug}>Discuss</a>
                 {' | '}
-                <a href={'/history/' + id + '/' + slug}>History</a>
+                <a className='secondary' href={'/history/' + id + '/' + slug}>History</a>
             </div>
         );
     }

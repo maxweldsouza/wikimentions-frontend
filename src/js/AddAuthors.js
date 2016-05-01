@@ -83,7 +83,7 @@ var AddAuthors = React.createClass({
                         </div>
                     </form>
                 </span> : <span className='edit-links'>{' '}
-                    <a onClick={this.onOpen}>Add Authors <span className='ion-plus-round'></span></a>
+                    <a className='secondary' onClick={this.onOpen}>Add Authors <span className='ion-plus-round'></span></a>
                 </span>}
             </span>
         );
