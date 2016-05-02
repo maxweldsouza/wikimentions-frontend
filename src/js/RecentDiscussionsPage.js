@@ -15,7 +15,7 @@ var RecentDiscussions = React.createClass({
                 api: [
                     {
                         name: 'discuss',
-                        path: '/api/v1/discuss/1'
+                        path: '/api/v1/recent-discussions/0'
                     }
                 ]
             };
@@ -40,39 +40,19 @@ var RecentDiscussions = React.createClass({
                         <h1 className='page-title'>Recent Discussions</h1>
                         <div className='small-12 columns'>
                             <div className='card-container'>
-                                <div className='card'>
-                                    <div className='discuss-topic small-8 columns'>
-                                        Richard Dawkins
-                                    </div>
-                                    <div className='discuss-posts small-2 column'>
-                                        4 Posts
-                                    </div>
-                                    <div className='discuss-time small-2 column'>
-                                        1 min ago
-                                    </div>
-                                </div>
-                                <div className='card'>
-                                    <div className='discuss-topic small-8 columns'>
-                                        Richard Dawkins
-                                    </div>
-                                    <div className='discuss-posts small-2 column'>
-                                        4 Posts
-                                    </div>
-                                    <div className='discuss-time small-2 column'>
-                                        1 min ago
-                                    </div>
-                                </div>
-                                <div className='card'>
-                                    <div className='discuss-topic small-8 columns'>
-                                        Richard Dawkins
-                                    </div>
-                                    <div className='discuss-posts small-2 column'>
-                                        4 Posts
-                                    </div>
-                                    <div className='discuss-time small-2 column'>
-                                        1 min ago
-                                    </div>
-                                </div>
+                                {this.props.data.discuss.map((x) => {
+                                    return <div className='card'>
+                                        <div className='discuss-topic small-8 columns'>
+                                            <a href={'/discuss/' + x.id + '/' + x.slug}>{x.title}</a>
+                                        </div>
+                                        <div className='discuss-posts small-2 column'>
+                                            {x.posts}
+                                        </div>
+                                        <div className='discuss-time small-2 column'>
+                                            {x.last_updated}
+                                        </div>
+                                    </div>;
+                                })}
                             </div>
                         </div>
                     </div>
