@@ -48,20 +48,28 @@ var ContributePage = React.createClass({
                                     <a href='/site-stats'>Site Statistics</a>
                                 </div>
                                 <hr/>
-                                <div>
-                                    <a href='/recent-changes'>Recent Changes</a>
-                                </div>
-                                <div>
-                                    <a href='/recent-discussions'>Recent Discussions</a>
-                                </div>
-                                <div>
-                                    <a href='/site-stats'>Dead End Pages</a>
-                                </div>
+                                Objects
                                 <div>
                                     <a href='/site-stats'>Missing ISBN</a>
                                 </div>
                                 <div>
+                                    <a href='/site-stats'>Persons without books or videos</a>
+                                </div>
+                                <div>
                                     <a href='/site-stats'>Without Description</a>
+                                </div>
+                                <div>
+                                    <a href='/site-stats'>Videos without Mentions</a>
+                                </div>
+                                <div>
+                                    <a href='/site-stats'>Books without Mentions</a>
+                                </div>
+                                <hr/>
+                                <div>
+                                    <a href='/recent-discussions'>Recent Discussions</a>
+                                </div>
+                                <div>
+                                    <a href='/recent-changes'>Recent Changes</a>
                                 </div>
                                 <h2>Reported</h2>
                                 <div>
