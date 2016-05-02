@@ -50,7 +50,7 @@ var ContributePage = React.createClass({
                                 <hr/>
                                 Objects
                                 <div>
-                                    <a href='/site-stats'>Missing ISBN</a>
+                                    <a href='/missing-isbns'>Missing ISBNs</a>
                                 </div>
                                 <div>
                                     <a href='/site-stats'>Persons without books or videos</a>

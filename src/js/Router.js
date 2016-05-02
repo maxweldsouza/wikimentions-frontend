@@ -23,6 +23,7 @@ var ContributePage = require('./ContributePage');
 var RecentChangesPage = require('./RecentChangesPage');
 var RecentDiscussionsPage = require('./RecentDiscussionsPage');
 var SiteStatsPage = require('./SiteStatsPage');
+var MaintenancePage = require('./MaintenancePage');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -95,6 +96,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^recent-discussions$/.test(x)) {
         componentName = 'RecentDiscussionsPage';
+        routeObj.maxAge = 0;
+    } else if (/^missing-isbns$/.test(x)) {
+        componentName = 'MaintenancePage';
         routeObj.maxAge = 0;
     } else if (/^site-stats$/.test(x)) {
         componentName = 'SiteStatsPage';
