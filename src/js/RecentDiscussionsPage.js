@@ -7,6 +7,7 @@ var Comment = require('./Comment');
 var _ = require('underscore');
 var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
+var moment = require('moment');
 
 var RecentDiscussions = React.createClass({
     statics: {
@@ -40,16 +41,27 @@ var RecentDiscussions = React.createClass({
                         <h1 className='page-title'>Recent Discussions</h1>
                         <div className='small-12 columns'>
                             <div className='card-container'>
+                                <div className='card'>
+                                    <div className='small-6 columns'>
+                                        Page
+                                    </div>
+                                    <div className='small-3 column text-right'>
+                                        Posts
+                                    </div>
+                                    <div className='small-3 column text-right'>
+                                        Updated
+                                    </div>
+                                </div>
                                 {this.props.data.discuss.map((x) => {
                                     return <div className='card'>
-                                        <div className='discuss-topic small-8 columns'>
+                                        <div className='discuss-topic small-6 columns'>
                                             <a href={'/discuss/' + x.id + '/' + x.slug}>{x.title}</a>
                                         </div>
-                                        <div className='discuss-posts small-2 column'>
+                                        <div className='discuss-posts small-3 column text-right'>
                                             {x.posts}
                                         </div>
-                                        <div className='discuss-time small-2 column'>
-                                            {x.last_updated}
+                                        <div className='discuss-time small-3 column text-right'>
+                                            {moment(x.last_updated).fromNow()}
                                         </div>
                                     </div>;
                                 })}
