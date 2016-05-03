@@ -6,20 +6,28 @@ var _ = require('underscore');
 var moment = require('moment');
 var Link = require('./Link');
 
+var tags = ['book_without_author'];
+
 var Maintenance = React.createClass({
     statics: {
         resources (appstate) {
+            var tag = appstate.url.split('/')[1];
             return {
                 api: [
                     {
-                        name: 'ids',
-                        path: '/api/v1/maintenance/missing_isbn'
+                        name: 'data',
+                        path: '/api/v1/maintenance/' + tag
                     }
                 ]
             };
         }
     },
     render () {
+        var tag = this.props.path.split('/')[1];
+        var titles = {
+            'book_without_author': 'Books Without Author'
+        };
+        var data = this.props.data.data[tag];
         return (
             <span>
                 <Helmet
@@ -37,8 +45,8 @@ var Maintenance = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <h1 className='page-title'>Recent Changes</h1>
-                                {this.props.data.ids.missing_isbn.map((x) => {
+                                <h1 className='page-title'>{titles[tag]}</h1>
+                                {data.map((x) => {
                                     return <div>
                                         <Link
                                         type='book'

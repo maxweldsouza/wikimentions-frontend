@@ -97,7 +97,7 @@ var getComponent = function (routeObj) {
     } else if (/^recent-discussions$/.test(x)) {
         componentName = 'RecentDiscussionsPage';
         routeObj.maxAge = 0;
-    } else if (/^missing-isbns$/.test(x)) {
+    } else if (/^maintenance\/(.*)$/.test(x)) {
         componentName = 'MaintenancePage';
         routeObj.maxAge = 0;
     } else if (/^site-stats$/.test(x)) {
