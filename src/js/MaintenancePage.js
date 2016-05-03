@@ -31,8 +31,8 @@ var Maintenance = React.createClass({
     render () {
         var parts = this.props.path.split('/');
         var tag = parts[1];
-        var limit = parts[2];
-        var offset = parts[3];
+        var limit = Number(parts[2]);
+        var offset = Number(parts[3]);
 
         var data = this.props.data.data[tag];
         var title, results;
@@ -79,6 +79,13 @@ var Maintenance = React.createClass({
                 })}
             </div>
         }
+        var prev, next;
+        if (offset === 0) {
+            prev = '#';
+        } else {
+            prev = '/maintenance/' + tag + '/' + limit + '/' + (offset - limit);
+        }
+        next = '/maintenance/' + tag + '/' + limit + '/' + (offset + limit);
         return (
             <span>
                 <Helmet
@@ -97,10 +104,23 @@ var Maintenance = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1 className='page-title'>{title}</h1>
-                                <div className='button-group small'>
-                                    <a className='button' href={'/maintenance/' + tag + '/50/0'}>50</a>
-                                    <a className='button' href={'/maintenance/' + tag + '/100/0'}>100</a>
-                                    <a className='button' href={'/maintenance/' + tag + '/200/0'}>200</a>
+                                <div className='row'>
+                                    <div className='small-4 columns'>
+                                        {'Showing results ' + offset + ' to ' + (limit + offset)}
+                                    </div>
+                                    <div className='small-4 columns'>
+                                        <span className='button-group small'>
+                                            <a className='button' href={'/maintenance/' + tag + '/50/0'}>50</a>
+                                            <a className='button' href={'/maintenance/' + tag + '/100/0'}>100</a>
+                                            <a className='button' href={'/maintenance/' + tag + '/200/0'}>200</a>
+                                        </span>
+                                    </div>
+                                    <div className='small-4 columns'>
+                                        <span className='button-group small'>
+                                            <a className='button' href={prev}>Previous</a>
+                                            <a className='button' href={next}>Next</a>
+                                        </span>
+                                    </div>
                                 </div>
                                 {data.length === 0 ? <div>
                                     There is no data here.
