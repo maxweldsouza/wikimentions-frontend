@@ -27,11 +27,37 @@ var Maintenance = React.createClass({
     },
     render () {
         var tag = this.props.path.split('/')[1];
-        var titles = {
-            'book_without_author': 'Books Without Author',
-            'missing_isbn': 'Books with Missing ISBN'
-        };
         var data = this.props.data.data[tag];
+        var title, results;
+        if (tag === 'book_without_author') {
+            title = 'Books Without Author';
+            results = <div>
+                {data.map((x) => {
+                    return <div>
+                        <Link
+                        type='book'
+                        id={x.id}
+                        slug={x.slug}
+                        title={x.title}
+                        />
+                    </div>;
+                })}
+            </div>;
+        } else if (tag === 'missing_isbn') {
+            title = 'Books with Missing ISBN';
+            results = <div>
+                {data.map((x) => {
+                    return <div>
+                        <Link
+                        type='book'
+                        id={x.id}
+                        slug={x.slug}
+                        title={x.title}
+                        />
+                    </div>;
+                })}
+            </div>
+        }
         return (
             <span>
                 <Helmet
@@ -49,20 +75,11 @@ var Maintenance = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <h1 className='page-title'>{titles[tag]}</h1>
+                                <h1 className='page-title'>{title}</h1>
                                 {data.length === 0 ? <div>
                                     There is no data here.
                                 </div> : null}
-                                {data.map((x) => {
-                                    return <div>
-                                        <Link
-                                        type='book'
-                                        id={x.id}
-                                        slug={x.slug}
-                                        title={x.title}
-                                        />
-                                    </div>;
-                                })}
+                                {results}
                             </div>
                         </div>
                     </div>
