@@ -28,7 +28,8 @@ var Maintenance = React.createClass({
     render () {
         var tag = this.props.path.split('/')[1];
         var titles = {
-            'book_without_author': 'Books Without Author'
+            'book_without_author': 'Books Without Author',
+            'missing_isbn': 'Books with Missing ISBN'
         };
         var data = this.props.data.data[tag];
         return (
@@ -49,6 +50,9 @@ var Maintenance = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1 className='page-title'>{titles[tag]}</h1>
+                                {data.length === 0 ? <div>
+                                    There is no data here.
+                                </div> : null}
                                 {data.map((x) => {
                                     return <div>
                                         <Link
