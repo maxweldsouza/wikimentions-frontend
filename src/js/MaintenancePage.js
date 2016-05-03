@@ -6,12 +6,15 @@ var _ = require('underscore');
 var moment = require('moment');
 var Link = require('./Link');
 
-var tags = ['book_without_author'];
+var tags = ['book_without_author', 'missing_isbn'];
 
 var Maintenance = React.createClass({
     statics: {
         resources (appstate) {
             var tag = appstate.url.split('/')[1];
+            if (tags.indexOf(tag) < 0) {
+                throw { status: 404, message: 'Count not find what you were looking for'};
+            }
             return {
                 api: [
                     {

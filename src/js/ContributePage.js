@@ -52,11 +52,12 @@ var ContributePage = React.createClass({
                                 <div>
                                     <a href='/maintenance/book_without_author'>Books Without Author</a>
                                 </div>
+                                <hr/>
                                 <div>
-                                    <a href='/maintenance/missing-isbns'>Missing ISBNs</a>
+                                    <a href='/maintenance/missing_isbn'>Missing ISBNs</a>
                                 </div>
                                 <div>
-                                    <a href='/site-stats'>Persons without books or videos</a>
+                                    <a href='/site-stats'>People without books or videos</a>
                                 </div>
                                 <div>
                                     <a href='/site-stats'>Without Description</a>
