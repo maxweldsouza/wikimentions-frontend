@@ -4,6 +4,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var _ = require('underscore');
 var moment = require('moment');
+var Link = require('./Link');
 
 var Maintenance = React.createClass({
     statics: {
@@ -34,14 +35,19 @@ var Maintenance = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>Recent Changes</h1>
-                        <div className='small-12 columns'>
-                            <div className='card-container'>
-                                <div className="card">
-                                    {this.props.data.ids.missing_isbn.map((x) => {
-                                        return <div>{x}</div>;
-                                    })}
-                                </div>
+                        <div className='row'>
+                            <div className='small-12 columns'>
+                                <h1 className='page-title'>Recent Changes</h1>
+                                {this.props.data.ids.missing_isbn.map((x) => {
+                                    return <div>
+                                        <Link
+                                        type='book'
+                                        id={x.id}
+                                        slug={x.slug}
+                                        title={x.title}
+                                        />
+                                    </div>;
+                                })}
                             </div>
                         </div>
                     </div>
