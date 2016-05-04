@@ -4,6 +4,7 @@ var Select = require('./Select');
 var cookies = require('browser-cookies');
 var isNode = require('./isNode');
 var Xsrf = require('./Xsrf');
+var config = require('./config');
 
 var Navbar = React.createClass({
     getInitialState () {
@@ -67,7 +68,7 @@ var Navbar = React.createClass({
             <div className='top-bar'>
                 <div className='top-bar-left'>
                     <ul className='menu icon-top'>
-                        <li className='menu-text'><a href='/'>Mentions</a></li>
+                        <li className='menu-text'><a href='/'>{config.title}</a></li>
                         <li className='show-for-large'><a href='/create'>Create Page</a></li>
                     </ul>
                 </div>
