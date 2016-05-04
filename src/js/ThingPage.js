@@ -157,19 +157,17 @@ var ThingPage = React.createClass({
                             <div className='small-12 large-8 columns'>
                                 <h1 className='page-title'>{thing.title}</h1>
                                 <div className='row'>
-                                    <div className='small-6 columns'>
+                                    <div className='small-12 columns'>
                                         <span className='thing-description'>
                                             {thing.description}
                                             {authors}
                                         </span>
+                                        <Share />
                                         <PageBar
                                             id={id}
                                             slug={thing.slug}
                                             type={thing.type}
                                             />
-                                    </div>
-                                    <div className='small-6 columns'>
-                                        <Share />
                                     </div>
                                 </div>
                                 {thing.type === 'video' ? <div>
