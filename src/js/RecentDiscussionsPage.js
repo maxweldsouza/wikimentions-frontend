@@ -8,6 +8,7 @@ var _ = require('underscore');
 var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var moment = require('moment');
+var config = require('./config');
 
 var RecentDiscussions = React.createClass({
     statics: {
@@ -26,13 +27,13 @@ var RecentDiscussions = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={'Recent Discussions'}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar/>

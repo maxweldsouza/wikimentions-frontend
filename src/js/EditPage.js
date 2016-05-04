@@ -9,6 +9,7 @@ var Notification = require('./Notification');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var PageBar = require('./PageBar');
+var config = require('./config');
 
 var EditPage = React.createClass({
     statics: {
@@ -112,13 +113,13 @@ var EditPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={'Edit - ' + entry.title}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar/>

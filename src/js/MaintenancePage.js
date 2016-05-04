@@ -5,6 +5,7 @@ var Navbar = require('./Navbar');
 var _ = require('underscore');
 var moment = require('moment');
 var Link = require('./Link');
+var config = require('./config');
 
 var tags = ['book_without_author', 'missing_isbn', 'person_without_description'];
 
@@ -89,13 +90,13 @@ var Maintenance = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={'Maintenance'}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar/>

@@ -3,8 +3,8 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var _ = require('underscore');
 
+var config = require('./config');
 var Navbar = require('./Navbar');
-
 var BlogPost = require('./BlogPost');
 
 var BlogPostPage = React.createClass({
@@ -26,21 +26,21 @@ var BlogPostPage = React.createClass({
             <div className='flex-wrapper'>
                 <Helmet
                     title={this.props.data.post.title}
-                    titleTemplate='%s - Comparnion Blog'
+                    titleTemplate={'%s - ' + config.name + ' - Blog'}
                     meta={[
                         {name: 'description', 'content': ''},
                         {name: 'twitter:card', content: 'summary'},
-                        {name: 'twitter:site', content: '@comparnion'},
+                        {name: 'twitter:site', content: config.twitter},
                         {name: 'twitter:title', content: this.props.data.post.title},
                         {name: 'twitter:description', content: ''},
                         {property: 'og:title', content: this.props.data.post.title},
                         {property: 'og:type', content: 'article'},
-                        {property: 'og:url', content: 'https://comparnion.com' + this.props.path},
+                        {property: 'og:url', content: config.url + this.props.path},
                         {property: 'og:description', content: ''},
-                        {property: 'og:site_name', content: 'Comparnion'}
+                        {property: 'og:site_name', content: config.name}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': 'https://comparnion.com/' + this.props.path}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar

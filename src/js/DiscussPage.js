@@ -7,6 +7,7 @@ var Comment = require('./Comment');
 var _ = require('underscore');
 var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
+var config = require('./config');
 
 var DiscussPage = React.createClass({
     statics: {
@@ -44,13 +45,13 @@ var DiscussPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={'Discussion - ' + this.props.data.thing.title}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar/>

@@ -4,6 +4,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var _ = require('underscore');
 var moment = require('moment');
+var config = require('./config');
 
 var RecentChangesPage = React.createClass({
     statics: {
@@ -18,13 +19,13 @@ var RecentChangesPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={'Recent Changes'}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar/>

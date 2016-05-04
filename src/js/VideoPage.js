@@ -12,6 +12,7 @@ var Authors = require('./Authors');
 var VideoEmbed = require('./VideoEmbed');
 var PageBar = require('./PageBar');
 var Share = require('./Share');
+var config = require('./config');
 
 var ThingPage = React.createClass({
     statics: {
@@ -92,13 +93,13 @@ var ThingPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={thing.title}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar/>

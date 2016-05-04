@@ -6,6 +6,7 @@ var _ = require('underscore');
 var Pagination = require('./Pagination');
 var HistoryItem = require('./HistoryItem');
 var PageBar = require('./PageBar');
+var config = require('./config');
 
 var HistoryPage = React.createClass({
     statics: {
@@ -41,13 +42,13 @@ var HistoryPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={'History - ' + this.props.data.thing.title}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar/>

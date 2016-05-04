@@ -3,8 +3,8 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var _ = require('underscore');
 
+var config = require('./config');
 var Navbar = require('./Navbar');
-
 var BlogPost = require('./BlogPost');
 
 var pageNoFromPath = function (path) {
@@ -46,12 +46,12 @@ var BlogPage = React.createClass({
             <div className='flex-wrapper'>
                 <Helmet
                     title='Blog'
-                    titleTemplate='%s - Mentions'
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': 'https://comparnion.com/' + this.props.path}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar

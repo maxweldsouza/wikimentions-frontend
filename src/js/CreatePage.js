@@ -8,6 +8,7 @@ var ButtonSelect = require('./ButtonSelect');
 var Notification = require('./Notification');
 var requests = require('superagent');
 var SubmitButton = require('./SubmitButton');
+var config = require('./config');
 
 var HomePage = React.createClass({
     statics: {
@@ -104,13 +105,13 @@ var HomePage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={'Create Page'}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar/>

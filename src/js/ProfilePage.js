@@ -5,6 +5,7 @@ var Navbar = require('./Navbar');
 var Login = require('./Login');
 var _ = require('underscore');
 var moment = require('moment');
+var config = require('./config');
 
 var ProfilePage = React.createClass({
     statics: {
@@ -112,13 +113,13 @@ var ProfilePage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={user.name}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
                 <Navbar/>
