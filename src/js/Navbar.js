@@ -68,7 +68,7 @@ var Navbar = React.createClass({
             <div className='top-bar'>
                 <div className='top-bar-left'>
                     <ul className='menu icon-top'>
-                        <li className='menu-text'><a href='/'>{config.title}</a></li>
+                        <li className='menu-text'><a href='/'>{config.name}</a></li>
                         <li className='show-for-large'><a href='/create'>Create Page</a></li>
                     </ul>
                 </div>
