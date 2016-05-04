@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="mobile-web-app-capable" content="yes">
-        <link href="" rel="canonical"></link>
         <!-- build:include zopim.html -->
         <!-- /build -->
 
@@ -81,26 +80,10 @@
         </head>
 
         <body>
-        <div class="width-scale"></div>
-        <div class="height-scale"></div>
-
-        <div class="modal fade fullscreen" id="criteria-modal" tabindex="-1">
-            <div class="modal-dialog modal-fullscreen">
-                <div class="modal-content" id="criteria-modal-content">
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-        <div id="page-wrapper">
-            <div id="page-container">
+            <div id='page-container'>
                 <%= content %>
             </div>
-        </div>
-
-    </div>
-
-    <!-- build:include analytics.html -->
-    <!-- /build -->
-
-    </body>
+            <!-- build:include analytics.html -->
+            <!-- /build -->
+        </body>
 </html>
