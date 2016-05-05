@@ -14,7 +14,7 @@ var Authors = React.createClass({
                         {x.title}{i === authorCount - 1 ? '' : ', '}
                     </a>;
                 })}
-                <AddAuthors id={this.props.id}/>
+                <AddAuthors id={this.props.id} authors={authors}/>
             </span>
         );
     }

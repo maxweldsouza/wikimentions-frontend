@@ -2,11 +2,10 @@ var React = require('react');
 
 var SubmitButton = React.createClass({
     render () {
-        return (
-            <span>
-                {this.props.submitting ? <button type='button' className='success button disabled' onClick={this.props.onSubmit}>{this.props.title}</button> : <button type='button' className='success button' onClick={this.props.onSubmit}>{this.props.title}</button>}
-            </span>
-        );
+        if (this.props.submitting) {
+            return <button type='button' className='button disabled' onClick={this.props.onSubmit}>{this.props.title}</button>;
+        }
+        return <button type='button' className='button' onClick={this.props.onSubmit}>{this.props.title}</button>;
     }
 });
 

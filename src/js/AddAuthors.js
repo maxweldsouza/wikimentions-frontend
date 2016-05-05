@@ -72,18 +72,27 @@ var AddAuthors = React.createClass({
         return (
             <span>
                 {this.state.opened ? <span>
+                    <div>
+                        <strong>Authors</strong>
+                        {this.props.authors.map((x) => {
+                            var path = '/pages/' + x.id + '/' + x.slug;
+                            return <div>
+                                <a href={path}>{x.title}</a> <a href='' className='secondary small'>Remove</a>
+                            </div>
+                        })}
+                    </div>
                     <form action='' method='post'>
                         <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                         <Select name='author'
                             placeholder='Author'
                             onSelectValue={this.onChangeAuthor}/>
-                        <div>
+                        <div className='button-group small'>
                             <SubmitButton title='Add Author' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                             <button type="button" className="button" onClick={this.onClose}>Close</button>
                         </div>
                     </form>
                 </span> : <span className='edit-links'>{' '}
-                    <a className='secondary' onClick={this.onOpen}>Add Authors <span className='ion-plus-round'></span></a>
+                    <a className='secondary' onClick={this.onOpen}>Edit Authors</a>
                 </span>}
             </span>
         );
