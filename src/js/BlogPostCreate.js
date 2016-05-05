@@ -99,17 +99,13 @@ var BlogPostCreate = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <div className='small-12 large-8 columns'>
-                            <form action='/api/v1/blog' method='post'>
-                                <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
-                                <input type='hidden' name='action' value='create'/>
-                                <h1 className='blog-title'>Create Post</h1>
-                                <input type='text' name='title' placeholder='Title' />
-                                <textarea name='content' placeholder='Content' />
-                                <div>
-                                    <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
-                                </div>
-                            </form>
+                        <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
+                        <input type='hidden' name='action' value='create'/>
+                        <h1 className='blog-title'>Create Post</h1>
+                        <input type='text' name='title' placeholder='Title' />
+                        <textarea name='content' placeholder='Content' />
+                        <div>
+                            <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                         </div>
                     </div>
                 </div>
