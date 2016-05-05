@@ -67,6 +67,29 @@ var AddAuthors = React.createClass({
             });
         }
     },
+    removeAuthor (id) {
+        requests
+        .post('/api/v1/thing/' + this.props.id + '/booksby')
+        .type('form')
+        .send({
+            author_id: id,
+            action: 'remove',
+            _xsrf: cookies.get('_xsrf')
+        })
+        .end((err, res) => {
+            this.setState({
+                submiting: false
+            });
+            if (err && err.status) {
+                this.setState({
+                    error: true,
+                    message: res.body.message
+                });
+            } else {
+                Mentions.route(window.location.pathname + window.location.search);
+            }
+        });
+    },
     render () {
         var id = this.props.id;
         return (
@@ -77,7 +100,7 @@ var AddAuthors = React.createClass({
                         {this.props.authors.map((x) => {
                             var path = '/pages/' + x.id + '/' + x.slug;
                             return <div>
-                                <a href={path}>{x.title}</a> <a href='' className='secondary small'>Remove</a>
+                                <a href={path}>{x.title}</a> <a href='' className='secondary small' onClick={this.removeAuthor.bind(null, x.id)}>Remove</a>
                             </div>
                         })}
                     </div>

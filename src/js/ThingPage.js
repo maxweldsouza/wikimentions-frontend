@@ -141,7 +141,16 @@ var ThingPage = React.createClass({
                     title={thing.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        {'name': 'description', 'content': ''},
+                        {name: 'twitter:card', content: 'summary'},
+                        {name: 'twitter:site', content: config.twitter},
+                        {name: 'twitter:title', content: thing.title},
+                        {name: 'twitter:description', content: ''},
+                        {property: 'og:title', content: thing.title},
+                        {property: 'og:type', content: 'article'},
+                        {property: 'og:url', content: config.url + this.props.path},
+                        {property: 'og:description', content: ''},
+                        {property: 'og:site_name', content: config.name}
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}
