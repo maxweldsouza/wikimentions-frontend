@@ -17,7 +17,7 @@ var RecentDiscussions = React.createClass({
                 api: [
                     {
                         name: 'discuss',
-                        path: '/api/v1/recent-discussions/0'
+                        path: '/api/v1/recent-discussions'
                     }
                 ]
             };
