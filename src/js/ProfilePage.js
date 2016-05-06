@@ -6,6 +6,7 @@ var Login = require('./Login');
 var _ = require('underscore');
 var moment = require('moment');
 var config = require('./config');
+var HistoryItem = require('./HistoryItem');
 
 var ProfilePage = React.createClass({
     statics: {
@@ -16,6 +17,10 @@ var ProfilePage = React.createClass({
                     {
                         name: 'user',
                         path: '/api/v1/user/' + id
+                    },
+                    {
+                        name: 'history',
+                        path: '/api/v1/userhistory/' + id
                     }
                 ]
             };
@@ -34,6 +39,7 @@ var ProfilePage = React.createClass({
     render () {
         var id = Number(this.props.path.split('/')[1]);
         var user = this.props.data.user;
+        var history = this.props.data.history;
         var tabs = ['Stats', 'Edits', 'Profile'];
         var tab, tabContent;
         tab = <ul className='tabs' data-tabs id='example-tabs'>
@@ -45,35 +51,17 @@ var ProfilePage = React.createClass({
             })}
         </ul>;
         if (this.state.tab === 'Edits') {
-            tabContent = <div className='card'>
-                <div className='small-12 columns'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th width={200}>Page</th>
-                            <th>Type</th>
-                            <th width={150}>Updated</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>The God Delusion</td>
-                            <td>Mention</td>
-                            <td>2 mins ago</td>
-                        </tr>
-                        <tr>
-                            <td>The Selfish Gene</td>
-                            <td>Page</td>
-                            <td>12 mins ago</td>
-                        </tr>
-                        <tr>
-                            <td>Phantoms in the Brain</td>
-                            <td>Book</td>
-                            <td>3 days ago</td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
+            tabContent = <div className=''>
+                {history.map((x) => {
+                    return <HistoryItem
+                        user={x.user}
+                        username={x.username}
+                        entry={x.entry}
+                        entrytype={x.entrytype}
+                        timestamp={x.timestamp}
+                        deleted={x.deleted}
+                        />;
+                })}
             </div>;
         } else if (this.state.tab === 'Profile') {
             tabContent = <div>
