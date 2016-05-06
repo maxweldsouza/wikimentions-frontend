@@ -4,7 +4,7 @@ var Link = require('./Link');
 
 var HistoryCard = React.createClass({
     render () {
-        var added = this.props.deleted ? <span className="ion-minus-circled"></span> : <span className="ion-plus-circled"></span>;
+        var added = this.props.deleted  === 1 ? <span className="ion-minus-circled"></span> : <span className="ion-plus-circled"></span>;
         var item;
         if (this.props.entry && this.props.entrytype === 'video_author') {
             item = <span>

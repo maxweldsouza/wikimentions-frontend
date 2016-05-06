@@ -70,6 +70,7 @@ var HistoryPage = React.createClass({
                                         entry={x.entry}
                                         entrytype={x.entrytype}
                                         timestamp={x.timestamp}
+                                        deleted={x.deleted}
                                         />;
                                 })}
                             </div>
