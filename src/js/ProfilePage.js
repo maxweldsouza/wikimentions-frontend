@@ -7,6 +7,7 @@ var _ = require('underscore');
 var moment = require('moment');
 var config = require('./config');
 var HistoryItem = require('./HistoryItem');
+var cookies = require('browser-cookies');
 
 var ProfilePage = React.createClass({
     statics: {
@@ -37,10 +38,16 @@ var ProfilePage = React.createClass({
         });
     },
     render () {
+        var cookieUserId = Number(cookies.get('userid'));
         var id = Number(this.props.path.split('/')[1]);
+        var self = cookieUserId === id;
+
         var user = this.props.data.user;
         var history = this.props.data.history;
-        var tabs = ['Stats', 'Edits', 'Profile'];
+        var tabs = ['Stats', 'Edits'];
+        if (self) {
+            tabs.push('Profile');
+        }
         var tab, tabContent;
         tab = <ul className='tabs' data-tabs id='example-tabs'>
             {tabs.map((x) => {
@@ -66,6 +73,7 @@ var ProfilePage = React.createClass({
             </div>;
         } else if (this.state.tab === 'Profile') {
             tabContent = <div>
+                {self ? <div>
                 <div className='card'>
                     <div className='small-12 columns'>
                         <h2>Verify E-mail</h2>
@@ -89,6 +97,7 @@ var ProfilePage = React.createClass({
                         <button type='submit' className='success button'>Change Username</button>
                     </div>
                 </div>
+                </div> : null}
             </div>;
         } else if (this.state.tab === 'Stats') {
             tabContent = <div className='card'>
