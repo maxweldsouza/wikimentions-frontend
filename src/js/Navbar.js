@@ -36,9 +36,9 @@ var Navbar = React.createClass({
         var user;
         if (this.state.loggedin) {
             user = <ul className='menu'>
-                <li className='show-for-large'><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
-                <li className='show-for-large'><a href={'/users/' + this.state.userid + '/' + this.state.username}>{this.state.username}</a></li>
-                <li className='show-for-large'>
+                <li><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
+                <li><a href={'/users/' + this.state.userid + '/' + this.state.username}>{this.state.username}</a></li>
+                <li>
                     <form action='/api/v1/logout' method='post'>
                         <Xsrf/>
                         <button type='submit'>Logout</button>
@@ -47,7 +47,7 @@ var Navbar = React.createClass({
             </ul>;
         } else {
             user = <ul className='menu'>
-                <li className='show-for-large'><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
+                <li><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
                 <li><a href='/login'>Login</a></li>
                 <li><a href='/signup'>Signup</a></li>
             </ul>;
@@ -60,7 +60,7 @@ var Navbar = React.createClass({
                         <li className='show-for-large'><a href='/create'>Create Page</a></li>
                     </ul>
                 </div>
-                <div className='top-bar-right'>
+                <div className='top-bar-right show-for-large'>
                     {user}
                 </div>
             </div>
