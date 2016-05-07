@@ -29,6 +29,8 @@ var MaintenancePage = require('./MaintenancePage');
 
 var Menu = require('react-burger-menu').slide;
 var store = require('store');
+var cookies = require('browser-cookies');
+var isNode = require('./isNode');
 
 var MainComponent = React.createClass({
     propTypes: {
@@ -37,8 +39,24 @@ var MainComponent = React.createClass({
     },
     getInitialState () {
         return {
-            sidebar: false
+            sidebar: false,
+            loggedin: false,
+            username: '',
+            userid: ''
         };
+    },
+    componentDidMount () {
+        var session, username, userid;
+        if (isNode.isBrowser()) {
+            session = cookies.get('mentions');
+            username = cookies.get('username');
+            userid = cookies.get('userid');
+        }
+        this.setState({
+            loggedin: session ? true : false,
+            username: username,
+            userid: userid
+        });
     },
     onSidebarOpen (open) {
         this.setState({
@@ -52,13 +70,15 @@ var MainComponent = React.createClass({
                 <Menu
                     isOpen={false}
                     >
-                    <a id="home" className="menu-item" href="/"><span className='ion-android-home menu-item-icon'/>Home</a>
-                    <a id="about" className="menu-item" href="/create"><span className='ion-android-create menu-item-icon'/>Create Page</a>
-                    <a id="about" className="menu-item" href="/create"><span className='ion-android-search menu-item-icon'/>Search</a>
-                    <a id="about" className="menu-item" href="/contribute"><span className='ion-ios-people menu-item-icon'/>Contribute</a>
-                    <a id="about" className="menu-item" href="/blog"><span className='ion-document menu-item-icon'/>Blog</a>
-                    <a id="about" className="menu-item" href="/blog/newpost"><span className='ion-compose menu-item-icon'/>New Blog Post</a>
-                    <a id="contact" className="menu-item" href="/contact"><span className='ion-email menu-item-icon'/>Contact</a>
+                    <a className="menu-item" href="/"><span className='ion-android-home menu-item-icon'/>Home</a>
+                    <a className="menu-item" href="/create"><span className='ion-android-create menu-item-icon'/>Create Page</a>
+                    <a className="menu-item" href="/create"><span className='ion-android-search menu-item-icon'/>Search</a>
+                    <a className="menu-item" href="/contribute"><span className='ion-ios-people menu-item-icon'/>Contribute</a>
+                    <a className="menu-item" href="/blog"><span className='ion-document menu-item-icon'/>Blog</a>
+                    <a className="menu-item" href="/blog/newpost"><span className='ion-compose menu-item-icon'/>New Blog Post</a>
+                    <a className="menu-item" href="/contact"><span className='ion-email menu-item-icon'/>Contact</a>
+                    {this.state.loggedin ? <a className="menu-item" href="/contact"><span className='ion-log-out menu-item-icon'/>Log Out</a> : <a className="menu-item" href="/login"><span className='ion-log-in menu-item-icon'/>Log In</a>}
+                    {this.state.loggedin ? <a className="menu-item" href="/signup"><span className='ion-person-add menu-item-icon'/>Sign Up</a> : <span></span>}
                 </Menu>
                 <Spinner />
                 <Component

@@ -119,6 +119,7 @@ app.get(/^(.+)$/, function(req, res, next) {
 
 app.use(function(err, req, res, next) {
     if (err) {
+        console.log(err);
         var message;
         var content;
         var status = err.status || 500;
