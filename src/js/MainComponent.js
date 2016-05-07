@@ -41,23 +41,7 @@ var MainComponent = React.createClass({
     getInitialState () {
         return {
             sidebar: false,
-            loggedin: false,
-            username: '',
-            userid: ''
         };
-    },
-    componentDidMount () {
-        var session, username, userid;
-        if (isNode.isBrowser()) {
-            session = cookies.get('mentions');
-            username = cookies.get('username');
-            userid = cookies.get('userid');
-        }
-        this.setState({
-            loggedin: session ? true : false,
-            username: username,
-            userid: userid
-        });
     },
     onSidebarOpen (open) {
         this.setState({
@@ -84,6 +68,11 @@ var MainComponent = React.createClass({
     },
     render () {
         var Component = require('./' + this.props.component);
+        var loggedin = false;
+        if (isNode.isBrowser()) {
+            var session = cookies.get('mentions');
+            loggedin = session ? true : false;
+        }
         return (
             <div>
                 <Menu
@@ -96,8 +85,8 @@ var MainComponent = React.createClass({
                     <a className="menu-item" href="/blog"><span className='ion-document menu-item-icon'/>Blog</a>
                     <a className="menu-item" href="/blog/newpost"><span className='ion-compose menu-item-icon'/>New Blog Post</a>
                     <a className="menu-item" href="/contact"><span className='ion-email menu-item-icon'/>Contact</a>
-                    {this.state.loggedin ? <a className="menu-item" onClick={this.logout}><span className='ion-log-out menu-item-icon'/>Log Out</a> : <a className="menu-item" href="/login"><span className='ion-log-in menu-item-icon'/>Log In</a>}
-                    {this.state.loggedin ? <span></span> : <a className="menu-item" href="/signup"><span className='ion-person-add menu-item-icon'/>Sign Up</a>}
+                    {loggedin ? <a className="menu-item" onClick={this.logout}><span className='ion-log-out menu-item-icon'/>Log Out</a> : <a className="menu-item" href="/login"><span className='ion-log-in menu-item-icon'/>Log In</a>}
+                    {loggedin ? <span></span> : <a className="menu-item" href="/signup"><span className='ion-person-add menu-item-icon'/>Sign Up</a>}
                 </Menu>
                 <Spinner />
                 <Component
