@@ -19,6 +19,7 @@
 
 /* Position and sizing of burger button */
 .bm-burger-button {
+    @include hide-for(large);
     position: absolute;
     width: 21px;
     height: 15px;

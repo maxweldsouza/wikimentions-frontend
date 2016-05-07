@@ -53,11 +53,11 @@ var MainComponent = React.createClass({
                     isOpen={false}
                     >
                     <a id="home" className="menu-item" href="/"><span className='ion-android-home menu-item-icon'/>Home</a>
+                    <a id="about" className="menu-item" href="/create"><span className='ion-android-create menu-item-icon'/>Create Page</a>
                     <a id="about" className="menu-item" href="/create"><span className='ion-android-search menu-item-icon'/>Search</a>
+                    <a id="about" className="menu-item" href="/contribute"><span className='ion-ios-people menu-item-icon'/>Contribute</a>
                     <a id="about" className="menu-item" href="/blog"><span className='ion-document menu-item-icon'/>Blog</a>
                     <a id="about" className="menu-item" href="/blog/newpost"><span className='ion-compose menu-item-icon'/>New Blog Post</a>
-                    <a id="about" className="menu-item" href="/contribute"><span className='ion-ios-people menu-item-icon'/>Contribute</a>
-                    <a id="about" className="menu-item" href="/create"><span className='ion-android-create menu-item-icon'/>Create Page</a>
                     <a id="contact" className="menu-item" href="/contact"><span className='ion-email menu-item-icon'/>Contact</a>
                 </Menu>
                 <Spinner />
