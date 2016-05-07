@@ -54,8 +54,9 @@ var ProfilePage = React.createClass({
             tabContent = <div className=''>
                 {history.map((x) => {
                     return <HistoryItem
-                        user={x.user}
-                        username={x.username}
+                        user={user.id}
+                        username={user.name}
+                        obj_id={x.obj_id}
                         entry={x.entry}
                         entrytype={x.entrytype}
                         timestamp={x.timestamp}
