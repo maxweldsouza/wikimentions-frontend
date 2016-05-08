@@ -28,7 +28,18 @@ var Navbar = React.createClass({
         });
     },
     onSelectSearchResult (x) {
-        var path = '/pages/' + x.id + '/' + x.slug;
+        var pagepath;
+        if (x.type === 'video') {
+            pagepath = '/videos/';
+        } else if (x.type === 'book') {
+            pagepath = '/books/';
+        } else if (x.type === 'person') {
+            pagepath = '/pages/';
+        } else {
+            pagepath = '/pages/';
+            console.warn('No page type specified for Link');
+        }
+        var path = pagepath + x.id + '/' + x.slug;
         history.pushState(null, null, path);
         Mentions.route(path);
     },
