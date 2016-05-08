@@ -62,7 +62,8 @@ var MainComponent = React.createClass({
                     message: res.body.message
                 });
             } else {
-                Mentions.route(window.location.pathname + window.location.search);
+                history.pushState(null, null, '/');
+                Mentions.route('/');
             }
         });
     },

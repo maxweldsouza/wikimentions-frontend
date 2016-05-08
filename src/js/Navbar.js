@@ -7,26 +7,6 @@ var Xsrf = require('./Xsrf');
 var config = require('./config');
 
 var Navbar = React.createClass({
-    getInitialState () {
-        return {
-            loggedin: false,
-            username: '',
-            userid: ''
-        };
-    },
-    componentWillMount () {
-        var session, username, userid;
-        if (isNode.isBrowser()) {
-            session = cookies.get('mentions');
-            username = cookies.get('username');
-            userid = cookies.get('userid');
-        }
-        this.setState({
-            loggedin: session ? true : false,
-            username: username,
-            userid: userid
-        });
-    },
     onSelectSearchResult (x) {
         var pagepath;
         if (x.type === 'video') {
@@ -44,23 +24,22 @@ var Navbar = React.createClass({
         Mentions.route(path);
     },
     render () {
+        var session, username, userid, loggedin;
+        if (isNode.isBrowser()) {
+            session = cookies.get('mentions');
+            username = cookies.get('username');
+            userid = cookies.get('userid');
+        }
+        loggedin = session ? true : false;
         var user;
-        if (this.state.loggedin) {
+        if (loggedin) {
             user = <ul className='menu'>
                 <li><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
-                <li><a href={'/users/' + this.state.userid + '/' + this.state.username}>{this.state.username}</a></li>
-                <li>
-                    <form action='/api/v1/logout' method='post'>
-                        <Xsrf/>
-                        <button type='submit'>Logout</button>
-                    </form>
-                </li>
+                <li><a href={'/users/' + userid + '/' + username}>{username}</a></li>
             </ul>;
         } else {
             user = <ul className='menu'>
                 <li><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
-                <li><a href='/login'>Login</a></li>
-                <li><a href='/signup'>Signup</a></li>
             </ul>;
         }
         return (
