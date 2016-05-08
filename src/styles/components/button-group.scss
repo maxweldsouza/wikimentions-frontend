@@ -15,3 +15,13 @@
 .button-group .button:not(:last-child) {
     margin-right: 0;
 }
+
+.button.hollow.secondary {
+    border: solid 1px $medium-gray;
+    background: $white;
+    color: $secondary-color;
+
+    &:hover {
+        border: solid 1px $dark-gray;
+    }
+}
