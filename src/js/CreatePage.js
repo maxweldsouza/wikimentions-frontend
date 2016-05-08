@@ -124,12 +124,11 @@ var HomePage = React.createClass({
                             <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
                             <div className='row'>
                                 <div className='small-12 columns'>
-                                    <label>Type
-                                        <ButtonSelect
-                                            name='type'
-                                            options={options}
-                                            onChange={this.onChangeType}/>
-                                    </label>
+                                    Type
+                                    <ButtonSelect
+                                        name='type'
+                                        options={options}
+                                        onChange={this.onChangeType}/>
                                     {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/> : null}
                                     {this.state.type === 'book' ? <input type='text' name='isbn13' placeholder='ISBN-13' value={this.state.isbn13} onChange={this.onChangeText}/> : null}
                                     {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
