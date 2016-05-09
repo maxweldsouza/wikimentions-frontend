@@ -172,7 +172,7 @@ var ThingPage = React.createClass({
                                             {thing.description}
                                             {authors}
                                         </span>
-                                        <Share />
+                                        <Share title={thing.title} path={this.props.path}/>
                                         <PageBar
                                             id={id}
                                             slug={thing.slug}

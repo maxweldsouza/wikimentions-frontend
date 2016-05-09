@@ -24,7 +24,7 @@ var BlogPost = React.createClass({
                         {this.props.next ? <a href={'/blog/' + this.props.next} className=''>Next Post</a> : null}
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <Share />
+                                <Share title={this.props.title} path={path}/>
                             </div>
                         </div>
                     </div>

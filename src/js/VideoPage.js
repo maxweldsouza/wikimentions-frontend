@@ -131,7 +131,7 @@ var ThingPage = React.createClass({
                                     />
                                 <div className='row'>
                                     <div className='small-12 columns'>
-                                        <Share />
+                                        <Share title={thing.title} path={this.props.path}/>
                                     </div>
                                 </div>
                                 {tab}
