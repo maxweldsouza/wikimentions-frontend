@@ -43,6 +43,11 @@ var MainComponent = React.createClass({
             sidebar: false,
         };
     },
+    componentWillReceiveProps: function(nextProps) {
+        this.setState({
+            sidebar: false
+        });
+    },
     onSidebarOpen (open) {
         this.setState({
             sidebar: true
