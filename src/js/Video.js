@@ -14,14 +14,18 @@ var Video = React.createClass({
         var parsed = parseUrl(this.props.url);
         return (
             <div className='card'>
-                <div className='shrink columns'>
-                    <div style={{maxWidth: 150}}>
-                        {image}
+                <div className='small-12 columns'>
+                    <div className='row'>
+                        <div className='shrink columns'>
+                            <div style={{maxWidth: 150}}>
+                                {image}
+                            </div>
+                        </div>
+                        <div className='columns'>
+                            <a className='card-title' href={'/videos/' + this.props.id + '/' + this.props.slug}>{this.props.title}</a>
+                            <div>{'[' + parsed.hostname + ']'}</div>
+                        </div>
                     </div>
-                </div>
-                <div className='columns'>
-                    <a className='card-title' href={'/videos/' + this.props.id + '/' + this.props.slug}>{this.props.title}</a>
-                    <div>{'[' + parsed.hostname + ']'}</div>
                 </div>
             </div>
         );

@@ -12,7 +12,7 @@ var ThingVideoTab = React.createClass({
             </div>
         </div>;
         return (
-            <div className='card-container row'>
+            <div className='card-container'>
                 {videos.map((x) => {
                     return <Video
                             key={x.id}
