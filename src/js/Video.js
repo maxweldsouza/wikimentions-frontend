@@ -15,7 +15,7 @@ var Video = React.createClass({
         return (
             <div className='card'>
                 <div className='shrink columns'>
-                    <div style={{'max-width': 150}}>
+                    <div style={{maxWidth: 150}}>
                         {image}
                     </div>
                 </div>
