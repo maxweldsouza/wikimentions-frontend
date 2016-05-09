@@ -17,7 +17,6 @@ var ButtonSelect = React.createClass({
             <div>
                 <input
                     type='hidden'
-                    defaultValue={this.props.default}
                     name={this.props.name}
                     value={this.state.selected ? this.state.selected : ''}
                 />
