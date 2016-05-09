@@ -52,6 +52,7 @@ var ThingPage = React.createClass({
     },
     render () {
         var thing = this.props.data.thing;
+        var image = '/assets/videolarge.png';
         var id = Number(thing.id);
         var authors = this.props.data.videoauthors;
         if (authors.length > 0) {
@@ -65,12 +66,12 @@ var ThingPage = React.createClass({
             'mentioned': 'Mentioned',
             'mentionedby': 'Mentioned By'
         };
-        var tab = <ul className="tabs">
+        var tab = <ul className='tabs'>
             {tabs.map((x) => {
                 var cls, aria;
                 if (x === this.state.tab) {
                     return <li className='tabs-title is-active' key={x}>
-                        <a aria-selected="true" onClick={this.changeTab.bind(null, x)}>{tabTitles[x]}</a>
+                        <a aria-selected='true' onClick={this.changeTab.bind(null, x)}>{tabTitles[x]}</a>
                     </li>;
                 }
                 return <li className='tabs-title' key={x}>
@@ -101,10 +102,12 @@ var ThingPage = React.createClass({
                         {name: 'twitter:site', content: config.twitter},
                         {name: 'twitter:title', content: thing.title},
                         {name: 'twitter:description', content: ''},
+                        {name: 'twitter:image', content: image},
                         {property: 'og:title', content: thing.title},
                         {property: 'og:type', content: 'article'},
                         {property: 'og:url', content: config.url + this.props.path},
                         {property: 'og:description', content: ''},
+                        {property: 'og:image', content: image},
                         {property: 'og:site_name', content: config.name}
                     ]}
                     link={[
@@ -135,8 +138,8 @@ var ThingPage = React.createClass({
                                     </div>
                                 </div>
                                 {tab}
-                                <div className="tabs-content">
-                                    <div className="tabs-panel is-active">
+                                <div className='tabs-content'>
+                                    <div className='tabs-panel is-active'>
                                         {tabContent}
                                     </div>
                                 </div>
