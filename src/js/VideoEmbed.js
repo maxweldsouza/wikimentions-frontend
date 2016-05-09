@@ -39,6 +39,16 @@ var YoutubeEmbed = React.createClass({
                 webkitAllowFullScreen
                 mozAllowFullScreen
                 allowFullScreen></iframe>;
+        } else if (parsed.hostname === 'www.cornell.edu') {
+            var url = this.props.url + '/embed';
+            embed = <iframe
+                src={url}
+                width='500'
+                height='281'
+                frameBorder='0'
+                webkitAllowFullScreen
+                mozAllowFullScreen
+                allowFullScreen></iframe>;
         } else {
             embed = <a href={this.props.url}>
                 <img className='' src='/assets/videolarge.png' alt=''/>
