@@ -23,7 +23,7 @@ var Maintenance = React.createClass({
                 api: [
                     {
                         name: 'data',
-                        path: '/api/v1/maintenance/' + tag + '/' + limit + '/'+ offset
+                        path: '/api/v1/maintenance/' + tag + '/' + limit + '/' + offset
                     }
                 ]
             };
@@ -64,7 +64,7 @@ var Maintenance = React.createClass({
                         />
                     </div>;
                 })}
-            </div>
+            </div>;
         } else if (tag === 'person_without_description') {
             title = 'People Pages without Description';
             results = <div>
@@ -78,7 +78,7 @@ var Maintenance = React.createClass({
                         />
                     </div>;
                 })}
-            </div>
+            </div>;
         }
         var prev, next;
         if (offset === 0) {

@@ -40,10 +40,10 @@ var MainComponent = React.createClass({
     },
     getInitialState () {
         return {
-            sidebar: false,
+            sidebar: false
         };
     },
-    componentWillReceiveProps: function(nextProps) {
+    componentWillReceiveProps (nextProps) {
         this.setState({
             sidebar: false
         });
@@ -53,7 +53,7 @@ var MainComponent = React.createClass({
             sidebar: true
         });
     },
-    logout() {
+    logout () {
         requests
         .post('/api/v1/logout')
         .type('form')

@@ -21,14 +21,16 @@ var ThingPage = React.createClass({
             var [type, id, slug, tab] = appstate.path.split('/');
             var page = appstate.query.page;
             var query = page ? '?page=' + page : '';
-            var api = [{
-                name: 'thing',
-                path: '/api/v1/thing/' + id
-            },
-            {
-                name: 'videoauthors',
-                path: '/api/v1/thing/' + id + '/videosby'
-            }];
+            var api = [
+                {
+                    name: 'thing',
+                    path: '/api/v1/thing/' + id
+                },
+                {
+                    name: 'videoauthors',
+                    path: '/api/v1/thing/' + id + '/videosby'
+                }
+            ];
             var defaultTab;
 
             if (type === 'pages') {
@@ -58,13 +60,13 @@ var ThingPage = React.createClass({
     },
     render () {
         var [type, id, slug, tab] = this.props.path.split('/');
+        var thing = this.props.data.thing;
+        id = Number(thing.id);
         var defaultTab = 'mentioned';
 
         tab = tab ? tab : defaultTab;
 
-        var thing = this.props.data.thing;
         var image = '/assets/videolarge.png';
-        var id = Number(thing.id);
         var authors = this.props.data.videoauthors;
         if (authors.length > 0) {
             authors = <Authors authors={authors} id={id}/>;
@@ -77,7 +79,7 @@ var ThingPage = React.createClass({
             'mentioned': 'Mentioned',
             'mentionedby': 'Mentioned By'
         };
-        var tabTitles = <ul className='tabs'>
+        var tabHeading = <ul className='tabs'>
             {tabs.map((x) => {
                 var cls, aria;
                 if (x === tab) {
@@ -158,7 +160,7 @@ var ThingPage = React.createClass({
                                         <Share title={thing.title} path={this.props.path}/>
                                     </div>
                                 </div>
-                                {tabTitles}
+                                {tabHeading}
                                 <div className='tabs-content'>
                                     <div className='tabs-panel is-active'>
                                         {tabContent}

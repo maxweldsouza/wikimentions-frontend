@@ -78,6 +78,8 @@ var ThingPage = React.createClass({
     },
     render () {
         var [type, id, slug, tab] = this.props.path.split('/');
+        var thing = this.props.data.thing;
+        id = Number(thing.id);
         var defaultTab;
 
         if (type === 'pages') {
@@ -87,9 +89,7 @@ var ThingPage = React.createClass({
         }
         tab = tab ? tab : defaultTab;
 
-        var thing = this.props.data.thing;
         var image = '/assets/placeholder.png';
-        var id = Number(thing.id);
         var authors = [];
         if (thing.type === 'book' && this.props.data.bookauthors.length > 0) {
             authors = this.props.data.bookauthors;
@@ -117,7 +117,7 @@ var ThingPage = React.createClass({
             'books': 'Books',
             'videos': 'Videos'
         };
-        var tabTitles = <ul className='tabs'>
+        var tabHeading = <ul className='tabs'>
             {tabs.map((x) => {
                 var cls, aria;
                 if (x === tab) {
@@ -214,7 +214,7 @@ var ThingPage = React.createClass({
                                 {thing.type === 'video' ? <div>
                                     <a href={thing.url}><img className='' src='/assets/video.png' alt=''/></a>
                                 </div> : null}
-                                {tabTitles}
+                                {tabHeading}
                                 <div className='tabs-content'>
                                     <div className='tabs-panel is-active'>
                                         {tabContent}

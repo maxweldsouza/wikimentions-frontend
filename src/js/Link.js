@@ -25,7 +25,7 @@ var Link = React.createClass({
             tab = '/' + this.props.tab;
         }
         return (
-            <a href={pagepath + this.props.id + '/' + this.props.slug +  tab}>{this.props.title}</a>
+            <a href={pagepath + this.props.id + '/' + this.props.slug + tab}>{this.props.title}</a>
         );
     }
 });

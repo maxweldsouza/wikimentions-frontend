@@ -1,7 +1,7 @@
 var React = require('react');
 var config = require('./config');
 
-var Share= React.createClass({
+var Share = React.createClass({
     getInitialState () {
         return {
             open: false

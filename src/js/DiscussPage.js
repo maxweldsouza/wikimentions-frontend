@@ -65,15 +65,15 @@ var DiscussPage = React.createClass({
                         <div className='small-12 columns'>
                             <div className='card-container'>
                                 {discussions.map((x) => {
-                                        return <Comment
-                                            id={x.id}
-                                            key={x.id}
-                                            user={x.user}
-                                            name={x.username}
-                                            text={x.content}
-                                            posted={x.created}
-                                            />;
-                                    })}
+                                    return <Comment
+                                        id={x.id}
+                                        key={x.id}
+                                        user={x.user}
+                                        name={x.username}
+                                        text={x.content}
+                                        posted={x.created}
+                                        />;
+                                })}
                                 {nodata}
                                 <DiscussReply id={id}/>
                             </div>

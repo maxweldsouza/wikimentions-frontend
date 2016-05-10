@@ -4,7 +4,7 @@ var Link = require('./Link');
 
 var HistoryCard = React.createClass({
     render () {
-        var added = this.props.deleted  === 1 ? <span className="ion-minus-circled"></span> : <span className="ion-plus-circled"></span>;
+        var added = this.props.deleted === 1 ? <span className="ion-minus-circled"></span> : <span className="ion-plus-circled"></span>;
         var item;
         if (this.props.entry && this.props.entrytype === 'video_author') {
             item = <span>
@@ -36,7 +36,7 @@ var HistoryCard = React.createClass({
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'prop') {
             item = <span>
-                set {this.props.entry.key} to {this.props.entry.value} for              <Link
+                set {this.props.entry.key} to {this.props.entry.value} for <Link
                     id={this.props.entry.id}
                     slug={this.props.entry.slug}
                     title={this.props.entry.title}

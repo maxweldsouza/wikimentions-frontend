@@ -101,7 +101,7 @@ var AddAuthors = React.createClass({
                             var path = '/pages/' + x.id + '/' + x.slug;
                             return <div>
                                 <a href={path}>{x.title}</a> <a href='' className='secondary small' onClick={this.removeAuthor.bind(null, x.id)}>Remove</a>
-                            </div>
+                            </div>;
                         })}
                     </div>
                     <form action='' method='post'>

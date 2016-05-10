@@ -56,7 +56,7 @@ var AddBookNew = React.createClass({
                     this.setState({
                         submitting: false,
                         title: '',
-                        description: '' 
+                        description: ''
                     });
                     if (err && err.status) {
                         this.setState({
