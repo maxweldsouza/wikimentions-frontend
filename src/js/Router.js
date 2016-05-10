@@ -43,6 +43,7 @@ var getComponent = function (routeObj) {
     var query = parts[1];
     var componentName;
     routeObj.query = queryString.parse(query);
+    routeObj.path = x;
     if (x === '') {
         componentName = 'HomePage';
         routeObj.maxAge = 0;
