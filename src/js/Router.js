@@ -24,6 +24,7 @@ var RecentChangesPage = require('./RecentChangesPage');
 var RecentDiscussionsPage = require('./RecentDiscussionsPage');
 var SiteStatsPage = require('./SiteStatsPage');
 var MaintenancePage = require('./MaintenancePage');
+var queryString = require('query-string');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -37,9 +38,11 @@ var validateResources = function (resources) {
 };
 
 var getComponent = function (routeObj) {
-    var x = routeObj.url;
-    var textPages = ['help-us', 'about-us', 'contact-us', 'faq', 'why-us', 'terms', 'privacy'];
+    var parts = routeObj.url.split('?');
+    var x = parts[0];
+    var query = parts[1];
     var componentName;
+    routeObj.query = queryString.parse(query);
     if (x === '') {
         componentName = 'HomePage';
         routeObj.maxAge = 0;

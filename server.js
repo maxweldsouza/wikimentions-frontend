@@ -89,6 +89,7 @@ app.get(/^(.+)$/, function(req, res, next) {
                     var content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
                         data: routeObj.data,
                         path: routeObj.url,
+                        query: routeObj.query,
                         component: routeObj.component,
                     }));
                     var head = Helmet.rewind();

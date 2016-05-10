@@ -98,6 +98,7 @@ var MainComponent = React.createClass({
                 <Component
                     data={this.props.data}
                     path={this.props.path}
+                    query={this.props.query}
                     />
             </div>
         );
