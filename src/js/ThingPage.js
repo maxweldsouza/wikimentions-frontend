@@ -12,63 +12,70 @@ var Authors = require('./Authors');
 var PageBar = require('./PageBar');
 var Share = require('./Share');
 var config = require('./config');
+var Link = require('./Link');
 
 var ThingPage = React.createClass({
     statics: {
         resources (appstate) {
-            var id = appstate.url.split('/')[1];
+            var [type, id, slug] = appstate.path.split('/');
+            var tab = appstate.query.tab;
+            var page = appstate.query.page;
+            var api = [{
+                name: 'thing',
+                path: '/api/v1/thing/' + id
+            }];
+
+            if (type === 'videos') {
+                api.push({
+                    name: 'videoauthors',
+                    path: '/api/v1/thing/' + id + '/videosby'
+                });
+            } else if (type === 'books') {
+                api.push({
+                    name: 'bookauthors',
+                    path: '/api/v1/thing/' + id + '/booksby'
+                });
+            }
+
+            if (tab === 'videos') {
+                api.push({
+                    name: 'videos',
+                    path: '/api/v1/thing/' + id + '/videos'
+                });
+            }
+            if (tab === 'books') {
+                api.push({
+                    name: 'books',
+                    path: '/api/v1/thing/' + id + '/books'
+                });
+            }
+            if (tab === 'mentioned') {
+                api.push({
+                    name: 'mentions',
+                    path: '/api/v1/mentions/' + id
+                });
+            }
+            if (tab === 'mentionedby') {
+                api.push({
+                    name: 'mentionedby',
+                    path: '/api/v1/mentionedby/' + id
+                });
+            }
             return {
-                api: [
-                    {
-                        name: 'thing',
-                        path: '/api/v1/thing/' + id
-                    },
-                    {
-                        name: 'books',
-                        path: '/api/v1/thing/' + id + '/books'
-                    },
-                    {
-                        name: 'videos',
-                        path: '/api/v1/thing/' + id + '/videos'
-                    },
-                    {
-                        name: 'mentions',
-                        path: '/api/v1/mentions/' + id
-                    },
-                    {
-                        name: 'mentionedby',
-                        path: '/api/v1/mentionedby/' + id
-                    },
-                    {
-                        name: 'bookauthors',
-                        path: '/api/v1/thing/' + id + '/booksby'
-                    },
-                    {
-                        name: 'videoauthors',
-                        path: '/api/v1/thing/' + id + '/videosby'
-                    }
-                ]
+                api: api
             };
         }
     },
-    getInitialState () {
-        return {
-            tab: 'mentioned'
-        };
-    },
-    changeTab (x) {
-        this.setState({
-            tab: x
-        });
-    },
     render () {
+        var [type, id, slug] = this.props.path.split('/');
+        var tab = this.props.query.tab;
         var thing = this.props.data.thing;
         var image = '/assets/placeholder.png';
         var id = Number(thing.id);
         var authors = [];
-        if (this.props.data.bookauthors.length > 0) {
+        if (thing.type === 'book' && this.props.data.bookauthors.length > 0) {
             authors = this.props.data.bookauthors;
-        } else if (this.props.data.videoauthors.length > 0) {
+        } else if (thing.type === 'video' && this.props.data.videoauthors.length > 0) {
             authors = this.props.data.videoauthors;
         }
         if (thing.type === 'book' || thing.type === 'video') {
@@ -92,45 +99,48 @@ var ThingPage = React.createClass({
             'books': 'Books',
             'videos': 'Videos'
         };
-        var tab = <ul className='tabs'>
+        var tabTitles = <ul className='tabs'>
             {tabs.map((x) => {
                 var cls, aria;
-                if (x === this.state.tab) {
+                if (x === tab) {
                     return <li className='tabs-title is-active' key={x}>
-                        <a aria-selected='true' onClick={this.changeTab.bind(null, x)}>{tabTitles[x]}</a>
+                        <Link
+                            id={thing.id}
+                            title={tabTitles[x]}
+                            slug={thing.slug}
+                            type={thing.type}
+                            tab={x}/>
                     </li>;
                 }
                 return <li className='tabs-title' key={x}>
-                    <a onClick={this.changeTab.bind(null, x)}>{tabTitles[x]}</a>
+                    <Link
+                        id={thing.id}
+                        title={tabTitles[x]}
+                        slug={thing.slug}
+                        type={thing.type}
+                        tab={x}/>
                 </li>;
             })}
         </ul>;
         var tabContent;
-        var options;
-        options = _.map(this.state.books, function (x) {
-            return {
-                value: x.id,
-                label: x.title
-            };
-        });
-        if (this.state.tab === 'mentioned') {
+        if (tab === 'mentioned') {
             tabContent = <ThingMentionTab
                             id={id}
                             mentions={mentions}
                             type={thing.type}
                             />;
-        } else if (this.state.tab === 'mentionedby') {
+        } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
                             id={id}
                             mentionedby={mentionedby}
                             type={thing.type}
                             />;
-        } else if (this.state.tab === 'books' && thing.type === 'person') {
+        } else if (tab === 'books' && thing.type === 'person') {
             tabContent = <ThingBookTab
                             id={id}
                             books={books}
                             />;
-        } else if (this.state.tab === 'videos' && thing.type === 'person') {
+        } else if (tab === 'videos' && thing.type === 'person') {
             tabContent = <ThingVideoTab
                             id={id}
                             videos={videos}
@@ -186,7 +196,7 @@ var ThingPage = React.createClass({
                                 {thing.type === 'video' ? <div>
                                     <a href={thing.url}><img className='' src='/assets/video.png' alt=''/></a>
                                 </div> : null}
-                                {tab}
+                                {tabTitles}
                                 <div className='tabs-content'>
                                     <div className='tabs-panel is-active'>
                                         {tabContent}
