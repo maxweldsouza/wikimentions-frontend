@@ -1,6 +1,7 @@
 var React = require('react');
 var Mention = require('./Mention');
 var AddMention = require('./AddMention');
+var PreviousNext = require('./PreviousNext');
 
 var ThingMentionTab = React.createClass({
     render () {
@@ -30,6 +31,7 @@ var ThingMentionTab = React.createClass({
                 <div className='card'>
                     <AddMention id={this.props.id} mentioned={this.props.id}/>
                 </div>
+                <PreviousNext path={this.props.path} page={this.props.page}/>
             </div>
         );
     }

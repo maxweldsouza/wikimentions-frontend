@@ -1,6 +1,7 @@
 var React = require('react');
 var Video = require('./Video');
 var AddVideo = require('./AddVideo');
+var PreviousNext = require('./PreviousNext');
 
 var ThingVideoTab = React.createClass({
     render () {
@@ -27,6 +28,7 @@ var ThingVideoTab = React.createClass({
                 <div className='card'>
                     <AddVideo id={this.props.id} />
                 </div>
+                <PreviousNext path={this.props.path} page={this.props.page}/>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 var React = require('react');
 var Book = require('./Book');
 var AddBook = require('./AddBook');
+var PreviousNext = require('./PreviousNext');
 
 var ThingBookTab = React.createClass({
     render () {
@@ -28,6 +29,7 @@ var ThingBookTab = React.createClass({
                         <AddBook id={this.props.id}/>
                     </div>
                 </div>
+                <PreviousNext path={this.props.path} page={this.props.page}/>
             </div>
         );
     }

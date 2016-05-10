@@ -13,7 +13,6 @@ var PageBar = require('./PageBar');
 var Share = require('./Share');
 var config = require('./config');
 var Link = require('./Link');
-var Pagination = require('./Pagination');
 
 var ThingPage = React.createClass({
     statics: {
@@ -146,22 +145,30 @@ var ThingPage = React.createClass({
                             id={id}
                             mentions={mentions}
                             type={thing.type}
+                            path={this.props.path}
+                            page={this.props.query.page}
                             />;
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
                             id={id}
                             mentionedby={mentionedby}
                             type={thing.type}
+                            path={this.props.path}
+                            page={this.props.query.page}
                             />;
         } else if (tab === 'books' && thing.type === 'person') {
             tabContent = <ThingBookTab
                             id={id}
                             books={books}
+                            path={this.props.path}
+                            page={this.props.query.page}
                             />;
         } else if (tab === 'videos' && thing.type === 'person') {
             tabContent = <ThingVideoTab
                             id={id}
                             videos={videos}
+                            path={this.props.path}
+                            page={this.props.query.page}
                             />;
         }
         return (
@@ -218,7 +225,6 @@ var ThingPage = React.createClass({
                                 <div className='tabs-content'>
                                     <div className='tabs-panel is-active'>
                                         {tabContent}
-                                        <Pagination />
                                     </div>
                                 </div>
                             </div>

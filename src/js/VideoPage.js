@@ -107,11 +107,15 @@ var ThingPage = React.createClass({
             tabContent = <ThingMentionTab
                             mentions={mentions}
                             id={id}
+                            path={this.props.path}
+                            page={this.props.query.page}
                         />;
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
                             id={id}
                             mentionedby={mentionedby}
+                            path={this.props.path}
+                            page={this.props.query.page}
                         />;
         }
         return (
