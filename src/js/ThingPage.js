@@ -23,6 +23,15 @@ var ThingPage = React.createClass({
                 name: 'thing',
                 path: '/api/v1/thing/' + id
             }];
+            var defaultTab;
+
+            if (type === 'pages') {
+                defaultTab = 'videos';
+            } else {
+                defaultTab = 'mentioned';
+            }
+
+            tab = tab ? tab : defaultTab;
 
             if (type === 'videos') {
                 api.push({
@@ -67,6 +76,15 @@ var ThingPage = React.createClass({
     },
     render () {
         var [type, id, slug, tab] = this.props.path.split('/');
+        var defaultTab;
+
+        if (type === 'pages') {
+            defaultTab = 'videos';
+        } else {
+            defaultTab = 'mentioned';
+        }
+        tab = tab ? tab : defaultTab;
+        
         var thing = this.props.data.thing;
         var image = '/assets/placeholder.png';
         var id = Number(thing.id);
