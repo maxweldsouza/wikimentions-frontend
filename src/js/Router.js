@@ -77,6 +77,9 @@ var getComponent = function (routeObj) {
     } else if (/^pages\/([0-9]+)\/(.*)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
+    } else if (/^videos\/([0-9]+)\/(.*)\/(.*)$/.test(x)) {
+        componentName = 'VideoPage';
+        routeObj.maxAge = 0;
     } else if (/^videos\/([0-9]+)\/(.*)$/.test(x)) {
         componentName = 'VideoPage';
         routeObj.maxAge = 0;

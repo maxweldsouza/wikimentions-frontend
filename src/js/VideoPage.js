@@ -13,44 +13,54 @@ var VideoEmbed = require('./VideoEmbed');
 var PageBar = require('./PageBar');
 var Share = require('./Share');
 var config = require('./config');
+var Link = require('./Link');
 
 var ThingPage = React.createClass({
     statics: {
         resources (appstate) {
-            var id = appstate.url.split('/')[1];
+            var [type, id, slug, tab] = appstate.path.split('/');
+            var page = appstate.query.page;
+            var api = [{
+                name: 'thing',
+                path: '/api/v1/thing/' + id
+            },
+            {
+                name: 'videoauthors',
+                path: '/api/v1/thing/' + id + '/videosby'
+            }];
+            var defaultTab;
+
+            if (type === 'pages') {
+                defaultTab = 'videos';
+            } else {
+                defaultTab = 'mentioned';
+            }
+
+            tab = tab ? tab : defaultTab;
+
+            if (tab === 'mentioned') {
+                api.push({
+                    name: 'mentions',
+                    path: '/api/v1/mentions/' + id
+                });
+            }
+            if (tab === 'mentionedby') {
+                api.push({
+                    name: 'mentionedby',
+                    path: '/api/v1/mentionedby/' + id
+                });
+            }
             return {
-                api: [
-                    {
-                        name: 'thing',
-                        path: '/api/v1/thing/' + id
-                    },
-                    {
-                        name: 'mentions',
-                        path: '/api/v1/mentions/' + id
-                    },
-                    {
-                        name: 'mentionedby',
-                        path: '/api/v1/mentionedby/' + id
-                    },
-                    {
-                        name: 'videoauthors',
-                        path: '/api/v1/thing/' + id + '/videosby'
-                    }
-                ]
+                api: api
             };
         }
     },
-    getInitialState () {
-        return {
-            tab: 'mentioned'
-        };
-    },
-    changeTab (x) {
-        this.setState({
-            tab: x
-        });
-    },
     render () {
+        var [type, id, slug, tab] = this.props.path.split('/');
+        var defaultTab = 'mentioned';
+
+        tab = tab ? tab : defaultTab;
+
         var thing = this.props.data.thing;
         var image = '/assets/videolarge.png';
         var id = Number(thing.id);
@@ -66,26 +76,36 @@ var ThingPage = React.createClass({
             'mentioned': 'Mentioned',
             'mentionedby': 'Mentioned By'
         };
-        var tab = <ul className='tabs'>
+        var tabTitles = <ul className='tabs'>
             {tabs.map((x) => {
                 var cls, aria;
-                if (x === this.state.tab) {
+                if (x === tab) {
                     return <li className='tabs-title is-active' key={x}>
-                        <a aria-selected='true' onClick={this.changeTab.bind(null, x)}>{tabTitles[x]}</a>
+                        <Link
+                            id={thing.id}
+                            title={tabTitles[x]}
+                            slug={thing.slug}
+                            type={thing.type}
+                            tab={x}/>
                     </li>;
                 }
                 return <li className='tabs-title' key={x}>
-                    <a onClick={this.changeTab.bind(null, x)}>{tabTitles[x]}</a>
+                    <Link
+                        id={thing.id}
+                        title={tabTitles[x]}
+                        slug={thing.slug}
+                        type={thing.type}
+                        tab={x}/>
                 </li>;
             })}
         </ul>;
         var tabContent;
-        if (this.state.tab === 'mentioned') {
+        if (tab === 'mentioned') {
             tabContent = <ThingMentionTab
                             mentions={mentions}
                             id={id}
                         />;
-        } else if (this.state.tab === 'mentionedby') {
+        } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
                             id={id}
                             mentionedby={mentionedby}
@@ -137,7 +157,7 @@ var ThingPage = React.createClass({
                                         <Share title={thing.title} path={this.props.path}/>
                                     </div>
                                 </div>
-                                {tab}
+                                {tabTitles}
                                 <div className='tabs-content'>
                                     <div className='tabs-panel is-active'>
                                         {tabContent}
