@@ -25,10 +25,10 @@ var ThingVideoTab = React.createClass({
                             />;
                 })}
                 {videos.length === 0 ? emptyvideos : null}
+                <PreviousNext path={this.props.path} page={this.props.page}/>
                 <div className='card'>
                     <AddVideo id={this.props.id} />
                 </div>
-                <PreviousNext path={this.props.path} page={this.props.page}/>
             </div>
         );
     }

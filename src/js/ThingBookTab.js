@@ -24,12 +24,12 @@ var ThingBookTab = React.createClass({
                     })}
                     {books.length === 0 ? emptybooks : null}
                 </div>
+                <PreviousNext path={this.props.path} page={this.props.page}/>
                 <div className='card'>
                     <div className='small-12 columns'>
                         <AddBook id={this.props.id}/>
                     </div>
                 </div>
-                <PreviousNext path={this.props.path} page={this.props.page}/>
             </div>
         );
     }

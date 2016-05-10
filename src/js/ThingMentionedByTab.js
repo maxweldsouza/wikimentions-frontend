@@ -28,10 +28,10 @@ var ThingMentionTab = React.createClass({
                         />;
                 })}
                 {mentionedby.length === 0 ? nodata : null}
+                <PreviousNext path={this.props.path} page={this.props.page}/>
                 <div className='card'>
                     <AddMention id={this.props.id} mentioned={this.props.id}/>
                 </div>
-                <PreviousNext path={this.props.path} page={this.props.page}/>
             </div>
         );
     }
