@@ -14,12 +14,8 @@ var Link = React.createClass({
             pagepath = '/pages/';
             console.warn('No page type specified for Link');
         }
-        var query = '';
-        if (this.props.tab) {
-            query = '?tab=' + this.props.tab;
-        }
         return (
-            <a href={pagepath + this.props.id + '/' + this.props.slug + query}>{this.props.title}</a>
+            <a href={pagepath + this.props.id + '/' + this.props.slug + '/' + this.props.tab}>{this.props.title}</a>
         );
     }
 });

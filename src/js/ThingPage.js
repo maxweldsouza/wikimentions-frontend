@@ -17,8 +17,7 @@ var Link = require('./Link');
 var ThingPage = React.createClass({
     statics: {
         resources (appstate) {
-            var [type, id, slug] = appstate.path.split('/');
-            var tab = appstate.query.tab;
+            var [type, id, slug, tab] = appstate.path.split('/');
             var page = appstate.query.page;
             var api = [{
                 name: 'thing',
@@ -67,8 +66,7 @@ var ThingPage = React.createClass({
         }
     },
     render () {
-        var [type, id, slug] = this.props.path.split('/');
-        var tab = this.props.query.tab;
+        var [type, id, slug, tab] = this.props.path.split('/');
         var thing = this.props.data.thing;
         var image = '/assets/placeholder.png';
         var id = Number(thing.id);
