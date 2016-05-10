@@ -13,12 +13,14 @@ var PageBar = require('./PageBar');
 var Share = require('./Share');
 var config = require('./config');
 var Link = require('./Link');
+var Pagination = require('./Pagination');
 
 var ThingPage = React.createClass({
     statics: {
         resources (appstate) {
             var [type, id, slug, tab] = appstate.path.split('/');
             var page = appstate.query.page;
+            var query = page ? '?page=' + page : '';
             var api = [{
                 name: 'thing',
                 path: '/api/v1/thing/' + id
@@ -48,25 +50,25 @@ var ThingPage = React.createClass({
             if (tab === 'videos') {
                 api.push({
                     name: 'videos',
-                    path: '/api/v1/thing/' + id + '/videos'
+                    path: '/api/v1/thing/' + id + '/videos' + query
                 });
             }
             if (tab === 'books') {
                 api.push({
                     name: 'books',
-                    path: '/api/v1/thing/' + id + '/books'
+                    path: '/api/v1/thing/' + id + '/books' + query
                 });
             }
             if (tab === 'mentioned') {
                 api.push({
                     name: 'mentions',
-                    path: '/api/v1/mentions/' + id
+                    path: '/api/v1/mentions/' + id + query
                 });
             }
             if (tab === 'mentionedby') {
                 api.push({
                     name: 'mentionedby',
-                    path: '/api/v1/mentionedby/' + id
+                    path: '/api/v1/mentionedby/' + id + query
                 });
             }
             return {
@@ -84,7 +86,7 @@ var ThingPage = React.createClass({
             defaultTab = 'mentioned';
         }
         tab = tab ? tab : defaultTab;
-        
+
         var thing = this.props.data.thing;
         var image = '/assets/placeholder.png';
         var id = Number(thing.id);
@@ -216,6 +218,7 @@ var ThingPage = React.createClass({
                                 <div className='tabs-content'>
                                     <div className='tabs-panel is-active'>
                                         {tabContent}
+                                        <Pagination />
                                     </div>
                                 </div>
                             </div>

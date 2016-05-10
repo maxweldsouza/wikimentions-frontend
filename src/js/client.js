@@ -44,7 +44,7 @@ window.Mentions = {
         var routeObj = {
             url: url,
             onUpdate: (robj) => {
-                ReactDOM.render(<MainComponent data={robj.data} path={robj.url} component={robj.component} query={robj.query}/>, document.getElementById('page-container'));
+                ReactDOM.render(<MainComponent data={robj.data} path={robj.path} component={robj.component} query={robj.query}/>, document.getElementById('page-container'));
                 stopLoading();
             }
         };
@@ -63,7 +63,7 @@ window.Mentions = {
             embeddedData: data,
             onUpdate: (robj) => {
                 // Dont need to send ga pagview on first load
-                ReactDOM.render(<MainComponent data={robj.data} path={robj.url} component={robj.component} query={robj.query}/>, document.getElementById('page-container'));
+                ReactDOM.render(<MainComponent data={robj.data} path={robj.path} component={robj.component} query={robj.query}/>, document.getElementById('page-container'));
                 stopLoading();
             }
         };

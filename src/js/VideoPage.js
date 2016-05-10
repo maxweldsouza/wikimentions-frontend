@@ -20,6 +20,7 @@ var ThingPage = React.createClass({
         resources (appstate) {
             var [type, id, slug, tab] = appstate.path.split('/');
             var page = appstate.query.page;
+            var query = page ? '?page=' + page : '';
             var api = [{
                 name: 'thing',
                 path: '/api/v1/thing/' + id
@@ -41,13 +42,13 @@ var ThingPage = React.createClass({
             if (tab === 'mentioned') {
                 api.push({
                     name: 'mentions',
-                    path: '/api/v1/mentions/' + id
+                    path: '/api/v1/mentions/' + id + query
                 });
             }
             if (tab === 'mentionedby') {
                 api.push({
                     name: 'mentionedby',
-                    path: '/api/v1/mentionedby/' + id
+                    path: '/api/v1/mentionedby/' + id + query
                 });
             }
             return {

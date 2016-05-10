@@ -88,7 +88,7 @@ app.get(/^(.+)$/, function(req, res, next) {
                 try {
                     var content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
                         data: routeObj.data,
-                        path: routeObj.url,
+                        path: routeObj.path,
                         query: routeObj.query,
                         component: routeObj.component,
                     }));
