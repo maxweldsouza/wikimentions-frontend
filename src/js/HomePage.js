@@ -101,10 +101,6 @@ var HomePage = React.createClass({
                                         books={x.books}
                                         />;
                                 })}
-                            <Pagination
-                                current={this.state.pageno}
-                                onPrev={this.onPrevPage}
-                                onNext={this.onNextPage}/>
                             </div>
                         </div>
                     </div>

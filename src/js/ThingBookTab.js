@@ -2,6 +2,7 @@ var React = require('react');
 var Book = require('./Book');
 var AddBook = require('./AddBook');
 var PreviousNext = require('./PreviousNext');
+var Pagination = require('./Pagination');
 
 var ThingBookTab = React.createClass({
     render () {
@@ -24,7 +25,7 @@ var ThingBookTab = React.createClass({
                     })}
                     {books.length === 0 ? emptybooks : null}
                 </div>
-                <PreviousNext path={this.props.path} page={this.props.page}/>
+                <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card'>
                     <div className='small-12 columns'>
                         <AddBook id={this.props.id}/>
