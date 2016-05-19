@@ -3,7 +3,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var _ = require('underscore');
-var Pagination = require('./Pagination');
+var PreviousNext = require('./PreviousNext');
 var HistoryItem = require('./HistoryItem');
 var PageBar = require('./PageBar');
 var config = require('./config');
@@ -73,14 +73,9 @@ var HistoryPage = React.createClass({
                                         deleted={x.deleted}
                                         />;
                                 })}
+                                <PreviousNext path={this.props.path} page={this.props.page}/>
                             </div>
                         </div>
-                    </div>
-                    <div className='small-12 columns'>
-                        <Pagination
-                            pages={5}
-                            current={1}
-                            />
                     </div>
                 </div>
             </span>
