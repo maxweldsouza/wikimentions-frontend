@@ -1,7 +1,7 @@
 var React = require('react');
 var Mention = require('./Mention');
 var AddMention = require('./AddMention');
-var PreviousNext = require('./PreviousNext');
+var Pagination = require('./Pagination');
 
 var ThingMentionTab = React.createClass({
     render () {
@@ -34,7 +34,7 @@ var ThingMentionTab = React.createClass({
                         />;
                 })}
                 {mentions.length === 0 ? nodata : null}
-                <PreviousNext path={this.props.path} page={this.props.page}/>
+                <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card'>
                     {addmention}
                 </div>

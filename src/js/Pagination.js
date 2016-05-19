@@ -10,6 +10,9 @@ var Pagination = React.createClass({
     render () {
         var current = this.props.page ? Number(this.props.page) : 1;
         var totalPages = Math.ceil(this.props.count / 10);
+        if (totalPages < 2) {
+            return null;
+        }
         var pages = Array(totalPages).fill();
         pages = pages.map((x, i) => {
             return i + 1;
