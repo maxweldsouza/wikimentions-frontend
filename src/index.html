@@ -71,18 +71,6 @@
         <!-- /build -->
 
 
-        <!-- build:include jsimports.html -->
-        <!-- /build -->
-        <!-- build:remove -->
-        <script defer src="/minified/jquery-2.1.4.min.js"></script>
-        <!-- /build -->
-
-        <!-- TODO Minify -->
-
-        <!--uncache-->
-        <script defer src="/js-bundle/bundle.js"></script>
-        <!--enduncache-->
-
         <script id='api-data' type='application/json'>
         </script>
 
@@ -95,4 +83,8 @@
             <!-- build:include analytics.html -->
             <!-- /build -->
         </body>
+
+        <!--uncache-->
+        <script async src="/js-bundle/bundle.js"></script>
+        <!--enduncache-->
 </html>
