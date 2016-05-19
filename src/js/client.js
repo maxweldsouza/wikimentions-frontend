@@ -15,10 +15,6 @@ Perf.start();
 */
 /* client specific isomorphic code */
 
-if (typeof window === 'undefined') {
-    throw Error('This module is designed to be used in a browser only');
-}
-
 if (typeof window.ga === 'undefined') {
     window.ga = function () {
         if (arguments.length > 1 && typeof arguments[1] !== 'string') {

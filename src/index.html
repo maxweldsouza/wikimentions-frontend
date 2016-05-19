@@ -19,24 +19,13 @@
             s.parentNode.insertBefore(wf, s);
         })(); </script>
 
-        <title></title>
-        <meta name="browser-tags" content="">
+        <!-- htmlmin:ignore -->
+        <%= title %>
+        <%= meta %>
+        <%= link %>
+        <!-- htmlmin:ignore -->
 
-        <!-- CDN -->
-        <!-- build:remove -->
-        <!-- /build -->
-
-        <!-- build:include cssimports.html -->
-        <!-- /build -->
-        <!-- build:remove -->
-        <!-- /build -->
-
-        <!-- modified animate.css using github fork -->
-        <!-- build:css inline -->
-        <!-- /build -->
-
-
-        <link href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
+        <link href='//cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
         <!--
         Temporarily disabled
         -->
@@ -66,22 +55,16 @@
             })(typeof window === 'undefined' ? this : window);
         </script>
 
-        <!-- Concatenate and inline -->
-        <!-- build:js inline -->
-        <!-- /build -->
-
-
-        <script id='api-data' type='application/json'>
-        </script>
+        <!-- htmlmin:ignore -->
+        <script id='api-data' type='application/json'><%= apidata %></script>
+        <!-- htmlmin:ignore -->
 
         </head>
 
         <body>
-            <div id='page-container'>
-                <%= content %>
-            </div>
-            <!-- build:include analytics.html -->
-            <!-- /build -->
+            <!-- htmlmin:ignore -->
+            <div id="page-container"><%= content %></div>
+            <!-- htmlmin:ignore -->
         </body>
 
         <!--uncache-->
