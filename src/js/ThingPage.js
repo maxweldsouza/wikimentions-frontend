@@ -116,6 +116,12 @@ var ThingPage = React.createClass({
             'books': 'Books',
             'videos': 'Videos'
         };
+        var tabCounts = {
+            'mentioned': 'mentioned_count',
+            'mentionedby': 'mentioned_by_count',
+            'books': 'book_count',
+            'videos': 'video_count'
+        };
         var tabHeading = <ul className='tabs'>
             {tabs.map((x) => {
                 var cls, aria;
