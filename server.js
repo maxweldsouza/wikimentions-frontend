@@ -79,6 +79,17 @@ var indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
 var MainComponent = require(path.join(__dirname, sourceDir, 'js', 'MainComponent'));
 var compiledTemplate = _.template(indexHtml);
 
+var isNotModified = function (ifModifiedSince, lastModified) {
+    if (ifModifiedSince && lastModified) {
+        var ims = new Date(ifModifiedSince);
+        var lm = moment(new Date(lastModified));
+        if (lm.isSameOrAfter(ims)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 app.get(/^(.+)$/, function(req, res, next) {
     /* Server specific isomorphic code */
     try {
@@ -86,27 +97,33 @@ app.get(/^(.+)$/, function(req, res, next) {
             url: req.originalUrl,
             onUpdate: (routeObj) => {
                 try {
-                    var content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
-                        data: routeObj.data,
-                        path: routeObj.path,
-                        query: routeObj.query,
-                        component: routeObj.component,
-                    }));
-                    var head = Helmet.rewind();
-                    if (routeObj.maxAge > 0) {
-                        res.set('Cache-Control', 'public, max-age=' + routeObj.maxAge);
-                    } else {
-                        res.set('Cache-Control', 'no-cache');
-                    }
                     var headerFormat = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
-                    res.set('Last-Modified', routeObj.lastModified.utc().format(headerFormat));
-                    res.send(compiledTemplate({
-                        title: head.title.toString(),
-                        meta: head.meta.toString(),
-                        link: head.link.toString(),
-                        apidata: JSON.stringify(routeObj.data),
-                        content: content
-                    }));
+                    if (routeObj.lastModified) {
+                        res.set('Last-Modified', routeObj.lastModified.utc().format(headerFormat));
+                    }
+                    if (isNotModified(req.get('if-modified-since'), routeObj.lastModified)) {
+                        res.status(304).end();
+                    } else {
+                        var content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
+                            data: routeObj.data,
+                            path: routeObj.path,
+                            query: routeObj.query,
+                            component: routeObj.component,
+                        }));
+                        var head = Helmet.rewind();
+                        if (routeObj.maxAge > 0) {
+                            res.set('Cache-Control', 'public, max-age=' + routeObj.maxAge);
+                        } else {
+                            res.set('Cache-Control', 'no-cache');
+                        }
+                        res.send(compiledTemplate({
+                            title: head.title.toString(),
+                            meta: head.meta.toString(),
+                            link: head.link.toString(),
+                            apidata: JSON.stringify(routeObj.data),
+                            content: content
+                        }));
+                    }
                 } catch (err) {
                     return next(err);
                 }
