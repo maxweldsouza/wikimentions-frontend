@@ -109,6 +109,8 @@ var ThingPage = React.createClass({
                             id={id}
                             path={this.props.path}
                             page={this.props.query.page}
+                            count={thing.mentioned_count}
+                            type={thing.type}
                         />;
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
@@ -116,6 +118,8 @@ var ThingPage = React.createClass({
                             mentionedby={mentionedby}
                             path={this.props.path}
                             page={this.props.query.page}
+                            count={thing.mentioned_by_count}
+                            type={thing.type}
                         />;
         }
         return (
