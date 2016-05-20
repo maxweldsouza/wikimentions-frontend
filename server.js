@@ -98,6 +98,8 @@ app.get(/^(.+)$/, function(req, res, next) {
                     } else {
                         res.set('Cache-Control', 'no-cache');
                     }
+                    var headerFormat = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
+                    res.set('Last-Modified', routeObj.lastModified.utc().format(headerFormat));
                     res.send(compiledTemplate({
                         title: head.title.toString(),
                         meta: head.meta.toString(),

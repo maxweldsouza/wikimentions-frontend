@@ -6,8 +6,8 @@ var Share = require('./Share');
 
 var BlogPost = React.createClass({
     render () {
-        var added = moment(this.props.added + '+0000');
-        added = added.format('MMMM Do YYYY');
+        var added = moment.utc(this.props.added);
+        added = added.local().format('MMMM Do YYYY');
         var path = '/blog/' + this.props.slug;
         return (
             <div>

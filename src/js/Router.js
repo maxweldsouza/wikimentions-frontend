@@ -1,6 +1,7 @@
 var request = require('superagent');
 var parallelRequest = require('./parallelRequest');
 var _ = require('underscore');
+var moment = require('moment');
 
 var AddMention = require('./AddMention');
 var AddVideo = require('./AddVideo');
@@ -148,9 +149,14 @@ var getResources = function (routeObj, beforeUpdate) {
                     error: 'offline'
                 };
             } else {
+                var timestamps = [];
                 for (var i = 0; i < names.length; i++) {
                     apidata[names[i]] = res[i].body;
+                    if (res[i].body.last_modified) {
+                        timestamps.push(moment(res[i].body.last_modified));
+                    }
                 }
+                routeObj.lastModified = moment.max(timestamps);
             }
             routeObj.data = apidata;
             beforeUpdate(routeObj);
