@@ -64,11 +64,7 @@ var nocache = {
 // static files
 app.use('/favicon.ico', express.static(__dirname + '/favicon.ico', eightdays));
 app.use('/robots.txt', express.static(__dirname + '/robots.txt', nocache));
-app.use('/js-bundle', express.static(path.join(__dirname, sourceDir, 'js-bundle'), eightdays));
 app.use('/assets', express.static(path.join(__dirname, sourceDir, 'assets'), farfuture));
-app.use('/js', express.static(path.join(__dirname, sourceDir, 'js'), farfuture));
-app.use('/css', express.static(path.join(__dirname, sourceDir, 'css'), farfuture));
-app.use('/minified', express.static(path.join(__dirname, sourceDir, 'minified'), farfuture));
 
 // for uptime robot
 app.head('/', function (req, res) {
