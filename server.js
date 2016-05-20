@@ -77,7 +77,13 @@ var indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
 var MainComponent = require(path.join(__dirname, sourceDir, 'js', 'MainComponent'));
 var compiledTemplate = _.template(indexHtml);
 
-var isNotModified = function (ifModifiedSince, lastModified) {
+var isNotModified = function (req, routeObj, tag) {
+    var ifModifiedSince = req.get('if-modified-since');
+    var lastModified = routeObj.lastModified;
+    var ifNoneMatch = req.get('if-none-match');
+    if (tag === ifNoneMatch) {
+        return true;
+    }
     if (ifModifiedSince && lastModified) {
         var ims = new Date(ifModifiedSince);
         var lm = moment(new Date(lastModified));
@@ -99,7 +105,9 @@ app.get(/^(.+)$/, function(req, res, next) {
                     if (routeObj.lastModified) {
                         res.set('Last-Modified', routeObj.lastModified.utc().format(headerFormat));
                     }
-                    if (isNotModified(req.get('if-modified-since'), routeObj.lastModified)) {
+                    var tag = etag(routeObj.etags.join() + routeObj.url);
+                    res.setHeader('ETag', tag);
+                    if (isNotModified(req, routeObj, tag)) {
                         res.status(304).end();
                     } else {
                         var content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
@@ -108,7 +116,6 @@ app.get(/^(.+)$/, function(req, res, next) {
                             query: routeObj.query,
                             component: routeObj.component,
                         }));
-                        res.setHeader('ETag', etag(routeObj.etags.join() + routeObj.url))
                         var head = Helmet.rewind();
                         if (routeObj.maxAge > 0) {
                             res.set('Cache-Control', 'public, max-age=' + routeObj.maxAge);
