@@ -1,6 +1,7 @@
 var React = require('react');
 var moment = require('moment');
 var Link = require('./Link');
+var Time = require('./Time');
 
 var HistoryCard = React.createClass({
     render () {
@@ -68,7 +69,7 @@ var HistoryCard = React.createClass({
                     <span className='small-8 columns'>
                         <a href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a>
                     </span>
-                    <span className='small-4 columns text-right'>{moment(this.props.timestamp).fromNow()}</span>
+                    <span className='small-4 columns text-right'><Time timestamp={this.props.timestamp} type='ago'/></span>
                     <span className='small-12 columns'>
                         <span>{added}</span> {item}
                     </span>

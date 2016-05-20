@@ -4,10 +4,10 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Login = require('./Login');
 var _ = require('underscore');
-var moment = require('moment');
 var config = require('./config');
 var HistoryItem = require('./HistoryItem');
 var cookies = require('browser-cookies');
+var Time = require('./Time');
 
 var ProfilePage = React.createClass({
     statics: {
@@ -127,7 +127,7 @@ var ProfilePage = React.createClass({
                             <div className='small-12 columns'>
                                 <h1 className='page-title'>{user.name}</h1>
                                 <div>
-                                    Joined {moment.utc(user.joined).local().format('MMMM Do YYYY')}
+                                    Joined <Time timestamp={user.joined} format='MMMM Do YYYY' type='timestamp'/>
                                 </div>
                                 <div>Level {user.level}</div>
                                 <div className='button-group small'>

@@ -3,6 +3,7 @@ var React = require('react');
 var moment = require('moment');
 var Markdown = require('./Markdown');
 var Share = require('./Share');
+var Time = require('./Time');
 
 var BlogPost = React.createClass({
     render () {
@@ -12,7 +13,7 @@ var BlogPost = React.createClass({
         return (
             <div>
                 <a href={path}><h1>{this.props.title}</h1></a>
-                <a href={'/users/' + this.props.authorId + '/' + this.props.author}>{this.props.author}</a> on <span>{added}</span>
+                <a href={'/users/' + this.props.authorId + '/' + this.props.author}>{this.props.author}</a> on <span><Time timestamp={this.props.added} type='timestamp'/></span>
                 <hr/>
                 <Markdown markdown={this.props.content}/>
                 <hr/>

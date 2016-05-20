@@ -9,6 +9,7 @@ var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var moment = require('moment');
 var config = require('./config');
+var Time = require('./Time');
 
 var RecentDiscussions = React.createClass({
     statics: {
@@ -62,7 +63,7 @@ var RecentDiscussions = React.createClass({
                                             {x.posts}
                                         </div>
                                         <div className='discuss-time small-3 column text-right'>
-                                            {moment(x.last_updated).fromNow()}
+                                            <Time timestamp={x.last_updated} type='ago'/>
                                         </div>
                                     </div>;
                                 })}
