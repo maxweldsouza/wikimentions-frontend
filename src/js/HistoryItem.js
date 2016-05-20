@@ -1,5 +1,4 @@
 var React = require('react');
-var moment = require('moment');
 var Link = require('./Link');
 var Time = require('./Time');
 

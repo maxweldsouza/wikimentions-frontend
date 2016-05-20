@@ -1,19 +1,16 @@
 var React = require('react');
 
-var moment = require('moment');
 var Markdown = require('./Markdown');
 var Share = require('./Share');
 var Time = require('./Time');
 
 var BlogPost = React.createClass({
     render () {
-        var added = moment.utc(this.props.added);
-        added = added.local().format('MMMM Do YYYY');
         var path = '/blog/' + this.props.slug;
         return (
             <div>
                 <a href={path}><h1>{this.props.title}</h1></a>
-                <a href={'/users/' + this.props.authorId + '/' + this.props.author}>{this.props.author}</a> on <span><Time timestamp={this.props.added} type='timestamp'/></span>
+                <a href={'/users/' + this.props.authorId + '/' + this.props.author}>{this.props.author}</a> on <span><Time timestamp={this.props.added} type='timestamp' format='MMMM Do YYYY'/></span>
                 <hr/>
                 <Markdown markdown={this.props.content}/>
                 <hr/>

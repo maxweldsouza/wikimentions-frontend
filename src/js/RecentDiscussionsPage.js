@@ -7,7 +7,6 @@ var Comment = require('./Comment');
 var _ = require('underscore');
 var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
-var moment = require('moment');
 var config = require('./config');
 var Time = require('./Time');
 

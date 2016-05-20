@@ -3,7 +3,6 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var _ = require('underscore');
-var moment = require('moment');
 var config = require('./config');
 
 var RecentChangesPage = React.createClass({

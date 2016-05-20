@@ -2,7 +2,6 @@ var React = require('react');
 
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
-var moment = require('moment');
 var Markdown = require('./Markdown');
 var Time = require('./Time');
 

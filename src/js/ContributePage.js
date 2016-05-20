@@ -4,7 +4,6 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Login = require('./Login');
 var _ = require('underscore');
-var moment = require('moment');
 var config = require('./config');
 
 var ContributePage = React.createClass({
