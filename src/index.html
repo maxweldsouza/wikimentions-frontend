@@ -8,7 +8,10 @@
         <meta name="mobile-web-app-capable" content="yes">
         <script type="text/javascript">
         WebFontConfig = {
-            google: { families: [ 'Source+Sans+Pro:400,200,700:latin' ] }
+            custom: {
+                families: [ 'Source+Sans+Pro:400,200,700:latin' ],
+                urls: ['/assets/css/typeface.min.css']
+            }
         };
         (function() {
             var wf = document.createElement('script');
@@ -25,7 +28,7 @@
         <%= link %>
         <!-- htmlmin:ignore -->
 
-        <link href='/assets/ionicons/ionicons.min.css' rel='stylesheet' type='text/css'>
+        <link href='/assets/css/ionicons.min.css' rel='stylesheet' type='text/css'>
         <!--
         <link href='//cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
         Temporarily disabled
