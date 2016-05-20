@@ -127,7 +127,7 @@ var ProfilePage = React.createClass({
                             <div className='small-12 columns'>
                                 <h1 className='page-title'>{user.name}</h1>
                                 <div>
-                                    Joined {moment(user.joined).format('MMMM Do YYYY')}
+                                    Joined {moment.utc(user.joined).local().format('MMMM Do YYYY')}
                                 </div>
                                 <div>Level {user.level}</div>
                                 <div className='button-group small'>
