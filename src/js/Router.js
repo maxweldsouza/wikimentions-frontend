@@ -156,7 +156,7 @@ var getResources = function (routeObj, beforeUpdate) {
                         timestamps.push(moment(res[i].body.last_modified));
                     }
                 }
-                if (timestamps.length > 0) {
+                if (timestamps.length === names.length) {
                     routeObj.lastModified = moment.max(timestamps);
                 }
             }
