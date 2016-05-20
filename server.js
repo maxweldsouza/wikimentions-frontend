@@ -3,6 +3,7 @@ var ReactDOMServer = require('react-dom/server');
 var Helmet = require('react-helmet');
 var path = require('path');
 var express = require("express");
+var etag = require('etag')
 var compress = require('compression');
 var cookieParser = require('cookie-parser');
 var app = express();
@@ -47,6 +48,7 @@ function readFullFile (file) {
     }
 }
 
+app.set('etag', false);
 app.use(compress());
 app.use(cookieParser());
 app.disable('x-powered-by');
@@ -95,7 +97,6 @@ app.get(/^(.+)$/, function(req, res, next) {
                 try {
                     var headerFormat = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
                     if (routeObj.lastModified) {
-                        res.set('Cache-Control', 'no-cache');
                         res.set('Last-Modified', routeObj.lastModified.utc().format(headerFormat));
                     }
                     if (isNotModified(req.get('if-modified-since'), routeObj.lastModified)) {
@@ -107,11 +108,11 @@ app.get(/^(.+)$/, function(req, res, next) {
                             query: routeObj.query,
                             component: routeObj.component,
                         }));
+                        res.setHeader('ETag', etag(routeObj.etags.join() + routeObj.url))
                         var head = Helmet.rewind();
                         if (routeObj.maxAge > 0) {
                             res.set('Cache-Control', 'public, max-age=' + routeObj.maxAge);
                         } else {
-                            res.set('Cache-Control', 'no-cache');
                         }
                         res.send(compiledTemplate({
                             title: head.title.toString(),

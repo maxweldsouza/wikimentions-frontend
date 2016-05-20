@@ -150,12 +150,15 @@ var getResources = function (routeObj, beforeUpdate) {
                 };
             } else {
                 var timestamps = [];
+                var etags = [];
                 for (var i = 0; i < names.length; i++) {
                     apidata[names[i]] = res[i].body;
                     if (res[i].body.last_modified) {
                         timestamps.push(moment(res[i].body.last_modified));
                     }
+                    etags.push(res[i].headers.etag);
                 }
+                routeObj.etags = etags;
                 if (timestamps.length === names.length) {
                     routeObj.lastModified = moment.max(timestamps);
                 }
