@@ -80,9 +80,9 @@ gulp.task("browserify", function () {
     })
     .pipe(source("bundle.js"))
     .pipe(buffer())
-    .pipe(gulp.dest("src/js-bundle"))
+    .pipe(gulp.dest("src/assets"))
     .pipe(gulpif(production, uglify()))
-    .pipe(gulpif(production, gulp.dest("dist/js-bundle")));
+    .pipe(gulpif(production, gulp.dest("dist/assets")));
     });
 
 // Scss styles
@@ -98,11 +98,11 @@ return gulp.src('src/styles/main.scss')
     .pipe(sass({
         includePaths: sassPaths
     }))
-    .pipe(gulp.dest('src/css'))
+    .pipe(gulp.dest('src/assets'))
     .pipe(autoprefixer())
     .pipe(minifycss())
     .pipe(rename('main.css'))
-    .pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest('dist/assets'));
 });
 
 // Html
@@ -156,19 +156,6 @@ gulp.task("checkDev", [], function(callback) {
     maxResponseTime: 200,
     userAgent: 'custom-user-agent/1.2.3',
     summary: true
-  };
-  checkPages(console, options, callback);
-});
-
-gulp.task("checkProd", function(callback) {
-  var options = {
-    pageUrls: [
-      'http://example.com/',
-      'http://example.com/blog',
-      'http://example.com/about.html'
-    ],
-    checkLinks: true,
-    maxResponseTime: 500
   };
   checkPages(console, options, callback);
 });
