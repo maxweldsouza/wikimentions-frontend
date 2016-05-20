@@ -99,6 +99,7 @@ app.get(/^(.+)$/, function(req, res, next) {
                 try {
                     var headerFormat = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
                     if (routeObj.lastModified) {
+                        res.set('Cache-Control', 'no-cache');
                         res.set('Last-Modified', routeObj.lastModified.utc().format(headerFormat));
                     }
                     if (isNotModified(req.get('if-modified-since'), routeObj.lastModified)) {
