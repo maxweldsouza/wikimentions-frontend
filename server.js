@@ -11,11 +11,16 @@ var _ = require("underscore");
 var str = require('string');
 var request = require('superagent');
 var moment = require('moment');
+var Memcached = require('memcached');
 var Log = require('log')
   , log = new Log('info', fs.createWriteStream('googlebot.log', {flags: 'a'}));
 
+var TIMESTAMP_FORMAT = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
+
 global.localStorage = require('localStorage');
 var production = process.env.NODE_ENV === 'production';
+
+var memcached = new Memcached('127.0.0.1:11211');
 
 var plugins = [
     // react
@@ -74,17 +79,11 @@ var indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
 var MainComponent = require(path.join(__dirname, sourceDir, 'js', 'MainComponent'));
 var compiledTemplate = _.template(indexHtml);
 
-var isNotModified = function (req, routeObj, tag) {
-    var ifModifiedSince = req.get('if-modified-since');
-    var lastModified = routeObj.lastModified;
-    var ifNoneMatch = req.get('if-none-match');
-    if (tag === ifNoneMatch) {
-        return true;
-    }
+var isNotModified = function (ifModifiedSince, lastModified) {
     if (ifModifiedSince && lastModified) {
         var ims = new Date(ifModifiedSince);
         var lm = moment(new Date(lastModified));
-        if (lm.isSameOrAfter(ims)) {
+        if (lm.isBefore(ims)) {
             return true;
         }
     }
@@ -92,43 +91,58 @@ var isNotModified = function (req, routeObj, tag) {
 }
 
 app.get(/^(.+)$/, function(req, res, next) {
-    /* Server specific isomorphic code */
     try {
         var routeObj = {
             url: req.originalUrl,
             onUpdate: (routeObj) => {
                 try {
-                    var headerFormat = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
-                    if (routeObj.lastModified) {
-                        res.set('Last-Modified', routeObj.lastModified.utc().format(headerFormat));
-                    }
                     var tag = etag(routeObj.etags.join() + routeObj.url);
                     res.setHeader('ETag', tag);
                     res.setHeader('Cache-Control', 'no-cache');
-                    if (isNotModified(req, routeObj, tag)) {
-                        console.log("Saved Render");
+
+                    var ifNoneMatch = req.get('if-none-match');
+                    if (tag === ifNoneMatch) {
                         res.status(304).end();
-                    } else {
-                        console.log("Render");
-                        var content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
-                            data: routeObj.data,
-                            path: routeObj.path,
-                            query: routeObj.query,
-                            component: routeObj.component,
-                        }));
-                        var head = Helmet.rewind();
-                        if (routeObj.maxAge > 0) {
-                            res.set('Cache-Control', 'public, max-age=' + routeObj.maxAge);
-                        } else {
-                        }
-                        res.send(compiledTemplate({
-                            title: head.title.toString(),
-                            meta: head.meta.toString(),
-                            link: head.link.toString(),
-                            apidata: JSON.stringify(routeObj.data),
-                            content: content
-                        }));
+                        return;
                     }
+
+                    var contentKey = 'wb_' + tag;
+                    var modifiedKey = 'lm_' + tag;
+                    memcached.getMulti([contentKey, modifiedKey], function (err, data) {
+                        var content = data[contentKey];
+                        var lastModified = data[modifiedKey];
+                        var ifModifiedSince= req.get('if-modified-since');
+                        if (lastModified && content && !err) {
+                            res.setHeader('X-Cache', 'HIT');
+                            res.setHeader('Last-Modified', lastModified);
+                            if (isNotModified(ifModifiedSince, lastModified)) {
+                                res.status(304).end();
+                                return;
+                            }
+                            res.send(data[contentKey]);
+                        } else {
+                            res.setHeader('X-Cache', 'MISS');
+                            var content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
+                                data: routeObj.data,
+                                path: routeObj.path,
+                                query: routeObj.query,
+                                component: routeObj.component,
+                            }));
+                            var head = Helmet.rewind();
+                            var page = compiledTemplate({
+                                title: head.title.toString(),
+                                meta: head.meta.toString(),
+                                link: head.link.toString(),
+                                apidata: JSON.stringify(routeObj.data),
+                                content: content
+                            });
+                            memcached.set(contentKey, page, 3600, function (err) {});
+                            var timestamp = moment.utc().format(TIMESTAMP_FORMAT);
+                            res.setHeader('Last-Modified', timestamp);
+                            memcached.set(modifiedKey, timestamp, 3600, function (err) {});
+                            res.send(page);
+                        }
+                    });
                 } catch (err) {
                     return next(err);
                 }
