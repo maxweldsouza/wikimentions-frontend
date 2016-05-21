@@ -54,6 +54,7 @@ function readFullFile (file) {
 
 app.set('etag', false);
 app.use(cookieParser());
+app.disable('x-powered-by');
 
 var eightdays = {
     maxAge: 8 * 24 * 3600 * 1000
@@ -83,7 +84,7 @@ var isNotModified = function (ifModifiedSince, lastModified) {
     if (ifModifiedSince && lastModified) {
         var ims = new Date(ifModifiedSince);
         var lm = moment(new Date(lastModified));
-        if (lm.isBefore(ims)) {
+        if (lm.isSameOrBefore(ims)) {
             return true;
         }
     }
