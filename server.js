@@ -4,7 +4,6 @@ var Helmet = require('react-helmet');
 var path = require('path');
 var express = require("express");
 var etag = require('etag')
-var compress = require('compression');
 var cookieParser = require('cookie-parser');
 var app = express();
 var fs = require('fs');
@@ -49,9 +48,7 @@ function readFullFile (file) {
 }
 
 app.set('etag', false);
-app.use(compress());
 app.use(cookieParser());
-app.disable('x-powered-by');
 
 var eightdays = {
     maxAge: 8 * 24 * 3600 * 1000
@@ -107,9 +104,12 @@ app.get(/^(.+)$/, function(req, res, next) {
                     }
                     var tag = etag(routeObj.etags.join() + routeObj.url);
                     res.setHeader('ETag', tag);
+                    res.setHeader('Cache-Control', 'no-cache');
                     if (isNotModified(req, routeObj, tag)) {
+                        console.log("Saved Render");
                         res.status(304).end();
                     } else {
+                        console.log("Render");
                         var content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
                             data: routeObj.data,
                             path: routeObj.path,
