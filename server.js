@@ -21,6 +21,8 @@ global.localStorage = require('localStorage');
 var production = process.env.NODE_ENV === 'production';
 
 var memcached = new Memcached('127.0.0.1:11211');
+var CACHE_TIME = 864000; // 10 days
+
 
 var plugins = [
     // react
@@ -51,6 +53,9 @@ function readFullFile (file) {
         throw err;
     }
 }
+var GIT_REV_HASH = readFullFile(".GIT_REV_HASH");
+
+console.log("GIT_REV_HASH: ", GIT_REV_HASH);
 
 app.set('etag', false);
 app.use(cookieParser());
@@ -97,7 +102,7 @@ app.get(/^(.+)$/, function(req, res, next) {
             url: req.originalUrl,
             onUpdate: (routeObj) => {
                 try {
-                    var tag = etag(routeObj.etags.join() + routeObj.url);
+                    var tag = etag(routeObj.etags.join() + routeObj.url + GIT_REV_HASH);
                     res.setHeader('ETag', tag);
                     res.setHeader('Cache-Control', 'no-cache');
 
@@ -137,10 +142,10 @@ app.get(/^(.+)$/, function(req, res, next) {
                                 apidata: JSON.stringify(routeObj.data),
                                 content: content
                             });
-                            memcached.set(contentKey, page, 3600, function (err) {});
+                            memcached.set(contentKey, page, CACHE_TIME, function (err) {});
                             var timestamp = moment.utc().format(TIMESTAMP_FORMAT);
                             res.setHeader('Last-Modified', timestamp);
-                            memcached.set(modifiedKey, timestamp, 3600, function (err) {});
+                            memcached.set(modifiedKey, timestamp, CACHE_TIME, function (err) {});
                             res.send(page);
                         }
                     });

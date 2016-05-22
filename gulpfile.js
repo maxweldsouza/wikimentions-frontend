@@ -20,6 +20,9 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var gulpif = require('gulp-if');
 var uncache = require('gulp-uncache');
+var git = require('git-rev');
+var fs = require('fs');
+var md5 = require('md5');
 
 var production = process.env.NODE_ENV === 'production';
 
@@ -30,6 +33,24 @@ var sassPaths = [
 
 // Javascript
 global.assert = require("chai").assert;
+
+gulp.task('git-rev', function () {
+    git.long(function(str) {
+        var GIT_REV_HASH;
+        if (production) {
+            GIT_REV_HASH = str;
+        } else {
+            GIT_REV_HASH = md5(Date.now().toString());
+        }
+        console.log("git-rev: " + GIT_REV_HASH);
+        fs.writeFile(".GIT_REV_HASH", GIT_REV_HASH, function(err) {
+            if(err) {
+                return console.log(err);
+            }
+        });
+    });
+    return;
+});
 
 gulp.task('js-tests', function () {
     return gulp.src('src/tests/*.js', {read: false})
@@ -80,9 +101,9 @@ gulp.task("browserify", function () {
     })
     .pipe(source("bundle.js"))
     .pipe(buffer())
-    .pipe(gulp.dest("src/assets"))
+    .pipe(gulp.dest("src/assets/js"))
     .pipe(gulpif(production, uglify()))
-    .pipe(gulpif(production, gulp.dest("dist/assets")));
+    .pipe(gulpif(production, gulp.dest("dist/assets/js")));
     });
 
 // Scss styles
@@ -98,11 +119,11 @@ return gulp.src('src/styles/main.scss')
     .pipe(sass({
         includePaths: sassPaths
     }))
-    .pipe(gulp.dest('src/assets'))
+    .pipe(gulp.dest('src/assets/css'))
     .pipe(autoprefixer())
     .pipe(minifycss())
     .pipe(rename('main.css'))
-    .pipe(gulp.dest('dist/assets'));
+    .pipe(gulp.dest('dist/assets/css'));
 });
 
 // Html
@@ -116,14 +137,18 @@ return gulp.src('src/index.html')
         template: '{{path}}{{name}}-{{append}}.{{extension}}',
         distDir: 'dist'
     }))
-    .pipe(minifyhtml())
+    .pipe(minifyhtml({
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyJS: true
+    }))
     .pipe(gulp.dest('dist'));
 });
 
 // Copy over external libraries
 gulp.task('copy-external', function () {
-    gulp.src('src/minified/**/*')
-    .pipe(gulp.dest('dist/minified'));
+    gulp.src('src/assets/**/*')
+    .pipe(gulp.dest('dist/assets'));
     gulp.src('src/js/**/*')
     .pipe(gulp.dest('dist/js'));
 });
@@ -161,8 +186,8 @@ gulp.task("checkDev", [], function(callback) {
 });
 
 // Default Task
-var devtasks = ['es-lint', 'es-lint-tests', 'js-tests', 'browserify', 'scss-lint', 'compile-scss', 'copy-external', 'watch'];
-var prodtasks = ['es-lint', 'es-lint-tests', 'js-tests', 'browserify', 'scss-lint', 'compile-scss', 'copy-external', 'preprocess-html'];
+var devtasks = ['git-rev', 'es-lint', 'es-lint-tests', 'js-tests', 'browserify', 'scss-lint', 'compile-scss', 'copy-external', 'watch'];
+var prodtasks = ['git-rev', 'es-lint', 'es-lint-tests', 'js-tests', 'browserify', 'scss-lint', 'compile-scss', 'copy-external', 'preprocess-html'];
 if (production) {
     gulp.task('default', prodtasks);
 } else {
