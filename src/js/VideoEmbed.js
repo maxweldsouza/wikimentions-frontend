@@ -19,7 +19,7 @@ var YoutubeEmbed = React.createClass({
                 type='text/html'
                 width={this.props.width}
                 height={this.props.height}
-                src={'http://www.youtube.com/embed/' + queryObject.v + '?autoplay=1'} frameBorder={0}></iframe>;
+                src={'https://www.youtube.com/embed/' + queryObject.v + '?autoplay=1'} frameBorder={0}></iframe>;
         } else if (parsed.hostname === 'embed-ssl.ted.com') {
             embed = <iframe src={this.props.url}
                 width='640'
