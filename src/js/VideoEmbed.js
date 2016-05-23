@@ -21,7 +21,7 @@ var YoutubeEmbed = React.createClass({
                 height={this.props.height}
                 src={'https://www.youtube.com/embed/' + queryObject.v + '?autoplay=1'} frameBorder={0}></iframe>;
         } else if (parsed.hostname === 'embed-ssl.ted.com') {
-            embed = <iframe src={this.props.url}
+            embed = <iframe src={'https://' + parsed.hostname + parsed.pathname + parsed.query}
                 width='640'
                 height='360'
                 frameBorder='0'
@@ -40,7 +40,7 @@ var YoutubeEmbed = React.createClass({
                 mozAllowFullScreen
                 allowFullScreen></iframe>;
         } else if (parsed.hostname === 'www.cornell.edu') {
-            var url = this.props.url + '/embed';
+            var url = 'https://' + parsed.hostname + parsed.pathname + '/embed';
             embed = <iframe
                 src={url}
                 width='500'
