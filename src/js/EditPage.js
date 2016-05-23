@@ -10,6 +10,7 @@ var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var PageBar = require('./PageBar');
 var config = require('./config');
+var Dropzone = require('react-dropzone');
 
 var EditPage = React.createClass({
     statics: {
@@ -110,6 +111,14 @@ var EditPage = React.createClass({
         var options = [{name: 'Person', value: 'person'},
             {name: 'Book', value: 'book'},
             {name: 'Video', value: 'video'}];
+        var imageMessage;
+        if (this.state.type === 'book') {
+            imageMessage = 'Add an image of this book';
+        } else if (this.state.type === 'video') {
+            imageMessage = 'Add a thumbnail for this video';
+        } else if (this.state.type === 'person') {
+            imageMessage = 'Add a picture of this person';
+        }
         return (
             <span>
                 <Helmet
@@ -167,6 +176,9 @@ var EditPage = React.createClass({
                                 placeholder='ISBN-13'
                                 value={this.state.isbn13}
                                 onChange={this.onChangeText}/> : null}
+                            <Dropzone>
+                                {imageMessage}
+                            </Dropzone>
                             <SubmitButton
                                 title='Save'
                                 submitting={this.state.submitting}
