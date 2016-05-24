@@ -22,7 +22,6 @@ var gulpif = require('gulp-if');
 var uncache = require('gulp-uncache');
 var git = require('git-rev');
 var fs = require('fs');
-var md5 = require('md5');
 
 var production = process.env.NODE_ENV === 'production';
 
@@ -36,18 +35,15 @@ global.assert = require("chai").assert;
 
 gulp.task('git-rev', function () {
     git.long(function(str) {
-        var GIT_REV_HASH;
         if (production) {
-            GIT_REV_HASH = str;
-        } else {
-            GIT_REV_HASH = md5(Date.now().toString());
+            var GIT_REV_HASH = str;
+            console.log("git-rev: " + GIT_REV_HASH);
+            fs.writeFile(".GIT_REV_HASH", GIT_REV_HASH, function(err) {
+                if(err) {
+                    return console.log(err);
+                }
+            });
         }
-        console.log("git-rev: " + GIT_REV_HASH);
-        fs.writeFile(".GIT_REV_HASH", GIT_REV_HASH, function(err) {
-            if(err) {
-                return console.log(err);
-            }
-        });
     });
     return;
 });

@@ -12,6 +12,8 @@ var str = require('string');
 var request = require('superagent');
 var moment = require('moment');
 var Memcached = require('memcached');
+var md5 = require('md5');
+
 var Log = require('log')
   , log = new Log('info', fs.createWriteStream('googlebot.log', {flags: 'a'}));
 
@@ -53,7 +55,12 @@ function readFullFile (file) {
         throw err;
     }
 }
-var GIT_REV_HASH = readFullFile(".GIT_REV_HASH");
+var GIT_REV_HASH;
+if (production) {
+    GIT_REV_HASH = readFullFile('.GIT_REV_HASH');
+} else {
+    GIT_REV_HASH = md5(Date.now().toString());
+}
 
 console.log("GIT_REV_HASH: ", GIT_REV_HASH);
 
