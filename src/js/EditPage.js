@@ -30,9 +30,10 @@ var EditPage = React.createClass({
         return {
             type: this.props.data.thing.type,
             title: this.props.data.thing.title,
-            description: this.props.data.thing.description,
-            isbn: this.props.data.thing.isbn,
-            isbn13: this.props.data.thing.isbn13,
+            description: this.props.data.thing.props.description,
+            isbn: this.props.data.thing.props.isbn,
+            isbn13: this.props.data.thing.props.isbn13,
+            url: this.props.data.thing.props.url,
             submiting: false,
             error: false,
             message: ''
@@ -176,6 +177,7 @@ var EditPage = React.createClass({
                                 placeholder='ISBN-13'
                                 value={this.state.isbn13}
                                 onChange={this.onChangeText}/> : null}
+                            {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
                             <Dropzone>
                                 {imageMessage}
                             </Dropzone>
