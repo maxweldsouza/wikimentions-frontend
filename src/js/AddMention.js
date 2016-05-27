@@ -55,7 +55,7 @@ var AddMention = React.createClass({
             });
         } else {
             requests
-            .post('/api/v1/mentions/' + this.props.id)
+            .post('/api/v1/mentions')
             .type('form')
             .send({
                 action: 'create',

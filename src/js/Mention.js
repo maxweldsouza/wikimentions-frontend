@@ -1,6 +1,31 @@
 var React = require('react');
+var requests = require('superagent');
+var cookies = require('browser-cookies');
 
 var Mention = React.createClass({
+    removeMention () {
+        requests
+        .post('/api/v1/mentions')
+        .type('form')
+        .send({
+            action: 'delete',
+            mention_id: this.props.mention_id,
+            _xsrf: cookies.get('_xsrf')
+        })
+        .end((err, res) => {
+            this.setState({
+                submiting: false
+            });
+            if (err && err.status) {
+                this.setState({
+                    error: true,
+                    message: res.body.message
+                });
+            } else {
+                Mentions.route(window.location.pathname + window.location.search);
+            }
+        });
+    },
     render () {
         var path;
         var icon;
@@ -50,7 +75,7 @@ var Mention = React.createClass({
                         {' References '}<span className="badge">{referencesCount}</span>
                     </span>
                     <span>
-                        <a className='secondary' href=''>Remove</a>
+                        <a className='secondary' onClick={this.removeMention}>Remove</a>
                     </span>
                     <span>
                         <a className='secondary' href=''>Report</a>
