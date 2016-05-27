@@ -50,9 +50,7 @@ var YoutubeEmbed = React.createClass({
                 mozAllowFullScreen
                 allowFullScreen></iframe>;
         } else {
-            embed = <a href={this.props.url}>
-                <img className='' src='/assets/videolarge.png' alt=''/>
-            </a>;
+            return null;
         }
         return (
             <div className='flex-video'>
