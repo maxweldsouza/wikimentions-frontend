@@ -44,9 +44,9 @@ var Maintenance = React.createClass({
                         <Link
                         type='book'
                         id={x.id}
-                        slug={x.slug}
-                        title={x.title}
-                        />
+                        slug={x.slug}>
+                        {x.title}
+                        </Link>
                     </div>;
                 })}
             </div>;
@@ -58,9 +58,9 @@ var Maintenance = React.createClass({
                         <Link
                         type='book'
                         id={x.id}
-                        slug={x.slug}
-                        title={x.title}
-                        />
+                        slug={x.slug}>
+                        {x.title}
+                        </Link>
                     </div>;
                 })}
             </div>;
@@ -72,9 +72,9 @@ var Maintenance = React.createClass({
                         <Link
                         type='person'
                         id={x.id}
-                        slug={x.slug}
-                        title={x.title}
-                        />
+                        slug={x.slug}>
+                        {x.title}
+                        </Link>
                     </div>;
                 })}
             </div>;

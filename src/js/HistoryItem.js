@@ -11,28 +11,27 @@ var HistoryCard = React.createClass({
                 <Link
                     id={this.props.entry.source}
                     slug={this.props.entry.source_slug}
-                    title={this.props.entry.source_title}
-                    type={this.props.entry.source_type}
-                    /> as author to video <Link
+                    type={this.props.entry.source_type}>
+                    {this.props.entry.source_title}
+                </Link> as author to video <Link
                     id={this.props.entry.destination}
                     slug={this.props.entry.destination_slug}
-                    title={this.props.entry.destination_title}
-                    type={this.props.entry.destination_type}
-                    />;
+                    type={this.props.entry.destination_type}>
+                    {this.props.entry.destination_title}
+                </Link>;
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'book_author') {
             item = <span>
                 <Link
                     id={this.props.entry.source}
                     slug={this.props.entry.source_slug}
-                    title={this.props.entry.source_title}
-                    type={this.props.entry.source_type}
-                    /> as author to book <Link
+                    type={this.props.entry.source_type}>{this.props.entry.source_title}
+                </Link> as author to book <Link
                     id={this.props.entry.destination}
                     slug={this.props.entry.destination_slug}
-                    title={this.props.entry.destination_title}
-                    type={this.props.entry.destination_type}
-                    />
+                    type={this.props.entry.destination_type}>
+                    {this.props.entry.destination_title}
+                </Link>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'prop') {
             item = <span>
@@ -48,19 +47,19 @@ var HistoryCard = React.createClass({
                 <Link
                     id={this.props.entry.mentioned_by}
                     slug={this.props.entry.mentioned_by_slug}
-                    title={this.props.entry.mentioned_by_title}
-                    type={this.props.entry.mentioned_by_type}
-                    /> mentioned <Link
+                    type={this.props.entry.mentioned_by_type}>
+                    {this.props.entry.mentioned_by_title}
+                </Link> mentioned <Link
                     id={this.props.entry.mentioned}
                     slug={this.props.entry.mentioned_slug}
-                    title={this.props.entry.mentioned_title}
-                    type={this.props.entry.mentioned_type}
-                    /> in <Link
+                    type={this.props.entry.mentioned_type}>
+                    {this.props.entry.mentioned_title}
+                </Link> in <Link
                     id={this.props.entry.mentioned_in}
                     slug={this.props.entry.mentioned_in_slug}
-                    title={this.props.entry.mentioned_in_title}
-                    type={this.props.entry.mentioned_in_type}
-                    />
+                    type={this.props.entry.mentioned_in_type}>
+                    {this.props.entry.mentioned_in_title}
+                </Link>
             </span>;
         }
         return (

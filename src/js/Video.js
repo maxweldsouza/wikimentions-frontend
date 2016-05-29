@@ -1,6 +1,7 @@
 var React = require('react');
 var Image = require('./Image');
 var parseUrl = require('url-parse');
+var Link = require('./Link');
 
 var Video = React.createClass({
     render () {
@@ -18,11 +19,17 @@ var Video = React.createClass({
                     <div className='row'>
                         <div className='shrink columns'>
                             <div style={{maxWidth: 150}}>
-                                {image}
+                                <Link id={this.props.id}
+                                    slug={this.props.slug}
+                                    type='video'>{image}</Link>
                             </div>
                         </div>
                         <div className='columns'>
-                            <a className='card-title' href={'/videos/' + this.props.id + '/' + this.props.slug}>{this.props.title}</a>
+                            <Link
+                                id={this.props.id}
+                                className='card-title'
+                                slug={this.props.slug}
+                                type='video'>{this.props.title}</Link>
                             <div>{'[' + parsed.hostname + ']'}</div>
                         </div>
                     </div>
