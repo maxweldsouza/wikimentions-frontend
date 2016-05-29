@@ -29,7 +29,10 @@ var ThingMentionTab = React.createClass({
                         description={x.props.description}
                         quote={x.quote}
                         references={x.references}
-                        books={x.books}
+                        book_count={x.book_count}
+                        video_count={x.video_count}
+                        mentioned_count={x.mentioned_count}
+                        mentioned_by_count={x.mentioned_by_count}
                         type={x.type}
                         />;
                 })}

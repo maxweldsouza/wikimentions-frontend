@@ -1,6 +1,7 @@
 var React = require('react');
 var requests = require('superagent');
 var cookies = require('browser-cookies');
+var Link = require('./Link');
 
 var Mention = React.createClass({
     removeMention () {
@@ -62,23 +63,43 @@ var Mention = React.createClass({
                 <div className='small-12 columns'>
                     {this.props.quote}
                 </div>
-                <div className='small-6 columns'>
-                    {this.props.type === 'person' ? <span>
-                        {' Books '}<span className="badge">{this.props.books}</span>
-                    </span> : null}
-                    {this.props.type === 'person' ? <span>
-                        {' Videos '}<span className="badge">0</span>
-                    </span> : null}
+                <div className='small-8 columns'>
+                    {this.props.type === 'person' ? <Link
+                        id={this.props.id}
+                        slug={this.props.slug}
+                        title={this.props.title}
+                        type={this.props.type}
+                        className='secondary'
+                        tab='books'>{'Books'}<span className="badge">{this.props.book_count}</span>{'  '}
+                    </Link> : null}
+                    {this.props.type === 'person' ?<Link
+                        id={this.props.id}
+                        slug={this.props.slug}
+                        title={this.props.title}
+                        type={this.props.type}
+                        className='secondary'
+                        tab='videos'>{'Videos'}<span className="badge">{this.props.video_count}</span>{'  '}
+                    </Link> : null}
+                    <Link
+                        id={this.props.id}
+                        slug={this.props.slug}
+                        title={this.props.title}
+                        type={this.props.type}
+                        className='secondary'
+                        tab='mentioned'>{'Mentions'}<span className="badge">{this.props.mentioned_count}</span>{'  '}
+                    </Link>
+                    <Link
+                        id={this.props.id}
+                        slug={this.props.slug}
+                        title={this.props.title}
+                        type={this.props.type}
+                        className='secondary'
+                        tab='mentionedby'>{'Mentioned By'}<span className="badge">{this.props.mentioned_by_count}</span>
+                    </Link>
                 </div>
-                <div className="small-6 columns text-right">
-                    <span>
-                        {' References '}<span className="badge">{referencesCount}</span>
-                    </span>
+                <div className="small-4 columns text-right">
                     <span>
                         <a className='secondary' onClick={this.removeMention}>Remove</a>
-                    </span>
-                    <span>
-                        <a className='secondary' href=''>Report</a>
                     </span>
                 </div>
             </div>
