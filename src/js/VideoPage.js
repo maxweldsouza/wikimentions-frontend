@@ -150,7 +150,6 @@ var ThingPage = React.createClass({
                             <div className='small-12 large-8 columns'>
                                 <div>
                                     <VideoEmbed url={this.props.data.thing.props.url}/>
-
                                 </div>
                                 <h1 className='page-title'>{thing.title}</h1>
                                 <span className='thing-description'>

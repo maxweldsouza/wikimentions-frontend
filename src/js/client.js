@@ -6,6 +6,7 @@ var $ = require('jquery');
 var str = require('string');
 var MainComponent = require('./MainComponent');
 var Router = require('./Router.js');
+var requests = require('superagent');
 
 /*
 in console type Perf.printWasted();
@@ -32,6 +33,12 @@ var stopLoading = function () {
     $('.spinner').addClass('spinner-hidden');
 };
 
+function getTokenIfRequired () {
+    if (!cookies.get('_xsrf')) {
+        requests.get('/api/v1/token').end();
+    }
+}
+
 window.Mentions = {
     route: function (url) {
         if (str(url).endsWith('/')) {
@@ -50,6 +57,7 @@ window.Mentions = {
     firstLoad: function (url) {
         var data;
         try {
+            getTokenIfRequired ();
             data = JSON.parse($('#api-data').text());
         } catch (e) {
             Mentions.route(url);
