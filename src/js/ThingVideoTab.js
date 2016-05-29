@@ -21,7 +21,7 @@ var ThingVideoTab = React.createClass({
                             slug={x.slug}
                             title={x.title}
                             images={x.images}
-                            url={x.url}
+                            url={x.props.url}
                             />;
                 })}
                 {videos.length === 0 ? emptyvideos : null}
