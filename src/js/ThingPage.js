@@ -96,7 +96,7 @@ var ThingPage = React.createClass({
             authors = this.props.data.videoauthors;
         }
         if (thing.type === 'book' || thing.type === 'video') {
-            authors = <Authors authors={authors} id={id}/>;
+            authors = <Authors authors={authors} id={id} type={thing.type}/>;
         }
         var mentions = this.props.data.mentions;
         var mentionedby = this.props.data.mentionedby;

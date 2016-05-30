@@ -69,7 +69,7 @@ var ThingPage = React.createClass({
         var image = '/assets/videolarge.png';
         var authors = this.props.data.videoauthors;
         if (authors.length > 0) {
-            authors = <Authors authors={authors} id={id}/>;
+            authors = <Authors authors={authors} id={id} type='video' />;
         }
         var mentions = this.props.data.mentions;
         var mentionedby = this.props.data.mentionedby;

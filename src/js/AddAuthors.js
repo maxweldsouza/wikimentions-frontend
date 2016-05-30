@@ -44,8 +44,14 @@ var AddAuthors = React.createClass({
                 message: 'You need to add an author'
             });
         } else {
+            var type;
+            if (this.props.type === 'book') {
+                type = '/booksby';
+            } else if (this.props.type === 'video') {
+                type = '/videosby';
+            }
             requests
-            .post('/api/v1/thing/' + this.props.id + '/booksby')
+            .post('/api/v1/thing/' + this.props.id + type)
             .type('form')
             .send({
                 author_id: this.state.author,
@@ -68,8 +74,14 @@ var AddAuthors = React.createClass({
         }
     },
     removeAuthor (id) {
+        var type;
+        if (this.props.type === 'book') {
+            type = '/booksby';
+        } else if (this.props.type === 'video') {
+            type = '/videosby';
+        }
         requests
-        .post('/api/v1/thing/' + this.props.id + '/booksby')
+        .post('/api/v1/thing/' + this.props.id + type)
         .type('form')
         .send({
             author_id: id,
