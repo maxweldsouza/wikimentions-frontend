@@ -7,21 +7,24 @@ var _ = require('underscore');
 var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var config = require('./config');
+var PreviousNext = require('./PreviousNext');
 
 var DiscussPage = React.createClass({
     statics: {
         resources (appstate) {
             var data;
-            var id = appstate.url.split('/')[1];
+            var [type, id, slug] = appstate.path.split('/')
+            var page = appstate.query.page;
+            var query = page ? '?page=' + page : '';
             return {
                 api: [
                     {
                         name: 'discuss',
-                        path: '/api/v1/discuss/' + id
+                        path: '/api/v1/discuss/' + id + query
                     },
                     {
                         name: 'thing',
-                        path: '/api/v1/thing/' + id
+                        path: '/api/v1/thing/' + id + query
                     }
                 ]
             };
@@ -73,6 +76,7 @@ var DiscussPage = React.createClass({
                                         posted={x.created}
                                         />;
                                 })}
+                                <PreviousNext path={this.props.path} page={this.props.query.page}/>
                                 {nodata}
                                 <DiscussReply id={id}/>
                             </div>
