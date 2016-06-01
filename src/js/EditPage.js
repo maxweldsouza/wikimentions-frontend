@@ -102,6 +102,7 @@ var EditPage = React.createClass({
                     message: res.body.message
                 });
             } else {
+                history.pushState(null, null, res.body.redirect);
                 Mentions.route(res.body.redirect);
             }
         });

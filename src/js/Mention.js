@@ -23,6 +23,7 @@ var Mention = React.createClass({
                     message: res.body.message
                 });
             } else {
+                history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
         });
