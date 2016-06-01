@@ -1,86 +1,37 @@
 var React = require('react');
-
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var cookies = require('browser-cookies');
-var requests = require('superagent');
-var Select = require('./Select');
+var ButtonSelect = require('./ButtonSelect');
+var AddVideoNew = require('./AddVideoNew');
+var AddVideoExisting = require('./AddVideoExisting');
 var Notification = require('./Notification');
-var SubmitButton = require('./SubmitButton');
 
 var AddVideo = React.createClass({
     getInitialState () {
         return {
-            opened: false,
-            video_id: '',
-            error: false,
-            message: '',
-            submitting: false
+            type: 'Existing'
         };
     },
-    onOpen () {
+    onChangeType (x) {
         this.setState({
-            opened: true
-        });
-    },
-    onClose () {
-        this.setState({
-            opened: false
-        });
-    },
-    onSelect (x) {
-        this.setState({
-            video_id: x.id
-        });
-    },
-    onCloseError () {
-        this.setState({
-            error: false,
-            message: ''
-        });
-    },
-    onSubmit () {
-        this.setState({
-            submitting: true
-        });
-        requests
-        .post('/api/v1/thing/' + this.props.id + '/videos')
-        .type('form')
-        .send({
-            video_id: this.state.video_id,
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
-            this.setState({
-                submitting: false
-            });
-            if (err && err.status) {
-                this.setState({
-                    error: true,
-                    video_id: '',
-                    message: res.body.message
-                });
-            } else {
-                history.pushState(null, null, window.location.pathname + window.location.search);
-                Mentions.route(window.location.pathname + window.location.search);
-            }
+            type: x
         });
     },
     render () {
-        var id = this.props.id;
-        var result;
-        if (this.state.opened) {
-            result = <div className='small-12 columns'>
-                <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
-                <Select name='video_id' placeholder='Search for video' onSelectValue={this.onSelect}/>
-                <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
-            </div>;
-        } else {
-            result = <div className='small-12 columns'>
-                <button onClick={this.onOpen} className='button'>Add</button>
-            </div>;
-        }
-        return result;
+        var options = [{ name: 'Existing', value: 'Existing' }, { name: 'New', value: 'New' }];
+        return (
+            <div>
+                Add a video of this author
+                <ButtonSelect
+                    options={options}
+                    default={this.state.type}
+                    onChange={this.onChangeType}
+                    />
+                {this.state.type !== 'New' ? <div>
+                    <AddVideoExisting id={this.props.id}/>
+                </div> : <span>
+                    <AddVideoNew id={this.props.id}/>
+                </span>}
+            </div>
+        );
     }
 });
 

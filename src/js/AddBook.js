@@ -7,7 +7,7 @@ var Notification = require('./Notification');
 var AddBook = React.createClass({
     getInitialState () {
         return {
-            type: 'New'
+            type: 'Existing'
         };
     },
     onChangeType (x) {
@@ -16,7 +16,7 @@ var AddBook = React.createClass({
         });
     },
     render () {
-        var options = [{ name: 'New', value: 'New' }, { name: 'Existing', value: 'Existing' }];
+        var options = [{ name: 'Existing', value: 'Existing' }, { name: 'New', value: 'New' }];
         return (
             <div>
                 Add a book by this author
@@ -25,10 +25,10 @@ var AddBook = React.createClass({
                     default={this.state.type}
                     onChange={this.onChangeType}
                     />
-                {this.state.type === 'New' ? <div>
-                    <AddBookNew id={this.props.id}/>
-                </div> : <span>
+                {this.state.type !== 'New' ? <div>
                     <AddBookExisting id={this.props.id}/>
+                </div> : <span>
+                    <AddBookNew id={this.props.id}/>
                 </span>}
             </div>
         );
