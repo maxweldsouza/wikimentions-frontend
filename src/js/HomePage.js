@@ -9,6 +9,7 @@ var Pagination = require('./Pagination');
 var requests = require('superagent');
 var ButtonSelect = require('./ButtonSelect');
 var config = require('./config');
+var Snackbar = require('./Snackbar');
 
 var HomePage = React.createClass({
     statics: {

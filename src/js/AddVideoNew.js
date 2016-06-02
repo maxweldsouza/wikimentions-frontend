@@ -64,6 +64,11 @@ var AddVideoNew = React.createClass({
                             message: res.body.message
                         });
                     } else {
+                        this.setState({
+                            error: false,
+                            video_id: '',
+                            message: 'Video Added Successfully'
+                        });
                         history.pushState(null, null, window.location.pathname + window.location.search);
                         Mentions.route(window.location.pathname + window.location.search);
                     }

@@ -1,15 +1,16 @@
 var React = require('react');
-var Notification = require('./Notification');
+
 var SubmitButton = require('./SubmitButton');
 var cookies = require('browser-cookies');
 var requests = require('superagent');
+var Snackbar = require('./Snackbar');
 
 var AddBookNew = React.createClass({
     getInitialState () {
         return {
             title: '',
             description: '',
-            error: false,
+            notification: false,
             message: ''
         };
     },
@@ -20,7 +21,7 @@ var AddBookNew = React.createClass({
     },
     onCloseError () {
         this.setState({
-            error: false,
+            notification: false,
             message: ''
         });
     },
@@ -41,7 +42,7 @@ var AddBookNew = React.createClass({
         .end((err, res) => {
             if (err && err.status) {
                 this.setState({
-                    error: true,
+                    notification: true,
                     message: res.body.message
                 });
             } else {
@@ -60,10 +61,11 @@ var AddBookNew = React.createClass({
                     });
                     if (err && err.status) {
                         this.setState({
-                            error: true,
+                            notification: true,
                             message: res.body.message
                         });
                     } else {
+                        Snackbar({message: 'Book added'});
                         history.pushState(null, null, window.location.pathname + window.location.search);
                         Mentions.route(window.location.pathname + window.location.search);
                     }
@@ -74,7 +76,6 @@ var AddBookNew = React.createClass({
     render () {
         return (
             <form method='post' action={'/api/v1/thing/' + this.props.id + '/books'}>
-                <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                 <input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} required/>
                 <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
                 <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
