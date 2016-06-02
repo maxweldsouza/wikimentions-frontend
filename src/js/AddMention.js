@@ -5,7 +5,7 @@ var Navbar = require('./Navbar');
 var Select = require('./Select');
 var cookies = require('browser-cookies');
 var requests = require('superagent');
-var Notification = require('./Notification');
+var Snackbar = require('./Snackbar');
 
 var AddMention = React.createClass({
     getInitialState () {
@@ -16,9 +16,7 @@ var AddMention = React.createClass({
             mentioned: this.props.mentioned,
             description: '',
             references: '',
-            submiting: false,
-            error: false,
-            message: ''
+            submiting: false
         };
     },
     onOpen () {
@@ -36,23 +34,11 @@ var AddMention = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
-    onCloseError () {
-        this.setState({
-            error: false,
-            message: ''
-        });
-    },
     onSubmit () {
         if (!this.state.mentioned_by) {
-            this.setState({
-                error: true,
-                message: 'Mentioned By is empty'
-            });
+            Snackbar({message: 'Mentioned By is empty'});
         } else if (!this.state.mentioned) {
-            this.setState({
-                error: true,
-                message: 'Mentioned is empty'
-            });
+            Snackbar({message: 'Mentioned is empty'});
         } else {
             requests
             .post('/api/v1/mentions')
@@ -71,11 +57,9 @@ var AddMention = React.createClass({
                     submiting: false
                 });
                 if (err && err.status) {
-                    this.setState({
-                        error: true,
-                        message: res.body.message
-                    });
+                    Snackbar({message: res.body.message});
                 } else {
+                    Snackbar({message: 'Mention added'});
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
                 }
@@ -102,7 +86,6 @@ var AddMention = React.createClass({
         var result;
         if (this.state.opened) {
             result = <div className='small-12 columns'>
-                <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                 {this.props.mentioned_by ? null : <Select
                     name='mentioned_by'
                     placeholder='Mentioned By (Person)'

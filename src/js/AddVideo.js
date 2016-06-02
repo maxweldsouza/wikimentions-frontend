@@ -2,7 +2,6 @@ var React = require('react');
 var ButtonSelect = require('./ButtonSelect');
 var AddVideoNew = require('./AddVideoNew');
 var AddVideoExisting = require('./AddVideoExisting');
-var Notification = require('./Notification');
 
 var AddVideo = React.createClass({
     getInitialState () {

@@ -2,7 +2,6 @@ var React = require('react');
 var ButtonSelect = require('./ButtonSelect');
 var AddBookNew = require('./AddBookNew');
 var AddBookExisting = require('./AddBookExisting');
-var Notification = require('./Notification');
 
 var AddBook = React.createClass({
     getInitialState () {

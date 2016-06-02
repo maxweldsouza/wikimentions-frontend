@@ -5,7 +5,7 @@ var Login = require('./Login');
 var Signup = require('./Signup');
 var cookies = require('browser-cookies');
 var ButtonSelect = require('./ButtonSelect');
-var Notification = require('./Notification');
+var Snackbar = require('./Snackbar');
 var requests = require('superagent');
 var SubmitButton = require('./SubmitButton');
 
@@ -21,9 +21,7 @@ var BlogPostCreate = React.createClass({
         return {
             title: '',
             content: '',
-            submiting: false,
-            error: false,
-            message: ''
+            submiting: false
         };
     },
     onChangeText (e) {
@@ -34,22 +32,13 @@ var BlogPostCreate = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
-    onCloseError () {
-        this.setState({
-            error: false,
-            message: ''
-        });
-    },
     validateForm () {
         var message;
         if (!this.state.title) {
             message = 'You need to provide a title';
         }
         if (message) {
-            this.setState({
-                error: true,
-                message: message
-            });
+            Snackbar({message: message});
             return false;
         }
         return true;
@@ -74,11 +63,9 @@ var BlogPostCreate = React.createClass({
                 submitting: false
             });
             if (err && err.status) {
-                this.setState({
-                    error: true,
-                    message: res.body.message
-                });
+                Snackbar({message: res.body.message});
             } else {
+                Snackbar({message: 'Blog post saved'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
@@ -100,7 +87,6 @@ var BlogPostCreate = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                         <input type='hidden' name='action' value='create'/>
                         <h1 className='blog-title'>Create Post</h1>
                         <input type='text' name='title' placeholder='Title' />

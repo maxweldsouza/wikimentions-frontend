@@ -2,16 +2,14 @@ var React = require('react');
 
 var cookies = require('browser-cookies');
 var requests = require('superagent');
-var Notification = require('./Notification');
+var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 
 var DiscussReply = React.createClass({
     getInitialState () {
         return {
             content: '',
-            submitting: false,
-            error: false,
-            message: ''
+            submitting: false
         };
     },
     onChangeText (e) {
@@ -19,22 +17,13 @@ var DiscussReply = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
-    onCloseError () {
-        this.setState({
-            error: false,
-            message: ''
-        });
-    },
     validateForm () {
         var message;
         if (!this.state.content) {
             message = 'Your post is empty';
         }
         if (message) {
-            this.setState({
-                error: true,
-                message: message
-            });
+            Snackbar({message: message});
             return false;
         }
         return true;
@@ -59,11 +48,9 @@ var DiscussReply = React.createClass({
                 content: ''
             });
             if (err && err.status) {
-                this.setState({
-                    error: true,
-                    message: res.body.message
-                });
+                Snackbar({message: res.body.message});
             } else {
+                Snackbar({message: 'Posted'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
@@ -73,7 +60,6 @@ var DiscussReply = React.createClass({
         return (
             <div className='card'>
                 <div className='small-12 columns'>
-                    <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                     <textarea type='text' name='content' placeholder='Write your post  here (Markdown is supported)' value={this.state.content} onChange={this.onChangeText} rows='5'></textarea>
                 </div>
                 <div className='small-12 columns'>

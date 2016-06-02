@@ -10,20 +10,12 @@ var AddBookNew = React.createClass({
         return {
             title: '',
             description: '',
-            notification: false,
-            message: ''
         };
     },
     onChangeText (e) {
         var temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
-    onCloseError () {
-        this.setState({
-            notification: false,
-            message: ''
-        });
     },
     onSubmit () {
         this.setState({
@@ -41,10 +33,7 @@ var AddBookNew = React.createClass({
         })
         .end((err, res) => {
             if (err && err.status) {
-                this.setState({
-                    notification: true,
-                    message: res.body.message
-                });
+                Snackbar({message: res.body.message});
             } else {
                 requests
                 .post('/api/v1/thing/' + this.props.id + '/books')
@@ -60,10 +49,7 @@ var AddBookNew = React.createClass({
                         description: ''
                     });
                     if (err && err.status) {
-                        this.setState({
-                            notification: true,
-                            message: res.body.message
-                        });
+                        Snackbar({message: res.body.message});
                     } else {
                         Snackbar({message: 'Book added'});
                         history.pushState(null, null, window.location.pathname + window.location.search);

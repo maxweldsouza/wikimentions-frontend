@@ -1,5 +1,5 @@
 var React = require('react');
-var Notification = require('./Notification');
+var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 var cookies = require('browser-cookies');
 var requests = require('superagent');
@@ -8,21 +8,13 @@ var AddVideoNew = React.createClass({
     getInitialState () {
         return {
             title: '',
-            url: '',
-            error: false,
-            message: ''
+            url: ''
         };
     },
     onChangeText (e) {
         var temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
-    onCloseError () {
-        this.setState({
-            error: false,
-            message: ''
-        });
     },
     onSubmit () {
         this.setState({
@@ -40,10 +32,7 @@ var AddVideoNew = React.createClass({
         })
         .end((err, res) => {
             if (err && err.status) {
-                this.setState({
-                    error: true,
-                    message: res.body.message
-                });
+                Snackbar({message: res.body.message});
             } else {
                 requests
                 .post('/api/v1/thing/' + this.props.id + '/videos')
@@ -59,16 +48,9 @@ var AddVideoNew = React.createClass({
                         description: ''
                     });
                     if (err && err.status) {
-                        this.setState({
-                            error: true,
-                            message: res.body.message
-                        });
+                        Snackbar({message: res.body.message});
                     } else {
-                        this.setState({
-                            error: false,
-                            video_id: '',
-                            message: 'Video Added Successfully'
-                        });
+                        Snackbar({message: 'Video Added Successfully'});
                         history.pushState(null, null, window.location.pathname + window.location.search);
                         Mentions.route(window.location.pathname + window.location.search);
                     }
@@ -79,7 +61,6 @@ var AddVideoNew = React.createClass({
     render () {
         return (
             <form method='post' action={'/api/v1/thing/' + this.props.id + '/books'}>
-                <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                 <input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} required/>
                 <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/>
                 <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>

@@ -5,7 +5,7 @@ var Login = require('./Login');
 var Signup = require('./Signup');
 var cookies = require('browser-cookies');
 var ButtonSelect = require('./ButtonSelect');
-var Notification = require('./Notification');
+var Snackbar = require('./Snackbar');
 var requests = require('superagent');
 var SubmitButton = require('./SubmitButton');
 var config = require('./config');
@@ -26,9 +26,7 @@ var HomePage = React.createClass({
             isbn: '',
             isbn13: '',
             url: '',
-            submiting: false,
-            error: false,
-            message: ''
+            submiting: false
         };
     },
     onChangeType (x) {
@@ -44,22 +42,13 @@ var HomePage = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
-    onCloseError () {
-        this.setState({
-            error: false,
-            message: ''
-        });
-    },
     validateForm () {
         var message;
         if (!this.state.title) {
             message = 'You need to provide a title';
         }
         if (message) {
-            this.setState({
-                error: true,
-                message: message
-            });
+            Snackbar({message: message});
             return false;
         }
         return true;
@@ -89,11 +78,9 @@ var HomePage = React.createClass({
                 submiting: false
             });
             if (err && err.status) {
-                this.setState({
-                    error: true,
-                    message: res.body.message
-                });
+                Snackbar({message: res.body.message});
             } else {
+                Snackbar({message: 'Page created'});
                 history.pushState(null, null, res.body.redirect);
                 Mentions.route(res.body.redirect);
             }
@@ -120,7 +107,6 @@ var HomePage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <form action='/api/v1/thing' method='post'>
                             <h1 className='page-title'>Create Page</h1>
-                            <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                             <input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} required/>
                             <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
                             <div className='row'>

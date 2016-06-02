@@ -5,12 +5,12 @@ var Mention = require('./Mention');
 var _ = require('underscore');
 var cookies = require('browser-cookies');
 var ButtonSelect = require('./ButtonSelect');
-var Notification = require('./Notification');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var PageBar = require('./PageBar');
 var config = require('./config');
 var Dropzone = require('react-dropzone');
+var Snackbar = require('./Snackbar');
 
 var EditPage = React.createClass({
     statics: {
@@ -35,8 +35,6 @@ var EditPage = React.createClass({
             isbn13: this.props.data.thing.props.isbn13,
             url: this.props.data.thing.props.url,
             submiting: false,
-            error: false,
-            message: ''
         };
     },
     onChangeType (x) {
@@ -52,22 +50,13 @@ var EditPage = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
-    onCloseError () {
-        this.setState({
-            error: false,
-            message: ''
-        });
-    },
     validateForm () {
         var message;
         if (!this.state.title) {
             message = 'You need to provide a title';
         }
         if (message) {
-            this.setState({
-                error: true,
-                message: message
-            });
+            Snackbar({message: message});
             return false;
         }
         return true;
@@ -97,11 +86,9 @@ var EditPage = React.createClass({
                 submiting: false
             });
             if (err && err.status) {
-                this.setState({
-                    error: true,
-                    message: res.body.message
-                });
+                Snackbar({message: res.body.message});
             } else {
+                Snackbar({message: 'Changes saved'});
                 history.pushState(null, null, res.body.redirect);
                 Mentions.route(res.body.redirect);
             }
@@ -143,12 +130,6 @@ var EditPage = React.createClass({
                                 type={entry.type}
                                 />
                         <form action={'/api/v1/thing/' + id} method='post'>
-                            <Notification
-                            level='alert'
-                            message={this.state.message}
-                            showing={this.state.error}
-                            onClose={this.onCloseError}
-                            closeable/>
                             <input
                                 type='text'
                                 name='title'

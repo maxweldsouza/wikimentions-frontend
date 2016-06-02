@@ -1,7 +1,7 @@
 var React = require('react');
 var ButtonSelect = require('./ButtonSelect');
 var cookies = require('browser-cookies');
-var Notification = require('./Notification');
+var Snackbar = require('./Snackbar');
 var requests = require('superagent');
 var Select = require('./Select');
 var SubmitButton = require('./SubmitButton');
@@ -11,9 +11,7 @@ var AddAuthors = React.createClass({
         return {
             opened: false,
             author: '',
-            submiting: false,
-            error: false,
-            message: ''
+            submiting: false
         };
     },
     onOpen () {
@@ -31,18 +29,9 @@ var AddAuthors = React.createClass({
             author: x.id
         });
     },
-    onCloseError () {
-        this.setState({
-            error: false,
-            message: ''
-        });
-    },
     onSubmit () {
         if (!this.state.author) {
-            this.setState({
-                error: true,
-                message: 'You need to add an author'
-            });
+            Snackbar({message: 'You need to add an author'});
         } else {
             var type;
             if (this.props.type === 'book') {
@@ -63,11 +52,9 @@ var AddAuthors = React.createClass({
                     submiting: false
                 });
                 if (err && err.status) {
-                    this.setState({
-                        error: true,
-                        message: res.body.message
-                    });
+                    Snackbar({message: res.body.message});
                 } else {
+                    Snackbar({message: 'Added author'});
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
                 }
@@ -94,11 +81,9 @@ var AddAuthors = React.createClass({
                 submiting: false
             });
             if (err && err.status) {
-                this.setState({
-                    error: true,
-                    message: res.body.message
-                });
+                Snackbar({message: res.body.message});
             } else {
+                Snackbar({message: 'Removed author'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
@@ -119,7 +104,6 @@ var AddAuthors = React.createClass({
                         })}
                     </div>
                     <form action='' method='post'>
-                        <Notification level='alert' message={this.state.message} showing={this.state.error} onClose={this.onCloseError} closeable/>
                         <Select name='author'
                             placeholder='Author'
                             onSelectValue={this.onChangeAuthor}/>
