@@ -38,19 +38,19 @@ var AddVideoNew = React.createClass({
                 .post('/api/v1/thing/' + this.props.id + '/videos')
                 .type('form')
                 .send({
-                    video_id: res.video_id,
+                    video_id: res.body.id,
                     _xsrf: cookies.get('_xsrf')
                 })
                 .end((err, res) => {
                     this.setState({
                         submitting: false,
                         title: '',
-                        description: ''
+                        url: ''
                     });
                     if (err && err.status) {
                         Snackbar({message: res.body.message});
                     } else {
-                        Snackbar({message: 'Video Added Successfully'});
+                        Snackbar({message: 'Video added'});
                         history.pushState(null, null, window.location.pathname + window.location.search);
                         Mentions.route(window.location.pathname + window.location.search);
                     }
