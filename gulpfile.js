@@ -157,6 +157,8 @@ gulp.task('watch', function() {
         ['js-tests', 'es-lint-tests']);
     gulp.watch('src/styles/**/*.scss',
         ['scss-lint', 'compile-scss']);
+    gulp.watch('src/js/config.json',
+        ['browserify']);
 });
 
 gulp.task("checkDev", [], function(callback) {
