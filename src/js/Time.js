@@ -23,7 +23,7 @@ var Time = React.createClass({
             result = moment.utc(this.props.timestamp).format('DD.MM.YY H:m [GMT]');
         } else {
             if (this.props.type === 'ago') {
-                result = moment.utc(this.props.timestamp).fromNow();
+                result = moment.utc(this.props.timestamp).local().fromNow();
             } else if (this.props.type === 'timestamp') {
                 result = moment.utc(this.props.timestamp).local().format(this.props.format)
             }

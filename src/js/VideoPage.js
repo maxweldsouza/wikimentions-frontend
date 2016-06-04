@@ -160,6 +160,7 @@ var ThingPage = React.createClass({
                                     id={id}
                                     slug={thing.slug}
                                     type='video'
+                                    noPage
                                     />
                                 <div className='row'>
                                     <div className='small-12 columns'>

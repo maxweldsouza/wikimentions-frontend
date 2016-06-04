@@ -223,6 +223,7 @@ var ThingPage = React.createClass({
                                             id={id}
                                             slug={thing.slug}
                                             type={thing.type}
+                                            noPage
                                             />
                                     </div>
                                 </div>

@@ -18,8 +18,7 @@ var PageBar = React.createClass({
         }
         return (
             <div className='page-bar'>
-                <a className='secondary' href={pagepath + id + '/' + slug}>Page</a>
-                {' · '}
+                {this.props.noPage ? null : <span><a className='secondary' href={pagepath + id + '/' + slug}>Page</a>{' · '}</span>}
                 <a className='secondary' href={'/edit/' + id + '/' + slug}>Edit</a>
                 {' · '}
                 <a className='secondary' href={'/discuss/' + id + '/' + slug}>Discuss</a>
