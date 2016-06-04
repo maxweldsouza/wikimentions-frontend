@@ -115,6 +115,18 @@ var LinkChecker = {
     }
 };
 
+$(document).keydown(function(e){
+    if (e.which == '17') {
+        controlPressed = true;
+    }
+});
+
+$(document).keyup(function(){
+    controlPressed = false;
+});
+
+var controlPressed = false;
+
 $(document).on('click', 'a', function (e) {
     var url = $(this).attr('href');
     var disabled = $(this).data('disabled');
@@ -127,7 +139,9 @@ $(document).on('click', 'a', function (e) {
         $('html, body').animate({
             scrollTop: $( $.attr(this, 'href') ).offset().top - 80
         }, 200, 'easeOutQuart');
-    } else if (!LinkChecker.isExternal(url) && $(this).attr('target') !== '_blank') {
+    } else if (!LinkChecker.isExternal(url)
+            && $(this).attr('target') !== '_blank'
+            && !controlPressed) {
         startLoading();
         var parseUrl = document.createElement('a');
         parseUrl.href = window.location.origin + url;
