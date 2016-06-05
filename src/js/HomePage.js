@@ -75,6 +75,7 @@ var HomePage = React.createClass({
                                     return <HomeItem
                                         id={x.id}
                                         title={x.title}
+                                        description={x.props.description}
                                         type={x.type}
                                         slug={x.slug}
                                         book_count={x.book_count}
