@@ -10,19 +10,20 @@ var requests = require('superagent');
 var ButtonSelect = require('./ButtonSelect');
 var config = require('./config');
 var Snackbar = require('./Snackbar');
+var HomeItem = require('./HomeItem');
 
 var HomePage = React.createClass({
     statics: {
         resources (appstate) {
             return {
                 api: [
-                    // {
-                    //     name: 'new',
-                    //     path: '/api/v1/new/10/0'
-                    // }
                     {
                         name: 'stats',
                         path: '/api/v1/stats'
+                    },
+                    {
+                        name: 'home',
+                        path: '/api/v1/home'
                     }
                 ]
             };
@@ -67,40 +68,19 @@ var HomePage = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h2>New Mentions</h2>
-                        <div className='row'>
-                            {config.twitter}
-                            <div className='small-12 columns'>
-                                <button type="button" className="primary button">Primary</button>
-                                <button type="button" className="secondary button">Secondary</button>
-                                <button type="button" className="success button">Success</button>
-                                <button type="button" className="alert button">Alert</button>
-                                <button type="button" className="warning button">Warning</button>
-                            </div>
-                            <div classNameName='small-12 columns'>
-                                <a href='/pages/108/richard-dawkins'>Richard Dawkins</a>
-                                <div>
-                                    people: {stats.people}
-                                </div>
-                                <div>
-                                    videos: {stats.videos}
-                                </div>
-                                <div>
-                                    books: {stats.books}
-                                </div>
-                                <div>
-                                    mentions: {stats.mentions}
-                                </div>
-                                {mentions.map((x) => {
-                                    return <Mention
+                        <h2>People</h2>
+                        <div className='small-12 columns'>
+                            <div className='card-container'>
+                                {this.props.data.home.map((x) => {
+                                    return <HomeItem
                                         id={x.id}
-                                        slug={x.slug}
                                         title={x.title}
-                                        description={x.description}
-                                        quote={x.quote}
                                         type={x.type}
-                                        books={x.books}
-                                        />;
+                                        slug={x.slug}
+                                        book_count={x.book_count}
+                                        video_count={x.video_count}
+                                        mentioned_count={x.mentioned_count}
+                                        mentioned_by_count={x.mentioned_by_count}/>;
                                 })}
                             </div>
                         </div>
