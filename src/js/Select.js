@@ -6,6 +6,7 @@ var Select = React.createClass({
     getInitialState () {
         return {
             focus: 0,
+            editable: true,
             searchText: this.props.initialLabel ? this.props.initialLabel : '',
             value: this.props.initialValue ? this.props.initialValue : '',
             options: []
@@ -27,6 +28,7 @@ var Select = React.createClass({
         this.setState({
             options: [],
             searchText: x.title,
+            editable: false,
             value: x.id
         });
         if (this.props.onSelectValue) {

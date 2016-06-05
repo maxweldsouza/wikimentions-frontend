@@ -21,21 +21,17 @@ var DiscussPage = React.createClass({
                     {
                         name: 'discuss',
                         path: '/api/v1/discuss/' + id + query
-                    },
-                    {
-                        name: 'thing',
-                        path: '/api/v1/thing/' + id + query
                     }
                 ]
             };
         }
     },
     render () {
-        var discuss = this.props.data.discuss;
         var parts = this.props.path.split('/');
         var id = Number(parts[1]);
         var slug = parts[2];
-        var discussions = discuss;
+        var type = this.props.data.discuss.type;
+        var discussions = this.props.data.discuss.discussion;
         var nodata;
         if (discussions.length === 0) {
             nodata = <div className='card'>
@@ -47,7 +43,7 @@ var DiscussPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Discussion - ' + this.props.data.thing.title}
+                    title={'Discussion - ' + this.props.data.discuss.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
@@ -59,10 +55,11 @@ var DiscussPage = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>{'Discussion - ' + this.props.data.thing.title}</h1>
+                        <h1 className='page-title'>{'Discussion - ' + this.props.data.discuss.title}</h1>
                         <PageBar
                             id={id}
                             slug={slug}
+                            type={type}
                             />
                         <div className='small-12 columns'>
                             <div className='card-container'>
