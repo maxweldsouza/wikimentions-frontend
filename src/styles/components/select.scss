@@ -11,6 +11,12 @@
     padding-bottom: 5px;
     padding-left: $global-margin;
     padding-top: 5px;
+    background: $white;
+
+    &:hover {
+        background: $light-gray;
+        cursor: pointer;
+    }
 }
 
 .select-clear {
