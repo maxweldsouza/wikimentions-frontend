@@ -9,6 +9,7 @@ var Snackbar = require('./Snackbar');
 var requests = require('superagent');
 var SubmitButton = require('./SubmitButton');
 var config = require('./config');
+var Restricted = require('./Restricted');
 
 var HomePage = React.createClass({
     statics: {
@@ -107,23 +108,25 @@ var HomePage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <form action='/api/v1/thing' method='post'>
                             <h1 className='page-title'>Create Page</h1>
-                            <input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} required/>
-                            <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
-                            <div className='row'>
-                                <div className='small-12 columns'>
-                                    Type
-                                    <ButtonSelect
-                                        name='type'
-                                        options={options}
-                                        onChange={this.onChangeType}/>
-                                    {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/> : null}
-                                    {this.state.type === 'book' ? <input type='text' name='isbn13' placeholder='ISBN-13' value={this.state.isbn13} onChange={this.onChangeText}/> : null}
-                                    {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
+                            <Restricted>
+                                <input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} required/>
+                                <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
+                                <div className='row'>
+                                    <div className='small-12 columns'>
+                                        Type
+                                        <ButtonSelect
+                                            name='type'
+                                            options={options}
+                                            onChange={this.onChangeType}/>
+                                        {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/> : null}
+                                        {this.state.type === 'book' ? <input type='text' name='isbn13' placeholder='ISBN-13' value={this.state.isbn13} onChange={this.onChangeText}/> : null}
+                                        {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
-                            </div>
+                                <div>
+                                    <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                                </div>
+                            </Restricted>
                         </form>
                     </div>
                 </div>

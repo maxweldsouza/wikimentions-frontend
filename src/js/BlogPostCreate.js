@@ -8,6 +8,7 @@ var ButtonSelect = require('./ButtonSelect');
 var Snackbar = require('./Snackbar');
 var requests = require('superagent');
 var SubmitButton = require('./SubmitButton');
+var Restricted = require('./Restricted');
 
 var BlogPostCreate = React.createClass({
     statics: {
@@ -89,11 +90,13 @@ var BlogPostCreate = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <input type='hidden' name='action' value='create'/>
                         <h1 className='blog-title'>Create Post</h1>
-                        <input type='text' name='title' placeholder='Title' />
-                        <textarea name='content' placeholder='Content' />
-                        <div>
-                            <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
-                        </div>
+                        <Restricted>
+                            <input type='text' name='title' placeholder='Title' />
+                            <textarea name='content' placeholder='Content' />
+                            <div>
+                                <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                            </div>
+                        </Restricted>
                     </div>
                 </div>
             </span>

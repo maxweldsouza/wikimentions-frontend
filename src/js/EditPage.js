@@ -11,6 +11,7 @@ var PageBar = require('./PageBar');
 var config = require('./config');
 var Dropzone = require('react-dropzone');
 var Snackbar = require('./Snackbar');
+var Restricted = require('./Restricted');
 
 var EditPage = React.createClass({
     statics: {
@@ -129,50 +130,52 @@ var EditPage = React.createClass({
                                 slug={entry.slug}
                                 type={entry.type}
                                 />
-                        <form action={'/api/v1/thing/' + id} method='post'>
-                            <input
-                                type='text'
-                                name='title'
-                                placeholder='Title'
-                                value={this.state.title} onChange={this.onChangeText}
-                                required/>
-                            <input
-                                type='text'
-                                name='description'
-                                placeholder='Description (Optional)'
-                                value={this.state.description}
-                                onChange={this.onChangeText}/>
-                            <ButtonSelect
-                                name='type'
-                                default={this.props.data.thing.type}
-                                options={options}
-                                onChange={this.onChangeType}/>
-                            {this.state.type === 'book' ? <input
-                                type='text'
-                                name='isbn'
-                                placeholder='ISBN'
-                                value={this.state.isbn}
-                                onChange={this.onChangeText}/> : null}
-                            {this.state.type === 'book' ? <input
-                                type='text'
-                                name='isbn13'
-                                placeholder='ISBN-13'
-                                value={this.state.isbn13}
-                                onChange={this.onChangeText}/> : null}
-                            {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
-                            <Dropzone>
-                                {imageMessage}
-                            </Dropzone>
-                            <SubmitButton
-                                title='Save'
-                                submitting={this.state.submitting}
-                                onSubmit={this.onSubmit}/>
-                            <hr />
-                            <div className='button-group small'>
-                                <button className='button warning'>Report</button>
-                                <button className='button alert'>Delete Page</button>
-                            </div>
-                        </form>
+                            <Restricted>
+                                <form action={'/api/v1/thing/' + id} method='post'>
+                                    <input
+                                        type='text'
+                                        name='title'
+                                        placeholder='Title'
+                                        value={this.state.title} onChange={this.onChangeText}
+                                        required/>
+                                    <input
+                                        type='text'
+                                        name='description'
+                                        placeholder='Description (Optional)'
+                                        value={this.state.description}
+                                        onChange={this.onChangeText}/>
+                                    <ButtonSelect
+                                        name='type'
+                                        default={this.props.data.thing.type}
+                                        options={options}
+                                        onChange={this.onChangeType}/>
+                                    {this.state.type === 'book' ? <input
+                                        type='text'
+                                        name='isbn'
+                                        placeholder='ISBN'
+                                        value={this.state.isbn}
+                                        onChange={this.onChangeText}/> : null}
+                                    {this.state.type === 'book' ? <input
+                                        type='text'
+                                        name='isbn13'
+                                        placeholder='ISBN-13'
+                                        value={this.state.isbn13}
+                                        onChange={this.onChangeText}/> : null}
+                                    {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
+                                    <Dropzone>
+                                        {imageMessage}
+                                    </Dropzone>
+                                    <SubmitButton
+                                        title='Save'
+                                        submitting={this.state.submitting}
+                                        onSubmit={this.onSubmit}/>
+                                    <hr />
+                                    <div className='button-group small'>
+                                        <button className='button warning'>Report</button>
+                                        <button className='button alert'>Delete Page</button>
+                                    </div>
+                                </form>
+                            </Restricted>
                     </div>
                 </div>
             </span>

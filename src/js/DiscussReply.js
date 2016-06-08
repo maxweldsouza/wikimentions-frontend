@@ -4,6 +4,7 @@ var cookies = require('browser-cookies');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
+var Restricted = require('./Restricted');
 
 var DiscussReply = React.createClass({
     getInitialState () {
@@ -60,10 +61,10 @@ var DiscussReply = React.createClass({
         return (
             <div className='card'>
                 <div className='small-12 columns'>
+                <Restricted>
                     <textarea type='text' name='content' placeholder='Write your post  here (Markdown is supported)' value={this.state.content} onChange={this.onChangeText} rows='5'></textarea>
-                </div>
-                <div className='small-12 columns'>
                     <SubmitButton title='Submit' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                    </Restricted>
                 </div>
             </div>
         );

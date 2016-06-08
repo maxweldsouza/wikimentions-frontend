@@ -6,11 +6,11 @@ var Select = require('./Select');
 var cookies = require('browser-cookies');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
+var Restricted = require('./Restricted');
 
 var AddMention = React.createClass({
     getInitialState () {
         return {
-            opened: false,
             mentioned_by: this.props.mentioned_by,
             mentioned_in: this.props.mentioned_in,
             mentioned: this.props.mentioned,
@@ -18,16 +18,6 @@ var AddMention = React.createClass({
             references: '',
             submiting: false
         };
-    },
-    onOpen () {
-        this.setState({
-            opened: true
-        });
-    },
-    onClose () {
-        this.setState({
-            opened: false
-        });
     },
     onChangeText (e) {
         var temp = {};
@@ -83,9 +73,8 @@ var AddMention = React.createClass({
     },
     render () {
         var id = this.props.id;
-        var result;
-        if (this.state.opened) {
-            result = <div className='small-12 columns'>
+        return <div className='small-12 columns'>
+            <Restricted>
                 {this.props.mentioned_by ? null : <Select
                     name='mentioned_by'
                     placeholder='Mentioned By (Person)'
@@ -104,13 +93,8 @@ var AddMention = React.createClass({
                     <button type="button" className="button" onClick={this.onSubmit}>Add</button>
                     <button type="button" className="button" onClick={this.onClose}>Close</button>
                 </div>
-            </div>;
-        } else {
-            result = <div className='small-12 columns'>
-                <button onClick={this.onOpen} className='button'>Add</button>
-            </div>;
-        }
-        return result;
+            </Restricted>
+        </div>;
     }
 });
 

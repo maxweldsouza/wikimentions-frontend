@@ -1,5 +1,4 @@
 var React = require('react');
-var cookies = require('browser-cookies');
 var Select = require('./Select');
 var cookies = require('browser-cookies');
 var isNode = require('./isNode');
