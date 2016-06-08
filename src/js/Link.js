@@ -12,7 +12,7 @@ var Link = React.createClass({
             pagepath = '/books/';
             defaultTab = 'mentioned';
         } else if (type === 'person') {
-            pagepath = '/pages/';
+            pagepath = '/people/';
             defaultTab = 'videos';
         } else {
             pagepath = '/pages/';

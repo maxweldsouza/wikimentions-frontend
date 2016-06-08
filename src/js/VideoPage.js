@@ -33,7 +33,7 @@ var ThingPage = React.createClass({
             ];
             var defaultTab;
 
-            if (type === 'pages') {
+            if (type === 'people') {
                 defaultTab = 'videos';
             } else {
                 defaultTab = 'mentioned';

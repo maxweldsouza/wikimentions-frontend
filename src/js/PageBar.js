@@ -11,7 +11,7 @@ var PageBar = React.createClass({
         } else if (type === 'book') {
             pagepath = '/books/';
         } else if (type === 'person') {
-            pagepath = '/pages/';
+            pagepath = '/people/';
         } else {
             pagepath = '/pages/';
             console.warn('No page type specified for PageBar');

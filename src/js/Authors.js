@@ -9,7 +9,7 @@ var Authors = React.createClass({
             <span>
                 {'by '}
                 {authors.map(function (x, i) {
-                    var path = '/pages/' + x.id + '/' + x.slug;
+                    var path = '/people/' + x.id + '/' + x.slug;
                     return <a href={path} key={x.title}>
                         {x.title}{i === authorCount - 1 ? '' : ', '}
                     </a>;

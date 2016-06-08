@@ -13,7 +13,7 @@ var Navbar = React.createClass({
         } else if (x.type === 'book') {
             pagepath = '/books/';
         } else if (x.type === 'person') {
-            pagepath = '/pages/';
+            pagepath = '/people/';
         } else {
             pagepath = '/pages/';
             console.warn('No page type specified for Link');

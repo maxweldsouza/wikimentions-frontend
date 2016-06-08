@@ -97,7 +97,7 @@ var AddAuthors = React.createClass({
                     <div>
                         <strong>Authors</strong>
                         {this.props.authors.map((x) => {
-                            var path = '/pages/' + x.id + '/' + x.slug;
+                            var path = '/people/' + x.id + '/' + x.slug;
                             return <div>
                                 <a href={path}>{x.title}</a> <a href='' className='secondary small' onClick={this.removeAuthor.bind(null, x.id)}>Remove</a>
                             </div>;

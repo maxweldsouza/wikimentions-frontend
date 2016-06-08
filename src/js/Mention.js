@@ -41,7 +41,7 @@ var Mention = React.createClass({
             icon = 'ion-ios-videocam';
             description = 'Video';
         } else if (this.props.type === 'person') {
-            path = '/pages/' + this.props.id + '/' + this.props.slug;
+            path = '/people/' + this.props.id + '/' + this.props.slug;
             icon = 'ion-person';
             description = this.props.description;
         }

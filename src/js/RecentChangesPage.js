@@ -38,7 +38,7 @@ var RecentChangesPage = React.createClass({
                                     <span className="small-12 columns">
                                         <span className="history-added"><span className="ion-plus-circled" /></span>
                                         <span>
-                                            <a href="/pages/530/christopher-hitchens">Christopher Hitchens</a> mentioned <a href="/pages/108/richard-dawkins">Richard Dawkins</a> in <a href="/videos/531/hitchens-talks-at-google">Hitchens | Talks at Google</a>
+                                            <a href="/people/530/christopher-hitchens">Christopher Hitchens</a> mentioned <a href="/people/108/richard-dawkins">Richard Dawkins</a> in <a href="/videos/531/hitchens-talks-at-google">Hitchens | Talks at Google</a>
                                         </span>
                                     </span>
                                 </div>

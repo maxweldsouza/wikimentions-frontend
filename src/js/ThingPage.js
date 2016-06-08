@@ -26,7 +26,7 @@ var ThingPage = React.createClass({
             }];
             var defaultTab;
 
-            if (type === 'pages') {
+            if (type === 'people') {
                 defaultTab = 'videos';
             } else {
                 defaultTab = 'mentioned';
@@ -81,7 +81,7 @@ var ThingPage = React.createClass({
         id = Number(thing.id);
         var defaultTab;
 
-        if (type === 'pages') {
+        if (type === 'people') {
             defaultTab = 'videos';
         } else {
             defaultTab = 'mentioned';
