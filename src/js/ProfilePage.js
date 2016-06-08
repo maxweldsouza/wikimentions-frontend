@@ -8,6 +8,7 @@ var config = require('./config');
 var HistoryItem = require('./HistoryItem');
 var cookies = require('browser-cookies');
 var Time = require('./Time');
+var isNode = require('./isNode');
 
 var ProfilePage = React.createClass({
     statics: {
@@ -38,9 +39,12 @@ var ProfilePage = React.createClass({
         });
     },
     render () {
-        var cookieUserId = Number(cookies.get('userid'));
+        var cookieUserId, self;
+        if (isNode.isBrowser()) {
+            cookieUserId = Number(cookies.get('userid'));
+        }
         var id = Number(this.props.path.split('/')[1]);
-        var self = cookieUserId === id;
+        self = cookieUserId === id;
 
         var user = this.props.data.user;
         var history = this.props.data.history;
@@ -130,10 +134,6 @@ var ProfilePage = React.createClass({
                                     Joined <Time timestamp={user.joined} format='MMMM Do YYYY' type='timestamp'/>
                                 </div>
                                 <div>Level {user.level}</div>
-                                <div className='button-group small'>
-                                    <button className='button warning'>Report</button>
-                                    <button className='button alert'>Block</button>
-                                </div>
                                 {tab}
                                 <div className='tabs-content' data-tabs-content='example-tabs'>
                                     <div className='tabs-panel is-active'>
