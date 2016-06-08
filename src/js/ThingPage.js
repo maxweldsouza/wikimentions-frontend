@@ -215,7 +215,7 @@ var ThingPage = React.createClass({
                                 <div className='row'>
                                     <div className='small-12 columns'>
                                         <span className='thing-description'>
-                                            {thing.description}
+                                            {thing.props.description}
                                             {authors}
                                         </span>
                                         <Share title={thing.title} path={this.props.path}/>
