@@ -34,7 +34,7 @@ var Signup = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-6 columns'>
-                        <h2>Sign Up</h2>
+                        <h1>Sign Up</h1>
                         You will be user #{this.props.data.signup.count} if you sign up now
                         <form action='/api/v1/signup' method='post'>
                             <Xsrf/>

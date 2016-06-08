@@ -32,7 +32,7 @@ var Login = React.createClass({
                     <div className='small-12 large-6 columns'>
                         <form action='/api/v1/login' method='post'>
                             <Xsrf/>
-                            <h2>Login</h2>
+                            <h1>Login</h1>
                             <input type='text' name='username' placeholder='Username' />
                             <input type='password' name='password' placeholder='Password' />
                             <button type='submit' className='success button'>Login</button>
