@@ -9,59 +9,64 @@ var HistoryItem = require('./HistoryItem');
 var cookies = require('browser-cookies');
 var Time = require('./Time');
 var isNode = require('./isNode');
+var requests = require('superagent');
+var Restricted = require('./Restricted');
+var EditProfile = require('./EditProfile');
+var S = require('string');
+var PreviousNext = require('./PreviousNext');
 
 var ProfilePage = React.createClass({
     statics: {
         resources (appstate) {
-            var id = appstate.url.split('/')[1];
+            var [_, id, name, tab] = appstate.path.split('/');
+            var page = appstate.query.page;
+            var query = page ? '?page=' + page : '';
+            var api = [{
+                name: 'user',
+                path: '/api/v1/user/' + id
+            }];
+            if (tab === 'edits') {
+                api.push({
+                    name: 'history',
+                    path: '/api/v1/userhistory/' + id + query
+                });
+            }
             return {
-                api: [
-                    {
-                        name: 'user',
-                        path: '/api/v1/user/' + id
-                    },
-                    {
-                        name: 'history',
-                        path: '/api/v1/userhistory/' + id
-                    }
-                ]
+                api: api
             };
         }
-    },
-    getInitialState () {
-        return {
-            tab: 'Stats'
-        };
-    },
-    changeTab (tab) {
-        this.setState({
-            tab: tab
-        });
     },
     render () {
         var cookieUserId, self;
         if (isNode.isBrowser()) {
             cookieUserId = Number(cookies.get('userid'));
         }
-        var id = Number(this.props.path.split('/')[1]);
-        self = cookieUserId === id;
+        var [_, id, name, selectedTab] = this.props.path.split('/');
+        self = cookieUserId === Number(id);
 
+        selectedTab = selectedTab ? selectedTab : 'stats';
         var user = this.props.data.user;
         var history = this.props.data.history;
-        var tabs = ['Stats', 'Edits'];
+        var tabs = ['stats', 'edits'];
         if (self) {
-            tabs.push('Profile');
+            tabs.push('profile');
         }
         var tab, tabContent;
         tab = <ul className='tabs' data-tabs id='example-tabs'>
             {tabs.map((x) => {
-                var cls = this.state.tab === x ? 'tabs-title is-active' : 'tabs-title';
+                var cls = selectedTab === x ? 'tabs-title is-active' : 'tabs-title';
+                var path;
+                if (x === 'stats') {
+                    path = '/users/' + id + '/' + name;
+                } else {
+                    path = '/users/' + id + '/' + name + '/' + x;
+                }
                 return <li className={cls}>
-                    <a onClick={this.changeTab.bind(null, x)} aria-selected='true'>{x}</a>
+                    <a href={path} aria-selected='true'>{S(x).capitalize().s}</a>
                 </li>;
             })}
         </ul>;
-        if (this.state.tab === 'Edits') {
+        if (selectedTab === 'edits') {
             tabContent = <div className=''>
                 {history.map((x) => {
                     return <HistoryItem
@@ -74,36 +79,13 @@ var ProfilePage = React.createClass({
                         deleted={x.deleted}
                         />;
                 })}
+                <PreviousNext path={this.props.path} page={this.props.query.page}/>
             </div>;
-        } else if (this.state.tab === 'Profile') {
+        } else if (selectedTab === 'profile') {
             tabContent = <div>
-                {self ? <div>
-                <div className='card'>
-                    <div className='small-12 columns'>
-                        <h2>Verify E-mail</h2>
-                        <p>An email with a verification link will be sent to you.</p>
-                        <button type='submit' className='success button'>Verify</button>
-                    </div>
-                </div>
-                <div className='card'>
-                    <div className='small-12 columns'>
-                        <h2>Change Password</h2>
-                        <input type='password' name='old' placeholder='Old Password' />
-                        <input type='password' name='new' placeholder='New Password' />
-                        <input type='password' name='repeat' placeholder='Repeat Password' />
-                        <button type='submit' className='success button'>Change Password</button>
-                    </div>
-                </div>
-                <div className='card'>
-                    <div className='small-12 columns'>
-                        <h2>Change Username</h2>
-                        <input type='text' name='username' placeholder='New Username' />
-                        <button type='submit' className='success button'>Change Username</button>
-                    </div>
-                </div>
-                </div> : null}
+                {self ? <EditProfile/> : null}
             </div>;
-        } else if (this.state.tab === 'Stats') {
+        } else if (selectedTab === 'stats') {
             tabContent = <div className='card'>
                 <div className='small-12 columns'>
                     Stats
