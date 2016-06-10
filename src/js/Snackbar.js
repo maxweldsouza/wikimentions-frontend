@@ -8,23 +8,23 @@ var Snackbar = function (options) {
         onAction: null,
         showActionButton: false,
         actionText: ''
-    }
+    };
     defaults = _.extend(defaults, options);
 
     // Validation
     if (defaults.message.length > 20) {
-        console.warn("Snackbar message is too long");
+        console.warn('Snackbar message is too long');
     }
 
     // DOM Elements
     var action = defaults.showActionButton ? '<span class="snackbar-action">' + defaults.actionText + '</span>' : '';
-    var message = '<span class="snackbar-message">' + defaults.message + '</span>'
+    var message = '<span class="snackbar-message">' + defaults.message + '</span>';
     var snack = '<div class="snackbar" id="snackbar">' + message + action + '</div>';
 
     if ($('#snackbar').length) {
         $('#snackbar').replaceWith(snack);
     } else {
-        $("body").append(snack);
+        $('body').append(snack);
     }
     $('#snackbar').addClass('showing');
     setTimeout(function () {

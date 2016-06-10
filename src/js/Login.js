@@ -17,7 +17,7 @@ var Login = React.createClass({
             };
         }
     },
-    getInitialState: function() {
+    getInitialState () {
         return {
             submitting: false,
             username: '',

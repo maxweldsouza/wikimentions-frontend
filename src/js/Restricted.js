@@ -4,7 +4,7 @@ var isNode = require('./isNode');
 
 var Restricted = React.createClass({
     render () {
-        var message = this.props.message ? this.props.message : 'You are not logged in.'
+        var message = this.props.message ? this.props.message : 'You are not logged in.';
         var session;
         if (isNode.isBrowser()) {
             session = cookies.get('mentions');

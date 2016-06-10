@@ -18,7 +18,7 @@ var PreviousNext = require('./PreviousNext');
 var ProfilePage = React.createClass({
     statics: {
         resources (appstate) {
-            var [_, id, name, tab] = appstate.path.split('/');
+            var [dummy, id, name, tab] = appstate.path.split('/');
             var page = appstate.query.page;
             var query = page ? '?page=' + page : '';
             var api = [{
@@ -41,7 +41,7 @@ var ProfilePage = React.createClass({
         if (isNode.isBrowser()) {
             cookieUserId = Number(cookies.get('userid'));
         }
-        var [_, id, name, selectedTab] = this.props.path.split('/');
+        var [dummy, id, name, selectedTab] = this.props.path.split('/');
         self = cookieUserId === Number(id);
 
         selectedTab = selectedTab ? selectedTab : 'stats';

@@ -5,12 +5,12 @@ var isNode = require('./isNode');
 /* Having a time ago or a local timestamp prevents us from caching pages
 This component renders the timestamp no the client side insetad */
 var Time = React.createClass({
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             server: true
         };
     },
-    componentWillMount: function() {
+    componentWillMount: function () {
         if (isNode.isBrowser()) {
             this.setState({
                 server: false
@@ -25,7 +25,7 @@ var Time = React.createClass({
             if (this.props.type === 'ago') {
                 result = moment.utc(this.props.timestamp).local().fromNow();
             } else if (this.props.type === 'timestamp') {
-                result = moment.utc(this.props.timestamp).local().format(this.props.format)
+                result = moment.utc(this.props.timestamp).local().format(this.props.format);
             }
         }
         return (

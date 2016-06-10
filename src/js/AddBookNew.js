@@ -9,7 +9,7 @@ var AddBookNew = React.createClass({
     getInitialState () {
         return {
             title: '',
-            description: '',
+            description: ''
         };
     },
     onChangeText (e) {

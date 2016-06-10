@@ -57,7 +57,7 @@ window.Mentions = {
     firstLoad: function (url) {
         var data;
         try {
-            getTokenIfRequired ();
+            getTokenIfRequired();
             data = JSON.parse($('#api-data').text());
         } catch (e) {
             Mentions.route(url);
@@ -115,17 +115,17 @@ var LinkChecker = {
     }
 };
 
-$(document).keydown(function(e){
-    if (e.which == '17') {
+var controlPressed = false;
+
+$(document).keydown(function (e) {
+    if (e.which === '17') {
         controlPressed = true;
     }
 });
 
-$(document).keyup(function(){
+$(document).keyup(function () {
     controlPressed = false;
 });
-
-var controlPressed = false;
 
 $(document).on('click', 'a', function (e) {
     var url = $(this).attr('href');

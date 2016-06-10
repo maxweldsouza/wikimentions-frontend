@@ -60,16 +60,16 @@ var Select = React.createClass({
     handleKeys (event) {
         switch (event.key) {
             case 'ArrowDown':
-                this.focusNext();
-                break;
+            this.focusNext();
+            break;
             case 'ArrowUp':
-                this.focusPrev();
-                break;
+            this.focusPrev();
+            break;
             case 'Enter':
-                this.onSelectValue(this.state.options[this.state.focus]);
-                break;
+            this.onSelectValue(this.state.options[this.state.focus]);
+            break;
             default:
-                return;
+            return;
         }
     },
     loadData (x) {

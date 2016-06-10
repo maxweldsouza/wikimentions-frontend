@@ -65,7 +65,7 @@ var Mention = React.createClass({
                     {this.props.quote}
                 </div>
                 <div className='small-9 columns'>
-                    {this.props.type === 'person' ?<Link
+                    {this.props.type === 'person' ? <Link
                         id={this.props.id}
                         slug={this.props.slug}
                         title={this.props.title}

@@ -13,7 +13,7 @@ var DiscussPage = React.createClass({
     statics: {
         resources (appstate) {
             var data;
-            var [type, id, slug] = appstate.path.split('/')
+            var [type, id, slug] = appstate.path.split('/');
             var page = appstate.query.page;
             var query = page ? '?page=' + page : '';
             return {

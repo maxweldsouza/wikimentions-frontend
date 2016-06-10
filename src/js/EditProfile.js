@@ -5,7 +5,7 @@ var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 
 var EditProfile = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             submitting: false,
             old: '',

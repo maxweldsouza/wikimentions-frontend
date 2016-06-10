@@ -15,7 +15,7 @@ var HomeItem = React.createClass({
                     {this.props.description}
                 </span>
                 <div className='small-12 columns'>
-                    {this.props.type === 'person' ?<Link
+                    {this.props.type === 'person' ? <Link
                         id={this.props.id}
                         slug={this.props.slug}
                         title={this.props.title}
