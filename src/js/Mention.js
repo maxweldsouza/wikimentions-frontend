@@ -65,14 +65,6 @@ var Mention = React.createClass({
                     {this.props.quote}
                 </div>
                 <div className='small-8 columns'>
-                    {this.props.type === 'person' ? <Link
-                        id={this.props.id}
-                        slug={this.props.slug}
-                        title={this.props.title}
-                        type={this.props.type}
-                        className='secondary'
-                        tab='books'>{'Books'}<span className="badge">{this.props.book_count}</span>{'  '}
-                    </Link> : null}
                     {this.props.type === 'person' ?<Link
                         id={this.props.id}
                         slug={this.props.slug}
@@ -80,6 +72,14 @@ var Mention = React.createClass({
                         type={this.props.type}
                         className='secondary'
                         tab='videos'>{'Videos'}<span className="badge">{this.props.video_count}</span>{'  '}
+                    </Link> : null}
+                    {this.props.type === 'person' ? <Link
+                        id={this.props.id}
+                        slug={this.props.slug}
+                        title={this.props.title}
+                        type={this.props.type}
+                        className='secondary'
+                        tab='books'>{'Books'}<span className="badge">{this.props.book_count}</span>{'  '}
                     </Link> : null}
                     <Link
                         id={this.props.id}

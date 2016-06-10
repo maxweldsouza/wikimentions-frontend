@@ -15,14 +15,6 @@ var HomeItem = React.createClass({
                     {this.props.description}
                 </span>
                 <div className='small-12 columns'>
-                    {this.props.type === 'person' ? <Link
-                        id={this.props.id}
-                        slug={this.props.slug}
-                        title={this.props.title}
-                        type={this.props.type}
-                        className='secondary'
-                        tab='books'>{'Books'}<span className="badge">{this.props.book_count}</span>{'  '}
-                    </Link> : null}
                     {this.props.type === 'person' ?<Link
                         id={this.props.id}
                         slug={this.props.slug}
@@ -30,6 +22,14 @@ var HomeItem = React.createClass({
                         type={this.props.type}
                         className='secondary'
                         tab='videos'>{'Videos'}<span className="badge">{this.props.video_count}</span>{'  '}
+                    </Link> : null}
+                    {this.props.type === 'person' ? <Link
+                        id={this.props.id}
+                        slug={this.props.slug}
+                        title={this.props.title}
+                        type={this.props.type}
+                        className='secondary'
+                        tab='books'>{'Books'}<span className="badge">{this.props.book_count}</span>{'  '}
                     </Link> : null}
                     <Link
                         id={this.props.id}
