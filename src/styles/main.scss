@@ -2,15 +2,16 @@
 @import 'app';
 @import 'override';
 
-@import 'components/common';
-@import 'components/tabs';
-@import 'components/tables';
-@import 'components/select';
 @import 'components/button-group';
-@import 'components/pagebar';
-@import 'components/sidebar';
+@import 'components/common';
 @import 'components/navbar';
+@import 'components/pagebar';
+@import 'components/placeholder';
+@import 'components/select';
+@import 'components/sidebar';
 @import 'components/snackbar';
+@import 'components/tables';
+@import 'components/tabs';
 
 //* { background-color: rgba(255,0,0,.2); }
 //* * { background-color: rgba(0,255,0,.2); }

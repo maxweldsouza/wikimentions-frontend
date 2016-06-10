@@ -13,6 +13,7 @@ var PageBar = require('./PageBar');
 var Share = require('./Share');
 var config = require('./config');
 var Link = require('./Link');
+var Placeholder = require('./Placeholder');
 
 var ThingPage = React.createClass({
     statics: {
@@ -208,7 +209,7 @@ var ThingPage = React.createClass({
                         <div className='row'>
                             <div className='small-12 large-4 columns'>
                                 {thing.type !== 'video' ?
-                                <img className='' src={image} alt={thing.title}/> : null}
+                                <Placeholder /> : null}
                             </div>
                             <div className='small-12 large-8 columns'>
                                 <h1 className='page-title'>{thing.title}</h1>

@@ -2,6 +2,7 @@ var React = require('react');
 
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
+var Placeholder = require('./Placeholder');
 
 var Book = React.createClass({
     render () {
@@ -13,7 +14,7 @@ var Book = React.createClass({
             <div className='small-12 medium-6 large-4 columns text-center'>
                 <a href={'/books/' + this.props.id + '/' + this.props.slug}>
                 <div>
-                    <img src='/assets/book.png'></img>
+                    <Placeholder />
                 </div>
                 <div className='card-title'>
                     {this.props.title} {message}
