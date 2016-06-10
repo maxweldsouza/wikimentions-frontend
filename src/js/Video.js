@@ -2,6 +2,7 @@ var React = require('react');
 var Image = require('./Image');
 var parseUrl = require('url-parse');
 var Link = require('./Link');
+var Placeholder = require('./Placeholder');
 
 var Video = React.createClass({
     render () {
@@ -10,7 +11,7 @@ var Video = React.createClass({
             imagedata = this.props.images[0];
             image = <Image id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height}/>;
         } else {
-            image = <img src='/assets/video.png'/>;
+            image = <Placeholder type='video'/>;
         }
         var parsed = parseUrl(this.props.url);
         return (
