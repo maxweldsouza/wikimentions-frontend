@@ -64,7 +64,7 @@ var Mention = React.createClass({
                 <div className='small-12 columns'>
                     {this.props.quote}
                 </div>
-                <div className='small-8 columns'>
+                <div className='small-9 columns'>
                     {this.props.type === 'person' ?<Link
                         id={this.props.id}
                         slug={this.props.slug}
@@ -98,7 +98,7 @@ var Mention = React.createClass({
                         tab='mentionedby'>{'Mentioned By'}<span className="badge">{this.props.mentioned_by_count}</span>
                     </Link>
                 </div>
-                <div className="small-4 columns text-right">
+                <div className="small-3 columns text-right">
                     <span>
                         <a className='secondary' onClick={this.removeMention}>Remove</a>
                     </span>
