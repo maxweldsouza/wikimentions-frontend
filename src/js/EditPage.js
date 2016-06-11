@@ -72,16 +72,14 @@ var EditPage = React.createClass({
         });
         requests
         .post('/api/v1/thing/' + id)
-        .type('form')
-        .send({
-            title: this.state.title,
-            description: this.state.description,
-            type: this.state.type,
-            isbn: this.state.isbn,
-            isbn13: this.state.isbn13,
-            action: 'update',
-            _xsrf: cookies.get('_xsrf')
-        })
+        .set('X-XSRFToken', cookies.get('_xsrf'))
+        .field('title', this.state.title)
+        .field('description', this.state.description)
+        .field('type', this.state.type)
+        .field('isbn', this.state.isbn)
+        .field('isbn13', this.state.isbn13)
+        .field('action', 'update')
+        .attach('image', this.state.image[0])
         .end((err, res) => {
             this.setState({
                 submiting: false
@@ -94,6 +92,14 @@ var EditPage = React.createClass({
                 Mentions.route(res.body.redirect);
             }
         });
+    },
+    onDrop: function (files) {
+        this.setState({
+            image: files
+        });
+    },
+    onOpenClick: function () {
+        this.refs.dropzone.open();
     },
     render () {
         var id = Number(this.props.path.split('/')[1]);
@@ -162,9 +168,10 @@ var EditPage = React.createClass({
                                         value={this.state.isbn13}
                                         onChange={this.onChangeText}/> : null}
                                     {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
-                                    <Dropzone>
+                                    <Dropzone onDrop={this.onDrop}>
                                         {imageMessage}
                                     </Dropzone>
+                                    {this.state.image ? <img src={this.state.image[0].preview} /> : null}
                                     <SubmitButton
                                         title='Save'
                                         submitting={this.state.submitting}

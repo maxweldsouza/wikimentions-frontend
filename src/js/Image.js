@@ -5,7 +5,7 @@ var Image = React.createClass({
     render () {
         return (
             <Lazy>
-                <img className="" src={'/api/v1/images/' + this.props.md5 + '-' + this.props.width + '-' + this.props.height + '.jpg'} alt=""/>
+                <img className={this.props.className} src={'/api/v1/images/' + this.props.md5 + '-' + this.props.width + '-' + this.props.height + '.jpg'} width={this.props.width} height={this.props.height} alt=""/>
             </Lazy>
         );
     }

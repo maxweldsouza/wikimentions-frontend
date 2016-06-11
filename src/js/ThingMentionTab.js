@@ -21,19 +21,14 @@ var ThingMentionTab = React.createClass({
             <div className='card-container'>
                 {mentions.map((x) => {
                     return <Mention
-                        id={x.id}
-                        key={x.id}
+                        key={x.mention_id}
                         mention_id={x.mention_id}
-                        slug={x.slug}
-                        title={x.title}
-                        description={x.props.description}
                         quote={x.quote}
                         references={x.references}
-                        book_count={x.book_count}
-                        video_count={x.video_count}
-                        mentioned_count={x.mentioned_count}
-                        mentioned_by_count={x.mentioned_by_count}
-                        type={x.type}
+                        mentioned={x.mentioned}
+                        mentioned_in={x.mentioned_in}
+                        mentioned_by={x.mentioned_by}
+                        type={this.props.type}
                         />;
                 })}
                 {mentions.length === 0 ? nodata : null}

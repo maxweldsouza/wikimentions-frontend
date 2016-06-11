@@ -29,73 +29,95 @@ var Mention = React.createClass({
         });
     },
     render () {
-        var path;
         var icon;
         var description;
-        if (this.props.type === 'book') {
-            path = '/books/' + this.props.id + '/' + this.props.slug;
+
+        var main, secondary;
+        var inorby;
+        if (this.props.type === 'person') {
+            if (this.props.mentioned) {
+                main = this.props.mentioned;
+            } else {
+                main = this.props.mentioned_by;
+            }
+            description = main.props && main.props.description ? main.props.description : '';
+            secondary = this.props.mentioned_in;
+            inorby = 'In ';
+        } else {
+            if (this.props.mentioned) {
+                main = this.props.mentioned;
+                secondary = this.props.mentioned_by;
+                inorby = 'By ';
+            } else {
+                main = this.props.mentioned_by;
+                secondary = this.props.mentioned_in;
+                inorby = 'In ';
+            }
+        }
+
+        if (main.type === 'book') {
             icon = 'ion-ios-book';
             description = 'Book';
-        } else if (this.props.type === 'video') {
-            path = '/videos/' + this.props.id + '/' + this.props.slug;
+        } else if (main.type === 'video') {
             icon = 'ion-ios-videocam';
             description = 'Video';
-        } else if (this.props.type === 'person') {
-            path = '/people/' + this.props.id + '/' + this.props.slug;
+        } else if (main.type === 'person') {
             icon = 'ion-person';
-            description = this.props.description;
-        }
-        var referencesCount;
-        if (this.props.references) {
-            referencesCount = this.props.references.split(/\r\n|\r|\n/).length;
-        } else {
-            referencesCount = 0;
         }
         return (
             <div className='card'>
                 <div className='small-12 columns card-title'>
-                    <a href={path}>{this.props.title}</a>
+                    <Link
+                        id={main.id}
+                        slug={main.slug}
+                        type={main.type}>{main.title}</Link>
                 </div>
                 <div className='small-12 columns'>
                     <span>
                         <span className={icon}/>{' '}
                     </span>{description}
                 </div>
+                {secondary ? <div className='small-12 columns'>
+                    {inorby} <Link
+                        id={secondary.id}
+                        slug={secondary.slug}
+                        type={secondary.type}>{secondary.title}</Link>
+                </div> : null}
                 <div className='small-12 columns'>
                     {this.props.quote}
                 </div>
                 <div className='small-9 columns'>
-                    {this.props.type === 'person' ? <Link
-                        id={this.props.id}
-                        slug={this.props.slug}
-                        title={this.props.title}
-                        type={this.props.type}
+                    {main.type === 'person' ? <Link
+                        id={main.id}
+                        slug={main.slug}
+                        title={main.title}
+                        type={main.type}
                         className='secondary'
-                        tab='videos'>{'Videos'}<span className="badge">{this.props.video_count}</span>{'  '}
+                        tab='videos'>{'Videos'}<span className="badge">{main.video_count}</span>{'  '}
                     </Link> : null}
-                    {this.props.type === 'person' ? <Link
-                        id={this.props.id}
-                        slug={this.props.slug}
-                        title={this.props.title}
-                        type={this.props.type}
+                    {main.type === 'person' ? <Link
+                        id={main.id}
+                        slug={main.slug}
+                        title={main.title}
+                        type={main.type}
                         className='secondary'
-                        tab='books'>{'Books'}<span className="badge">{this.props.book_count}</span>{'  '}
+                        tab='books'>{'Books'}<span className="badge">{main.book_count}</span>{'  '}
                     </Link> : null}
                     <Link
-                        id={this.props.id}
-                        slug={this.props.slug}
-                        title={this.props.title}
-                        type={this.props.type}
+                        id={main.id}
+                        slug={main.slug}
+                        title={main.title}
+                        type={main.type}
                         className='secondary'
-                        tab='mentioned'>{'Mentions'}<span className="badge">{this.props.mentioned_count}</span>{'  '}
+                        tab='mentioned'>{'Mentions'}<span className="badge">{main.mentioned_count}</span>{'  '}
                     </Link>
                     <Link
-                        id={this.props.id}
-                        slug={this.props.slug}
-                        title={this.props.title}
-                        type={this.props.type}
+                        id={main.id}
+                        slug={main.slug}
+                        title={main.title}
+                        type={main.type}
                         className='secondary'
-                        tab='mentionedby'>{'Mentioned By'}<span className="badge">{this.props.mentioned_by_count}</span>
+                        tab='mentionedby'>{'Mentioned By'}<span className="badge">{main.mentioned_by_count}</span>
                     </Link>
                 </div>
                 <div className="small-3 columns text-right">

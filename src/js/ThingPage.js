@@ -14,6 +14,7 @@ var Share = require('./Share');
 var config = require('./config');
 var Link = require('./Link');
 var Placeholder = require('./Placeholder');
+var Image = require('./Image');
 
 var ThingPage = React.createClass({
     statics: {
@@ -89,7 +90,6 @@ var ThingPage = React.createClass({
         }
         tab = tab ? tab : defaultTab;
 
-        var image = '/assets/placeholder.png';
         var authors = [];
         if (thing.type === 'book' && this.props.data.bookauthors.length > 0) {
             authors = this.props.data.bookauthors;
@@ -180,6 +180,13 @@ var ThingPage = React.createClass({
                             page={this.props.query.page}
                             />;
         }
+        var image;
+        if (thing.images.length > 0) {
+            var imagedata = thing.images[0];
+            image = <Image className='img-person' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height}/>;
+        } else {
+            image = <Placeholder/>;
+        }
         return (
             <span>
                 <Helmet
@@ -209,7 +216,7 @@ var ThingPage = React.createClass({
                         <div className='row'>
                             <div className='small-12 large-4 columns'>
                                 {thing.type !== 'video' ?
-                                <Placeholder /> : null}
+                                image : null}
                             </div>
                             <div className='small-12 large-8 columns'>
                                 <h1 className='page-title'>{thing.title}</h1>
