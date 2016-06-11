@@ -40,7 +40,6 @@ var Mention = React.createClass({
             } else {
                 main = this.props.mentioned_by;
             }
-            description = main.props && main.props.description ? main.props.description : '';
             secondary = this.props.mentioned_in;
             inorby = 'In ';
         } else {
@@ -54,6 +53,7 @@ var Mention = React.createClass({
                 inorby = 'In ';
             }
         }
+        description = main.props && main.props.description ? main.props.description : '';
 
         if (main.type === 'book') {
             icon = 'ion-ios-book';
@@ -78,10 +78,11 @@ var Mention = React.createClass({
                     </span>{description}
                 </div>
                 {secondary ? <div className='small-12 columns'>
-                    {inorby} <Link
+                    {inorby} <strong><Link
+                        className='secondary'
                         id={secondary.id}
                         slug={secondary.slug}
-                        type={secondary.type}>{secondary.title}</Link>
+                        type={secondary.type}>{secondary.title}</Link></strong>
                 </div> : null}
                 <div className='small-12 columns'>
                     {this.props.quote}
