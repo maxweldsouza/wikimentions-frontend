@@ -14,7 +14,7 @@ var Book = React.createClass({
             <div className='small-12 medium-6 large-4 columns text-center'>
                 <a href={'/books/' + this.props.id + '/' + this.props.slug}>
                 <div>
-                    <Placeholder />
+                    <Placeholder style={{'width': 150, 'height': 200, 'border': 'none', 'lineHeight': '200px'}}/>
                 </div>
                 <div className='card-title'>
                     {this.props.title} {message}
