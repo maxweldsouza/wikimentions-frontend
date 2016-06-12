@@ -168,7 +168,12 @@ var EditPage = React.createClass({
                                         value={this.state.isbn13}
                                         onChange={this.onChangeText}/> : null}
                                     {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
-                                    <Dropzone onDrop={this.onDrop}>
+                                    <Dropzone onDrop={this.onDrop} style={{'padding': 30,
+                                    'borderColor': 'black',
+                                    'borderStyle': 'dashed',
+                                    'borderWidth': 2,
+                                    'margin-bottom': 15,
+                                    'width': 200}}>
                                         {imageMessage}
                                     </Dropzone>
                                     {this.state.image ? <img src={this.state.image[0].preview} /> : null}
