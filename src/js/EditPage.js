@@ -12,6 +12,7 @@ var config = require('./config');
 var Dropzone = require('react-dropzone');
 var Snackbar = require('./Snackbar');
 var Restricted = require('./Restricted');
+var Markdown = require('./Markdown');
 
 var EditPage = React.createClass({
     statics: {
@@ -210,6 +211,7 @@ var EditPage = React.createClass({
                                         value={this.state.imageDescription}
                                         onChange={this.onChangeText}
                                         rows={3}/>
+                                    {this.state.imageDescription ? <Markdown markdown={this.state.imageDescription} /> : null}
                                     <SubmitButton
                                         title='Save'
                                         submitting={this.state.submitting}
