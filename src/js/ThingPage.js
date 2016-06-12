@@ -187,7 +187,7 @@ var ThingPage = React.createClass({
         if (imagedata) {
             image = <Image className='img-person' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height}/>;
         } else {
-            image = <Placeholder/>;
+            image = <Placeholder style={{'height': 200, 'lineHeight': '200px'}}/>;
         }
         return (
             <span>
