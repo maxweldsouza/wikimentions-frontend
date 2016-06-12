@@ -35,6 +35,7 @@ var EditPage = React.createClass({
             isbn: this.props.data.thing.props.isbn,
             isbn13: this.props.data.thing.props.isbn13,
             url: this.props.data.thing.props.url,
+            imageDescription: this.props.data.thing.props.imageDescription,
             submiting: false,
         };
     },
@@ -70,28 +71,53 @@ var EditPage = React.createClass({
         this.setState({
             submiting: true
         });
-        requests
-        .post('/api/v1/thing/' + id)
-        .set('X-XSRFToken', cookies.get('_xsrf'))
-        .field('title', this.state.title)
-        .field('description', this.state.description)
-        .field('type', this.state.type)
-        .field('isbn', this.state.isbn)
-        .field('isbn13', this.state.isbn13)
-        .field('action', 'update')
-        .attach('image', this.state.image[0])
-        .end((err, res) => {
-            this.setState({
-                submiting: false
+        if (this.state.image) {
+            requests
+            .post('/api/v1/thing/' + id)
+            .set('X-XSRFToken', cookies.get('_xsrf'))
+            .field('title', this.state.title)
+            .field('description', this.state.description)
+            .field('type', this.state.type)
+            .field('isbn', this.state.isbn)
+            .field('isbn13', this.state.isbn13)
+            .field('action', 'update')
+            .field('imageDescription', this.state.imageDescription)
+            .attach('image', this.state.image[0])
+            .end((err, res) => {
+                this.setState({
+                    submiting: false
+                });
+                if (err && err.status) {
+                    Snackbar({message: res.body.message});
+                } else {
+                    Snackbar({message: 'Changes saved'});
+                    history.pushState(null, null, res.body.redirect);
+                    Mentions.route(res.body.redirect);
+                }
             });
-            if (err && err.status) {
-                Snackbar({message: res.body.message});
-            } else {
-                Snackbar({message: 'Changes saved'});
-                history.pushState(null, null, res.body.redirect);
-                Mentions.route(res.body.redirect);
-            }
-        });
+        } else {
+            requests
+            .post('/api/v1/thing/' + id)
+            .set('X-XSRFToken', cookies.get('_xsrf'))
+            .field('title', this.state.title)
+            .field('description', this.state.description)
+            .field('type', this.state.type)
+            .field('isbn', this.state.isbn)
+            .field('isbn13', this.state.isbn13)
+            .field('action', 'update')
+            .end((err, res) => {
+                this.setState({
+                    submiting: false
+                });
+                if (err && err.status) {
+                    Snackbar({message: res.body.message});
+                } else {
+                    Snackbar({message: 'Changes saved'});
+                    history.pushState(null, null, res.body.redirect);
+                    Mentions.route(res.body.redirect);
+                }
+            });
+        }
     },
     onDrop: function (files) {
         this.setState({
@@ -172,11 +198,18 @@ var EditPage = React.createClass({
                                     'borderColor': 'black',
                                     'borderStyle': 'dashed',
                                     'borderWidth': 2,
-                                    'margin-bottom': 15,
+                                    'marginBottom': 15,
                                     'width': 200}}>
                                         {imageMessage}
                                     </Dropzone>
                                     {this.state.image ? <img src={this.state.image[0].preview} /> : null}
+                                    <textarea
+                                        type='text'
+                                        name='imageDescription'
+                                        placeholder='Add a description for the image, including copyright information, original source etc.'
+                                        value={this.state.imageDescription}
+                                        onChange={this.onChangeText}
+                                        rows={3}/>
                                     <SubmitButton
                                         title='Save'
                                         submitting={this.state.submitting}
