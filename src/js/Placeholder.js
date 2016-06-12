@@ -10,7 +10,7 @@ var Placeholder = React.createClass({
             );
         }
         return (
-            <div className='placeholder'>
+            <div className='placeholder' style={this.props.style}>
                 <span className='ion-image' />
             </div>
         );

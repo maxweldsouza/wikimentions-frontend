@@ -202,7 +202,7 @@ var EditPage = React.createClass({
                                     'width': 200}}>
                                         {imageMessage}
                                     </Dropzone>
-                                    {this.state.image ? <img src={this.state.image[0].preview} /> : null}
+                                    {this.state.image ? <img src={this.state.image[0].preview} className='image-upload-preview'/> : null}
                                     <textarea
                                         type='text'
                                         name='imageDescription'
