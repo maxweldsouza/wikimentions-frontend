@@ -15,6 +15,8 @@ var config = require('./config');
 var Link = require('./Link');
 var Placeholder = require('./Placeholder');
 var Image = require('./Image');
+var Modal = require('react-modal');
+var AvatarEditor = require('./react-avatar-editor');
 
 var ThingPage = React.createClass({
     statics: {
@@ -76,6 +78,19 @@ var ThingPage = React.createClass({
                 api: api
             };
         }
+    },
+    getInitialState: function() {
+        return {
+            modalIsOpen: false
+        };
+    },
+    onOpenModal () {
+        this.setState({
+            modalIsOpen: true
+        });
+    },
+    closeModal () {
+        this.setState({modalIsOpen: false});
     },
     render () {
         var [type, id, slug, tab] = this.props.path.split('/');
@@ -147,38 +162,38 @@ var ThingPage = React.createClass({
         var tabContent;
         if (tab === 'mentioned') {
             tabContent = <ThingMentionTab
-                            id={id}
-                            mentions={mentions}
-                            count={thing.mentioned_count}
-                            type={thing.type}
-                            path={this.props.path}
-                            page={this.props.query.page}
-                            />;
+                id={id}
+                mentions={mentions}
+                count={thing.mentioned_count}
+                type={thing.type}
+                path={this.props.path}
+                page={this.props.query.page}
+                />;
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
-                            id={id}
-                            mentionedby={mentionedby}
-                            count={thing.mentioned_by_count}
-                            type={thing.type}
-                            path={this.props.path}
-                            page={this.props.query.page}
-                            />;
+                id={id}
+                mentionedby={mentionedby}
+                count={thing.mentioned_by_count}
+                type={thing.type}
+                path={this.props.path}
+                page={this.props.query.page}
+                />;
         } else if (tab === 'books' && thing.type === 'person') {
             tabContent = <ThingBookTab
-                            id={id}
-                            books={books}
-                            count={thing.book_count}
-                            path={this.props.path}
-                            page={this.props.query.page}
-                            />;
+                id={id}
+                books={books}
+                count={thing.book_count}
+                path={this.props.path}
+                page={this.props.query.page}
+                />;
         } else if (tab === 'videos' && thing.type === 'person') {
             tabContent = <ThingVideoTab
-                            id={id}
-                            videos={videos}
-                            count={thing.video_count}
-                            path={this.props.path}
-                            page={this.props.query.page}
-                            />;
+                id={id}
+                videos={videos}
+                count={thing.video_count}
+                path={this.props.path}
+                page={this.props.query.page}
+                />;
         }
         var image;
         var imagedata = _.find(thing.images, function (x) {
@@ -218,41 +233,57 @@ var ThingPage = React.createClass({
                         <div className='row'>
                             <div className='small-12 large-4 columns'>
                                 {thing.type !== 'video' ?
-                                image : null}
-                            </div>
-                            <div className='small-12 large-8 columns'>
-                                <h1 className='page-title'>{thing.title}</h1>
-                                <div className='row'>
-                                    <div className='small-12 columns'>
-                                        <span className='thing-description'>
-                                            {thing.props.description}
-                                            {authors}
-                                        </span>
-                                        <Share title={thing.title} path={this.props.path}/>
-                                        <PageBar
-                                            id={id}
-                                            slug={thing.slug}
-                                            type={thing.type}
-                                            noPage
-                                            />
-                                    </div>
+                                    image : null}
                                 </div>
-                                {thing.type === 'video' ? <div>
-                                    <a href={thing.url}><img className='' src='/assets/video.png' alt=''/></a>
-                                </div> : null}
-                                {tabHeading}
-                                <div className='tabs-content'>
-                                    <div className='tabs-panel is-active'>
-                                        {tabContent}
+                                <Modal
+                                    isOpen={this.state.modalIsOpen}
+                                    onRequestClose={this.closeModal}>
+
+                                    <h2>Upload Image</h2>
+                                    <AvatarEditor
+                                        ref='editor'
+                                        image='https://localhost/api/v1/static/images/ff7180782304c2915c85a6ef834b90ed-450-450.jpg'
+                                        width={450}
+                                        height={450}
+                                        border={50}
+                                        color={[255, 255, 255, 0.6]} // RGBA
+                                        scale={1.2} />
+                                    <button className='button' onClick={this.closeModal}>close</button>
+                                </Modal>
+                                <div className='small-12 large-8 columns'>
+                                    <h1 className='page-title'>{thing.title}</h1>
+                                    <div className='row'>
+                                        <div className='small-12 columns'>
+                                            <span className='thing-description'>
+                                                {thing.props.description}
+                                                {authors}
+                                            </span>
+                                            <Share title={thing.title} path={this.props.path}/>
+                                            <button className='button' onClick={this.onOpenModal}>Upload</button>
+                                            <PageBar
+                                                id={id}
+                                                slug={thing.slug}
+                                                type={thing.type}
+                                                noPage
+                                                />
+                                        </div>
+                                    </div>
+                                    {thing.type === 'video' ? <div>
+                                        <a href={thing.url}><img className='' src='/assets/video.png' alt=''/></a>
+                                    </div> : null}
+                                    {tabHeading}
+                                    <div className='tabs-content'>
+                                        <div className='tabs-panel is-active'>
+                                            {tabContent}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </span>
-        );
-    }
-});
+                </span>
+            );
+        }
+    });
 
-module.exports = ThingPage;
+    module.exports = ThingPage;

@@ -33,7 +33,8 @@ var plugins = [
     'transform-flow-strip-types',
     'transform-react-jsx',
     'transform-react-display-name',
-    'transform-react-constant-elements'
+    'transform-react-constant-elements',
+    'transform-object-rest-spread'
 ];
 if (production) {
     plugins.push("transform-react-inline-elements");

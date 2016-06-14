@@ -4,7 +4,6 @@ var cookies = require('browser-cookies');
 var Link = require('./Link');
 var Image = require('./Image');
 var Placeholder = require('./Placeholder');
-var requests = require('superagent');
 var _ = require('underscore');
 
 var Mention = React.createClass({
