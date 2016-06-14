@@ -26,6 +26,11 @@ var ImagesPage = React.createClass({
         }
     },
     render () {
+        var nodata = <div className='card'>
+            <div className='small-12 columns'>
+                No images have been uploaded
+            </div>
+        </div>;
         return (
             <span>
                 <Helmet
@@ -49,6 +54,7 @@ var ImagesPage = React.createClass({
                             />
                         <div className='small-12 columns'>
                             <div className="card-container">
+                                {this.props.data.images.images.length === 0 ? nodata : null}
                                 {this.props.data.images.images.map((x) => {
                                     var name = x.md5 + '-' + x.width + '-' + x.height + '.jpg';
                                     return <div className='card'>
