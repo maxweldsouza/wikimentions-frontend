@@ -55,6 +55,7 @@
     "node-jsx": "~0.13.3",
     "numeral": "^1.5.3",
     "query-string": "^4.1.0",
+    "rc-slider": "^3.7.1",
     "react": "^15.0.1",
     "react-addons-css-transition-group": "^15.0.1",
     "react-avatar-editor": "^4.0.0",

@@ -16,7 +16,7 @@ var Link = require('./Link');
 var Placeholder = require('./Placeholder');
 var Image = require('./Image');
 var Modal = require('react-modal');
-var AvatarEditor = require('./react-avatar-editor');
+var ImageUpload = require('./ImageUpload');
 
 var ThingPage = React.createClass({
     statics: {
@@ -238,17 +238,8 @@ var ThingPage = React.createClass({
                                 <Modal
                                     isOpen={this.state.modalIsOpen}
                                     onRequestClose={this.closeModal}>
-
-                                    <h2>Upload Image</h2>
-                                    <AvatarEditor
-                                        ref='editor'
-                                        image='https://localhost/api/v1/static/images/ff7180782304c2915c85a6ef834b90ed-450-450.jpg'
-                                        width={450}
-                                        height={450}
-                                        border={50}
-                                        color={[255, 255, 255, 0.6]} // RGBA
-                                        scale={1.2} />
-                                    <button className='button' onClick={this.closeModal}>close</button>
+                                    <ImageUpload />
+                                    <button className='button' onClick={this.closeModal}>Close</button>
                                 </Modal>
                                 <div className='small-12 large-8 columns'>
                                     <h1 className='page-title'>{thing.title}</h1>
