@@ -15,8 +15,6 @@ var config = require('./config');
 var Link = require('./Link');
 var Placeholder = require('./Placeholder');
 var Image = require('./Image');
-var Modal = require('react-modal');
-var ImageUpload = require('./ImageUpload');
 
 var ThingPage = React.createClass({
     statics: {
@@ -78,19 +76,6 @@ var ThingPage = React.createClass({
                 api: api
             };
         }
-    },
-    getInitialState: function() {
-        return {
-            modalIsOpen: false
-        };
-    },
-    onOpenModal () {
-        this.setState({
-            modalIsOpen: true
-        });
-    },
-    closeModal () {
-        this.setState({modalIsOpen: false});
     },
     render () {
         var [type, id, slug, tab] = this.props.path.split('/');
@@ -235,12 +220,6 @@ var ThingPage = React.createClass({
                                 {thing.type !== 'video' ?
                                     image : null}
                                 </div>
-                                <Modal
-                                    isOpen={this.state.modalIsOpen}
-                                    onRequestClose={this.closeModal}>
-                                    <ImageUpload id={id} width={250} height={250}/>
-                                    <button className='button' onClick={this.closeModal}>Close</button>
-                                </Modal>
                                 <div className='small-12 large-9 columns text-center large-text-left'>
                                     <h1 className='page-title'>{thing.title}</h1>
                                     <div className='row'>
@@ -250,7 +229,6 @@ var ThingPage = React.createClass({
                                                 {authors}
                                             </span>
                                             <Share title={thing.title} path={this.props.path}/>
-                                            <button className='button' onClick={this.onOpenModal}>Upload</button>
                                             <PageBar
                                                 id={id}
                                                 slug={thing.slug}

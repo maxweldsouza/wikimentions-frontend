@@ -8,6 +8,8 @@ var HistoryItem = require('./HistoryItem');
 var PageBar = require('./PageBar');
 var config = require('./config');
 var Time = require('./Time');
+var Modal = require('react-modal');
+var ImageUpload = require('./ImageUpload');
 
 var ImagesPage = React.createClass({
     statics: {
@@ -24,6 +26,19 @@ var ImagesPage = React.createClass({
                 ]
             };
         }
+    },
+    getInitialState: function() {
+        return {
+            modalIsOpen: false
+        };
+    },
+    onOpenModal () {
+        this.setState({
+            modalIsOpen: true
+        });
+    },
+    closeModal () {
+        this.setState({modalIsOpen: false});
     },
     render () {
         var nodata = <div className='card'>
@@ -54,6 +69,15 @@ var ImagesPage = React.createClass({
                             />
                         <div className='small-12 columns'>
                             <div className="card-container">
+                                <div className='card'>
+                                    Upload an image for this page. <button className='button small' onClick={this.onOpenModal}>Upload</button>
+                                    <Modal
+                                        isOpen={this.state.modalIsOpen}
+                                        onRequestClose={this.closeModal}>
+                                        <ImageUpload id={this.props.data.images.id} width={250} height={250}/>
+                                        <button className='button' onClick={this.closeModal}>Close</button>
+                                    </Modal>
+                                </div>
                                 {this.props.data.images.images.length === 0 ? nodata : null}
                                 {this.props.data.images.images.map((x) => {
                                     var name = x.md5 + '-' + x.width + '-' + x.height + '.jpg';
