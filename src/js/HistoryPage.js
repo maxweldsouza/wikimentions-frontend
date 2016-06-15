@@ -11,12 +11,14 @@ var config = require('./config');
 var HistoryPage = React.createClass({
     statics: {
         resources (appstate) {
-            var id = appstate.url.split('/')[1];
+            var [type, id, slug] = appstate.path.split('/');
+            var page = appstate.query.page;
+            var query = page ? '?page=' + page : '';
             return {
                 api: [
                     {
                         name: 'history',
-                        path: '/api/v1/history/' + id
+                        path: '/api/v1/history/' + id + query
                     },
                     {
                         name: 'thing',
@@ -73,7 +75,7 @@ var HistoryPage = React.createClass({
                                         deleted={x.deleted}
                                         />;
                                 })}
-                                <PreviousNext path={this.props.path} page={this.props.page}/>
+                                <PreviousNext path={this.props.path} page={this.props.query.page}/>
                             </div>
                         </div>
                     </div>
