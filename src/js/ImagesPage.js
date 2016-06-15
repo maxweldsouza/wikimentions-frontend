@@ -74,9 +74,12 @@ var ImagesPage = React.createClass({
                                     Upload an image for this page. <button className='button small' onClick={this.onOpenModal}>Upload</button>
                                     <Modal
                                         isOpen={this.state.modalIsOpen}
-                                        onRequestClose={this.closeModal}>
-                                        <ImageUpload id={this.props.data.images.id} width={250} height={250}/>
-                                        <button className='button' onClick={this.closeModal}>Close</button>
+                                        onRequestClose={this.closeModal}
+                                        className='modal-content'
+                                        overlayClassName='modal-overlay'>
+                                        <div className='small-12 columns'>
+                                            <ImageUpload id={this.props.data.images.id} width={250} height={250} onClose={this.closeModal}/>
+                                        </div>
                                     </Modal>
                                 </div>
                                 {this.props.data.images.images.length === 0 ? nodata : null}

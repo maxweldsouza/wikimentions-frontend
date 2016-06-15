@@ -70,7 +70,7 @@ var ImageUpload = React.createClass({
         }
         return (
             <div>
-                <h2>Upload Image</h2>
+                <h1>Upload Image</h1>
                 Drag an image below to upload
                 <div>
                     <AvatarEditor
@@ -97,7 +97,10 @@ var ImageUpload = React.createClass({
                     onChange={this.onChangeText}
                     rows={3}/>
                 {this.state.imageDescription ? <Markdown markdown={this.state.imageDescription} /> : null}
-                <button className='button' onClick={this.uploadImage}>Upload</button>
+                <div className='button-group'>
+                    <button className='button' onClick={this.uploadImage}>Upload</button>
+                    <button className='button secondary hollow' onClick={this.props.onClose}>Close</button>
+                </div>
             </div>
         );
     }

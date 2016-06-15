@@ -1,0 +1,22 @@
+.modal-content {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    background: rgb(255, 255, 255);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(255, 255, 255, 0.74902);
+}
