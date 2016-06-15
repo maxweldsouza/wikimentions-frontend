@@ -1,3 +1,7 @@
+.button-group {
+    display: inline-flex;
+}
+
 .button-group .button:first-child {
     border-bottom-left-radius: $global-radius;
     border-top-left-radius: $global-radius;
