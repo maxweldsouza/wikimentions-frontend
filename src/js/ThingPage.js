@@ -123,7 +123,7 @@ var ThingPage = React.createClass({
             'books': 'book_count',
             'videos': 'video_count'
         };
-        var tabHeading = <ul className='tabs'>
+        var tabHeading = <ul className='tabs text-left'>
             {tabs.map((x) => {
                 var cls, aria;
                 if (x === tab) {
@@ -241,7 +241,7 @@ var ThingPage = React.createClass({
                                     <a href={thing.url}><img className='' src='/assets/video.png' alt=''/></a>
                                 </div> : null}
                                 {tabHeading}
-                                <div className='tabs-content'>
+                                <div className='tabs-content text-left'>
                                     <div className='tabs-panel is-active'>
                                         {tabContent}
                                     </div>
