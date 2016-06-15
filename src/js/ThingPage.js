@@ -197,7 +197,7 @@ var ThingPage = React.createClass({
         }
         var image;
         var imagedata = _.find(thing.images, function (x) {
-            return x.width === 450 && x.height === 450;
+            return x.width === 250 && x.height === 250;
         });
         if (imagedata) {
             image = <Image className='img-person' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height}/>;
@@ -231,7 +231,7 @@ var ThingPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 columns'>
                         <div className='row'>
-                            <div className='small-12 large-4 columns'>
+                            <div className='small-12 large-3 columns text-center large-text-left'>
                                 {thing.type !== 'video' ?
                                     image : null}
                                 </div>
@@ -241,7 +241,7 @@ var ThingPage = React.createClass({
                                     <ImageUpload id={id} width={250} height={250}/>
                                     <button className='button' onClick={this.closeModal}>Close</button>
                                 </Modal>
-                                <div className='small-12 large-8 columns'>
+                                <div className='small-12 large-9 columns text-center large-text-left'>
                                     <h1 className='page-title'>{thing.title}</h1>
                                     <div className='row'>
                                         <div className='small-12 columns'>
