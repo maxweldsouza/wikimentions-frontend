@@ -41,14 +41,14 @@ var AddVideoNew = React.createClass({
                     video_id: res.body.id,
                     _xsrf: cookies.get('_xsrf')
                 })
-                .end((err, res) => {
+                .end((err2, res2) => {
                     this.setState({
                         submitting: false,
                         title: '',
                         url: ''
                     });
-                    if (err && err.status) {
-                        Snackbar({message: res.body.message});
+                    if (err2 && err2.status) {
+                        Snackbar({message: res2.body.message});
                     } else {
                         Snackbar({message: 'Video added'});
                         history.pushState(null, null, window.location.pathname + window.location.search);

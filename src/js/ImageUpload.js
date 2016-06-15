@@ -30,8 +30,8 @@ var ImageUpload = React.createClass({
             Snackbar({message: 'Description missing'});
             return;
         }
-        var image = this.refs.editor.getImageScaledToCanvas().toDataURL("image/jpg");
-        console.log("image", image);
+        var image = this.refs.editor.getImageScaledToCanvas().toDataURL('image/jpg');
+        console.log('image', image);
         if (!image) {
             Snackbar({message: 'Image missing'});
             return;

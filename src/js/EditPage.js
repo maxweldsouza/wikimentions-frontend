@@ -34,7 +34,7 @@ var EditPage = React.createClass({
             isbn: this.props.data.thing.props.isbn,
             isbn13: this.props.data.thing.props.isbn13,
             url: this.props.data.thing.props.url,
-            submiting: false,
+            submiting: false
         };
     },
     onChangeType (x) {

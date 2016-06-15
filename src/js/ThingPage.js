@@ -190,69 +190,69 @@ var ThingPage = React.createClass({
             image = <Placeholder style={{'height': 200, 'lineHeight': '200px'}}/>;
         }
         return (
-            <span>
-                <Helmet
-                    title={thing.title}
-                    titleTemplate={'%s - ' + config.name}
-                    meta={[
-                        {'name': 'description', 'content': ''},
-                        {name: 'twitter:card', content: 'summary'},
-                        {name: 'twitter:site', content: config.twitter},
-                        {name: 'twitter:title', content: thing.title},
-                        {name: 'twitter:description', content: ''},
-                        {name: 'twitter:image', content: image},
-                        {property: 'og:title', content: thing.title},
-                        {property: 'og:type', content: 'article'},
-                        {property: 'og:url', content: config.url + this.props.path},
-                        {property: 'og:description', content: ''},
-                        {property: 'og:image', content: image},
-                        {property: 'og:site_name', content: config.name}
-                    ]}
-                    link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
-                    ]}
-                    />
-                <Navbar/>
-                <div className='row page-body align-center'>
-                    <div className='small-12 columns'>
-                        <div className='row'>
-                            <div className='small-12 large-3 columns text-center large-text-left'>
-                                {thing.type !== 'video' ?
-                                    image : null}
-                                </div>
-                                <div className='small-12 large-9 columns text-center large-text-left'>
-                                    <h1 className='page-title'>{thing.title}</h1>
-                                    <div className='row'>
-                                        <div className='small-12 columns'>
-                                            <span className='thing-description'>
-                                                {thing.props.description}
-                                                {authors}
-                                            </span>
-                                            <Share title={thing.title} path={this.props.path}/>
-                                            <PageBar
-                                                id={id}
-                                                slug={thing.slug}
-                                                type={thing.type}
-                                                noPage
-                                                />
-                                        </div>
+        <span>
+            <Helmet
+                title={thing.title}
+                titleTemplate={'%s - ' + config.name}
+                meta={[
+                    {'name': 'description', 'content': ''},
+                    {name: 'twitter:card', content: 'summary'},
+                    {name: 'twitter:site', content: config.twitter},
+                    {name: 'twitter:title', content: thing.title},
+                    {name: 'twitter:description', content: ''},
+                    {name: 'twitter:image', content: image},
+                    {property: 'og:title', content: thing.title},
+                    {property: 'og:type', content: 'article'},
+                    {property: 'og:url', content: config.url + this.props.path},
+                    {property: 'og:description', content: ''},
+                    {property: 'og:image', content: image},
+                    {property: 'og:site_name', content: config.name}
+                ]}
+                link={[
+                    {'rel': 'canonical', 'href': config.url + this.props.path}
+                ]}
+                />
+            <Navbar/>
+            <div className='row page-body align-center'>
+                <div className='small-12 columns'>
+                    <div className='row'>
+                        <div className='small-12 large-3 columns text-center large-text-left'>
+                            {thing.type !== 'video' ?
+                                image : null}
+                            </div>
+                            <div className='small-12 large-9 columns text-center large-text-left'>
+                                <h1 className='page-title'>{thing.title}</h1>
+                                <div className='row'>
+                                    <div className='small-12 columns'>
+                                        <span className='thing-description'>
+                                            {thing.props.description}
+                                            {authors}
+                                        </span>
+                                        <Share title={thing.title} path={this.props.path}/>
+                                        <PageBar
+                                            id={id}
+                                            slug={thing.slug}
+                                            type={thing.type}
+                                            noPage
+                                            />
                                     </div>
-                                    {thing.type === 'video' ? <div>
-                                        <a href={thing.url}><img className='' src='/assets/video.png' alt=''/></a>
-                                    </div> : null}
-                                    {tabHeading}
-                                    <div className='tabs-content'>
-                                        <div className='tabs-panel is-active'>
-                                            {tabContent}
-                                        </div>
+                                </div>
+                                {thing.type === 'video' ? <div>
+                                    <a href={thing.url}><img className='' src='/assets/video.png' alt=''/></a>
+                                </div> : null}
+                                {tabHeading}
+                                <div className='tabs-content'>
+                                    <div className='tabs-panel is-active'>
+                                        {tabContent}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </span>
-            );
-        }
-    });
+                </div>
+            </span>
+        );
+    }
+});
 
-    module.exports = ThingPage;
+module.exports = ThingPage;
