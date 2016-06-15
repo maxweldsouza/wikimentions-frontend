@@ -11,6 +11,7 @@ var Time = require('./Time');
 var Modal = require('react-modal');
 var ImageUpload = require('./ImageUpload');
 var Markdown = require('./Markdown');
+var Restricted = require('./Restricted');
 
 var ImagesPage = React.createClass({
     statics: {
@@ -69,18 +70,21 @@ var ImagesPage = React.createClass({
                             type={this.props.data.images.type}
                             />
                         <div className='small-12 columns'>
-                            <div className="card-container">
+                            <div className='card-container'>
                                 <div className='card small-12 columns'>
-                                    Upload an image for this page. <button className='button small' onClick={this.onOpenModal}>Upload</button>
-                                    <Modal
-                                        isOpen={this.state.modalIsOpen}
-                                        onRequestClose={this.closeModal}
-                                        className='modal-content'
-                                        overlayClassName='modal-overlay'>
-                                        <div className='small-12 columns'>
-                                            <ImageUpload id={this.props.data.images.id} width={250} height={250} onClose={this.closeModal}/>
-                                        </div>
-                                    </Modal>
+                                    <Restricted
+                                        message='You need to be logged in to upload an image'>
+                                        Upload an image for this page. <button className='button small' onClick={this.onOpenModal}>Upload</button>
+                                        <Modal
+                                            isOpen={this.state.modalIsOpen}
+                                            onRequestClose={this.closeModal}
+                                            className='modal-content'
+                                            overlayClassName='modal-overlay'>
+                                            <div className='small-12 columns'>
+                                                <ImageUpload id={this.props.data.images.id} width={250} height={250} onClose={this.closeModal}/>
+                                            </div>
+                                        </Modal>
+                                    </Restricted>
                                 </div>
                                 {this.props.data.images.images.length === 0 ? nodata : null}
                                 {this.props.data.images.images.map((x) => {
