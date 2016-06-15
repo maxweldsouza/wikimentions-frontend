@@ -9,10 +9,8 @@ var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var PageBar = require('./PageBar');
 var config = require('./config');
-var Dropzone = require('react-dropzone');
 var Snackbar = require('./Snackbar');
 var Restricted = require('./Restricted');
-var Markdown = require('./Markdown');
 
 var EditPage = React.createClass({
     statics: {
@@ -36,7 +34,6 @@ var EditPage = React.createClass({
             isbn: this.props.data.thing.props.isbn,
             isbn13: this.props.data.thing.props.isbn13,
             url: this.props.data.thing.props.url,
-            imageDescription: this.props.data.thing.props.imageDescription,
             submiting: false,
         };
     },
@@ -72,57 +69,27 @@ var EditPage = React.createClass({
         this.setState({
             submiting: true
         });
-        if (this.state.image) {
-            requests
-            .post('/api/v1/thing/' + id)
-            .set('X-XSRFToken', cookies.get('_xsrf'))
-            .field('title', this.state.title)
-            .field('description', this.state.description)
-            .field('type', this.state.type)
-            .field('isbn', this.state.isbn)
-            .field('isbn13', this.state.isbn13)
-            .field('action', 'update')
-            .field('imageDescription', this.state.imageDescription)
-            .attach('image', this.state.image[0])
-            .end((err, res) => {
-                this.setState({
-                    submiting: false
-                });
-                if (err && err.status) {
-                    Snackbar({message: res.body.message});
-                } else {
-                    Snackbar({message: 'Changes saved'});
-                    history.pushState(null, null, res.body.redirect);
-                    Mentions.route(res.body.redirect);
-                }
+
+        requests
+        .post('/api/v1/thing/' + id)
+        .set('X-XSRFToken', cookies.get('_xsrf'))
+        .field('title', this.state.title)
+        .field('description', this.state.description)
+        .field('type', this.state.type)
+        .field('isbn', this.state.isbn)
+        .field('isbn13', this.state.isbn13)
+        .field('action', 'update')
+        .end((err, res) => {
+            this.setState({
+                submiting: false
             });
-        } else {
-            requests
-            .post('/api/v1/thing/' + id)
-            .set('X-XSRFToken', cookies.get('_xsrf'))
-            .field('title', this.state.title)
-            .field('description', this.state.description)
-            .field('type', this.state.type)
-            .field('isbn', this.state.isbn)
-            .field('isbn13', this.state.isbn13)
-            .field('action', 'update')
-            .end((err, res) => {
-                this.setState({
-                    submiting: false
-                });
-                if (err && err.status) {
-                    Snackbar({message: res.body.message});
-                } else {
-                    Snackbar({message: 'Changes saved'});
-                    history.pushState(null, null, res.body.redirect);
-                    Mentions.route(res.body.redirect);
-                }
-            });
-        }
-    },
-    onDrop: function (files) {
-        this.setState({
-            image: files
+            if (err && err.status) {
+                Snackbar({message: res.body.message});
+            } else {
+                Snackbar({message: 'Changes saved'});
+                history.pushState(null, null, res.body.redirect);
+                Mentions.route(res.body.redirect);
+            }
         });
     },
     onOpenClick: function () {
@@ -134,14 +101,7 @@ var EditPage = React.createClass({
         var options = [{name: 'Person', value: 'person'},
             {name: 'Book', value: 'book'},
             {name: 'Video', value: 'video'}];
-        var imageMessage;
-        if (this.state.type === 'book') {
-            imageMessage = 'Add an image of this book';
-        } else if (this.state.type === 'video') {
-            imageMessage = 'Add a thumbnail for this video';
-        } else if (this.state.type === 'person') {
-            imageMessage = 'Add a picture of this person';
-        }
+
         return (
             <span>
                 <Helmet
@@ -195,23 +155,6 @@ var EditPage = React.createClass({
                                         value={this.state.isbn13}
                                         onChange={this.onChangeText}/> : null}
                                     {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
-                                    <Dropzone onDrop={this.onDrop} style={{'padding': 30,
-                                    'borderColor': 'black',
-                                    'borderStyle': 'dashed',
-                                    'borderWidth': 2,
-                                    'marginBottom': 15,
-                                    'width': 200}}>
-                                        {imageMessage}
-                                    </Dropzone>
-                                    {this.state.image ? <img src={this.state.image[0].preview} className='image-upload-preview'/> : null}
-                                    <textarea
-                                        type='text'
-                                        name='imageDescription'
-                                        placeholder='Add a description for the image, including copyright information, original source etc.'
-                                        value={this.state.imageDescription}
-                                        onChange={this.onChangeText}
-                                        rows={3}/>
-                                    {this.state.imageDescription ? <Markdown markdown={this.state.imageDescription} /> : null}
                                     <SubmitButton
                                         title='Save'
                                         submitting={this.state.submitting}

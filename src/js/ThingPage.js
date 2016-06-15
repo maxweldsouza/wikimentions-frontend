@@ -238,7 +238,7 @@ var ThingPage = React.createClass({
                                 <Modal
                                     isOpen={this.state.modalIsOpen}
                                     onRequestClose={this.closeModal}>
-                                    <ImageUpload />
+                                    <ImageUpload id={id} width={250} height={250}/>
                                     <button className='button' onClick={this.closeModal}>Close</button>
                                 </Modal>
                                 <div className='small-12 large-8 columns'>
