@@ -10,6 +10,7 @@ var config = require('./config');
 var Time = require('./Time');
 var Modal = require('react-modal');
 var ImageUpload = require('./ImageUpload');
+var Markdown = require('./Markdown');
 
 var ImagesPage = React.createClass({
     statics: {
@@ -69,7 +70,7 @@ var ImagesPage = React.createClass({
                             />
                         <div className='small-12 columns'>
                             <div className="card-container">
-                                <div className='card'>
+                                <div className='card small-12 columns'>
                                     Upload an image for this page. <button className='button small' onClick={this.onOpenModal}>Upload</button>
                                     <Modal
                                         isOpen={this.state.modalIsOpen}
@@ -83,7 +84,8 @@ var ImagesPage = React.createClass({
                                     var name = x.md5 + '-' + x.width + '-' + x.height + '.jpg';
                                     return <div className='card'>
                                         <div className='small-12 columns'>
-                                            <a href={'/api/v1/static/images/' + name} target='_blank'>{name}</a> added on <Time timestamp={x.added} type='ago' />
+                                            <a href={'/api/v1/static/images/' + name} target='_blank'>{name}</a> added <Time timestamp={x.added} type='ago' />
+                                            <Markdown markdown={x.description} />
                                         </div>
                                     </div>
                                 })}
