@@ -92,7 +92,7 @@ var AddAuthors = React.createClass({
     render () {
         var id = this.props.id;
         return (
-            <span>
+            <div>
                 {this.state.opened ? <span>
                     <div>
                         <strong>Authors</strong>
@@ -115,7 +115,7 @@ var AddAuthors = React.createClass({
                 </span> : <span className='edit-links'>{' '}
                     <a className='secondary' onClick={this.onOpen}>Edit Authors</a>
                 </span>}
-            </span>
+            </div>
         );
     }
 });

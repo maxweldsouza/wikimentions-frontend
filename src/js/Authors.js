@@ -6,7 +6,7 @@ var Authors = React.createClass({
         var authors = this.props.authors;
         var authorCount = authors.length;
         return (
-            <span>
+            <div>
                 {'by '}
                 {authors.map(function (x, i) {
                     var path = '/people/' + x.id + '/' + x.slug;
@@ -15,7 +15,7 @@ var Authors = React.createClass({
                     </a>;
                 })}
                 <AddAuthors id={this.props.id} authors={authors} type={this.props.type}/>
-            </span>
+            </div>
         );
     }
 });
