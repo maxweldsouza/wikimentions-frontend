@@ -45,7 +45,7 @@ var ImagesPage = React.createClass({
     render () {
         var nodata = <div className='card'>
             <div className='small-12 columns'>
-                No images have been uploaded
+                Nothing to show here
             </div>
         </div>;
         return (
