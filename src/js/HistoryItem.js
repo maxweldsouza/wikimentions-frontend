@@ -1,6 +1,7 @@
 var React = require('react');
 var Link = require('./Link');
 var Time = require('./Time');
+var Markdown = require('./Markdown');
 
 var HistoryCard = React.createClass({
     render () {
@@ -58,6 +59,11 @@ var HistoryCard = React.createClass({
                     type={this.props.entry.mentioned_in_type}>
                     {this.props.entry.mentioned_in_title}
                 </Link>
+            </span>;
+        } else if (this.props.entry && this.props.entrytype === 'image') {
+            var name = this.props.entry.md5 + '-' + this.props.entry.width + '-' + this.props.entry.height + '.jpg';
+            item = <span>
+                <a href={'/api/v1/static/images/' + name} target='_blank'>{name}</a> <Markdown markdown={this.props.entry.description} />
             </span>;
         }
         return (
