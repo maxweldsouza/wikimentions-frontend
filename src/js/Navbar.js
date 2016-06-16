@@ -4,9 +4,24 @@ var cookies = require('browser-cookies');
 var isNode = require('./isNode');
 var Xsrf = require('./Xsrf');
 var config = require('./config');
+var Modal = require('react-modal');
 
 var Navbar = React.createClass({
+    getInitialState: function() {
+        return {
+            modalIsOpen: false
+        };
+    },
+    onOpenModal () {
+        this.setState({
+            modalIsOpen: true
+        });
+    },
+    closeModal () {
+        this.setState({modalIsOpen: false});
+    },
     onSelectSearchResult (x) {
+        this.closeModal();
         var pagepath;
         if (x.type === 'video') {
             pagepath = '/videos/';
@@ -33,23 +48,34 @@ var Navbar = React.createClass({
         var user;
         if (loggedin) {
             user = <ul className='menu'>
-                <li><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
-                <li><a href={'/users/' + userid + '/' + username}>{username}</a></li>
+                <li className='hide-for-large'><span className='ion-search' onClick={this.onOpenModal}/></li>
+                <li className='show-for-large'><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
+                <li className='show-for-large'><a href={'/users/' + userid + '/' + username}>{username}</a></li>
             </ul>;
         } else {
             user = <ul className='menu'>
-                <li><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
+                <li className='hide-for-medium'><span className='ion-search' onClick={this.onOpenModal}/></li>
+                <li className='show-for-large'><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
             </ul>;
         }
         return (
             <div className='top-bar'>
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onRequestClose={this.closeModal}
+                    className='modal-content'
+                    overlayClassName='modal-overlay'>
+                    <h1>Search</h1>
+                    <Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search for a person book or video'}/>
+                    <button className='button' onClick={this.closeModal}>Close</button>
+                </Modal>
                 <div className='top-bar-left'>
                     <ul className='menu icon-top'>
                         <li className='menu-text'><a href='/'>{config.name}</a></li>
-                        <li className='show-for-large'><a href='/create'>Create Page</a></li>
+                        <li className=''><a href='/create'>Create Page</a></li>
                     </ul>
                 </div>
-                <div className='top-bar-right show-for-large'>
+                <div className='top-bar-right'>
                     {user}
                 </div>
             </div>
