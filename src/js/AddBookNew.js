@@ -79,7 +79,7 @@ var AddBookNew = React.createClass({
         return (
             <form method='post' action={'/api/v1/thing/' + this.props.id + '/books'}>
                 <Input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid} message={this.state.titleMessage}/>
-                <Input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText} />
+                <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText} />
                 <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </form>
         );
