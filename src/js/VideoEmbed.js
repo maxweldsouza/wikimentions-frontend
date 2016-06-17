@@ -10,6 +10,9 @@ var YoutubeEmbed = React.createClass({
         };
     },
     render () {
+        if (!this.props.embeddable || this.props.embeddable === 'false') {
+            return null;
+        }
         var embed;
         var parsed = parseUrl(this.props.url);
         if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
