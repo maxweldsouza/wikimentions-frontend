@@ -74,7 +74,7 @@ var ImagesPage = React.createClass({
                                 <div className='card small-12 columns'>
                                     <Restricted
                                         message='You need to be logged in to upload an image'>
-                                        Upload an image for this page. <button className='button small' onClick={this.onOpenModal}>Upload</button>
+                                        <a className='' onClick={this.onOpenModal}>Upload</a> an image for this page. 
                                         <Modal
                                             isOpen={this.state.modalIsOpen}
                                             onRequestClose={this.closeModal}
