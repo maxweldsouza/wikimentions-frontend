@@ -73,8 +73,8 @@ var DiscussPage = React.createClass({
                                         posted={x.created}
                                         />;
                                 })}
-                                <PreviousNext path={this.props.path} page={this.props.query.page}/>
                                 {nodata}
+                                <PreviousNext path={this.props.path} page={this.props.query.page}/>
                                 <DiscussReply id={id}/>
                             </div>
                         </div>
