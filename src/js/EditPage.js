@@ -11,6 +11,7 @@ var PageBar = require('./PageBar');
 var config = require('./config');
 var Snackbar = require('./Snackbar');
 var Restricted = require('./Restricted');
+var Input = require('./Input');
 
 var EditPage = React.createClass({
     statics: {
@@ -30,10 +31,14 @@ var EditPage = React.createClass({
         return {
             type: this.props.data.thing.type,
             title: this.props.data.thing.title,
+            titleValid: true,
+            titleMessage: '',
             description: this.props.data.thing.props.description,
             isbn: this.props.data.thing.props.isbn,
             isbn13: this.props.data.thing.props.isbn13,
             url: this.props.data.thing.props.url,
+            urlValid: true,
+            urlMessage: '',
             submiting: false
         };
     },
@@ -51,46 +56,52 @@ var EditPage = React.createClass({
         this.setState(temp);
     },
     validateForm () {
+        var valid = true;
         var message;
         if (!this.state.title) {
-            message = 'You need to provide a title';
+            this.setState({
+                titleValid: false,
+                titleMessage: 'Title cannot be empty'
+            });
+            valid = false;
         }
-        if (message) {
-            Snackbar({message: message});
-            return false;
+        if (this.state.type === 'video' && !this.state.url) {
+            this.setState({
+                urlValid: false,
+                urlMessage: 'Url cannot be empty'
+            });
+            valid = false;
         }
-        return true;
+        return valid;
     },
     onSubmit () {
         var id = Number(this.props.path.split('/')[1]);
-        if (!this.validateForm()) {
-            return;
-        }
-        this.setState({
-            submiting: true
-        });
-
-        requests
-        .post('/api/v1/thing/' + id)
-        .set('X-XSRFToken', cookies.get('_xsrf'))
-        .field('title', this.state.title)
-        .field('description', this.state.description)
-        .field('type', this.state.type)
-        .field('isbn', this.state.isbn)
-        .field('isbn13', this.state.isbn13)
-        .field('action', 'update')
-        .end((err, res) => {
+        if (this.validateForm()) {
             this.setState({
-                submiting: false
+                submiting: true
             });
-            if (err && err.status) {
-                Snackbar({message: res.body.message});
-            } else {
-                Snackbar({message: 'Changes saved'});
-                history.pushState(null, null, res.body.redirect);
-                Mentions.route(res.body.redirect);
-            }
-        });
+            requests
+            .post('/api/v1/thing/' + id)
+            .set('X-XSRFToken', cookies.get('_xsrf'))
+            .field('title', this.state.title)
+            .field('description', this.state.description)
+            .field('type', this.state.type)
+            .field('isbn', this.state.isbn)
+            .field('isbn13', this.state.isbn13)
+            .field('action', 'update')
+            .end((err, res) => {
+                this.setState({
+                    submiting: false
+                });
+                if (err && err.status) {
+                    Snackbar({message: res.body.message});
+                } else {
+                    Snackbar({message: 'Changes saved'});
+                    history.pushState(null, null, res.body.redirect);
+                    Mentions.route(res.body.redirect);
+                }
+            });
+        }
     },
     onOpenClick: function () {
         this.refs.dropzone.open();
@@ -125,12 +136,13 @@ var EditPage = React.createClass({
                                 />
                             <Restricted>
                                 <form action={'/api/v1/thing/' + id} method='post'>
-                                    <input
+                                    <Input
                                         type='text'
                                         name='title'
                                         placeholder='Title'
                                         value={this.state.title} onChange={this.onChangeText}
-                                        required/>
+                                        valid={this.state.titleValid}
+                                        message={this.state.titleMessage}/>
                                     <input
                                         type='text'
                                         name='description'
@@ -154,7 +166,8 @@ var EditPage = React.createClass({
                                         placeholder='ISBN-13'
                                         value={this.state.isbn13}
                                         onChange={this.onChangeText}/> : null}
-                                    {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
+                                    {this.state.type === 'video' ? <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid}
+                                    message={this.state.urlMessage}/> : null}
                                     <SubmitButton
                                         title='Save'
                                         submitting={this.state.submitting}
