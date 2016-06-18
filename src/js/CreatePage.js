@@ -10,6 +10,7 @@ var requests = require('superagent');
 var SubmitButton = require('./SubmitButton');
 var config = require('./config');
 var Restricted = require('./Restricted');
+var Input = require('./Input');
 
 var HomePage = React.createClass({
     statics: {
@@ -23,10 +24,14 @@ var HomePage = React.createClass({
         return {
             type: 'person',
             title: '',
+            titleValid: true,
+            titleMessage: '',
             description: '',
             isbn: '',
             isbn13: '',
             url: '',
+            urlValid: true,
+            urlMessage: '',
             submiting: false
         };
     },
@@ -44,48 +49,55 @@ var HomePage = React.createClass({
         this.setState(temp);
     },
     validateForm () {
+        var valid = true;
         var message;
         if (!this.state.title) {
-            message = 'You need to provide a title';
+            this.setState({
+                titleValid: false,
+                titleMessage: 'Title cannot be empty'
+            });
+            valid = false;
         }
-        if (message) {
-            Snackbar({message: message});
-            return false;
+        if (this.state.type === 'video' && !this.state.url) {
+            this.setState({
+                urlValid: false,
+                urlMessage: 'Url cannot be empty'
+            });
+            valid = false;
         }
-        return true;
+        return valid;
     },
     onSubmit () {
-        if (!this.validateForm()) {
-            return;
-        }
-        this.setState({
-            submiting: true
-        });
-        requests
-        .post('/api/v1/thing')
-        .type('form')
-        .send({
-            title: this.state.title,
-            description: this.state.description,
-            type: this.state.type,
-            isbn: this.state.isbn,
-            isbn13: this.state.isbn13,
-            url: this.state.url,
-            action: 'create',
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
+        if (this.validateForm()) {
             this.setState({
-                submiting: false
+                submiting: true
             });
-            if (err && err.status) {
-                Snackbar({message: res.body.message});
-            } else {
-                Snackbar({message: 'Page created'});
-                history.pushState(null, null, res.body.redirect);
-                Mentions.route(res.body.redirect);
-            }
-        });
+            requests
+            .post('/api/v1/thing')
+            .type('form')
+            .send({
+                title: this.state.title,
+                description: this.state.description,
+                type: this.state.type,
+                isbn: this.state.isbn,
+                isbn13: this.state.isbn13,
+                url: this.state.url,
+                action: 'create',
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end((err, res) => {
+                this.setState({
+                    submiting: false
+                });
+                if (err && err.status) {
+                    Snackbar({message: res.body.message});
+                } else {
+                    Snackbar({message: 'Page created'});
+                    history.pushState(null, null, res.body.redirect);
+                    Mentions.route(res.body.redirect);
+                }
+            });
+        }
     },
     render () {
         var options = [{name: 'Person', value: 'person'},
@@ -109,7 +121,8 @@ var HomePage = React.createClass({
                         <form action='/api/v1/thing' method='post'>
                             <h1 className='page-title'>Create Page</h1>
                             <Restricted>
-                                <input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} required/>
+                                <Input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid}
+                                message={this.state.titleMessage}/>
                                 <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
                                 <div className='row'>
                                     <div className='small-12 columns'>
@@ -117,10 +130,13 @@ var HomePage = React.createClass({
                                         <ButtonSelect
                                             name='type'
                                             options={options}
+                                            default={'person'}
                                             onChange={this.onChangeType}/>
                                         {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/> : null}
                                         {this.state.type === 'book' ? <input type='text' name='isbn13' placeholder='ISBN-13' value={this.state.isbn13} onChange={this.onChangeText}/> : null}
-                                        {this.state.type === 'video' ? <input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}/> : null}
+                                        {this.state.type === 'video' ? <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}
+                                        valid={this.state.urlValid}
+                                        message={this.state.urlMessage}/> : null}
                                     </div>
                                 </div>
                                 <div>
