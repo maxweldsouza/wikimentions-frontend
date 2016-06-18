@@ -48,7 +48,7 @@ var AddVideo = React.createClass({
         var id = this.props.id;
         return <div>
             <Select name='video_id' placeholder='Search for video' onSelectValue={this.onSelect}/>
-            <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+            <SubmitButton title='Add' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
         </div>;
     }
 });
