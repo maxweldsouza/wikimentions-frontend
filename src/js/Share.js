@@ -9,7 +9,7 @@ var Share = React.createClass({
     },
     render () {
         return (
-            <span>
+            <div>
                 <div className='button-group small'>
                     <a
                         href={'http://www.facebook.com/sharer/sharer.php?u=' + config.url + this.props.path + '&title=' + this.props.title}
@@ -24,7 +24,7 @@ var Share = React.createClass({
                         <span className='ion-social-twitter'/>  Tweet
                     </a>
                 </div>
-            </span>
+            </div>
         );
     }
 });
