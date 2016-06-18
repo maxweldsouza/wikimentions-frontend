@@ -103,9 +103,6 @@ var EditPage = React.createClass({
             });
         }
     },
-    onOpenClick: function () {
-        this.refs.dropzone.open();
-    },
     render () {
         var id = Number(this.props.path.split('/')[1]);
         var entry = this.props.data.thing;
