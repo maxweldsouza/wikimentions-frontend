@@ -133,6 +133,9 @@ var Select = React.createClass({
                                 </div>
                                 <div className='columns'>
                                     {entry.title}
+                                    <div className='select-option-type'>
+                                        {entry.type}
+                                    </div>
                                 </div>
                             </div>
                         </div>;

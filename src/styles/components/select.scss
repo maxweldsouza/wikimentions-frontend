@@ -5,27 +5,35 @@
 .select-options {
     background: $light-gray;
     border: $global-border;
+    box-shadow: 1px 2px 6px rgba(0,0,0,0.2);
+    margin-top: 2px;
     position: absolute;
     top: 100%;
     width: 100%;
     z-index: 1;
-    margin-top: 2px;
 }
 
 .select-option {
+    background: $white;
+    color: $primary-color;
+    font-size: 15px;
+    font-weight: bold;
     padding-bottom: 8px;
     padding-left: $global-margin;
     padding-right: $global-margin;
     padding-top: 8px;
-    background: $white;
-    font-size: 15px;
-    font-weight: bold;
-    color: $primary-color;
 
     &:hover {
         background: $light-gray;
         cursor: pointer;
     }
+}
+
+.select-option-type {
+    color: $secondary-color;
+    font-size: 13px;
+    font-weight: normal;
+    text-transform: capitalize;
 }
 
 .select-clear {
