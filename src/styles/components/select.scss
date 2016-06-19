@@ -9,12 +9,18 @@
     top: 100%;
     width: 100%;
     z-index: 1;
+    margin-top: 2px;
 }
 
 .select-option {
     padding-bottom: 8px;
+    padding-left: $global-margin;
+    padding-right: $global-margin;
     padding-top: 8px;
     background: $white;
+    font-size: 15px;
+    font-weight: bold;
+    color: $primary-color;
 
     &:hover {
         background: $light-gray;

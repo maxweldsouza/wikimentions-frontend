@@ -122,16 +122,18 @@ var Select = React.createClass({
                         }
                         return <div
                             key={entry.id}
-                            className='select-option row'
+                            className='select-option'
                             value={entry.id}
                             style={focused}
                             onClick={this.onSelectValue.bind(null, entry)}
                             >
-                            <div className='shrink columns'>
-                            {image}
-                            </div>
-                            <div className='columns'>
-                            {entry.title}
+                            <div className='row'>
+                                <div className='shrink columns'>
+                                    {image}
+                                </div>
+                                <div className='columns'>
+                                    {entry.title}
+                                </div>
                             </div>
                         </div>;
                     })}
