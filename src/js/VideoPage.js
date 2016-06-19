@@ -151,7 +151,7 @@ var ThingPage = React.createClass({
                                 <div>
                                     <VideoEmbed url={this.props.data.thing.props.url} embeddable={this.props.data.thing.props.embeddable}/>
                                 </div>
-                                <h1 className='page-title'><a href={this.props.data.thing.props.url} target='_blank'>{thing.title}<span className='ion-android-open'/></a></h1>
+                                <h1 className='page-title'><a href={this.props.data.thing.props.url} target='_blank'>{thing.title} <span className='ion-android-open'/></a></h1>
                                 <span className='thing-description'>
                                     {thing.description}
                                     {authors}
