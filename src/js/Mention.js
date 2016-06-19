@@ -98,13 +98,6 @@ var Mention = React.createClass({
                         <div className='small-12 columns'>
                             {this.props.quote}
                         </div>
-                        {secondary ? <div className='small-12 columns'>
-                            {inorby} <strong><Link
-                                className='secondary'
-                                id={secondary.id}
-                                slug={secondary.slug}
-                                type={secondary.type}>{secondary.title}</Link></strong>
-                        </div> : null}
                         <div className='small-12 columns'>
                             {main.type === 'person' ? <Link
                                 id={main.id}
@@ -139,6 +132,13 @@ var Mention = React.createClass({
                                 tab='mentionedby'>{'Mentioned By'}<span className="badge">{main.mentioned_by_count}</span>
                             </Link>
                         </div>
+                        {secondary ? <div className='small-12 columns'>
+                            {inorby} <strong><Link
+                                className='secondary'
+                                id={secondary.id}
+                                slug={secondary.slug}
+                                type={secondary.type}>{secondary.title}</Link></strong>
+                        </div> : null}
                     </div>
                 </div>
             </div>
