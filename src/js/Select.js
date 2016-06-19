@@ -113,12 +113,16 @@ var Select = React.createClass({
 
                         var image;
                         var imagedata = _.find(entry.images, function (x) {
-                            return x.width === 75 && x.height === 75;
+                            if (entry.type === 'person') {
+                                return x.width === 75 && x.height === 75;
+                            } else {
+                                return x.width === 150;
+                            }
                         });
                         if (imagedata) {
-                            image = <Image className='img-person' id={this.props.id} md5={imagedata.md5} width={75} height={75} displayWidth={50} displayHeight={50}/>;
+                            image = <Image className='img-person' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height} displayWidth={50} displayHeight={50}/>;
                         } else {
-                            image = <Placeholder style={{'height': 50, 'lineHeight': '50px', 'width': 50}}/>;
+                            image = <Placeholder style={{ height: 50, lineHeight: '50px', width: 50}}/>;
                         }
                         return <div
                             key={entry.id}
