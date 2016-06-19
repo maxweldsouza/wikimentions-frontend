@@ -1,6 +1,8 @@
 var React = require('react');
 var requests = require('superagent');
 var _ = require('underscore');
+var Image = require('./Image');
+var Placeholder = require('./Placeholder');
 
 var Select = React.createClass({
     getInitialState () {
@@ -105,17 +107,32 @@ var Select = React.createClass({
                     onKeyDown={this.handleKeys}
                     />
                 {this.state.options.length > 0 ? <div className='select-options'>
-                    {this.state.options.map((x, i) => {
+                    {this.state.options.map((entry, i) => {
                         var focused = i === this.state.focus;
                         focused = focused ? {'background': '#f3f3f3'} : {};
+
+                        var image;
+                        var imagedata = _.find(entry.images, function (x) {
+                            return x.width === 75 && x.height === 75;
+                        });
+                        if (imagedata) {
+                            image = <Image className='img-person' id={this.props.id} md5={imagedata.md5} width={75} height={75} displayWidth={50} displayHeight={50}/>;
+                        } else {
+                            image = <Placeholder style={{'height': 50, 'lineHeight': '50px', 'width': 50}}/>;
+                        }
                         return <div
-                            key={x.id}
-                            className='select-option'
-                            value={x.id}
+                            key={entry.id}
+                            className='select-option row'
+                            value={entry.id}
                             style={focused}
-                            onClick={this.onSelectValue.bind(null, x)}
+                            onClick={this.onSelectValue.bind(null, entry)}
                             >
-                            {x.title}
+                            <div className='shrink columns'>
+                            {image}
+                            </div>
+                            <div className='columns'>
+                            {entry.title}
+                            </div>
                         </div>;
                     })}
                 </div> : null}

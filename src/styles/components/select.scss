@@ -1,3 +1,7 @@
+.top-bar input {
+    width: 400px;
+}
+
 .select-options {
     background: $light-gray;
     border: $global-border;
@@ -9,7 +13,6 @@
 
 .select-option {
     padding-bottom: 8px;
-    padding-left: $global-margin;
     padding-top: 8px;
     background: $white;
 
