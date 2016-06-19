@@ -75,7 +75,13 @@ var Select = React.createClass({
         }
     },
     loadData (x) {
-        requests.get('/api/v1/autocomplete/' + x).end((err, res) => {
+        var typeQuery;
+        if (this.props.types) {
+            typeQuery = '?types=' + this.props.types.join(',');
+        } else {
+            typeQuery = '';
+        }
+        requests.get('/api/v1/autocomplete/' + x + typeQuery).end((err, res) => {
             this.setState({
                 options: res.body
             });

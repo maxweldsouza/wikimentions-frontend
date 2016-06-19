@@ -78,7 +78,8 @@ var AddMention = React.createClass({
                 {this.props.mentioned_by ? null : <Select
                     name='mentioned_by'
                     placeholder='Mentioned By (Person)'
-                    onSelectValue={this.onChangeMentionedBy}/>}
+                    onSelectValue={this.onChangeMentionedBy}
+                    type={['person']}/>}
                 {this.props.mentioned ? null : <Select
                     name='mentioned'
                     placeholder='Mentioned (Person or Book or Video)'
@@ -86,7 +87,8 @@ var AddMention = React.createClass({
                 {this.props.mentioned_in ? null : <Select
                     name='mentioned_in'
                     placeholder='Mentioned In (Book or Video)'
-                    onSelectValue={this.onChangeMentionedIn}/>}
+                    onSelectValue={this.onChangeMentionedIn}
+                    type={['book', 'video']}/>}
                 <input type='text' name='description' placeholder='Description' onChange={this.onChangeText}/>
                 <input type='text' name='references' placeholder='References' onChange={this.onChangeText}/>
                 <div className="button-group">
