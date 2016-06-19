@@ -73,7 +73,7 @@ var Select = React.createClass({
         }
     },
     loadData (x) {
-        requests.get('/api/v1/search/' + x).end((err, res) => {
+        requests.get('/api/v1/autocomplete/' + x).end((err, res) => {
             this.setState({
                 options: res.body
             });
