@@ -17,15 +17,21 @@
     color: $primary-color;
     font-size: 15px;
     font-weight: bold;
-    padding-bottom: 8px;
+    padding-bottom: 5px;
     padding-left: $global-margin;
     padding-right: $global-margin;
-    padding-top: 8px;
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
 
     &:hover {
         background: $light-gray;
         cursor: pointer;
     }
+}
+
+.select-option-image {
+    margin-right: 15px;
 }
 
 .select-option-type {
