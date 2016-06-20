@@ -65,9 +65,17 @@ var Navbar = React.createClass({
                     onRequestClose={this.closeModal}
                     className='modal-content'
                     overlayClassName='modal-overlay'>
-                    <h1>Search</h1>
-                    <Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search for a person book or video'}/>
-                    <button className='button' onClick={this.closeModal}>Close</button>
+                    <div className='row'>
+                        <div className='small-12 columns'>
+                            <h1>Search</h1>
+                        </div>
+                        <div className='small-12 columns'>
+                            <Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search for a person book or video'}/>
+                        </div>
+                        <div className='small-12 columns'>
+                            <button className='button' onClick={this.closeModal}>Close</button>
+                        </div>
+                    </div>
                 </Modal>
                 <div className='top-bar-left'>
                     <ul className='menu icon-top'>
