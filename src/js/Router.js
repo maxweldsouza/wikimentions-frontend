@@ -25,6 +25,7 @@ var ContributePage = require('./ContributePage');
 var RecentChangesPage = require('./RecentChangesPage');
 var RecentDiscussionsPage = require('./RecentDiscussionsPage');
 var SiteStatsPage = require('./SiteStatsPage');
+var SearchPage = require('./SearchPage');
 var MaintenancePage = require('./MaintenancePage');
 var queryString = require('query-string');
 
@@ -117,6 +118,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^site-stats$/.test(x)) {
         componentName = 'SiteStatsPage';
+        routeObj.maxAge = 0;
+    } else if (/^search$/.test(x)) {
+        componentName = 'SearchPage';
         routeObj.maxAge = 0;
     } else {
         throw { status: 404, message: 'Count not find what you were looking for'};

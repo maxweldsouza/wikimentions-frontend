@@ -103,6 +103,12 @@ var Select = React.createClass({
             options: []
         });
     },
+    onClickMoreResults () {
+        var path = '/search?q=' + this.state.searchText;
+        this.onClear();
+        history.pushState(null, null, path);
+        Mentions.route(path);
+    },
     render () {
         return (
             <div style={{position: 'relative'}} onKeyDown={this.handleKeys}>
@@ -157,8 +163,8 @@ var Select = React.createClass({
                             </div>
                         </div>;
                     })}
-                    {this.props.moreOptions ? <div className='select-option'>
-                        <a className='secondary' href={'/search?q=' + this.state.searchText}>More Results</a>
+                    {this.props.moreOptions ? <div className='select-option' onClick={this.onClickMoreResults}>
+                        <a className='secondary'>More Results</a>
                     </div> : null}
                 </div> : null}
             </div>

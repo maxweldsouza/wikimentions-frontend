@@ -26,6 +26,7 @@ var ContributePage = require('./ContributePage');
 var RecentChangesPage = require('./RecentChangesPage');
 var RecentDiscussionsPage = require('./RecentDiscussionsPage');
 var SiteStatsPage = require('./SiteStatsPage');
+var SearchPage = require('./SearchPage');
 var MaintenancePage = require('./MaintenancePage');
 
 var Menu = require('react-burger-menu').slide;
