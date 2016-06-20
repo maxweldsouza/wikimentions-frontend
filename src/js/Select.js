@@ -16,7 +16,8 @@ var Select = React.createClass({
             editable: true,
             searchText: this.props.initialLabel ? this.props.initialLabel : '',
             value: this.props.initialValue ? this.props.initialValue : '',
-            options: []
+            options: [],
+            loading: false
         };
     },
     onSearchTextChanged (e) {
@@ -44,7 +45,7 @@ var Select = React.createClass({
     },
     focusNext () {
         var next;
-        if (this.state.focus === this.state.options.length - 1) {
+        if (this.state.focus >= this.state.options.length - 1) {
             next = -1;
         } else {
             next = this.state.focus + 1;
@@ -55,7 +56,7 @@ var Select = React.createClass({
     },
     focusPrev () {
         var prev;
-        if (this.state.focus === -1) {
+        if (this.state.focus <= -1) {
             prev = this.state.options.length - 1;
         } else {
             prev = this.state.focus - 1;
@@ -84,6 +85,9 @@ var Select = React.createClass({
         }
     },
     loadData (x) {
+        this.setState({
+            loading: true
+        });
         var typeQuery;
         if (this.props.types) {
             typeQuery = '?types=' + this.props.types.join(',');
@@ -93,6 +97,7 @@ var Select = React.createClass({
         var mode = this.props.autocomplete ? 'autocomplete' : 'search';
         requests.get('/api/v1/' + mode + '/' + x + typeQuery).end((err, res) => {
             this.setState({
+                loading: false,
                 options: res.body
             });
         });
@@ -127,7 +132,7 @@ var Select = React.createClass({
                     value={this.state.value}
                     required={this.props.required}
                     />
-                {this.state.options.length > 0 ? <div className='select-options'>
+                {(this.state.options.length > 0) || (this.state.searchText.length > 1) ? <div className='select-options'>
                     {this.state.options.map((entry, i) => {
                         var focused = i === this.state.focus;
                         focused = focused ? {'background': '#f3f3f3'} : {};
