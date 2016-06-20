@@ -1,11 +1,18 @@
 var React = require('react');
+var queryString = require('query-string');
+var _ = require('underscore');
 
 var Pagination = React.createClass({
     pagePath (no) {
+        var query = this.props.query ? _.clone(this.props.query) : {};
         if (no === 1) {
-            return '/' + this.props.path;
+            if (query && query['page']) {
+                delete query['page'];
+            }
+        } else {
+            query['page'] = no;
         }
-        return '/' + this.props.path + '?page=' + no;
+        return '/' + this.props.path + '?' + queryString.stringify(query);
     },
     render () {
         var current = this.props.page ? Number(this.props.page) : 1;

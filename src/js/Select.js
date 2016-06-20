@@ -94,13 +94,21 @@ var Select = React.createClass({
         } else {
             typeQuery = '';
         }
-        var mode = this.props.autocomplete ? 'autocomplete' : 'search';
-        requests.get('/api/v1/' + mode + '/' + x + typeQuery).end((err, res) => {
-            this.setState({
-                loading: false,
-                options: res.body
+        if (this.props.autocomplete) {
+            requests.get('/api/v1/autocomplete/' + x + typeQuery).end((err, res) => {
+                this.setState({
+                    loading: false,
+                    options: res.body
+                });
             });
-        });
+        } else {
+            requests.get('/api/v1/search/' + x + typeQuery).end((err, res) => {
+                this.setState({
+                    loading: false,
+                    options: res.body.results
+                });
+            });
+        }
     },
     onClear () {
         this.setState({

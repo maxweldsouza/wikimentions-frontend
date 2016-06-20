@@ -10,6 +10,7 @@ var PageBar = require('./PageBar');
 var config = require('./config');
 var Select = require('./Select');
 var HomeItem = require('./HomeItem');
+var Pagination = require('./Pagination');
 
 var SearchPage = React.createClass({
     statics: {
@@ -22,27 +23,30 @@ var SearchPage = React.createClass({
     getInitialState () {
         return {
             searchText: this.props.query.q,
-            results: []
+            results: [],
+            numFound: 0
         };
     },
     componentDidMount () {
-        this.loadData(this.state.searchText);
+        this.loadData(this.state.searchText, 1);
     },
     componentWillReceiveProps (nextProps) {
         this.setState({
             searchText: nextProps.query.q
         });
-        this.loadData(nextProps.query.q);
+        this.loadData(nextProps.query.q, nextProps.query.page);
     },
     onSearchTextChanged (e) {
         this.setState({
             searchText: e.target.value
         });
     },
-    loadData (x) {
-        requests.get('/api/v1/search/' + x).end((err, res) => {
+    loadData (x, page) {
+        var pageQuery = page ? '?page=' + page : '';
+        requests.get('/api/v1/search/' + x + pageQuery).end((err, res) => {
             this.setState({
-                results: res.body
+                results: res.body.results,
+                numFound: res.body.numFound
             });
         });
     },
@@ -91,6 +95,10 @@ var SearchPage = React.createClass({
                                         mentioned_count={x.mentioned_count}
                                         mentioned_by_count={x.mentioned_by_count}/>;
                                 })}
+                                <Pagination
+                                    count={this.state.numFound} path={this.props.path}
+                                    page={this.props.query.page}
+                                    query={this.props.query}/>
                             </div>
                         </div>
                     </div>
