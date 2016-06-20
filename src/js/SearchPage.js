@@ -58,8 +58,8 @@ var SearchPage = React.createClass({
     },
     handleKeys (event) {
         if (event.key === 'Enter') {
-            var typeQuery = this.state.type !== 'any' ? this.state.type : '';
-            var path = '/search?q=' + this.state.searchText + '&type=' + typeQuery;
+            var typeQuery = this.state.type !== 'any' ? '&type=' + this.state.type : '';
+            var path = '/search?q=' + this.state.searchText + typeQuery;
             history.pushState(null, null, path);
             Mentions.route(path);
         }
@@ -70,7 +70,10 @@ var SearchPage = React.createClass({
         });
     },
     render () {
+        var page = this.props.query.page ? this.props.query.page : 1;
         var options = [{name: 'Any', value: 'any'}, {name: 'Person', value: 'person'},{name: 'Book', value: 'book'}, {name: 'Video', value: 'video'}];
+        var start = (page - 1) * this.state.results.length + 1;
+        var end = page * this.state.results.length;
         return (
             <span>
                 <Helmet
@@ -93,11 +96,18 @@ var SearchPage = React.createClass({
                             onChange={this.onSearchTextChanged}
                             onKeyDown={this.handleKeys}>
                         </input>
-                        <ButtonSelect
-                            name='type'
-                            options={options}
-                            default={'any'}
-                            onChange={this.onChangeType}/>
+                        <div className='row'>
+                            <div className='small-12 medium-6 columns'>
+                                <ButtonSelect
+                                    name='type'
+                                    options={options}
+                                    default={'any'}
+                                    onChange={this.onChangeType}/>
+                            </div>
+                            <div className='small-12 medium-6 columns text-right'>
+                                Showing results {start} to {end} of {this.state.numFound}
+                            </div>
+                        </div>
                         <div className='small-12 columns'>
                             <div className='card-container'>
                                 {this.state.results.map((x) => {
