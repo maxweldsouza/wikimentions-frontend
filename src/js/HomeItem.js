@@ -11,7 +11,7 @@ var HomeItem = React.createClass({
             return x.width === 75 && x.height === 75;
         });
         if (imagedata) {
-            image = <Image className='img-person' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height}/>;
+            image = <Image className='img' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height}/>;
         } else {
             image = <Placeholder style={{'width': 75, 'height': 75, 'border': 'none', 'lineHeight': '75px'}}/>;
         }

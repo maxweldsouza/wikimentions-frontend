@@ -126,7 +126,7 @@ var Select = React.createClass({
                             }
                         });
                         if (imagedata) {
-                            image = <Image className='img-person' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height} displayWidth={50} displayHeight={50}/>;
+                            image = <Image className='img' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height} displayWidth={50} displayHeight={50}/>;
                         } else {
                             image = <Placeholder style={{ height: 50, lineHeight: '50px', width: 50}}/>;
                         }
