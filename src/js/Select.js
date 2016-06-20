@@ -151,6 +151,9 @@ var Select = React.createClass({
                             </div>
                         </div>;
                     })}
+                    {this.props.moreOptions ? <div className='select-option'>
+                        <a className='secondary' href={'/search?q=' + this.state.searchText}>More Results</a>
+                    </div> : null}
                 </div> : null}
             </div>
         );

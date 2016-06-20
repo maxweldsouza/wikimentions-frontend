@@ -46,16 +46,24 @@ var Navbar = React.createClass({
         }
         loggedin = session ? true : false;
         var user;
+        var SearchBar = <Select
+        name='mentioned'
+        onSelectValue={this.onSelectSearchResult}
+        placeholder={'Search'}
+        moreOptions={true}/>;
+
         if (loggedin) {
             user = <ul className='menu'>
                 <li className='hide-for-large'><span className='ion-search' onClick={this.onOpenModal}/></li>
-                <li className='show-for-large'><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
+                <li className='show-for-large'>
+                    {SearchBar}
+                </li>
                 <li className='show-for-large'><a href={'/users/' + userid + '/' + username}>{username}</a></li>
             </ul>;
         } else {
             user = <ul className='menu'>
                 <li className='hide-for-medium'><span className='ion-search' onClick={this.onOpenModal}/></li>
-                <li className='show-for-large'><Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search'}/></li>
+                <li className='show-for-large'>{SearchBar}</li>
             </ul>;
         }
         return (
@@ -70,7 +78,7 @@ var Navbar = React.createClass({
                             <h1>Search</h1>
                         </div>
                         <div className='small-12 columns'>
-                            <Select name='mentioned' onSelectValue={this.onSelectSearchResult} placeholder={'Search for a person book or video'}/>
+                            {SearchBar}
                         </div>
                         <div className='small-12 columns'>
                             <button className='button' onClick={this.closeModal}>Close</button>
