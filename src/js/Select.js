@@ -5,6 +5,11 @@ var Image = require('./Image');
 var Placeholder = require('./Placeholder');
 
 var Select = React.createClass({
+    getDefaultProps: function() {
+        return {
+            autocomplete: true
+        };
+    },
     getInitialState () {
         return {
             focus: -1,
@@ -85,7 +90,8 @@ var Select = React.createClass({
         } else {
             typeQuery = '';
         }
-        requests.get('/api/v1/autocomplete/' + x + typeQuery).end((err, res) => {
+        var mode = this.props.autocomplete ? 'autocomplete' : 'search';
+        requests.get('/api/v1/' + mode + '/' + x + typeQuery).end((err, res) => {
             this.setState({
                 options: res.body
             });
