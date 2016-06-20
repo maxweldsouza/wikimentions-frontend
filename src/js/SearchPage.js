@@ -11,6 +11,8 @@ var config = require('./config');
 var Select = require('./Select');
 var HomeItem = require('./HomeItem');
 var Pagination = require('./Pagination');
+var ButtonSelect = require('./ButtonSelect');
+var queryString = require('query-string');
 
 var SearchPage = React.createClass({
     statics: {
@@ -24,7 +26,7 @@ var SearchPage = React.createClass({
         return {
             searchText: this.props.query.q,
             results: [],
-            numFound: 0
+            numFound: 0,
         };
     },
     componentDidMount () {
@@ -42,8 +44,12 @@ var SearchPage = React.createClass({
         });
     },
     loadData (x, page) {
-        var pageQuery = page ? '?page=' + page : '';
-        requests.get('/api/v1/search/' + x + pageQuery).end((err, res) => {
+        var query = {};
+        query['page'] = page ? page : 1;
+        if (this.state.type !== 'any') {
+            query['types'] = [this.state.type];
+        }
+        requests.get('/api/v1/search/' + x + '?' + queryString.stringify(query)).end((err, res) => {
             this.setState({
                 results: res.body.results,
                 numFound: res.body.numFound
@@ -52,12 +58,19 @@ var SearchPage = React.createClass({
     },
     handleKeys (event) {
         if (event.key === 'Enter') {
-            var path = '/search?q=' + this.state.searchText;
+            var typeQuery = this.state.type !== 'any' ? this.state.type : '';
+            var path = '/search?q=' + this.state.searchText + '&type=' + typeQuery;
             history.pushState(null, null, path);
             Mentions.route(path);
         }
     },
+    onChangeType (x) {
+        this.setState({
+            type: x
+        });
+    },
     render () {
+        var options = [{name: 'Any', value: 'any'}, {name: 'Person', value: 'person'},{name: 'Book', value: 'book'}, {name: 'Video', value: 'video'}];
         return (
             <span>
                 <Helmet
@@ -80,6 +93,11 @@ var SearchPage = React.createClass({
                             onChange={this.onSearchTextChanged}
                             onKeyDown={this.handleKeys}>
                         </input>
+                        <ButtonSelect
+                            name='type'
+                            options={options}
+                            default={'any'}
+                            onChange={this.onChangeType}/>
                         <div className='small-12 columns'>
                             <div className='card-container'>
                                 {this.state.results.map((x) => {
