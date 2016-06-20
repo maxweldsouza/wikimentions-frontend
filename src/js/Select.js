@@ -137,7 +137,7 @@ var Select = React.createClass({
                             style={focused}
                             onClick={this.onSelectValue.bind(null, entry)}
                             >
-                            <div className='row'>
+                            <div className='row align-middle'>
                                 <div className='shrink columns'>
                                     {image}
                                 </div>
