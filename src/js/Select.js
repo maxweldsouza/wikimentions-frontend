@@ -7,7 +7,7 @@ var Placeholder = require('./Placeholder');
 var Select = React.createClass({
     getInitialState () {
         return {
-            focus: 0,
+            focus: -1,
             editable: true,
             searchText: this.props.initialLabel ? this.props.initialLabel : '',
             value: this.props.initialValue ? this.props.initialValue : '',
@@ -40,7 +40,7 @@ var Select = React.createClass({
     focusNext () {
         var next;
         if (this.state.focus === this.state.options.length - 1) {
-            next = 0;
+            next = -1;
         } else {
             next = this.state.focus + 1;
         }
@@ -50,7 +50,7 @@ var Select = React.createClass({
     },
     focusPrev () {
         var prev;
-        if (this.state.focus === 0) {
+        if (this.state.focus === -1) {
             prev = this.state.options.length - 1;
         } else {
             prev = this.state.focus - 1;
@@ -63,12 +63,16 @@ var Select = React.createClass({
         switch (event.key) {
             case 'ArrowDown':
             this.focusNext();
+            event.preventDefault();
             break;
             case 'ArrowUp':
             this.focusPrev();
+            event.preventDefault();
             break;
             case 'Enter':
-            this.onSelectValue(this.state.options[this.state.focus]);
+            if (this.state.focus >= 0) {
+                this.onSelectValue(this.state.options[this.state.focus]);
+            }
             break;
             default:
             return;
@@ -110,7 +114,6 @@ var Select = React.createClass({
                     type='hidden'
                     value={this.state.value}
                     required={this.props.required}
-                    onKeyDown={this.handleKeys}
                     />
                 {this.state.options.length > 0 ? <div className='select-options'>
                     {this.state.options.map((entry, i) => {
@@ -137,15 +140,15 @@ var Select = React.createClass({
                             style={focused}
                             onClick={this.onSelectValue.bind(null, entry)}
                             >
-                                <div className='select-option-image'>
-                                    {image}
+                            <div className='select-option-image'>
+                                {image}
+                            </div>
+                            <div className=''>
+                                {entry.title}
+                                <div className='select-option-type'>
+                                    {entry.type}
                                 </div>
-                                <div className=''>
-                                    {entry.title}
-                                    <div className='select-option-type'>
-                                        {entry.type}
-                                    </div>
-                                </div>
+                            </div>
                         </div>;
                     })}
                 </div> : null}
