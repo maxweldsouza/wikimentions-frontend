@@ -75,6 +75,7 @@ var SearchPage = React.createClass({
         var options = [{name: 'Any', value: 'any'}, {name: 'Person', value: 'person'},{name: 'Book', value: 'book'}, {name: 'Video', value: 'video'}];
         var start = (page - 1) * this.state.results.length + 1;
         var end = page * this.state.results.length;
+        var type = this.props.query.type ? this.props.query.type : 'any';
         return (
             <span>
                 <Helmet
@@ -102,7 +103,7 @@ var SearchPage = React.createClass({
                                 <ButtonSelect
                                     name='type'
                                     options={options}
-                                    default={this.props.query.type}
+                                    default={type}
                                     onChange={this.onChangeType}/>
                             </div>
                             {this.state.results.length > 0 ? <div className='small-12 medium-6 columns text-right'>
