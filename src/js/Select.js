@@ -92,6 +92,9 @@ var Select = React.createClass({
             event.preventDefault();
             break;
             case 'Enter':
+            if (this.state.focus === -1 && !this.props.autocomplete) {
+                this.onClickMoreResults();
+            }
             if (this.state.focus >= 0) {
                 this.onSelectValue(this.state.options[this.state.focus]);
             }
