@@ -26,28 +26,28 @@ var SearchPage = React.createClass({
         return {
             searchText: this.props.query.q,
             results: [],
-            numFound: 0,
+            numFound: 0
         };
     },
     componentDidMount () {
-        this.loadData(this.state.searchText, 1);
+        this.loadData(this.state.searchText, 1, 'any');
     },
     componentWillReceiveProps (nextProps) {
         this.setState({
             searchText: nextProps.query.q
         });
-        this.loadData(nextProps.query.q, nextProps.query.page);
+        this.loadData(nextProps.query.q, nextProps.query.page, nextProps.query.type);
     },
     onSearchTextChanged (e) {
         this.setState({
             searchText: e.target.value
         });
     },
-    loadData (x, page) {
+    loadData (x, page, type) {
         var query = {};
         query['page'] = page ? page : 1;
-        if (this.state.type !== 'any') {
-            query['types'] = [this.state.type];
+        if (type !== 'any') {
+            query['types'] = [type];
         }
         requests.get('/api/v1/search/' + x + '?' + queryString.stringify(query)).end((err, res) => {
             this.setState({
@@ -56,18 +56,19 @@ var SearchPage = React.createClass({
             });
         });
     },
+    newSearch (type) {
+        var typeQuery = type !== 'any' ? '&type=' + type : '';
+        var path = '/search?q=' + this.state.searchText + typeQuery;
+        history.pushState(null, null, path);
+        Mentions.route(path);
+    },
     handleKeys (event) {
         if (event.key === 'Enter') {
-            var typeQuery = this.state.type !== 'any' ? '&type=' + this.state.type : '';
-            var path = '/search?q=' + this.state.searchText + typeQuery;
-            history.pushState(null, null, path);
-            Mentions.route(path);
+            this.newSearch(this.props.query.type);
         }
     },
-    onChangeType (x) {
-        this.setState({
-            type: x
-        });
+    onChangeType (type) {
+        this.newSearch(type);
     },
     render () {
         var page = this.props.query.page ? this.props.query.page : 1;
@@ -101,7 +102,7 @@ var SearchPage = React.createClass({
                                 <ButtonSelect
                                     name='type'
                                     options={options}
-                                    default={'any'}
+                                    default={this.props.query.type}
                                     onChange={this.onChangeType}/>
                             </div>
                             {this.state.results.length > 0 ? <div className='small-12 medium-6 columns text-right'>
