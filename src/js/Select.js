@@ -10,6 +10,12 @@ var Select = React.createClass({
             autocomplete: true
         };
     },
+    componentDidMount: function() {
+        window.addEventListener('click', this._hideDropdown, false);
+    },
+    componentWillUnmount: function() {
+        window.removeEventListener('click', this._hideDropdown, false);
+    },
     getInitialState () {
         return {
             focus: -1,
@@ -17,27 +23,37 @@ var Select = React.createClass({
             searchText: this.props.initialLabel ? this.props.initialLabel : '',
             value: this.props.initialValue ? this.props.initialValue : '',
             options: [],
-            loading: false
+            loading: false,
+            visible: false
         };
+    },
+    _hideDropdown () {
+        this.setState({
+            visible: false
+        });
     },
     onSearchTextChanged (e) {
         if (e.target.value.length > 1) {
             this.loadData(e.target.value);
-        } else {
             this.setState({
-                options: []
+                searchText: e.target.value,
+                visible: true
+            });
+        } else if (e.target.value.length >= 0) {
+            this.setState({
+                options: [],
+                searchText: e.target.value,
+                visible: false
             });
         }
-        this.setState({
-            searchText: e.target.value
-        });
     },
     onSelectValue (x) {
         this.setState({
             options: [],
             searchText: x.title,
             editable: false,
-            value: x.id
+            value: x.id,
+            visible: false
         });
         if (this.props.onSelectValue) {
             this.props.onSelectValue(x);
@@ -98,14 +114,16 @@ var Select = React.createClass({
             requests.get('/api/v1/autocomplete/' + x + typeQuery).end((err, res) => {
                 this.setState({
                     loading: false,
-                    options: res.body
+                    options: res.body,
+                    visible: true
                 });
             });
         } else {
             requests.get('/api/v1/search/' + x + typeQuery).end((err, res) => {
                 this.setState({
                     loading: false,
-                    options: res.body.results
+                    options: res.body.results,
+                    visible: true
                 });
             });
         }
@@ -113,7 +131,8 @@ var Select = React.createClass({
     onClear () {
         this.setState({
             searchText: '',
-            options: []
+            options: [],
+            visible: false
         });
     },
     onClickMoreResults () {
@@ -140,7 +159,7 @@ var Select = React.createClass({
                     value={this.state.value}
                     required={this.props.required}
                     />
-                {(this.state.options.length > 0) || (this.state.searchText.length > 1) ? <div className='select-options'>
+                {this.state.visible ? <div className='select-options'>
                     {this.state.options.map((entry, i) => {
                         var focused = i === this.state.focus;
                         focused = focused ? {'background': '#f3f3f3'} : {};
