@@ -104,12 +104,17 @@ var SearchPage = React.createClass({
                                     default={'any'}
                                     onChange={this.onChangeType}/>
                             </div>
-                            <div className='small-12 medium-6 columns text-right'>
+                            {this.state.results.length > 0 ? <div className='small-12 medium-6 columns text-right'>
                                 Showing results {start} to {end} of {this.state.numFound}
-                            </div>
+                            </div> : null}
                         </div>
                         <div className='small-12 columns'>
                             <div className='card-container'>
+                                {this.state.results.length === 0 ? <div className='card'>
+                                    <div className='small-12 columns'>
+                                        No results found.
+                                    </div>
+                                </div> : null}
                                 {this.state.results.map((x) => {
                                     return <HomeItem
                                         id={x.id}
