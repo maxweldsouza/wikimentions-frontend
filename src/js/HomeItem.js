@@ -20,7 +20,7 @@ var HomeItem = React.createClass({
             image = <Placeholder style={{'width': 75, 'height': 75, 'border': 'none', 'lineHeight': '75px'}}/>;
         }
         return (
-            <div className='card'>
+            <div className='card align-middle'>
                 <div className='shrink columns'>
                     {image}
                 </div>
