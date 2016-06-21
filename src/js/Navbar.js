@@ -50,7 +50,7 @@ var Navbar = React.createClass({
         name='mentioned'
         onSelectValue={this.onSelectSearchResult}
         placeholder={'Search'}
-        moreOptions={true}/>;
+        moreResults={true}/>;
 
         if (loggedin) {
             user = <ul className='menu'>

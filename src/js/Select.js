@@ -92,7 +92,7 @@ var Select = React.createClass({
             event.preventDefault();
             break;
             case 'Enter':
-            if (this.state.focus === -1 && !this.props.autocomplete) {
+            if (this.state.focus === -1 && this.props.moreResults) {
                 this.onClickMoreResults();
             }
             if (this.state.focus >= 0) {
@@ -198,7 +198,7 @@ var Select = React.createClass({
                             </div>
                         </div>;
                     })}
-                    {this.props.moreOptions ? <div className='select-option' onClick={this.onClickMoreResults}>
+                    {this.props.moreResults ? <div className='select-option' onClick={this.onClickMoreResults}>
                         <a className='secondary'>More Results</a>
                     </div> : null}
                 </div> : null}
