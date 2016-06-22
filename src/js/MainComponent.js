@@ -34,6 +34,7 @@ var store = require('store');
 var cookies = require('browser-cookies');
 var isNode = require('./isNode');
 var requests = require('superagent');
+var Snackbar = require('./Snackbar');
 
 var MainComponent = React.createClass({
     propTypes: {
@@ -64,11 +65,9 @@ var MainComponent = React.createClass({
         })
         .end((err, res) => {
             if (err && err.status) {
-                this.setState({
-                    error: true,
-                    message: res.body.message
-                });
+                Snackbar({message: 'Logout failed'});
             } else {
+                Snackbar({message: 'Logged out'});
                 history.pushState(null, null, '/');
                 Mentions.route('/');
             }

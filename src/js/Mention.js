@@ -5,6 +5,7 @@ var Link = require('./Link');
 var Image = require('./Image');
 var Placeholder = require('./Placeholder');
 var _ = require('underscore');
+var Snackbar = require('./Snackbar');
 
 var Mention = React.createClass({
     removeMention () {
@@ -21,11 +22,9 @@ var Mention = React.createClass({
                 submiting: false
             });
             if (err && err.status) {
-                this.setState({
-                    error: true,
-                    message: res.body.message
-                });
+                Snackbar({message: 'Delete failed'});
             } else {
+                Snackbar({message: 'Mention deleted'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
