@@ -7,7 +7,7 @@ var config = require('./config');
 var Modal = require('react-modal');
 
 var Navbar = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             modalIsOpen: false
         };

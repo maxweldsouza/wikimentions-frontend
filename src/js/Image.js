@@ -3,7 +3,7 @@ var Lazy = require('react-lazy-load');
 
 var Image = React.createClass({
     render () {
-        var displayWidth = this.props.displayWidth ? this.props.displayWidth  : this.props.width;
+        var displayWidth = this.props.displayWidth ? this.props.displayWidth : this.props.width;
         var displayHeight = displayWidth * this.props.height / this.props.width;
         return (
             <div style={{'width': displayWidth, 'height': displayHeight, maxWidth: '100%'}} >

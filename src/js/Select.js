@@ -5,16 +5,10 @@ var Image = require('./Image');
 var Placeholder = require('./Placeholder');
 
 var Select = React.createClass({
-    getDefaultProps: function() {
+    getDefaultProps () {
         return {
             autocomplete: true
         };
-    },
-    componentDidMount: function() {
-        window.addEventListener('click', this._hideDropdown, false);
-    },
-    componentWillUnmount: function() {
-        window.removeEventListener('click', this._hideDropdown, false);
     },
     getInitialState () {
         return {
@@ -26,6 +20,12 @@ var Select = React.createClass({
             loading: false,
             visible: false
         };
+    },
+    componentDidMount () {
+        window.addEventListener('click', this._hideDropdown, false);
+    },
+    componentWillUnmount () {
+        window.removeEventListener('click', this._hideDropdown, false);
     },
     _hideDropdown () {
         this.setState({
@@ -84,23 +84,23 @@ var Select = React.createClass({
     handleKeys (event) {
         switch (event.key) {
             case 'ArrowDown':
-            this.focusNext();
-            event.preventDefault();
-            break;
+                this.focusNext();
+                event.preventDefault();
+                break;
             case 'ArrowUp':
-            this.focusPrev();
-            event.preventDefault();
-            break;
+                this.focusPrev();
+                event.preventDefault();
+                break;
             case 'Enter':
-            if (this.state.focus === -1 && this.props.moreResults) {
-                this.onClickMoreResults();
-            }
-            if (this.state.focus >= 0) {
-                this.onSelectValue(this.state.options[this.state.focus]);
-            }
-            break;
+                if (this.state.focus === -1 && this.props.moreResults) {
+                    this.onClickMoreResults();
+                }
+                if (this.state.focus >= 0) {
+                    this.onSelectValue(this.state.options[this.state.focus]);
+                }
+                break;
             default:
-            return;
+                return;
         }
     },
     loadData (x) {

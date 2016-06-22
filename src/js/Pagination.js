@@ -6,11 +6,11 @@ var Pagination = React.createClass({
     pagePath (no) {
         var query = this.props.query ? _.clone(this.props.query) : {};
         if (no === 1) {
-            if (query && query['page']) {
-                delete query['page'];
+            if (query && query.page) {
+                delete query.page;
             }
         } else {
-            query['page'] = no;
+            query.page = no;
         }
         return '/' + this.props.path + '?' + queryString.stringify(query);
     },

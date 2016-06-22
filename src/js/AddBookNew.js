@@ -12,7 +12,7 @@ var AddBookNew = React.createClass({
             title: '',
             description: '',
             titleValid: true,
-            titleMessage: '',
+            titleMessage: ''
         };
     },
     onChangeText (e) {

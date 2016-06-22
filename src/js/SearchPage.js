@@ -45,9 +45,9 @@ var SearchPage = React.createClass({
     },
     loadData (x, page, type) {
         var query = {};
-        query['page'] = page ? page : 1;
+        query.page = page ? page : 1;
         if (type !== 'any') {
-            query['types'] = [type];
+            query.types = [type];
         }
         requests.get('/api/v1/search/' + x + '?' + queryString.stringify(query)).end((err, res) => {
             this.setState({
@@ -72,7 +72,7 @@ var SearchPage = React.createClass({
     },
     render () {
         var page = this.props.query.page ? this.props.query.page : 1;
-        var options = [{name: 'Any', value: 'any'}, {name: 'Person', value: 'person'},{name: 'Book', value: 'book'}, {name: 'Video', value: 'video'}];
+        var options = [{name: 'Any', value: 'any'}, {name: 'Person', value: 'person'}, {name: 'Book', value: 'book'}, {name: 'Video', value: 'video'}];
         var start = (page - 1) * this.state.results.length + 1;
         var end = page * this.state.results.length;
         var type = this.props.query.type ? this.props.query.type : 'any';

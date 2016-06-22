@@ -39,7 +39,7 @@ var HistoryCard = React.createClass({
                 set {this.props.entry.key} to {this.props.entry.value} for <Link
                     id={this.props.entry.id}
                     slug={this.props.entry.slug}
-                    type={this.props.entry.type}          >{this.props.entry.title}</Link>
+                    type={this.props.entry.type}>{this.props.entry.title}</Link>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'mention') {
             item = <span>

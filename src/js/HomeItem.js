@@ -10,9 +10,8 @@ var HomeItem = React.createClass({
         var imagedata = _.find(this.props.images, (x) => {
             if (this.props.type === 'person') {
                 return x.width === 75 && x.height === 75;
-            } else {
-                return x.width === 150;
             }
+            return x.width === 150;
         });
         if (imagedata) {
             image = <Image className='img' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height} displayWidth={75}/>;

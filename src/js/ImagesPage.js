@@ -29,7 +29,7 @@ var ImagesPage = React.createClass({
             };
         }
     },
-    getInitialState: function() {
+    getInitialState () {
         return {
             modalIsOpen: false
         };
@@ -63,7 +63,7 @@ var ImagesPage = React.createClass({
                 <Navbar/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>{'Images - '  + this.props.data.images.title}</h1>
+                        <h1 className='page-title'>{'Images - ' + this.props.data.images.title}</h1>
                         <PageBar
                             id={this.props.data.images.id}
                             slug={this.props.data.images.slug}
@@ -74,7 +74,8 @@ var ImagesPage = React.createClass({
                                 <div className='card small-12 columns'>
                                     <Restricted
                                         message='You need to be logged in to upload an image'>
-                                        <a className='' onClick={this.onOpenModal}>Upload</a> an image for this page. 
+                                        <a
+                                            className='' onClick={this.onOpenModal}>Upload</a> an image for this page.
                                         <Modal
                                             isOpen={this.state.modalIsOpen}
                                             onRequestClose={this.closeModal}
@@ -94,7 +95,7 @@ var ImagesPage = React.createClass({
                                             <a href={'/api/v1/static/images/' + name} target='_blank'>{name}</a> added <Time timestamp={x.added} type='ago' />
                                             <Markdown markdown={x.description} />
                                         </div>
-                                    </div>
+                                    </div>;
                                 })}
                                 <PreviousNext path={this.props.path} page={this.props.query.page}/>
                             </div>
