@@ -18,6 +18,7 @@ var Select = React.createClass({
             value: this.props.initialValue ? this.props.initialValue : '',
             options: [],
             loading: false,
+            error: false,
             visible: false
         };
     },
@@ -115,19 +116,37 @@ var Select = React.createClass({
         }
         if (this.props.autocomplete) {
             requests.get('/api/v1/autocomplete/' + x + typeQuery).end((err, res) => {
-                this.setState({
-                    loading: false,
-                    options: res.body,
-                    visible: true
-                });
+                if (err && err.status) {
+                    this.setState({
+                        loading: false,
+                        options: [],
+                        visible: true,
+                        error: true
+                    });
+                } else {
+                    this.setState({
+                        loading: false,
+                        options: res.body,
+                        visible: true
+                    });
+                }
             });
         } else {
             requests.get('/api/v1/search/' + x + typeQuery).end((err, res) => {
-                this.setState({
-                    loading: false,
-                    options: res.body.results,
-                    visible: true
-                });
+                if (err && err.status) {
+                    this.setState({
+                        loading: false,
+                        options: [],
+                        visible: true,
+                        error: true
+                    });
+                } else {
+                    this.setState({
+                        loading: false,
+                        options: res.body.results,
+                        visible: true
+                    });
+                }
             });
         }
     },
@@ -198,6 +217,9 @@ var Select = React.createClass({
                             </div>
                         </div>;
                     })}
+                    {this.state.error ? <div className='select-option'>
+                        Search failed
+                    </div> : null}
                     {this.props.moreResults ? <div className='select-option' onClick={this.onClickMoreResults}>
                         <a className='secondary'>More Results</a>
                     </div> : null}
