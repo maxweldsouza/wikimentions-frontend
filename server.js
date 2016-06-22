@@ -14,9 +14,6 @@ var moment = require('moment');
 var Memcached = require('memcached');
 var md5 = require('md5');
 
-var Log = require('log')
-  , log = new Log('info', fs.createWriteStream('googlebot.log', {flags: 'a'}));
-
 var TIMESTAMP_FORMAT = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
 
 global.localStorage = require('localStorage');
@@ -24,7 +21,6 @@ var production = process.env.NODE_ENV === 'production';
 
 var memcached = new Memcached('127.0.0.1:11211');
 var TEN_DAYS_IN_SECS = 864000; // 10 days
-
 
 var plugins = [
     // react
