@@ -35,20 +35,6 @@ var HomePage = React.createClass({
             newmentions: this.props.data.new
         };
     },
-    loadData (pageno) {
-        // requests.get('/api/v1/new/10/' + pageno).end((err, res) => {
-        //     this.setState({
-        //         newmentions: res.body,
-        //         pageno: pageno
-        //     });
-        // });
-    },
-    onPrevPage () {
-        this.loadData(this.state.pageno - 1);
-    },
-    onNextPage () {
-        this.loadData(this.state.pageno + 1);
-    },
     render () {
         var mentions = [];// this.state.newmentions;
         var stats = this.props.data.stats;
