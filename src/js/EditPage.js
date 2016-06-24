@@ -80,15 +80,23 @@ var EditPage = React.createClass({
             this.setState({
                 submiting: true
             });
+            var data = {
+                title: this.state.title,
+                description: this.state.description,
+                type: this.state.type,
+                action: 'update',
+                _xsrf: cookies.get('_xsrf')
+            };
+            if (this.state.type === 'book') {
+                data.isbn = this.state.isbn;
+                data.isbn13 = this.state.isbn13;
+            } else if (this.state.type === 'video') {
+                data.url = this.state.url;
+            }
             requests
             .post('/api/v1/thing/' + id)
-            .set('X-XSRFToken', cookies.get('_xsrf'))
-            .field('title', this.state.title)
-            .field('description', this.state.description)
-            .field('type', this.state.type)
-            .field('isbn', this.state.isbn)
-            .field('isbn13', this.state.isbn13)
-            .field('action', 'update')
+            .type('form')
+            .send(data)
             .end((err, res) => {
                 this.setState({
                     submiting: false
@@ -109,7 +117,7 @@ var EditPage = React.createClass({
         var options = [{name: 'Person', value: 'person'},
             {name: 'Book', value: 'book'},
             {name: 'Video', value: 'video'}];
-
+        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to edit a page.</span>;
         return (
             <span>
                 <Helmet
@@ -131,7 +139,7 @@ var EditPage = React.createClass({
                                 slug={entry.slug}
                                 type={entry.type}
                                 />
-                            <Restricted>
+                            <Restricted message={loggedOutMessage}>
                                 <form action={'/api/v1/thing/' + id} method='post'>
                                     <Input
                                         type='text'

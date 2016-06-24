@@ -70,6 +70,9 @@ var HomePage = React.createClass({
                                         mentioned_count={x.mentioned_count}
                                         mentioned_by_count={x.mentioned_by_count}/>;
                                 })}
+                                <div className='card columns'>
+                                    This list is randomly generated.
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -58,10 +58,11 @@ var DiscussReply = React.createClass({
         });
     },
     render () {
+        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to post a message.</span>;
         return (
             <div className='card'>
                 <div className='small-12 columns'>
-                <Restricted>
+                <Restricted message={loggedOutMessage}>
                     <textarea type='text' name='content' placeholder='Write your post  here (Markdown is supported)' value={this.state.content} onChange={this.onChangeText} rows='5'></textarea>
                     <SubmitButton title='Submit' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                     </Restricted>

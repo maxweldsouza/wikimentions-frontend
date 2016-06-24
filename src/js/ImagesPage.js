@@ -48,6 +48,7 @@ var ImagesPage = React.createClass({
                 Nothing to show here
             </div>
         </div>;
+        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to upload images.</span>;
         return (
             <span>
                 <Helmet
@@ -73,7 +74,7 @@ var ImagesPage = React.createClass({
                             <div className='card-container'>
                                 <div className='card small-12 columns'>
                                     <Restricted
-                                        message='You need to be logged in to upload an image'>
+                                        message={loggedOutMessage}>
                                         <a
                                             className='' onClick={this.onOpenModal}>Upload</a> an image for this page.
                                         <Modal

@@ -17,8 +17,9 @@ var AddBook = React.createClass({
     },
     render () {
         var options = [{ name: 'Existing', value: 'Existing' }, { name: 'New', value: 'New' }];
+        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to add a Book.</span>;
         return (
-            <Restricted>
+            <Restricted message={loggedOutMessage}>
                 <div>
                     Add a book by this author
                     <ButtonSelect

@@ -5,12 +5,15 @@ var Markdown = require('./Markdown');
 var requests = require('superagent');
 var cookies = require('browser-cookies');
 var Snackbar = require('./Snackbar');
+var Input = require('./Input');
 
 var ImageUpload = React.createClass({
     getInitialState () {
         return {
             scale: 1,
             imageDescription: '',
+            descriptionValid: true,
+            descriptionMessage: '',
             submiting: false
         };
     },
@@ -25,39 +28,49 @@ var ImageUpload = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
-    uploadImage () {
+    validateForm () {
+        var valid = true;
+        var message;
         if (!this.state.imageDescription) {
-            Snackbar({message: 'Description missing'});
-            return;
-        }
-        var image = this.refs.editor.getImageScaledToCanvas().toDataURL('image/jpg');
-        console.log('image', image);
-        if (!image) {
-            Snackbar({message: 'Image missing'});
-            return;
-        }
-
-        this.setState({
-            submiting: true
-        });
-        requests
-        .post('/api/v1/images/' + this.props.id)
-        .set('X-XSRFToken', cookies.get('_xsrf'))
-        .field('action', 'add')
-        .field('imageDescription', this.state.imageDescription)
-        .field('image', image)
-        .end((err, res) => {
             this.setState({
-                submiting: false
+                descriptionValid: false,
+                descriptionMessage: 'Description cannot be empty'
             });
-            if (err && err.status) {
-                Snackbar({message: res.body.message});
-            } else {
-                Snackbar({message: 'Image uploaded'});
-                history.pushState(null, null, res.body.redirect);
-                Mentions.route(res.body.redirect);
+            valid = false;
+        }
+        return valid;
+    },
+    uploadImage () {
+        if (this.validateForm()) {
+            var image = this.refs.editor.getImageScaledToCanvas().toDataURL('image/jpg');
+            console.log('image', image);
+            if (!image) {
+                Snackbar({message: 'Image missing'});
+                return;
             }
-        });
+
+            this.setState({
+                submiting: true
+            });
+            requests
+            .post('/api/v1/images/' + this.props.id)
+            .set('X-XSRFToken', cookies.get('_xsrf'))
+            .field('action', 'add')
+            .field('imageDescription', this.state.imageDescription)
+            .field('image', image)
+            .end((err, res) => {
+                this.setState({
+                    submiting: false
+                });
+                if (err && err.status) {
+                    Snackbar({message: res.body.message});
+                } else {
+                    Snackbar({message: 'Image uploaded'});
+                    history.pushState(null, null, res.body.redirect);
+                    Mentions.route(res.body.redirect);
+                }
+            });
+        }
     },
     render () {
         var imageMessage;
@@ -89,12 +102,15 @@ var ImageUpload = React.createClass({
                     defaultValue={1}
                     onChange={this.handleScale}
                     tipFormatter={null}/>
-                <textarea
+                <Input
+                    textarea={true}
                     type='text'
                     name='imageDescription'
                     placeholder='Add a description for the image, including copyright information, a link to the original source etc.'
                     value={this.state.imageDescription}
                     onChange={this.onChangeText}
+                    valid={this.state.descriptionValid}
+                    message={this.state.descriptionMessage}
                     rows={3}/>
                 {this.state.imageDescription ? <Markdown markdown={this.state.imageDescription} /> : null}
                 <div className='button-group'>

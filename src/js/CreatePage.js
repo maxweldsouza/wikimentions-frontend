@@ -72,19 +72,23 @@ var HomePage = React.createClass({
             this.setState({
                 submiting: true
             });
-            requests
-            .post('/api/v1/thing')
-            .type('form')
-            .send({
+            var data = {
                 title: this.state.title,
                 description: this.state.description,
                 type: this.state.type,
-                isbn: this.state.isbn,
-                isbn13: this.state.isbn13,
-                url: this.state.url,
                 action: 'create',
                 _xsrf: cookies.get('_xsrf')
-            })
+            };
+            if (this.state.type === 'book') {
+                data.isbn = this.state.isbn;
+                data.isbn13 = this.state.isbn13;
+            } else if (this.state.type === 'video') {
+                data.url = this.state.url;
+            }
+            requests
+            .post('/api/v1/thing')
+            .type('form')
+            .send(data)
             .end((err, res) => {
                 this.setState({
                     submiting: false
@@ -103,6 +107,7 @@ var HomePage = React.createClass({
         var options = [{name: 'Person', value: 'person'},
             {name: 'Book', value: 'book'},
             {name: 'Video', value: 'video'}];
+        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to create a page.</span>;
         return (
             <span>
                 <Helmet
@@ -120,7 +125,7 @@ var HomePage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <form action='/api/v1/thing' method='post'>
                             <h1 className='page-title'>Create Page</h1>
-                            <Restricted>
+                            <Restricted message={loggedOutMessage}>
                                 <Input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid}
                                 message={this.state.titleMessage}/>
                                 <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
