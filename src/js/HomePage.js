@@ -11,6 +11,7 @@ var ButtonSelect = require('./ButtonSelect');
 var config = require('./config');
 var Snackbar = require('./Snackbar');
 var HomeItem = require('./HomeItem');
+var SubmitButton = require('./SubmitButton');
 
 var HomePage = React.createClass({
     statics: {
@@ -55,6 +56,7 @@ var HomePage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h2>People</h2>
+                        <SubmitButton title={'Submit'} submitting={true}></SubmitButton>
                         <div className='small-12 columns'>
                             <div className='card-container'>
                                 {this.props.data.home.map((x) => {
