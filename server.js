@@ -176,6 +176,7 @@ app.use(function(err, req, res, next) {
         var message;
         var content;
         var status = err.status || 500;
+        res.status(status);
         if (err.status === 404) {
             message = 'We can\'t find what you\'re looking for';
             res.send(notFoundCompiled({
@@ -191,7 +192,6 @@ app.use(function(err, req, res, next) {
                 content: message
             }));
         }
-        res.status(status);
     }
 });
 
