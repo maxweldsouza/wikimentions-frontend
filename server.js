@@ -87,9 +87,11 @@ app.head('/', function (req, res) {
 
 var indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
 var notFoundHtml = readFullFile(path.join(__dirname, sourceDir, '404.html'));
+var errorHtml = readFullFile(path.join(__dirname, sourceDir, '500.html'));
 var MainComponent = require(path.join(__dirname, sourceDir, 'js', 'MainComponent'));
 var compiledTemplate = _.template(indexHtml);
 var notFoundCompiled = _.template(notFoundHtml);
+var errorCompiled = _.template(errorHtml);
 
 var isNotModified = function (ifModifiedSince, lastModified) {
     if (ifModifiedSince && lastModified) {
@@ -176,14 +178,18 @@ app.use(function(err, req, res, next) {
         var status = err.status || 500;
         if (err.status === 404) {
             message = 'We can\'t find what you\'re looking for';
+            res.send(notFoundCompiled({
+                title: message,
+                content: message
+            }));
         } else {
+            res.send(errorCompiled({
+                title: message,
+                content: message
+            }));
             message = 'Internal Error';
         }
         res.status(status);
-        res.send(notFoundCompiled({
-            title: message,
-            content: message
-        }));
     }
 });
 
