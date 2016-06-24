@@ -179,15 +179,17 @@ app.use(function(err, req, res, next) {
         if (err.status === 404) {
             message = 'We can\'t find what you\'re looking for';
             res.send(notFoundCompiled({
+                status: status,
                 title: message,
                 content: message
             }));
         } else {
+            message = 'We faced an internal error. Try again later.';
             res.send(errorCompiled({
+                status: status,
                 title: message,
                 content: message
             }));
-            message = 'Internal Error';
         }
         res.status(status);
     }
