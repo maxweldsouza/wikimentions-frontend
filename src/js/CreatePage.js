@@ -11,6 +11,7 @@ var SubmitButton = require('./SubmitButton');
 var config = require('./config');
 var Restricted = require('./Restricted');
 var Input = require('./Input');
+var LoginModal = require('./LoginModal');
 
 var HomePage = React.createClass({
     statics: {
@@ -107,7 +108,7 @@ var HomePage = React.createClass({
         var options = [{name: 'Person', value: 'person'},
             {name: 'Book', value: 'book'},
             {name: 'Video', value: 'video'}];
-        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to create a page.</span>;
+        var loggedOutMessage = <span>You need to <LoginModal/> to create a page.</span>;
         return (
             <span>
                 <Helmet

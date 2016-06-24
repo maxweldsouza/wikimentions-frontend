@@ -5,6 +5,7 @@ var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 var Restricted = require('./Restricted');
+var LoginModal = require('./LoginModal');
 
 var DiscussReply = React.createClass({
     getInitialState () {
@@ -58,7 +59,7 @@ var DiscussReply = React.createClass({
         });
     },
     render () {
-        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to post a message.</span>;
+        var loggedOutMessage = <span>You need to <LoginModal/> to post a message.</span>;
         return (
             <div className='card'>
                 <div className='small-12 columns'>

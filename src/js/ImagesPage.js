@@ -12,6 +12,7 @@ var Modal = require('react-modal');
 var ImageUpload = require('./ImageUpload');
 var Markdown = require('./Markdown');
 var Restricted = require('./Restricted');
+var LoginModal = require('./LoginModal');
 
 var ImagesPage = React.createClass({
     statics: {
@@ -48,7 +49,7 @@ var ImagesPage = React.createClass({
                 Nothing to show here
             </div>
         </div>;
-        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to upload images.</span>;
+        var loggedOutMessage = <span>You need to <LoginModal/> to upload images.</span>;
         return (
             <span>
                 <Helmet

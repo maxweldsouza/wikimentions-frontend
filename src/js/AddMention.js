@@ -7,6 +7,7 @@ var cookies = require('browser-cookies');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var Restricted = require('./Restricted');
+var LoginModal = require('./LoginModal');
 
 var AddMention = React.createClass({
     getInitialState () {
@@ -73,7 +74,7 @@ var AddMention = React.createClass({
     },
     render () {
         var id = this.props.id;
-        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to add a Mention.</span>;
+        var loggedOutMessage = <span>You need to <LoginModal/> to add a Mention.</span>;
         return <div className='small-12 columns'>
             <Restricted message={loggedOutMessage}>
                 {this.props.mentioned_by ? null : <Select

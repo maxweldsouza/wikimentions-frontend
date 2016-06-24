@@ -12,6 +12,7 @@ var config = require('./config');
 var Snackbar = require('./Snackbar');
 var Restricted = require('./Restricted');
 var Input = require('./Input');
+var LoginModal = require('./LoginModal');
 
 var EditPage = React.createClass({
     statics: {
@@ -117,7 +118,7 @@ var EditPage = React.createClass({
         var options = [{name: 'Person', value: 'person'},
             {name: 'Book', value: 'book'},
             {name: 'Video', value: 'video'}];
-        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to edit a page.</span>;
+        var loggedOutMessage = <span>You need to <LoginModal/> to edit a page.</span>;
         return (
             <span>
                 <Helmet

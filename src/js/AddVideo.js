@@ -3,6 +3,7 @@ var ButtonSelect = require('./ButtonSelect');
 var AddVideoNew = require('./AddVideoNew');
 var AddVideoExisting = require('./AddVideoExisting');
 var Restricted = require('./Restricted');
+var LoginModal = require('./LoginModal');
 
 var AddVideo = React.createClass({
     getInitialState () {
@@ -17,7 +18,7 @@ var AddVideo = React.createClass({
     },
     render () {
         var options = [{ name: 'Existing', value: 'Existing' }, { name: 'New', value: 'New' }];
-        var loggedOutMessage = <span>You need to <a href='/login'>Log In</a> to add a Video.</span>;
+        var loggedOutMessage = <span>You need to <LoginModal/> to add a Video.</span>;
         return (
             <Restricted message={loggedOutMessage}>
                 <div>
