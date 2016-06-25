@@ -144,7 +144,10 @@ var ThingPage = React.createClass({
                         {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
-                <Navbar/>
+                <Navbar
+                    loggedin={this.props.loggedin}
+                    username={this.props.username}
+                    userid={this.props.userid}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 columns'>
                         <div className='row align-center'>

@@ -5,9 +5,7 @@ var Navbar = require('./Navbar');
 var _ = require('underscore');
 var config = require('./config');
 var HistoryItem = require('./HistoryItem');
-var cookies = require('browser-cookies');
 var Time = require('./Time');
-var isNode = require('./isNode');
 var requests = require('superagent');
 var Restricted = require('./Restricted');
 var EditProfile = require('./EditProfile');
@@ -37,12 +35,8 @@ var ProfilePage = React.createClass({
         }
     },
     render () {
-        var cookieUserId, self;
-        if (isNode.isBrowser()) {
-            cookieUserId = Number(cookies.get('userid'));
-        }
         var [dummy, id, name, selectedTab] = this.props.path.split('/');
-        self = cookieUserId === Number(id);
+        self = this.props.userid === Number(id);
 
         selectedTab = selectedTab ? selectedTab : 'stats';
         var user = this.props.data.user;
@@ -106,7 +100,10 @@ var ProfilePage = React.createClass({
                         {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
-                <Navbar/>
+                <Navbar
+                    loggedin={this.props.loggedin}
+                    username={this.props.username}
+                    userid={this.props.userid}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <div className='row'>

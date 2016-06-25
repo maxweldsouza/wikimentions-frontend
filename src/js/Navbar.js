@@ -1,7 +1,5 @@
 var React = require('react');
 var Select = require('./Select');
-var cookies = require('browser-cookies');
-var isNode = require('./isNode');
 var Xsrf = require('./Xsrf');
 var config = require('./config');
 var Modal = require('react-modal');
@@ -38,19 +36,16 @@ var Navbar = React.createClass({
         Mentions.route(path);
     },
     render () {
-        var session, username, userid, loggedin;
-        if (isNode.isBrowser()) {
-            session = cookies.get('mentions');
-            username = cookies.get('username');
-            userid = cookies.get('userid');
-        }
-        loggedin = session ? true : false;
         var user;
         var SearchBar = <Select
-        name='mentioned'
-        onSelectValue={this.onSelectSearchResult}
-        placeholder={'Search'}
-        moreResults={true}/>;
+            name='mentioned'
+            onSelectValue={this.onSelectSearchResult}
+            placeholder={'Search'}
+            moreResults={true}/>;
+
+        var userid = this.props.userid;
+        var username = this.props.username;
+        var loggedin = this.props.loggedin;
 
         if (loggedin) {
             user = <ul className='menu'>

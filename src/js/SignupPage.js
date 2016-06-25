@@ -31,7 +31,10 @@ var Signup = React.createClass({
                         {'rel': 'canonical', 'href': ''}
                     ]}
                     />
-                <Navbar/>
+                <Navbar
+                    loggedin={this.props.loggedin}
+                    username={this.props.username}
+                    userid={this.props.userid}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-6 columns'>
                         <h1>Sign Up</h1>

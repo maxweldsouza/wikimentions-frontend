@@ -120,7 +120,10 @@ var HomePage = React.createClass({
                         {'rel': 'canonical', 'href': config.url + this.props.path}
                     ]}
                     />
-                <Navbar/>
+                <Navbar
+                    loggedin={this.props.loggedin}
+                    username={this.props.username}
+                    userid={this.props.userid}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <form action='/api/v1/thing' method='post'>

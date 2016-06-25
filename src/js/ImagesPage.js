@@ -63,7 +63,10 @@ var ImagesPage = React.createClass({
                         {'rel': 'canonical', 'href': config.url}
                     ]}
                     />
-                <Navbar/>
+                <Navbar
+                    loggedin={this.props.loggedin}
+                    username={this.props.username}
+                    userid={this.props.userid}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>{'Images - ' + this.props.data.images.title}</h1>

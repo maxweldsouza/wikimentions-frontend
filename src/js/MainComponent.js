@@ -76,11 +76,13 @@ var MainComponent = React.createClass({
     },
     render () {
         var Component = require('./' + this.props.component);
-        var loggedin = false;
+        var session, username, userid, loggedin;
         if (isNode.isBrowser()) {
-            var session = cookies.get('mentions');
-            loggedin = session ? true : false;
+            session = cookies.get('mentions');
+            username = cookies.get('username');
+            userid = cookies.get('userid');
         }
+        loggedin = session ? true : false;
         return (
             <div>
                 <Menu
@@ -100,6 +102,9 @@ var MainComponent = React.createClass({
                     data={this.props.data}
                     path={this.props.path}
                     query={this.props.query}
+                    loggedin={loggedin}
+                    username={username}
+                    userid={userid}
                     />
             </div>
         );
