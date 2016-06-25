@@ -12,6 +12,7 @@ var config = require('./config');
 var Snackbar = require('./Snackbar');
 var HomeItem = require('./HomeItem');
 var HomeSearch = require('./HomeSearch');
+var Footer = require('./Footer');
 
 var HomePage = React.createClass({
     statics: {
@@ -99,23 +100,7 @@ var HomePage = React.createClass({
                         </div>
                     </div>
                     <div className='small-12 columns'>
-                        <hr/>
-                    </div>
-                    <div className='small-12 large-6 columns'>
-                        <ul className="menu">
-                            <li><a href="#">Create</a></li>
-                            <li><a href="#">Contribute</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div className='small-12 large-6 columns'>
-                        <ul className="menu align-right">
-                            <li><a href="/terms-of-use">Terms of Use</a></li>
-                            <li><a href="#">Two</a></li>
-                            <li><a href="#">Three</a></li>
-                            <li><a href="#">Four</a></li>
-                        </ul>
+                        <Footer />
                     </div>
                 </div>
             </span>
