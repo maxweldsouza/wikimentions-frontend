@@ -11,7 +11,6 @@ var ButtonSelect = require('./ButtonSelect');
 var config = require('./config');
 var Snackbar = require('./Snackbar');
 var HomeItem = require('./HomeItem');
-var SubmitButton = require('./SubmitButton');
 var HomeSearch = require('./HomeSearch');
 
 var HomePage = React.createClass({
@@ -62,16 +61,6 @@ var HomePage = React.createClass({
                         </div>
                         <div className='callout show-for-xlarge'>
                             <HomeSearch />
-                        </div>
-                        <div className='callout show-for-xlarge'>
-                            <h2>Login</h2>
-                            <input type='text' name='username' placeholder='Username' onChange={this.onChangeText}/>
-                            <input type='password' name='password' placeholder='Password' onChange={this.onChangeText}/>
-                            <SubmitButton
-                                title='Login'
-                                submitting={this.state.submitting}
-                                className='expanded button'
-                                onSubmit={this.login}/>
                         </div>
                         <div className='callout show-for-xlarge'>
                             <ul className="menu vertical">
