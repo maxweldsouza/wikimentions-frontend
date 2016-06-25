@@ -208,9 +208,9 @@ $accordionmenu-arrow-color: $primary-color;
 // 9. Badge
 // --------
 
-$badge-background: $primary-color;
+$badge-background: $light-gray;
 $badge-color: foreground($badge-background);
-$badge-padding: .3em;
+$badge-padding: .1em;
 $badge-minwidth: 2.1em;
 $badge-font-size: .6rem;
 
