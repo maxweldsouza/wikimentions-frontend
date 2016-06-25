@@ -12,6 +12,7 @@ var config = require('./config');
 var Snackbar = require('./Snackbar');
 var HomeItem = require('./HomeItem');
 var SubmitButton = require('./SubmitButton');
+var HomeSearch = require('./HomeSearch');
 
 var HomePage = React.createClass({
     statics: {
@@ -60,8 +61,7 @@ var HomePage = React.createClass({
                             Discover people and their work based on their mentions.
                         </div>
                         <div className='callout'>
-                            <h2>Search</h2>
-                            <input type='text' placeholder='Search for anything'/>
+                            <HomeSearch />
                         </div>
                         <div className='callout'>
                             <h2>Login</h2>
