@@ -2,6 +2,7 @@ var request = require('superagent');
 var parallelRequest = require('./parallelRequest');
 var _ = require('underscore');
 var moment = require('moment');
+var Snackbar = require('./Snackbar');
 
 var AddMention = require('./AddMention');
 var AddVideo = require('./AddVideo');
@@ -123,6 +124,7 @@ var getComponent = function (routeObj) {
         componentName = 'SearchPage';
         routeObj.maxAge = 0;
     } else {
+        Snackbar({message: 'Count not find what you were looking for'});
         throw { status: 404, message: 'Count not find what you were looking for'};
     }
     routeObj.component = componentName;
