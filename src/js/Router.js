@@ -29,6 +29,7 @@ var SiteStatsPage = require('./SiteStatsPage');
 var SearchPage = require('./SearchPage');
 var MaintenancePage = require('./MaintenancePage');
 var queryString = require('query-string');
+var isNode = require('./isNode');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -124,7 +125,9 @@ var getComponent = function (routeObj) {
         componentName = 'SearchPage';
         routeObj.maxAge = 0;
     } else {
-        Snackbar({message: 'Count not find what you were looking for'});
+        if (isNode.isBrowser()) {
+            Snackbar({message: 'Count not find what you were looking for'});
+        }
         throw { status: 404, message: 'Count not find what you were looking for'};
     }
     routeObj.component = componentName;

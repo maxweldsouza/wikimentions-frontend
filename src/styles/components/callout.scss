@@ -1,0 +1,15 @@
+.callout.primary {
+    border: solid 1px lighten($primary-color, .5%);
+}
+.callout.secondary {
+    border: solid 1px lighten($secondary-color, .5%);
+}
+.callout.success {
+    border: solid 1px lighten($success-color, .5%);
+}
+.callout.warning {
+    border: solid 1px lighten($warning-color, .5%);
+}
+.callout.alert {
+    border: solid 1px lighten($alert-color, .5%);
+}

@@ -70,7 +70,11 @@ var HomePage = React.createClass({
                                 <li><a href="#">Contact</a></li>
                             </ul>
                         </div>
-
+                        <div className='callout show-for-xlarge'>
+                            <h2>Did you know?</h2>
+                            <a>James Watson</a> and <a>Francis Crick</a> had read <a>Erwin Schrodinger's</a> book <a>What is Life?</a> which inspired
+                            them to work on discovering the structure of DNA.
+                        </div>
                     </div>
                     <div className='small-12 xlarge-8 columns'>
                         <div className='small-12 columns'>
