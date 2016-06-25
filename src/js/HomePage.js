@@ -13,7 +13,6 @@ var HomeSearch = require('./HomeSearch');
 var Footer = require('./Footer');
 var LoginModal = require('./LoginModal');
 var SignupModal = require('./SignupModal');
-var isNode = require('./isNode');
 var cookies = require('browser-cookies');
 
 var HomePage = React.createClass({
@@ -38,6 +37,23 @@ var HomePage = React.createClass({
             pageno: 0,
             newmentions: this.props.data.new
         };
+    },
+    logout () {
+        requests
+        .post('/api/v1/logout')
+        .type('form')
+        .send({
+            _xsrf: cookies.get('_xsrf')
+        })
+        .end((err, res) => {
+            if (err && err.status) {
+                Snackbar({message: 'Logout failed'});
+            } else {
+                Snackbar({message: 'Logged out'});
+                history.pushState(null, null, '/');
+                Mentions.route('/');
+            }
+        });
     },
     render () {
         var mentions = [];// this.state.newmentions;
@@ -69,9 +85,10 @@ var HomePage = React.createClass({
                             <HomeSearch />
                         </div>
                         <div className='callout show-for-xlarge'>
+                            {this.props.loggedin ? <a onClick={this.logout}>Log Out</a> : <span><LoginModal/>{' / '}<SignupModal/></span>}
+                        </div>
+                        <div className='callout show-for-xlarge'>
                             <ul className="menu vertical">
-                                {this.props.loggedin ? null : <li><LoginModal/></li>}
-                                {this.props.loggedin ? null : <li><SignupModal/></li>}
                                 <li><a href="#">Contribute</a></li>
                                 <li><a href="#">Blog</a></li>
                                 <li><a href="#">Contact</a></li>
