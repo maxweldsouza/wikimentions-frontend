@@ -1,14 +1,27 @@
 var React = require('react');
+
+var Helmet = require('react-helmet');
+var Navbar = require('./Navbar');
 var cookies = require('browser-cookies');
 var Xsrf = require('./Xsrf');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
+var Login = require('./Login');
 
-var Login = React.createClass({
+var LoginPage = React.createClass({
+    statics: {
+        resources (appstate) {
+            return {
+                api: []
+            };
+        }
+    },
     getInitialState () {
         return {
-            submitting: false
+            submitting: false,
+            username: '',
+            password: ''
         };
     },
     onChangeText (e) {
@@ -35,9 +48,6 @@ var Login = React.createClass({
             if (err && err.status) {
                 Snackbar({message: 'Login failed'});
             } else {
-                if (this.props.onLogin) {
-                    this.props.onLogin();
-                }
                 Snackbar({message: 'Logged in'});
                 history.pushState(null, null, '/');
                 Mentions.route('/');
@@ -46,14 +56,26 @@ var Login = React.createClass({
     },
     render () {
         return (
-            <form action='/api/v1/login' method='post'>
-                <h1>Login</h1>
-                <input type='text' name='username' placeholder='Username' onChange={this.onChangeText}/>
-                <input type='password' name='password' placeholder='Password' onChange={this.onChangeText}/>
-                <SubmitButton title='Login' className='expanded button' submitting={this.state.submitting} onSubmit={this.login}/>
-            </form>
+            <span>
+                <Helmet
+                    title={'Mentions'}
+                    titleTemplate='%s - Mentions'
+                    meta={[
+                        {'name': 'description', 'content': ''}
+                    ]}
+                    link={[
+                        {'rel': 'canonical', 'href': ''}
+                    ]}
+                    />
+                <Navbar/>
+                <div className='row page-body align-center'>
+                    <div className='small-12 large-6 columns'>
+                        <Login/>
+                    </div>
+                </div>
+            </span>
         );
     }
 });
 
-module.exports = Login;
+module.exports = LoginPage;

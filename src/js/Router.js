@@ -12,9 +12,9 @@ var EditMention = require('./EditMention');
 var EditPage = require('./EditPage');
 var HistoryPage = require('./HistoryPage');
 var HomePage = require('./HomePage');
-var Login = require('./Login');
+var LoginPage = require('./LoginPage');
 var ProfilePage = require('./ProfilePage');
-var Signup = require('./Signup');
+var SignupPage = require('./SignupPage');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
@@ -57,10 +57,10 @@ var getComponent = function (routeObj) {
         componentName = 'CreatePage';
         routeObj.maxAge = 0;
     } else if (/^login$/.test(x)) {
-        componentName = 'Login';
+        componentName = 'LoginPage';
         routeObj.maxAge = 0;
     } else if (/^signup$/.test(x)) {
-        componentName = 'Signup';
+        componentName = 'SignupPage';
         routeObj.maxAge = 0;
     } else if (/^users\/([0-9]+)\/(.*)$/.test(x)) {
         componentName = 'ProfilePage';

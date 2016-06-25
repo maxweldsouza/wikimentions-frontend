@@ -2,7 +2,6 @@ var React = require('react');
 
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
-var Login = require('./Login');
 var _ = require('underscore');
 var config = require('./config');
 var Footer = require('./Footer');
