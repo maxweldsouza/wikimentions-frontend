@@ -13,7 +13,10 @@ var Snackbar = require('./Snackbar');
 var HomeItem = require('./HomeItem');
 var HomeSearch = require('./HomeSearch');
 var Footer = require('./Footer');
-var Footer = require('./Footer');
+var LoginModal = require('./LoginModal');
+var SignupModal = require('./SignupModal');
+var isNode = require('./isNode');
+var cookies = require('browser-cookies');
 
 var HomePage = React.createClass({
     statics: {
@@ -39,6 +42,9 @@ var HomePage = React.createClass({
         };
     },
     render () {
+        if (isNode.isBrowser()) {
+            var session = cookies.get('mentions');
+        }
         var mentions = [];// this.state.newmentions;
         var stats = this.props.data.stats;
         var options = ['Add New', 'Add Existing'];
@@ -66,7 +72,8 @@ var HomePage = React.createClass({
                         </div>
                         <div className='callout show-for-xlarge'>
                             <ul className="menu vertical">
-                                <li><a href="#">Create</a></li>
+                                {session ? null : <li><LoginModal/></li>}
+                                {session ? null : <li><SignupModal/></li>}
                                 <li><a href="#">Contribute</a></li>
                                 <li><a href="#">Blog</a></li>
                                 <li><a href="#">Contact</a></li>

@@ -6,11 +6,14 @@ var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 
-var LoginModal = React.createClass({
+var SignupModal = React.createClass({
     getInitialState () {
         return {
             modalIsOpen: false,
-            submitting: false
+            username: '',
+            password: '',
+            email: '',
+            retypePassword: ''
         };
     },
     onOpenModal () {
@@ -26,16 +29,21 @@ var LoginModal = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
-    login () {
+    signup () {
+        if (this.state.password !== this.state.retypePassword) {
+            Snackbar({message: 'Passwords do not match'});
+            return;
+        }
         this.setState({
             submiting: true
         });
         requests
-        .post('/api/v1/login')
+        .post('/api/v1/signup')
         .type('form')
         .send({
             username: this.state.username,
             password: this.state.password,
+            email: this.state.email,
             _xsrf: cookies.get('_xsrf')
         })
         .end((err, res) => {
@@ -43,10 +51,10 @@ var LoginModal = React.createClass({
                 submiting: false
             });
             if (err && err.status) {
-                Snackbar({message: 'Login failed'});
+                Snackbar({message: 'Something went wrong'});
             } else {
                 this.closeModal();
-                Snackbar({message: 'Logged in'});
+                Snackbar({message: 'Signup'});
                 history.pushState(null, null, '/');
                 Mentions.route('/');
             }
@@ -55,18 +63,22 @@ var LoginModal = React.createClass({
     render () {
         return (
             <a onClick={this.onOpenModal}>
-                Login
+                Sign up
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.closeModal}
                     className='modal-content'
                     overlayClassName='modal-overlay'>
                     <div className='small-12 columns'>
-                        <form action='/api/v1/login' method='post'>
-                            <h1>Login</h1>
-                            <input type='text' name='username' placeholder='Username' onChange={this.onChangeText}/>
-                            <input type='password' name='password' placeholder='Password' onChange={this.onChangeText}/>
-                            <SubmitButton title='Login' className='expanded button' submitting={this.state.submitting} onSubmit={this.login}/>
+                        <h1>Sign Up</h1>
+                        You will be user #TODO if you sign up now
+                        <form action='/api/v1/signup' method='post'>
+                            <Xsrf/>
+                            <input type='text' name='username' placeholder='Username' onChange={this.onChangeText} />
+                            <input type='text' name='email' placeholder='E-mail (optional)' />
+                            <input type='password' name='password' placeholder='Password'  onChange={this.onChangeText}/>
+                            <input type='password' name='retypePassword' placeholder='Retype Password'  onChange={this.onChangeText}/>
+                            <SubmitButton title='Signup' className='expanded button' submitting={this.state.submitting} onSubmit={this.signup}/>
                         </form>
                     </div>
                 </Modal>
@@ -75,4 +87,4 @@ var LoginModal = React.createClass({
     }
 });
 
-module.exports = LoginModal;
+module.exports = SignupModal;
