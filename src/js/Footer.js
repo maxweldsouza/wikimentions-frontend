@@ -3,7 +3,7 @@ var React = require('react');
 var Footer = React.createClass({
     render () {
         return (
-                <div className='row'>
+                <div className='row page-footer'>
                     <div className='small-12 columns'>
                         <hr/>
                     </div>
