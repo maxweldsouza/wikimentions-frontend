@@ -55,15 +55,15 @@ var HomePage = React.createClass({
                     />
                 <Navbar/>
                 <div className='row page-body align-center'>
-                    <div className='small-12 large-4 columns'>
+                    <div className='small-12 xlarge-4 columns'>
                         <div className='callout warning'>
                             <h2>WikiMentions</h2>
                             Discover people and their work based on their mentions.
                         </div>
-                        <div className='callout'>
+                        <div className='callout show-for-xlarge'>
                             <HomeSearch />
                         </div>
-                        <div className='callout'>
+                        <div className='callout show-for-xlarge'>
                             <h2>Login</h2>
                             <input type='text' name='username' placeholder='Username' onChange={this.onChangeText}/>
                             <input type='password' name='password' placeholder='Password' onChange={this.onChangeText}/>
@@ -73,7 +73,7 @@ var HomePage = React.createClass({
                                 className='expanded button'
                                 onSubmit={this.login}/>
                         </div>
-                        <div className='callout'>
+                        <div className='callout show-for-xlarge'>
                             <ul className="menu vertical">
                                 <li><a href="#">Create</a></li>
                                 <li><a href="#">Contribute</a></li>
@@ -83,7 +83,7 @@ var HomePage = React.createClass({
                         </div>
 
                     </div>
-                    <div className='small-12 large-8 columns'>
+                    <div className='small-12 xlarge-8 columns'>
                         <div className='small-12 columns'>
                             <div className='card-container'>
                                 {this.props.data.home.map((x) => {
