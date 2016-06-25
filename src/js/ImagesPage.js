@@ -13,6 +13,7 @@ var ImageUpload = require('./ImageUpload');
 var Markdown = require('./Markdown');
 var Restricted = require('./Restricted');
 var LoginModal = require('./LoginModal');
+var Footer = require('./Footer');
 
 var ImagesPage = React.createClass({
     statics: {
@@ -102,6 +103,7 @@ var ImagesPage = React.createClass({
                                 <PreviousNext path={this.props.path} page={this.props.query.page}/>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </span>

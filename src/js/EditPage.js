@@ -13,6 +13,7 @@ var Snackbar = require('./Snackbar');
 var Restricted = require('./Restricted');
 var Input = require('./Input');
 var LoginModal = require('./LoginModal');
+var Footer = require('./Footer');
 
 var EditPage = React.createClass({
     statics: {
@@ -135,51 +136,52 @@ var EditPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h1 className='page-title'>{'Edit - ' + entry.title}</h1>
-                            <PageBar
-                                id={id}
-                                slug={entry.slug}
-                                type={entry.type}
-                                />
-                            <Restricted message={loggedOutMessage}>
-                                <form action={'/api/v1/thing/' + id} method='post'>
-                                    <Input
-                                        type='text'
-                                        name='title'
-                                        placeholder='Title'
-                                        value={this.state.title} onChange={this.onChangeText}
-                                        valid={this.state.titleValid}
-                                        message={this.state.titleMessage}/>
-                                    <input
-                                        type='text'
-                                        name='description'
-                                        placeholder='Description (Optional)'
-                                        value={this.state.description}
-                                        onChange={this.onChangeText}/>
-                                    <ButtonSelect
-                                        name='type'
-                                        default={this.props.data.thing.type}
-                                        options={options}
-                                        onChange={this.onChangeType}/>
-                                    {this.state.type === 'book' ? <input
-                                        type='text'
-                                        name='isbn'
-                                        placeholder='ISBN'
-                                        value={this.state.isbn}
-                                        onChange={this.onChangeText}/> : null}
-                                    {this.state.type === 'book' ? <input
-                                        type='text'
-                                        name='isbn13'
-                                        placeholder='ISBN-13'
-                                        value={this.state.isbn13}
-                                        onChange={this.onChangeText}/> : null}
-                                    {this.state.type === 'video' ? <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid}
-                                    message={this.state.urlMessage}/> : null}
-                                    <SubmitButton
-                                        title='Save'
-                                        submitting={this.state.submitting}
-                                        onSubmit={this.onSubmit}/>
-                                </form>
-                            </Restricted>
+                        <PageBar
+                            id={id}
+                            slug={entry.slug}
+                            type={entry.type}
+                            />
+                        <Restricted message={loggedOutMessage}>
+                            <form action={'/api/v1/thing/' + id} method='post'>
+                                <Input
+                                    type='text'
+                                    name='title'
+                                    placeholder='Title'
+                                    value={this.state.title} onChange={this.onChangeText}
+                                    valid={this.state.titleValid}
+                                    message={this.state.titleMessage}/>
+                                <input
+                                    type='text'
+                                    name='description'
+                                    placeholder='Description (Optional)'
+                                    value={this.state.description}
+                                    onChange={this.onChangeText}/>
+                                <ButtonSelect
+                                    name='type'
+                                    default={this.props.data.thing.type}
+                                    options={options}
+                                    onChange={this.onChangeType}/>
+                                {this.state.type === 'book' ? <input
+                                    type='text'
+                                    name='isbn'
+                                    placeholder='ISBN'
+                                    value={this.state.isbn}
+                                    onChange={this.onChangeText}/> : null}
+                                {this.state.type === 'book' ? <input
+                                    type='text'
+                                    name='isbn13'
+                                    placeholder='ISBN-13'
+                                    value={this.state.isbn13}
+                                    onChange={this.onChangeText}/> : null}
+                                {this.state.type === 'video' ? <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid}
+                                message={this.state.urlMessage}/> : null}
+                                <SubmitButton
+                                    title='Save'
+                                    submitting={this.state.submitting}
+                                    onSubmit={this.onSubmit}/>
+                            </form>
+                        </Restricted>
+                        <Footer />
                     </div>
                 </div>
             </span>

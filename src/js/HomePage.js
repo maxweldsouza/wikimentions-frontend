@@ -13,6 +13,7 @@ var Snackbar = require('./Snackbar');
 var HomeItem = require('./HomeItem');
 var HomeSearch = require('./HomeSearch');
 var Footer = require('./Footer');
+var Footer = require('./Footer');
 
 var HomePage = React.createClass({
     statics: {

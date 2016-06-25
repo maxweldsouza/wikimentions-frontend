@@ -6,6 +6,7 @@ var _ = require('underscore');
 var config = require('./config');
 var Navbar = require('./Navbar');
 var BlogPost = require('./BlogPost');
+var Footer = require('./Footer');
 
 var pageNoFromPath = function (path) {
     var parts = path.split('/');
@@ -89,6 +90,7 @@ var BlogPage = React.createClass({
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </div>

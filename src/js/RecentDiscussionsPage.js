@@ -9,6 +9,7 @@ var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var config = require('./config');
 var Time = require('./Time');
+var Footer = require('./Footer');
 
 var RecentDiscussions = React.createClass({
     statics: {
@@ -68,6 +69,7 @@ var RecentDiscussions = React.createClass({
                                 })}
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </span>

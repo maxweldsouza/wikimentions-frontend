@@ -3,6 +3,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var config = require('./config');
 var Markdown = require('./Markdown');
+var Footer = require('./Footer');
 
 var ContentPage = React.createClass({
     statics: {
@@ -35,6 +36,7 @@ var ContentPage = React.createClass({
                         <h1 className='page-title'>{this.props.data.content.title}</h1>
                         <Markdown markdown={this.props.data.content.content}/>
                     </div>
+                    <Footer />
                 </div>
             </span>
         );

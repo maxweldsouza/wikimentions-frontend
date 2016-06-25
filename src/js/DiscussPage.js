@@ -8,6 +8,7 @@ var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var config = require('./config');
 var PreviousNext = require('./PreviousNext');
+var Footer = require('./Footer');
 
 var DiscussPage = React.createClass({
     statics: {
@@ -78,6 +79,7 @@ var DiscussPage = React.createClass({
                                 <DiscussReply id={id}/>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </span>

@@ -14,6 +14,7 @@ var Restricted = require('./Restricted');
 var EditProfile = require('./EditProfile');
 var S = require('string');
 var PreviousNext = require('./PreviousNext');
+var Footer = require('./Footer');
 
 var ProfilePage = React.createClass({
     statics: {
@@ -126,6 +127,7 @@ var ProfilePage = React.createClass({
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </span>

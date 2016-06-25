@@ -6,6 +6,7 @@ var _ = require('underscore');
 var config = require('./config');
 var Navbar = require('./Navbar');
 var BlogPost = require('./BlogPost');
+var Footer = require('./Footer');
 
 var BlogPostPage = React.createClass({
     statics: {
@@ -67,6 +68,7 @@ var BlogPostPage = React.createClass({
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </div>

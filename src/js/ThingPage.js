@@ -15,6 +15,7 @@ var config = require('./config');
 var Link = require('./Link');
 var Placeholder = require('./Placeholder');
 var Image = require('./Image');
+var Footer = require('./Footer');
 
 var ThingPage = React.createClass({
     statics: {
@@ -248,6 +249,7 @@ var ThingPage = React.createClass({
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </span>

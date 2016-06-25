@@ -4,6 +4,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var _ = require('underscore');
 var config = require('./config');
+var Footer = require('./Footer');
 
 var RecentChangesPage = React.createClass({
     statics: {
@@ -44,6 +45,7 @@ var RecentChangesPage = React.createClass({
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </span>

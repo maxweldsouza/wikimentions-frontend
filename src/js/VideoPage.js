@@ -14,6 +14,7 @@ var PageBar = require('./PageBar');
 var Share = require('./Share');
 var config = require('./config');
 var Link = require('./Link');
+var Footer = require('./Footer');
 
 var ThingPage = React.createClass({
     statics: {
@@ -175,6 +176,7 @@ var ThingPage = React.createClass({
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </span>

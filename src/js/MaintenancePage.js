@@ -5,7 +5,7 @@ var Navbar = require('./Navbar');
 var _ = require('underscore');
 var Link = require('./Link');
 var config = require('./config');
-
+var Footer = require('./Footer');
 var tags = ['book_without_author', 'missing_isbn', 'person_without_description'];
 
 var Maintenance = React.createClass({
@@ -128,6 +128,7 @@ var Maintenance = React.createClass({
                                 {results}
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </span>

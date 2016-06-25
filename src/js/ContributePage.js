@@ -5,6 +5,7 @@ var Navbar = require('./Navbar');
 var Login = require('./Login');
 var _ = require('underscore');
 var config = require('./config');
+var Footer = require('./Footer');
 
 var ContributePage = React.createClass({
     statics: {
@@ -84,6 +85,7 @@ var ContributePage = React.createClass({
                                 </div>
                             </div>
                         </div>
+                        <Footer />
                     </div>
                 </div>
             </span>
