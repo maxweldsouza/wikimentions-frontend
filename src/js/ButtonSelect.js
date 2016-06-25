@@ -1,6 +1,11 @@
 var React = require('react');
 
 var ButtonSelect = React.createClass({
+    getDefaultProps () {
+        return {
+            className: 'small button-group'
+        };
+    },
     getInitialState () {
         return {
             selected: this.props.default
@@ -20,7 +25,7 @@ var ButtonSelect = React.createClass({
                     name={this.props.name}
                     value={this.state.selected ? this.state.selected : ''}
                 />
-                <div className='small button-group'>
+                <div className={this.props.className}>
                     {this.props.options.map((x) => {
                         var cls;
                         if (this.state.selected === x.value) {

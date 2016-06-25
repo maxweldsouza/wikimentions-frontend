@@ -11,6 +11,7 @@ var ButtonSelect = require('./ButtonSelect');
 var config = require('./config');
 var Snackbar = require('./Snackbar');
 var HomeItem = require('./HomeItem');
+var SubmitButton = require('./SubmitButton');
 
 var HomePage = React.createClass({
     statics: {
@@ -53,8 +54,36 @@ var HomePage = React.createClass({
                     />
                 <Navbar/>
                 <div className='row page-body align-center'>
+                    <div className='small-12 large-4 columns'>
+                        <div className='callout warning'>
+                            <h2>WikiMentions</h2>
+                            Discover people and their work based on their mentions.
+                        </div>
+                        <div className='callout'>
+                            <h2>Search</h2>
+                            <input type='text' placeholder='Search for anything'/>
+                        </div>
+                        <div className='callout'>
+                            <h2>Login</h2>
+                            <input type='text' name='username' placeholder='Username' onChange={this.onChangeText}/>
+                            <input type='password' name='password' placeholder='Password' onChange={this.onChangeText}/>
+                            <SubmitButton
+                                title='Login'
+                                submitting={this.state.submitting}
+                                className='expanded button'
+                                onSubmit={this.login}/>
+                        </div>
+                        <div className='callout'>
+                            <ul className="menu vertical">
+                                <li><a href="#">Create</a></li>
+                                <li><a href="#">Contribute</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
                     <div className='small-12 large-8 columns'>
-                        <h2>People</h2>
                         <div className='small-12 columns'>
                             <div className='card-container'>
                                 {this.props.data.home.map((x) => {
@@ -75,6 +104,25 @@ var HomePage = React.createClass({
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className='small-12 columns'>
+                        <hr/>
+                    </div>
+                    <div className='small-12 large-6 columns'>
+                        <ul className="menu">
+                            <li><a href="#">Create</a></li>
+                            <li><a href="#">Contribute</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div className='small-12 large-6 columns'>
+                        <ul className="menu align-right">
+                            <li><a href="#">One</a></li>
+                            <li><a href="#">Two</a></li>
+                            <li><a href="#">Three</a></li>
+                            <li><a href="#">Four</a></li>
+                        </ul>
                     </div>
                 </div>
             </span>
