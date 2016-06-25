@@ -28,6 +28,7 @@ var RecentDiscussionsPage = require('./RecentDiscussionsPage');
 var SiteStatsPage = require('./SiteStatsPage');
 var SearchPage = require('./SearchPage');
 var MaintenancePage = require('./MaintenancePage');
+var ContentPage = require('./ContentPage');
 
 var Menu = require('react-burger-menu').slide;
 var store = require('store');

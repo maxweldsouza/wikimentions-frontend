@@ -111,7 +111,7 @@ var HomePage = React.createClass({
                     </div>
                     <div className='small-12 large-6 columns'>
                         <ul className="menu align-right">
-                            <li><a href="#">One</a></li>
+                            <li><a href="/terms-of-use">Terms of Use</a></li>
                             <li><a href="#">Two</a></li>
                             <li><a href="#">Three</a></li>
                             <li><a href="#">Four</a></li>

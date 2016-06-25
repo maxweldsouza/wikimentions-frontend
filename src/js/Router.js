@@ -30,6 +30,7 @@ var SearchPage = require('./SearchPage');
 var MaintenancePage = require('./MaintenancePage');
 var queryString = require('query-string');
 var isNode = require('./isNode');
+var ContentPage = require('./ContentPage');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -123,6 +124,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^search$/.test(x)) {
         componentName = 'SearchPage';
+        routeObj.maxAge = 0;
+    } else if (/^terms-of-use$/.test(x)) {
+        componentName = 'ContentPage';
         routeObj.maxAge = 0;
     } else {
         if (isNode.isBrowser()) {
