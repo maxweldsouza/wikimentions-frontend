@@ -55,13 +55,11 @@ var Navbar = React.createClass({
                 <li className='hide-for-xlarge'>{searchIcon}</li>
                 <li className='show-for-xlarge'>{SearchBar}</li>
                 <li className='show-for-large'><a href={'/users/' + userid + '/' + username}>{username}</a></li>
-                <li><Spinner /></li>
             </ul>;
         } else {
             rhs = <ul className='menu'>
                 <li className='hide-for-medium'>{searchIcon}</li>
                 <li className='show-for-xlarge'>{SearchBar}</li>
-                <li><Spinner /></li>
             </ul>;
         }
         return (
@@ -87,7 +85,7 @@ var Navbar = React.createClass({
                     <ul className='menu icon-top'>
                         <li>{navicon}</li>
                         <li className='menu-text'><a href='/'>{config.name}</a></li>
-                        <li className=''><a href='/create'>Create Page</a></li>
+                        <li><Spinner /></li>
                     </ul>
                 </div>
                 <div className='top-bar-right'>
