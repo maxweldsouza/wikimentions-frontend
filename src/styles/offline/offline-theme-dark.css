@@ -467,7 +467,8 @@
   border-radius: 0 0 4px 4px;
   font-family: "Helvetica Neue", sans-serif;
   font-weight: 300;
-  padding: 1em;
+  font-size: 14px;
+  padding: 0.5em;
   width: 38em;
   max-width: 100%;
   background: black;
