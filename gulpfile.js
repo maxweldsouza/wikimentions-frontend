@@ -149,7 +149,7 @@ gulp.task('copy-external', function () {
     gulp.src('src/js/**/*')
     .pipe(gulp.dest('dist/js'));
     gulp.src('src/*.html')
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('dist'));
 });
 
 // Watch Files For Changes
