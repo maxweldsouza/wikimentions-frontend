@@ -47,7 +47,8 @@ var BlogPostPage = React.createClass({
                 <Navbar
                     loggedin={this.props.loggedin}
                     username={this.props.username}
-                    userid={this.props.userid}/>
+                    userid={this.props.userid}
+                    toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <div className='rows'>

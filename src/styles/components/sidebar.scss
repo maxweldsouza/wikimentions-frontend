@@ -18,49 +18,118 @@
     padding: 0;
 }
 
-/* Position and sizing of burger button */
-.bm-burger-button {
-    position: absolute;
-    width: 21px;
-    height: 15px;
-    right: 20px;
-    top: 18px;
-}
+// /* Position and sizing of burger button */
+// .bm-burger-button {
+//     position: absolute;
+//     width: 21px;
+//     height: 15px;
+//     right: 20px;
+//     top: 18px;
+// }
+//
+// /* Color/shape of burger icon bars */
+// .bm-burger-bars {
+//     background: #373a47;
+// }
+//
+// /* Position and sizing of clickable cross button */
+// .bm-cross-button {
+//     height: 24px;
+//     width: 24px;
+// }
+//
+// /* Color/shape of close button cross */
+// .bm-cross {
+//     background: #bdc3c7;
+// }
+//
+// /* General sidebar styles */
+// .bm-menu {
+//     background: $white;
+//     padding-top:  120px;
+//     font-size: 1.15em;
+// }
+//
+// /* Morph shape necessary with bubble or elastic */
+// .bm-morph-shape {
+//     fill: #373a47;
+// }
+//
+// /* Wrapper for item list */
+// .bm-item-list {
+//     color: #b8b7ad;
+// }
+//
+// /* Styling of overlay */
+// .bm-overlay {
+//     background: rgba(0, 0, 0, 0.3);
+// }
 
-/* Color/shape of burger icon bars */
-.bm-burger-bars {
-    background: #373a47;
-}
-
-/* Position and sizing of clickable cross button */
-.bm-cross-button {
-    height: 24px;
-    width: 24px;
-}
-
-/* Color/shape of close button cross */
-.bm-cross {
-    background: #bdc3c7;
-}
-
-/* General sidebar styles */
-.bm-menu {
+/****************************************************************/
+.sidebar {
+    z-index: 1010;
     background: $white;
-    padding-top:  120px;
-    font-size: 1.15em;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .3);
+    height: 100%;
+    left: 0;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    transition: transform .2s ease;
+    width: 250px;
+
+    &.sidebar-hidden {
+        transform: translateX(-250px);
+    }
 }
 
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-    fill: #373a47;
+.sidebar-logo {
+    font-size: 16px;
 }
 
-/* Wrapper for item list */
-.bm-item-list {
-    color: #b8b7ad;
+.sidebar-header {
+    border-bottom: solid 1px $medium-gray;
+    padding: $global-margin;
+    text-align: center;
 }
 
-/* Styling of overlay */
-.bm-overlay {
-    background: rgba(0, 0, 0, 0.3);
+.sidebar-overlay {
+    z-index: 1000;
+    background: rgba(0, 0, 0, .1);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    &.hidden {
+        display: none;
+    }
+}
+
+.sidebar-submenu-header {
+    //@include clickable;
+    align-items: baseline;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: $global-margin;
+}
+
+.sidebar-item {
+    border-bottom: solid 1px $medium-gray;
+
+    &:active {
+        background: #f5f5f5;
+    }
+}
+
+.sidebar-button {
+    display: block;
+    border-bottom: $global-border;
+    padding-left: 2 * $global-margin;
+    padding-right: 2 * $global-margin;
+    font-size: 16px;
+    line-height: 44px;
+    background: $white;
 }

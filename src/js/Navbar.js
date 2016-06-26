@@ -36,29 +36,31 @@ var Navbar = React.createClass({
         Mentions.route(path);
     },
     render () {
-        var user;
+        var rhs;
+        var userid = this.props.userid;
+        var username = this.props.username;
+        var loggedin = this.props.loggedin;
+
         var SearchBar = <Select
             name='mentioned'
             onSelectValue={this.onSelectSearchResult}
             placeholder={'Search'}
             moreResults={true}/>;
 
-        var userid = this.props.userid;
-        var username = this.props.username;
-        var loggedin = this.props.loggedin;
-
+        var navicon = <span className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar}/>;
+        var searchIcon = <span className='ion-search navbar-icon' onClick={this.onOpenModal}/>;
         if (loggedin) {
-            user = <ul className='menu'>
-                <li className='hide-for-xlarge'><span className='ion-search' onClick={this.onOpenModal}/></li>
-                <li className='show-for-xlarge'>
-                    {SearchBar}
-                </li>
+            rhs = <ul className='menu'>
+                <li className='hide-for-xlarge'>{searchIcon}</li>
+                <li className='show-for-xlarge'>{SearchBar}</li>
                 <li className='show-for-large'><a href={'/users/' + userid + '/' + username}>{username}</a></li>
+                <li>{navicon}</li>
             </ul>;
         } else {
-            user = <ul className='menu'>
-                <li className='hide-for-medium'><span className='ion-search' onClick={this.onOpenModal}/></li>
+            rhs = <ul className='menu'>
+                <li className='hide-for-medium'>{searchIcon}</li>
                 <li className='show-for-xlarge'>{SearchBar}</li>
+                <li>{navicon}</li>
             </ul>;
         }
         return (
@@ -87,7 +89,7 @@ var Navbar = React.createClass({
                     </ul>
                 </div>
                 <div className='top-bar-right'>
-                    {user}
+                    {rhs}
                 </div>
             </div>
         );
