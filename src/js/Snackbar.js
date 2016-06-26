@@ -1,4 +1,4 @@
-var $ = require('zepto-browserify').$;
+var $ = require('jquery');
 var _ = require('underscore');
 
 var Snackbar = function (options) {
