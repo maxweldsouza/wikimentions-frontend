@@ -70,7 +70,8 @@
     "underscore": "^1.8.3",
     "url-parse": "^1.1.1",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "~1.1.0"
+    "vinyl-source-stream": "~1.1.0",
+    "zepto-browserify": "^1.0.0"
   },
   "devDependencies": {
     "babel-preset-react": "^6.5.0",
