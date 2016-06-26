@@ -49,8 +49,8 @@ var Navbar = React.createClass({
 
         if (loggedin) {
             user = <ul className='menu'>
-                <li className='hide-for-large'><span className='ion-search' onClick={this.onOpenModal}/></li>
-                <li className='show-for-large'>
+                <li className='hide-for-xlarge'><span className='ion-search' onClick={this.onOpenModal}/></li>
+                <li className='show-for-xlarge'>
                     {SearchBar}
                 </li>
                 <li className='show-for-large'><a href={'/users/' + userid + '/' + username}>{username}</a></li>
@@ -58,7 +58,7 @@ var Navbar = React.createClass({
         } else {
             user = <ul className='menu'>
                 <li className='hide-for-medium'><span className='ion-search' onClick={this.onOpenModal}/></li>
-                <li className='show-for-large'>{SearchBar}</li>
+                <li className='show-for-xlarge'>{SearchBar}</li>
             </ul>;
         }
         return (
