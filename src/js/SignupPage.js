@@ -4,6 +4,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var cookies = require('browser-cookies');
 var Xsrf = require('./Xsrf');
+var Signup = require('./Signup');
 
 var Signup = React.createClass({
     statics: {
@@ -39,18 +40,10 @@ var Signup = React.createClass({
                     <div className='small-12 large-6 columns'>
                         <h1>Sign Up</h1>
                         You will be user #{this.props.data.signup.count} if you sign up now
-                        <form action='/api/v1/signup' method='post'>
-                            <Xsrf/>
-                            <input type='text' name='username' placeholder='Username' required />
-                            <input type='text' name='email' placeholder='E-mail (optional)' />
-                            <input type='password' name='password' placeholder='Password' required/>
-                            <input type='password' placeholder='Retype Password' required/>
-                            <button type='submit' className='success button'>Sign Up</button>
-                        </form>
+                        <Signup />
                     </div>
                 </div>
             </span>
-
         );
     }
 });
