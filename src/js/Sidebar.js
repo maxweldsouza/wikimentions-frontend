@@ -5,10 +5,11 @@ var config = require('./config');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var cookies = require('browser-cookies');
+
 var Sidebar = React.createClass({
-    onTouchStart: function (e) {
+    onTouchStart (e) {
     },
-    onTouchMove: function (e) {
+    onTouchMove (e) {
     },
     onClickItem (url) {
         this.props.onToggleSidebar();
@@ -32,7 +33,7 @@ var Sidebar = React.createClass({
             }
         });
     },
-    render: function () {
+    render () {
         var sidebar = this.props.showing ? '' : 'hidden';
         var loggedin = this.props.loggedin;
         return (
