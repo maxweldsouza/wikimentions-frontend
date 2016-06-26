@@ -3,6 +3,7 @@ var Select = require('./Select');
 var Xsrf = require('./Xsrf');
 var config = require('./config');
 var Modal = require('react-modal');
+var Spinner = require('./Spinner');
 
 var Navbar = React.createClass({
     getInitialState () {
@@ -85,6 +86,8 @@ var Navbar = React.createClass({
                 <div className='top-bar-left'>
                     <ul className='menu icon-top'>
                         <li className='menu-text'><a href='/'>{config.name}</a></li>
+
+                        <li><Spinner /></li>
                         <li className=''><a href='/create'>Create Page</a></li>
                     </ul>
                 </div>

@@ -15,7 +15,6 @@ var HomePage = require('./HomePage');
 var LoginPage = require('./LoginPage');
 var ProfilePage = require('./ProfilePage');
 var SignupPage = require('./SignupPage');
-var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
 var ImagesPage = require('./ImagesPage');
@@ -76,7 +75,6 @@ var MainComponent = React.createClass({
                     onToggleSidebar={this.onToggleSidebar}
                     loggedin={loggedin}
                 />
-                <Spinner />
                 <Component
                     data={this.props.data}
                     path={this.props.path}

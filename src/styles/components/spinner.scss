@@ -1,4 +1,36 @@
-@keyframes spin {
-    from {transform:rotate(0deg);}
-    to {transform:rotate(360deg);}
+
+$spinner-size: 14px;
+$spinner-circle-size: 14px;
+
+.spinner {
+    border-radius: 5px;
+    display: block;
+    transition: opacity ease-in .3s;
+
+    &.spinner-hidden {
+        opacity: 0;
+        transition: opacity 0s;
+    }
+
+    &::before {
+        animation: spinner-animation 350ms linear infinite;
+        border: solid 2px transparent;
+        border-left-color: $dark-gray;
+        border-radius: 1em;
+        border-top-color: $dark-gray;
+        content: '';
+        display: block;
+        height: $spinner-circle-size;
+        width: $spinner-circle-size;
+    }
+}
+
+@keyframes spinner-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
