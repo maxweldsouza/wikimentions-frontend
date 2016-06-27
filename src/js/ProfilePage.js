@@ -36,7 +36,7 @@ var ProfilePage = React.createClass({
     },
     render () {
         var [dummy, id, name, selectedTab] = this.props.path.split('/');
-        self = this.props.userid === Number(id);
+        var self = this.props.userid === Number(id);
 
         selectedTab = selectedTab ? selectedTab : 'stats';
         var user = this.props.data.user;
