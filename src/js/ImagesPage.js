@@ -85,7 +85,7 @@ var ImagesPage = React.createClass({
                                         <a onClick={this.onOpenModal}>Upload</a> an image for this page.
                                         <Modal
                                             isOpen={this.state.modalIsOpen}
-                                            onRequestClose={this.closeModal}
+                                            onClose={this.closeModal}
                                             className='modal-content'
                                             overlayClassName='modal-overlay'>
                                             <div className='small-12 columns'>
