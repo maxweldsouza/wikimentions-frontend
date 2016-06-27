@@ -1,36 +1,37 @@
 var React = require('react');
-var Modal = require('react-modal');
+var Modal = require('./Modal');
 
 var Login = require('./Login');
 
 var LoginModal = React.createClass({
     getInitialState () {
         return {
-            modalIsOpen: false,
+            showing: false,
         };
     },
-    onOpenModal () {
+    onOpen (e) {
         this.setState({
-            modalIsOpen: true
+            showing: true
         });
+        e.preventDefault();
     },
-    closeModal () {
-        this.setState({modalIsOpen: false});
+    onClose () {
+        this.setState({showing: false});
     },
     render () {
         return (
-            <a onClick={this.onOpenModal}>
-                Login
+            <span>
+                <a onClick={this.onOpen}>Login</a>
                 <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onRequestClose={this.closeModal}
+                    isOpen={this.state.showing}
+                    onClose={this.onClose}
                     className='modal-content'
                     overlayClassName='modal-overlay'>
                     <div className='small-12 columns'>
-                        <Login onLogin={this.closeModal}/>
+                        <Login onLogin={this.onClose}/>
                     </div>
                 </Modal>
-            </a>
+            </span>
         );
     }
 });

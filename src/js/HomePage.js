@@ -14,7 +14,6 @@ var Footer = require('./Footer');
 var LoginModal = require('./LoginModal');
 var SignupModal = require('./SignupModal');
 var cookies = require('browser-cookies');
-var Test = require('./Test');
 
 var HomePage = React.createClass({
     statics: {
@@ -85,7 +84,6 @@ var HomePage = React.createClass({
                         </div>
                         <div className='callout show-for-xlarge'>
                             <HomeSearch />
-                            <Test />
                         </div>
                         <div className='callout show-for-xlarge'>
                             {this.props.loggedin ? <a onClick={this.logout}>Log Out</a> : <span><LoginModal/>{' / '}<SignupModal/></span>}
