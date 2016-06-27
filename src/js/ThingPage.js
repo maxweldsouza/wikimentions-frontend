@@ -248,6 +248,7 @@ var ThingPage = React.createClass({
                                 {tabHeading}
                                 <div className='tabs-content text-left'>
                                     <div className='tabs-panel is-active'>
+
                                         {tabContent}
                                     </div>
                                 </div>

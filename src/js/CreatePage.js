@@ -11,6 +11,7 @@ var Restricted = require('./Restricted');
 var Input = require('./Input');
 var LoginModal = require('./LoginModal');
 var Footer = require('./Footer');
+var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
 
 var HomePage = React.createClass({
     statics: {
@@ -141,11 +142,17 @@ var HomePage = React.createClass({
                                             options={options}
                                             default={'person'}
                                             onChange={this.onChangeType}/>
-                                        {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/> : null}
-                                        {this.state.type === 'book' ? <input type='text' name='isbn13' placeholder='ISBN-13' value={this.state.isbn13} onChange={this.onChangeText}/> : null}
-                                        {this.state.type === 'video' ? <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}
+                                        <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
+                                            {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/> : null}
+                                        </VelocityTransitionGroup>
+                                        <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
+                                            {this.state.type === 'book' ? <input type='text' name='isbn13' placeholder='ISBN-13' value={this.state.isbn13} onChange={this.onChangeText}/> : null}
+                                        </VelocityTransitionGroup>
+                                        <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
+                                            {this.state.type === 'video' ? <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}
                                         valid={this.state.urlValid}
                                         message={this.state.urlMessage}/> : null}
+                                        </VelocityTransitionGroup>
                                     </div>
                                 </div>
                                 <div>
