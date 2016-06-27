@@ -9,10 +9,11 @@ var SignupModal = React.createClass({
             modalIsOpen: false,
         };
     },
-    onOpenModal () {
+    onOpenModal (e) {
         this.setState({
             modalIsOpen: true
         });
+        e.preventDefault();
     },
     closeModal () {
         this.setState({modalIsOpen: false});

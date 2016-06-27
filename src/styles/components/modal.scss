@@ -12,6 +12,7 @@
     max-height: 75%;
     margin: auto;
     width: 50%;
+    z-index: $z-30;
 
     @include breakpoint(small) {
         width: 90%;
@@ -37,4 +38,5 @@
     right: 0px;
     bottom: 0px;
     background-color: $reveal-overlay-background;
+    z-index: $z-20;
 }

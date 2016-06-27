@@ -12,7 +12,7 @@
     transform: translate(-50%, 100%);
     transition: all .2s ease;
     width: 100%;
-    z-index: 1000000000;
+    z-index: $z-30;
 
     &.showing {
         opacity: 1;

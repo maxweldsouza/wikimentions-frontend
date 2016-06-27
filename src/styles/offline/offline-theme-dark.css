@@ -10,7 +10,7 @@
   display: none;
   position: fixed;
   background: white;
-  z-index: 2000;
+  z-index: $z-30;
   margin: auto;
   top: 0;
   left: 0;
