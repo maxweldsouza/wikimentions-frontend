@@ -2,7 +2,7 @@ var React = require('react');
 var Select = require('./Select');
 var Xsrf = require('./Xsrf');
 var config = require('./config');
-var Modal = require('react-modal');
+var Modal = require('./Modal');
 var Spinner = require('./Spinner');
 
 var Navbar = React.createClass({
@@ -64,23 +64,6 @@ var Navbar = React.createClass({
         }
         return (
             <div className='top-bar'>
-                <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onRequestClose={this.closeModal}
-                    className='modal-content'
-                    overlayClassName='modal-overlay'>
-                    <div className='row'>
-                        <div className='small-12 columns'>
-                            <h1>Search</h1>
-                        </div>
-                        <div className='small-12 columns'>
-                            {SearchBar}
-                        </div>
-                        <div className='small-12 columns'>
-                            <button className='button' onClick={this.closeModal}>Close</button>
-                        </div>
-                    </div>
-                </Modal>
                 <div className='top-bar-left'>
                     <ul className='menu icon-top'>
                         <li>{navicon}</li>
@@ -90,6 +73,23 @@ var Navbar = React.createClass({
                     </ul>
                 </div>
                 <div className='top-bar-right'>
+                    <Modal
+                        isOpen={this.state.modalIsOpen}
+                        onClose={this.closeModal}
+                        className='modal-content'
+                        overlayClassName='modal-overlay'>
+                        <div className='row'>
+                            <div className='small-12 columns'>
+                                <h1>Search</h1>
+                            </div>
+                            <div className='small-12 columns'>
+                                {SearchBar}
+                            </div>
+                            <div className='small-12 columns'>
+                                <button className='button' onClick={this.closeModal}>Close</button>
+                            </div>
+                        </div>
+                    </Modal>
                     {rhs}
                 </div>
             </div>

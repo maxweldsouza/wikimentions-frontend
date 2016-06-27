@@ -14,10 +14,11 @@ var AddAuthors = React.createClass({
             submiting: false
         };
     },
-    onOpen () {
+    onOpen (e) {
         this.setState({
             opened: true
         });
+        e.preventDefault();
     },
     onClose () {
         this.setState({

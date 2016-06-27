@@ -9,11 +9,10 @@ var LoginModal = React.createClass({
             showing: false,
         };
     },
-    onOpen (e) {
+    onOpen () {
         this.setState({
             showing: true
         });
-        e.preventDefault();
     },
     onClose () {
         this.setState({showing: false});

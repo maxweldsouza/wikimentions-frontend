@@ -46,12 +46,12 @@ var Login = React.createClass({
     },
     render () {
         return (
-            <form action='/api/v1/login' method='post'>
+            <div>
                 <h1>Login</h1>
                 <input type='text' name='username' placeholder='Username' onChange={this.onChangeText}/>
                 <input type='password' name='password' placeholder='Password' onChange={this.onChangeText}/>
                 <SubmitButton title='Login' className='expanded button' submitting={this.state.submitting} onSubmit={this.login}/>
-            </form>
+            </div>
         );
     }
 });

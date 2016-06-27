@@ -8,7 +8,7 @@ var HistoryItem = require('./HistoryItem');
 var PageBar = require('./PageBar');
 var config = require('./config');
 var Time = require('./Time');
-var Modal = require('react-modal');
+var Modal = require('./Modal');
 var ImageUpload = require('./ImageUpload');
 var Markdown = require('./Markdown');
 var Restricted = require('./Restricted');
@@ -36,10 +36,11 @@ var ImagesPage = React.createClass({
             modalIsOpen: false
         };
     },
-    onOpenModal () {
+    onOpenModal (e) {
         this.setState({
             modalIsOpen: true
         });
+        e.preventDefault();
     },
     closeModal () {
         this.setState({modalIsOpen: false});
@@ -81,8 +82,7 @@ var ImagesPage = React.createClass({
                                 <div className='card small-12 columns'>
                                     <Restricted
                                         message={loggedOutMessage}>
-                                        <a
-                                            className='' onClick={this.onOpenModal}>Upload</a> an image for this page.
+                                        <a onClick={this.onOpenModal}>Upload</a> an image for this page.
                                         <Modal
                                             isOpen={this.state.modalIsOpen}
                                             onRequestClose={this.closeModal}
