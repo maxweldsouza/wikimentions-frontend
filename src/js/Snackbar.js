@@ -1,4 +1,4 @@
-var $ = require('jquery');
+var $ = require('./zepto-wrapper');
 var _ = require('underscore');
 
 var Snackbar = function (options) {
