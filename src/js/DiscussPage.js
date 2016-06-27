@@ -9,6 +9,7 @@ var PageBar = require('./PageBar');
 var config = require('./config');
 var PreviousNext = require('./PreviousNext');
 var Footer = require('./Footer');
+var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
 
 var DiscussPage = React.createClass({
     statics: {
@@ -69,14 +70,18 @@ var DiscussPage = React.createClass({
                         <div className='small-12 columns'>
                             <div className='card-container'>
                                 {discussions.map((x) => {
-                                    return <Comment
+                                    return <VelocityTransitionGroup
+                                        enter={{animation: {opacity: '1', easing: 'easeIn', duration: 400, display: 'flex'}}}
+                                        leave={{animation: {opacity: '0', easing: 'easeOut', duration: 400, display: 'flex'}}}>
+                                    <Comment
                                         id={x.id}
                                         key={x.id}
                                         user={x.user}
                                         name={x.username}
                                         text={x.content}
                                         posted={x.created}
-                                        />;
+                                        />
+                                    </VelocityTransitionGroup>;
                                 })}
                                 {nodata}
                                 <PreviousNext path={this.props.path} page={this.props.query.page}/>
