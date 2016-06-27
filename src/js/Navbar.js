@@ -86,6 +86,7 @@ var Navbar = React.createClass({
                         <li>{navicon}</li>
                         <li className='menu-text'><a href='/'>{config.name}</a></li>
                         <li><Spinner /></li>
+                        <li><a href='/create'>Create Page</a></li>
                     </ul>
                 </div>
                 <div className='top-bar-right'>
