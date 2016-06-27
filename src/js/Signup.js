@@ -54,8 +54,9 @@ var Signup = React.createClass({
             } else {
                 this.closeModal();
                 Snackbar({message: 'Signed up'});
-                history.pushState(null, null, '/');
-                Mentions.route('/');
+                var path = window.location.pathname + window.location.search;
+                history.pushState(null, null, path);
+                Mentions.route(path);
             }
         });
     },

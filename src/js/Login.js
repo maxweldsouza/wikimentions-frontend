@@ -39,8 +39,9 @@ var Login = React.createClass({
                     this.props.onLogin();
                 }
                 Snackbar({message: 'Logged in'});
-                history.pushState(null, null, '/');
-                Mentions.route('/');
+                var path = window.location.pathname + window.location.search;
+                history.pushState(null, null, path);
+                Mentions.route(path);
             }
         });
     },
