@@ -7,6 +7,8 @@ var str = require('string');
 var MainComponent = require('./MainComponent');
 var Router = require('./Router.js');
 var requests = require('superagent');
+require('velocity-animate');
+require('velocity-animate/velocity.ui');
 
 /*
 in console type Perf.printWasted();

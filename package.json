@@ -70,6 +70,7 @@
     "uglify-js": "^2.5.0",
     "underscore": "^1.8.3",
     "url-parse": "^1.1.1",
+    "velocity-animate": "^1.2.3",
     "velocity-react": "^1.1.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "~1.1.0"
