@@ -29,8 +29,9 @@ var Sidebar = React.createClass({
                 Snackbar({message: 'Logout failed'});
             } else {
                 Snackbar({message: 'Logged out'});
-                history.pushState(null, null, '/');
-                Mentions.route('/');
+                var path = window.location.pathname + window.location.search;
+                history.pushState(null, null, path);
+                Mentions.route(path);
             }
         });
     },
