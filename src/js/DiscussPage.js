@@ -10,14 +10,20 @@ var config = require('./config');
 var PreviousNext = require('./PreviousNext');
 var Footer = require('./Footer');
 var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
+var queryString = require('query-string');
 
 var DiscussPage = React.createClass({
     statics: {
         resources (appstate) {
             var data;
             var [type, id, slug] = appstate.path.split('/');
-            var page = appstate.query.page;
-            var query = page ? '?page=' + page : '';
+            var queryObj = {};
+            if (appstate.query.page) {
+                queryObj.page = appstate.query.page;
+            }
+            queryObj.slug = slug;
+            var query = queryString.stringify(queryObj);
+            query = query ? '?' + query : '';
             return {
                 api: [
                     {
