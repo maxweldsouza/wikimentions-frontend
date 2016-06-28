@@ -14,13 +14,19 @@ var Markdown = require('./Markdown');
 var Restricted = require('./Restricted');
 var LoginModal = require('./LoginModal');
 var Footer = require('./Footer');
+var queryString = require('query-string');
 
 var ImagesPage = React.createClass({
     statics: {
         resources (appstate) {
             var [type, id, slug] = appstate.path.split('/');
-            var page = appstate.query.page;
-            var query = page ? '?page=' + page : '';
+            var queryObj = {};
+            if (appstate.query.page) {
+                queryObj.page = appstate.query.page;
+            }
+            queryObj.slug = slug;
+            var query = queryString.stringify(queryObj);
+            query = query ? '?' + query : '';
             return {
                 api: [
                     {
