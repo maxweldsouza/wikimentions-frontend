@@ -25,7 +25,7 @@ var ThingPage = React.createClass({
             var query = page ? '?page=' + page : '';
             var api = [{
                 name: 'thing',
-                path: '/api/v1/thing/' + id
+                path: '/api/v1/thing/' + id + '?slug=' + slug
             }];
             var defaultTab;
 
