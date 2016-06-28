@@ -110,6 +110,9 @@ app.get(/^(.+)$/, function(req, res, next) {
             url: req.originalUrl,
             onUpdate: (routeObj) => {
                 try {
+                    if (routeObj.error) {
+                        return next(routeObj.error);
+                    }
                     var tag = etag(routeObj.etags.join() + routeObj.url + GIT_REV_HASH);
                     res.setHeader('ETag', tag);
                     res.setHeader('Cache-Control', 'no-cache');
@@ -172,7 +175,6 @@ app.get(/^(.+)$/, function(req, res, next) {
 
 app.use(function(err, req, res, next) {
     if (err) {
-        console.log(err);
         var message;
         var content;
         var status = err.status || 500;
@@ -185,6 +187,7 @@ app.use(function(err, req, res, next) {
                 content: message
             }));
         } else {
+            console.log(err);
             message = 'We faced an internal error. Try again later.';
             res.send(errorCompiled({
                 status: status,
@@ -196,7 +199,7 @@ app.use(function(err, req, res, next) {
 });
 
 var port = process.env.PORT || 8000;
-app.listen(port, function() {
+app.listen(port, function () {
     if (production) {
         console.log('Mentions Production Server ' + port);
     } else {

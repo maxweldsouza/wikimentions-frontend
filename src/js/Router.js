@@ -162,9 +162,9 @@ var getResources = function (routeObj, beforeUpdate) {
         paths,
         (err, res) => {
             if (err) {
-                apidata = {
-                    error: 'offline'
-                };
+                routeObj.error = {
+                    status: err.status
+                }
             } else {
                 var timestamps = [];
                 var etags = [];
