@@ -49,9 +49,9 @@ var MainComponent = React.createClass({
             sidebar: false
         });
     },
-    onSidebarOpen (open) {
+    onCloseSidebar: function () {
         this.setState({
-            sidebar: true
+            sidebar: false
         });
     },
     onToggleSidebar: function () {
@@ -72,7 +72,7 @@ var MainComponent = React.createClass({
             <div>
                 <Sidebar
                     showing={this.state.sidebar}
-                    onToggleSidebar={this.onToggleSidebar}
+                    onToggleSidebar={this.onCloseSidebar}
                     loggedin={loggedin}
                 />
                 <Component
