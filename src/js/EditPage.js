@@ -14,16 +14,24 @@ var Restricted = require('./Restricted');
 var Input = require('./Input');
 var LoginModal = require('./LoginModal');
 var Footer = require('./Footer');
+var queryString = require('query-string');
 
 var EditPage = React.createClass({
     statics: {
         resources (appstate) {
-            var id = appstate.url.split('/')[1];
+            var [type, id, slug] = appstate.path.split('/');
+            var queryObj = {};
+            if (appstate.query.page) {
+                queryObj.page = appstate.query.page;
+            }
+            queryObj.slug = slug;
+            var query = queryString.stringify(queryObj);
+            query = query ? '?' + query : '';
             return {
                 api: [
                     {
                         name: 'thing',
-                        path: '/api/v1/thing/' + id
+                        path: '/api/v1/thing/' + id + query
                     }
                 ]
             };
