@@ -21,7 +21,7 @@ var ProfilePage = React.createClass({
             var query = page ? '?page=' + page : '';
             var api = [{
                 name: 'user',
-                path: '/api/v1/user/' + id
+                path: '/api/v1/user/' + id + '?slug=' + name
             }];
             if (tab === 'edits') {
                 api.push({
