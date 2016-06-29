@@ -62,34 +62,34 @@ var getComponent = function (routeObj) {
     } else if (/^signup$/.test(x)) {
         componentName = 'SignupPage';
         routeObj.maxAge = 0;
-    } else if (/^users\/([0-9]+)\/(.*)$/.test(x)) {
+    } else if (/^users\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'ProfilePage';
         routeObj.maxAge = 0;
-    } else if (/^history\/([0-9]+)\/(.*)$/.test(x)) {
+    } else if (/^history\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'HistoryPage';
         routeObj.maxAge = 0;
-    } else if (/^books\/([0-9]+)\/(.*)$/.test(x)) {
+    } else if (/^books\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
-    } else if (/^discuss\/([0-9]+)\/(.*)$/.test(x)) {
+    } else if (/^discuss\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'DiscussPage';
         routeObj.maxAge = 0;
-    } else if (/^edit\/([0-9]+)\/(.*)$/.test(x)) {
+    } else if (/^edit\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'EditPage';
         routeObj.maxAge = 0;
-    } else if (/^people\/([0-9]+)\/(.*)\/(.*)$/.test(x)) {
+    } else if (/^people\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby|books|videos)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
-    } else if (/^people\/([0-9]+)\/(.*)$/.test(x)) {
+    } else if (/^people\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
-    } else if (/^videos\/([0-9]+)\/(.*)\/(.*)$/.test(x)) {
+    } else if (/^videos\/([0-9]+)\/([^/]+)\/([^/]+)$/.test(x)) {
         componentName = 'VideoPage';
         routeObj.maxAge = 0;
-    } else if (/^videos\/([0-9]+)\/(.*)$/.test(x)) {
+    } else if (/^videos\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'VideoPage';
         routeObj.maxAge = 0;
-    } else if (/^images\/([0-9]+)\/(.*)$/.test(x)) {
+    } else if (/^images\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'ImagesPage';
         routeObj.maxAge = 0;
     } else if (/^mentions\/([0-9]+)\/edit$/.test(x)) {
