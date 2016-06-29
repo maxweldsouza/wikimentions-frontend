@@ -1,6 +1,6 @@
 var request = require('superagent');
 var async = require('async');
-var _ = require('underscore');
+var _ = require('lodash');
 
 var makeRequest = function (url, callback) {
     return function (cb) {

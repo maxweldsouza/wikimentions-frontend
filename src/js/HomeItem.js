@@ -2,7 +2,7 @@ var React = require('react');
 var Link = require('./Link');
 var Image = require('./Image');
 var Placeholder = require('./Placeholder');
-var _ = require('underscore');
+var _ = require('lodash');
 
 var HomeItem = React.createClass({
     render () {

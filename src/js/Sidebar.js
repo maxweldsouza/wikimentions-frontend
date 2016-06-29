@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-var _ = require('underscore');
+var _ = require('lodash');
 var config = require('./config');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');

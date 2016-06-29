@@ -1,6 +1,6 @@
 var React = require('react');
 var queryString = require('query-string');
-var _ = require('underscore');
+var _ = require('lodash');
 
 var Pagination = React.createClass({
     pagePath (no) {

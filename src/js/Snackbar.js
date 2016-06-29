@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var _ = require('underscore');
+var _ = require('lodash');
 
 var Snackbar = function (options) {
     var defaults = {

@@ -4,7 +4,7 @@ var cookies = require('browser-cookies');
 var Link = require('./Link');
 var Image = require('./Image');
 var Placeholder = require('./Placeholder');
-var _ = require('underscore');
+var _ = require('lodash');
 var Snackbar = require('./Snackbar');
 
 var Mention = React.createClass({

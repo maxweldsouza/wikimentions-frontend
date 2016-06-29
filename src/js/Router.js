@@ -1,6 +1,6 @@
 var request = require('superagent');
 var parallelRequest = require('./parallelRequest');
-var _ = require('underscore');
+var _ = require('lodash');
 var moment = require('moment');
 var Snackbar = require('./Snackbar');
 

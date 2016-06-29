@@ -2,7 +2,7 @@ var React = require('react');
 
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
-var _ = require('underscore');
+var _ = require('lodash');
 var Link = require('./Link');
 var config = require('./config');
 var Footer = require('./Footer');
