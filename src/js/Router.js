@@ -68,6 +68,9 @@ var getComponent = function (routeObj) {
     } else if (/^history\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'HistoryPage';
         routeObj.maxAge = 0;
+    } else if (/^books\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby)$/.test(x)) {
+        componentName = 'ThingPage';
+        routeObj.maxAge = 0;
     } else if (/^books\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
@@ -83,7 +86,7 @@ var getComponent = function (routeObj) {
     } else if (/^people\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
-    } else if (/^videos\/([0-9]+)\/([^/]+)\/([^/]+)$/.test(x)) {
+    } else if (/^videos\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby)$/.test(x)) {
         componentName = 'VideoPage';
         routeObj.maxAge = 0;
     } else if (/^videos\/([0-9]+)\/([^/]+)$/.test(x)) {
