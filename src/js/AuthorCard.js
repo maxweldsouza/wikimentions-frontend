@@ -2,6 +2,7 @@ var React = require('react');
 var Image = require('./Image');
 var Placeholder = require('./Placeholder');
 var _ = require('lodash');
+var Link = require('./Link');
 
 var AuthorCard = React.createClass({
     removeAuthor (id) {
@@ -48,7 +49,10 @@ var AuthorCard = React.createClass({
                     {image}
                 </div>
                 <div className='columns'>
-                    <a href={''}>{this.props.title}</a>
+                    <Link
+                        id={this.props.id}
+                        slug={this.props.slug}
+                        type={this.props.type}>{this.props.title}</Link>
                     <div>
                         {this.props.description}
                     </div>
