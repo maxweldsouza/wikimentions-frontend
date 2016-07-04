@@ -10,54 +10,54 @@ var HistoryCard = React.createClass({
         if (this.props.entry && this.props.entrytype === 'video_author') {
             item = <span>
                 <Link
-                    id={this.props.entry.source}
-                    slug={this.props.entry.source_slug}
-                    type={this.props.entry.source_type}>
-                    {this.props.entry.source_title}
+                    id={this.props.entry.source.id}
+                    slug={this.props.entry.source.slug}
+                    type={this.props.entry.source.type}>
+                    {this.props.entry.source.title}
                 </Link> as author to video <Link
-                    id={this.props.entry.destination}
-                    slug={this.props.entry.destination_slug}
-                    type={this.props.entry.destination_type}>
-                    {this.props.entry.destination_title}
+                    id={this.props.entry.destination.id}
+                    slug={this.props.entry.destination.slug}
+                    type={this.props.entry.destination.type}>
+                    {this.props.entry.destination.title}
                 </Link>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'book_author') {
             item = <span>
                 <Link
-                    id={this.props.entry.source}
-                    slug={this.props.entry.source_slug}
-                    type={this.props.entry.source_type}>{this.props.entry.source_title}
+                    id={this.props.entry.source.id}
+                    slug={this.props.entry.source.slug}
+                    type={this.props.entry.source.type}>{this.props.entry.source.title}
                 </Link> as author to book <Link
-                    id={this.props.entry.destination}
-                    slug={this.props.entry.destination_slug}
-                    type={this.props.entry.destination_type}>
-                    {this.props.entry.destination_title}
+                    id={this.props.entry.destination.id}
+                    slug={this.props.entry.destination.slug}
+                    type={this.props.entry.destination.type}>
+                    {this.props.entry.destination.title}
                 </Link>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'prop') {
             item = <span>
                 set {this.props.entry.key} to {this.props.entry.value} for <Link
-                    id={this.props.entry.id}
-                    slug={this.props.entry.slug}
-                    type={this.props.entry.type}>{this.props.entry.title}</Link>
+                    id={this.props.entry.obj.id}
+                    slug={this.props.entry.obj.slug}
+                    type={this.props.entry.obj.type}>{this.props.entry.obj.title}</Link>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'mention') {
             item = <span>
                 <Link
-                    id={this.props.entry.mentioned_by}
-                    slug={this.props.entry.mentioned_by_slug}
-                    type={this.props.entry.mentioned_by_type}>
-                    {this.props.entry.mentioned_by_title}
+                    id={this.props.entry.mentioned_by.id}
+                    slug={this.props.entry.mentioned_by.slug}
+                    type={this.props.entry.mentioned_by.type}>
+                    {this.props.entry.mentioned_by.title}
                 </Link> mentioned <Link
-                    id={this.props.entry.mentioned}
-                    slug={this.props.entry.mentioned_slug}
-                    type={this.props.entry.mentioned_type}>
-                    {this.props.entry.mentioned_title}
+                    id={this.props.entry.mentioned.id}
+                    slug={this.props.entry.mentioned.slug}
+                    type={this.props.entry.mentioned.type}>
+                    {this.props.entry.mentioned.title}
                 </Link> in <Link
-                    id={this.props.entry.mentioned_in}
-                    slug={this.props.entry.mentioned_in_slug}
-                    type={this.props.entry.mentioned_in_type}>
-                    {this.props.entry.mentioned_in_title}
+                    id={this.props.entry.mentioned_in.id}
+                    slug={this.props.entry.mentioned_in.slug}
+                    type={this.props.entry.mentioned_in.type}>
+                    {this.props.entry.mentioned_in.title}
                 </Link>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'image') {
