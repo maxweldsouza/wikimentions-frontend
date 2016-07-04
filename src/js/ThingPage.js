@@ -225,7 +225,7 @@ var ThingPage = React.createClass({
                             {thing.type !== 'video' ?
                                 image : null}
                             </div>
-                            <div className='small-12 large-9 columns text-center large-text-left'>
+                            <div className='small-12 large-9 columns'>
                                 <h1 className='page-title'>{thing.title}</h1>
                                 <div className='row'>
                                     <div className='small-12 columns'>

@@ -5,6 +5,7 @@ var Snackbar = require('./Snackbar');
 var requests = require('superagent');
 var Select = require('./Select');
 var SubmitButton = require('./SubmitButton');
+var AuthorCard = require('./AuthorCard');
 
 var AddAuthors = React.createClass({
     getInitialState () {
@@ -62,58 +63,32 @@ var AddAuthors = React.createClass({
             });
         }
     },
-    removeAuthor (id) {
-        var type;
-        if (this.props.type === 'book') {
-            type = '/booksby';
-        } else if (this.props.type === 'video') {
-            type = '/videosby';
-        }
-        requests
-        .post('/api/v1/thing/' + this.props.id + type)
-        .type('form')
-        .send({
-            author_id: id,
-            action: 'remove',
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
-            this.setState({
-                submiting: false
-            });
-            if (err && err.status) {
-                Snackbar({message: res.body.message});
-            } else {
-                Snackbar({message: 'Removed author'});
-                history.pushState(null, null, window.location.pathname + window.location.search);
-                Mentions.route(window.location.pathname + window.location.search);
-            }
-        });
-    },
     render () {
         var id = this.props.id;
         return (
             <div>
                 {this.state.opened ? <span>
-                    <div>
-                        <strong>Authors</strong>
-                        {this.props.authors.map((x) => {
-                            var path = '/people/' + x.id + '/' + x.slug;
-                            return <div>
-                                <a href={path}>{x.title}</a> <a href='' className='secondary small' onClick={this.removeAuthor.bind(null, x.id)}>Remove</a>
-                            </div>;
-                        })}
-                    </div>
-                    <form action='' method='post'>
-                        <Select name='author'
-                            placeholder='Author'
-                            onSelectValue={this.onChangeAuthor}
-                            types={['person']}/>
-                        <div className='button-group small'>
-                            <SubmitButton title='Add Author' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
-                            <button type="button" className="button" onClick={this.onClose}>Close</button>
+                    <div className='small-12 columns'>
+                        <div className='card-container'>
+                            {this.props.authors.map((x) => {
+                                return <AuthorCard id={x.id} slug={x.slug} title={x.title} type={x.type} description={x.props.description} images={x.images}/>;
+                            })}
+                            <div className='card'>
+                                <div className='small-12 columns'>
+                                    <form action='' method='post'>
+                                        <Select name='author'
+                                            placeholder='Author'
+                                            onSelectValue={this.onChangeAuthor}
+                                            types={['person']}/>
+                                        <div className='button-group small'>
+                                            <SubmitButton title='Add Author' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                                            <button type="button" className="button secondary hollow" onClick={this.onClose}>Close</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </span> : <span className='edit-links'>{' '}
                     <a className='secondary' onClick={this.onOpen}>Edit Authors</a>
                 </span>}
