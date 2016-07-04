@@ -6,6 +6,7 @@ var requests = require('superagent');
 var Select = require('./Select');
 var SubmitButton = require('./SubmitButton');
 var AuthorCard = require('./AuthorCard');
+var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
 
 var AddAuthors = React.createClass({
     getInitialState () {
@@ -67,31 +68,32 @@ var AddAuthors = React.createClass({
         var id = this.props.id;
         return (
             <div>
-                {this.state.opened ? <span>
-                    <div className='small-12 columns'>
+                <span className='edit-links'>{' '}
+                    <a className='secondary' onClick={this.onOpen}>Edit Authors</a>
+                </span>
+                <VelocityTransitionGroup
+                    enter={{animation: "fadeIn"}}
+                    leave={{animation: "fadeOut"}}>
+                {this.state.opened ? <div className='small-12 columns'>
                         <div className='card-container'>
                             {this.props.authors.map((x) => {
                                 return <AuthorCard id={x.id} slug={x.slug} title={x.title} type={x.type} description={x.props.description} images={x.images}/>;
                             })}
                             <div className='card'>
                                 <div className='small-12 columns'>
-                                    <form action='' method='post'>
-                                        <Select name='author'
-                                            placeholder='Author'
-                                            onSelectValue={this.onChangeAuthor}
-                                            types={['person']}/>
-                                        <div className='button-group small'>
-                                            <SubmitButton title='Add Author' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
-                                            <button type="button" className="button secondary hollow" onClick={this.onClose}>Close</button>
-                                        </div>
-                                    </form>
+                                    <Select name='author'
+                                        placeholder='Author'
+                                        onSelectValue={this.onChangeAuthor}
+                                        types={['person']}/>
+                                    <div className='button-group small'>
+                                        <SubmitButton title='Add Author' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                                        <button type="button" className="button secondary hollow" onClick={this.onClose}>Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </span> : <span className='edit-links'>{' '}
-                    <a className='secondary' onClick={this.onOpen}>Edit Authors</a>
-                </span>}
+                    </div> : null}
+                </VelocityTransitionGroup>
             </div>
         );
     }
