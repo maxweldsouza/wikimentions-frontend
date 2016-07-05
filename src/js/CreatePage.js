@@ -129,7 +129,7 @@ var HomePage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <form action='/api/v1/thing' method='post'>
-                            <h1 className='page-title'>Create Page</h1>
+                            <h1>Create Page</h1>
                             <Restricted message={loggedOutMessage}>
                                 <Input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid}
                                 message={this.state.titleMessage}/>

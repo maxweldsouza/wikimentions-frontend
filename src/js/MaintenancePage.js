@@ -107,7 +107,7 @@ var Maintenance = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <h1 className='page-title'>{title}</h1>
+                                <h1>{title}</h1>
                                 <div className='row'>
                                     <div className='small-4 columns'>
                                         {'Showing results ' + offset + ' to ' + (limit + offset)}

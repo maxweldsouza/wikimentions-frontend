@@ -47,7 +47,7 @@ var ContributePage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <h1 className='page-title'>Contribute</h1>
+                                <h1>Contribute</h1>
                                 <div>
                                     <a href='/site-stats'>Site Statistics</a>
                                 </div>

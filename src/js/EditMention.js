@@ -39,7 +39,7 @@ var EditMention = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <form action={'/api/v1/editmention/' + mention.id} method='post'>
                             <Xsrf/>
-                            <h1 className='page-title'>Edit Mention</h1>
+                            <h1>Edit Mention</h1>
                             <Select
                                     name='mentioned'
                                     initialValue={mention.mentioned.id}

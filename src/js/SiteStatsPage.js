@@ -38,7 +38,7 @@ var SiteStatsPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>Site Statistics</h1>
+                        <h1>Site Statistics</h1>
                         <div className='small-12 columns'>
                             <div className='card-container'>
                                 <div className='card'>

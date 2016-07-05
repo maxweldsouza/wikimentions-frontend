@@ -226,7 +226,7 @@ var ThingPage = React.createClass({
                                 image : null}
                             </div>
                             <div className='small-12 large-9 columns'>
-                                <h1 className='page-title'>{thing.props.title}</h1>
+                                <h1>{thing.props.title}</h1>
                                 <div className='row'>
                                     <div className='small-12 columns'>
                                         <span className='thing-description'>

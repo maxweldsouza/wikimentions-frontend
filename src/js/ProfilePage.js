@@ -110,7 +110,7 @@ var ProfilePage = React.createClass({
                     <div className='small-12 xlarge-8 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <h1 className='page-title'>{user.name}</h1>
+                                <h1>{user.name}</h1>
                                 <div className='row'>
                                     <TextWidget label={'Joined'} value={<Time timestamp={user.joined} format='D/M/YY' type='timestamp'/>} />
                                     <TextWidget label={'Level'} value={user.level} />
