@@ -17,8 +17,8 @@ var ThingBookTab = React.createClass({
                         return <Book
                             key={x.id}
                             id={x.id}
-                            slug={x.slug}
-                            title={x.title}
+                            slug={x.props.slug}
+                            title={x.props.title}
                             isbn={x.isbn}
                             isbn13={x.isbn13}
                             />;

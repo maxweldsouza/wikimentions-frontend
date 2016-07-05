@@ -31,8 +31,8 @@ var HistoryPage = React.createClass({
     },
     render () {
         var id = Number(this.props.path.split('/')[1]);
-        var slug = this.props.data.history.slug;
-        var type = this.props.data.history.type;
+        var slug = this.props.data.history.props.slug;
+        var type = this.props.data.history.props.type;
         var history = this.props.data.history.history;
         var nodata;
         if (history.length === 0) {
@@ -45,7 +45,7 @@ var HistoryPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'History - ' + this.props.data.thing.title}
+                    title={'History - ' + this.props.data.thing.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
@@ -61,7 +61,7 @@ var HistoryPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>{'History - ' + this.props.data.thing.title}</h1>
+                        <h1 className='page-title'>{'History - ' + this.props.data.thing.props.title}</h1>
                         <PageBar
                             id={id}
                             slug={slug}

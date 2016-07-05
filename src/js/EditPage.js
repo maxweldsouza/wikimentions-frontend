@@ -39,8 +39,8 @@ var EditPage = React.createClass({
     },
     getInitialState () {
         return {
-            type: this.props.data.thing.type,
-            title: this.props.data.thing.title,
+            type: this.props.data.thing.props.type,
+            title: this.props.data.thing.props.title,
             titleValid: true,
             titleMessage: '',
             description: this.props.data.thing.props.description,
@@ -131,7 +131,7 @@ var EditPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Edit - ' + entry.title}
+                    title={'Edit - ' + entry.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
@@ -147,11 +147,11 @@ var EditPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>{'Edit - ' + entry.title}</h1>
+                        <h1 className='page-title'>{'Edit - ' + entry.props.title}</h1>
                         <PageBar
                             id={id}
-                            slug={entry.slug}
-                            type={entry.type}
+                            slug={entry.props.slug}
+                            type={entry.props.type}
                             />
                         <Restricted message={loggedOutMessage}>
                             <form action={'/api/v1/thing/' + id} method='post'>
@@ -170,7 +170,7 @@ var EditPage = React.createClass({
                                     onChange={this.onChangeText}/>
                                 <ButtonSelect
                                     name='type'
-                                    default={this.props.data.thing.type}
+                                    default={this.props.data.thing.props.type}
                                     options={options}
                                     onChange={this.onChangeType}/>
                                 {this.state.type === 'book' ? <input

@@ -18,8 +18,8 @@ var ThingVideoTab = React.createClass({
                     return <Video
                             key={x.id}
                             id={x.id}
-                            slug={x.slug}
-                            title={x.title}
+                            slug={x.props.slug}
+                            title={x.props.title}
                             images={x.images}
                             url={x.props.url}
                             />;

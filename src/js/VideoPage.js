@@ -87,16 +87,16 @@ var ThingPage = React.createClass({
                     return <li className='tabs-title is-active' key={x}>
                         <Link
                             id={thing.id}
-                            slug={thing.slug}
-                            type={thing.type}
+                            slug={thing.props.slug}
+                            type={thing.props.type}
                             tab={x}>{tabTitles[x]}</Link>
                     </li>;
                 }
                 return <li className='tabs-title' key={x}>
                     <Link
                         id={thing.id}
-                        slug={thing.slug}
-                        type={thing.type}
+                        slug={thing.props.slug}
+                        type={thing.props.type}
                         tab={x}>{tabTitles[x]}</Link>
                 </li>;
             })}
@@ -109,7 +109,7 @@ var ThingPage = React.createClass({
                             path={this.props.path}
                             page={this.props.query.page}
                             count={thing.mentioned_count}
-                            type={thing.type}
+                            type={thing.props.type}
                         />;
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
@@ -118,22 +118,22 @@ var ThingPage = React.createClass({
                             path={this.props.path}
                             page={this.props.query.page}
                             count={thing.mentioned_by_count}
-                            type={thing.type}
+                            type={thing.props.type}
                         />;
         }
         return (
             <span>
                 <Helmet
-                    title={thing.title}
+                    title={thing.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''},
                         {name: 'twitter:card', content: 'summary'},
                         {name: 'twitter:site', content: config.twitter},
-                        {name: 'twitter:title', content: thing.title},
+                        {name: 'twitter:title', content: thing.props.title},
                         {name: 'twitter:description', content: ''},
                         {name: 'twitter:image', content: image},
-                        {property: 'og:title', content: thing.title},
+                        {property: 'og:title', content: thing.props.title},
                         {property: 'og:type', content: 'article'},
                         {property: 'og:url', content: config.url + this.props.path},
                         {property: 'og:description', content: ''},
@@ -156,7 +156,7 @@ var ThingPage = React.createClass({
                                 <div>
                                     <VideoEmbed url={this.props.data.thing.props.url} embeddable={this.props.data.thing.props.embeddable}/>
                                 </div>
-                                <h1 className='page-title'><a href={this.props.data.thing.props.url} target='_blank'>{thing.title} <sup><span className='ion-android-open'/></sup></a></h1>
+                                <h1 className='page-title'><a href={this.props.data.thing.props.url} target='_blank'>{thing.props.title} <sup><span className='ion-android-open'/></sup></a></h1>
                                 <span className='thing-description'>
                                     {thing.description}
                                     {authors}
@@ -169,7 +169,7 @@ var ThingPage = React.createClass({
                                     />
                                 <div className='row'>
                                     <div className='small-12 columns'>
-                                        <Share title={thing.title} path={this.props.path}/>
+                                        <Share title={thing.props.title} path={this.props.path}/>
                                     </div>
                                 </div>
                                 {tabHeading}

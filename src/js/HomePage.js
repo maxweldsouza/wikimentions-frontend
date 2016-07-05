@@ -108,11 +108,11 @@ var HomePage = React.createClass({
                                 {this.props.data.home.map((x) => {
                                     return <HomeItem
                                         id={x.id}
-                                        title={x.title}
+                                        title={x.props.title}
                                         images={x.images}
                                         description={x.props.description}
-                                        type={x.type}
-                                        slug={x.slug}
+                                        type={x.props.type}
+                                        slug={x.props.slug}
                                         book_count={x.book_count}
                                         video_count={x.video_count}
                                         mentioned_count={x.mentioned_count}

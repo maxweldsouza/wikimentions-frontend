@@ -57,13 +57,13 @@ var Mention = React.createClass({
         }
         description = main.props && main.props.description ? main.props.description : '';
 
-        if (main.type === 'book') {
+        if (main.props.type === 'book') {
             icon = 'ion-ios-book';
             description = 'Book';
-        } else if (main.type === 'video') {
+        } else if (main.props.type === 'video') {
             icon = 'ion-ios-videocam';
             description = 'Video';
-        } else if (main.type === 'person') {
+        } else if (main.props.type === 'person') {
             icon = 'ion-person';
         }
 
@@ -86,8 +86,8 @@ var Mention = React.createClass({
                         <div className='small-12 columns card-title'>
                             <Link
                                 id={main.id}
-                                slug={main.slug}
-                                type={main.type}>{main.title}</Link>
+                                slug={main.props.slug}
+                                type={main.props.type}>{main.props.title}</Link>
                         </div>
                         <div className='small-12 columns'>
                             <span>
@@ -98,35 +98,35 @@ var Mention = React.createClass({
                             {this.props.quote}
                         </div>
                         <div className='small-12 columns'>
-                            {main.type === 'person' ? <Link
+                            {main.props.type === 'person' ? <Link
                                 id={main.id}
-                                slug={main.slug}
-                                title={main.title}
-                                type={main.type}
+                                slug={main.props.slug}
+                                title={main.props.title}
+                                type={main.props.type}
                                 className='secondary'
                                 tab='videos'>{'Videos'}<span className="badge">{main.video_count}</span>{'  '}
                             </Link> : null}
-                            {main.type === 'person' ? <Link
+                            {main.props.type === 'person' ? <Link
                                 id={main.id}
-                                slug={main.slug}
-                                title={main.title}
-                                type={main.type}
+                                slug={main.props.slug}
+                                title={main.props.title}
+                                type={main.props.type}
                                 className='secondary'
                                 tab='books'>{'Books'}<span className="badge">{main.book_count}</span>{'  '}
                             </Link> : null}
                             <Link
                                 id={main.id}
-                                slug={main.slug}
-                                title={main.title}
-                                type={main.type}
+                                slug={main.props.slug}
+                                title={main.props.title}
+                                type={main.props.type}
                                 className='secondary'
                                 tab='mentioned'>{'Mentions'}<span className="badge">{main.mentioned_count}</span>{'  '}
                             </Link>
                             <Link
                                 id={main.id}
-                                slug={main.slug}
-                                title={main.title}
-                                type={main.type}
+                                slug={main.props.slug}
+                                title={main.props.title}
+                                type={main.props.type}
                                 className='secondary'
                                 tab='mentionedby'>{'Mentioned By'}<span className="badge">{main.mentioned_by_count}</span>
                             </Link>
@@ -135,8 +135,8 @@ var Mention = React.createClass({
                             {inorby} <strong><Link
                                 className='secondary'
                                 id={secondary.id}
-                                slug={secondary.slug}
-                                type={secondary.type}>{secondary.title}</Link></strong>
+                                slug={secondary.props.slug}
+                                type={secondary.props.type}>{secondary.props.title}</Link></strong>
                         </div> : null}
                     </div>
                 </div>

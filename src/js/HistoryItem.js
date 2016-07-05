@@ -11,13 +11,13 @@ var HistoryCard = React.createClass({
             item = <span>
                 <Link
                     id={this.props.entry.source.id}
-                    slug={this.props.entry.source.slug}
-                    type={this.props.entry.source.type}>
+                    slug={this.props.entry.source.props.slug}
+                    type={this.props.entry.source.props.type}>
                     {this.props.entry.source.title}
                 </Link> as author to video <Link
                     id={this.props.entry.destination.id}
-                    slug={this.props.entry.destination.slug}
-                    type={this.props.entry.destination.type}>
+                    slug={this.props.entry.destination.props.slug}
+                    type={this.props.entry.destination.props.type}>
                     {this.props.entry.destination.title}
                 </Link>
             </span>;
@@ -25,39 +25,39 @@ var HistoryCard = React.createClass({
             item = <span>
                 <Link
                     id={this.props.entry.source.id}
-                    slug={this.props.entry.source.slug}
-                    type={this.props.entry.source.type}>{this.props.entry.source.title}
+                    slug={this.props.entry.source.props.slug}
+                    type={this.props.entry.source.props.type}>{this.props.entry.source.props.title}
                 </Link> as author to book <Link
                     id={this.props.entry.destination.id}
-                    slug={this.props.entry.destination.slug}
-                    type={this.props.entry.destination.type}>
-                    {this.props.entry.destination.title}
+                    slug={this.props.entry.destination.props.slug}
+                    type={this.props.entry.destination.props.type}>
+                    {this.props.entry.destination.props.title}
                 </Link>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'prop') {
             item = <span>
                 set {this.props.entry.key} to {this.props.entry.value} for <Link
                     id={this.props.entry.obj.id}
-                    slug={this.props.entry.obj.slug}
-                    type={this.props.entry.obj.type}>{this.props.entry.obj.title}</Link>
+                    slug={this.props.entry.obj.props.slug}
+                    type={this.props.entry.obj.props.type}>{this.props.entry.obj.props.title}</Link>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'mention') {
             item = <span>
                 <Link
                     id={this.props.entry.mentioned_by.id}
-                    slug={this.props.entry.mentioned_by.slug}
-                    type={this.props.entry.mentioned_by.type}>
-                    {this.props.entry.mentioned_by.title}
+                    slug={this.props.entry.mentioned_by.props.slug}
+                    type={this.props.entry.mentioned_by.props.type}>
+                    {this.props.entry.mentioned_by.props.title}
                 </Link> mentioned <Link
                     id={this.props.entry.mentioned.id}
-                    slug={this.props.entry.mentioned.slug}
-                    type={this.props.entry.mentioned.type}>
-                    {this.props.entry.mentioned.title}
+                    slug={this.props.entry.mentioned.props.slug}
+                    type={this.props.entry.mentioned.props.type}>
+                    {this.props.entry.mentioned.props.title}
                 </Link> in <Link
                     id={this.props.entry.mentioned_in.id}
-                    slug={this.props.entry.mentioned_in.slug}
-                    type={this.props.entry.mentioned_in.type}>
-                    {this.props.entry.mentioned_in.title}
+                    slug={this.props.entry.mentioned_in.props.slug}
+                    type={this.props.entry.mentioned_in.props.type}>
+                    {this.props.entry.mentioned_in.props.title}
                 </Link>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'image') {

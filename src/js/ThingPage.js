@@ -92,20 +92,20 @@ var ThingPage = React.createClass({
         tab = tab ? tab : defaultTab;
 
         var authors = [];
-        if (thing.type === 'book' && this.props.data.bookauthors.length > 0) {
+        if (thing.props.type === 'book' && this.props.data.bookauthors.length > 0) {
             authors = this.props.data.bookauthors;
-        } else if (thing.type === 'video' && this.props.data.videoauthors.length > 0) {
+        } else if (thing.props.type === 'video' && this.props.data.videoauthors.length > 0) {
             authors = this.props.data.videoauthors;
         }
-        if (thing.type === 'book' || thing.type === 'video') {
-            authors = <Authors authors={authors} id={id} type={thing.type}/>;
+        if (thing.props.type === 'book' || thing.props.type === 'video') {
+            authors = <Authors authors={authors} id={id} type={thing.props.type}/>;
         }
         var mentions = this.props.data.mentions;
         var mentionedby = this.props.data.mentionedby;
         var tabs = [];
         var books;
         var videos;
-        if (thing.type === 'person') {
+        if (thing.props.type === 'person') {
             tabs.push('videos');
             tabs.push('books');
             books = this.props.data.books;
@@ -131,16 +131,16 @@ var ThingPage = React.createClass({
                     return <li className='tabs-title is-active' key={x}>
                         <Link
                             id={thing.id}
-                            slug={thing.slug}
-                            type={thing.type}
+                            slug={thing.props.slug}
+                            type={thing.props.type}
                             tab={x}>{tabTitles[x]}</Link>
                     </li>;
                 }
                 return <li className='tabs-title' key={x}>
                     <Link
                         id={thing.id}
-                        slug={thing.slug}
-                        type={thing.type}
+                        slug={thing.props.slug}
+                        type={thing.props.type}
                         tab={x}>{tabTitles[x]}</Link>
                 </li>;
             })}
@@ -151,7 +151,7 @@ var ThingPage = React.createClass({
                 id={id}
                 mentions={mentions}
                 count={thing.mentioned_count}
-                type={thing.type}
+                type={thing.props.type}
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
@@ -160,11 +160,11 @@ var ThingPage = React.createClass({
                 id={id}
                 mentionedby={mentionedby}
                 count={thing.mentioned_by_count}
-                type={thing.type}
+                type={thing.props.type}
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
-        } else if (tab === 'books' && thing.type === 'person') {
+        } else if (tab === 'books' && thing.props.type === 'person') {
             tabContent = <ThingBookTab
                 id={id}
                 books={books}
@@ -172,7 +172,7 @@ var ThingPage = React.createClass({
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
-        } else if (tab === 'videos' && thing.type === 'person') {
+        } else if (tab === 'videos' && thing.props.type === 'person') {
             tabContent = <ThingVideoTab
                 id={id}
                 videos={videos}
@@ -199,10 +199,10 @@ var ThingPage = React.createClass({
                     {'name': 'description', 'content': ''},
                     {name: 'twitter:card', content: 'summary'},
                     {name: 'twitter:site', content: config.twitter},
-                    {name: 'twitter:title', content: thing.title},
+                    {name: 'twitter:title', content: thing.props.title},
                     {name: 'twitter:description', content: ''},
                     {name: 'twitter:image', content: image},
-                    {property: 'og:title', content: thing.title},
+                    {property: 'og:title', content: thing.props.title},
                     {property: 'og:type', content: 'article'},
                     {property: 'og:url', content: config.url + this.props.path},
                     {property: 'og:description', content: ''},
@@ -222,33 +222,32 @@ var ThingPage = React.createClass({
                 <div className='small-12 columns'>
                     <div className='row'>
                         <div className='small-12 large-3 columns text-center large-text-left'>
-                            {thing.type !== 'video' ?
+                            {thing.props.type !== 'video' ?
                                 image : null}
                             </div>
                             <div className='small-12 large-9 columns'>
-                                <h1 className='page-title'>{thing.title}</h1>
+                                <h1 className='page-title'>{thing.props.title}</h1>
                                 <div className='row'>
                                     <div className='small-12 columns'>
                                         <span className='thing-description'>
                                             {thing.props.description}
                                             {authors}
                                         </span>
-                                        <Share title={thing.title} path={this.props.path}/>
+                                        <Share title={thing.props.title} path={this.props.path}/>
                                         <PageBar
                                             id={id}
-                                            slug={thing.slug}
-                                            type={thing.type}
+                                            slug={thing.props.slug}
+                                            type={thing.props.type}
                                             noPage
                                             />
                                     </div>
                                 </div>
-                                {thing.type === 'video' ? <div>
+                                {thing.props.type === 'video' ? <div>
                                     <a href={thing.url}><img className='' src='/assets/video.png' alt=''/></a>
                                 </div> : null}
                                 {tabHeading}
                                 <div className='tabs-content text-left'>
                                     <div className='tabs-panel is-active'>
-
                                         {tabContent}
                                     </div>
                                 </div>

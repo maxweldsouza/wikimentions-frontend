@@ -22,11 +22,11 @@ var Navbar = React.createClass({
     onSelectSearchResult (x) {
         this.closeModal();
         var pagepath;
-        if (x.type === 'video') {
+        if (x.props.type === 'video') {
             pagepath = '/videos/';
-        } else if (x.type === 'book') {
+        } else if (x.props.type === 'book') {
             pagepath = '/books/';
-        } else if (x.type === 'person') {
+        } else if (x.props.type === 'person') {
             pagepath = '/people/';
         } else {
             pagepath = '/pages/';

@@ -61,7 +61,7 @@ var ImagesPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Images - ' + this.props.data.images.title}
+                    title={'Images - ' + this.props.data.images.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
@@ -77,11 +77,11 @@ var ImagesPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1 className='page-title'>{'Images - ' + this.props.data.images.title}</h1>
+                        <h1 className='page-title'>{'Images - ' + this.props.data.images.props.title}</h1>
                         <PageBar
                             id={this.props.data.images.id}
-                            slug={this.props.data.images.slug}
-                            type={this.props.data.images.type}
+                            slug={this.props.data.images.props.slug}
+                            type={this.props.data.images.props.type}
                             />
                         <div className='small-12 columns'>
                             <div className='card-container'>

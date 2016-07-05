@@ -9,9 +9,9 @@ var Authors = React.createClass({
             <div>
                 {'by '}
                 {authors.map(function (x, i) {
-                    var path = '/people/' + x.id + '/' + x.slug;
-                    return <a href={path} key={x.title}>
-                        {x.title}{i === authorCount - 1 ? '' : ', '}
+                    var path = '/people/' + x.id + '/' + x.props.slug;
+                    return <a href={path} key={x.props.title}>
+                        {x.props.title}{i === authorCount - 1 ? '' : ', '}
                     </a>;
                 })}
                 <AddAuthors id={this.props.id} authors={authors} type={this.props.type}/>

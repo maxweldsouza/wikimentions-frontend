@@ -38,7 +38,7 @@ var DiscussPage = React.createClass({
         var parts = this.props.path.split('/');
         var id = Number(parts[1]);
         var slug = parts[2];
-        var type = this.props.data.discuss.type;
+        var type = this.props.data.discuss.props.type;
         var discussions = this.props.data.discuss.discussion;
         var nodata;
         if (discussions.length === 0) {

@@ -188,7 +188,7 @@ var Select = React.createClass({
 
                         var image;
                         var imagedata = _.find(entry.images, function (x) {
-                            if (entry.type === 'person') {
+                            if (entry.props.type === 'person') {
                                 return x.width === 75 && x.height === 75;
                             } else {
                                 return x.width === 150;
@@ -212,7 +212,7 @@ var Select = React.createClass({
                             <div className=''>
                                 {entry.title}
                                 <div className='select-option-type'>
-                                    {entry.type}
+                                    {entry.props.type}
                                 </div>
                             </div>
                         </div>;
