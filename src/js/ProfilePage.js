@@ -12,6 +12,9 @@ var EditProfile = require('./EditProfile');
 var S = require('string');
 var PreviousNext = require('./PreviousNext');
 var Footer = require('./Footer');
+var TextWidget = require('./TextWidget');
+
+var React = require('react');
 
 var ProfilePage = React.createClass({
     statics: {
@@ -23,12 +26,10 @@ var ProfilePage = React.createClass({
                 name: 'user',
                 path: '/api/v1/user/' + id + '?slug=' + name
             }];
-            if (tab === 'edits') {
                 api.push({
                     name: 'history',
                     path: '/api/v1/userhistory/' + id + query
                 });
-            }
             return {
                 api: api
             };
@@ -106,20 +107,30 @@ var ProfilePage = React.createClass({
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
-                    <div className='small-12 large-8 columns'>
+                    <div className='small-12 xlarge-8 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1 className='page-title'>{user.name}</h1>
-                                <div>
-                                    Joined <Time timestamp={user.joined} format='MMMM Do YYYY' type='timestamp'/>
+                                <div className='row'>
+                                    <TextWidget label={'Joined'} value={<Time timestamp={user.joined} format='D/M/YY' type='timestamp'/>} />
+                                    <TextWidget label={'Level'} value={user.level} />
+                                    <TextWidget label={'Reputation'} value={10000} />
                                 </div>
-                                <div>Level {user.level}</div>
-                                {tab}
-                                <div className='tabs-content' data-tabs-content='example-tabs'>
-                                    <div className='tabs-panel is-active'>
-                                        <div className='card-container'>
-                                            {tabContent}
-                                        </div>
+                                <h2>Edits</h2>
+                                <div className='small-12 columns'>
+                                    <div className='card-container'>
+                                        {history.map((x) => {
+                                            return <HistoryItem
+                                                user={user.id}
+                                                username={user.name}
+                                                obj_id={x.obj_id}
+                                                entry={x.entry}
+                                                entrytype={x.entrytype}
+                                                timestamp={x.timestamp}
+                                                deleted={x.deleted}
+                                                />;
+                                        })}
+                                        <PreviousNext path={this.props.path} page={this.props.query.page}/>
                                     </div>
                                 </div>
                             </div>
