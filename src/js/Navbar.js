@@ -32,7 +32,7 @@ var Navbar = React.createClass({
             pagepath = '/pages/';
             console.warn('No page type specified for Link');
         }
-        var path = pagepath + x.id + '/' + x.slug;
+        var path = pagepath + x.id + '/' + x.props.slug;
         history.pushState(null, null, path);
         Mentions.route(path);
     },

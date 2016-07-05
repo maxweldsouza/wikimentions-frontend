@@ -51,7 +51,7 @@ var Select = React.createClass({
     onSelectValue (x) {
         this.setState({
             options: [],
-            searchText: x.title,
+            searchText: x.props.title,
             editable: false,
             value: x.id,
             visible: false
@@ -210,7 +210,7 @@ var Select = React.createClass({
                                 {image}
                             </div>
                             <div className=''>
-                                {entry.title}
+                                {entry.props.title}
                                 <div className='select-option-type'>
                                     {entry.props.type}
                                 </div>

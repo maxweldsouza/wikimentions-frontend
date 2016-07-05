@@ -129,11 +129,11 @@ var SearchPage = React.createClass({
                                 {this.state.results.map((x) => {
                                     return <HomeItem
                                         id={x.id}
-                                        title={x.props.title}
+                                        title={x.title}
                                         images={x.images}
                                         description={x.props.description}
-                                        type={x.props.type}
-                                        slug={x.props.slug}
+                                        type={x.type}
+                                        slug={x.slug}
                                         book_count={x.book_count}
                                         video_count={x.video_count}
                                         mentioned_count={x.mentioned_count}
