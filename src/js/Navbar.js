@@ -49,16 +49,17 @@ var Navbar = React.createClass({
             moreResults={true}/>;
 
         var navicon = <span className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar}/>;
-        var searchIcon = <span className='ion-search navbar-icon' onClick={this.onOpenModal}/>;
+        var searchIcon = <button className='button secondary hollow small'><span className='ion-search navbar-icon' onClick={this.onOpenModal}/></button>;
         if (loggedin) {
-            rhs = <ul className='menu'>
-                <li className='hide-for-xlarge'>{searchIcon}</li>
+            rhs = <ul className='menu align-right'>
                 <li className='show-for-xlarge'>{SearchBar}</li>
                 <li className='show-for-large'><a href={'/users/' + userid + '/' + username}>{username}</a></li>
+                <li className='show-for-xlarge'><a onClick={Mentions.logout}>Logout</a></li>
+                <li className='hide-for-xlarge'>{searchIcon}</li>
             </ul>;
         } else {
-            rhs = <ul className='menu'>
-                <li className='hide-for-medium'>{searchIcon}</li>
+            rhs = <ul className='menu align-right'>
+                <li className='hide-for-xlarge'>{searchIcon}</li>
                 <li className='show-for-xlarge'>{SearchBar}</li>
             </ul>;
         }
@@ -66,10 +67,10 @@ var Navbar = React.createClass({
             <div className='top-bar'>
                 <div className='top-bar-left'>
                     <ul className='menu icon-top'>
-                        <li>{navicon}</li>
+                        <li className='hide-for-xlarge'>{navicon}</li>
                         <li className='menu-text'><a href='/'>{config.name}</a></li>
                         <li><Spinner /></li>
-                        <li><a href='/create'>Create Page</a></li>
+                        <li className='show-for-xlarge'><a href='/create'>Create Page</a></li>
                     </ul>
                 </div>
                 <div className='top-bar-right'>

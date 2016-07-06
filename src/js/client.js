@@ -7,6 +7,7 @@ var str = require('string');
 var MainComponent = require('./MainComponent');
 var Router = require('./Router.js');
 var requests = require('superagent');
+var Snackbar = require('./Snackbar');
 require('velocity-animate');
 require('velocity-animate/velocity.ui');
 
@@ -75,7 +76,25 @@ window.Mentions = {
         };
         Router.route(routeObj);
         return;
-    }
+    },
+    logout () {
+        requests
+        .post('/api/v1/logout')
+        .type('form')
+        .send({
+            _xsrf: cookies.get('_xsrf')
+        })
+        .end((err, res) => {
+            if (err && err.status) {
+                Snackbar({message: 'Logout failed'});
+            } else {
+                Snackbar({message: 'Logged out'});
+                var path = window.location.pathname + window.location.search;
+                history.pushState(null, null, path);
+                Mentions.route(path);
+            }
+        });
+    },
 };
 
 Mentions.firstLoad(window.location.pathname + window.location.search);

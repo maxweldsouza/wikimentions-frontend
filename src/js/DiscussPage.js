@@ -51,7 +51,7 @@ var DiscussPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Discussion - ' + this.props.data.discuss.title}
+                    title={'Discussion - ' + this.props.data.discuss.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
@@ -67,7 +67,7 @@ var DiscussPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1>{'Discussion - ' + this.props.data.discuss.title}</h1>
+                        <h1>{'Discussion - ' + this.props.data.discuss.props.title}</h1>
                         <PageBar
                             id={id}
                             slug={slug}

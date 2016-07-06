@@ -111,6 +111,7 @@ var ProfilePage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1>{user.name}</h1>
+                                <button className='button small'>Edit Profile</button>
                                 <div className='row'>
                                     <TextWidget label={'Joined'} value={<Time timestamp={user.joined} format='D/M/YY' type='timestamp'/>} />
                                     <TextWidget label={'Level'} value={user.level} />
