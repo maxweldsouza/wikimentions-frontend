@@ -2,39 +2,35 @@ var React = require('react');
 var Select = require('./Select');
 var Xsrf = require('./Xsrf');
 var config = require('./config');
-var Modal = require('./Modal');
 var Spinner = require('./Spinner');
+var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
 
 var Navbar = React.createClass({
     getInitialState () {
         return {
-            modalIsOpen: false
+            searchBarOpen: false,
+            searchText: ''
         };
     },
-    onOpenModal () {
+    onChangeText (e) {
+        var temp = {};
+        temp[e.target.name] = e.target.value;
+        this.setState(temp);
+    },
+    onOpenSearchBar () {
         this.setState({
-            modalIsOpen: true
+            searchBarOpen: true
         });
     },
-    closeModal () {
-        this.setState({modalIsOpen: false});
+    onCloseSearchBar () {
+        this.setState({searchBarOpen: false});
     },
-    onSelectSearchResult (x) {
-        this.closeModal();
-        var pagepath;
-        if (x.props.type === 'video') {
-            pagepath = '/videos/';
-        } else if (x.props.type === 'book') {
-            pagepath = '/books/';
-        } else if (x.props.type === 'person') {
-            pagepath = '/people/';
-        } else {
-            pagepath = '/pages/';
-            console.warn('No page type specified for Link');
+    handleKeys (event) {
+        if (event.key === 'Enter') {
+            var path = '/search?q=' + this.state.searchText;
+            history.pushState(null, null, path);
+            Mentions.route(path);
         }
-        var path = pagepath + x.id + '/' + x.props.slug;
-        history.pushState(null, null, path);
-        Mentions.route(path);
     },
     render () {
         var rhs;
@@ -49,7 +45,7 @@ var Navbar = React.createClass({
             moreResults={true}/>;
 
         var navicon = <span className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar}/>;
-        var searchIcon = <button className='button secondary hollow small'><span className='ion-search navbar-icon' onClick={this.onOpenModal}/></button>;
+        var searchIcon = <button className='button secondary hollow small'><span className='ion-search navbar-icon' onClick={this.onOpenSearchBar}/></button>;
         if (loggedin) {
             rhs = <ul className='menu align-right'>
                 <li className='show-for-xlarge'>{SearchBar}</li>
@@ -64,35 +60,32 @@ var Navbar = React.createClass({
             </ul>;
         }
         return (
-            <div className='top-bar'>
-                <div className='top-bar-left'>
-                    <ul className='menu icon-top'>
-                        <li className='hide-for-xlarge'>{navicon}</li>
-                        <li className='menu-text'><a href='/'>{config.name}</a></li>
-                        <li><Spinner /></li>
-                        <li className='show-for-xlarge'><a href='/create'>Create Page</a></li>
-                    </ul>
+            <div>
+                <div className='top-bar'>
+                    <div className='top-bar-left'>
+                        <ul className='menu icon-top'>
+                            <li className='hide-for-xlarge'>{navicon}</li>
+                            <li className='menu-text'><a href='/'>{config.name}</a></li>
+                            <li><Spinner /></li>
+                            <li className='show-for-xlarge'><a href='/create'>Create Page</a></li>
+                        </ul>
+                    </div>
+                    <div className='top-bar-right'>
+                        {rhs}
+                    </div>
                 </div>
-                <div className='top-bar-right'>
-                    <Modal
-                        isOpen={this.state.modalIsOpen}
-                        onClose={this.closeModal}
-                        className='modal-content'
-                        overlayClassName='modal-overlay'>
+                <VelocityTransitionGroup enter={{animation: 'transition.fadeIn'}} leave={{animation: 'transition.fadeOut'}} duration={200}>
+                    {this.state.searchBarOpen ? <div className='navbar-search hide-for-xlarge'>
                         <div className='row'>
-                            <div className='small-12 columns'>
-                                <h1>Search</h1>
+                            <div className='columns'>
+                                <input className='search-bar' type='text' placeholder='Search' onChange={this.onChangeText} onKeyDown={this.handleKeys} name='searchText'></input>
                             </div>
-                            <div className='small-12 columns'>
-                                {SearchBar}
-                            </div>
-                            <div className='small-12 columns'>
-                                <button className='button' onClick={this.closeModal}>Close</button>
+                            <div className='shrink columns'>
+                                <button className='button secondary hollow small'><span className='ion-close navbar-icon' onClick={this.onCloseSearchBar}/></button>
                             </div>
                         </div>
-                    </Modal>
-                    {rhs}
-                </div>
+                    </div> : null}
+                </VelocityTransitionGroup>
             </div>
         );
     }

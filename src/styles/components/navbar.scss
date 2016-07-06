@@ -15,6 +15,7 @@
 
 .top-bar input {
     margin-right: 0;
+    max-width: none;
 }
 
 .navbar-icon {
@@ -25,4 +26,22 @@
 
 .top-bar .top-bar-left, .top-bar .top-bar-right {
     flex: 1 1 0px;
+}
+
+.navbar-search {
+    background: white;
+    border-bottom: solid 2px $medium-gray;
+    height: 50px;
+    left: 0;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    width: 100%;
+    z-index: $z-20;
+
+    .search-bar {
+        margin-bottom: 0;
+        width: 100%;
+    }
 }
