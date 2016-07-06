@@ -131,9 +131,11 @@ var HomePage = React.createClass({
                         <form action='/api/v1/thing' method='post'>
                             <h1>Create Page</h1>
                             <Restricted message={loggedOutMessage}>
-                                <Input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid}
+                                Title
+                                <Input type='text' name='title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid}
                                 message={this.state.titleMessage}/>
-                                <input type='text' name='description' placeholder='Description (Optional)' value={this.state.description} onChange={this.onChangeText}/>
+                                Description (Optional)
+                                <input type='text' name='description' value={this.state.description} onChange={this.onChangeText}/>
                                 <div className='row'>
                                     <div className='small-12 columns'>
                                         Type
@@ -143,15 +145,24 @@ var HomePage = React.createClass({
                                             default={'person'}
                                             onChange={this.onChangeType}/>
                                         <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
-                                            {this.state.type === 'book' ? <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/> : null}
+                                            {this.state.type === 'book' ? <span>
+                                                ISBN
+                                                <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/></span> : null}
                                         </VelocityTransitionGroup>
                                         <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
-                                            {this.state.type === 'book' ? <input type='text' name='isbn13' placeholder='ISBN-13' value={this.state.isbn13} onChange={this.onChangeText}/> : null}
+                                            {this.state.type === 'book' ? <span>
+                                                ISBN-13
+                                                <input type='text' name='isbn13' value={this.state.isbn13} onChange={this.onChangeText}/>
+                                        </span> : null}
                                         </VelocityTransitionGroup>
                                         <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
-                                            {this.state.type === 'video' ? <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText}
-                                        valid={this.state.urlValid}
-                                        message={this.state.urlMessage}/> : null}
+                                            {this.state.type === 'video' ? <span>
+                                                Url
+                                                <Input type='text' name='url'
+                                                value={this.state.url}
+                                                onChange={this.onChangeText}
+                                                valid={this.state.urlValid}
+                                            message={this.state.urlMessage}/></span> : null}
                                         </VelocityTransitionGroup>
                                     </div>
                                 </div>

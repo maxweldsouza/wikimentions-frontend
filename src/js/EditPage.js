@@ -155,17 +155,17 @@ var EditPage = React.createClass({
                             />
                         <Restricted message={loggedOutMessage}>
                             <form action={'/api/v1/thing/' + id} method='post'>
+                                Title
                                 <Input
                                     type='text'
                                     name='title'
-                                    placeholder='Title'
                                     value={this.state.title} onChange={this.onChangeText}
                                     valid={this.state.titleValid}
                                     message={this.state.titleMessage}/>
+                                Description (Optional)
                                 <input
                                     type='text'
                                     name='description'
-                                    placeholder='Description (Optional)'
                                     value={this.state.description}
                                     onChange={this.onChangeText}/>
                                 <ButtonSelect
@@ -173,20 +173,27 @@ var EditPage = React.createClass({
                                     default={this.props.data.thing.props.type}
                                     options={options}
                                     onChange={this.onChangeType}/>
-                                {this.state.type === 'book' ? <input
+                                {this.state.type === 'book' ? <span>
+                                    ISBN
+                                    <input
                                     type='text'
                                     name='isbn'
-                                    placeholder='ISBN'
                                     value={this.state.isbn}
-                                    onChange={this.onChangeText}/> : null}
-                                {this.state.type === 'book' ? <input
+                                    onChange={this.onChangeText}/>
+                                </span> : null}
+                                {this.state.type === 'book' ? <span>
+                                    ISBN-13
+                                    <input
                                     type='text'
                                     name='isbn13'
-                                    placeholder='ISBN-13'
                                     value={this.state.isbn13}
-                                    onChange={this.onChangeText}/> : null}
-                                {this.state.type === 'video' ? <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid}
-                                message={this.state.urlMessage}/> : null}
+                                    onChange={this.onChangeText}/>
+                                </span> : null}
+                                {this.state.type === 'video' ? <span>
+                                    Url
+                                    <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid}
+                                message={this.state.urlMessage}/>
+                                </span>: null}
                                 <SubmitButton
                                     title='Save'
                                     submitting={this.state.submitting}
