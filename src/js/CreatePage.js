@@ -162,7 +162,7 @@ var HomePage = React.createClass({
                                                 value={this.state.url}
                                                 onChange={this.onChangeText}
                                                 valid={this.state.urlValid}
-                                            message={this.state.urlMessage}/></span> : null}
+                                                message={this.state.urlMessage}/></span> : null}
                                         </VelocityTransitionGroup>
                                     </div>
                                 </div>
