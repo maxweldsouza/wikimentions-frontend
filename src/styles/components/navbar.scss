@@ -6,7 +6,7 @@
 }
 
 .top-bar, .top-bar ul {
-    height: 50px;
+    height: $topbar-height;
 }
 
  .top-bar ul {
@@ -31,7 +31,7 @@
 .navbar-search {
     background: white;
     border-bottom: solid 2px $medium-gray;
-    height: 50px;
+    height: $topbar-height;
     left: 0;
     padding-bottom: 5px;
     padding-left: 15px;
