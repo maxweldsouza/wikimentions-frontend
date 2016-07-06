@@ -17,24 +17,6 @@ var Sidebar = React.createClass({
         history.pushState(null, null, url);
         Comparnion.route(url);
     },
-    logout () {
-        requests
-        .post('/api/v1/logout')
-        .type('form')
-        .send({
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
-            if (err && err.status) {
-                Snackbar({message: 'Logout failed'});
-            } else {
-                Snackbar({message: 'Logged out'});
-                var path = window.location.pathname + window.location.search;
-                history.pushState(null, null, path);
-                Mentions.route(path);
-            }
-        });
-    },
     render () {
         var sidebar = this.props.showing ? '' : 'hidden';
         var loggedin = this.props.loggedin;
@@ -66,7 +48,7 @@ var Sidebar = React.createClass({
                         <a className='sidebar-item sidebar-button' href='/contact'>
                             <span className='ion-email menu-item-icon'/>Contact
                         </a>
-                        {loggedin ? <a className='sidebar-item sidebar-button' onClick={this.logout}><span className='ion-log-out menu-item-icon'/>Log Out</a> : <a className='sidebar-item sidebar-button' href='/login'><span className='ion-log-in menu-item-icon'/>Log In</a>}
+                        {loggedin ? <a className='sidebar-item sidebar-button' onClick={Mentions.logout}><span className='ion-log-out menu-item-icon'/>Log Out</a> : <a className='sidebar-item sidebar-button' href='/login'><span className='ion-log-in menu-item-icon'/>Log In</a>}
                         {loggedin ? <span></span> : <a className='sidebar-item sidebar-button' href='/signup'><span className='ion-person-add menu-item-icon'/>Sign Up</a>}
                     </div> : null}
                 </VelocityTransitionGroup>

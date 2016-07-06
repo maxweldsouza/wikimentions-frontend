@@ -38,24 +38,6 @@ var HomePage = React.createClass({
             newmentions: this.props.data.new
         };
     },
-    logout () {
-        requests
-        .post('/api/v1/logout')
-        .type('form')
-        .send({
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
-            if (err && err.status) {
-                Snackbar({message: 'Logout failed'});
-            } else {
-                Snackbar({message: 'Logged out'});
-                var path = window.location.pathname + window.location.search;
-                history.pushState(null, null, path);
-                Mentions.route(path);
-            }
-        });
-    },
     render () {
         var mentions = [];// this.state.newmentions;
         var stats = this.props.data.stats;
@@ -87,7 +69,7 @@ var HomePage = React.createClass({
                             <HomeSearch />
                         </div>
                         <div className='callout show-for-xlarge'>
-                            {this.props.loggedin ? <a onClick={this.logout}>Log Out</a> : <span><LoginModal/>{' / '}<SignupModal/></span>}
+                            {this.props.loggedin ? <a onClick={Mentions.logout}>Log Out</a> : <span><LoginModal/>{' / '}<SignupModal/></span>}
                         </div>
                         <div className='callout show-for-xlarge'>
                             <ul className="menu vertical">
