@@ -77,20 +77,26 @@ var AddMention = React.createClass({
         var loggedOutMessage = <span>You need to <LoginModal/> to add a Mention.</span>;
         return <div className='small-12 columns'>
             <Restricted message={loggedOutMessage}>
-                Mentioned By (Person)
-                {this.props.mentioned_by ? null : <Select
+                {this.props.mentioned_by ? null : <span>
+                    Mentioned By (Person)
+                    <Select
                     name='mentioned_by'
                     onSelectValue={this.onChangeMentionedBy}
-                    types={['person']}/>}
-                Mentioned (Person or Book or Video)
-                {this.props.mentioned ? null : <Select
-                    name='mentioned'
-                    onSelectValue={this.onChangeMentioned}/>}
-                Mentioned In (Book or Video)
-                {this.props.mentioned_in ? null : <Select
+                    types={['person']}/>
+                </span>}
+                {this.props.mentioned ? null : <span>
+                    Mentioned (Person or Book or Video)
+                    <Select
+                        name='mentioned'
+                        onSelectValue={this.onChangeMentioned}/>
+                </span>}
+                {this.props.mentioned_in ? null : <span>
+                    Mentioned In (Book or Video)
+                    <Select
                     name='mentioned_in'
                     onSelectValue={this.onChangeMentionedIn}
-                    types={['book', 'video']}/>}
+                    types={['book', 'video']}/>
+                </span>}
                 Description
                 <input type='text' name='description' onChange={this.onChangeText}/>
                 References
