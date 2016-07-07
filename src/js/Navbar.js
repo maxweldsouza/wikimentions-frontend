@@ -80,10 +80,10 @@ var Navbar = React.createClass({
                     <div className='top-bar'>
                         <div className='top-bar-left'>
                             <ul className='menu icon-top'>
-                                <li className='hide-for-xlarge'>{navicon}</li>
+                                <li className='hide-for-xxlarge'>{navicon}</li>
                                 <li className='menu-text'><a href='/'>{config.name}</a></li>
                                 <li><Spinner /></li>
-                                <li className='show-for-xlarge'><a href='/create'>Create Page</a></li>
+                                <li className='show-for-xxlarge'><a href='/create'>Create Page</a></li>
                             </ul>
                         </div>
                         <div className='top-bar-right'>
