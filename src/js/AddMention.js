@@ -97,10 +97,6 @@ var AddMention = React.createClass({
                     onSelectValue={this.onChangeMentionedIn}
                     types={['book', 'video']}/>
                 </span>}
-                Description
-                <input type='text' name='description' onChange={this.onChangeText}/>
-                References
-                <input type='text' name='references' onChange={this.onChangeText}/>
                 <div className="button-group">
                     <button type="button" className="button" onClick={this.onSubmit}>Add</button>
                 </div>
