@@ -26,10 +26,10 @@ var ProfilePage = React.createClass({
                 name: 'user',
                 path: '/api/v1/user/' + id + '?slug=' + name
             }];
-                api.push({
-                    name: 'history',
-                    path: '/api/v1/userhistory/' + id + query
-                });
+            api.push({
+                name: 'history',
+                path: '/api/v1/userhistory/' + id + query
+            });
             return {
                 api: api
             };
@@ -78,7 +78,7 @@ var ProfilePage = React.createClass({
             </div>;
         } else if (selectedTab === 'profile') {
             tabContent = <div>
-                {self ? <EditProfile/> : null}
+                {self ? <EditProfile id={id}/> : null}
             </div>;
         }
         return (
@@ -103,11 +103,18 @@ var ProfilePage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1>{user.name}</h1>
-                                <button className='button small'>Edit Profile</button>
                                 <div className='row'>
                                     <TextWidget label={'Joined'} value={<Time timestamp={user.joined} format='D/M/YY' type='timestamp'/>} />
                                     <TextWidget label={'Level'} value={user.level} />
                                     <TextWidget label={'Reputation'} value={10000} />
+                                    <div className='small-12 columns'>
+                                        <div className='callout'>
+                                            <h2>About</h2>
+                                            <div>
+                                                {user.about}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 {tab}
                                 <div className='small-12 columns'>
