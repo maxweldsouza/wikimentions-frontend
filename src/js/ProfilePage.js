@@ -37,12 +37,12 @@ var ProfilePage = React.createClass({
     },
     render () {
         var [dummy, id, name, selectedTab] = this.props.path.split('/');
-        var self = this.props.userid === Number(id);
+        var self = this.props.userid === id;
 
-        selectedTab = selectedTab ? selectedTab : 'stats';
+        selectedTab = selectedTab ? selectedTab : 'history';
         var user = this.props.data.user;
         var history = this.props.data.history;
-        var tabs = ['stats', 'edits'];
+        var tabs = ['history'];
         if (self) {
             tabs.push('profile');
         }
@@ -51,7 +51,7 @@ var ProfilePage = React.createClass({
             {tabs.map((x) => {
                 var cls = selectedTab === x ? 'tabs-title is-active' : 'tabs-title';
                 var path;
-                if (x === 'stats') {
+                if (x === 'history') {
                     path = '/users/' + id + '/' + name;
                 } else {
                     path = '/users/' + id + '/' + name + '/' + x;
@@ -61,7 +61,7 @@ var ProfilePage = React.createClass({
                 </li>;
             })}
         </ul>;
-        if (selectedTab === 'edits') {
+        if (selectedTab === 'history') {
             tabContent = <div className=''>
                 {history.map((x) => {
                     return <HistoryItem
@@ -79,14 +79,6 @@ var ProfilePage = React.createClass({
         } else if (selectedTab === 'profile') {
             tabContent = <div>
                 {self ? <EditProfile/> : null}
-            </div>;
-        } else if (selectedTab === 'stats') {
-            tabContent = <div className='card'>
-                <div className='small-12 columns'>
-                    Stats
-                    Contributions: 12
-                    Last Active: 12th Jan 2013
-                </div>
             </div>;
         }
         return (
@@ -117,21 +109,10 @@ var ProfilePage = React.createClass({
                                     <TextWidget label={'Level'} value={user.level} />
                                     <TextWidget label={'Reputation'} value={10000} />
                                 </div>
-                                <h2>Edits</h2>
+                                {tab}
                                 <div className='small-12 columns'>
                                     <div className='card-container'>
-                                        {history.map((x) => {
-                                            return <HistoryItem
-                                                user={user.id}
-                                                username={user.name}
-                                                obj_id={x.obj_id}
-                                                entry={x.entry}
-                                                entrytype={x.entrytype}
-                                                timestamp={x.timestamp}
-                                                deleted={x.deleted}
-                                                />;
-                                        })}
-                                        <PreviousNext path={this.props.path} page={this.props.query.page}/>
+                                        {tabContent}
                                     </div>
                                 </div>
                             </div>

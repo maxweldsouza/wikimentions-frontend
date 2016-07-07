@@ -65,6 +65,9 @@ var getComponent = function (routeObj) {
     } else if (/^users\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'ProfilePage';
         routeObj.maxAge = 0;
+    } else if (/^users\/([0-9]+)\/([^/]+)\/(profile)$/.test(x)) {
+        componentName = 'ProfilePage';
+        routeObj.maxAge = 0;
     } else if (/^history\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'HistoryPage';
         routeObj.maxAge = 0;
