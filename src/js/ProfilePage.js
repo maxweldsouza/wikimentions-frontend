@@ -13,6 +13,7 @@ var S = require('string');
 var PreviousNext = require('./PreviousNext');
 var Footer = require('./Footer');
 var TextWidget = require('./TextWidget');
+var Markdown = require('./Markdown');
 
 var React = require('react');
 
@@ -109,9 +110,9 @@ var ProfilePage = React.createClass({
                                     <div className='small-12 columns'>
                                         <div className='callout'>
                                             <h2>About</h2>
-                                            <div>
-                                                {user.about}
-                                            </div>
+                                            <Markdown
+                                                markdown={user.about}
+                                                />
                                         </div>
                                     </div>
                                 </div>
