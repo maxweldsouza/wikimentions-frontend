@@ -16,6 +16,9 @@ var Link = require('./Link');
 var Placeholder = require('./Placeholder');
 var Image = require('./Image');
 var Footer = require('./Footer');
+var Modal = require('./Modal');
+var Restricted = require('./Restricted');
+var Markdown = require('./Markdown');
 
 var ThingPage = React.createClass({
     statics: {
@@ -77,6 +80,20 @@ var ThingPage = React.createClass({
                 api: api
             };
         }
+    },
+    getInitialState () {
+        return {
+            modalIsOpen: false
+        };
+    },
+    onOpenModal (e) {
+        this.setState({
+            modalIsOpen: true
+        });
+        e.preventDefault();
+    },
+    onCloseModal () {
+        this.setState({modalIsOpen: false});
     },
     render () {
         var [type, id, slug, tab] = this.props.path.split('/');
@@ -181,9 +198,9 @@ var ThingPage = React.createClass({
                 page={this.props.query.page}
                 />;
         }
-        var image = thing.image;
-        if (image) {
-            image = <Image className='img' id={this.props.id} md5={image.md5} width={image.width} height={image.height}/>;
+        var image;
+        if (thing.image) {
+            image = <a onClick={this.onOpenModal}><Image className='img' id={this.props.id} md5={thing.image.md5} width={thing.image.width} height={thing.image.height}/></a>;
         } else {
             image = <Placeholder style={{'height': 200, 'lineHeight': '200px'}}/>;
         }
@@ -218,10 +235,29 @@ var ThingPage = React.createClass({
             <div className='row page-body align-center'>
                 <div className='small-12 columns'>
                     <div className='row'>
-                        <div className='small-12 large-3 columns text-center large-text-left'>
-                            {thing.props.type !== 'video' ?
-                                image : null}
-                            </div>
+                        <div className='small-12 large-3 columns'>
+                            {thing.props.type !== 'video' ? image : null}
+                            <Modal
+                                isOpen={this.state.modalIsOpen}
+                                onClose={this.onCloseModal}
+                                className='modal-content'
+                                overlayClassName='modal-overlay'>
+                                {thing.image ? <div className='small-12 columns'>
+                                    <h1>Image</h1>
+                                    <Image
+                                        id={id}
+                                        width={thing.image.width}
+                                        height={thing.image.height}
+                                        md5={thing.image.md5}
+                                        />
+                                    <div className='callout'>
+                                        <strong>Description</strong>
+                                        <Markdown markdown={thing.image.description} />
+                                    </div>
+                                    <button className='button' onClick={this.onCloseModal}>Close</button>
+                                </div> : null}
+                            </Modal>
+                        </div>
                             <div className='small-12 large-9 columns'>
                                 <h1>{thing.props.title}</h1>
                                 <div className='row'>

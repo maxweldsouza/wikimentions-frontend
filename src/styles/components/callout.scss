@@ -1,3 +1,7 @@
+.callout {
+    word-wrap: break-word;
+}
+
 .callout.primary {
     border: solid 1px lighten($primary-color, .5%);
 }

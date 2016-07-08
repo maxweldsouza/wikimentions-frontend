@@ -2,6 +2,11 @@
     border-radius: 2px;
 }
 
+.image-container {
+    max-width: 100%;
+    margin-bottom: $global-margin;
+}
+
 .image-upload-preview {
     margin-bottom: $global-margin;
 }
