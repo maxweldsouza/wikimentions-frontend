@@ -100,20 +100,27 @@ var HistoryCard = React.createClass({
                 </span>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'image') {
-            var name = this.props.entry.md5 + '-' + this.props.entry.width + '-' + this.props.entry.height + '.jpg';
-            item = <span>
-                <a href={'/api/v1/static/images/' + name} target='_blank'>{name}</a> <Markdown markdown={this.props.entry.description} />
+            item = <span className='row'>
+                <span className='small-12 columns'>
+                    {added} Image
+                </span>
+                <span className='shrink columns'>
+                    <img src={'/api/v1/static/images/' + this.props.entry.thumb_md5 + '-' + this.props.entry.thumb_width + '-' + this.props.entry.thumb_height + '.jpg'} />
+                </span>
+                <span className='columns'>
+                    <strong>Description:</strong> <Markdown markdown={this.props.entry.description} />
+                </span>
             </span>;
         }
         return (
             <div className='card'>
-                    <span className='small-8 columns'>
-                        <a href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a>
-                    </span>
-                    <span className='small-4 columns text-right'><Time timestamp={this.props.timestamp} type='ago'/></span>
-                    <span className='small-12 columns'>
-                        {item}
-                    </span>
+                <span className='small-8 columns'>
+                    <a href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a>
+                </span>
+                <span className='small-4 columns text-right'><Time timestamp={this.props.timestamp} type='ago'/></span>
+                <span className='small-12 columns'>
+                    {item}
+                </span>
             </div>
         );
     }
