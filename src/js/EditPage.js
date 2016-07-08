@@ -15,6 +15,9 @@ var Input = require('./Input');
 var LoginModal = require('./LoginModal');
 var Footer = require('./Footer');
 var queryString = require('query-string');
+var Modal = require('./Modal');
+var ImageUpload = require('./ImageUpload');
+var Markdown = require('./Markdown');
 
 var EditPage = React.createClass({
     statics: {
@@ -49,7 +52,8 @@ var EditPage = React.createClass({
             url: this.props.data.thing.props.url,
             urlValid: true,
             urlMessage: '',
-            submiting: false
+            submiting: false,
+            modalIsOpen: false
         };
     },
     onChangeType (x) {
@@ -121,6 +125,15 @@ var EditPage = React.createClass({
             });
         }
     },
+    onOpenModal (e) {
+        this.setState({
+            modalIsOpen: true
+        });
+        e.preventDefault();
+    },
+    closeModal () {
+        this.setState({modalIsOpen: false});
+    },
     render () {
         var id = Number(this.props.path.split('/')[1]);
         var entry = this.props.data.thing;
@@ -154,6 +167,18 @@ var EditPage = React.createClass({
                             type={entry.props.type}
                             />
                         <Restricted message={loggedOutMessage}>
+                            <div className='callout'>
+                                <a onClick={this.onOpenModal}>Upload</a> an image for this page.
+                            </div>
+                            <Modal
+                                isOpen={this.state.modalIsOpen}
+                                onClose={this.closeModal}
+                                className='modal-content'
+                                overlayClassName='modal-overlay'>
+                                <div className='small-12 columns'>
+                                    <ImageUpload id={id} width={250} height={250} onClose={this.closeModal}/>
+                                </div>
+                            </Modal>
                             <form action={'/api/v1/thing/' + id} method='post'>
                                 Title
                                 <Input
@@ -199,6 +224,7 @@ var EditPage = React.createClass({
                                     submitting={this.state.submitting}
                                     onSubmit={this.onSubmit}/>
                             </form>
+                            <hr/>
                         </Restricted>
                         <Footer />
                     </div>
