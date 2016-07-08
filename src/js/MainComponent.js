@@ -17,7 +17,6 @@ var ProfilePage = require('./ProfilePage');
 var SignupPage = require('./SignupPage');
 var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
-var ImagesPage = require('./ImagesPage');
 var BlogPostPage = require('./BlogPostPage');
 var BlogPage = require('./BlogPage');
 var BlogPostCreate = require('./BlogPostCreate');

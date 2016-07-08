@@ -24,8 +24,6 @@ var PageBar = React.createClass({
                 <a className='secondary' href={'/discuss/' + id + '/' + slug}>Discuss</a>
                 {' · '}
                 <a className='secondary' href={'/history/' + id + '/' + slug}>History</a>
-                {' · '}
-                <a className='secondary' href={'/images/' + id + '/' + slug}>Images</a>
             </div>
         );
     }

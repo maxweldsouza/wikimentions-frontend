@@ -18,7 +18,6 @@ var SignupPage = require('./SignupPage');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
-var ImagesPage = require('./ImagesPage');
 var BlogPostPage = require('./BlogPostPage');
 var BlogPage = require('./BlogPage');
 var BlogPostCreate = require('./BlogPostCreate');
@@ -94,9 +93,6 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^videos\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'VideoPage';
-        routeObj.maxAge = 0;
-    } else if (/^images\/([0-9]+)\/([^/]+)$/.test(x)) {
-        componentName = 'ImagesPage';
         routeObj.maxAge = 0;
     } else if (/^mentions\/([0-9]+)\/edit$/.test(x)) {
         componentName = 'EditMention';
