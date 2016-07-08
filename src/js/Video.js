@@ -6,13 +6,13 @@ var Placeholder = require('./Placeholder');
 
 var Video = React.createClass({
     render () {
-        var imagedata, image;
-        if (this.props.images.length > 0) {
-            imagedata = this.props.images[0];
-            image = <Image id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height}/>;
+        var image = this.props.image;
+        if (image) {
+            image = <Image className='img' id={this.props.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height}/>;
         } else {
             image = <Placeholder type='video'/>;
         }
+
         var parsed = parseUrl(this.props.url);
         return (
             <div className='card'>

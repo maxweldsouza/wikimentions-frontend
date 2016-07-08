@@ -6,15 +6,9 @@ var _ = require('lodash');
 
 var HomeItem = React.createClass({
     render () {
-        var image;
-        var imagedata = _.find(this.props.images, (x) => {
-            if (this.props.type === 'person') {
-                return x.width === 75 && x.height === 75;
-            }
-            return x.width === 150;
-        });
-        if (imagedata) {
-            image = <Image className='img' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height} displayWidth={75}/>;
+        var image = this.props.image;
+        if (image) {
+            image = <Image className='img' id={this.props.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height} displayWidth={75}/>;
         } else {
             image = <Placeholder style={{'width': 75, 'height': 75, 'border': 'none', 'lineHeight': '75px'}}/>;
         }

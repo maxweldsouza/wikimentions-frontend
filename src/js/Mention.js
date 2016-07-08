@@ -67,12 +67,9 @@ var Mention = React.createClass({
             icon = 'ion-person';
         }
 
-        var image;
-        var imagedata = _.find(main.images, function (x) {
-            return x.width === 75 && x.height === 75;
-        });
-        if (imagedata) {
-            image = <Image className='img' id={main.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height}/>;
+        var image = main.image;
+        if (image) {
+            image = <Image className='img' id={main.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height}/>;
         } else {
             image = <Placeholder style={{'width': 75, 'height': 75, 'border': 'none', 'lineHeight': '75px'}}/>;
         }

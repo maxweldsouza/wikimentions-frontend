@@ -34,12 +34,9 @@ var AuthorCard = React.createClass({
         });
     },
     render () {
-        var image;
-        var imagedata = _.find(this.props.images, (x) => {
-            return x.width === 75 && x.height === 75;
-        });
-        if (imagedata) {
-            image = <Image className='img' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height} displayWidth={40}/>;
+        var image = this.props.images;
+        if (image) {
+            image = <Image className='img' id={this.props.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height} displayWidth={40}/>;
         } else {
             image = <Placeholder style={{'width': 40, 'height': 40, 'border': 'none', 'lineHeight': '40px'}}/>;
         }

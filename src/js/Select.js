@@ -186,16 +186,9 @@ var Select = React.createClass({
                         var focused = i === this.state.focus;
                         focused = focused ? {'background': '#f3f3f3'} : {};
 
-                        var image;
-                        var imagedata = _.find(entry.images, function (x) {
-                            if (entry.props.type === 'person') {
-                                return x.width === 75 && x.height === 75;
-                            } else {
-                                return x.width === 150;
-                            }
-                        });
-                        if (imagedata) {
-                            image = <Image className='img' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height} displayWidth={50} displayHeight={50}/>;
+                        var image = entry.image;
+                        if (image) {
+                            image = <Image className='img' id={entry.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height} displayWidth={50} displayHeight={50}/>;
                         } else {
                             image = <Placeholder style={{ height: 50, lineHeight: '50px', width: 50}}/>;
                         }

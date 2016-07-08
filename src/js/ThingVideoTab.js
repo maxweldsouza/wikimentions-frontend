@@ -20,7 +20,7 @@ var ThingVideoTab = React.createClass({
                             id={x.id}
                             slug={x.props.slug}
                             title={x.props.title}
-                            images={x.images}
+                            image={x.image}
                             url={x.props.url}
                             />;
                 })}

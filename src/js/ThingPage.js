@@ -181,12 +181,9 @@ var ThingPage = React.createClass({
                 page={this.props.query.page}
                 />;
         }
-        var image;
-        var imagedata = _.find(thing.images, function (x) {
-            return x.width === 250 && x.height === 250;
-        });
-        if (imagedata) {
-            image = <Image className='img' id={this.props.id} md5={imagedata.md5} width={imagedata.width} height={imagedata.height}/>;
+        var image = thing.image;
+        if (image) {
+            image = <Image className='img' id={this.props.id} md5={image.md5} width={image.width} height={image.height}/>;
         } else {
             image = <Placeholder style={{'height': 200, 'lineHeight': '200px'}}/>;
         }
