@@ -1,6 +1,8 @@
 var React = require('react');
 var queryString = require('query-string');
 var parseUrl = require('url-parse');
+var requests = require('superagent');
+var config = require('./config');
 
 var YoutubeEmbed = React.createClass({
     getDefaultProps () {
@@ -9,10 +11,33 @@ var YoutubeEmbed = React.createClass({
             height: 390
         };
     },
-    render () {
-        if (!this.props.embeddable || this.props.embeddable === 'false') {
-            return null;
+    getInitialState () {
+        return {
+            embeddable: false
+        };
+    },
+    componentDidMount () {
+        var parsed = parseUrl(this.props.url);
+        if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
+            var queryObject = queryString.parse(parsed.query);
+            requests.get('https://www.googleapis.com/youtube/v3/videos?part=status&fields=items/status&id=' + queryObject.v + '&key=' + config.keys.youtube).end((err, res) => {
+                if (err) {
+                    return;
+                }
+                try {
+                    if (res.body.items[0].status.embeddable
+                        && res.body.items[0].status.privacyStatus === 'public'
+                        && res.body.items[0].status.uploadStatus === 'processed') {
+                        this.setState({
+                            embeddable: true
+                        });
+                    }
+                } catch (e) {
+                }
+            });
         }
+    },
+    render () {
         var embed;
         var parsed = parseUrl(this.props.url);
         if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
@@ -53,6 +78,9 @@ var YoutubeEmbed = React.createClass({
                 mozAllowFullScreen
                 allowFullScreen></iframe>;
         } else {
+            return null;
+        }
+        if (!this.state.embeddable) {
             return null;
         }
         return (

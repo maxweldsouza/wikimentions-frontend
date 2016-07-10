@@ -17,18 +17,23 @@ var VideoApiThumb = React.createClass({
     loadThumbFromApi () {
         var parsed = parseUrl(this.props.url);
         var videoId;
+        if (this.state.thumb) {
+            return;
+        }
         if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
             var queryObject = queryString.parse(parsed.query);
             videoId = queryObject.v;
             requests.get('https://www.googleapis.com/youtube/v3/videos?part=snippet&fields=items/snippet/thumbnails/default&id=' + videoId + '&key=' + config.keys.youtube).end((err, res) => {
-                if (err && err.status) {
-
-                } else {
+                if (err) {
+                    return;
+                }
+                try {
                     this.setState({
                         thumb: res.body.items[0].snippet.thumbnails.default.url,
                         width: res.body.items[0].snippet.thumbnails.default.width,
                         height: res.body.items[0].snippet.thumbnails.default.height
                     });
+                } catch (e) {
                 }
             });
         }
