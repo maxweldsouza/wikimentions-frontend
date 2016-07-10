@@ -4,5 +4,10 @@
     "url": "https://wikimentions.com/",
     "keys": {
         "youtube": "AIzaSyAmA9C627vaCwCiCukj4DR0KJqk-4cIwaE"
+    },
+    "affiliate": {
+        "amazon.com": "",
+        "amazon.in": "",
+        "flipkart": ""
     }
 }

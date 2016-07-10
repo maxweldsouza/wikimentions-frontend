@@ -19,6 +19,7 @@ var Footer = require('./Footer');
 var Modal = require('./Modal');
 var Restricted = require('./Restricted');
 var Markdown = require('./Markdown');
+var Affiliate = require('./Affiliate');
 
 var ThingPage = React.createClass({
     statics: {
@@ -257,6 +258,7 @@ var ThingPage = React.createClass({
                                     <button className='button' onClick={this.onCloseModal}>Close</button>
                                 </div> : null}
                             </Modal>
+                            {thing.props.type === 'book' ? <Affiliate isbn={thing.props.isbn}/> : null}
                         </div>
                             <div className='small-12 large-9 columns'>
                                 <h1>{thing.props.title}</h1>
