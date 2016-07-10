@@ -3,11 +3,15 @@ var Image = require('./Image');
 var parseUrl = require('url-parse');
 var Link = require('./Link');
 var Placeholder = require('./Placeholder');
+var VideoApiThumb = require('./VideoApiThumb');
 
 var Video = React.createClass({
     render () {
         var image = this.props.image;
-        if (image) {
+        var videoApiThumb = <VideoApiThumb url={this.props.url}/>;
+        if (videoApiThumb) {
+            image = videoApiThumb;
+        } else if (image) {
             image = <Image className='img' id={this.props.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height}/>;
         } else {
             image = <Placeholder type='video'/>;
