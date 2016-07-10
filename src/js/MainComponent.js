@@ -29,6 +29,7 @@ var MaintenancePage = require('./MaintenancePage');
 var ContentPage = require('./ContentPage');
 
 var store = require('store');
+var requests = require('superagent');
 var cookies = require('browser-cookies');
 var isNode = require('./isNode');
 var Sidebar = require('./Sidebar');
@@ -42,6 +43,18 @@ var MainComponent = React.createClass({
         return {
             sidebar: false
         };
+    },
+    componentDidMount () {
+        requests
+        .get('/api/v1/country')
+        .end((err, res) => {
+            if (err) {
+                return;
+            }
+            if (res.body.country) {
+                store.set('country', res.body.country);
+            }
+        });
     },
     componentWillReceiveProps (nextProps) {
         this.setState({
