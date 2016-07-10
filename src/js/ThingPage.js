@@ -208,7 +208,7 @@ var ThingPage = React.createClass({
         return (
         <span>
             <Helmet
-                title={thing.title}
+                title={thing.props.title}
                 titleTemplate={'%s - ' + config.name}
                 meta={[
                     {'name': 'description', 'content': ''},
