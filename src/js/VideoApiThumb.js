@@ -3,6 +3,7 @@ var queryString = require('query-string');
 var parseUrl = require('url-parse');
 var requests = require('superagent');
 var config = require('./config');
+var Placeholder = require('./Placeholder');
 
 var VideoApiThumb = React.createClass({
     getInitialState: function() {
@@ -18,26 +19,26 @@ var VideoApiThumb = React.createClass({
         if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
             var queryObject = queryString.parse(parsed.query);
             videoId = queryObject.v;
-        }
-        requests.get('https://www.googleapis.com/youtube/v3/videos?part=snippet&fields=items/snippet/thumbnails/default&id=' + videoId + '&key=' + config.keys.youtube).end((err, res) => {
-            if (err && err.status) {
+            requests.get('https://www.googleapis.com/youtube/v3/videos?part=snippet&fields=items/snippet/thumbnails/default&id=' + videoId + '&key=' + config.keys.youtube).end((err, res) => {
+                if (err && err.status) {
 
-            } else {
-                this.setState({
-                    thumb: res.body.items[0].snippet.thumbnails.default.url,
-                    width: res.body.items[0].snippet.thumbnails.default.width,
-                    height: res.body.items[0].snippet.thumbnails.default.height
-                });
-            }
-        });
+                } else {
+                    this.setState({
+                        thumb: res.body.items[0].snippet.thumbnails.default.url,
+                        width: res.body.items[0].snippet.thumbnails.default.width,
+                        height: res.body.items[0].snippet.thumbnails.default.height
+                    });
+                }
+            });
+        }
     },
     render () {
         if (this.state.thumb) {
             return (
-                <img src={this.state.thumb} />
+                <img src={this.state.thumb} width={this.state.width} height={this.state.height} />
             );
         }
-        return null;
+        return <Placeholder type='video'/>;
     }
 });
 
