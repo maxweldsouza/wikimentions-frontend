@@ -4,6 +4,7 @@ var parseUrl = require('url-parse');
 var requests = require('superagent');
 var config = require('./config');
 var Placeholder = require('./Placeholder');
+var Lazy = require('react-lazy-load');
 
 var VideoApiThumb = React.createClass({
     getInitialState: function() {
@@ -13,7 +14,7 @@ var VideoApiThumb = React.createClass({
             height: 0
         };
     },
-    componentDidMount () {
+    loadThumbFromApi () {
         var parsed = parseUrl(this.props.url);
         var videoId;
         if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
@@ -33,12 +34,9 @@ var VideoApiThumb = React.createClass({
         }
     },
     render () {
-        if (this.state.thumb) {
-            return (
-                <img src={this.state.thumb} width={this.state.width} height={this.state.height} />
-            );
-        }
-        return <Placeholder type='video'/>;
+        return <Lazy onContentVisible={this.loadThumbFromApi} height={90}>
+            {this.state.thumb ? <img src={this.state.thumb} width={this.state.width} height={this.state.height} /> : <Placeholder type='video'/>}
+        </Lazy>;
     }
 });
 
