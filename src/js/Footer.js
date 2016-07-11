@@ -1,4 +1,5 @@
 var React = require('react');
+var config = require('./config');
 
 var Footer = React.createClass({
     render () {
@@ -8,7 +9,7 @@ var Footer = React.createClass({
                     <hr/>
                 </div>
                 <div className='small-12 xlarge-6 columns footer-logo-container'>
-                    <div className='footer-logo'>WikiMentions</div>
+                    <div className='footer-logo'>{config.name}</div>
                     © Copyright 2016
                 </div>
                 <div className='small-12 xlarge-6 columns'>
