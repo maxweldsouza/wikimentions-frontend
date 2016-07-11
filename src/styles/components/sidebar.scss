@@ -81,3 +81,12 @@
     line-height: 44px;
     background: $white;
 }
+
+.sidebar-loggedin {
+    bottom: 0;
+    color: $dark-gray;
+    font-size: 14px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}

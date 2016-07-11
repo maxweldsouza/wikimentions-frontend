@@ -86,6 +86,8 @@ var MainComponent = React.createClass({
                     showing={this.state.sidebar}
                     onToggleSidebar={this.onCloseSidebar}
                     loggedin={loggedin}
+                    username={username}
+                    userid={userid}
                 />
                 <Component
                     data={this.props.data}
