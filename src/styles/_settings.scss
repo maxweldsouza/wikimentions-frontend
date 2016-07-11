@@ -61,7 +61,7 @@ $dark-gray: hsla(0, 0%, 54%, 1);
 $black: hsla(0, 0%, 4%, 1);
 $white: hsla(0, 0%, 100%, 1);
 $body-background: $light-gray;
-$body-font-color: $black;
+$body-font-color: $dark-gray;
 $body-font-family: 'Source Sans Pro', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: .8rem;
@@ -120,7 +120,7 @@ $header-sizes: (
     'h6': 16,
   ),
 );
-$header-color: inherit;
+$header-color: $black;
 $header-lineheight: 1.4;
 $header-margin-bottom: .5rem;
 $header-text-rendering: optimizeLegibility;
@@ -410,7 +410,7 @@ $orbit-control-zindex: 10;
 
 $pagination-font-size: rem-calc(14);
 $pagination-margin-bottom: $global-margin;
-$pagination-item-color: $black;
+$pagination-item-color: $dark-gray;
 $pagination-item-padding: rem-calc(3 10);
 $pagination-item-spacing: rem-calc(1);
 $pagination-radius: $global-radius;
@@ -418,7 +418,7 @@ $pagination-item-background-hover: $light-gray;
 $pagination-item-background-current: $primary-color;
 $pagination-item-color-current: foreground($pagination-item-background-current);
 $pagination-item-color-disabled: $medium-gray;
-$pagination-ellipsis-color: $black;
+$pagination-ellipsis-color: $dark-gray;
 $pagination-mobile-items: false;
 $pagination-arrows: true;
 
