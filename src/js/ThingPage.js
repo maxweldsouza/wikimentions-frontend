@@ -258,7 +258,7 @@ var ThingPage = React.createClass({
                                     <button className='button' onClick={this.onCloseModal}>Close</button>
                                 </div> : null}
                             </Modal>
-                            {thing.props.type === 'book' ? <Affiliate isbn={thing.props.isbn}/> : null}
+                            {thing.props.type === 'book' ? <Affiliate title={thing.props.title} isbn={thing.props.isbn}/> : null}
                         </div>
                             <div className='small-12 large-9 columns'>
                                 <h1>{thing.props.title}</h1>
