@@ -68,8 +68,9 @@ var SearchPage = React.createClass({
         Mentions.route(path);
     },
     handleKeys (event) {
+        var type = this.props.query.type ? this.props.query.type : 'any';
         if (event.key === 'Enter') {
-            this.newSearch(this.props.query.type);
+            this.newSearch(type);
         }
     },
     onChangeType (type) {
