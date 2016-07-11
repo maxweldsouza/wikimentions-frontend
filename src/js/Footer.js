@@ -5,9 +5,6 @@ var Footer = React.createClass({
     render () {
         return (
             <div className='row page-footer align-right'>
-                <div className='small-12 columns'>
-                    <hr/>
-                </div>
                 <div className='small-12 xlarge-6 columns footer-logo-container'>
                     <div className='footer-logo'>{config.name}</div>
                     © Copyright 2016

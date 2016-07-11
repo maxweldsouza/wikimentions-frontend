@@ -17,7 +17,11 @@
 
 .page-footer {
     font-size: 14px;
-    margin-bottom: 15px;
+    padding-bottom: 2 * $global-margin;
+    padding-top: 2 * $global-margin;
+    border-top: solid 2px $medium-gray;
+    background: $white;
+    width: 100%;
 
     .menu {
         margin-bottom: $global-margin;
