@@ -199,11 +199,13 @@ var ThingPage = React.createClass({
                 page={this.props.query.page}
                 />;
         }
-        var image;
+        var image, imageUrl;
         if (thing.image) {
             image = <a onClick={this.onOpenModal}><Image className='img' id={this.props.id} md5={thing.image.md5} width={thing.image.width} height={thing.image.height}/></a>;
+            imageUrl = '/api/v1/static/images/' + thing.image.md5 + '-' + thing.image.width + '-' + thing.image.height + '.jpg'
         } else {
             image = <Placeholder style={{'height': 200, 'lineHeight': '200px'}}/>;
+            imageUrl = '';
         }
         return (
         <span>
@@ -216,12 +218,12 @@ var ThingPage = React.createClass({
                     {name: 'twitter:site', content: config.twitter},
                     {name: 'twitter:title', content: thing.props.title},
                     {name: 'twitter:description', content: ''},
-                    {name: 'twitter:image', content: image},
+                    {name: 'twitter:image', content: imageUrl},
                     {property: 'og:title', content: thing.props.title},
                     {property: 'og:type', content: 'article'},
                     {property: 'og:url', content: config.url + this.props.path},
                     {property: 'og:description', content: ''},
-                    {property: 'og:image', content: image},
+                    {property: 'og:image', content: imageUrl},
                     {property: 'og:site_name', content: config.name}
                 ]}
                 link={[
