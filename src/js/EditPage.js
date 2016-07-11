@@ -180,6 +180,11 @@ var EditPage = React.createClass({
                                 </div>
                             </Modal>
                             <form action={'/api/v1/thing/' + id} method='post'>
+                                <ButtonSelect
+                                    name='type'
+                                    default={this.props.data.thing.props.type}
+                                    options={options}
+                                    onChange={this.onChangeType}/>
                                 Title
                                 <Input
                                     type='text'
@@ -187,17 +192,19 @@ var EditPage = React.createClass({
                                     value={this.state.title} onChange={this.onChangeText}
                                     valid={this.state.titleValid}
                                     message={this.state.titleMessage}/>
-                                Description (Optional)
-                                <input
-                                    type='text'
-                                    name='description'
-                                    value={this.state.description}
-                                    onChange={this.onChangeText}/>
-                                <ButtonSelect
-                                    name='type'
-                                    default={this.props.data.thing.props.type}
-                                    options={options}
-                                    onChange={this.onChangeType}/>
+                                {this.state.type === 'video' ? <span>
+                                    Url
+                                    <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid}
+                                message={this.state.urlMessage}/>
+                                </span>: null}
+                                {this.state.type === 'person' ? <span>
+                                    Description (Optional)
+                                    <input
+                                        type='text'
+                                        name='description'
+                                        value={this.state.description}
+                                        onChange={this.onChangeText}/>
+                                </span> : null}
                                 {this.state.type === 'book' ? <span>
                                     ISBN
                                     <input
@@ -214,11 +221,6 @@ var EditPage = React.createClass({
                                     value={this.state.isbn13}
                                     onChange={this.onChangeText}/>
                                 </span> : null}
-                                {this.state.type === 'video' ? <span>
-                                    Url
-                                    <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid}
-                                message={this.state.urlMessage}/>
-                                </span>: null}
                                 <SubmitButton
                                     title='Save'
                                     submitting={this.state.submitting}

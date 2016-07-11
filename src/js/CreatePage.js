@@ -131,11 +131,6 @@ var HomePage = React.createClass({
                         <form action='/api/v1/thing' method='post'>
                             <h1>Create Page</h1>
                             <Restricted message={loggedOutMessage}>
-                                Title
-                                <Input type='text' name='title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid}
-                                message={this.state.titleMessage}/>
-                                Description (Optional)
-                                <input type='text' name='description' value={this.state.description} onChange={this.onChangeText}/>
                                 <div className='row'>
                                     <div className='small-12 columns'>
                                         Type
@@ -144,6 +139,21 @@ var HomePage = React.createClass({
                                             options={options}
                                             default={'person'}
                                             onChange={this.onChangeType}/>
+                                        Title
+                                        <Input type='text' name='title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid}
+                                        message={this.state.titleMessage}/>
+                                        <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
+                                            {this.state.type === 'video' ? <span>
+                                                Url
+                                                <Input type='text' name='url'
+                                                value={this.state.url}
+                                                onChange={this.onChangeText}
+                                                valid={this.state.urlValid}
+                                                message={this.state.urlMessage}/></span> : null}
+                                        </VelocityTransitionGroup>
+                                        {this.state.type === 'person'  ? <span>Description (Optional)
+                                            <input type='text' name='description' value={this.state.description} onChange={this.onChangeText}/>
+                                        </span> : null}
                                         <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
                                             {this.state.type === 'book' ? <span>
                                                 ISBN
@@ -154,15 +164,6 @@ var HomePage = React.createClass({
                                                 ISBN-13
                                                 <input type='text' name='isbn13' value={this.state.isbn13} onChange={this.onChangeText}/>
                                         </span> : null}
-                                        </VelocityTransitionGroup>
-                                        <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
-                                            {this.state.type === 'video' ? <span>
-                                                Url
-                                                <Input type='text' name='url'
-                                                value={this.state.url}
-                                                onChange={this.onChangeText}
-                                                valid={this.state.urlValid}
-                                                message={this.state.urlMessage}/></span> : null}
                                         </VelocityTransitionGroup>
                                     </div>
                                 </div>
