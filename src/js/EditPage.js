@@ -226,9 +226,7 @@ var EditPage = React.createClass({
                                     submitting={this.state.submitting}
                                     onSubmit={this.onSubmit}/>
                             </form>
-                            <hr/>
                         </Restricted>
-                        <Footer />
                     </div>
                 </div>
             </span>

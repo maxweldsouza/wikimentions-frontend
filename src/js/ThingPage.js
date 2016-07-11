@@ -15,7 +15,6 @@ var config = require('./config');
 var Link = require('./Link');
 var Placeholder = require('./Placeholder');
 var Image = require('./Image');
-var Footer = require('./Footer');
 var Modal = require('./Modal');
 var Restricted = require('./Restricted');
 var Markdown = require('./Markdown');
@@ -290,7 +289,6 @@ var ThingPage = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <Footer />
                     </div>
                 </div>
             </span>

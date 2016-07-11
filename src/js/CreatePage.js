@@ -10,7 +10,6 @@ var config = require('./config');
 var Restricted = require('./Restricted');
 var Input = require('./Input');
 var LoginModal = require('./LoginModal');
-var Footer = require('./Footer');
 
 var HomePage = React.createClass({
     statics: {
@@ -165,7 +164,6 @@ var HomePage = React.createClass({
                                 </div>
                             </Restricted>
                         </form>
-                        <Footer />
                     </div>
                 </div>
             </span>

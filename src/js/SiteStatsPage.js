@@ -7,7 +7,6 @@ var _ = require('lodash');
 var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var config = require('./config');
-var Footer = require('./Footer');
 
 var SiteStatsPage = React.createClass({
     statics: {
@@ -68,7 +67,6 @@ var SiteStatsPage = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <Footer />
                     </div>
                 </div>
             </span>

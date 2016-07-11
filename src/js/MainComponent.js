@@ -28,6 +28,7 @@ var SearchPage = require('./SearchPage');
 var MaintenancePage = require('./MaintenancePage');
 var ContentPage = require('./ContentPage');
 
+var Footer = require('./Footer');
 var store = require('store');
 var requests = require('superagent');
 var cookies = require('browser-cookies');
@@ -98,6 +99,7 @@ var MainComponent = React.createClass({
                     userid={userid}
                     toggleSidebar={this.onToggleSidebar}
                     />
+                <Footer />
             </div>
         );
     }

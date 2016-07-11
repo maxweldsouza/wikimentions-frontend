@@ -10,7 +10,6 @@ var config = require('./config');
 var Snackbar = require('./Snackbar');
 var HomeItem = require('./HomeItem');
 var HomeSearch = require('./HomeSearch');
-var Footer = require('./Footer');
 var LoginModal = require('./LoginModal');
 var SignupModal = require('./SignupModal');
 var cookies = require('browser-cookies');
@@ -105,9 +104,6 @@ var HomePage = React.createClass({
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='small-12 columns'>
-                        <Footer />
                     </div>
                 </div>
             </span>

@@ -11,7 +11,6 @@ var Restricted = require('./Restricted');
 var EditProfile = require('./EditProfile');
 var S = require('string');
 var PreviousNext = require('./PreviousNext');
-var Footer = require('./Footer');
 var TextWidget = require('./TextWidget');
 var Markdown = require('./Markdown');
 
@@ -124,7 +123,6 @@ var ProfilePage = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <Footer />
                     </div>
                 </div>
             </span>

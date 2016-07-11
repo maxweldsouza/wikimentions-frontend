@@ -13,7 +13,6 @@ var HomeItem = require('./HomeItem');
 var Pagination = require('./Pagination');
 var ButtonSelect = require('./ButtonSelect');
 var queryString = require('query-string');
-var Footer = require('./Footer');
 
 var SearchPage = React.createClass({
     statics: {
@@ -146,7 +145,6 @@ var SearchPage = React.createClass({
                                     query={this.props.query}/>
                             </div>
                         </div>
-                        <Footer />
                     </div>
                 </div>
             </span>

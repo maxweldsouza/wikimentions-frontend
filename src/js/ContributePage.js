@@ -4,7 +4,6 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var _ = require('lodash');
 var config = require('./config');
-var Footer = require('./Footer');
 
 var ContributePage = React.createClass({
     statics: {
@@ -88,7 +87,6 @@ var ContributePage = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <Footer />
                     </div>
                 </div>
             </span>

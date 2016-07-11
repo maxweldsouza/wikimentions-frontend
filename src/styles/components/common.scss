@@ -6,6 +6,24 @@
 
 .page-footer {
     font-size: 14px;
+    margin-bottom: 45px;
+
+    .menu {
+        margin-bottom: $global-margin;
+    }
+
+    .menu-text, .menu > li > a {
+        padding: 0.3rem 0;
+    }
+}
+
+.footer-logo-container {
+    margin-bottom: $global-margin;
+}
+
+.footer-logo {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .thing-description {

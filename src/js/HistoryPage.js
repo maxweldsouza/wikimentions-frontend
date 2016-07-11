@@ -7,7 +7,6 @@ var PreviousNext = require('./PreviousNext');
 var HistoryItem = require('./HistoryItem');
 var PageBar = require('./PageBar');
 var config = require('./config');
-var Footer = require('./Footer');
 
 var HistoryPage = React.createClass({
     statics: {
@@ -83,7 +82,6 @@ var HistoryPage = React.createClass({
                                 <PreviousNext path={this.props.path} page={this.props.query.page}/>
                             </div>
                         </div>
-                        <Footer />
                     </div>
                 </div>
             </span>
