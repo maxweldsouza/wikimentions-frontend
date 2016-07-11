@@ -131,9 +131,6 @@ var getComponent = function (routeObj) {
         componentName = 'ContentPage';
         routeObj.maxAge = 0;
     } else {
-        if (isNode.isBrowser()) {
-            Snackbar({message: 'Count not find what you were looking for'});
-        }
         throw { status: 404, message: 'Count not find what you were looking for'};
     }
     routeObj.component = componentName;

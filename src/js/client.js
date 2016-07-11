@@ -170,10 +170,15 @@ $(document).on('click', 'a', function (e) {
             window.scrollTo(0, 0);
             ga('send', 'pageview');
         }
-        history.pushState(null, null, url);
         e.preventDefault();
         setTimeout(function () {
-            Mentions.route(url);
+            try {
+                Mentions.route(url);
+                history.pushState(null, null, url);
+            } catch (e) {
+                Snackbar({message: '404: Not found'});
+                stopLoading();
+            }
         }, 0);
     }
 });
