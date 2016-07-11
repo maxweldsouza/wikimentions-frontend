@@ -11,7 +11,6 @@ var Restricted = require('./Restricted');
 var Input = require('./Input');
 var LoginModal = require('./LoginModal');
 var Footer = require('./Footer');
-var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
 
 var HomePage = React.createClass({
     statics: {
@@ -142,29 +141,23 @@ var HomePage = React.createClass({
                                         Title
                                         <Input type='text' name='title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid}
                                         message={this.state.titleMessage}/>
-                                        <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
-                                            {this.state.type === 'video' ? <span>
-                                                Url
-                                                <Input type='text' name='url'
-                                                value={this.state.url}
-                                                onChange={this.onChangeText}
-                                                valid={this.state.urlValid}
-                                                message={this.state.urlMessage}/></span> : null}
-                                        </VelocityTransitionGroup>
+                                        {this.state.type === 'video' ? <span>
+                                            Url
+                                            <Input type='text' name='url'
+                                            value={this.state.url}
+                                            onChange={this.onChangeText}
+                                            valid={this.state.urlValid}
+                                            message={this.state.urlMessage}/></span> : null}
                                         {this.state.type === 'person'  ? <span>Description (Optional)
                                             <input type='text' name='description' value={this.state.description} onChange={this.onChangeText}/>
                                         </span> : null}
-                                        <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
-                                            {this.state.type === 'book' ? <span>
-                                                ISBN
-                                                <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/></span> : null}
-                                        </VelocityTransitionGroup>
-                                        <VelocityTransitionGroup enter={{animation: "fadeIn"}}>
-                                            {this.state.type === 'book' ? <span>
-                                                ISBN-13
-                                                <input type='text' name='isbn13' value={this.state.isbn13} onChange={this.onChangeText}/>
-                                        </span> : null}
-                                        </VelocityTransitionGroup>
+                                        {this.state.type === 'book' ? <span>
+                                            ISBN
+                                            <input type='text' name='isbn' placeholder='ISBN' value={this.state.isbn} onChange={this.onChangeText}/></span> : null}
+                                        {this.state.type === 'book' ? <span>
+                                            ISBN-13
+                                            <input type='text' name='isbn13' value={this.state.isbn13} onChange={this.onChangeText}/>
+                                    </span> : null}
                                     </div>
                                 </div>
                                 <div>
