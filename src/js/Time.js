@@ -18,19 +18,22 @@ var Time = React.createClass({
         }
     },
     render () {
-        var result;
-        if (this.state.server) {
-            result = moment.utc(this.props.timestamp).format('DD.MM.YY H:m [GMT]');
-        } else {
-            if (this.props.type === 'ago') {
-                result = moment.utc(this.props.timestamp).local().fromNow();
-            } else if (this.props.type === 'timestamp') {
-                result = moment.utc(this.props.timestamp).local().format(this.props.format);
+        if (this.props.timestamp) {
+            var result;
+            if (this.state.server) {
+                result = moment.utc(this.props.timestamp).format('DD.MM.YY H:m [GMT]');
+            } else {
+                if (this.props.type === 'ago') {
+                    result = moment.utc(this.props.timestamp).local().fromNow();
+                } else if (this.props.type === 'timestamp') {
+                    result = moment.utc(this.props.timestamp).local().format(this.props.format);
+                }
             }
+            return (
+                <span>{result}</span>
+            );
         }
-        return (
-            <span>{result}</span>
-        );
+        return null;
     }
 });
 

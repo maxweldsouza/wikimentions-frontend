@@ -10,7 +10,7 @@ var BlogPost = React.createClass({
         return (
             <div>
                 <a href={path}><h1>{this.props.title}</h1></a>
-                <a href={'/users/' + this.props.authorId + '/' + this.props.author}>{this.props.author}</a> on <span><Time timestamp={this.props.added} type='timestamp' format='MMMM Do YYYY'/></span>
+                <a href={'/users/' + this.props.authorId + '/' + this.props.author}>{this.props.author}</a> on <span><Time timestamp={this.props.created} type='timestamp' format='MMMM Do YYYY'/></span>
                 <hr/>
                 <Markdown markdown={this.props.content}/>
                 <hr/>
