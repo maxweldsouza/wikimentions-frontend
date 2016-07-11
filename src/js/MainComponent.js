@@ -82,23 +82,25 @@ var MainComponent = React.createClass({
         }
         loggedin = session ? true : false;
         return (
-            <div>
-                <Sidebar
-                    showing={this.state.sidebar}
-                    onToggleSidebar={this.onCloseSidebar}
-                    loggedin={loggedin}
-                    username={username}
-                    userid={userid}
-                />
-                <Component
-                    data={this.props.data}
-                    path={this.props.path}
-                    query={this.props.query}
-                    loggedin={loggedin}
-                    username={username}
-                    userid={userid}
-                    toggleSidebar={this.onToggleSidebar}
+            <div className='main-component'>
+                <div className='main-content'>
+                    <Sidebar
+                        showing={this.state.sidebar}
+                        onToggleSidebar={this.onCloseSidebar}
+                        loggedin={loggedin}
+                        username={username}
+                        userid={userid}
                     />
+                    <Component
+                        data={this.props.data}
+                        path={this.props.path}
+                        query={this.props.query}
+                        loggedin={loggedin}
+                        username={username}
+                        userid={userid}
+                        toggleSidebar={this.onToggleSidebar}
+                        />
+                    </div>
                 <Footer />
             </div>
         );

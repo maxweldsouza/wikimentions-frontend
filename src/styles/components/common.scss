@@ -1,3 +1,14 @@
+// Sticky footer
+.main-component {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+}
+
 .page-body {
     margin-top: 2 * $global-margin;
     margin-bottom: 2 * $global-margin;
@@ -6,7 +17,7 @@
 
 .page-footer {
     font-size: 14px;
-    margin-bottom: 45px;
+    margin-bottom: 15px;
 
     .menu {
         margin-bottom: $global-margin;
