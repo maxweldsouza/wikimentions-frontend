@@ -1,35 +1,33 @@
-var request = require('superagent');
-var parallelRequest = require('./parallelRequest');
 var _ = require('lodash');
-var moment = require('moment');
-var Snackbar = require('./Snackbar');
-
 var AddMention = require('./AddMention');
 var AddVideo = require('./AddVideo');
+var BlogPage = require('./BlogPage');
+var BlogPostPage = require('./BlogPostPage');
+var ContentPage = require('./ContentPage');
+var ContributePage = require('./ContributePage');
 var CreatePage = require('./CreatePage');
 var DiscussPage = require('./DiscussPage');
 var EditMention = require('./EditMention');
 var EditPage = require('./EditPage');
 var HistoryPage = require('./HistoryPage');
 var HomePage = require('./HomePage');
+var isNode = require('./isNode');
 var LoginPage = require('./LoginPage');
+var MaintenancePage = require('./MaintenancePage');
+var moment = require('moment');
+var parallelRequest = require('./parallelRequest');
 var ProfilePage = require('./ProfilePage');
+var queryString = require('query-string');
+var RecentChangesPage = require('./RecentChangesPage');
+var RecentDiscussionsPage = require('./RecentDiscussionsPage');
+var request = require('superagent');
+var SearchPage = require('./SearchPage');
 var SignupPage = require('./SignupPage');
+var SiteStatsPage = require('./SiteStatsPage');
+var Snackbar = require('./Snackbar');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
-var BlogPostPage = require('./BlogPostPage');
-var BlogPage = require('./BlogPage');
-var BlogPostCreate = require('./BlogPostCreate');
-var ContributePage = require('./ContributePage');
-var RecentChangesPage = require('./RecentChangesPage');
-var RecentDiscussionsPage = require('./RecentDiscussionsPage');
-var SiteStatsPage = require('./SiteStatsPage');
-var SearchPage = require('./SearchPage');
-var MaintenancePage = require('./MaintenancePage');
-var queryString = require('query-string');
-var isNode = require('./isNode');
-var ContentPage = require('./ContentPage');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -99,9 +97,6 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^blog$/.test(x)) {
         componentName = 'BlogPage';
-        routeObj.maxAge = 0;
-    } else if (/^blog\/newpost$/.test(x)) {
-        componentName = 'BlogPostCreate';
         routeObj.maxAge = 0;
     } else if (/^blog\/page\/([0-9]+)$/.test(x)) {
         componentName = 'BlogPage';

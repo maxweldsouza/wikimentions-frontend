@@ -42,9 +42,6 @@ var Sidebar = React.createClass({
                         <a className='sidebar-item sidebar-button' href='/blog'>
                             <span className='ion-document menu-item-icon'/>Blog
                         </a>
-                        <a className='sidebar-item sidebar-button' href='/blog/newpost'>
-                            <span className='ion-compose menu-item-icon'/>New Blog Post
-                        </a>
                         <a className='sidebar-item sidebar-button' href='/contact'>
                             <span className='ion-email menu-item-icon'/>Contact
                         </a>
