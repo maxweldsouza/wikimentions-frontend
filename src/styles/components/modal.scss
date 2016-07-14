@@ -14,20 +14,20 @@
     width: 50%;
     z-index: $z-30;
 
-    @include breakpoint(small) {
-        width: 90%;
-    }
-    @include breakpoint(medium) {
-        width: 80%;
-    }
-    @include breakpoint(large) {
-        width: 70%;
+    @include breakpoint(xxlarge) {
+        width: 40%;
     }
     @include breakpoint(xlarge) {
         width: 55%;
     }
-    @include breakpoint(xxlarge) {
-        width: 40%;
+    @include breakpoint(large) {
+        width: 70%;
+    }
+    @include breakpoint(medium) {
+        width: 80%;
+    }
+    @include breakpoint(small) {
+        width: 90%;
     }
 }
 

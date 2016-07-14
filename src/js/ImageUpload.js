@@ -82,10 +82,12 @@ var ImageUpload = React.createClass({
             imageMessage = 'Add a picture of this person';
         }
         return (
-            <div>
-                <h1>Upload Image</h1>
-                Drag an image below to upload
-                <div>
+            <div className='row'>
+                <div className='small-12 columns'>
+                    <h1>Upload Image</h1>
+                    Drag an image below to upload
+                </div>
+                <div className='shrink columns'>
                     <AvatarEditor
                     ref='editor'
                     width={this.props.width}
@@ -94,28 +96,37 @@ var ImageUpload = React.createClass({
                     color={[255, 255, 255, 0.6]} // RGBA
                     scale={this.state.scale}
                     style={{'border': 'dashed 2px black'}} />
+                    <Rcslider
+                        min={1}
+                        max={2}
+                        step={0.01}
+                        defaultValue={1}
+                        onChange={this.handleScale}
+                        tipFormatter={null}/>
                 </div>
-                <Rcslider
-                    min={1}
-                    max={2}
-                    step={0.01}
-                    defaultValue={1}
-                    onChange={this.handleScale}
-                    tipFormatter={null}/>
-                <Input
-                    textarea={true}
-                    type='text'
-                    name='imageDescription'
-                    placeholder='Add a description for the image, including copyright information, a link to the original source etc.'
-                    value={this.state.imageDescription}
-                    onChange={this.onChangeText}
-                    valid={this.state.descriptionValid}
-                    message={this.state.descriptionMessage}
-                    rows={3}/>
-                {this.state.imageDescription ? <Markdown markdown={this.state.imageDescription} /> : null}
-                <div className='button-group'>
-                    <button className='button' onClick={this.uploadImage}>Upload</button>
-                    <button className='button secondary hollow' onClick={this.props.onClose}>Close</button>
+                <div className='small-12 xlarge-expand columns'>
+                    <Input
+                        textarea={true}
+                        type='text'
+                        name='imageDescription'
+                        placeholder='Add a description for the image, including copyright information, a link to the original source etc.'
+                        value={this.state.imageDescription}
+                        onChange={this.onChangeText}
+                        valid={this.state.descriptionValid}
+                        message={this.state.descriptionMessage}
+                        rows={3}/>
+                    {this.state.imageDescription ? <div>
+                        Description
+                        <div className='callout'>
+                            <Markdown markdown={this.state.imageDescription} />
+                        </div>
+                    </div> : null}
+                </div>
+                <div className='small-12 columns'>
+                    <div className='button-group'>
+                        <button className='button' onClick={this.uploadImage}>Upload</button>
+                        <button className='button secondary hollow' onClick={this.props.onClose}>Close</button>
+                    </div>
                 </div>
             </div>
         );
