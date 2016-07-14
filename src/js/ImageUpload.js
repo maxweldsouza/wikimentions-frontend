@@ -84,7 +84,7 @@ var ImageUpload = React.createClass({
         return (
             <div className='row'>
                 <div className='small-12 columns'>
-                    <h1>Upload Image</h1>
+                    <h1>{this.props.title ? this.props.title + ' - ' : null}Upload Image</h1>
                     Drag an image below to upload
                 </div>
                 <div className='shrink columns'>
