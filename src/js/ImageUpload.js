@@ -6,11 +6,13 @@ var requests = require('superagent');
 var cookies = require('browser-cookies');
 var Snackbar = require('./Snackbar');
 var Input = require('./Input');
+import Cropper from 'react-cropper'
 
 var ImageUpload = React.createClass({
     getInitialState () {
         return {
             scale: 1,
+            image: '',
             imageDescription: '',
             descriptionValid: true,
             descriptionMessage: '',
@@ -42,8 +44,7 @@ var ImageUpload = React.createClass({
     },
     uploadImage () {
         if (this.validateForm()) {
-            var image = this.refs.editor.getImageScaledToCanvas().toDataURL('image/jpg');
-            console.log('image', image);
+            var image = this.refs.cropper.getCroppedCanvas().toDataURL('image/jpg');
             if (!image) {
                 Snackbar({message: 'Image missing'});
                 return;
@@ -72,6 +73,18 @@ var ImageUpload = React.createClass({
             });
         }
     },
+    fileInput (e) {
+        var fileReader = new FileReader();
+        fileReader.onload = (e) => {
+            this.setState({
+                image: e.target.result
+            });
+        }
+        fileReader.readAsDataURL(this.refs.input.files[0]);
+    },
+    _crop () {
+
+    },
     render () {
         var imageMessage;
         if (this.state.type === 'book') {
@@ -85,24 +98,30 @@ var ImageUpload = React.createClass({
             <div className='row'>
                 <div className='small-12 columns'>
                     <h1>{this.props.title ? this.props.title + ' - ' : null}Upload Image</h1>
-                    Drag an image below to upload
+                    <input type='file' ref='input' onChange={this.fileInput}/>
                 </div>
                 <div className='shrink columns'>
-                    <AvatarEditor
-                    ref='editor'
-                    width={this.props.width}
-                    height={this.props.height}
-                    border={15}
-                    color={[255, 255, 255, 0.6]} // RGBA
-                    scale={this.state.scale}
-                    style={{'border': 'dashed 2px black'}} />
-                    <Rcslider
-                        min={1}
-                        max={2}
-                        step={0.01}
-                        defaultValue={1}
-                        onChange={this.handleScale}
-                        tipFormatter={null}/>
+                    {this.props.type === 'person' ? <Cropper
+                        ref='cropper'
+                        src={this.state.image}
+                        style={{height: 270, width: 270}}
+                        // Cropper.js options
+                        viewMode={1}
+                        aspectRatio={1}
+                        minCropBoxWidth={250}
+                        minCropBoxHeight={250}
+                        cropBoxResizable={false}
+                        guides={false}
+                        crop={this._crop} /> : null}
+                    {this.props.type === 'book' ? <Cropper
+                        ref='cropper'
+                        src={this.state.image}
+                        style={{height: 150, width: 150}}
+                        // Cropper.js options
+                        viewMode={1}
+                        minCropBoxWidth={120}
+                        guides={false}
+                        crop={this._crop} /> : null}
                 </div>
                 <div className='small-12 xlarge-expand columns'>
                     <Input
