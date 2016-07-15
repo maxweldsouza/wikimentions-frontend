@@ -17,6 +17,7 @@ var Footer = require('./Footer');
 var queryString = require('query-string');
 var Modal = require('./Modal');
 var ImageUpload = require('./ImageUpload');
+var ImageUploadNew = require('./ImageUploadNew');
 var Markdown = require('./Markdown');
 
 var EditPage = React.createClass({
@@ -53,7 +54,8 @@ var EditPage = React.createClass({
             urlValid: true,
             urlMessage: '',
             submiting: false,
-            modalIsOpen: false
+            modalIsOpen: false,
+            newModalIsOpen: false
         };
     },
     onChangeType (x) {
@@ -134,6 +136,15 @@ var EditPage = React.createClass({
     closeModal () {
         this.setState({modalIsOpen: false});
     },
+    onOpenNewModal (e) {
+        this.setState({
+            newModalIsOpen: true
+        });
+        e.preventDefault();
+    },
+    onCloseNewModal () {
+        this.setState({newModalIsOpen: false});
+    },
     render () {
         var id = Number(this.props.path.split('/')[1]);
         var entry = this.props.data.thing;
@@ -179,7 +190,23 @@ var EditPage = React.createClass({
                                     <ImageUpload title={entry.props.title} id={id} width={250} height={250} onClose={this.closeModal}/>
                                 </div>
                             </Modal>
+                            <Modal
+                                isOpen={this.state.newModalIsOpen}
+                                onClose={this.onCloseNewModal}
+                                className='modal-content'
+                                overlayClassName='modal-overlay'>
+                                <div className='small-12 columns'>
+                                    <ImageUploadNew
+                                        title={entry.props.title}
+                                        type={entry.props.type}
+                                        id={id}
+                                        width={250}
+                                        height={250}
+                                        onClose={this.onCloseNewModal}/>
+                                </div>
+                            </Modal>
                             <form action={'/api/v1/thing/' + id} method='post'>
+                                <a onClick={this.onOpenNewModal}>Dummy</a>
                                 <ButtonSelect
                                     name='type'
                                     default={this.props.data.thing.props.type}

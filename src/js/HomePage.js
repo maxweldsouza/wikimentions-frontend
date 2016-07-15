@@ -37,6 +37,9 @@ var HomePage = React.createClass({
             newmentions: this.props.data.new
         };
     },
+    _crop () {
+
+    },
     render () {
         var mentions = [];// this.state.newmentions;
         var stats = this.props.data.stats;
