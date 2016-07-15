@@ -9,5 +9,9 @@
         "amazon.com": "",
         "amazon.in": "",
         "flipkart": ""
+    },
+    "social": {
+        "facebook": "https://facebook.com",
+        "twitter": "https://twitter.com",
     }
 }

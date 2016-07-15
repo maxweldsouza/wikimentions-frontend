@@ -15,8 +15,8 @@ var Footer = React.createClass({
                             <div className='small-12 large-4 columns'>
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Social</li>
-                                    <li><a href=''>Facebook</a></li>
-                                    <li><a href=''>Twitter</a></li>
+                                    <li><a href={config.social.facebook}>Facebook</a></li>
+                                    <li><a href={config.social.twitter}>Twitter</a></li>
                                     <li><a href='/blog'>Blog</a></li>
                                 </ul>
                             </div>
