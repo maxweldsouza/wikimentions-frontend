@@ -1,6 +1,9 @@
 .img {
     border-radius: 2px;
 }
+.img.shadow {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
 
 .image-container {
     max-width: 100%;

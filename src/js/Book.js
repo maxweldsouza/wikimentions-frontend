@@ -14,7 +14,7 @@ var Book = React.createClass({
 
         var image = this.props.image;
         if (image) {
-            image = <Image className='img' id={this.props.id} md5={image.md5} width={image.width} height={image.height}/>;
+            image = <Image className='img shadow' id={this.props.id} md5={image.md5} width={image.width} height={image.height}/>;
         } else {
             image = <Placeholder style={{'width': 150, 'height': 200, 'border': 'none', 'lineHeight': '200px'}}/>;
         }
