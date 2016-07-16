@@ -118,6 +118,7 @@ var ImageUpload = React.createClass({
                         src={this.state.image}
                         style={{height: 150, width: 150}}
                         // Cropper.js options
+                        autoCropArea={1}
                         viewMode={1}
                         minCropBoxWidth={120}
                         guides={false}
