@@ -77,7 +77,7 @@ var AddAuthors = React.createClass({
                 {this.state.opened ? <div className='small-12 columns'>
                         <div className='card-container'>
                             {this.props.authors.map((x) => {
-                                return <AuthorCard id={x.id} slug={x.props.slug} title={x.props.title} type={x.props.type} description={x.props.description} images={x.images}/>;
+                                return <AuthorCard id={x.id} slug={x.props.slug} title={x.props.title} type={x.props.type} description={x.props.description} image={x.image}/>;
                             })}
                             <div className='card'>
                                 <div className='small-12 columns'>

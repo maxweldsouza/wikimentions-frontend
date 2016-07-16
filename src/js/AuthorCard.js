@@ -34,7 +34,7 @@ var AuthorCard = React.createClass({
         });
     },
     render () {
-        var image = this.props.images;
+        var image = this.props.image;
         if (image) {
             image = <Image className='img' id={this.props.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height} displayWidth={40}/>;
         } else {
