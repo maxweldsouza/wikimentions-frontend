@@ -13,7 +13,7 @@ var PreviousNext = React.createClass({
         return (
             <div className='card'>
                 <div className='small-6 columns'>
-                    <a className='secondary' href={prev}>Previous</a>
+                    {page > 1 ?<a className='secondary' href={prev}>Previous</a> : null}
                 </div>
                 <div className='small-6 columns text-right'>
                     <a className='secondary' href={next}>Next</a>
