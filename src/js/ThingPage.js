@@ -19,6 +19,7 @@ var Modal = require('./Modal');
 var Restricted = require('./Restricted');
 var Markdown = require('./Markdown');
 var Affiliate = require('./Affiliate');
+var Time = require('./Time');
 
 var ThingPage = React.createClass({
     statics: {
@@ -254,8 +255,11 @@ var ThingPage = React.createClass({
                                         height={thing.image.height}
                                         md5={thing.image.md5}
                                         />
+                                    <div>
+                                        Added: <Time timestamp={thing.image.added} type='ago'/>
+                                    </div>
+                                    <strong>Description</strong>
                                     <div className='callout'>
-                                        <strong>Description</strong>
                                         <Markdown markdown={thing.image.description} />
                                     </div>
                                     <button className='button' onClick={this.onCloseModal}>Close</button>
