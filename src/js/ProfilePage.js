@@ -77,9 +77,7 @@ var ProfilePage = React.createClass({
                 <PreviousNext path={this.props.path} page={this.props.query.page}/>
             </div>;
         } else if (selectedTab === 'profile') {
-            tabContent = <div>
-                {self ? <EditProfile id={id}/> : null}
-            </div>;
+            tabContent = self ? <EditProfile id={id}/> : null;
         }
         return (
             <span>
