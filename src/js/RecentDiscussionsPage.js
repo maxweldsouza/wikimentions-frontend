@@ -9,15 +9,20 @@ var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var config = require('./config');
 var Time = require('./Time');
+var Markdown = require('./Markdown');
+var Link = require('./Link');
+var PreviousNext = require('./PreviousNext');
 
 var RecentDiscussions = React.createClass({
     statics: {
         resources (appstate) {
+            var page = appstate.query.page;
+            var query = page ? '?page=' + page : '';
             return {
                 api: [
                     {
                         name: 'discuss',
-                        path: '/api/v1/recent-discussions'
+                        path: '/api/v1/recent-discussions' + query
                     }
                 ]
             };
@@ -46,30 +51,29 @@ var RecentDiscussions = React.createClass({
                         <h1>Recent Discussions</h1>
                         <div className='small-12 columns'>
                             <div className='card-container'>
-                                <div className='card'>
-                                    <div className='small-6 columns'>
-                                        Page
-                                    </div>
-                                    <div className='small-3 column text-right'>
-                                        Posts
-                                    </div>
-                                    <div className='small-3 column text-right'>
-                                        Updated
-                                    </div>
-                                </div>
                                 {this.props.data.discuss.map((x) => {
-                                    return <div className='card'>
-                                        <div className='discuss-topic small-6 columns'>
-                                            <a href={'/discuss/' + x.id + '/' + x.props.slug}>{x.props.title}</a>
+                                    return <div className='card' key={x.id}>
+                                        <div className="small-6 columns">
+                                            <a href={'/users/' + x.user + '/' + x.username}>{x.username}</a>
                                         </div>
-                                        <div className='discuss-posts small-3 column text-right'>
-                                            {x.posts}
+                                        <div className="small-6 columns text-right discuss-updated"><Time timestamp={x.created} type='ago'/></div>
+                                        <div className="small-12 columns">
+                                            <Markdown
+                                                markdown={x.content}
+                                                />
                                         </div>
-                                        <div className='discuss-time small-3 column text-right'>
-                                            <Time timestamp={x.last_updated} type='ago'/>
+                                        <div className="small-12 columns">
+                                            Page: <strong><Link
+                                                className='secondary'
+                                                id={x.obj.id}
+                                                slug={x.obj.slug}
+                                                type={x.obj.type}>
+                                                {x.obj.title}
+                                            </Link></strong>
                                         </div>
-                                    </div>;
+                                    </div>
                                 })}
+                                <PreviousNext path={this.props.path} page={this.props.query.page}/>
                             </div>
                         </div>
                     </div>
