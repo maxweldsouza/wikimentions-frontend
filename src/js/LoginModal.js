@@ -24,7 +24,7 @@ var LoginModal = React.createClass({
                 <Modal
                     isOpen={this.state.showing}
                     onClose={this.onClose}
-                    className='modal-content'
+                    className='modal-content modal-small'
                     overlayClassName='modal-overlay'>
                     <div className='small-12 columns'>
                         <Login onLogin={this.onClose}/>

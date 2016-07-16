@@ -25,7 +25,7 @@ var SignupModal = React.createClass({
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onClose={this.closeModal}
-                    className='modal-content'
+                    className='modal-content modal-small'
                     overlayClassName='modal-overlay'>
                     <div className='small-12 columns'>
                         <h1>Sign up</h1>
