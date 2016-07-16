@@ -102,7 +102,12 @@ var HistoryCard = React.createClass({
         } else if (this.props.entry && this.props.entrytype === 'image') {
             item = <span className='row'>
                 <span className='small-12 columns'>
-                    {added} Image
+                    {added} Image to page <Link
+                        id={this.props.entry.id}
+                        slug={this.props.entry.slug}
+                        type={this.props.entry.type}>
+                            {this.props.entry.title}
+                    </Link>
                 </span>
                 <span className='shrink columns'>
                     <img src={'/api/v1/static/images/' + this.props.entry.thumb_md5 + '-' + this.props.entry.thumb_width + '-' + this.props.entry.thumb_height + '.jpg'} />
