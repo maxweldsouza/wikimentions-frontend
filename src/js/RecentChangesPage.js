@@ -4,12 +4,20 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var _ = require('lodash');
 var config = require('./config');
+var PreviousNext = require('./PreviousNext');
+var HistoryItem = require('./HistoryItem');
 
 var RecentChangesPage = React.createClass({
     statics: {
         resources (appstate) {
+            var page = appstate.query.page;
+            var query = page ? '?page=' + page : '';
             return {
                 api: [
+                    {
+                        name: 'history',
+                        path: '/api/v1/recent-changes' + query
+                    }
                 ]
             };
         }
@@ -32,24 +40,26 @@ var RecentChangesPage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
-                    <div className='small-12 large-8 columns'>
-                        <h1>Recent Changes</h1>
-                        <div className='small-12 columns'>
-                            <div className='card-container'>
-                                <div className="card">
-                                    <span className="small-8 columns"><a className="history-user" href="/users/2/maxweldsouza">maxweldsouza</a></span><span className="history-timestamp small-4 columns text-right">21 hours ago</span>
-                                    <span className="small-12 columns">
-                                        <span className="history-added"><span className="ion-plus-circled" /></span>
-                                        <span>
-                                            <a href="/people/530/christopher-hitchens">Christopher Hitchens</a> mentioned <a href="/people/108/richard-dawkins">Richard Dawkins</a> in <a href="/videos/531/hitchens-talks-at-google">Hitchens | Talks at Google</a>
-                                        </span>
-                                    </span>
+                    <div className='row page-body align-center'>
+                        <div className='small-12 large-8 columns'>
+                            <h1>Recent Changes</h1>
+                            <div className='small-12 columns'>
+                                <div className="card-container">
+                                    {this.props.data.history.map((x) => {
+                                        return <HistoryItem
+                                            user={x.user}
+                                            username={x.username}
+                                            entry={x.entry}
+                                            entrytype={x.entrytype}
+                                            timestamp={x.timestamp}
+                                            deleted={x.deleted}
+                                            />;
+                                    })}
+                                    <PreviousNext path={this.props.path} page={this.props.query.page}/>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </span>
         );
     }
