@@ -8,7 +8,7 @@ var Footer = React.createClass({
                 <div className='row'>
                     <div className='small-12 xlarge-6 columns footer-logo-container'>
                         <div className='footer-logo'>{config.name}</div>
-                        © Copyright 2016
+                        {config.contact}
                     </div>
                     <div className='small-12 xlarge-6 columns'>
                         <div className='row'>
