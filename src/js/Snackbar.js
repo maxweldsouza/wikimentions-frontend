@@ -26,7 +26,9 @@ var Snackbar = function (options) {
     } else {
         $('body').append(snack);
     }
-    $('#snackbar').addClass('showing');
+    setTimeout(function () {
+        $('#snackbar').addClass('showing');
+    }, 0);
     setTimeout(function () {
         $('#snackbar').removeClass('showing');
     }, defaults.duration);
