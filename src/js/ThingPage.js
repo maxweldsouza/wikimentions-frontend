@@ -245,7 +245,7 @@ var ThingPage = React.createClass({
                             <Modal
                                 isOpen={this.state.modalIsOpen}
                                 onClose={this.onCloseModal}
-                                className='modal-content'
+                                className='modal-content modal-small'
                                 overlayClassName='modal-overlay'>
                                 {thing.image ? <div className='small-12 columns'>
                                     <h1>Image</h1>
