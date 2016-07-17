@@ -65,7 +65,7 @@ var Navbar = React.createClass({
             if (loggedin) {
                 rhs = <ul className='menu align-right'>
                     <li className='show-for-xlarge'>{SearchBar}</li>
-                    <li className='show-for-large'><a href={'/users/' + userid + '/' + username}>{username}</a></li>
+                    <li className='show-for-large'><a href={'/users/' + userid + '/' + username} title='Profile'>{username}</a></li>
                     <li className='show-for-xlarge'><a onClick={Mentions.logout}>Logout</a></li>
                     <li className='hide-for-xlarge'>{searchIcon}</li>
                 </ul>;
