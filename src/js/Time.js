@@ -19,18 +19,20 @@ var Time = React.createClass({
     },
     render () {
         if (this.props.timestamp) {
+            var time = moment.utc(this.props.timestamp);
             var result;
+            var title = time.format('LLL');
             if (this.state.server) {
-                result = moment.utc(this.props.timestamp).format('DD.MM.YY H:m [GMT]');
+                result = time.format('DD.MM.YY H:m [GMT]');
             } else {
                 if (this.props.type === 'ago') {
-                    result = moment.utc(this.props.timestamp).local().fromNow();
+                    result = time.local().fromNow();
                 } else if (this.props.type === 'timestamp') {
-                    result = moment.utc(this.props.timestamp).local().format(this.props.format);
+                    result = time.local().format(this.props.format);
                 }
             }
             return (
-                <span>{result}</span>
+                <a className='secondary' title={title}>{result}</a>
             );
         }
         return null;
