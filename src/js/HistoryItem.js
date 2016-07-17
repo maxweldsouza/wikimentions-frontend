@@ -120,7 +120,7 @@ var HistoryCard = React.createClass({
         return (
             <div className='card'>
                 <span className='small-8 columns'>
-                    <a href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a>
+                    <strong><a href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a></strong>
                 </span>
                 <span className='small-4 columns text-right'><Time timestamp={this.props.timestamp} type='ago'/></span>
                 <span className='small-12 columns'>

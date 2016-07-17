@@ -54,7 +54,7 @@ var RecentDiscussions = React.createClass({
                                 {this.props.data.discuss.map((x) => {
                                     return <div className='card' key={x.id}>
                                         <div className="small-6 columns">
-                                            <a href={'/users/' + x.user + '/' + x.username}>{x.username}</a>
+                                            <strong><a href={'/users/' + x.user + '/' + x.username}>{x.username}</a></strong>
                                         </div>
                                         <div className="small-6 columns text-right discuss-updated"><Time timestamp={x.created} type='ago'/></div>
                                         <div className="small-12 columns">

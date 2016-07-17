@@ -10,7 +10,7 @@ var Comment = React.createClass({
         return (
             <div className='card'>
                 <div className="small-6 columns">
-                    <a href={'/users/' + this.props.user + '/' + this.props.name}>{this.props.name}</a>
+                    <strong><a href={'/users/' + this.props.user + '/' + this.props.name}>{this.props.name}</a></strong>
                 </div>
                 <div className="small-6 columns text-right discuss-updated"><Time timestamp={this.props.posted} type='ago'/></div>
                 <div className="small-12 columns">
