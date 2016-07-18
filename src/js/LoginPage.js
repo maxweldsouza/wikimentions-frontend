@@ -17,43 +17,6 @@ var LoginPage = React.createClass({
             };
         }
     },
-    getInitialState () {
-        return {
-            submitting: false,
-            username: '',
-            password: ''
-        };
-    },
-    onChangeText (e) {
-        var temp = {};
-        temp[e.target.name] = e.target.value;
-        this.setState(temp);
-    },
-    login () {
-        this.setState({
-            submiting: true
-        });
-        requests
-        .post('/api/v1/login')
-        .type('form')
-        .send({
-            username: this.state.username,
-            password: this.state.password,
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
-            this.setState({
-                submiting: false
-            });
-            if (err && err.status) {
-                Snackbar({message: 'Login failed'});
-            } else {
-                Snackbar({message: 'Logged in'});
-                history.pushState(null, null, '/');
-                Mentions.route('/');
-            }
-        });
-    },
     render () {
         return (
             <span>
@@ -74,7 +37,7 @@ var LoginPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-6 columns'>
-                        <Login/>
+                        <Login redirect='/'/>
                     </div>
                 </div>
             </span>

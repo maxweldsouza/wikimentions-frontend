@@ -40,6 +40,9 @@ var Login = React.createClass({
                 }
                 Snackbar({message: 'Logged in'});
                 var path = window.location.pathname + window.location.search;
+                if (this.props.redirect) {
+                    path = this.props.redirect;
+                }
                 history.pushState(null, null, path);
                 Mentions.route(path);
             }
