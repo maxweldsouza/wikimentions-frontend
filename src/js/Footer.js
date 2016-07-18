@@ -14,18 +14,18 @@ var Footer = React.createClass({
                         <div className='row'>
                             <div className='small-12 large-4 columns'>
                                 <ul className='menu vertical'>
-                                    <li className="menu-text">Social</li>
-                                    <li><a href={config.social.facebook}>Facebook</a></li>
-                                    <li><a href={config.social.twitter}>Twitter</a></li>
-                                    <li><a href='/blog'>Blog</a></li>
+                                    <li className="menu-text">Navigation</li>
+                                    <li><a href='/create'>Create Page</a></li>
+                                    <li><a href='/recent-changes'>Recent Changes</a></li>
+                                    <li><a href='/recent-discussions'>Recent Discussions</a></li>
                                 </ul>
                             </div>
                             <div className='small-12 large-4 columns'>
                                 <ul className='menu vertical'>
-                                    <li className="menu-text">Site</li>
-                                    <li><a href='/create'>Create</a></li>
-                                    <li><a href='/recent-changes'>Recent Changes</a></li>
-                                    <li><a href='/recent-discussions'>Recent Discussions</a></li>
+                                    <li className="menu-text">Social</li>
+                                    <li><a href={config.social.facebook}>Facebook</a></li>
+                                    <li><a href={config.social.twitter}>Twitter</a></li>
+                                    <li><a href='/blog'>Blog</a></li>
                                 </ul>
                             </div>
                             <div className='small-12 large-4 columns'>
