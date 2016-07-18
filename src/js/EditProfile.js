@@ -3,6 +3,7 @@ var cookies = require('browser-cookies');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
+var MarkdownHelp = require('./MarkdownHelp');
 
 var EditProfile = React.createClass({
     getInitialState () {
@@ -117,7 +118,7 @@ var EditProfile = React.createClass({
                         <h2>Profile</h2>
                         Email
                         <input type='text' name='email' onChange={this.onChangeText} value={this.state.email}/>
-                        About
+                        About <MarkdownHelp />
                         <textarea type='text' name='about' onChange={this.onChangeText} value={this.state.about} rows={6}/>
                         <SubmitButton title='Save' submitting={this.state.submitting} onSubmit={this.updateProfile}/>
                     </div>

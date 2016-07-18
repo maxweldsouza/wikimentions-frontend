@@ -28,8 +28,8 @@ var MarkdownHelp = React.createClass({
             ['~~Strikethrough~~', '~~text~~'],
         ];
         return (
-            <div>
-                <a onClick={this.onOpenModal}>Markdown Help</a>
+            <span>
+                <a onClick={this.onOpenModal} className='secondary'><span className='ion-help-circled'/></a>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onClose={this.onCloseModal}
@@ -48,7 +48,7 @@ var MarkdownHelp = React.createClass({
                     })}
                     <button className='button' onClick={this.onCloseModal}>Close</button>
                 </Modal>
-            </div>
+            </span>
         );
     }
 });
