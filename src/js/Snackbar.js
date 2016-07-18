@@ -1,9 +1,12 @@
 var $ = require('jquery');
 var _ = require('lodash');
+var isNode = require('./isNode');
 
 var Snackbar = function () {
     var visible = false;
-    $('body').append('<div class="snackbar" id="snackbar"><span class="snackbar-message" id="snackbar-message"></span></div>');
+    if (isNode.isBrowser()) {
+        $('body').append('<div class="snackbar" id="snackbar"><span class="snackbar-message" id="snackbar-message"></span></div>');
+    }
     var i = 0;
     return function (options) {
         var defaults = {
