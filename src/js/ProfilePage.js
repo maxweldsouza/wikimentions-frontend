@@ -54,15 +54,16 @@ var ProfilePage = React.createClass({
                 } else {
                     path = '/users/' + id + '/' + name + '/' + x;
                 }
-                return <li className={cls}>
+                return <li className={cls} key={x}>
                     <a href={path} aria-selected='true'>{S(x).capitalize().s}</a>
                 </li>;
             })}
         </ul>;
         if (selectedTab === 'history') {
             tabContent = <div className=''>
-                {history.map((x) => {
+                {history.map((x, i) => {
                     return <HistoryItem
+                        key={i}
                         user={user.id}
                         username={user.name}
                         obj_id={x.obj_id}

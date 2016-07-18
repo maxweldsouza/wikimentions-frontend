@@ -89,7 +89,7 @@ var Navbar = React.createClass({
                         {rhs}
                     </div>
                 </div>
-                <VelocityTransitionGroup enter={{animation: 'transition.fadeIn'}} leave={{animation: 'transition.fadeOut'}} duration={200}>
+                <VelocityTransitionGroup enter={{animation: 'transition.fadeIn'}} leave={{animation: 'transition.fadeOut'}}>
                     {this.state.searchBarOpen ? <div className='navbar-search hide-for-xlarge'>
                         <div className='row'>
                             <div className='columns'>
