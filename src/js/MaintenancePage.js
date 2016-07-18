@@ -2,7 +2,7 @@ var React = require('react');
 
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
-var _ = require('lodash');
+var _ = require('underscore');
 var Link = require('./Link');
 var config = require('./config');
 var tags = ['book_without_author', 'missing_isbn', 'person_without_description'];

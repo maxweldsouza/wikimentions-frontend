@@ -1,7 +1,7 @@
 var React = require('react');
 var Image = require('./Image');
 var Placeholder = require('./Placeholder');
-var _ = require('lodash');
+var _ = require('underscore');
 var Link = require('./Link');
 
 var AuthorCard = React.createClass({

@@ -1,6 +1,6 @@
 var React = require('react');
 var requests = require('superagent');
-var _ = require('lodash');
+var _ = require('underscore');
 var Image = require('./Image');
 var Placeholder = require('./Placeholder');
 

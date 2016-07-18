@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var _ = require('lodash');
+var _ = require('underscore');
 var isNode = require('./isNode');
 
 var Snackbar = function () {

@@ -1,4 +1,4 @@
-var _ = require('lodash');
+var _ = require('underscore');
 var AddMention = require('./AddMention');
 var AddVideo = require('./AddVideo');
 var BlogPage = require('./BlogPage');

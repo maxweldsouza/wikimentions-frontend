@@ -2,7 +2,7 @@ var React = require('react');
 
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
-var _ = require('lodash');
+var _ = require('underscore');
 var config = require('./config');
 
 var ContributePage = React.createClass({

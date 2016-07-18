@@ -1,7 +1,7 @@
 var React = require('react');
 
 var Helmet = require('react-helmet');
-var _ = require('lodash');
+var _ = require('underscore');
 
 var config = require('./config');
 var Navbar = require('./Navbar');

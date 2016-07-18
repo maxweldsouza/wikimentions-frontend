@@ -2,12 +2,12 @@ var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var Helmet = require('react-helmet');
 var path = require('path');
-var express = require("express");
+var express = require('express');
 var etag = require('etag')
 var cookieParser = require('cookie-parser');
 var app = express();
 var fs = require('fs');
-var _ = require("underscore");
+var _ = require('underscore');
 var str = require('string');
 var request = require('superagent');
 var moment = require('moment');
@@ -33,11 +33,11 @@ var plugins = [
     'transform-object-rest-spread'
 ];
 if (production) {
-    plugins.push("transform-react-inline-elements");
+    plugins.push('transform-react-inline-elements');
 }
-require("babel-register")({
+require('babel-register')({
     plugins: plugins,
-    presets: ["es2015"]
+    presets: ['es2015']
 });
 
 var Router = require('./src/js/Router');
@@ -59,7 +59,7 @@ if (production) {
     GIT_REV_HASH = md5(Date.now().toString());
 }
 
-console.log("GIT_REV_HASH: ", GIT_REV_HASH);
+console.log('GIT_REV_HASH: ', GIT_REV_HASH);
 
 app.set('etag', false);
 app.use(cookieParser());

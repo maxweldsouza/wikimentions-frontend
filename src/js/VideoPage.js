@@ -2,7 +2,7 @@ var React = require('react');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var requests = require('superagent');
-var _ = require('lodash');
+var _ = require('underscore');
 
 var ThingMentionTab = require('./ThingMentionTab');
 var ThingMentionedByTab = require('./ThingMentionedByTab');
