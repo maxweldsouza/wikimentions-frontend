@@ -1,6 +1,5 @@
 var React = require('react');
 var AvatarEditor = require('./react-avatar-editor');
-var Rcslider = require('rc-slider');
 var Markdown = require('./Markdown');
 var requests = require('superagent');
 var cookies = require('browser-cookies');
