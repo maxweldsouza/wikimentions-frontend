@@ -85,7 +85,7 @@ var ProfilePage = React.createClass({
                     title={user.name}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        {'name': 'robots', 'content': 'noindex'}
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}

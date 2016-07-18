@@ -1,2 +1,12 @@
-User-agent: *
+User-Agent: *
 Disallow:
+Disallow: /discuss/
+Disallow: /users/
+Disallow: /history/
+Disallow: /edits
+Disallow: /contribute
+Disallow: /recent-discussions
+Disallow: /recent-changes
+Disallow: /maintenance/
+Disallow: /site-stats
+Disallow: /search

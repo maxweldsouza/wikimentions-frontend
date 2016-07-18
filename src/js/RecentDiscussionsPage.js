@@ -35,7 +35,7 @@ var RecentDiscussions = React.createClass({
                     title={'Recent Discussions'}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        {'name': 'robots', 'content': 'noindex'}
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}

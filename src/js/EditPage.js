@@ -147,7 +147,7 @@ var EditPage = React.createClass({
                     title={'Edit - ' + entry.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        {'name': 'robots', 'content': 'noindex'}
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}
