@@ -40,14 +40,38 @@ var SiteStatsPage = React.createClass({
                         <h1>Kitchen Sink</h1>
                         <div className='card-container'>
                             <div className='card'>
-                                <div className='small-12 columns'>
-
+                                <div className='small-6 columns'>
                                     <h2>Typography</h2>
                                     <h1>Heading 1</h1>
                                     <h2>Heading 2</h2>
                                     <h3>Heading 3</h3>
                                     <hr/>
-
+                                    <h2>Buttons</h2>
+                                    <div>
+                                        <button className='button'>Button</button>
+                                        <button className='button primary'>Primary</button>
+                                        <button className='button secondary'>Secondary</button>
+                                        <button className='button success'>Success</button>
+                                        <button className='button warning'>Warning</button>
+                                        <button className='button alert'>Alert</button>
+                                    </div>
+                                    <div>
+                                        <button className='hollow button'>Button</button>
+                                        <button className='hollow button primary'>Primary</button>
+                                        <button className='hollow button secondary'>Secondary</button>
+                                        <button className='hollow button success'>Success</button>
+                                        <button className='hollow button warning'>Warning</button>
+                                        <button className='hollow button alert'>Alert</button>
+                                    </div>
+                                    <hr/>
+                                    <h2>Badge</h2>
+                                    <span className="badge">P</span>
+                                    <span className="secondary badge">S</span>
+                                    <span className="success badge">S</span>
+                                    <span className="warning badge">W</span>
+                                    <span className="alert badge">A</span>
+                                </div>
+                                <div className='small-6 columns'>
                                     <h2>Callout</h2>
                                     <div className='callout'>
                                         This is a callout.
@@ -67,42 +91,10 @@ var SiteStatsPage = React.createClass({
                                     <div className='callout alert'>
                                         This is a callout.
                                     </div>
-
-                                    <hr/>
-                                    <h2>Buttons</h2>
-                                    <div>
-                                        <button className='button'>Button</button>
-                                        <button className='button primary'>Primary</button>
-                                        <button className='button secondary'>Secondary</button>
-                                        <button className='button success'>Success</button>
-                                        <button className='button warning'>Warning</button>
-                                        <button className='button alert'>Alert</button>
-                                    </div>
-                                    <div>
-                                        <button className='hollow button'>Button</button>
-                                        <button className='hollow button primary'>Primary</button>
-                                        <button className='hollow button secondary'>Secondary</button>
-                                        <button className='hollow button success'>Success</button>
-                                        <button className='hollow button warning'>Warning</button>
-                                        <button className='hollow button alert'>Alert</button>
-                                    </div>
-
-                                    <hr/>
-                                    <h2>Badge</h2>
-                                    <span className="badge">P</span>
-                                    <span className="secondary badge">S</span>
-                                    <span className="success badge">S</span>
-                                    <span className="warning badge">W</span>
-                                    <span className="alert badge">A</span>
-
-                                    <hr/>
-                                    <h2>Label</h2>
-                                    <span className="secondary label">Secondary Label</span>
-                                    <span className="success label">Success Label</span>
-                                    <span className="alert label">Alert Label</span>
-                                    <span className="warning label">Warning Label</span>
-
-                                    <hr/>
+                                </div>
+                            </div>
+                            <div className='card'>
+                                <div className='small-12 columns'>
                                     <h2>Pagination</h2>
                                     <ul className="pagination" role="navigation" aria-label="Pagination">
                                         <li className="disabled">Previous <span className="show-for-sr">page</span></li>
@@ -120,15 +112,20 @@ var SiteStatsPage = React.createClass({
                                     <h2>Images</h2>
                                     <div className="row">
                                         <div className="small-4 columns">
-                                            <img className="thumbnail" src="assets/img/thumbnail/01.jpg" alt="Photo of Uranus." />
+                                            <img className="thumbnail" src="https://localhost/api/v1/static/images/4994a3944f9bd4e5045064c2ed1572ec-250-250.jpg"/>
                                         </div>
                                         <div className="small-4 columns">
-                                            <img className="thumbnail" src="assets/img/thumbnail/02.jpg" alt="Photo of Neptune." />
+                                            <img className="thumbnail" src="https://localhost/api/v1/static/images/84d376998b880e07e7a12262ff86f6dd-250-250.jpg"/>
                                         </div>
                                         <div className="small-4 columns">
-                                            <img className="thumbnail" src="assets/img/thumbnail/03.jpg" alt="Photo of Pluto." />
+                                            <img className="thumbnail" src="https://localhost/api/v1/static/images/787d501ad8c61d42e44a1f7a19c29ff9-250-250.jpg" />
                                         </div>
                                     </div>
+
+                                    <hr/>
+                                    <h2>Forms</h2>
+                                    <label>Label</label>
+                                    <input type='text' placeholder='Input'/>
                                 </div>
                             </div>
                         </div>
