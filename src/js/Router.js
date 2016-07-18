@@ -7,7 +7,6 @@ var ContentPage = require('./ContentPage');
 var ContributePage = require('./ContributePage');
 var CreatePage = require('./CreatePage');
 var DiscussPage = require('./DiscussPage');
-var EditMention = require('./EditMention');
 var EditPage = require('./EditPage');
 var HistoryPage = require('./HistoryPage');
 var HomePage = require('./HomePage');
@@ -91,9 +90,6 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^videos\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'VideoPage';
-        routeObj.maxAge = 0;
-    } else if (/^mentions\/([0-9]+)\/edit$/.test(x)) {
-        componentName = 'EditMention';
         routeObj.maxAge = 0;
     } else if (/^blog$/.test(x)) {
         componentName = 'BlogPage';

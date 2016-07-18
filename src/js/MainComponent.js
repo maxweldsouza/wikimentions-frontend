@@ -13,7 +13,6 @@ var ContributePage = require('./ContributePage');
 var cookies = require('browser-cookies');
 var CreatePage = require('./CreatePage');
 var DiscussPage = require('./DiscussPage');
-var EditMention = require('./EditMention');
 var EditPage = require('./EditPage');
 var Footer = require('./Footer');
 var HistoryPage = require('./HistoryPage');
