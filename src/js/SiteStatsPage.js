@@ -49,7 +49,6 @@ var SiteStatsPage = React.createClass({
                                     <h2>Buttons</h2>
                                     <div>
                                         <button className='button'>Button</button>
-                                        <button className='button primary'>Primary</button>
                                         <button className='button secondary'>Secondary</button>
                                         <button className='button success'>Success</button>
                                         <button className='button warning'>Warning</button>
@@ -57,7 +56,6 @@ var SiteStatsPage = React.createClass({
                                     </div>
                                     <div>
                                         <button className='hollow button'>Button</button>
-                                        <button className='hollow button primary'>Primary</button>
                                         <button className='hollow button secondary'>Secondary</button>
                                         <button className='hollow button success'>Success</button>
                                         <button className='hollow button warning'>Warning</button>
@@ -65,7 +63,7 @@ var SiteStatsPage = React.createClass({
                                     </div>
                                     <hr/>
                                     <h2>Badge</h2>
-                                    <span className="badge">P</span>
+                                    <span className="badge">B</span>
                                     <span className="secondary badge">S</span>
                                     <span className="success badge">S</span>
                                     <span className="warning badge">W</span>
@@ -74,9 +72,6 @@ var SiteStatsPage = React.createClass({
                                 <div className='small-6 columns'>
                                     <h2>Callout</h2>
                                     <div className='callout'>
-                                        This is a callout.
-                                    </div>
-                                    <div className='callout primary'>
                                         This is a callout.
                                     </div>
                                     <div className='callout secondary'>

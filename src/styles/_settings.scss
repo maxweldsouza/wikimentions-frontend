@@ -51,13 +51,13 @@ $global-width: rem-calc(1024);
 $global-lineheight: 1.5;
 $primary-color: hsla(0, 83%, 57%, 1);
 $primary-color-dark: hsla(0, 83%, 67%, 1);
-$secondary-color:  hsla(0, 0%, 45%, 1);
+$secondary-color:  hsla(0, 0%, 65%, 1);
 $success-color: hsla(144, 60%, 60%, 1);
 $warning-color: hsla(48, 95%, 55%, 1);
 $alert-color:  hsla(8, 88%, 61%, 1);
 $light-gray: hsla(0, 0%, 98%, 1);
 $medium-gray: hsla(0, 0%, 92%, 1);
-$dark-gray: hsla(0, 0%, 54%, 1);
+$dark-gray: hsla(0, 0%, 25%, 1);
 $black: hsla(0, 0%, 4%, 1);
 $white: hsla(0, 0%, 100%, 1);
 $body-background: $light-gray;
@@ -257,7 +257,7 @@ $buttongroup-expand-max: 6;
 // -----------
 
 $callout-background: $white;
-$callout-background-fade: 85%;
+$callout-background-fade: 95%;
 $callout-border: solid 1px $medium-gray;
 $callout-margin: 0 0 1rem 0;
 $callout-padding: 1rem;
