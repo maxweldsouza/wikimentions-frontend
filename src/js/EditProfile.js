@@ -14,7 +14,7 @@ var EditProfile = React.createClass({
             old: '',
             new: '',
             repeat: '',
-            password: '',
+            password: ''
         };
     },
     componentDidMount () {
@@ -23,7 +23,7 @@ var EditProfile = React.createClass({
         .end((err, res) => {
             this.setState({
                 email: res.body.email,
-                about: res.body.about,
+                about: res.body.about
             });
         });
     },

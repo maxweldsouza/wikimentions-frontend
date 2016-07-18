@@ -25,7 +25,7 @@ var MarkdownHelp = React.createClass({
             ['`Code`', '`code`'],
             ['*Italic*', '*text*'],
             ['[Link]()', '[Title](http://)'],
-            ['~~Strikethrough~~', '~~text~~'],
+            ['~~Strikethrough~~', '~~text~~']
         ];
         return (
             <span>
@@ -44,7 +44,7 @@ var MarkdownHelp = React.createClass({
                             <div className='columns'>
                                 {line[1]}
                             </div>
-                        </div>
+                        </div>;
                     })}
                     <button className='button' onClick={this.onCloseModal}>Close</button>
                 </Modal>

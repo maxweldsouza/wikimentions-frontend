@@ -94,7 +94,7 @@ window.Mentions = {
                 Mentions.route(path);
             }
         });
-    },
+    }
 };
 
 Mentions.firstLoad(window.location.pathname + window.location.search);
@@ -175,7 +175,7 @@ $(document).on('click', 'a', function (e) {
             try {
                 Mentions.route(url);
                 history.pushState(null, null, url);
-            } catch (e) {
+            } catch (err) {
                 Snackbar({message: '404: Not found'});
                 stopLoading();
             }

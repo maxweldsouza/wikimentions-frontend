@@ -71,7 +71,7 @@ var RecentDiscussions = React.createClass({
                                                 {x.obj.title}
                                             </Link></strong>
                                         </div>
-                                    </div>
+                                    </div>;
                                 })}
                                 <PreviousNext path={this.props.path} page={this.props.query.page}/>
                             </div>

@@ -14,8 +14,6 @@ var PreviousNext = require('./PreviousNext');
 var TextWidget = require('./TextWidget');
 var Markdown = require('./Markdown');
 
-var React = require('react');
-
 var ProfilePage = React.createClass({
     statics: {
         resources (appstate) {

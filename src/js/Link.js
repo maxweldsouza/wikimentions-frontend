@@ -15,9 +15,7 @@ var Link = React.createClass({
             pagepath = '/people/';
             defaultTab = 'videos';
         } else {
-            pagepath = '/pages/';
-            defaultTab = 'videos';
-            console.warn('No page type specified for Link');
+            throw new Error('No page type specified');
         }
 
         var tab = '';

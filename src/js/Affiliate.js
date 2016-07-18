@@ -14,10 +14,10 @@ var Affiliate = React.createClass({
         return (
             <div>
                 {country === 'US' ? <div>
-                    <a target='_blank' href={'http://www.amazon.com/gp/search?keywords=' + this.props.title + '&index=books&linkCode=qs&tag=' + config['affiliate']['amazon.com']}>amazon.com <span className='ion-android-open'/></a>
+                    <a target='_blank' href={'http://www.amazon.com/gp/search?keywords=' + this.props.title + '&index=books&linkCode=qs&tag=' + config.affiliate['amazon.com']}>amazon.com <span className='ion-android-open'/></a>
                 </div> : null}
                 {country === 'IN' ? <div>
-                    <a target='_blank' href={'http://www.amazon.in/gp/search?keywords=' + this.props.title + '&index=books&linkCode=qs&tag=' + config['affiliate']['amazon.com']}>amazon.in <span className='ion-android-open'/></a>
+                    <a target='_blank' href={'http://www.amazon.in/gp/search?keywords=' + this.props.title + '&index=books&linkCode=qs&tag=' + config.affiliate['amazon.com']}>amazon.in <span className='ion-android-open'/></a>
                 </div> : null}
             </div>
         );

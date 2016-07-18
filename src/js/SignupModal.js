@@ -6,7 +6,7 @@ var Signup = require('./Signup');
 var SignupModal = React.createClass({
     getInitialState () {
         return {
-            modalIsOpen: false,
+            modalIsOpen: false
         };
     },
     onOpenModal (e) {

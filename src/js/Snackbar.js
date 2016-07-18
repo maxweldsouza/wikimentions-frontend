@@ -12,14 +12,9 @@ var Snackbar = function () {
         var defaults = {
             animationDuration: 200,
             duration: 3000,
-            message: '',
+            message: ''
         };
         defaults = _.extend(defaults, options);
-
-        // Validation
-        if (defaults.message.length > 20) {
-            console.warn('Snackbar message is too long');
-        }
 
         var message = '<span class="snackbar-message">' + defaults.message + '</span>';
         i = i + 1;
@@ -32,7 +27,7 @@ var Snackbar = function () {
                 $('#snackbar').addClass('showing');
                 visible = true;
                 setTimeout(function () {
-                    if (i == j) {
+                    if (i === j) {
                         $('#snackbar').removeClass('showing');
                         visible = false;
                     }
@@ -43,7 +38,7 @@ var Snackbar = function () {
             $('#snackbar').addClass('showing');
             visible = true;
             setTimeout(function () {
-                if (i == j) {
+                if (i === j) {
                     $('#snackbar').removeClass('showing');
                     visible = false;
                 }

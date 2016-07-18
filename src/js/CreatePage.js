@@ -147,7 +147,7 @@ var HomePage = React.createClass({
                                             onChange={this.onChangeText}
                                             valid={this.state.urlValid}
                                             message={this.state.urlMessage}/></span> : null}
-                                        {this.state.type === 'person'  ? <span>Description (Optional)
+                                        {this.state.type === 'person' ? <span>Description (Optional)
                                             <input type='text' name='description' value={this.state.description} onChange={this.onChangeText}/>
                                         </span> : null}
                                         {this.state.type === 'book' ? <span>

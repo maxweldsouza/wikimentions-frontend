@@ -154,7 +154,7 @@ var getResources = function (routeObj, beforeUpdate) {
             if (err) {
                 routeObj.error = {
                     status: err.status
-                }
+                };
             } else {
                 var timestamps = [];
                 var etags = [];

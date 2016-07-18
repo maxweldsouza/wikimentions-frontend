@@ -41,8 +41,7 @@ var Navbar = React.createClass({
         } else if (x.props.type === 'person') {
             pagepath = '/people/';
         } else {
-            pagepath = '/pages/';
-            console.warn('No page type specified for Link');
+            throw new Error('No page type specified');
         }
         pagepath += x.id + '/' + x.props.slug;
         history.pushState(null, null, pagepath);
@@ -62,49 +61,49 @@ var Navbar = React.createClass({
 
         var navicon = <span className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar}/>;
         var searchIcon = <button className='button secondary hollow small'><span className='ion-search navbar-icon' onClick={this.onOpenSearchBar}/></button>;
-            if (loggedin) {
-                rhs = <ul className='menu align-right'>
-                    <li className='show-for-xlarge'>{SearchBar}</li>
-                    <li className='show-for-large'><a href={'/users/' + userid + '/' + username} title='Profile'>{username}</a></li>
-                    <li className='show-for-xlarge'><a onClick={Mentions.logout}>Logout</a></li>
-                    <li className='hide-for-xlarge'>{searchIcon}</li>
-                </ul>;
-            } else {
-                rhs = <ul className='menu align-right'>
-                    <li className='hide-for-xlarge'>{searchIcon}</li>
-                    <li className='show-for-xlarge'>{SearchBar}</li>
-                </ul>;
-            }
-            return (
-                <div>
-                    <div className='top-bar'>
-                        <div className='top-bar-left'>
-                            <ul className='menu icon-top'>
-                                <li className='hide-for-xxlarge'>{navicon}</li>
-                                <li className='menu-text'><a href='/'>{config.name}</a></li>
-                                <li><Spinner /></li>
-                                <li className='show-for-xxlarge'><a href='/create'>Create Page</a></li>
-                            </ul>
-                        </div>
-                        <div className='top-bar-right'>
-                            {rhs}
-                        </div>
-                    </div>
-                    <VelocityTransitionGroup enter={{animation: 'transition.fadeIn'}} leave={{animation: 'transition.fadeOut'}} duration={200}>
-                        {this.state.searchBarOpen ? <div className='navbar-search hide-for-xlarge'>
-                            <div className='row'>
-                                <div className='columns'>
-                                    <input className='search-bar' type='text' placeholder='Search' onChange={this.onChangeText} onKeyDown={this.handleKeys} name='searchText'></input>
-                                </div>
-                                <div className='shrink columns'>
-                                    <button className='button secondary hollow small'><span className='ion-close navbar-icon' onClick={this.onCloseSearchBar}/></button>
-                                </div>
-                            </div>
-                        </div> : null}
-                    </VelocityTransitionGroup>
-                </div>
-            );
+        if (loggedin) {
+            rhs = <ul className='menu align-right'>
+                <li className='show-for-xlarge'>{SearchBar}</li>
+                <li className='show-for-large'><a href={'/users/' + userid + '/' + username} title='Profile'>{username}</a></li>
+                <li className='show-for-xlarge'><a onClick={Mentions.logout}>Logout</a></li>
+                <li className='hide-for-xlarge'>{searchIcon}</li>
+            </ul>;
+        } else {
+            rhs = <ul className='menu align-right'>
+                <li className='hide-for-xlarge'>{searchIcon}</li>
+                <li className='show-for-xlarge'>{SearchBar}</li>
+            </ul>;
         }
-    });
+        return (
+            <div>
+                <div className='top-bar'>
+                    <div className='top-bar-left'>
+                        <ul className='menu icon-top'>
+                            <li className='hide-for-xxlarge'>{navicon}</li>
+                            <li className='menu-text'><a href='/'>{config.name}</a></li>
+                            <li><Spinner /></li>
+                            <li className='show-for-xxlarge'><a href='/create'>Create Page</a></li>
+                        </ul>
+                    </div>
+                    <div className='top-bar-right'>
+                        {rhs}
+                    </div>
+                </div>
+                <VelocityTransitionGroup enter={{animation: 'transition.fadeIn'}} leave={{animation: 'transition.fadeOut'}} duration={200}>
+                    {this.state.searchBarOpen ? <div className='navbar-search hide-for-xlarge'>
+                        <div className='row'>
+                            <div className='columns'>
+                                <input className='search-bar' type='text' placeholder='Search' onChange={this.onChangeText} onKeyDown={this.handleKeys} name='searchText'></input>
+                            </div>
+                            <div className='shrink columns'>
+                                <button className='button secondary hollow small'><span className='ion-close navbar-icon' onClick={this.onCloseSearchBar}/></button>
+                            </div>
+                        </div>
+                    </div> : null}
+                </VelocityTransitionGroup>
+            </div>
+        );
+    }
+});
 
-    module.exports = Navbar;
+module.exports = Navbar;

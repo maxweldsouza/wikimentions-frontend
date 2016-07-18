@@ -204,7 +204,7 @@ var ThingPage = React.createClass({
             image = <a onClick={this.onOpenModal}>
                 <Image className={thing.props.type === 'book' ? 'img shadow' : 'img'} id={this.props.id} md5={thing.image.md5} width={thing.image.width} height={thing.image.height}/>
             </a>;
-            imageUrl = '/api/v1/static/images/' + thing.image.md5 + '-' + thing.image.width + '-' + thing.image.height + '.jpg'
+            imageUrl = '/api/v1/static/images/' + thing.image.md5 + '-' + thing.image.width + '-' + thing.image.height + '.jpg';
         } else {
             image = <Placeholder style={{'height': 200, 'lineHeight': '200px'}}/>;
             imageUrl = '';

@@ -202,7 +202,7 @@ var EditPage = React.createClass({
                                     Url
                                     <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid}
                                 message={this.state.urlMessage}/>
-                                </span>: null}
+                                </span> : null}
                                 {this.state.type === 'person' ? <span>
                                     Description (Optional)
                                     <input

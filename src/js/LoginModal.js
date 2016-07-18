@@ -6,7 +6,7 @@ var Login = require('./Login');
 var LoginModal = React.createClass({
     getInitialState () {
         return {
-            showing: false,
+            showing: false
         };
     },
     onOpen () {

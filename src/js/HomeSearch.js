@@ -1,7 +1,7 @@
 var React = require('react');
 
 var HomeSearch = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             searchText: ''
         };
@@ -16,9 +16,9 @@ var HomeSearch = React.createClass({
     },
     handleKeys (event) {
         if (event.key === 'Enter') {
-                var path = '/search?q=' + this.state.searchText;
-                history.pushState(null, null, path);
-                Mentions.route(path);
+            var path = '/search?q=' + this.state.searchText;
+            history.pushState(null, null, path);
+            Mentions.route(path);
         }
     },
     render () {

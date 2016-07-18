@@ -5,13 +5,13 @@ var Modal = React.createClass({
     render () {
         return (
             <span style={{display: this.props.isOpen ? 'initial' : 'none'}}>
-                <VelocityTransitionGroup enter={{animation: "fadeIn"}} leave={{animation: "fadeOut"}}>
+                <VelocityTransitionGroup enter={{animation: 'fadeIn'}} leave={{animation: 'fadeOut'}}>
                 {this.props.isOpen ? <div
                     className={this.props.overlayClassName}
                     onClick={this.props.onClose}>
                 </div> : null}
                 </VelocityTransitionGroup>
-                <VelocityTransitionGroup enter={{animation: "fadeIn"}} leave={{animation: "fadeOut"}}>
+                <VelocityTransitionGroup enter={{animation: 'fadeIn'}} leave={{animation: 'fadeOut'}}>
                 {this.props.isOpen ? <div className={this.props.className}>
                     {this.props.children}
                 </div> : null}

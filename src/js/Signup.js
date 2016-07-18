@@ -66,7 +66,7 @@ var Signup = React.createClass({
                 <Xsrf/>
                 <input type='text' name='username' placeholder='Username' onChange={this.onChangeText} />
                 <input type='text' name='email' placeholder='E-mail (optional)' />
-                <input type='password' name='password' placeholder='Password'  onChange={this.onChangeText}/>
+                <input type='password' name='password' placeholder='Password' onChange={this.onChangeText}/>
                 <input type='password' name='retypePassword' placeholder='Retype Password' onChange={this.onChangeText}/>
                 <SubmitButton title='Signup' className='expanded button' submitting={this.state.submitting} onSubmit={this.signup}/>
             </form>

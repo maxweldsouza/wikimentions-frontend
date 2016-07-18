@@ -6,7 +6,7 @@ var cookies = require('browser-cookies');
 var Xsrf = require('./Xsrf');
 var Signup = require('./Signup');
 
-var Signup = React.createClass({
+var SignupPage = React.createClass({
     statics: {
         resources (appstate) {
             return {
@@ -49,4 +49,4 @@ var Signup = React.createClass({
     }
 });
 
-module.exports = Signup;
+module.exports = SignupPage;

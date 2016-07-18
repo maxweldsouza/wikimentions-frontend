@@ -13,8 +13,7 @@ var PageBar = React.createClass({
         } else if (type === 'person') {
             pagepath = '/people/';
         } else {
-            pagepath = '/pages/';
-            console.warn('No page type specified for PageBar');
+            throw new Error('No page type specified');
         }
         return (
             <div className='page-bar'>

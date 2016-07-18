@@ -33,6 +33,7 @@ var YoutubeEmbed = React.createClass({
                         });
                     }
                 } catch (e) {
+                    return;
                 }
             });
         }

@@ -4,7 +4,7 @@ var requests = require('superagent');
 var cookies = require('browser-cookies');
 var Snackbar = require('./Snackbar');
 var Input = require('./Input');
-import Cropper from 'react-cropper'
+import Cropper from 'react-cropper';
 
 var ImageUpload = React.createClass({
     getInitialState () {
@@ -72,14 +72,14 @@ var ImageUpload = React.createClass({
             });
         }
     },
-    fileInput (e) {
+    fileInput () {
         var fileReader = new FileReader();
         fileReader.onload = (e) => {
             this.setState({
                 image: e.target.result,
                 mime: this.refs.input.files[0].type
             });
-        }
+        };
         fileReader.readAsDataURL(this.refs.input.files[0]);
     },
     _crop () {

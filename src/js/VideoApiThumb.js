@@ -7,7 +7,7 @@ var Placeholder = require('./Placeholder');
 var Lazy = require('react-lazy-load');
 
 var VideoApiThumb = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             thumb: '',
             width: 0,
@@ -34,6 +34,7 @@ var VideoApiThumb = React.createClass({
                         height: res.body.items[0].snippet.thumbnails.default.height
                     });
                 } catch (e) {
+                    return;
                 }
             });
         }
