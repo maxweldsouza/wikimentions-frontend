@@ -13,6 +13,7 @@ var ImageUpload = React.createClass({
         return {
             scale: 1,
             image: '',
+            mime: '',
             imageDescription: '',
             descriptionValid: true,
             descriptionMessage: '',
@@ -44,11 +45,11 @@ var ImageUpload = React.createClass({
     },
     uploadImage () {
         if (this.validateForm()) {
-            var image = this.refs.cropper.getCroppedCanvas().toDataURL('image/jpg');
-            if (!image) {
+            if (!this.state.image) {
                 Snackbar({message: 'Image missing'});
                 return;
             }
+            var image = this.refs.cropper.getCroppedCanvas().toDataURL(this.state.mime);
 
             this.setState({
                 submiting: true
@@ -77,7 +78,8 @@ var ImageUpload = React.createClass({
         var fileReader = new FileReader();
         fileReader.onload = (e) => {
             this.setState({
-                image: e.target.result
+                image: e.target.result,
+                mime: this.refs.input.files[0].type
             });
         }
         fileReader.readAsDataURL(this.refs.input.files[0]);
