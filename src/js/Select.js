@@ -104,7 +104,7 @@ var Select = React.createClass({
                 return;
         }
     },
-    loadData (x) {
+    loadData: _.debounce(function (x) {
         this.setState({
             loading: true
         });
@@ -149,7 +149,7 @@ var Select = React.createClass({
                 }
             });
         }
-    },
+    }, 500),
     onClear () {
         this.setState({
             searchText: '',
