@@ -125,6 +125,7 @@ var ImageUpload = React.createClass({
                         crop={this._crop} /> : null}
                 </div>
                 <div className='small-12 xlarge-expand columns'>
+                    Description
                     <Input
                         textarea={true}
                         type='text'
@@ -136,10 +137,8 @@ var ImageUpload = React.createClass({
                         message={this.state.descriptionMessage}
                         rows={3}/>
                     {this.state.imageDescription ? <div>
-                        Description
-                        <div className='callout'>
-                            <Markdown markdown={this.state.imageDescription} />
-                        </div>
+                        <strong>Preview</strong>
+                        <Markdown markdown={this.state.imageDescription} />
                     </div> : null}
                 </div>
                 <div className='small-12 columns'>

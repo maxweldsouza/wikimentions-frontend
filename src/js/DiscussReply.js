@@ -7,6 +7,7 @@ var SubmitButton = require('./SubmitButton');
 var Restricted = require('./Restricted');
 var LoginModal = require('./LoginModal');
 var MarkdownHelp = require('./MarkdownHelp');
+var Markdown = require('./Markdown');
 
 var DiscussReply = React.createClass({
     getInitialState () {
@@ -67,6 +68,12 @@ var DiscussReply = React.createClass({
                 <Restricted message={loggedOutMessage}>
                     Post <MarkdownHelp />
                     <textarea type='text' name='content' placeholder='Write your post  here (Markdown is supported)' value={this.state.content} onChange={this.onChangeText} rows='5'></textarea>
+                    {this.state.content.length > 0 ? <div>
+                        <strong>Preview</strong>
+                        <Markdown
+                            markdown={this.state.content}
+                            />
+                    </div> : null}
                     <SubmitButton title='Submit' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                     </Restricted>
                 </div>
