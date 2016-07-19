@@ -67,7 +67,7 @@ var getComponent = function (routeObj) {
     } else if (/^history\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'HistoryPage';
         routeObj.maxAge = 0;
-    } else if (/^books\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby)$/.test(x)) {
+    } else if (/^books\/([0-9]+)\/([^/]+)\/(mentionedby)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
     } else if (/^books\/([0-9]+)\/([^/]+)$/.test(x)) {
@@ -79,13 +79,13 @@ var getComponent = function (routeObj) {
     } else if (/^edit\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'EditPage';
         routeObj.maxAge = 0;
-    } else if (/^people\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby|books|videos)$/.test(x)) {
+    } else if (/^people\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby|books)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
     } else if (/^people\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'ThingPage';
         routeObj.maxAge = 0;
-    } else if (/^videos\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby)$/.test(x)) {
+    } else if (/^videos\/([0-9]+)\/([^/]+)\/(mentionedby)$/.test(x)) {
         componentName = 'VideoPage';
         routeObj.maxAge = 0;
     } else if (/^videos\/([0-9]+)\/([^/]+)$/.test(x)) {
@@ -118,7 +118,7 @@ var getComponent = function (routeObj) {
     } else if (/^search$/.test(x)) {
         componentName = 'SearchPage';
         routeObj.maxAge = 0;
-    } else if (/^terms-of-use$/.test(x)) {
+    } else if (/^(terms-of-use|privacy-policy)$/.test(x)) {
         componentName = 'ContentPage';
         routeObj.maxAge = 0;
     } else {

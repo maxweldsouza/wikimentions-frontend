@@ -31,7 +31,7 @@ var Mention = React.createClass({
         });
     },
     render () {
-        var icon;
+        var icon, secondaryIcon;
         var description;
 
         var main, secondary;
@@ -56,6 +56,14 @@ var Mention = React.createClass({
             }
         }
         description = main.props && main.props.description ? main.props.description : '';
+
+        if (secondary.props.type === 'book') {
+            secondaryIcon = 'ion-ios-book';
+        } else if (secondary.props.type === 'video') {
+            secondaryIcon = 'ion-ios-videocam';
+        } else if (secondary.props.type === 'person') {
+            secondaryIcon = 'ion-person';
+        }
 
         if (main.props.type === 'book') {
             icon = 'ion-ios-book';
@@ -129,7 +137,7 @@ var Mention = React.createClass({
                             </Link>
                         </div>
                         {secondary ? <div className='small-12 columns'>
-                            {inorby} <strong><Link
+                            {inorby} <span className={secondaryIcon}/> <strong><Link
                                 className='secondary'
                                 id={secondary.id}
                                 slug={secondary.props.slug}
