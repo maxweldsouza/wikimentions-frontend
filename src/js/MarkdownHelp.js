@@ -36,16 +36,70 @@ var MarkdownHelp = React.createClass({
                     className='modal-content modal-small'
                     overlayClassName='modal-overlay'>
                     <h1>Markdown Help</h1>
-                    {mdHelp.map((line) => {
-                        return <div className='row'>
-                            <div className='columns'>
-                                <Markdown markdown={line[0]}/>
-                            </div>
-                            <div className='columns'>
-                                {line[1]}
-                            </div>
-                        </div>;
-                    })}
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>
+                                    Style
+                                </td>
+                                <td>
+                                    Markdown
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        Bold
+                                    </strong>
+                                </td>
+                                <td>
+                                    **text**
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>
+                                        Code
+                                    </code>
+                                </td>
+                                <td>
+                                    `code`
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i>
+                                        Italic
+                                    </i>
+                                </td>
+                                <td>
+                                    *text*
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a>
+                                        Link
+                                    </a>
+                                </td>
+                                <td>
+                                    [Title](http://)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <blockquote>
+                                        Blockquote
+                                    </blockquote>
+                                </td>
+                                <td>
+                                    > quote
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <button className='button' onClick={this.onCloseModal}>Close</button>
                 </Modal>
             </span>
