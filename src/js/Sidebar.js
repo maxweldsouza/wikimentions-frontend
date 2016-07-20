@@ -8,9 +8,11 @@ var cookies = require('browser-cookies');
 var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
 
 var Sidebar = React.createClass({
-    onTouchStart (e) {
-    },
-    onTouchMove (e) {
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return this.props.showing !== nextProps.showing
+            || this.props.username !== nextProps.username
+            || this.props.loggedin !== nextProps.loggedin
+            || this.props.userid !== nextProps.userid;
     },
     onClickItem (url) {
         this.props.onToggleSidebar();
@@ -23,10 +25,7 @@ var Sidebar = React.createClass({
         return (
             <div>
                 <VelocityTransitionGroup enter={{animation: {translateX: '0px', easing: 'easeIn', duration: 100}}} leave={{animation: {translateX: '-250px', easing: 'easeOut', duration: 100}}}>
-                    {this.props.showing ? <div className='sidebar'
-                        onTouchStart={this.onTouchStart}
-                        onTouchMove={this.onTouchMove}
-                        >
+                    {this.props.showing ? <div className='sidebar'>
                         <div className='sidebar-header'>
                             <a className='sidebar-logo' href='/'>{config.name}</a>
                         </div>
