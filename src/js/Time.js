@@ -21,7 +21,7 @@ var Time = React.createClass({
         if (this.props.timestamp) {
             var time = moment.utc(this.props.timestamp);
             var result;
-            var title = time.format('LLL');
+            var title = time.local().format('LLL');
             if (this.state.server) {
                 result = time.format('DD.MM.YY H:m [GMT]');
             } else {
