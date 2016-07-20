@@ -92,6 +92,7 @@ var HomePage = React.createClass({
                             <div className='card-container'>
                                 {this.props.data.home.map((x) => {
                                     return <HomeItem
+                                        key={x.id}
                                         id={x.id}
                                         title={x.props.title}
                                         image={x.image}
