@@ -2,3 +2,4 @@ dist
 node_modules
 src/css
 src/images
+src/assets/css/main.css
