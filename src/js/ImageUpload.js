@@ -41,13 +41,44 @@ var ImageUpload = React.createClass({
         }
         return valid;
     },
-    uploadImage () {
+    onUpload () {
+        var width, height;
+        if (this.props.type === 'person') {
+            width = 250;
+            height = 250;
+        } else if (this.props.type === 'book') {
+            height = 200;
+            width = height * aspectRatio;
+        } else if (this.props.type === 'video') {
+            width = 120;
+            height = width / aspectRatio;
+        }
+        this.resize(width, height, this.uploadImage);
+    },
+    resize (width, height, callback) {
+        var sourceImage = new Image();
+
+        sourceImage.onload = function () {
+            // Create a canvas with the desired dimensions
+            var canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+
+            // Scale and draw the source image to the canvas
+            canvas.getContext('2d').drawImage(sourceImage, 0, 0, width, height);
+
+            // Convert the canvas to a data URL in PNG format
+            callback(canvas.toDataURL());
+        };
+
+        sourceImage.src = this.refs.cropper.getCroppedCanvas().toDataURL(this.state.mime);
+    },
+    uploadImage (image) {
         if (this.validateForm()) {
             if (!this.state.image) {
                 Snackbar({message: 'Image missing'});
                 return;
             }
-            var image = this.refs.cropper.getCroppedCanvas().toDataURL(this.state.mime);
 
             this.setState({
                 submiting: true
@@ -116,7 +147,17 @@ var ImageUpload = React.createClass({
                     {this.props.type === 'book' ? <Cropper
                         ref='cropper'
                         src={this.state.image}
-                        style={{height: 150, width: 150}}
+                        style={{height: 270, width: 270}}
+                        // Cropper.js options
+                        autoCropArea={1}
+                        viewMode={1}
+                        minCropBoxHeight={200}
+                        guides={false}
+                        crop={this._crop} /> : null}
+                    {this.props.type === 'video' ? <Cropper
+                        ref='cropper'
+                        src={this.state.image}
+                        style={{height: 270, width: 270}}
                         // Cropper.js options
                         autoCropArea={1}
                         viewMode={1}
@@ -143,7 +184,7 @@ var ImageUpload = React.createClass({
                 </div>
                 <div className='small-12 columns'>
                     <div className='button-group'>
-                        <button className='button' onClick={this.uploadImage}>Upload</button>
+                        <button className='button' onClick={this.onUpload}>Upload</button>
                         <button className='button secondary hollow' onClick={this.props.onClose}>Close</button>
                     </div>
                 </div>
