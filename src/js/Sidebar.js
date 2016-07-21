@@ -8,7 +8,7 @@ var cookies = require('browser-cookies');
 var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
 
 var Sidebar = React.createClass({
-    shouldComponentUpdate: function(nextProps, nextState) {
+    shouldComponentUpdate (nextProps, nextState) {
         return this.props.showing !== nextProps.showing
             || this.props.username !== nextProps.username
             || this.props.loggedin !== nextProps.loggedin
