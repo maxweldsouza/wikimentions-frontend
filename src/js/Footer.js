@@ -18,6 +18,7 @@ var Footer = React.createClass({
                                     <li><a href='/create'>Create Page</a></li>
                                     <li><a href='/recent-changes'>Recent Changes</a></li>
                                     <li><a href='/recent-discussions'>Recent Discussions</a></li>
+                                    <li><a href='/about-us'>About Us</a></li>
                                 </ul>
                             </div>
                             <div className='small-12 large-4 columns'>

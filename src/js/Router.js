@@ -118,7 +118,7 @@ var getComponent = function (routeObj) {
     } else if (/^search$/.test(x)) {
         componentName = 'SearchPage';
         routeObj.maxAge = 0;
-    } else if (/^(terms-of-use|privacy-policy)$/.test(x)) {
+    } else if (/^(about-us|terms-of-use|privacy-policy)$/.test(x)) {
         componentName = 'ContentPage';
         routeObj.maxAge = 0;
     } else {

@@ -3,17 +3,20 @@ var Image = require('./Image');
 var Placeholder = require('./Placeholder');
 var _ = require('underscore');
 var Link = require('./Link');
+var requests = require('superagent');
+var cookies = require('browser-cookies');
+var Snackbar = require('./Snackbar');
 
 var AuthorCard = React.createClass({
     removeAuthor (id) {
         var type;
-        if (this.props.type === 'book') {
+        if (this.props.sourceType === 'book') {
             type = '/booksby';
-        } else if (this.props.type === 'video') {
+        } else if (this.props.sourceType === 'video') {
             type = '/videosby';
         }
         requests
-        .post('/api/v1/thing/' + this.props.id + type)
+        .post('/api/v1/thing/' + this.props.sourceId + type)
         .type('form')
         .send({
             author_id: id,
@@ -55,7 +58,7 @@ var AuthorCard = React.createClass({
                     </div>
                 </div>
                 <div className='shrink columns'>
-                    <a href='' className='button secondary small' onClick={this.removeAuthor.bind(null, this.props.id)}>Remove</a>
+                    <a className='button secondary small' onClick={this.removeAuthor.bind(null, this.props.id)}>Remove</a>
                 </div>
             </div>
         );
