@@ -57,12 +57,14 @@ var Mention = React.createClass({
         }
         description = main.props && main.props.description ? main.props.description : '';
 
-        if (secondary.props.type === 'book') {
-            secondaryIcon = 'ion-ios-book';
-        } else if (secondary.props.type === 'video') {
-            secondaryIcon = 'ion-ios-videocam';
-        } else if (secondary.props.type === 'person') {
-            secondaryIcon = 'ion-person';
+        if (secondary && 'props' in secondary && 'type' in secondary.props) {
+            if (secondary.props.type === 'book') {
+                secondaryIcon = 'ion-ios-book';
+            } else if (secondary.props.type === 'video') {
+                secondaryIcon = 'ion-ios-videocam';
+            } else if (secondary.props.type === 'person') {
+                secondaryIcon = 'ion-person';
+            }
         }
 
         if (main.props.type === 'book') {
