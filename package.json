@@ -23,6 +23,7 @@
     "chai": "^3.5.0",
     "check-pages": "^0.10.0",
     "compression": "^1.2.2",
+    "console-polyfill": "^0.2.2",
     "cookie-parser": "^1.4.1",
     "eslint-plugin-react": "^5.1.1",
     "etag": "^1.7.0",

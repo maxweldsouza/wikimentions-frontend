@@ -1,3 +1,4 @@
+var consolePolyfill = require('console-polyfill');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var cookies = require('browser-cookies');
