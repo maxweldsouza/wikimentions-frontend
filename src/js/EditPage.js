@@ -53,12 +53,18 @@ var EditPage = React.createClass({
             urlValid: true,
             urlMessage: '',
             submiting: false,
+            confirmDelete: false,
             modalIsOpen: false
         };
     },
     onChangeType (x) {
         this.setState({
             type: x
+        });
+    },
+    onToggleConfirm () {
+        this.setState({
+            confirmDelete: !this.state.confirmDelete
         });
     },
     onChangeText (e) {
@@ -124,6 +130,32 @@ var EditPage = React.createClass({
                 }
             });
         }
+    },
+    onDeletePage () {
+        var id = Number(this.props.path.split('/')[1]);
+        this.setState({
+            submiting: true
+        });
+        var data = {
+            action: 'delete',
+            _xsrf: cookies.get('_xsrf')
+        };
+        requests
+        .post('/api/v1/thing/' + id)
+        .type('form')
+        .send(data)
+        .end((err, res) => {
+            this.setState({
+                submiting: false
+            });
+            if (err && err.status) {
+                Snackbar({message: res.body.message});
+            } else {
+                Snackbar({message: 'Page deleted'});
+                history.pushState(null, null, res.body.redirect);
+                Mentions.route(res.body.redirect);
+            }
+        });
     },
     onOpenModal (e) {
         this.setState({
@@ -232,6 +264,13 @@ var EditPage = React.createClass({
                                     submitting={this.state.submitting}
                                     onSubmit={this.onSubmit}/>
                             </form>
+                            <hr/>
+                            <label><input type="checkbox" onChange={this.onToggleConfirm}/>I'm sure</label>
+                            <SubmitButton
+                                title='Delete Page'
+                                confirm={this.state.confirmDelete}
+                                submitting={this.state.submitting}
+                                onSubmit={this.onDeletePage}/>
                         </Restricted>
                     </div>
                 </div>
