@@ -162,7 +162,7 @@ var ThingPage = React.createClass({
                                 </span>
                                 <PageBar
                                     id={id}
-                                    slug={thing.slug}
+                                    slug={thing.props.slug}
                                     type='video'
                                     noPage
                                     />
