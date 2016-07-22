@@ -1,23 +1,24 @@
-var React = require('react');
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var Mention = require('./Mention');
 var _ = require('underscore');
-var cookies = require('browser-cookies');
+var AdminOnly = require('./AdminOnly');
 var ButtonSelect = require('./ButtonSelect');
-var SubmitButton = require('./SubmitButton');
-var requests = require('superagent');
-var PageBar = require('./PageBar');
 var config = require('./config');
-var Snackbar = require('./Snackbar');
-var Restricted = require('./Restricted');
+var cookies = require('browser-cookies');
+var Footer = require('./Footer');
+var Helmet = require('react-helmet');
+var ImageUpload = require('./ImageUpload');
 var Input = require('./Input');
 var LoginModal = require('./LoginModal');
-var Footer = require('./Footer');
-var queryString = require('query-string');
-var Modal = require('./Modal');
-var ImageUpload = require('./ImageUpload');
 var Markdown = require('./Markdown');
+var Mention = require('./Mention');
+var Modal = require('./Modal');
+var Navbar = require('./Navbar');
+var PageBar = require('./PageBar');
+var queryString = require('query-string');
+var React = require('react');
+var requests = require('superagent');
+var Restricted = require('./Restricted');
+var Snackbar = require('./Snackbar');
+var SubmitButton = require('./SubmitButton');
 
 var EditPage = React.createClass({
     statics: {
@@ -264,13 +265,15 @@ var EditPage = React.createClass({
                                     submitting={this.state.submitting}
                                     onSubmit={this.onSubmit}/>
                             </form>
-                            <hr/>
-                            <label><input type="checkbox" onChange={this.onToggleConfirm}/>I'm sure</label>
-                            <SubmitButton
-                                title='Delete Page'
-                                confirm={this.state.confirmDelete}
-                                submitting={this.state.submitting}
-                                onSubmit={this.onDeletePage}/>
+                            <AdminOnly>
+                                <hr/>
+                                <label><input type="checkbox" onChange={this.onToggleConfirm}/>I'm sure</label>
+                                <SubmitButton
+                                    title='Delete Page'
+                                    confirm={this.state.confirmDelete}
+                                    submitting={this.state.submitting}
+                                    onSubmit={this.onDeletePage}/>
+                            </AdminOnly>
                         </Restricted>
                     </div>
                 </div>
