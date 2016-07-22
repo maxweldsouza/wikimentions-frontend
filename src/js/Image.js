@@ -1,5 +1,5 @@
 var React = require('react');
-var Lazy = require('react-lazy-load');
+import Lazy from 'react-lazyload';
 
 var Image = React.createClass({
     render () {
@@ -7,7 +7,7 @@ var Image = React.createClass({
         var displayHeight = displayWidth * this.props.height / this.props.width;
         return (
             <div className='image-container' style={{'width': displayWidth, 'height': displayHeight}}>
-                <Lazy height={displayHeight}>
+                <Lazy height={displayHeight} once>
                     <img className={this.props.className} src={'/api/v1/static/images/' + this.props.md5 + '-' + this.props.width + '-' + this.props.height + '.jpg'} width={this.props.width} height={this.props.height} alt=""/>
                 </Lazy>
             </div>
