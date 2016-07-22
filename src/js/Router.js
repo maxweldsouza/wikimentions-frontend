@@ -144,10 +144,6 @@ var getResources = function (routeObj, beforeUpdate) {
     });
 
     var apidata = {};
-    if (resources.shouldDataUpdate === false) {
-        beforeUpdate(routeObj);
-        return routeObj;
-    }
     parallelRequest.get(
         paths,
         (err, res) => {
@@ -178,15 +174,10 @@ var getResources = function (routeObj, beforeUpdate) {
     return routeObj;
 };
 
-var ClientDataStore = {};
-
 var Router = {
     baseUrl: '',
     data: {},
     route (routeObj) {
-        if (clientSide) {
-            routeObj.data = ClientDataStore;
-        }
         routeObj.baseUrl = this.baseUrl;
         routeObj.url = routeObj.url.substr(1);
         routeObj = getComponent(routeObj);
@@ -198,9 +189,6 @@ var Router = {
         }
     },
     beforeUpdate (routeObj) {
-        if (clientSide) {
-            ClientDataStore = routeObj.data;
-        }
         routeObj.onUpdate(routeObj);
     },
     setBaseUrl (url) {
