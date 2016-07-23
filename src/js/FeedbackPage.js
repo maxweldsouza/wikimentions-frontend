@@ -3,22 +3,48 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var config = require('./config');
 var Markdown = require('./Markdown');
-var PreviousNext = require('./PreviousNext');
 var Time = require('./Time');
 var AdminOnly = require('./AdminOnly');
+var requests = require('superagent');
 
 var FeedbackPage = React.createClass({
     statics: {
         resources (appstate) {
-            var page = appstate.query.page;
-            var query = page ? '?page=' + page : '';
             return {
-                api: [{
-                    name: 'feedback',
-                    path: '/api/v1/feedback' + query
-                }]
+                api: []
             };
         }
+    },
+    getInitialState () {
+        return {
+            feedback: [],
+            page: 1
+        };
+    },
+    componentDidMount () {
+        this.fetchFeedback(1);
+    },
+    fetchFeedback (page) {
+        var url = page === 1 ? '/api/v1/feedback' : '/api/v1/feedback?page=' + page;
+        requests
+        .get(url)
+        .send()
+        .end((err, res) => {
+            if (err && err.status) {
+                Snackbar({message: res.body.message});
+            } else {
+                this.setState({
+                    page: page,
+                    feedback: res.body
+                });
+            }
+        });
+    },
+    prevPage () {
+        this.fetchFeedback(this.state.page - 1);
+    },
+    nextPage () {
+        this.fetchFeedback(this.state.page + 1);
     },
     render () {
         return (
@@ -40,11 +66,11 @@ var FeedbackPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
-                        <h1>Feedback Page</h1>
+                        <h1>Feedback Page: {this.state.page}</h1>
                         <div className='small-12 columns'>
                             <AdminOnly>
                                 <div className="card-container">
-                                    {this.props.data.feedback.map((x) => {
+                                    {this.state.feedback.map((x) => {
                                         return <div className='card' key={x.id}>
                                             <span className='small-8 columns'>
                                                 <strong>Type:</strong> {x.rating === 1 ? <span className='ion-checkmark' style={{color: 'hsla(144, 60%, 60%, 1)'}}/> : <span className='ion-close' style={{color: 'hsla(0, 83%, 57%, 1)'}}/>}
@@ -73,7 +99,14 @@ var FeedbackPage = React.createClass({
                                             </span>
                                         </div>;
                                     })}
-                                    <PreviousNext path={this.props.path} page={this.props.query.page}/>
+                                    <div className='card'>
+                                        <div className='small-6 columns'>
+                                            {this.state.page > 1 ? <a className='secondary' onClick={this.prevPage}>Previous</a> : null}
+                                        </div>
+                                        <div className='small-6 columns text-right'>
+                                            <a className='secondary' onClick={this.nextPage}>Next</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </AdminOnly>
                         </div>
