@@ -1,18 +1,19 @@
-var React = require('react');
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
 var _ = require('underscore');
-var Mention = require('./Mention');
-var Pagination = require('./Pagination');
-var requests = require('superagent');
 var ButtonSelect = require('./ButtonSelect');
 var config = require('./config');
-var Snackbar = require('./Snackbar');
+var cookies = require('browser-cookies');
+var Feedback = require('./Feedback');
+var Helmet = require('react-helmet');
 var HomeItem = require('./HomeItem');
 var HomeSearch = require('./HomeSearch');
 var LoginModal = require('./LoginModal');
+var Mention = require('./Mention');
+var Navbar = require('./Navbar');
+var Pagination = require('./Pagination');
+var React = require('react');
+var requests = require('superagent');
 var SignupModal = require('./SignupModal');
-var cookies = require('browser-cookies');
+var Snackbar = require('./Snackbar');
 
 var HomePage = React.createClass({
     statics: {
@@ -82,6 +83,9 @@ var HomePage = React.createClass({
                             <h2>Did you know?</h2>
                             <a>James Watson</a> and <a>Francis Crick</a> had read <a>Erwin Schrodinger's</a> book <a>What is Life?</a> which inspired
                             them to work on discovering the structure of DNA.
+                        </div>
+                        <div className='callout show-for-xlarge'>
+                            <Feedback />
                         </div>
                     </div>
                     <div className='small-12 xlarge-8 columns'>
