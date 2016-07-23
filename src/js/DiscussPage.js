@@ -53,7 +53,8 @@ var DiscussPage = React.createClass({
                     title={'Discussion - ' + this.props.data.discuss.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        {'name': 'description', 'content': ''},
+                        {'name': 'robots', 'content': 'noindex'}
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}

@@ -3,7 +3,8 @@ Disallow:
 Disallow: /discuss/
 Disallow: /users/
 Disallow: /history/
-Disallow: /edits
+Disallow: /edit
+Disallow: /feedback
 Disallow: /contribute
 Disallow: /recent-discussions
 Disallow: /recent-changes

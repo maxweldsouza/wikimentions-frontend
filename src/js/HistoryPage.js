@@ -47,7 +47,7 @@ var HistoryPage = React.createClass({
                     title={'History - ' + this.props.data.thing.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        {'name': 'robots', 'content': 'noindex'}
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}
