@@ -23,7 +23,7 @@ var RecentDiscussionsPage = require('./RecentDiscussionsPage');
 var request = require('superagent');
 var SearchPage = require('./SearchPage');
 var SignupPage = require('./SignupPage');
-var SiteStatsPage = require('./SiteStatsPage');
+var KitchenSinkPage = require('./KitchenSinkPage');
 var Snackbar = require('./Snackbar');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
@@ -114,7 +114,7 @@ var getComponent = function (routeObj) {
         componentName = 'MaintenancePage';
         routeObj.maxAge = 0;
     } else if (/^site-stats$/.test(x)) {
-        componentName = 'SiteStatsPage';
+        componentName = 'KitchenSinkPage';
         routeObj.maxAge = 0;
     } else if (/^search$/.test(x)) {
         componentName = 'SearchPage';

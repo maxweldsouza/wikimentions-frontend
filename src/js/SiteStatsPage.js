@@ -8,7 +8,7 @@ var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var config = require('./config');
 
-var SiteStatsPage = React.createClass({
+var KitchenSinkPage = React.createClass({
     statics: {
         resources (appstate) {
             return {
@@ -131,4 +131,4 @@ var SiteStatsPage = React.createClass({
     }
 });
 
-module.exports = SiteStatsPage;
+module.exports = KitchenSinkPage;
