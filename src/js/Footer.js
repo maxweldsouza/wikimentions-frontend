@@ -18,6 +18,7 @@ var Footer = React.createClass({
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Admin</li>
                                     <li><a href='/feedback'>Feedback</a></li>
+                                    <li><a href='/kitchen-sink'>Feedback</a></li>
                                 </ul>
                             </div>
                             </AdminOnly>

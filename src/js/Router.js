@@ -113,7 +113,7 @@ var getComponent = function (routeObj) {
     } else if (/^maintenance\/(.*)\/([0-9]+)\/([0-9]+)$/.test(x)) {
         componentName = 'MaintenancePage';
         routeObj.maxAge = 0;
-    } else if (/^site-stats$/.test(x)) {
+    } else if (/^kitchen-sink$/.test(x)) {
         componentName = 'KitchenSinkPage';
         routeObj.maxAge = 0;
     } else if (/^search$/.test(x)) {
