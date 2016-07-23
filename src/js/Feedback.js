@@ -26,6 +26,9 @@ var Feedback = React.createClass({
         .type('form')
         .send({
             positive: rate,
+            platform: window.navigator.platform,
+            useragent: window.navigator.userAgent,
+            url: window.location.pathname + window.location.search,
             _xsrf: cookies.get('_xsrf')
         })
         .end((err, res) => {
@@ -77,7 +80,7 @@ var Feedback = React.createClass({
             }
         });
     },
-    onCancel () {
+    startOver () {
         this.setState({
             step: 'rate'
         });
@@ -106,7 +109,7 @@ var Feedback = React.createClass({
                         onClick={this.onFeedback} role='button'>Submit</button>{' '}
                     <button
                         className='button small secondary hollow'
-                        onClick={this.onCancel} role='button'>Cancel</button>
+                        onClick={this.startOver} role='button'>Cancel</button>
                 </div>
             </div>;
         } else if (this.state.step === 'email') {
@@ -119,11 +122,11 @@ var Feedback = React.createClass({
                         onClick={this.onEmail} role='button'>Submit</button>{' '}
                     <button
                         className='button small secondary hollow'
-                        onClick={this.onCancel} role='button'>No Thanks</button>
+                        onClick={this.startOver} role='button'>No Thanks</button>
                 </div>
             </div>;
         } else if (this.state.step === 'done') {
-            main = <div>Thanks for your feedback! <button className='button small secondary hollow' onClick={this.onCancel}>Start Over</button></div>;
+            main = <div>Thanks for your feedback! <button className='button small secondary hollow' onClick={this.startOver}>Start Over</button></div>;
         }
         return main;
     }
