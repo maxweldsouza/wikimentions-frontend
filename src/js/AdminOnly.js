@@ -12,11 +12,7 @@ var AdminOnly = React.createClass({
         }
         var loggedin = session ? true : false;
         if (admin) {
-            return (
-                <div>
-                    {this.props.children}
-                </div>
-            );
+            return this.props.children;
         }
         return null;
     }

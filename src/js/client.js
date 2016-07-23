@@ -177,7 +177,11 @@ $(document).on('click', 'a', function (e) {
                 Mentions.route(url);
                 history.pushState(null, null, url);
             } catch (err) {
-                Snackbar({message: '404: Not found'});
+                if (err.status === 404) {
+                    Snackbar({message: '404: Not found'});
+                } else {
+                    Snackbar({message: 'Something went wrong'});
+                }
                 stopLoading();
             }
         }, 0);

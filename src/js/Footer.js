@@ -1,18 +1,27 @@
 var React = require('react');
 var config = require('./config');
+var AdminOnly = require('./AdminOnly');
 
 var Footer = React.createClass({
     render () {
         return (
             <div className='page-footer align-right'>
                 <div className='row'>
-                    <div className='small-12 xlarge-6 columns footer-logo-container'>
+                    <div className='small-12 xlarge-4 columns footer-logo-container'>
                         <div className='footer-logo'>{config.name}</div>
                         {config.contact}
                     </div>
-                    <div className='small-12 xlarge-6 columns'>
+                    <div className='small-12 xlarge-8 columns'>
                         <div className='row'>
-                            <div className='small-12 large-4 columns'>
+                            <AdminOnly>
+                            <div className='small-12 large-3 columns'>
+                                <ul className='menu vertical'>
+                                    <li className="menu-text">Admin</li>
+                                    <li><a href='/feedback'>Feedback</a></li>
+                                </ul>
+                            </div>
+                            </AdminOnly>
+                            <div className='small-12 large-3 columns'>
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Navigation</li>
                                     <li><a href='/create'>Create Page</a></li>
@@ -21,7 +30,7 @@ var Footer = React.createClass({
                                     <li><a href='/about-us'>About Us</a></li>
                                 </ul>
                             </div>
-                            <div className='small-12 large-4 columns'>
+                            <div className='small-12 large-3 columns'>
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Social</li>
                                     <li><a href={config.social.facebook}>Facebook</a></li>
@@ -29,7 +38,7 @@ var Footer = React.createClass({
                                     <li><a href='/blog'>Blog</a></li>
                                 </ul>
                             </div>
-                            <div className='small-12 large-4 columns'>
+                            <div className='small-12 large-3 columns'>
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Legal</li>
                                     <li><a href='/terms-of-use'>Terms of Use</a></li>

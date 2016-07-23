@@ -14,6 +14,7 @@ var cookies = require('browser-cookies');
 var CreatePage = require('./CreatePage');
 var DiscussPage = require('./DiscussPage');
 var EditPage = require('./EditPage');
+var FeedbackPage = require('./FeedbackPage');
 var Footer = require('./Footer');
 var HistoryPage = require('./HistoryPage');
 var HomePage = require('./HomePage');

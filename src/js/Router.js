@@ -8,6 +8,7 @@ var ContributePage = require('./ContributePage');
 var CreatePage = require('./CreatePage');
 var DiscussPage = require('./DiscussPage');
 var EditPage = require('./EditPage');
+var FeedbackPage = require('./FeedbackPage');
 var HistoryPage = require('./HistoryPage');
 var HomePage = require('./HomePage');
 var isNode = require('./isNode');
@@ -120,6 +121,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^(about-us|terms-of-use|privacy-policy)$/.test(x)) {
         componentName = 'ContentPage';
+        routeObj.maxAge = 0;
+    } else if (/^feedback$/.test(x)) {
+        componentName = 'FeedbackPage';
         routeObj.maxAge = 0;
     } else {
         throw { status: 404, message: 'Count not find what you were looking for'};
