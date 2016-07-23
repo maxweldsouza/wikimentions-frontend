@@ -185,7 +185,7 @@ var ImageUpload = React.createClass({
                 <div className='small-12 columns'>
                     <div className='button-group'>
                         <button className='button' onClick={this.onUpload}>Upload</button>
-                        <button className='button secondary hollow' onClick={this.props.onClose}>Close</button>
+                        <button className='button secondary' onClick={this.props.onClose}>Close</button>
                     </div>
                 </div>
             </div>

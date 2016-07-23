@@ -31,7 +31,7 @@ var ButtonSelect = React.createClass({
                         if (this.state.selected === x.value) {
                             cls = 'button primary';
                         } else {
-                            cls = 'button secondary hollow';
+                            cls = 'button secondary';
                         }
                         return <button type='button' className={cls} onClick={this.onChangeSelected.bind(null, x.value)} key={x.value}>{x.name}</button>;
                     })}

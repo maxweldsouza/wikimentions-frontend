@@ -20,12 +20,18 @@
     margin-right: 0;
 }
 
-.button.hollow.secondary {
-    border: solid 1px $secondary-color;
+.button.secondary {
+    border: solid 1px $medium-gray;
     background: $white;
     color: $secondary-color;
 
     &:hover {
-        border: solid 1px $dark-gray;
+        color: $secondary-color;
+        background: $light-gray;
+    }
+
+    &:active, &:focus {
+        color: $secondary-color;
+        background: $medium-gray;
     }
 }

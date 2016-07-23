@@ -60,7 +60,7 @@ var Navbar = React.createClass({
             moreResults={true}/>;
 
         var navicon = <span className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar}/>;
-        var searchIcon = <button className='button secondary hollow small'><span className='ion-search navbar-icon' onClick={this.onOpenSearchBar}/></button>;
+        var searchIcon = <button className='button secondary small'><span className='ion-search navbar-icon' onClick={this.onOpenSearchBar}/></button>;
         if (loggedin) {
             rhs = <ul className='menu align-right'>
                 <li className='show-for-xlarge'>{SearchBar}</li>
@@ -96,7 +96,7 @@ var Navbar = React.createClass({
                                 <input className='search-bar' type='text' placeholder='Search' onChange={this.onChangeText} onKeyDown={this.handleKeys} name='searchText'></input>
                             </div>
                             <div className='shrink columns'>
-                                <button className='button secondary hollow small'><span className='ion-close navbar-icon' onClick={this.onCloseSearchBar}/></button>
+                                <button className='button secondary small'><span className='ion-close navbar-icon' onClick={this.onCloseSearchBar}/></button>
                             </div>
                         </div>
                     </div> : null}

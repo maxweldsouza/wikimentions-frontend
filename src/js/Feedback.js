@@ -91,10 +91,10 @@ var Feedback = React.createClass({
             main = <div>
                 {config.name + ' is '}
                 <div>
-                    <button className='button small secondary hollow' onClick={this.onRate.bind(null, 'good')}>
+                    <button className='button small secondary' onClick={this.onRate.bind(null, 'good')}>
                         <i className='ion-checkmark'/> Great
                     </button>{' '}
-                    <button className='button small secondary hollow' onClick={this.onRate.bind(null, 'bad')}>
+                    <button className='button small secondary' onClick={this.onRate.bind(null, 'bad')}>
                         <i className='ion-close'/> Needs Work
                     </button>
                 </div>
@@ -108,7 +108,7 @@ var Feedback = React.createClass({
                         className='button small'
                         onClick={this.onFeedback} role='button'>Submit</button>{' '}
                     <button
-                        className='button small secondary hollow'
+                        className='button small secondary'
                         onClick={this.startOver} role='button'>Cancel</button>
                 </div>
             </div>;
@@ -121,12 +121,12 @@ var Feedback = React.createClass({
                         className='button small'
                         onClick={this.onEmail} role='button'>Submit</button>{' '}
                     <button
-                        className='button small secondary hollow'
+                        className='button small secondary'
                         onClick={this.startOver} role='button'>No Thanks</button>
                 </div>
             </div>;
         } else if (this.state.step === 'done') {
-            main = <div>Thanks for your feedback! <button className='button small secondary hollow' onClick={this.startOver}>Start Over</button></div>;
+            main = <div>Thanks for your feedback! <button className='button small secondary' onClick={this.startOver}>Start Over</button></div>;
         }
         return main;
     }

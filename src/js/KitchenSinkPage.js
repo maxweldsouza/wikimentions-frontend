@@ -56,13 +56,6 @@ var KitchenSinkPage = React.createClass({
                                         <button className='button warning'>Warning</button>
                                         <button className='button alert'>Alert</button>
                                     </div>
-                                    <div>
-                                        <button className='hollow button'>Button</button>
-                                        <button className='hollow button secondary'>Secondary</button>
-                                        <button className='hollow button success'>Success</button>
-                                        <button className='hollow button warning'>Warning</button>
-                                        <button className='hollow button alert'>Alert</button>
-                                    </div>
                                     <hr/>
                                     <h2>Badge</h2>
                                     <span className="badge">B</span>
