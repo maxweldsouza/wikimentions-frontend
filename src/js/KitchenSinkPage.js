@@ -7,6 +7,7 @@ var _ = require('underscore');
 var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var config = require('./config');
+var AdminOnly = require('./AdminOnly');
 
 var KitchenSinkPage = React.createClass({
     statics: {
@@ -38,6 +39,7 @@ var KitchenSinkPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 columns'>
                         <h1>Kitchen Sink</h1>
+                        <AdminOnly>
                         <div className='card-container'>
                             <div className='card'>
                                 <div className='small-6 columns'>
@@ -124,6 +126,7 @@ var KitchenSinkPage = React.createClass({
                                 </div>
                             </div>
                         </div>
+                        </AdminOnly>
                     </div>
                 </div>
             </span>
