@@ -193,7 +193,6 @@ window.addEventListener('popstate', function () {
 });
 
 window.addEventListener('error', function (e) {
-    console.log("e.error", e.error.stack);
     requests
     .post('/api/v1/bugs')
     .type('form')
