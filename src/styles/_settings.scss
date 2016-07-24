@@ -52,6 +52,7 @@ $global-lineheight: 1.5;
 $primary-color: hsla(0, 83%, 57%, 1);
 $primary-color-dark: hsla(0, 83%, 67%, 1);
 $secondary-color:  hsla(0, 0%, 45%, 1);
+$secondary-color-light:  lighten($secondary-color, 10%);
 $success-color: hsla(144, 60%, 60%, 1);
 $warning-color: hsla(48, 95%, 55%, 1);
 $alert-color:  hsla(8, 88%, 61%, 1);
@@ -68,7 +69,7 @@ $global-margin: .8rem;
 $global-padding: .8rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: 3px;
+$global-radius: 2px;
 $global-text-direction: ltr;
 
 // 2. Breakpoints
@@ -290,7 +291,7 @@ $drilldown-background: $white;
 
 $dropdown-padding: 1rem;
 $dropdown-border: 1px solid $medium-gray;
-$dropdown-font-size: 16rem;
+$dropdown-font-size: 1rem;
 $dropdown-width: 300px;
 $dropdown-radius: $global-radius;
 $dropdown-sizes: (
@@ -373,7 +374,7 @@ $mediaobject-image-width-stacked: 100%;
 
 $menu-margin: 0;
 $menu-margin-nested: 1rem;
-$menu-item-padding: .3rem 1rem;
+$menu-item-padding: .8rem 1rem;
 $menu-icon-spacing: .25rem;
 $menu-expand-max: 6;
 

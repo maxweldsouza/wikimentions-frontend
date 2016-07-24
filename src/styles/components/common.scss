@@ -62,8 +62,23 @@
     font-size: $card-description-font-size;
     padding-bottom: $global-margin;
     padding-top: $global-margin;
+    position: relative;
     width: 100%;
     word-wrap: break-word;
+}
+
+.card-chevron {
+    color: $secondary-color-light;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    margin-right: 5px;
+
+    &:hover {
+        cursor: pointer;
+        color: $dark-gray;
+    }
 }
 
 .card-title {
@@ -75,6 +90,6 @@ a.secondary {
     color: $secondary-color;
 
     &:hover {
-        color: lighten($secondary-color, 10%);
+        color: $secondary-color-light;
     }
 }

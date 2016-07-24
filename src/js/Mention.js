@@ -6,8 +6,14 @@ var Image = require('./Image');
 var Placeholder = require('./Placeholder');
 var _ = require('underscore');
 var Snackbar = require('./Snackbar');
+var Dropdown = require('./Dropdown');
 
 var Mention = React.createClass({
+    getInitialState () {
+        return {
+            dropdownIsOpen: false
+        };
+    },
     removeMention () {
         requests
         .post('/api/v1/mentions')
@@ -28,6 +34,16 @@ var Mention = React.createClass({
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
+        });
+    },
+    openDropdown () {
+        this.setState({
+            dropdownIsOpen: true
+        });
+    },
+    closeDropdown () {
+        this.setState({
+            dropdownIsOpen: false
         });
     },
     render () {
@@ -85,6 +101,14 @@ var Mention = React.createClass({
         }
         return (
             <div className='card'>
+                <span className='ion-chevron-down card-chevron' onClick={this.openDropdown}/>
+                <Dropdown isOpen={this.state.dropdownIsOpen} onClose={this.closeDropdown}>
+                    <div className='dropdown-pane bottom-right small'>
+                        <ul className="dropdown menu vertical">
+                            <li><a className='secondary' onClick={this.removeMention}>Remove</a></li>
+                        </ul>
+                    </div>
+                </Dropdown>
                 <div className='shrink columns'>
                     {image}
                 </div>

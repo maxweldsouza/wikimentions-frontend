@@ -1,0 +1,28 @@
+.dropdown-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: transparent;
+    z-index: $z-20;
+}
+
+.dropdown-pane {
+    visibility: visible;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    background: $white;
+    z-index: $z-30;
+    font-size: 14px;
+    padding: 0;
+    border: solid 1px $secondary-color-light;
+
+    &.bottom-right {
+        top: 30px;
+        right: 15px;
+    }
+}
+
+.dropdown-pane .menu > li > a:hover {
+    background: $light-gray;
+}
