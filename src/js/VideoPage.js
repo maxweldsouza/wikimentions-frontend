@@ -79,11 +79,15 @@ var ThingPage = React.createClass({
             'mentioned': 'Mentioned',
             'mentionedby': 'Mentioned By'
         };
+        var tabTooltips = {
+            'mentioned': 'People, books or videos mentioned in ' + thing.props.title,
+            'mentionedby': 'People who mention ' + thing.props.title
+        };
         var tabHeading = <ul className='tabs'>
             {tabs.map((x) => {
                 var cls, aria;
                 if (x === tab) {
-                    return <li className='tabs-title is-active' key={x}>
+                    return <li className='tabs-title is-active' key={x} title={tabTooltips[x]}>
                         <Link
                             id={thing.id}
                             slug={thing.props.slug}
@@ -91,7 +95,7 @@ var ThingPage = React.createClass({
                             tab={x}>{tabTitles[x]}</Link>
                     </li>;
                 }
-                return <li className='tabs-title' key={x}>
+                return <li className='tabs-title' key={x} title={tabTooltips[x]}>
                     <Link
                         id={thing.id}
                         slug={thing.props.slug}

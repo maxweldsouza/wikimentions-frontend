@@ -142,11 +142,17 @@ var ThingPage = React.createClass({
             'books': 'book_count',
             'videos': 'video_count'
         };
+        var tabTooltips = {
+            'mentioned': 'People, books or videos mentioned by ' + thing.props.title,
+            'mentionedby': 'People who mention ' + thing.props.title,
+            'books': 'Books by ' + thing.props.title,
+            'videos': 'Videos by ' + thing.props.title
+        };
         var tabHeading = <ul className='tabs text-left'>
             {tabs.map((x) => {
                 var cls, aria;
                 if (x === tab) {
-                    return <li className='tabs-title is-active' key={x}>
+                    return <li className='tabs-title is-active' key={x} title={tabTooltips[x]}>
                         <Link
                             id={thing.id}
                             slug={thing.props.slug}
@@ -154,7 +160,7 @@ var ThingPage = React.createClass({
                             tab={x}>{tabTitles[x]}</Link>
                     </li>;
                 }
-                return <li className='tabs-title' key={x}>
+                return <li className='tabs-title' key={x} title={tabTooltips[x]}>
                     <Link
                         id={thing.id}
                         slug={thing.props.slug}
