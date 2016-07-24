@@ -191,3 +191,19 @@ $(document).on('click', 'a', function (e) {
 window.addEventListener('popstate', function () {
     Mentions.route(window.location.pathname + window.location.search);
 });
+
+window.addEventListener('error', function (e) {
+    console.log("e.error", e.error.stack);
+    requests
+    .post('/api/v1/bugs')
+    .type('form')
+    .send({
+        message: e.error.stack,
+        useragent: window.navigator.userAgent,
+        platform: window.navigator.platform,
+        url: window.location.pathname + window.location.search,
+        _xsrf: cookies.get('_xsrf')
+    })
+    .end((err, res) => {
+    });
+});

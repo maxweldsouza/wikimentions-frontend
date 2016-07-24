@@ -8,6 +8,7 @@ var AddMention = require('./AddMention');
 var AddVideo = require('./AddVideo');
 var BlogPage = require('./BlogPage');
 var BlogPostPage = require('./BlogPostPage');
+var BugPage = require('./BugPage');
 var ContentPage = require('./ContentPage');
 var ContributePage = require('./ContributePage');
 var cookies = require('browser-cookies');

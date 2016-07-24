@@ -3,6 +3,7 @@ var AddMention = require('./AddMention');
 var AddVideo = require('./AddVideo');
 var BlogPage = require('./BlogPage');
 var BlogPostPage = require('./BlogPostPage');
+var BugPage = require('./BugPage');
 var ContentPage = require('./ContentPage');
 var ContributePage = require('./ContributePage');
 var CreatePage = require('./CreatePage');
@@ -124,6 +125,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^feedback$/.test(x)) {
         componentName = 'FeedbackPage';
+        routeObj.maxAge = 0;
+    } else if (/^bugs$/.test(x)) {
+        componentName = 'BugPage';
         routeObj.maxAge = 0;
     } else {
         throw { status: 404, message: 'Count not find what you were looking for'};
