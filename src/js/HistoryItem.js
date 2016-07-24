@@ -36,17 +36,17 @@ var HistoryCard = React.createClass({
                 </span>
                 <span className='small-12 columns'>
                     <strong>Book:</strong> <Link
-                        id={this.props.entry.source.id}
-                        slug={this.props.entry.source.props.slug}
-                        type={this.props.entry.source.props.type}>{this.props.entry.source.props.title}
-                    </Link>
-                </span>
-                <span className='small-12 columns'>
-                    <strong>Author:</strong> <Link
                         id={this.props.entry.destination.id}
                         slug={this.props.entry.destination.props.slug}
                         type={this.props.entry.destination.props.type}>
                         {this.props.entry.destination.props.title}
+                    </Link>
+                </span>
+                <span className='small-12 columns'>
+                    <strong>Author:</strong> <Link
+                        id={this.props.entry.source.id}
+                        slug={this.props.entry.source.props.slug}
+                        type={this.props.entry.source.props.type}>{this.props.entry.source.props.title}
                     </Link>
                 </span>
             </span>;
