@@ -29,7 +29,16 @@ var Footer = React.createClass({
                                     <li><a href='/create'>Create Page</a></li>
                                     <li><a href='/recent-changes'>Recent Changes</a></li>
                                     <li><a href='/recent-discussions'>Recent Discussions</a></li>
+                                    <li><a href='/blog'>Blog</a></li>
+                                </ul>
+                            </div>
+                            <div className='small-12 large-3 columns'>
+                                <ul className='menu vertical'>
+                                    <li className="menu-text">Help</li>
                                     <li><a href='/about-us'>About Us</a></li>
+                                    <li><a href='/guidelines'>Guidelines</a></li>
+                                    <li><a href='/terms-of-use'>Terms of Use</a></li>
+                                    <li><a href='/privacy-policy'>Privacy Policy</a></li>
                                 </ul>
                             </div>
                             <div className='small-12 large-3 columns'>
@@ -37,14 +46,6 @@ var Footer = React.createClass({
                                     <li className="menu-text">Social</li>
                                     <li><a href={config.social.facebook}>Facebook</a></li>
                                     <li><a href={config.social.twitter}>Twitter</a></li>
-                                    <li><a href='/blog'>Blog</a></li>
-                                </ul>
-                            </div>
-                            <div className='small-12 large-3 columns'>
-                                <ul className='menu vertical'>
-                                    <li className="menu-text">Legal</li>
-                                    <li><a href='/terms-of-use'>Terms of Use</a></li>
-                                    <li><a href='/privacy-policy'>Privacy Policy</a></li>
                                 </ul>
                             </div>
                         </div>
