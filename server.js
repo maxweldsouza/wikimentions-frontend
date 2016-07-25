@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var app = express();
 var fs = require('fs');
 var _ = require('underscore');
-var str = require('string');
+var S = require('string');
 var request = require('superagent');
 var moment = require('moment');
 var Memcached = require('memcached');
@@ -183,7 +183,7 @@ app.get(/^(.+)$/, function(req, res, next) {
                                 title: head.title.toString(),
                                 meta: head.meta.toString(),
                                 link: head.link.toString(),
-                                apidata: JSON.stringify(routeObj.data),
+                                apidata: S(JSON.stringify(routeObj.data)).escapeHTML().toString(),
                                 content: content
                             });
                             memcached.set(contentKey, page, TEN_DAYS_IN_SECS, function (err) {});

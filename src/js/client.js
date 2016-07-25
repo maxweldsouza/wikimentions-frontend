@@ -4,7 +4,7 @@ var ReactDOM = require('react-dom');
 var cookies = require('browser-cookies');
 var _ = require('underscore');
 var $ = require('jquery');
-var str = require('string');
+var S = require('string');
 var MainComponent = require('./MainComponent');
 var Router = require('./Router.js');
 var requests = require('superagent');
@@ -45,7 +45,7 @@ function getTokenIfRequired () {
 
 window.Mentions = {
     route: function (url) {
-        if (str(url).endsWith('/')) {
+        if (S(url).endsWith('/')) {
             url = url.substring(0, url.length - 1);
         }
         var routeObj = {
@@ -62,7 +62,7 @@ window.Mentions = {
         var data;
         try {
             getTokenIfRequired();
-            data = JSON.parse($('#api-data').text());
+            data = JSON.parse(S($('#api-data').text()).unescapeHTML().toString());
         } catch (e) {
             Mentions.route(url);
         }

@@ -1,5 +1,8 @@
 var React = require('react');
-var marked = require('marked');
+var Remarkable = require('remarkable');
+var md = new Remarkable({
+    linkify: true
+});
 var nofollow = require('./nofollow');
 
 var Markdown = React.createClass({
@@ -10,7 +13,7 @@ var Markdown = React.createClass({
         /* This is a dangerous area for security. Make sure
          * you know what you are doing */
         var obj = {
-            __html: nofollow(marked(this.props.markdown))
+            __html: nofollow(md.render(this.props.markdown))
         };
         return <div dangerouslySetInnerHTML={obj} />;// eslint-disable-line react/no-danger
     }
