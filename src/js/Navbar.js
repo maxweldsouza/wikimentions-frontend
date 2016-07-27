@@ -25,11 +25,19 @@ var Navbar = React.createClass({
     onCloseSearchBar () {
         this.setState({searchBarOpen: false});
     },
+    search () {
+        var path = '/search?q=' + this.state.searchText;
+        history.pushState(null, null, path);
+        Mentions.route(path);
+    },
+    onSearchTextChanged (x) {
+        this.setState({
+            searchText: x
+        });
+    },
     handleKeys (event) {
         if (event.key === 'Enter') {
-            var path = '/search?q=' + this.state.searchText;
-            history.pushState(null, null, path);
-            Mentions.route(path);
+            this.search();
         }
     },
     onSelectSearchResult (x) {
@@ -53,21 +61,27 @@ var Navbar = React.createClass({
         var username = this.props.username;
         var loggedin = this.props.loggedin;
 
-        var SearchBar = <Select
-            name='mentioned'
-            className='input-group-field'
-            onSelectValue={this.onSelectSearchResult}
-            placeholder={'Search'}
-            moreResults={true}/>;
+        var SearchBar = <div className='input-group' style={{marginBottom: 0}}>
+            <Select
+                name='searchText'
+                className='input-group-field'
+                onSelectValue={this.onSelectSearchResult}
+                onSearchTextChanged={this.onSearchTextChanged}
+                placeholder={'Search'}
+                width={300}
+                moreResults={true}/>
+            <button className='input-group-button button secondary' style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}} onClick={this.search}>
+                <span className='ion-android-search' style={{fontSize: 17}}/>
+            </button>
+        </div>;
 
         var navicon = <span className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar}/>;
         var searchIcon = <button className='button secondary small'><span className='ion-android-search navbar-icon' onClick={this.onOpenSearchBar}/></button>;
         if (loggedin) {
             rhs = <ul className='menu align-right'>
-                <li className='show-for-xlarge'><div className='input-group' style={{marginBottom: 0}}>
+                <li className='show-for-xlarge'>
                     {SearchBar}
-                    <button className='input-group-button button primary'><span className='ion-android-search' style={{fontSize: 17}}/></button>
-                </div></li>
+                </li>
                 <li className='show-for-large'><a href={'/users/' + userid + '/' + username} title='Profile'>{username}</a></li>
                 <li className='show-for-xlarge'><a onClick={Mentions.logout}>Logout</a></li>
                 <li className='hide-for-xlarge'>{searchIcon}</li>

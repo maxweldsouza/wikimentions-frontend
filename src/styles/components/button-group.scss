@@ -1,11 +1,11 @@
 .button.secondary {
-    border: solid 1px $medium-gray;
-    background: $white;
+    border: solid 1px darken($medium-gray, 5%);
+    background: $light-gray;
     color: $secondary-color;
 
     &:hover {
         color: $secondary-color;
-        background: $light-gray;
+        background: $medium-gray;
     }
 
     &:active, &:focus {

@@ -35,6 +35,9 @@ var Select = React.createClass({
         });
     },
     onSearchTextChanged (e) {
+        if (this.props.onSearchTextChanged) {
+            this.props.onSearchTextChanged(e.target.value);
+        }
         if (e.target.value.length > 1) {
             this.loadData(e.target.value);
             this.setState({
@@ -170,6 +173,7 @@ var Select = React.createClass({
                 <input
                     type='text'
                     role='combobox'
+                    style={{width: this.props.width}}
                     className={this.props.className}
                     value={this.state.searchText}
                     placeholder={this.props.placeholder}
