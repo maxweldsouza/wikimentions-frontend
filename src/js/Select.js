@@ -7,7 +7,8 @@ var Placeholder = require('./Placeholder');
 var Select = React.createClass({
     getDefaultProps () {
         return {
-            autocomplete: true
+            autocomplete: true,
+            className: ''
         };
     },
     getInitialState () {
@@ -169,6 +170,7 @@ var Select = React.createClass({
                 <input
                     type='text'
                     role='combobox'
+                    className={this.props.className}
                     value={this.state.searchText}
                     placeholder={this.props.placeholder}
                     onChange={this.onSearchTextChanged}

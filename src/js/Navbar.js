@@ -55,15 +55,19 @@ var Navbar = React.createClass({
 
         var SearchBar = <Select
             name='mentioned'
+            className='input-group-field'
             onSelectValue={this.onSelectSearchResult}
             placeholder={'Search'}
             moreResults={true}/>;
 
         var navicon = <span className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar}/>;
-        var searchIcon = <button className='button secondary small'><span className='ion-search navbar-icon' onClick={this.onOpenSearchBar}/></button>;
+        var searchIcon = <button className='button secondary small'><span className='ion-android-search navbar-icon' onClick={this.onOpenSearchBar}/></button>;
         if (loggedin) {
             rhs = <ul className='menu align-right'>
-                <li className='show-for-xlarge'>{SearchBar}</li>
+                <li className='show-for-xlarge'><div className='input-group' style={{marginBottom: 0}}>
+                    {SearchBar}
+                    <button className='input-group-button button primary'><span className='ion-android-search' style={{fontSize: 17}}/></button>
+                </div></li>
                 <li className='show-for-large'><a href={'/users/' + userid + '/' + username} title='Profile'>{username}</a></li>
                 <li className='show-for-xlarge'><a onClick={Mentions.logout}>Logout</a></li>
                 <li className='hide-for-xlarge'>{searchIcon}</li>
