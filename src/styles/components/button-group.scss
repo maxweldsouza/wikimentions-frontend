@@ -1,33 +1,3 @@
-.button-group {
-    display: inline-flex;
-}
-
-.button-group .button:first-child {
-    border-bottom-left-radius: $global-radius;
-    border-top-left-radius: $global-radius;
-}
-
-.button-group .button:last-child {
-    border-bottom-right-radius: $global-radius;
-    border-top-right-radius: $global-radius;
-}
-
-.button-group .button {
-    border-radius: 0;
-}
-
-.button-group .button:not(:last-child) {
-    margin-right: 0;
-}
-
-.button:active {
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2)
-}
-
-.button:focus {
-    outline: none;
-}
-
 .button.secondary {
     border: solid 1px $medium-gray;
     background: $white;
@@ -42,4 +12,38 @@
         color: $secondary-color;
         background: $medium-gray;
     }
+}
+
+.button-group {
+    display: inline-flex;
+}
+
+.button-group .button:first-child {
+    border-bottom-left-radius: $global-radius;
+    border-top-left-radius: $global-radius;
+    border-left-width: 1px;
+}
+
+.button-group .button:last-child {
+    border-bottom-right-radius: $global-radius;
+    border-top-right-radius: $global-radius;
+    border-right-width: 1px;
+}
+
+.button-group .button {
+    border-radius: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+.button-group .button:not(:last-child) {
+    margin-right: 0;
+}
+
+.button:active {
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2)
+}
+
+.button:focus {
+    outline: none;
 }
