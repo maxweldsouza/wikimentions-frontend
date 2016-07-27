@@ -10,12 +10,12 @@
 
 .dropdown-pane {
     visibility: visible;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: $dropdown-shadow;
     background: $white;
     z-index: $z-30;
     font-size: 14px;
     padding: 0;
-    border: solid 1px $secondary-color-light;
+    border: $dropdown-border;
 
     &.bottom-right {
         top: 30px;
@@ -24,5 +24,6 @@
 }
 
 .dropdown-pane .menu > li > a:hover {
-    background: $light-gray;
+    background: $medium-gray;
+    cursor: pointer;
 }
