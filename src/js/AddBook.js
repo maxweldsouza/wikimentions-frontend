@@ -22,7 +22,7 @@ var AddBook = React.createClass({
         return (
             <Restricted message={loggedOutMessage}>
                 <div>
-                    Add a book by this author
+                    <h2>Add book</h2>
                     <ButtonSelect
                         options={options}
                         default={this.state.type}

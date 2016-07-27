@@ -77,6 +77,7 @@ var AddMention = React.createClass({
         var loggedOutMessage = <span>You need to <LoginModal/> to add a Mention.</span>;
         return <div className='small-12 columns'>
             <Restricted message={loggedOutMessage}>
+                <h2>Add mention</h2>
                 {this.props.mentioned_by ? null : <span>
                     Mentioned By (Person)
                     <Select

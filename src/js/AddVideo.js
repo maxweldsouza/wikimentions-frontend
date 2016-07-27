@@ -22,7 +22,7 @@ var AddVideo = React.createClass({
         return (
             <Restricted message={loggedOutMessage}>
                 <div>
-                    Add a video of this author
+                    <h2>Add video</h2>
                     <ButtonSelect
                         options={options}
                         default={this.state.type}
