@@ -290,7 +290,7 @@ $drilldown-background: $white;
 // ------------
 
 $dropdown-padding: 1rem;
-$dropdown-border: 1px solid $medium-gray;
+$dropdown-border: none;
 $dropdown-font-size: 1rem;
 $dropdown-width: 300px;
 $dropdown-radius: $global-radius;
@@ -557,6 +557,7 @@ $card-title-font-size: 16px;
 $card-description-font-size: 14px;
 $timestamp-color: $secondary-color;
 $topbar-height: 48px;
+$dropdown-shadow: 0 3px 6px rgba(0, 0, 0, .2);
 
 // Z-indexes
 $z-30: 30;

@@ -4,8 +4,9 @@
 
 .select-options {
     background: $light-gray;
-    border: $global-border;
-    box-shadow: 1px 2px 6px rgba(0,0,0,0.2);
+    border: $dropdown-border;
+    border-radius: $global-radius;
+    box-shadow: $dropdown-shadow;
     position: absolute;
     top: 100%;
     width: 100%;
