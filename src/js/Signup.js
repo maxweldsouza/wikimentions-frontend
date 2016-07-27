@@ -83,9 +83,7 @@ var Signup = React.createClass({
             cls = 'progress secondary';
         }
         if (this.state.password.length < 8) {
-            meterStyle = {
-               'width': '0%'
-            };
+            meterStyle = {'width': '0%'};
             cls = 'progress secondary';
         }
         return (

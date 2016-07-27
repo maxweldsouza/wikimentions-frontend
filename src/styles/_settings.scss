@@ -48,7 +48,7 @@ $global-flexbox: true;
 
 $global-font-size: 100%;
 $global-width: rem-calc(1024);
-$global-lineheight: 1.5;
+$global-lineheight: 1.65;
 $primary-color: hsla(0, 83%, 57%, 1);
 $primary-color-dark: hsla(0, 83%, 67%, 1);
 $secondary-color:  hsla(0, 0%, 45%, 1);
@@ -209,7 +209,7 @@ $accordionmenu-arrow-color: $primary-color;
 // 9. Badge
 // --------
 
-$badge-background: $light-gray;
+$badge-background: $medium-gray;
 $badge-color: foreground($badge-background);
 $badge-padding: .1em;
 $badge-minwidth: 2.1em;

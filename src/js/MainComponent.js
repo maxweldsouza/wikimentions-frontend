@@ -55,6 +55,7 @@ var MainComponent = React.createClass({
                 store.set('country', res.body.country);
             }
         });
+        console.log('Hi there !');
     },
     componentWillReceiveProps (nextProps) {
         this.setState({

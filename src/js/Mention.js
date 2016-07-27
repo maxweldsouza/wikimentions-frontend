@@ -134,32 +134,32 @@ var Mention = React.createClass({
                                 slug={main.props.slug}
                                 title={main.props.title}
                                 type={main.props.type}
-                                className='secondary'
-                                tab='videos'>{'Videos'}<span className="badge">{main.video_count}</span>{'  '}
+                                className='secondary card-count'
+                                tab='videos'>{'Videos '}<span className="badge">{main.video_count}</span>{'  '}
                             </Link> : null}
                             {main.props.type === 'person' ? <Link
                                 id={main.id}
                                 slug={main.props.slug}
                                 title={main.props.title}
                                 type={main.props.type}
-                                className='secondary'
-                                tab='books'>{'Books'}<span className="badge">{main.book_count}</span>{'  '}
+                                className='secondary card-count'
+                                tab='books'>{'Books '}<span className="badge">{main.book_count}</span>{'  '}
                             </Link> : null}
                             <Link
                                 id={main.id}
                                 slug={main.props.slug}
                                 title={main.props.title}
                                 type={main.props.type}
-                                className='secondary'
-                                tab='mentioned'>{'Mentions'}<span className="badge">{main.mentioned_count}</span>{'  '}
+                                className='secondary card-count'
+                                tab='mentioned'>{'Mentions '}<span className="badge">{main.mentioned_count}</span>{'  '}
                             </Link>
                             <Link
                                 id={main.id}
                                 slug={main.props.slug}
                                 title={main.props.title}
                                 type={main.props.type}
-                                className='secondary'
-                                tab='mentionedby'>{'Mentioned By'}<span className="badge">{main.mentioned_by_count}</span>
+                                className='secondary card-count'
+                                tab='mentionedby'>{'Mentioned By '}<span className="badge">{main.mentioned_by_count}</span>
                             </Link>
                         </div>
                         {secondary ? <div className='small-12 columns'>

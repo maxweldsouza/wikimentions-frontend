@@ -34,32 +34,32 @@ var HomeItem = React.createClass({
                                 slug={this.props.slug}
                                 title={this.props.title}
                                 type={this.props.type}
-                                className='secondary'
-                                tab='videos'>{'Videos'}<span className="badge">{this.props.video_count}</span>{'  '}
+                                className='secondary card-count'
+                                tab='videos'>{'Videos '}<span className="badge">{this.props.video_count}</span>{'  '}
                             </Link> : null}
                             {this.props.type === 'person' ? <Link
                                 id={this.props.id}
                                 slug={this.props.slug}
                                 title={this.props.title}
                                 type={this.props.type}
-                                className='secondary'
-                                tab='books'>{'Books'}<span className="badge">{this.props.book_count}</span>{'  '}
+                                className='secondary card-count'
+                                tab='books'>{'Books '}<span className="badge">{this.props.book_count}</span>{'  '}
                             </Link> : null}
                             <Link
                                 id={this.props.id}
                                 slug={this.props.slug}
                                 title={this.props.title}
                                 type={this.props.type}
-                                className='secondary'
-                                tab='mentioned'>{'Mentions'}<span className="badge">{this.props.mentioned_count}</span>{'  '}
+                                className='secondary card-count'
+                                tab='mentioned'>{'Mentions '}<span className="badge">{this.props.mentioned_count}</span>{'  '}
                             </Link>
                             <Link
                                 id={this.props.id}
                                 slug={this.props.slug}
                                 title={this.props.title}
                                 type={this.props.type}
-                                className='secondary'
-                                tab='mentionedby'>{'Mentioned By'}<span className="badge">{this.props.mentioned_by_count}</span>
+                                className='secondary card-count'
+                                tab='mentionedby'>{'Mentioned By '}<span className="badge">{this.props.mentioned_by_count}</span>
                             </Link>
                         </div>
                     </div>
