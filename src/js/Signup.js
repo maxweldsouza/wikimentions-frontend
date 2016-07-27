@@ -82,6 +82,12 @@ var Signup = React.createClass({
         } else if (this.state.score === 0) {
             cls = 'progress secondary';
         }
+        if (this.state.password.length < 8) {
+            meterStyle = {
+               'width': '0%'
+            };
+            cls = 'progress secondary';
+        }
         return (
             <form action='/api/v1/signup' method='post'>
                 <Xsrf/>
