@@ -1,9 +1,11 @@
+var config = require('./config');
+var LoginModal = require('./LoginModal');
 var React = require('react');
 var Select = require('./Select');
-var Xsrf = require('./Xsrf');
-var config = require('./config');
+var SignupModal = require('./SignupModal');
 var Spinner = require('./Spinner');
 var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
+var Xsrf = require('./Xsrf');
 
 var Navbar = React.createClass({
     getInitialState () {
@@ -61,7 +63,7 @@ var Navbar = React.createClass({
         var username = this.props.username;
         var loggedin = this.props.loggedin;
 
-        var SearchBar = <div className='input-group' style={{marginBottom: 0}}>
+        var SearchBar = <div className='input-group navbar-search-large' style={{marginBottom: 0}}>
             <Select
                 name='searchText'
                 className='input-group-field'
@@ -90,6 +92,8 @@ var Navbar = React.createClass({
             rhs = <ul className='menu align-right'>
                 <li className='hide-for-xlarge'>{searchIcon}</li>
                 <li className='show-for-xlarge'>{SearchBar}</li>
+                <li className='show-for-xlarge'><a href='/login'>Login</a></li>
+                <li className='show-for-xlarge'><a href='/signup'>Signup</a></li>
             </ul>;
         }
         return (
