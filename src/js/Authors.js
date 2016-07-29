@@ -7,13 +7,15 @@ var Authors = React.createClass({
         var authorCount = authors.length;
         return (
             <div>
-                {'by '}
-                {authors.map(function (x, i) {
-                    var path = '/people/' + x.id + '/' + x.props.slug;
-                    return <a href={path} key={x.props.title}>
-                        {x.props.title}{i === authorCount - 1 ? '' : ', '}
-                    </a>;
-                })}
+                {authorCount > 0 ? <span>
+                    {'by '}
+                    {authors.map(function (x, i) {
+                        var path = '/people/' + x.id + '/' + x.props.slug;
+                        return <a href={path} key={x.props.title}>
+                            {x.props.title}{i === authorCount - 1 ? '' : ', '}
+                        </a>;
+                    })}
+                </span> : null}
                 <AddAuthors id={this.props.id} authors={authors} type={this.props.type} />
             </div>
         );
