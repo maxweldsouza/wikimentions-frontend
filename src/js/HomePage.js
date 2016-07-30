@@ -66,6 +66,13 @@ var HomePage = React.createClass({
                             Discover people and their work based on their mentions.
                         </div>
                         <div className='callout show-for-xlarge'>
+                            <h2>About</h2>
+                            <p>Pages are created and edited by users.</p>
+                            <p>A page can be a <i>person</i>, <i>book</i> or <i>video</i>.</p>
+                            <p>A <i>person</i> can mention a <i>person</i>, <i>book</i> or <i>video</i> in a <i>book</i> or <i>video.</i></p>
+                            <p>Books and videos can have one or more authors.</p>
+                        </div>
+                        <div className='callout show-for-xlarge'>
                             <HomeSearch />
                         </div>
                         <div className='callout show-for-xlarge'>
