@@ -130,7 +130,7 @@ var SearchPage = React.createClass({
                                     return <HomeItem
                                         id={x.id}
                                         title={x.props.title}
-                                        images={x.images}
+                                        image={x.image}
                                         description={x.props.description}
                                         type={x.props.type}
                                         slug={x.props.slug}
