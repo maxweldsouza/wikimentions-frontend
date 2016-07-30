@@ -84,7 +84,7 @@ var SearchPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Site Stats'}
+                    title={'Search'}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
