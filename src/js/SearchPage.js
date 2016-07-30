@@ -50,7 +50,7 @@ var SearchPage = React.createClass({
             query.types = [type];
         }
         requests.get('/api/v1/search/' + x + '?' + queryString.stringify(query)).end((err, res) => {
-            if (err && err.status) {
+            if (err) {
                 Snackbar({message: 'Search failed'});
             } else {
                 this.setState({
@@ -128,12 +128,14 @@ var SearchPage = React.createClass({
                                 </div> : null}
                                 {this.state.results.map((x) => {
                                     return <HomeItem
+                                        key={x.id}
                                         id={x.id}
                                         title={x.props.title}
                                         image={x.image}
                                         description={x.props.description}
                                         type={x.props.type}
                                         slug={x.props.slug}
+                                        url={x.props.url}
                                         book_count={x.book_count}
                                         video_count={x.video_count}
                                         mentioned_count={x.mentioned_count}

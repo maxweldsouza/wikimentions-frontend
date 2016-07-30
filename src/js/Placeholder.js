@@ -4,7 +4,7 @@ var Placeholder = React.createClass({
     render () {
         if (this.props.type === 'video') {
             return (
-                <div className='placeholder placeholder-video'>
+                <div className='placeholder placeholder-video' style={this.props.style}>
                     <span className='ion-play' />
                 </div>
             );

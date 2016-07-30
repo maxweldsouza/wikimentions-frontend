@@ -9,7 +9,9 @@ import Lazy from 'react-lazyload';
 var Video = React.createClass({
     render () {
         var image = this.props.image;
-        var videoApiThumb = <Lazy height={90} placeholder={<Placeholder type='video' once/>}><VideoApiThumb url={this.props.url}/></Lazy>;
+        var videoApiThumb = <Lazy height={90}><VideoApiThumb url={this.props.url}>
+            <Placeholder type='video' once/>
+        </VideoApiThumb></Lazy>;
         if (image) {
             image = <Image className='img' id={this.props.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height}/>;
         } else {
