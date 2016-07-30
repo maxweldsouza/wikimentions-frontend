@@ -72,7 +72,7 @@ var Navbar = React.createClass({
                 placeholder={'Search'}
                 width={300}
                 moreResults={true}/>
-            <button className='input-group-button button secondary' style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}} onClick={this.search}>
+            <button className='input-group-button button primary' style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}} onClick={this.search}>
                 <span className='ion-android-search' style={{fontSize: 17}}/>
             </button>
         </div>;
