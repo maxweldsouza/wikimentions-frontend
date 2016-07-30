@@ -169,6 +169,32 @@ var ThingPage = React.createClass({
                 </li>;
             })}
         </ul>;
+        var metaRobots = {'name': 'robots', 'content': 'index'};
+        if (thing.video_count === 0
+            && thing.book_count === 0
+            && thing.mentioned_count === 0
+            && thing.mentioned_by_count === 0) {
+            metaRobots = {'name': 'robots', 'content': 'noindex'};
+        }
+        if (thing.props.type === 'person') {
+            if (tab === 'books' && thing.book_count === 0) {
+                metaRobots = {'name': 'robots', 'content': 'noindex'};
+            }
+            if (tab === 'mentioned' && thing.mentioned_count === 0) {
+                metaRobots = {'name': 'robots', 'content': 'noindex'};
+            }
+            if (tab === 'mentionedby' && thing.mentioned_by_count === 0) {
+                metaRobots = {'name': 'robots', 'content': 'noindex'};
+            }
+        } else {
+            if (thing.mentioned_count === 0
+                && thing.mentioned_by_count === 0) {
+                metaRobots = {'name': 'robots', 'content': 'noindex'};
+            }
+            if (tab === 'mentionedby' && thing.mentioned_by_count === 0) {
+                metaRobots = {'name': 'robots', 'content': 'noindex'};
+            }
+        }
         var tabContent;
         if (tab === 'mentioned') {
             tabContent = <ThingMentionTab
@@ -222,6 +248,7 @@ var ThingPage = React.createClass({
                 titleTemplate={'%s - ' + config.name}
                 meta={[
                     {'name': 'description', 'content': ''},
+                    metaRobots,
                     {name: 'twitter:card', content: 'summary'},
                     {name: 'twitter:site', content: config.twitter},
                     {name: 'twitter:title', content: thing.props.title},

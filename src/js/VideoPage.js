@@ -102,6 +102,14 @@ var ThingPage = React.createClass({
                 </li>;
             })}
         </ul>;
+        var metaRobots = {'name': 'robots', 'content': 'index'};
+        if (thing.mentioned_count === 0
+            && thing.mentioned_by_count === 0) {
+            metaRobots = {'name': 'robots', 'content': 'noindex'};
+        }
+        if (tab === 'mentionedby' && thing.mentioned_by_count === 0) {
+            metaRobots = {'name': 'robots', 'content': 'noindex'};
+        }
         var tabContent;
         if (tab === 'mentioned') {
             tabContent = <ThingMentionTab
