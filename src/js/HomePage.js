@@ -66,13 +66,6 @@ var HomePage = React.createClass({
                             Discover people and their work based on their mentions.
                         </div>
                         <div className='callout show-for-xlarge'>
-                            <h2>About</h2>
-                            <p>Pages are created and edited by users.</p>
-                            <p>A page can be a <i>person</i>, <i>book</i> or <i>video</i>.</p>
-                            <p>A <i>person</i> can mention a <i>person</i>, <i>book</i> or <i>video</i> in a <i>book</i> or <i>video.</i></p>
-                            <p>Books and videos can have one or more authors.</p>
-                        </div>
-                        <div className='callout show-for-xlarge'>
                             <HomeSearch />
                         </div>
                         <div className='callout show-for-xlarge'>
@@ -90,6 +83,13 @@ var HomePage = React.createClass({
                             <h2>Did you know?</h2>
                             <a>James Watson</a> and <a>Francis Crick</a> had read <a>Erwin Schrodinger's</a> book <a>What is Life?</a> which inspired
                             them to work on discovering the structure of DNA.
+                        </div>
+                        <div className='callout show-for-xlarge'>
+                            <h2>About</h2>
+                            <li>Pages are created and edited by users.</li>
+                            <li>A page can be a <i>person</i>, <i>book</i> or <i>video</i>.</li>
+                            <li>A <i>person</i> can mention a <i>person</i>, <i>book</i> or <i>video</i> in a <i>book</i> or <i>video.</i></li>
+                            <li>Books and videos can have one or more authors.</li>
                         </div>
                         <div className='callout show-for-xlarge'>
                             <Feedback />
