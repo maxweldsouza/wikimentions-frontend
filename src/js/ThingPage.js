@@ -148,11 +148,11 @@ var ThingPage = React.createClass({
             'books': 'Books by ' + thing.props.title,
             'videos': 'Videos by ' + thing.props.title
         };
-        var tabHeading = <ul className='tabs text-left'>
+        var tabHeading = <ul className='tabs text-left' role='tablist'>
             {tabs.map((x) => {
                 var cls, aria;
                 if (x === tab) {
-                    return <li className='tabs-title is-active' key={x} title={tabTooltips[x]}>
+                    return <li className='tabs-title is-active' role='tab' key={x} title={tabTooltips[x]} aria-selected={true}>
                         <Link
                             id={thing.id}
                             slug={thing.props.slug}
@@ -160,7 +160,7 @@ var ThingPage = React.createClass({
                             tab={x}>{tabTitles[x]}</Link>
                     </li>;
                 }
-                return <li className='tabs-title' key={x} title={tabTooltips[x]}>
+                return <li className='tabs-title' role='tab' key={x} title={tabTooltips[x]} aria-selected={false}>
                     <Link
                         id={thing.id}
                         slug={thing.props.slug}

@@ -126,9 +126,12 @@ var EditProfile = React.createClass({
                 <div className='card'>
                     <div className='small-12 columns'>
                         <h2>Change Password</h2>
-                        <input type='password' name='old' placeholder='Old Password' onChange={this.onChangeText} value={this.state.old}/>
-                        <input type='password' name='new' placeholder='New Password' onChange={this.onChangeText} value={this.state.new}/>
-                        <input type='password' name='repeat' placeholder='Repeat Password' onChange={this.onChangeText} value={this.state.repeat}/>
+                        Old Password
+                        <input type='password' name='old' onChange={this.onChangeText} value={this.state.old}/>
+                        New Password
+                        <input type='password' name='new' onChange={this.onChangeText} value={this.state.new}/>
+                        Repeat Password
+                        <input type='password' name='repeat' onChange={this.onChangeText} value={this.state.repeat}/>
                         <SubmitButton title='Save' submitting={this.state.submitting} onSubmit={this.changePassword}/>
                     </div>
                 </div>
@@ -138,7 +141,8 @@ var EditProfile = React.createClass({
                         <div className='callout warning'>
                             If you delete your account all your account information will be deleted. Any edits/contributions will NOT be deleted. This cannot be undone.
                         </div>
-                        <input type='password' name='password' placeholder='Password' onChange={this.onChangeText} value={this.state.password}/>
+                        Password
+                        <input type='password' name='password' onChange={this.onChangeText} value={this.state.password}/>
                         <SubmitButton title='Delete Account' submitting={this.state.submitting} onSubmit={this.deleteAccount}/>
                     </div>
                 </div>

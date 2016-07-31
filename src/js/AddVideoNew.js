@@ -86,8 +86,10 @@ var AddVideoNew = React.createClass({
     render () {
         return (
             <form method='post' action={'/api/v1/thing/' + this.props.id + '/books'}>
-                <Input type='text' name='title' placeholder='Title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid} message={this.state.titleMessage}/>
-                <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid} message={this.state.urlMessage} />
+                Title
+                <Input type='text' name='title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid} message={this.state.titleMessage}/>
+                Url
+                <Input type='text' name='url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid} message={this.state.urlMessage} />
                 <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </form>
         );

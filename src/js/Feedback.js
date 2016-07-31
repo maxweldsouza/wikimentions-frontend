@@ -114,7 +114,7 @@ var Feedback = React.createClass({
             </div>;
         } else if (this.state.step === 'email') {
             main = <div>
-                Would you like to leave your email?
+                Please leave your email so that we can respond.
                 <input type='email' className='form-control' name='email' onChange={this.onChangeText}/>
                 <div>
                     <button

@@ -45,7 +45,7 @@ var ProfilePage = React.createClass({
             tabs.push('profile');
         }
         var tab, tabContent;
-        tab = <ul className='tabs' data-tabs id='example-tabs'>
+        tab = <ul className='tabs' role='tablist'>
             {tabs.map((x) => {
                 var cls = selectedTab === x ? 'tabs-title is-active' : 'tabs-title';
                 var path;
@@ -54,8 +54,8 @@ var ProfilePage = React.createClass({
                 } else {
                     path = '/users/' + id + '/' + name + '/' + x;
                 }
-                return <li className={cls} key={x}>
-                    <a href={path} aria-selected='true'>{S(x).capitalize().s}</a>
+                return <li className={cls} key={x} role='tab'>
+                    <a href={path} aria-selected={selectedTab === x}>{S(x).capitalize().s}</a>
                 </li>;
             })}
         </ul>;

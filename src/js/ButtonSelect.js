@@ -25,7 +25,7 @@ var ButtonSelect = React.createClass({
                     name={this.props.name}
                     value={this.state.selected ? this.state.selected : ''}
                 />
-                <div className={this.props.className}>
+                <div className={this.props.className} role='group'>
                     {this.props.options.map((x) => {
                         var cls;
                         if (this.state.selected === x.value) {
@@ -33,7 +33,14 @@ var ButtonSelect = React.createClass({
                         } else {
                             cls = 'button secondary';
                         }
-                        return <button type='button' className={cls} onClick={this.onChangeSelected.bind(null, x.value)} key={x.value}>{x.name}</button>;
+                        return <button
+                            aria-selected={this.state.selected === x.value}
+                            className={cls}
+                            key={x.value}
+                            onClick={this.onChangeSelected.bind(null, x.value)}
+                            type='button'>
+                            {x.name}
+                        </button>;
                     })}
                 </div>
             </div>

@@ -29,7 +29,6 @@ var SignupModal = React.createClass({
                     overlayClassName='modal-overlay'>
                     <div className='small-12 columns'>
                         <h1>Sign up</h1>
-                        You will be user #TODO if you sign up now
                         <Signup />
                     </div>
                 </Modal>

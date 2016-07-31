@@ -173,6 +173,8 @@ var Select = React.createClass({
                 <input
                     type='text'
                     role='combobox'
+                    aria-haspopup={true}
+                    aria-expanded={this.state.visible}
                     style={{width: this.props.width}}
                     className={this.props.className}
                     value={this.state.searchText}

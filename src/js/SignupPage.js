@@ -40,7 +40,6 @@ var SignupPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-6 columns'>
                         <h1>Sign Up</h1>
-                        You will be user #{this.props.data.signup.count} if you sign up now
                         <Signup />
                     </div>
                 </div>

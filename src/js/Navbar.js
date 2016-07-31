@@ -72,13 +72,13 @@ var Navbar = React.createClass({
                 placeholder={'Search'}
                 width={300}
                 moreResults={true}/>
-            <button className='input-group-button button primary' style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}} onClick={this.search}>
+            <button className='input-group-button button primary' style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}} onClick={this.search} aria-label='Search'>
                 <span className='ion-android-search' style={{fontSize: 17}}/>
             </button>
         </div>;
 
-        var navicon = <span style={{paddingLeft: '0.8rem', paddingRight: '0.8rem'}} className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar}/>;
-        var searchIcon = <button className='button secondary small'><span className='ion-android-search navbar-icon' onClick={this.onOpenSearchBar}/></button>;
+        var navicon = <span style={{paddingLeft: '0.8rem', paddingRight: '0.8rem'}} className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar} aria-label='Toggle Sidebar'/>;
+        var searchIcon = <button className='button secondary small' aria-label='Open search bar'><span className='ion-android-search navbar-icon' onClick={this.onOpenSearchBar}/></button>;
         if (loggedin) {
             rhs = <ul className='menu align-right'>
                 <li className='show-for-xlarge'>
@@ -98,7 +98,7 @@ var Navbar = React.createClass({
         }
         return (
             <div>
-                <div className='top-bar'>
+                <div className='top-bar' role='navigation'>
                     <div className='top-bar-left'>
                         <ul className='menu icon-top'>
                             <li className='hide-for-xxlarge'>{navicon}</li>
@@ -118,7 +118,7 @@ var Navbar = React.createClass({
                                 <input className='search-bar' type='text' placeholder='Search' onChange={this.onChangeText} onKeyDown={this.handleKeys} name='searchText'></input>
                             </div>
                             <div className='shrink columns'>
-                                <button className='button secondary small'><span className='ion-android-close navbar-icon' onClick={this.onCloseSearchBar}/></button>
+                                <button className='button secondary small' aria-label='Close search bar'><span className='ion-android-close navbar-icon' onClick={this.onCloseSearchBar}/></button>
                             </div>
                         </div>
                     </div> : null}

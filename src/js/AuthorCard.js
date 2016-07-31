@@ -58,7 +58,7 @@ var AuthorCard = React.createClass({
                     </div>
                 </div>
                 <div className='shrink columns'>
-                    <a className='button secondary small' onClick={this.removeAuthor.bind(null, this.props.id)}>Remove</a>
+                    <a className='button secondary small' onClick={this.removeAuthor.bind(null, this.props.id)} role='button'>Remove</a>
                 </div>
             </div>
         );

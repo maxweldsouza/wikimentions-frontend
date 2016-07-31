@@ -52,8 +52,10 @@ var Login = React.createClass({
         return (
             <div>
                 <h1>Login</h1>
-                <input type='text' name='username' placeholder='Username' onChange={this.onChangeText}/>
-                <input type='password' name='password' placeholder='Password' onChange={this.onChangeText}/>
+                Username
+                <input type='text' name='username' onChange={this.onChangeText}/>
+                Password
+                <input type='password' name='password' onChange={this.onChangeText}/>
                 <SubmitButton title='Login' className='expanded button' submitting={this.state.submitting} onSubmit={this.login}/>
             </div>
         );
