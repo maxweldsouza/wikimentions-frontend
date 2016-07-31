@@ -46,6 +46,11 @@
     border-top: $global-border;
 }
 
+.select-option-message {
+    color: $body-font-color;
+    font-weight: normal;
+}
+
 .select-clear {
     height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
     line-height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));

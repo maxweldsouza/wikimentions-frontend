@@ -41,6 +41,7 @@ var Select = React.createClass({
         if (e.target.value.length > 1) {
             this.loadData(e.target.value);
             this.setState({
+                loading: true,
                 searchText: e.target.value,
                 visible: true
             });
@@ -108,10 +109,7 @@ var Select = React.createClass({
                 return;
         }
     },
-    loadData: _.debounce(function (x) {
-        this.setState({
-            loading: true
-        });
+    loadData: _.throttle(function (x) {
         var typeQuery;
         if (this.props.types) {
             typeQuery = '?types=' + this.props.types.join(',');
@@ -131,7 +129,8 @@ var Select = React.createClass({
                     this.setState({
                         loading: false,
                         options: res.body,
-                        visible: true
+                        visible: true,
+                        error: false
                     });
                 }
             });
@@ -148,12 +147,13 @@ var Select = React.createClass({
                     this.setState({
                         loading: false,
                         options: res.body.results,
-                        visible: true
+                        visible: true,
+                        error: false
                     });
                 }
             });
         }
-    }, 500),
+    }, 1000),
     onClear () {
         this.setState({
             searchText: '',
@@ -190,6 +190,12 @@ var Select = React.createClass({
                     required={this.props.required}
                     />
                 {this.state.visible ? <div className='select-options'>
+                    {!this.state.loading && this.state.options.length === 0 ? <div className='select-option select-option-message'>
+                        No results
+                    </div> : null}
+                    {this.state.loading && this.state.options.length === 0 ? <div className='select-option select-option-message'>
+                        Loading...
+                    </div> : null}
                     {this.state.options.map((entry, i) => {
                         var focused = i === this.state.focus;
                         focused = focused ? {'background': '#f3f3f3'} : {};
