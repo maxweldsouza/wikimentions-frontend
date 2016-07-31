@@ -42,6 +42,10 @@
     text-transform: capitalize;
 }
 
+.select-more-results {
+    border-top: $global-border;
+}
+
 .select-clear {
     height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
     line-height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));

@@ -221,7 +221,7 @@ var Select = React.createClass({
                     {this.state.error ? <div className='select-option'>
                         Search failed
                     </div> : null}
-                    {this.props.moreResults ? <div className='select-option' onClick={this.onClickMoreResults}>
+                    {this.props.moreResults ? <div className='select-option select-more-results' onClick={this.onClickMoreResults}>
                         <a className='secondary'>More Results</a>
                     </div> : null}
                 </div> : null}
