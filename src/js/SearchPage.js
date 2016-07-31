@@ -30,7 +30,8 @@ var SearchPage = React.createClass({
         };
     },
     componentDidMount () {
-        this.loadData(this.state.searchText, 1, 'any');
+        var type = this.props.query.type ? this.props.query.type : 'any';
+        this.loadData(this.state.searchText, 1, type);
     },
     componentWillReceiveProps (nextProps) {
         this.setState({
@@ -59,6 +60,10 @@ var SearchPage = React.createClass({
                 });
             }
         });
+    },
+    onSearchClicked () {
+        var type = this.props.query.type ? this.props.query.type : 'any';
+        this.newSearch(type);
     },
     newSearch (type) {
         var typeQuery = type !== 'any' ? '&type=' + type : '';
@@ -101,12 +106,17 @@ var SearchPage = React.createClass({
                 <div className='row page-body align-center'>
                     <div className='small-12 large-8 columns'>
                         <h1>Search</h1>
-                        <input
-                            type='text' placeholder='Search'
-                            value={this.state.searchText}
-                            onChange={this.onSearchTextChanged}
-                            onKeyDown={this.handleKeys}>
-                        </input>
+                        <div className='input-group'>
+                                <input
+                                    type='text' placeholder='Search'
+                                    value={this.state.searchText}
+                                    onChange={this.onSearchTextChanged}
+                                    onKeyDown={this.handleKeys}>
+                                </input>
+                                <button className='button primary' onClick={this.onSearchClicked} style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}>
+                                    <span className='ion-android-search' style={{fontSize: 17}}/>
+                                </button>
+                        </div>
                         <div className='row'>
                             <div className='small-12 medium-6 columns'>
                                 <ButtonSelect
