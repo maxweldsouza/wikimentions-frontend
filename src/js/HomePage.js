@@ -72,7 +72,7 @@ var HomePage = React.createClass({
                             {this.props.loggedin ? <a onClick={Mentions.logout}>Log Out</a> : <span><LoginModal/>{' / '}<SignupModal/></span>}
                         </div>
                         <div className='callout show-for-xlarge'>
-                            <ul className="menu vertical">
+                            <ul className='menu vertical row'>
                                 <li><a href='/blog'>Blog</a></li>
                                 <li><a href='/contribute'>Contribute</a></li>
                                 <li><a href='/recent-changes'>Recent Changes</a></li>
