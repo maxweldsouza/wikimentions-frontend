@@ -32,7 +32,7 @@ var Time = React.createClass({
                 }
             }
             return (
-                <a className='secondary' title={title}>{result}</a>
+                <time className='secondary' title={title} dateTime={this.props.timestamp}>{result}</time>
             );
         }
         return null;

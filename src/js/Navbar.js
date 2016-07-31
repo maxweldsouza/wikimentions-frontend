@@ -98,7 +98,7 @@ var Navbar = React.createClass({
         }
         return (
             <div>
-                <div className='top-bar' role='navigation'>
+                <nav className='top-bar' role='navigation'>
                     <div className='top-bar-left'>
                         <ul className='menu icon-top'>
                             <li className='hide-for-xxlarge'>{navicon}</li>
@@ -110,7 +110,7 @@ var Navbar = React.createClass({
                     <div className='top-bar-right'>
                         {rhs}
                     </div>
-                </div>
+                </nav>
                 <VelocityTransitionGroup enter={{animation: 'transition.fadeIn'}} leave={{animation: 'transition.fadeOut'}}>
                     {this.state.searchBarOpen ? <div className='navbar-search hide-for-xlarge'>
                         <div className='row'>

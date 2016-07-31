@@ -5,7 +5,7 @@ var AdminOnly = require('./AdminOnly');
 var Footer = React.createClass({
     render () {
         return (
-            <div className='page-footer align-right' role='contentinfo'>
+            <footer className='page-footer align-right' role='contentinfo'>
                 <div className='row'>
                     <div className='small-12 xlarge-4 columns footer-logo-container'>
                         <div className='footer-logo'>{config.name}</div>
@@ -52,7 +52,7 @@ var Footer = React.createClass({
                         By using {config.name} you agree to our <a href='/terms-of-use'>Terms of Use</a> and <a href='/privacy-policy'>Privacy Policy</a> which were <strong>last updated</strong> on <strong>1st August 2016.</strong>
                     </div>
                 </div>
-            </div>
+            </footer>
         );
     }
 });
