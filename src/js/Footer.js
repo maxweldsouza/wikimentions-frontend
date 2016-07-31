@@ -14,7 +14,7 @@ var Footer = React.createClass({
                     <div className='small-12 xlarge-8 columns'>
                         <div className='row'>
                             <AdminOnly>
-                            <div className='small-12 large-3 columns'>
+                            <div className='small-6 large-3 columns'>
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Admin</li>
                                     <li><a href='/feedback'>Feedback</a></li>
@@ -23,7 +23,7 @@ var Footer = React.createClass({
                                 </ul>
                             </div>
                             </AdminOnly>
-                            <div className='small-12 large-3 columns'>
+                            <div className='small-6 large-3 columns'>
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Navigation</li>
                                     <li><a href='/create'>Create Page</a></li>
@@ -31,14 +31,14 @@ var Footer = React.createClass({
                                     <li><a href='/recent-discussions'>Recent Discussions</a></li>
                                 </ul>
                             </div>
-                            <div className='small-12 large-3 columns'>
+                            <div className='small-6 large-3 columns'>
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Help</li>
                                     <li><a href='/about-us'>About Us</a></li>
                                     <li><a href='/guidelines'>Guidelines</a></li>
                                 </ul>
                             </div>
-                            <div className='small-12 large-3 columns'>
+                            <div className='small-6 large-3 columns'>
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Social</li>
                                     <li><a href={config.social.facebook}>Facebook</a></li>
