@@ -78,7 +78,7 @@ var Navbar = React.createClass({
         </div>;
 
         var navicon = <span style={{paddingLeft: '0.8rem', paddingRight: '0.8rem'}} className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar} aria-label='Toggle Sidebar'/>;
-        var searchIcon = <button className='button secondary small' aria-label='Open search bar'><span className='ion-android-search navbar-icon' onClick={this.onOpenSearchBar}/></button>;
+        var searchIcon = <button className='button secondary small' aria-label='Open search bar' onClick={this.onOpenSearchBar}><span className='ion-android-search navbar-icon'/></button>;
         if (loggedin) {
             rhs = <ul className='menu align-right'>
                 <li className='show-for-xlarge'>
@@ -118,7 +118,7 @@ var Navbar = React.createClass({
                                 <input className='search-bar' type='text' placeholder='Search' onChange={this.onChangeText} onKeyDown={this.handleKeys} name='searchText'></input>
                             </div>
                             <div className='shrink columns'>
-                                <button className='button secondary small' aria-label='Close search bar'><span className='ion-android-close navbar-icon' onClick={this.onCloseSearchBar}/></button>
+                                <button className='button secondary small' aria-label='Close search bar' onClick={this.onCloseSearchBar}><span className='ion-android-close navbar-icon' /></button>
                             </div>
                         </div>
                     </div> : null}
