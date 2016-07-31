@@ -266,13 +266,15 @@ var EditPage = React.createClass({
                                     onSubmit={this.onSubmit}/>
                             </form>
                             <AdminOnly>
-                                <hr/>
-                                <label><input type="checkbox" onChange={this.onToggleConfirm}/>I'm sure</label>
-                                <SubmitButton
-                                    title='Delete Page'
-                                    confirm={this.state.confirmDelete}
-                                    submitting={this.state.submitting}
-                                    onSubmit={this.onDeletePage}/>
+                                <div>
+                                    <hr/>
+                                    <label><input type="checkbox" onChange={this.onToggleConfirm}/>I'm sure</label>
+                                    <SubmitButton
+                                        title='Delete Page'
+                                        confirm={this.state.confirmDelete}
+                                        submitting={this.state.submitting}
+                                        onSubmit={this.onDeletePage}/>
+                                </div>
                             </AdminOnly>
                         </Restricted>
                     </div>
