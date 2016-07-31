@@ -262,6 +262,7 @@ var EditPage = React.createClass({
                                 </span> : null}
                                 <SubmitButton
                                     title='Save'
+                                    className='button primary'
                                     submitting={this.state.submitting}
                                     onSubmit={this.onSubmit}/>
                             </form>
@@ -271,6 +272,7 @@ var EditPage = React.createClass({
                                     <label><input type="checkbox" onChange={this.onToggleConfirm}/>I'm sure</label>
                                     <SubmitButton
                                         title='Delete Page'
+                                        className='button primary'
                                         confirm={this.state.confirmDelete}
                                         submitting={this.state.submitting}
                                         onSubmit={this.onDeletePage}/>

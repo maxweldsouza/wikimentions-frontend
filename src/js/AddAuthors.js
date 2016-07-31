@@ -86,7 +86,7 @@ var AddAuthors = React.createClass({
                                         onSelectValue={this.onChangeAuthor}
                                         types={['person']}/>
                                     <div className='button-group small'>
-                                        <SubmitButton title='Add Author' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                                        <SubmitButton title='Add Author' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                                         <button type='button' className='button secondary' onClick={this.onClose}>Close</button>
                                     </div>
                                 </div>

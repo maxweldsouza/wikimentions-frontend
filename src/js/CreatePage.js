@@ -160,7 +160,7 @@ var HomePage = React.createClass({
                                     </div>
                                 </div>
                                 <div>
-                                    <SubmitButton title='Create' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                                    <SubmitButton title='Create' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                                 </div>
                             </Restricted>
                         </form>

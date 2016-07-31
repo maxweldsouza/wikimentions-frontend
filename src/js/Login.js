@@ -56,7 +56,7 @@ var Login = React.createClass({
                 <input type='text' name='username' onChange={this.onChangeText}/>
                 Password
                 <input type='password' name='password' onChange={this.onChangeText}/>
-                <SubmitButton title='Login' className='expanded button' submitting={this.state.submitting} onSubmit={this.login}/>
+                <SubmitButton title='Login' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.login}/>
             </div>
         );
     }

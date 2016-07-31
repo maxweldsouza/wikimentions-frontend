@@ -8,6 +8,7 @@ var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var Restricted = require('./Restricted');
 var LoginModal = require('./LoginModal');
+var SubmitButton = require('./SubmitButton');
 
 var AddMention = React.createClass({
     getInitialState () {
@@ -98,8 +99,8 @@ var AddMention = React.createClass({
                     onSelectValue={this.onChangeMentionedIn}
                     types={['book', 'video']}/>
                 </span>}
-                <div className="button-group">
-                    <button type="button" className="button" onClick={this.onSubmit}>Add</button>
+                <div className='button-group'>
+                    <SubmitButton type='button' className='button primary' submitting={this.state.submitting} onClick={this.onSubmit} title='Add' />
                 </div>
             </Restricted>
         </div>;

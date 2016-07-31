@@ -100,7 +100,7 @@ var Signup = React.createClass({
                 </div> : null}
                 Retype Password
                 <input type='password' name='retypePassword' onChange={this.onChangeText}/>
-                <SubmitButton title='Signup' className='expanded button' submitting={this.state.submitting} onSubmit={this.signup}/>
+                <SubmitButton title='Signup' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.signup}/>
             </form>
         );
     }

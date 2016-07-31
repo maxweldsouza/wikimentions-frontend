@@ -29,7 +29,7 @@ var ButtonSelect = React.createClass({
                     {this.props.options.map((x) => {
                         var cls;
                         if (this.state.selected === x.value) {
-                            cls = 'button primary';
+                            cls = 'button';
                         } else {
                             cls = 'button secondary';
                         }
