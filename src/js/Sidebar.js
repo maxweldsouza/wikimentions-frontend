@@ -23,7 +23,7 @@ var Sidebar = React.createClass({
         var sidebar = this.props.showing ? '' : 'hidden';
         var loggedin = this.props.loggedin;
         return (
-            <div aria-hidden={!this.props.showing} role='sidebar' aria-label='Sidebar'>
+            <div aria-hidden={!this.props.showing} role='complementary' aria-label='Sidebar'>
                 <VelocityTransitionGroup enter={{animation: {translateX: '0px', easing: 'easeIn', duration: 100}}} leave={{animation: {translateX: '-250px', easing: 'easeOut', duration: 100}}}>
                     {this.props.showing ? <div className='sidebar'>
                         <div className='sidebar-header'>
