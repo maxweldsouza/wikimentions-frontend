@@ -1,8 +1,7 @@
 var React = require('react');
 var requests = require('superagent');
 var _ = require('underscore');
-var Image = require('./Image');
-var Placeholder = require('./Placeholder');
+var Thumbnail = require('./Thumbnail');
 
 var Select = React.createClass({
     getDefaultProps () {
@@ -200,12 +199,6 @@ var Select = React.createClass({
                         var focused = i === this.state.focus;
                         focused = focused ? {'background': '#f3f3f3'} : {};
 
-                        var image = entry.image;
-                        if (image) {
-                            image = <Image className='img' id={entry.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height} displayWidth={50} displayHeight={50}/>;
-                        } else {
-                            image = <Placeholder style={{ height: 50, lineHeight: '50px', width: 50}}/>;
-                        }
                         return <div
                             key={entry.id}
                             className='select-option'
@@ -214,7 +207,11 @@ var Select = React.createClass({
                             onClick={this.onSelectValue.bind(null, entry)}
                             >
                             <div className='select-option-image'>
-                                {image}
+                                <Thumbnail
+                                    type={entry.props.type}
+                                    image={entry.image}
+                                    url={entry.props.url}
+                                    displayWidth={50} />
                             </div>
                             <div className=''>
                                 {entry.props.title}

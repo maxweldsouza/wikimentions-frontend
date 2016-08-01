@@ -2,8 +2,7 @@ var React = require('react');
 var requests = require('superagent');
 var cookies = require('browser-cookies');
 var Link = require('./Link');
-var Image = require('./Image');
-var Placeholder = require('./Placeholder');
+var Thumbnail = require('./Thumbnail');
 var _ = require('underscore');
 var Snackbar = require('./Snackbar');
 var Dropdown = require('./Dropdown');
@@ -93,12 +92,6 @@ var Mention = React.createClass({
             icon = 'ion-person';
         }
 
-        var image = main.image;
-        if (image) {
-            image = <Image className='img' id={main.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height}/>;
-        } else {
-            image = <Placeholder style={{'width': 75, 'height': 75, 'border': 'none', 'lineHeight': '75px'}}/>;
-        }
         return (
             <div className='card'>
                 <span className='ion-chevron-down card-chevron' onClick={this.openDropdown}/>
@@ -110,7 +103,11 @@ var Mention = React.createClass({
                     </div>
                 </Dropdown>
                 <div className='shrink columns'>
-                    {image}
+                    <Thumbnail
+                        type={main.props.type}
+                        image={main.image}
+                        url={main.props.url}
+                        displayWidth={75} />
                 </div>
                 <div className='columns'>
                     <div className='row'>

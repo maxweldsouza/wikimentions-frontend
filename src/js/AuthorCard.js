@@ -1,6 +1,5 @@
 var React = require('react');
-var Image = require('./Image');
-var Placeholder = require('./Placeholder');
+var Thumbnail = require('./Thumbnail');
 var _ = require('underscore');
 var Link = require('./Link');
 var requests = require('superagent');
@@ -37,16 +36,13 @@ var AuthorCard = React.createClass({
         });
     },
     render () {
-        var image = this.props.image;
-        if (image) {
-            image = <Image className='img' id={this.props.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height} displayWidth={40}/>;
-        } else {
-            image = <Placeholder style={{'width': 40, 'height': 40, 'border': 'none', 'lineHeight': '40px'}}/>;
-        }
         return (
             <div className='card'>
                 <div className='shrink columns'>
-                    {image}
+                    <Thumbnail
+                        type={this.props.type}
+                        image={this.props.image}
+                        displayWidth={40} />
                 </div>
                 <div className='columns'>
                     <Link

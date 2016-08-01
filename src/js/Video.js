@@ -2,22 +2,11 @@ var React = require('react');
 var Image = require('./Image');
 var parseUrl = require('url-parse');
 var Link = require('./Link');
-var Placeholder = require('./Placeholder');
-var VideoApiThumb = require('./VideoApiThumb');
+var Thumbnail = require('./Thumbnail');
 import Lazy from 'react-lazyload';
 
 var Video = React.createClass({
     render () {
-        var image = this.props.image;
-        var videoApiThumb = <Lazy height={90}><VideoApiThumb url={this.props.url}>
-            <Placeholder type='video' once/>
-        </VideoApiThumb></Lazy>;
-        if (image) {
-            image = <Image className='img' id={this.props.id} md5={image.thumb_md5} width={image.thumb_width} height={image.thumb_height}/>;
-        } else {
-            image = videoApiThumb;
-        }
-
         var parsed = parseUrl(this.props.url);
         return (
             <div className='card'>
@@ -27,7 +16,13 @@ var Video = React.createClass({
                             <div style={{maxWidth: 150}}>
                                 <Link id={this.props.id}
                                     slug={this.props.slug}
-                                    type='video'>{image}</Link>
+                                    type='video'>
+                                    <Thumbnail
+                                    type={this.props.type}
+                                    url={this.props.url}
+                                    displayHeight={90}
+                                    displayWidth={120} />
+                                </Link>
                             </div>
                         </div>
                         <div className='columns'>

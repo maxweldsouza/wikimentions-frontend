@@ -13,8 +13,7 @@ var PageBar = require('./PageBar');
 var Share = require('./Share');
 var config = require('./config');
 var Link = require('./Link');
-var Placeholder = require('./Placeholder');
-var Image = require('./Image');
+var Thumbnail = require('./Thumbnail');
 var Modal = require('./Modal');
 var Restricted = require('./Restricted');
 var Markdown = require('./Markdown');
@@ -231,15 +230,9 @@ var ThingPage = React.createClass({
                 page={this.props.query.page}
                 />;
         }
-        var image, imageUrl;
+        var imageUrl;
         if (thing.image) {
-            image = <a onClick={this.onOpenModal}>
-                <Image className={thing.props.type === 'book' ? 'img shadow' : 'img'} id={this.props.id} md5={thing.image.md5} width={thing.image.width} height={thing.image.height}/>
-            </a>;
             imageUrl = '/api/v1/static/images/' + thing.image.md5 + '-' + thing.image.width + '-' + thing.image.height + '.jpg';
-        } else {
-            image = <Placeholder style={{'height': 200, 'lineHeight': '200px'}}/>;
-            imageUrl = '';
         }
         return (
         <span>
@@ -274,7 +267,12 @@ var ThingPage = React.createClass({
                 <div className='small-12 columns'>
                     <div className='row'>
                         <div className='small-12 large-3 columns'>
-                            {thing.props.type !== 'video' ? image : null}
+                            {thing.props.type !== 'video' ? <a onClick={this.onOpenModal}>
+                                <Thumbnail
+                                type={thing.props.type}
+                                image={thing.image}
+                                displayWidth={200} />
+                            </a> : null}
                             <Modal
                                 isOpen={this.state.modalIsOpen}
                                 onClose={this.onCloseModal}
@@ -282,12 +280,10 @@ var ThingPage = React.createClass({
                                 overlayClassName='modal-overlay'>
                                 {thing.image ? <div className='small-12 columns'>
                                     <h1>Image</h1>
-                                    <Image
-                                        id={id}
-                                        width={thing.image.width}
-                                        height={thing.image.height}
-                                        md5={thing.image.md5}
-                                        />
+                                    <Thumbnail
+                                    type={thing.props.type}
+                                    image={thing.image}
+                                    displayWidth={200} />
                                     <div>
                                         Added: <Time timestamp={thing.image.added} type='ago'/>
                                     </div>
