@@ -81,6 +81,7 @@ var HomePage = React.createClass({
                         </div>
                         <div className='callout show-for-xlarge'>
                             <h2>Did you know?</h2>
+                            
                             <a>James Watson</a> and <a>Francis Crick</a> had read <a>Erwin Schrodinger's</a> book <a>What is Life?</a> which inspired
                             them to work on discovering the structure of DNA.
                         </div>

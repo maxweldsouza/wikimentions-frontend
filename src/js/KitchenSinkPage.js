@@ -8,6 +8,7 @@ var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var config = require('./config');
 var AdminOnly = require('./AdminOnly');
+var Thumbnail = require('./Thumbnail');
 
 var KitchenSinkPage = React.createClass({
     statics: {
@@ -43,6 +44,83 @@ var KitchenSinkPage = React.createClass({
                         <div className='card-container'>
                             <div className='card'>
                                 <div className='small-6 columns'>
+                                    <Thumbnail
+                                        type='person'
+                                        displayWidth={100}
+                                        displayHeight={100}/>
+                                    <Thumbnail
+                                        image={{
+                                            "added": "2016-07-08T18:52:04+05:30",
+                                            "height": 250,
+                                            "id": 709,
+                                            "md5": "84d376998b880e07e7a12262ff86f6dd",
+                                            "thumb_height": 75,
+                                            "thumb_md5": "770a61a10b33b2decb1cd1f69fe5e38b",
+                                            "thumb_width": 75,
+                                            "width": 250
+                                        }}
+                                        type='person'
+                                        displayWidth={200}
+                                        displayHeight={200}/>
+                                    <Thumbnail
+                                        type='person'
+                                        displayWidth={75}
+                                        displayHeight={75}/>
+                                    <Thumbnail
+                                        image={{
+                                            "added": "2016-07-08T18:52:04+05:30",
+                                            "height": 250,
+                                            "id": 709,
+                                            "md5": "84d376998b880e07e7a12262ff86f6dd",
+                                            "thumb_height": 75,
+                                            "thumb_md5": "770a61a10b33b2decb1cd1f69fe5e38b",
+                                            "thumb_width": 75,
+                                            "width": 250
+                                        }}
+                                        type='person'
+                                        displayWidth={75}
+                                        displayHeight={75}/>
+                                    <Thumbnail
+                                        type='book'
+                                        displayHeight={200}/>
+                                    <Thumbnail
+                                        type='video'
+                                        url='https://www.youtube.com/watch?v=I64CQp6z0Pk'
+                                        displayWidth={75}/>
+                                    <Thumbnail
+                                        type='video'
+                                        url='https://www.youtube.com/watch?v=I64CQp6z0Pk'
+                                        displayWidth={120}/>
+                                    <Thumbnail
+                                        type='video'
+                                        url='https://nosuchurlexists-sfaljdfaf.com'
+                                        displayWidth={120}/>
+                                    <Thumbnail
+                                        image={{
+                                            "added": "2016-07-15T19:29:06+05:30",
+                                            "height": 200,
+                                            "id": 848,
+                                            "md5": "5fffca63d18e9eb96c78133e3e103bad",
+                                            "thumb_height": 97,
+                                            "thumb_md5": "74ee1db4d5345b6bf24e9bd7b4ea2a68",
+                                            "thumb_width": 75,
+                                            "width": 154
+                                        }}
+                                        type='book'
+                                        displayWidth={75}/>
+                                    <Thumbnail
+                                        image={{
+                                            "added": "2016-07-15T19:29:06+05:30",
+                                            "height": 200,
+                                            "id": 848,
+                                            "md5": "5fffca63d18e9eb96c78133e3e103bad",
+                                            "thumb_height": 97,
+                                            "thumb_md5": "74ee1db4d5345b6bf24e9bd7b4ea2a68",
+                                            "thumb_width": 75,
+                                            "width": 154
+                                        }}
+                                        type='book'
+                                        displayHeight={200}/>
                                     <h2>Typography</h2>
                                     <h1>Heading 1</h1>
                                     <h2>Heading 2</h2>
