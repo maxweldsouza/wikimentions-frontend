@@ -63,14 +63,14 @@ var Navbar = React.createClass({
         var username = this.props.username;
         var loggedin = this.props.loggedin;
 
-        var SearchBar = <div className='input-group navbar-search-large' style={{marginBottom: 0}}>
+        var SearchBar = <div className='input-group navbar-search-large' style={{marginBottom: 0, borderTopRightRadius: 0, borderBottomRightRadius: 0}}>
             <Select
                 name='searchText'
                 className='input-group-field'
                 onSelectValue={this.onSelectSearchResult}
                 onSearchTextChanged={this.onSearchTextChanged}
                 placeholder={'Search'}
-                width={300}
+                width={400}
                 moreResults={true}/>
             <button className='input-group-button button primary' style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}} onClick={this.search} aria-label='Search'>
                 <span className='ion-android-search' style={{fontSize: 17}}/>
