@@ -268,10 +268,13 @@ var ThingPage = React.createClass({
                     <div className='row'>
                         <div className='small-12 large-3 columns'>
                             {thing.props.type !== 'video' ? <a onClick={this.onOpenModal}>
-                                <Thumbnail
+                                {thing.props.type === 'book' ? <Thumbnail
                                 type={thing.props.type}
                                 image={thing.image}
-                                displayWidth={200} />
+                                displayHeight={200} /> : <Thumbnail
+                                type={thing.props.type}
+                                image={thing.image}
+                                displayWidth={200} />}
                             </a> : null}
                             <Modal
                                 isOpen={this.state.modalIsOpen}
@@ -280,10 +283,13 @@ var ThingPage = React.createClass({
                                 overlayClassName='modal-overlay'>
                                 {thing.image ? <div className='small-12 columns'>
                                     <h1>Image</h1>
-                                    <Thumbnail
-                                    type={thing.props.type}
-                                    image={thing.image}
-                                    displayWidth={200} />
+                                        {thing.props.type === 'book' ? <Thumbnail
+                                        type={thing.props.type}
+                                        image={thing.image}
+                                        displayHeight={200} /> : <Thumbnail
+                                        type={thing.props.type}
+                                        image={thing.image}
+                                        displayWidth={200} />}
                                     <div>
                                         Added: <Time timestamp={thing.image.added} type='ago'/>
                                     </div>

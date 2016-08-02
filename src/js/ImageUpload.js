@@ -43,6 +43,8 @@ var ImageUpload = React.createClass({
     },
     onUpload () {
         var width, height;
+        var data = this.refs.cropper.getData();
+        var aspectRatio = data.width / data.height;
         if (this.props.type === 'person') {
             width = 250;
             height = 250;
