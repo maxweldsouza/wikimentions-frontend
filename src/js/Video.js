@@ -1,5 +1,4 @@
 var React = require('react');
-var Image = require('./Image');
 var parseUrl = require('url-parse');
 var Link = require('./Link');
 var Thumbnail = require('./Thumbnail');

@@ -3,7 +3,6 @@ var queryString = require('query-string');
 var parseUrl = require('url-parse');
 var requests = require('superagent');
 var config = require('./config');
-var Placeholder = require('./Placeholder');
 
 var VideoApiThumb = React.createClass({
     getInitialState () {

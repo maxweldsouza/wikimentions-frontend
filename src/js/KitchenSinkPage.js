@@ -50,14 +50,14 @@ var KitchenSinkPage = React.createClass({
                                         displayHeight={100}/>
                                     <Thumbnail
                                         image={{
-                                            "added": "2016-07-08T18:52:04+05:30",
-                                            "height": 250,
-                                            "id": 709,
-                                            "md5": "84d376998b880e07e7a12262ff86f6dd",
-                                            "thumb_height": 75,
-                                            "thumb_md5": "770a61a10b33b2decb1cd1f69fe5e38b",
-                                            "thumb_width": 75,
-                                            "width": 250
+                                            'added': '2016-07-08T18:52:04+05:30',
+                                            'height': 250,
+                                            'id': 709,
+                                            'md5': '84d376998b880e07e7a12262ff86f6dd',
+                                            'thumb_height': 75,
+                                            'thumb_md5': '770a61a10b33b2decb1cd1f69fe5e38b',
+                                            'thumb_width': 75,
+                                            'width': 250
                                         }}
                                         type='person'
                                         displayWidth={200}
@@ -68,14 +68,14 @@ var KitchenSinkPage = React.createClass({
                                         displayHeight={75}/>
                                     <Thumbnail
                                         image={{
-                                            "added": "2016-07-08T18:52:04+05:30",
-                                            "height": 250,
-                                            "id": 709,
-                                            "md5": "84d376998b880e07e7a12262ff86f6dd",
-                                            "thumb_height": 75,
-                                            "thumb_md5": "770a61a10b33b2decb1cd1f69fe5e38b",
-                                            "thumb_width": 75,
-                                            "width": 250
+                                            'added': '2016-07-08T18:52:04+05:30',
+                                            'height': 250,
+                                            'id': 709,
+                                            'md5': '84d376998b880e07e7a12262ff86f6dd',
+                                            'thumb_height': 75,
+                                            'thumb_md5': '770a61a10b33b2decb1cd1f69fe5e38b',
+                                            'thumb_width': 75,
+                                            'width': 250
                                         }}
                                         type='person'
                                         displayWidth={75}
@@ -97,27 +97,27 @@ var KitchenSinkPage = React.createClass({
                                         displayWidth={120}/>
                                     <Thumbnail
                                         image={{
-                                            "added": "2016-07-15T19:29:06+05:30",
-                                            "height": 200,
-                                            "id": 848,
-                                            "md5": "5fffca63d18e9eb96c78133e3e103bad",
-                                            "thumb_height": 97,
-                                            "thumb_md5": "74ee1db4d5345b6bf24e9bd7b4ea2a68",
-                                            "thumb_width": 75,
-                                            "width": 154
+                                            'added': '2016-07-15T19:29:06+05:30',
+                                            'height': 200,
+                                            'id': 848,
+                                            'md5': '5fffca63d18e9eb96c78133e3e103bad',
+                                            'thumb_height': 97,
+                                            'thumb_md5': '74ee1db4d5345b6bf24e9bd7b4ea2a68',
+                                            'thumb_width': 75,
+                                            'width': 154
                                         }}
                                         type='book'
                                         displayWidth={75}/>
                                     <Thumbnail
                                         image={{
-                                            "added": "2016-07-15T19:29:06+05:30",
-                                            "height": 200,
-                                            "id": 848,
-                                            "md5": "5fffca63d18e9eb96c78133e3e103bad",
-                                            "thumb_height": 97,
-                                            "thumb_md5": "74ee1db4d5345b6bf24e9bd7b4ea2a68",
-                                            "thumb_width": 75,
-                                            "width": 154
+                                            'added': '2016-07-15T19:29:06+05:30',
+                                            'height': 200,
+                                            'id': 848,
+                                            'md5': '5fffca63d18e9eb96c78133e3e103bad',
+                                            'thumb_height': 97,
+                                            'thumb_md5': '74ee1db4d5345b6bf24e9bd7b4ea2a68',
+                                            'thumb_width': 75,
+                                            'width': 154
                                         }}
                                         type='book'
                                         displayHeight={200}/>
@@ -136,11 +136,11 @@ var KitchenSinkPage = React.createClass({
                                     </div>
                                     <hr/>
                                     <h2>Badge</h2>
-                                    <span className="badge">B</span>
-                                    <span className="secondary badge">S</span>
-                                    <span className="success badge">S</span>
-                                    <span className="warning badge">W</span>
-                                    <span className="alert badge">A</span>
+                                    <span className='badge'>B</span>
+                                    <span className='secondary badge'>S</span>
+                                    <span className='success badge'>S</span>
+                                    <span className='warning badge'>W</span>
+                                    <span className='alert badge'>A</span>
                                 </div>
                                 <div className='small-6 columns'>
                                     <h2>Callout</h2>
@@ -164,29 +164,29 @@ var KitchenSinkPage = React.createClass({
                             <div className='card'>
                                 <div className='small-12 columns'>
                                     <h2>Pagination</h2>
-                                    <ul className="pagination" role="navigation" aria-label="Pagination">
-                                        <li className="disabled">Previous <span className="show-for-sr">page</span></li>
-                                        <li className="current"><span className="show-for-sr">You're on page</span> 1</li>
-                                        <li><a href="#" aria-label="Page 2">2</a></li>
-                                        <li><a href="#" aria-label="Page 3">3</a></li>
-                                        <li><a href="#" aria-label="Page 4">4</a></li>
-                                        <li className="ellipsis" aria-hidden="true" />
-                                        <li><a href="#" aria-label="Page 12">12</a></li>
-                                        <li><a href="#" aria-label="Page 13">13</a></li>
-                                        <li><a href="#" aria-label="Next page">Next <span className="show-for-sr">page</span></a></li>
+                                    <ul className='pagination' role='navigation' aria-label='Pagination'>
+                                        <li className='disabled'>Previous <span className='show-for-sr'>page</span></li>
+                                        <li className='current'><span className='show-for-sr'>You're on page</span> 1</li>
+                                        <li><a href='#' aria-label='Page 2'>2</a></li>
+                                        <li><a href='#' aria-label='Page 3'>3</a></li>
+                                        <li><a href='#' aria-label='Page 4'>4</a></li>
+                                        <li className='ellipsis' aria-hidden='true' />
+                                        <li><a href='#' aria-label='Page 12'>12</a></li>
+                                        <li><a href='#' aria-label='Page 13'>13</a></li>
+                                        <li><a href='#' aria-label='Next page'>Next <span className='show-for-sr'>page</span></a></li>
                                     </ul>
 
                                     <hr/>
                                     <h2>Images</h2>
-                                    <div className="row">
-                                        <div className="small-4 columns">
-                                            <img className="thumbnail" src="https://localhost/api/v1/static/images/4994a3944f9bd4e5045064c2ed1572ec-250-250.jpg"/>
+                                    <div className='row'>
+                                        <div className='small-4 columns'>
+                                            <img className='thumbnail' src='https://localhost/api/v1/static/images/4994a3944f9bd4e5045064c2ed1572ec-250-250.jpg'/>
                                         </div>
-                                        <div className="small-4 columns">
-                                            <img className="thumbnail" src="https://localhost/api/v1/static/images/84d376998b880e07e7a12262ff86f6dd-250-250.jpg"/>
+                                        <div className='small-4 columns'>
+                                            <img className='thumbnail' src='https://localhost/api/v1/static/images/84d376998b880e07e7a12262ff86f6dd-250-250.jpg'/>
                                         </div>
-                                        <div className="small-4 columns">
-                                            <img className="thumbnail" src="https://localhost/api/v1/static/images/787d501ad8c61d42e44a1f7a19c29ff9-250-250.jpg" />
+                                        <div className='small-4 columns'>
+                                            <img className='thumbnail' src='https://localhost/api/v1/static/images/787d501ad8c61d42e44a1f7a19c29ff9-250-250.jpg' />
                                         </div>
                                     </div>
 
