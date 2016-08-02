@@ -72,7 +72,11 @@ var Navbar = React.createClass({
                 placeholder={'Search'}
                 width={400}
                 moreResults={true}/>
-            <button className='input-group-button button primary' style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}} onClick={this.search} aria-label='Search'>
+            <button
+                className='input-group-button button primary'
+                style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}
+                onClick={this.search}
+                aria-label='Search'>
                 <span className='ion-android-search' style={{fontSize: 17}}/>
             </button>
         </div>;
@@ -114,11 +118,22 @@ var Navbar = React.createClass({
                 <VelocityTransitionGroup enter={{animation: 'transition.fadeIn'}} leave={{animation: 'transition.fadeOut'}}>
                     {this.state.searchBarOpen ? <div className='navbar-search hide-for-xlarge'>
                         <div className='row'>
-                            <div className='columns'>
-                                <input className='search-bar' type='text' placeholder='Search' onChange={this.onChangeText} onKeyDown={this.handleKeys} name='searchText'></input>
-                            </div>
-                            <div className='shrink columns'>
-                                <button className='button secondary small' aria-label='Close search bar' onClick={this.onCloseSearchBar}><span className='ion-android-close navbar-icon' /></button>
+                            <div className='input-group'>
+                                <input
+                                    className='search-bar input-group-field'
+                                    type='text'
+                                    placeholder='Search'
+                                    onChange={this.onChangeText}
+                                    onKeyDown={this.handleKeys}
+                                    name='searchText'
+                                    style={{borderTopRightRadius: 0, borderBottomRightRadius: 0}}></input>
+                                <button
+                                    className='button alert input-group-button'
+                                    aria-label='Close search bar'
+                                    onClick={this.onCloseSearchBar}
+                                    style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}>
+                                    <span className='ion-android-close navbar-icon'/>
+                                </button>
                             </div>
                         </div>
                     </div> : null}
