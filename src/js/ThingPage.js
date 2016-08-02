@@ -271,6 +271,7 @@ var ThingPage = React.createClass({
                                 {thing.props.type === 'book' ? <Thumbnail
                                 type={thing.props.type}
                                 image={thing.image}
+                                shadow={true}
                                 displayHeight={200} /> : <Thumbnail
                                 type={thing.props.type}
                                 image={thing.image}
@@ -286,6 +287,7 @@ var ThingPage = React.createClass({
                                         {thing.props.type === 'book' ? <Thumbnail
                                         type={thing.props.type}
                                         image={thing.image}
+                                        shadow={true}
                                         displayHeight={200} /> : <Thumbnail
                                         type={thing.props.type}
                                         image={thing.image}

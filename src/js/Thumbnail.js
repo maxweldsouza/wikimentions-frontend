@@ -8,10 +8,13 @@ var Thumbnail = React.createClass({
             image: '',
             type: '',
             alt: '',
-            url: ''
+            url: '',
+            shadow: false
         };
     },
     render () {
+        var imageClass = this.props.shadow ? 'img shadow' : 'img';
+
         var imageUrl, imageWidth, imageHeight, imageMd5, aspectRatio;
         var useOriginal;
         if (this.props.image) {
@@ -56,7 +59,7 @@ var Thumbnail = React.createClass({
         if (this.props.image) {
             main = <Lazy placeholder={placeholder}>
                 <img
-                    className='img' src={imageUrl}
+                    className={imageClass} src={imageUrl}
                     width={imageWidth}
                     height={imageHeight}
                     alt={this.props.alt}/>

@@ -17,6 +17,7 @@ var Book = React.createClass({
                     <Thumbnail
                     type={this.props.type}
                     image={this.props.image}
+                    shadow={true}
                     displayHeight={200} />
                 </div>
                 <div className='card-title'>
