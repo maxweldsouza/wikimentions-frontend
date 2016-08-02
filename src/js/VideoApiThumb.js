@@ -39,7 +39,7 @@ var VideoApiThumb = React.createClass({
     },
     render () {
         if (this.state.thumb) {
-            return <img src={this.state.thumb} width={this.state.width} height={this.state.height} style={this.props.style} />;
+            return <img src={this.state.thumb} width={this.state.width} height={this.state.height} style={this.props.style} alt={this.props.alt}/>;
         }
         return this.props.children;
     }

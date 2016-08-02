@@ -10,6 +10,7 @@ var HomeItem = React.createClass({
             <div className='card align-middle'>
                 <div className='shrink columns'>
                     <Thumbnail
+                        alt={this.props.title}
                         type={this.props.type}
                         image={this.props.image}
                         url={this.props.url}

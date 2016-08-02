@@ -104,6 +104,7 @@ var Mention = React.createClass({
                 </Dropdown>
                 <div className='shrink columns'>
                     <Thumbnail
+                        alt={main.props.title}
                         type={main.props.type}
                         image={main.image}
                         url={main.props.url}

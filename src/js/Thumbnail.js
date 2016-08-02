@@ -66,7 +66,7 @@ var Thumbnail = React.createClass({
                     alt={this.props.alt}/>
             </Lazy>;
         } else if (this.props.type === 'video') {
-            main = <Lazy placeholder={placeholder}><VideoApiThumb url={this.props.url}>
+            main = <Lazy placeholder={placeholder}><VideoApiThumb url={this.props.url} alt={this.props.alt}>
                 {placeholder}
             </VideoApiThumb>
             </Lazy>;

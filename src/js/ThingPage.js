@@ -87,9 +87,11 @@ var ThingPage = React.createClass({
         };
     },
     onOpenModal (e) {
-        this.setState({
-            modalIsOpen: true
-        });
+        if (this.props.data.thing.image) {
+            this.setState({
+                modalIsOpen: true
+            });
+        }
         e.preventDefault();
     },
     onCloseModal () {
@@ -269,11 +271,13 @@ var ThingPage = React.createClass({
                         <div className='small-12 large-3 columns'>
                             {thing.props.type !== 'video' ? <a onClick={this.onOpenModal}>
                                 {thing.props.type === 'book' ? <Thumbnail
+                                alt={thing.props.title}
                                 type={thing.props.type}
                                 image={thing.image}
                                 shadow={true}
                                 bordered={true}
                                 displayHeight={200} /> : <Thumbnail
+                                alt={thing.props.title}
                                 type={thing.props.type}
                                 image={thing.image}
                                 bordered={true}
@@ -287,6 +291,7 @@ var ThingPage = React.createClass({
                                 {thing.image ? <div className='small-12 columns'>
                                     <h1>Image</h1>
                                         {thing.props.type === 'book' ? <Thumbnail
+                                        alt={thing.props.title}
                                         type={thing.props.type}
                                         image={thing.image}
                                         shadow={true}

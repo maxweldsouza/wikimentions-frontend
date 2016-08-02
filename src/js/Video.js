@@ -17,6 +17,7 @@ var Video = React.createClass({
                                     slug={this.props.slug}
                                     type='video'>
                                     <Thumbnail
+                                    alt={this.props.title}
                                     type={this.props.type}
                                     url={this.props.url}
                                     displayHeight={90}

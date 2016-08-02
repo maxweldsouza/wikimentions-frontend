@@ -208,6 +208,7 @@ var Select = React.createClass({
                             >
                             <div className='select-option-image'>
                                 <Thumbnail
+                                    alt={entry.props.title}
                                     type={entry.props.type}
                                     image={entry.image}
                                     url={entry.props.url}

@@ -42,6 +42,7 @@ var AuthorCard = React.createClass({
                     <Thumbnail
                         type={this.props.type}
                         image={this.props.image}
+                        alt={this.props.title}
                         displayWidth={40} />
                 </div>
                 <div className='columns'>

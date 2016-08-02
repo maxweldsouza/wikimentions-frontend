@@ -15,10 +15,11 @@ var Book = React.createClass({
                 <a href={'/books/' + this.props.id + '/' + this.props.slug}>
                 <div>
                     <Thumbnail
-                    type={this.props.type}
-                    image={this.props.image}
-                    shadow={true}
-                    displayHeight={200} />
+                        alt={this.props.title}
+                        type={this.props.type}
+                        image={this.props.image}
+                        shadow={true}
+                        displayHeight={200} />
                 </div>
                 <div className='card-title'>
                     {this.props.title} {message}
