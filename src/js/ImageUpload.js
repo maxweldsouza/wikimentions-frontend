@@ -137,7 +137,7 @@ var ImageUpload = React.createClass({
                     {this.props.type === 'person' ? <Cropper
                         ref='cropper'
                         src={this.state.image}
-                        style={{height: 270, width: 270}}
+                        className='react-cropper'
                         // Cropper.js options
                         viewMode={1}
                         aspectRatio={1}
@@ -149,7 +149,7 @@ var ImageUpload = React.createClass({
                     {this.props.type === 'book' ? <Cropper
                         ref='cropper'
                         src={this.state.image}
-                        style={{height: 270, width: 270}}
+                        className='react-cropper'
                         // Cropper.js options
                         autoCropArea={1}
                         viewMode={1}
@@ -159,7 +159,7 @@ var ImageUpload = React.createClass({
                     {this.props.type === 'video' ? <Cropper
                         ref='cropper'
                         src={this.state.image}
-                        style={{height: 270, width: 270}}
+                        className='react-cropper'
                         // Cropper.js options
                         autoCropArea={1}
                         viewMode={1}
