@@ -1,6 +1,6 @@
 .placeholder {
     background: $white;
-    border: solid 1px $medium-gray;
+    border: none;
     color: $medium-gray;
     font-size: 30px;
     text-align: center;
@@ -9,10 +9,7 @@
     width: 100%;
     margin-bottom: 10px;
 
-    &.placeholder-video {
-        line-height: 90px;
-        height: 90px;
-        background: $light-gray;
-        width: 120px;
+    &.bordered {
+        border: solid 1px $medium-gray;
     }
 }

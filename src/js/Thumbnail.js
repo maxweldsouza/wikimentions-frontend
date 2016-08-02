@@ -9,7 +9,8 @@ var Thumbnail = React.createClass({
             type: '',
             alt: '',
             url: '',
-            shadow: false
+            shadow: false,
+            bordered: false
         };
     },
     render () {
@@ -50,7 +51,7 @@ var Thumbnail = React.createClass({
         if (!displayHeight) {
             displayHeight = displayWidth / aspectRatio;
         }
-        var placeholder = <div className='placeholder' style={{lineHeight: displayHeight + 'px'}}>
+        var placeholder = <div className={this.props.bordered ? 'placeholder bordered' : 'placeholder'} style={{lineHeight: displayHeight + 'px'}}>
                 {this.props.type === 'person' ? <span className='ion-image' /> : null}
                 {this.props.type === 'book' ? <span className='ion-ios-book' /> : null}
                 {this.props.type === 'video' ? <span className='ion-play' /> : null}

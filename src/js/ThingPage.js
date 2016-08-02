@@ -272,9 +272,11 @@ var ThingPage = React.createClass({
                                 type={thing.props.type}
                                 image={thing.image}
                                 shadow={true}
+                                bordered={true}
                                 displayHeight={200} /> : <Thumbnail
                                 type={thing.props.type}
                                 image={thing.image}
+                                bordered={true}
                                 displayWidth={200} />}
                             </a> : null}
                             <Modal
