@@ -61,13 +61,37 @@ var ImageUpload = React.createClass({
         var sourceImage = new Image();
 
         sourceImage.onload = function () {
-            // Create a canvas with the desired dimensions
+            // http://stackoverflow.com/questions/17861447/html5-canvas-drawimage-how-to-apply-antialiasing
             var canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
+            var ctx = canvas.getContext('2d');
 
-            // Scale and draw the source image to the canvas
-            canvas.getContext('2d').drawImage(sourceImage, 0, 0, width, height);
+            var steps = Math.ceil(Math.log(sourceImage.width / width) / Math.log(2));
+
+            // set size proportional to image
+            canvas.height = height;
+            canvas.width = width;
+
+            // step 1 - resize to 50%
+            var oc = document.createElement('canvas'),
+                octx = oc.getContext('2d');
+
+            var ocWidth = sourceImage.width;
+            var ocHeight = sourceImage.height;
+            oc.width = ocWidth;
+            oc.height = ocHeight;
+            octx.drawImage(sourceImage, 0, 0, ocWidth, ocHeight);
+
+            // step 2 - resize 50% of step 1
+            for (var i = 1; i < steps; i++) {
+                octx.drawImage(oc, 0, 0, ocWidth, ocHeight,
+                                   0, 0, ocWidth * 0.5, ocHeight * 0.5);
+                ocWidth *= 0.5;
+                ocHeight *= 0.5;
+            }
+
+            // step 3, resize to final size
+            ctx.drawImage(oc, 0, 0, ocWidth, ocHeight,
+                              0, 0, canvas.width, canvas.height);
 
             // Convert the canvas to a data URL in PNG format
             callback(canvas.toDataURL());
