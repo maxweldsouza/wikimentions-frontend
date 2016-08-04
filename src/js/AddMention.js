@@ -32,6 +32,9 @@ var AddMention = React.createClass({
         } else if (!this.state.mentioned) {
             Snackbar({message: 'Mentioned is empty'});
         } else {
+            this.setState({
+                submitting: true
+            });
             requests
             .post('/api/v1/mentions')
             .type('form')
@@ -100,7 +103,7 @@ var AddMention = React.createClass({
                     types={['book', 'video']}/>
                 </span>}
                 <div className='button-group'>
-                    <SubmitButton type='button' className='button primary' submitting={this.state.submitting} onClick={this.onSubmit} title='Add' />
+                    <SubmitButton type='button' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit} title='Add' />
                 </div>
             </Restricted>
         </div>;
