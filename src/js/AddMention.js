@@ -82,28 +82,37 @@ var AddMention = React.createClass({
         return <div className='small-12 columns'>
             <Restricted message={loggedOutMessage}>
                 <h2>Add mention</h2>
-                {this.props.mentioned_by ? null : <span>
-                    Mentioned By (Person)
-                    <Select
-                    name='mentioned_by'
-                    onSelectValue={this.onChangeMentionedBy}
-                    types={['person']}/>
-                </span>}
-                {this.props.mentioned ? null : <span>
-                    Mentioned (Person or Book or Video)
-                    <Select
-                        name='mentioned'
-                        onSelectValue={this.onChangeMentioned}/>
-                </span>}
-                {this.props.mentioned_in ? null : <span>
-                    Mentioned In (Book or Video)
-                    <Select
-                    name='mentioned_in'
-                    onSelectValue={this.onChangeMentionedIn}
-                    types={['book', 'video']}/>
-                </span>}
-                <div className='button-group float-right'>
-                    <SubmitButton type='button' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit} title='Add' />
+                <div className='row'>
+                    <div className='small-12 large-4 large-order-2 columns'>
+                        <div className='callout warning'>
+                            These can only be pages that exist on WikiMentions. You need to <a href='/create'>Create</a> them if they don't.
+                        </div>
+                    </div>
+                    <div className='small-12 large-8 large-order-1 columns'>
+                            {this.props.mentioned_by ? null : <span>
+                                Mentioned By (Person)
+                                <Select
+                                name='mentioned_by'
+                                onSelectValue={this.onChangeMentionedBy}
+                                types={['person']}/>
+                            </span>}
+                            {this.props.mentioned ? null : <span>
+                                Mentioned (Person or Book or Video)
+                                <Select
+                                    name='mentioned'
+                                    onSelectValue={this.onChangeMentioned}/>
+                            </span>}
+                            {this.props.mentioned_in ? null : <span>
+                                Mentioned In (Book or Video)
+                                <Select
+                                name='mentioned_in'
+                                onSelectValue={this.onChangeMentionedIn}
+                                types={['book', 'video']}/>
+                            </span>}
+                            <div className='button-group float-right'>
+                                <SubmitButton type='button' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit} title='Add' />
+                            </div>
+                    </div>
                 </div>
             </Restricted>
         </div>;
