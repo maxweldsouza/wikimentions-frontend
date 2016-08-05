@@ -14,8 +14,26 @@
     background: none;
 }
 
-.navbar-icon {
+.navicon {
     font-size: 20px;
+    padding-left: $global-padding;
+    padding-right: $global-padding;
+    vertical-align: middle;
+    display: inline-block;
+    height: $topbar-height;
+    line-height: $topbar-height;
+}
+
+.site-title {
+    font-weight: bold;
+    font-size: 16px;
+    padding-left: $global-padding;
+    padding-right: $global-padding;
+    vertical-align: middle;
+    display: inline-block;
+    height: $topbar-height;
+    line-height: $topbar-height;
+
 }
 
 .top-bar .top-bar-left, .top-bar .top-bar-right {

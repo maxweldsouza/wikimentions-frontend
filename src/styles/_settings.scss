@@ -78,9 +78,9 @@ $global-text-direction: ltr;
 $breakpoints: (
   small: 0,
   medium: 480px,
-  large: 600px,
-  xlarge: 840px,
-  xxlarge: 960px,
+  large: 768px,
+  xlarge: 960px,
+  xxlarge: 1200px,
 );
 $breakpoint-classes: (small medium large xlarge xxlarge);
 

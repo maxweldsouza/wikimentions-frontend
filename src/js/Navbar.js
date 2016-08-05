@@ -81,21 +81,27 @@ var Navbar = React.createClass({
             </button>
         </div>;
 
-        var navicon = <span style={{paddingLeft: '0.8rem', paddingRight: '0.8rem'}} className='ion-navicon-round navbar-icon' onClick={this.props.toggleSidebar} aria-label='Toggle Sidebar'/>;
-        var searchIcon = <button className='button primary small' aria-label='Open search bar' onClick={this.onOpenSearchBar}><span className='ion-android-search navbar-icon'/></button>;
+        var navicon = <span
+            className='ion-navicon-round navicon hide-for-xxlarge'
+            onClick={this.props.toggleSidebar}
+            aria-label='Toggle Sidebar'/>;
+
+        var searchIcon = <button className='button primary small' aria-label='Open search bar' onClick={this.onOpenSearchBar}><span className='ion-android-search navbar-icon'  style={{fontSize: 17}}/></button>;
         if (loggedin) {
             rhs = <ul className='menu align-right'>
                 <li className='show-for-xlarge'>
                     {SearchBar}
                 </li>
-                <li className='show-for-large'>
+                <li className='show-for-medium'>
                     <a className='navbar-link' href={'/users/' + userid + '/' + username} title='Profile'>
-                        <span className='ion-android-person icon'/>{username}
+                        <span className='ion-android-person icon'/>
+                        <span className='show-for-xxlarge'>{username}</span>
                     </a>
                 </li>
-                <li className='show-for-xlarge'>
+                <li className='show-for-medium'>
                     <a className='navbar-link' onClick={Mentions.logout}>
-                        <span className='ion-log-out icon'/>Logout
+                        <span className='ion-log-out icon'/>
+                        <span className='show-for-xxlarge'>Logout</span>
                     </a>
                 </li>
                 <li className='hide-for-xlarge'>{searchIcon}</li>
@@ -106,14 +112,16 @@ var Navbar = React.createClass({
                 <li className='show-for-xlarge'>
                     {SearchBar}
                 </li>
-                <li className='show-for-xlarge'>
+                <li className='show-for-medium'>
                     <a className='navbar-link' href='/login'>
-                        <span className='ion-log-in icon'/>Login
+                        <span className='ion-log-in icon'/>
+                        <span className='show-for-xxlarge'>Login</span>
                     </a>
                 </li>
-                <li className='show-for-xlarge'>
+                <li className='show-for-medium'>
                     <a className='navbar-link' href='/signup'>
-                        <span className='ion-person-add icon'/>Signup
+                        <span className='ion-android-person-add icon'/>
+                        <span className='show-for-xxlarge'>Signup</span>
                     </a>
                 </li>
             </ul>;
@@ -121,9 +129,9 @@ var Navbar = React.createClass({
         return (
             <div>
                 <nav className='top-bar' role='navigation'>
-                    <div className="top-bar-title">
-                        <span className='hide-for-xxlarge'>{navicon}</span>
-                        <span className='menu-text'><a href='/' style={{fontSize: 16}}>{config.name}</a></span>
+                    <div className="top-bar-title align-center">
+                        {navicon}
+                        <span className='site-title'><a href='/'>{config.name}</a></span>
                     </div>
                     <div className='top-bar-left'>
                         <ul className='menu'>
