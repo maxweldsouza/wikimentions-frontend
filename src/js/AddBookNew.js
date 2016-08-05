@@ -82,7 +82,7 @@ var AddBookNew = React.createClass({
                 <Input type='text' name='title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid} message={this.state.titleMessage}/>
                 Description (Optional)
                 <input type='text' name='description' value={this.state.description} onChange={this.onChangeText} />
-                <SubmitButton title='Create' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </form>
         );
     }

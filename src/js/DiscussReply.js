@@ -74,7 +74,7 @@ var DiscussReply = React.createClass({
                             markdown={this.state.content}
                             />
                     </div> : null}
-                    <SubmitButton title='Submit' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                    <SubmitButton title='Submit' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                     </Restricted>
                 </div>
             </div>

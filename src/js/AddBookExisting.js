@@ -46,7 +46,7 @@ var AddBookExisting = React.createClass({
             <form action={'/api/v1/thing/' + this.props.id + '/books'} method='post'>
                 Search for a book
                 <Select name='book_id' onSelectValue={this.onSelect} types={['book']}/>
-                <SubmitButton title='Add' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </form>
         );
     }

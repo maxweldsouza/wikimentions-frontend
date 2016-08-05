@@ -120,7 +120,7 @@ var EditProfile = React.createClass({
                         <input type='text' name='email' onChange={this.onChangeText} value={this.state.email}/>
                         About <MarkdownHelp />
                         <textarea type='text' name='about' onChange={this.onChangeText} value={this.state.about} rows={6}/>
-                        <SubmitButton title='Save' className='button primary' submitting={this.state.submitting} onSubmit={this.updateProfile}/>
+                        <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.updateProfile}/>
                     </div>
                 </div>
                 <div className='card'>
@@ -132,7 +132,7 @@ var EditProfile = React.createClass({
                         <input type='password' name='new' onChange={this.onChangeText} value={this.state.new}/>
                         Repeat Password
                         <input type='password' name='repeat' onChange={this.onChangeText} value={this.state.repeat}/>
-                        <SubmitButton title='Save' className='button primary' submitting={this.state.submitting} onSubmit={this.changePassword}/>
+                        <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.changePassword}/>
                     </div>
                 </div>
                 <div className='card'>
@@ -143,7 +143,7 @@ var EditProfile = React.createClass({
                         </div>
                         Password
                         <input type='password' name='password' onChange={this.onChangeText} value={this.state.password}/>
-                        <SubmitButton title='Delete Account' className='button primary' submitting={this.state.submitting} onSubmit={this.deleteAccount}/>
+                        <SubmitButton title='Delete Account' className='button alert float-right' submitting={this.state.submitting} onSubmit={this.deleteAccount}/>
                     </div>
                 </div>
             </div>

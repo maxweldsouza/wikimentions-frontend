@@ -102,7 +102,7 @@ var AddMention = React.createClass({
                     onSelectValue={this.onChangeMentionedIn}
                     types={['book', 'video']}/>
                 </span>}
-                <div className='button-group'>
+                <div className='button-group float-right'>
                     <SubmitButton type='button' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit} title='Add' />
                 </div>
             </Restricted>

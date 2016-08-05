@@ -90,7 +90,7 @@ var AddVideoNew = React.createClass({
                 <Input type='text' name='title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid} message={this.state.titleMessage}/>
                 Url
                 <Input type='text' name='url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid} message={this.state.urlMessage} />
-                <SubmitButton title='Create' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </form>
         );
     }

@@ -100,7 +100,7 @@ var MarkdownHelp = React.createClass({
                             </tr>
                         </tbody>
                     </table>
-                    <button className='button' onClick={this.onCloseModal}>Close</button>
+                    <button className='button float-right' onClick={this.onCloseModal}>Close</button>
                 </Modal>
             </span>
         );
