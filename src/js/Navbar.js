@@ -88,27 +88,51 @@ var Navbar = React.createClass({
                 <li className='show-for-xlarge'>
                     {SearchBar}
                 </li>
-                <li className='show-for-large'><a href={'/users/' + userid + '/' + username} title='Profile'>{username}</a></li>
-                <li className='show-for-xlarge'><a onClick={Mentions.logout}>Logout</a></li>
+                <li className='show-for-large'>
+                    <a className='navbar-link' href={'/users/' + userid + '/' + username} title='Profile'>
+                        <span className='ion-android-person icon'/>{username}
+                    </a>
+                </li>
+                <li className='show-for-xlarge'>
+                    <a className='navbar-link' onClick={Mentions.logout}>
+                        <span className='ion-log-out icon'/>Logout
+                    </a>
+                </li>
                 <li className='hide-for-xlarge'>{searchIcon}</li>
             </ul>;
         } else {
             rhs = <ul className='menu align-right'>
                 <li className='hide-for-xlarge'>{searchIcon}</li>
-                <li className='show-for-xlarge'>{SearchBar}</li>
-                <li className='show-for-xlarge'><a href='/login'>Login</a></li>
-                <li className='show-for-xlarge'><a href='/signup'>Signup</a></li>
+                <li className='show-for-xlarge'>
+                    {SearchBar}
+                </li>
+                <li className='show-for-xlarge'>
+                    <a className='navbar-link' href='/login'>
+                        <span className='ion-log-in icon'/>Login
+                    </a>
+                </li>
+                <li className='show-for-xlarge'>
+                    <a className='navbar-link' href='/signup'>
+                        <span className='ion-person-add icon'/>Signup
+                    </a>
+                </li>
             </ul>;
         }
         return (
             <div>
                 <nav className='top-bar' role='navigation'>
+                    <div className="top-bar-title">
+                        <span className='hide-for-xxlarge'>{navicon}</span>
+                        <span className='menu-text'><a href='/' style={{fontSize: 16}}>{config.name}</a></span>
+                    </div>
                     <div className='top-bar-left'>
-                        <ul className='menu icon-top'>
-                            <li className='hide-for-xxlarge'>{navicon}</li>
-                            <li className='menu-text'><a href='/' style={{fontSize: 16}}>{config.name}</a></li>
+                        <ul className='menu'>
+                            <li className='show-for-xxlarge'>
+                                <a className='navbar-link' href='/create'>
+                                    <span className='ion-compose icon'/>Create Page
+                                </a>
+                            </li>
                             <li><Spinner /></li>
-                            <li className='show-for-xxlarge'><a href='/create'>Create Page</a></li>
                         </ul>
                     </div>
                     <div className='top-bar-right'>
