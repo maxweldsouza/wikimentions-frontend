@@ -26,13 +26,20 @@ var Time = React.createClass({
                 result = time.format('DD.MM.YY H:m [GMT]');
             } else {
                 if (this.props.type === 'ago') {
-                    result = time.local().fromNow();
+                    result = time.local().calendar(null, {
+                        sameDay: 'LT',
+                        nextDay: '[Tomorrow]',
+                        nextWeek: 'dddd',
+                        lastDay: '[Yesterday] LT',
+                        lastWeek: 'MMM DD[,] YYYY',
+                        sameElse: 'MMM DD[,] YYYY'
+                    });
                 } else if (this.props.type === 'timestamp') {
                     result = time.local().format(this.props.format);
                 }
             }
             return (
-                <time className='secondary' title={title} dateTime={this.props.timestamp}>{result}</time>
+                <time title={title} dateTime={this.props.timestamp}>{result}</time>
             );
         }
         return null;
