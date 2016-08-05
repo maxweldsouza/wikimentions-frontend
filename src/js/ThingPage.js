@@ -19,6 +19,7 @@ var Restricted = require('./Restricted');
 var Markdown = require('./Markdown');
 var Affiliate = require('./Affiliate');
 var Time = require('./Time');
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 var ThingPage = React.createClass({
     statics: {
@@ -288,7 +289,7 @@ var ThingPage = React.createClass({
                                 onClose={this.onCloseModal}
                                 className='modal-content modal-small'
                                 overlayClassName='modal-overlay'>
-                                {thing.image ? <div className='small-12 columns'>
+                                {thing.image ? <div>
                                     <h1>Image</h1>
                                         {thing.props.type === 'book' ? <Thumbnail
                                         alt={thing.props.title}
@@ -302,11 +303,20 @@ var ThingPage = React.createClass({
                                     <div>
                                         Added: <Time timestamp={thing.image.added} type='ago'/>
                                     </div>
-                                    <strong>Description</strong>
+                                    <div className='row align-middle'>
+                                        <div className='small-6 columns'>
+                                            <strong>Description</strong>
+                                        </div>
+                                        <div className='small-6 columns'>
+                                            <CopyToClipboard text={thing.image.description}>
+                                                <button className='button secondary small float-right' title='Copy Markdown'><span className='ion-clipboard' />{'  Copy markdown'}</button>
+                                            </CopyToClipboard>
+                                        </div>
+                                    </div>
                                     <div className='callout'>
                                         <Markdown markdown={thing.image.description} />
                                     </div>
-                                    <button className='button' onClick={this.onCloseModal}>Close</button>
+                                    <button className='button float-right' onClick={this.onCloseModal}>Close</button>
                                 </div> : null}
                             </Modal>
                             {thing.props.type === 'book' ? <Affiliate title={thing.props.title} isbn={thing.props.isbn}/> : null}
