@@ -8,7 +8,8 @@ var Snackbar = require('./Snackbar');
 var Login = React.createClass({
     getInitialState () {
         return {
-            submitting: false
+            submitting: false,
+            formError: false
         };
     },
     onChangeText (e) {
@@ -33,11 +34,16 @@ var Login = React.createClass({
                 submiting: false
             });
             if (err && err.status) {
-                Snackbar({message: 'Login failed'});
+                this.setState({
+                    formError: true
+                });
             } else {
                 if (this.props.onLogin) {
                     this.props.onLogin();
                 }
+                this.setState({
+                    formError: false
+                });
                 Snackbar({message: 'Logged in'});
                 var path = window.location.pathname + window.location.search;
                 if (this.props.redirect) {
@@ -52,11 +58,15 @@ var Login = React.createClass({
         return (
             <div>
                 <h1>Login</h1>
+                {this.state.formError ? <div className='callout warning'>
+                    <span className='ion-alert' />{'Login failed'}
+                </div> : null}
                 Username
                 <input type='text' name='username' onChange={this.onChangeText}/>
                 Password
                 <input type='password' name='password' onChange={this.onChangeText}/>
                 <SubmitButton title='Login' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.login}/>
+                <div className='float-right'>Don't have an account? <a href='/signup'>Signup</a></div>
             </div>
         );
     }
