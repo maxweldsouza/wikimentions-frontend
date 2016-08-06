@@ -5,16 +5,24 @@ var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var zxcvbn = require('zxcvbn');
+var Input = require('./Input');
 
 var Signup = React.createClass({
     getInitialState () {
         return {
             submitting: false,
             username: '',
+            usernameValid: true,
+            usernameMessage: '',
             password: '',
+            passwordValid: true,
+            passwordMessage: '',
             email: '',
             retypePassword: '',
+            retypePasswordValid: true,
+            retypePasswordMessage: '',
             showPassword: false,
+            formError: false,
             score: 0
         };
     },
@@ -35,36 +43,34 @@ var Signup = React.createClass({
         this.setState(temp);
     },
     signup () {
-        if (this.state.password !== this.state.retypePassword) {
-            Snackbar({message: 'Passwords do not match'});
-            return;
-        }
-        this.setState({
-            submiting: true
-        });
-        requests
-        .post('/api/v1/signup')
-        .type('form')
-        .send({
-            username: this.state.username,
-            password: this.state.password,
-            email: this.state.email,
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
+        if (this.validateForm()) {
             this.setState({
-                submiting: false
+                submiting: true
             });
-            if (err && err.status) {
-                Snackbar({message: err.message ? err.message : 'Something went wrong'});
-            } else {
-                this.closeModal();
-                Snackbar({message: 'Signed up'});
-                var path = window.location.pathname + window.location.search;
-                history.pushState(null, null, path);
-                Mentions.route(path);
-            }
-        });
+            requests
+            .post('/api/v1/signup')
+            .type('form')
+            .send({
+                username: this.state.username,
+                password: this.state.password,
+                email: this.state.email,
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end((err, res) => {
+                this.setState({
+                    submiting: false
+                });
+                if (err && err.status) {
+                    Snackbar({message: err.message ? err.message : 'Something went wrong'});
+                } else {
+                    this.closeModal();
+                    Snackbar({message: 'Signed up'});
+                    var path = window.location.pathname + window.location.search;
+                    history.pushState(null, null, path);
+                    Mentions.route(path);
+                }
+            });
+        }
     },
     showPassword () {
         this.setState({
@@ -76,6 +82,68 @@ var Signup = React.createClass({
             showPassword: false
         });
     },
+    validateForm () {
+        var valid = true;
+        if (!this.state.username) {
+            this.setState({
+                usernameValid: false,
+                usernameMessage: 'Username cannot be empty'
+            });
+            valid = false;
+        } else if (this.state.username.length < 3) {
+            this.setState({
+                usernameValid: false,
+                usernameMessage: 'Username must be atleast 3 characters'
+            });
+            valid = false;
+        } else if (this.state.username.length > 32) {
+            this.setState({
+                usernameValid: false,
+                usernameMessage: 'Username cannot exceed 32 characters'
+            });
+            valid = false;
+        } else {
+            this.setState({
+                usernameValid: true,
+                usernameMessage: ''
+            });
+        }
+        if (this.state.password.length < 8) {
+            this.setState({
+                passwordValid: false,
+                passwordMessage: 'Password must be atleast 8 characters'
+            });
+            valid = false;
+        } else if (this.state.password.length > 160) {
+            this.setState({
+                passwordValid: false,
+                passwordMessage: 'Password cannot exceed 160 characters'
+            });
+            valid = false;
+        } else {
+            this.setState({
+                passwordValid: true,
+                passwordMessage: ''
+            });
+        }
+
+        if (this.state.password !== this.state.retypePassword) {
+            this.setState({
+                retypePasswordValid: false,
+                retypePasswordMessage: 'Passwords do not match'
+            });
+            valid = false;
+        } else {
+            this.setState({
+                retypePasswordValid: true,
+                retypePasswordMessage: ''
+            });
+        }
+        this.setState({
+            formError: !valid
+        });
+        return valid;
+    },
     render () {
         var strength = this.state.score * 100 / 4;
         var meterStyle = {
@@ -86,40 +154,44 @@ var Signup = React.createClass({
             cls = 'progress success';
         } else if (this.state.score === 3) {
             cls = 'progress warning';
-        } else if (this.state.score === 2) {
+        } else if (this.state.score <= 2) {
             cls = 'progress danger';
-        } else if (this.state.score === 1) {
-            cls = 'progress danger';
-        } else if (this.state.score === 0) {
-            cls = 'progress danger';
-        }
-        if (this.state.password.length < 8) {
             meterStyle = {'width': '3%'};
-            cls = 'progress danger';
         }
         return (
             <form action='/api/v1/signup' method='post'>
                 <Xsrf/>
+                {this.state.formError ? <div className='callout warning'>
+                    <span className='ion-alert' />{' Form has errors'}
+                </div> : null}
                 Username
-                <input type='text' name='username' onChange={this.onChangeText} />
+                <Input
+                    type='text'
+                    name='username'
+                    onChange={this.onChangeText}
+                    valid={this.state.usernameValid}
+                    message={this.state.usernameMessage} />
                 E-mail (optional)
                 <input type='text' name='email' />
                 Password
                 {this.state.password.length > 0 && !this.state.showPassword ? <a onClick={this.showPassword} className='secondary float-right'>Show Password</a> : null}
-                {this.state.showPassword ? <a onClick={this.hidePassword} className='secondary float-right'>Hide Password</a> : null}
-                {this.state.showPassword ? <input
+                {this.state.password.length > 0 && this.state.showPassword ? <a onClick={this.hidePassword} className='secondary float-right'>Hide Password</a> : null}
+                {this.state.showPassword ? <Input
                     type='text'
                     name='password'
+                    valid={this.state.passwordValid}
+                    message={this.state.passwordMessage}
                     onChange={this.onChangeText}
-                    value={this.state.password}/> : <input
+                    value={this.state.password}/> : <Input
                     type='password'
                     name='password'
+                    valid={this.state.passwordValid}
+                    message={this.state.passwordMessage}
                     onChange={this.onChangeText}
                     value={this.state.password}/>}
                 {this.state.password.length > 0 ? <div
                     className={cls}
                     role="progressbar"
-                    tabIndex="0"
                     aria-valuenow={strength}
                     aria-valuemin="0"
                     aria-valuemax="100"
@@ -127,7 +199,12 @@ var Signup = React.createClass({
                     <div className="progress-meter" style={meterStyle}></div>
                 </div> : null}
                 Retype Password
-                <input type='password' name='retypePassword' onChange={this.onChangeText}/>
+                <Input
+                    type='password'
+                    name='retypePassword'
+                    onChange={this.onChangeText}
+                    valid={this.state.retypePasswordValid}
+                    message={this.state.retypePasswordMessage}/>
                 <SubmitButton title='Signup' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.signup}/>
             </form>
         );
