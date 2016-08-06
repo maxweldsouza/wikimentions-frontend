@@ -29,6 +29,11 @@ var AddVideoNew = React.createClass({
                 titleMessage: 'Title cannot be empty'
             });
             valid = false;
+        } else {
+            this.setState({
+                titleValid: true,
+                titleMessage: ''
+            });
         }
         if (!this.state.url) {
             this.setState({
@@ -36,6 +41,11 @@ var AddVideoNew = React.createClass({
                 urlMessage: 'Url cannot be empty'
             });
             valid = false;
+        } else {
+            this.setState({
+                urlValid: true,
+                urlMessage: ''
+            });
         }
         return valid;
     },
@@ -56,7 +66,9 @@ var AddVideoNew = React.createClass({
             })
             .end((err, res) => {
                 if (err && err.status) {
-                    Snackbar({message: res.body.message});
+                    this.setState({
+                        formMessage: res.body.message
+                    });
                 } else {
                     requests
                     .post('/api/v1/thing/' + this.props.id + '/videos')
@@ -72,7 +84,9 @@ var AddVideoNew = React.createClass({
                             url: ''
                         });
                         if (err2 && err2.status) {
-                            Snackbar({message: res2.body.message});
+                            this.setState({
+                                formMessage: res2.body.message
+                            });
                         } else {
                             Snackbar({message: 'Video added'});
                             history.pushState(null, null, window.location.pathname + window.location.search);

@@ -12,7 +12,8 @@ var AddVideo = React.createClass({
     getInitialState () {
         return {
             video_id: '',
-            submitting: false
+            submitting: false,
+            formMessage: ''
         };
     },
     onSelect (x) {
@@ -36,7 +37,9 @@ var AddVideo = React.createClass({
                 submitting: false
             });
             if (err && err.status) {
-                Snackbar({message: res.body.message});
+                this.setState({
+                    formMessage: res.body.message
+                });
             } else {
                 Snackbar({message: 'Video added'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
@@ -47,6 +50,9 @@ var AddVideo = React.createClass({
     render () {
         var id = this.props.id;
         return <div>
+            {this.state.formMessage ? <div className='callout warning'>
+                {this.state.formMessage}
+            </div> : null}
             Search for video
             <Select name='video_id' onSelectValue={this.onSelect} types={['video']}/>
             <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>

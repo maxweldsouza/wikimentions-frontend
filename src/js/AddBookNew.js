@@ -28,6 +28,11 @@ var AddBookNew = React.createClass({
                 titleMessage: 'Title cannot be empty'
             });
             valid = false;
+        } else {
+            this.setState({
+                titleValid: true,
+                titleMessage: ''
+            });
         }
         return valid;
     },
@@ -48,7 +53,9 @@ var AddBookNew = React.createClass({
             })
             .end((err, res) => {
                 if (err && err.status) {
-                    Snackbar({message: res.body.message});
+                    this.setState({
+                        formMessage: res.body.message
+                    });
                 } else {
                     requests
                     .post('/api/v1/thing/' + this.props.id + '/books')
@@ -64,7 +71,9 @@ var AddBookNew = React.createClass({
                             description: ''
                         });
                         if (err2 && err2.status) {
-                            Snackbar({message: res2.body.message});
+                            this.setState({
+                                formMessage: res2.body.message
+                            });
                         } else {
                             Snackbar({message: 'Book added'});
                             history.pushState(null, null, window.location.pathname + window.location.search);
@@ -78,6 +87,9 @@ var AddBookNew = React.createClass({
     render () {
         return (
             <form method='post' action={'/api/v1/thing/' + this.props.id + '/books'}>
+                {this.state.formMessage ? <div className='callout warning'>
+                    {this.state.formMessage}
+                </div> : null}
                 Title
                 <Input type='text' name='title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid} message={this.state.titleMessage}/>
                 Description (Optional)

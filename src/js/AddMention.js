@@ -14,10 +14,17 @@ var AddMention = React.createClass({
     getInitialState () {
         return {
             mentioned_by: this.props.mentioned_by,
+            mentionedByValid: true,
+            mentionedByMessage: '',
             mentioned_in: this.props.mentioned_in,
+            mentionedInValid: true,
+            mentionedInMessage: '',
             mentioned: this.props.mentioned,
+            mentionedValid: true,
+            mentionedMessage: '',
             description: '',
             references: '',
+            formMessage: '',
             submiting: false
         };
     },
@@ -26,12 +33,48 @@ var AddMention = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
-    onSubmit () {
+    validateForm () {
+        var valid = true;
         if (!this.state.mentioned_by) {
-            Snackbar({message: 'Mentioned By is empty'});
-        } else if (!this.state.mentioned) {
-            Snackbar({message: 'Mentioned is empty'});
+            this.setState({
+                mentionedByValid: false,
+                mentionedByMessage: 'Mentioned By is empty'
+            });
+            valid = false;
         } else {
+            this.setState({
+                mentionedByValid: true,
+                mentionedByMessage: ''
+            });
+        }
+        if (!this.state.mentioned_in) {
+            this.setState({
+                mentionedInValid: false,
+                mentionedInMessage: 'Mentioned In is empty'
+            });
+            valid = false;
+        } else {
+            this.setState({
+                mentionedInValid: true,
+                mentionedInMessage: ''
+            });
+        }
+        if (!this.state.mentioned) {
+            this.setState({
+                mentionedValid: false,
+                mentionedMessage: 'Mentioned is empty'
+            });
+            valid = false;
+        } else {
+            this.setState({
+                mentionedValid: true,
+                mentionedMessage: ''
+            });
+        }
+        return valid;
+    },
+    onSubmit () {
+        if (this.validateForm()) {
             this.setState({
                 submitting: true
             });
@@ -52,7 +95,9 @@ var AddMention = React.createClass({
                     submiting: false
                 });
                 if (err && err.status) {
-                    Snackbar({message: res.body.message});
+                    this.setState({
+                        formMessage: res.body.message
+                    });
                 } else {
                     Snackbar({message: 'Mention added'});
                     history.pushState(null, null, window.location.pathname + window.location.search);
@@ -82,6 +127,9 @@ var AddMention = React.createClass({
         return <div className='small-12 columns'>
             <Restricted message={loggedOutMessage}>
                 <h2>Add mention</h2>
+                {this.state.formMessage ? <div className='callout warning'>
+                    {this.state.formMessage}
+                </div> : null}
                 <div className='row'>
                     <div className='small-12 large-4 large-order-2 columns'>
                         <div className='callout warning'>
@@ -92,22 +140,28 @@ var AddMention = React.createClass({
                             {this.props.mentioned_by ? null : <span>
                                 Mentioned By (Person)
                                 <Select
-                                name='mentioned_by'
-                                onSelectValue={this.onChangeMentionedBy}
-                                types={['person']}/>
+                                    name='mentioned_by'
+                                    valid={this.state.mentionedByValid}
+                                    message={this.state.mentionedByMessage}
+                                    onSelectValue={this.onChangeMentionedBy}
+                                    types={['person']}/>
                             </span>}
                             {this.props.mentioned ? null : <span>
                                 Mentioned (Person or Book or Video)
                                 <Select
+                                    valid={this.state.mentionedValid}
+                                    message={this.state.mentionedMessage}
                                     name='mentioned'
                                     onSelectValue={this.onChangeMentioned}/>
                             </span>}
                             {this.props.mentioned_in ? null : <span>
                                 Mentioned In (Book or Video)
                                 <Select
-                                name='mentioned_in'
-                                onSelectValue={this.onChangeMentionedIn}
-                                types={['book', 'video']}/>
+                                    valid={this.state.mentionedInValid}
+                                    message={this.state.mentionedInMessage}
+                                    name='mentioned_in'
+                                    onSelectValue={this.onChangeMentionedIn}
+                                    types={['book', 'video']}/>
                             </span>}
                             <div className='button-group float-right'>
                                 <SubmitButton type='button' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit} title='Add' />

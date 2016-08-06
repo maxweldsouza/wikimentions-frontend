@@ -2,12 +2,15 @@ var React = require('react');
 var requests = require('superagent');
 var _ = require('underscore');
 var Thumbnail = require('./Thumbnail');
+var Input = require('./Input');
 
 var Select = React.createClass({
     getDefaultProps () {
         return {
             autocomplete: true,
-            className: ''
+            className: '',
+            valid: true,
+            message: ''
         };
     },
     getInitialState () {
@@ -169,7 +172,7 @@ var Select = React.createClass({
     render () {
         return (
             <div style={{position: 'relative'}} onKeyDown={this.handleKeys}>
-                <input
+                <Input
                     type='text'
                     role='combobox'
                     aria-haspopup={true}
@@ -177,10 +180,12 @@ var Select = React.createClass({
                     style={{width: this.props.width}}
                     className={this.props.className}
                     value={this.state.searchText}
+                    valid={this.props.valid}
+                    message={this.props.message}
                     placeholder={this.props.placeholder}
                     onChange={this.onSearchTextChanged}
                     onKeyDown={this.handleKeys}>
-                </input>
+                </Input>
                 {this.state.searchText.length > 0 ? <span onClick={this.onClear} className='ion-backspace select-clear'/> : null}
                 <input
                     name={this.props.name}
