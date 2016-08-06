@@ -14,6 +14,7 @@ var Signup = React.createClass({
             password: '',
             email: '',
             retypePassword: '',
+            showPassword: false,
             score: 0
         };
     },
@@ -65,6 +66,16 @@ var Signup = React.createClass({
             }
         });
     },
+    showPassword () {
+        this.setState({
+            showPassword: true
+        });
+    },
+    hidePassword () {
+        this.setState({
+            showPassword: false
+        });
+    },
     render () {
         var strength = this.state.score * 100 / 4;
         var meterStyle = {
@@ -80,11 +91,11 @@ var Signup = React.createClass({
         } else if (this.state.score === 1) {
             cls = 'progress danger';
         } else if (this.state.score === 0) {
-            cls = 'progress secondary';
+            cls = 'progress danger';
         }
         if (this.state.password.length < 8) {
-            meterStyle = {'width': '0%'};
-            cls = 'progress secondary';
+            meterStyle = {'width': '3%'};
+            cls = 'progress danger';
         }
         return (
             <form action='/api/v1/signup' method='post'>
@@ -94,8 +105,25 @@ var Signup = React.createClass({
                 E-mail (optional)
                 <input type='text' name='email' />
                 Password
-                <input type='password' name='password' onChange={this.onChangeText}/>
-                {this.state.password.length > 0 ? <div className={cls} role="progressbar" tabIndex="0" aria-valuenow={strength} aria-valuemin="0" aria-valuemax="100" style={{height: 5}}>
+                {this.state.password.length > 0 && !this.state.showPassword ? <a onClick={this.showPassword} className='secondary float-right'>Show Password</a> : null}
+                {this.state.showPassword ? <a onClick={this.hidePassword} className='secondary float-right'>Hide Password</a> : null}
+                {this.state.showPassword ? <input
+                    type='text'
+                    name='password'
+                    onChange={this.onChangeText}
+                    value={this.state.password}/> : <input
+                    type='password'
+                    name='password'
+                    onChange={this.onChangeText}
+                    value={this.state.password}/>}
+                {this.state.password.length > 0 ? <div
+                    className={cls}
+                    role="progressbar"
+                    tabIndex="0"
+                    aria-valuenow={strength}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    style={{height: 5}}>
                     <div className="progress-meter" style={meterStyle}></div>
                 </div> : null}
                 Retype Password
