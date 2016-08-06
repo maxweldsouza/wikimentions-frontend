@@ -88,6 +88,9 @@ var AddVideoNew = React.createClass({
                                 formMessage: res2.body.message
                             });
                         } else {
+                            this.setState({
+                                formMessage: ''
+                            });
                             Snackbar({message: 'Video added'});
                             history.pushState(null, null, window.location.pathname + window.location.search);
                             Mentions.route(window.location.pathname + window.location.search);

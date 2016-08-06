@@ -31,7 +31,8 @@ var HomePage = React.createClass({
             url: '',
             urlValid: true,
             urlMessage: '',
-            submiting: false
+            submiting: false,
+            formMessage: ''
         };
     },
     onChangeType (x) {
@@ -93,8 +94,13 @@ var HomePage = React.createClass({
                     submiting: false
                 });
                 if (err && err.status) {
-                    Snackbar({message: res.body.message});
+                    this.setState({
+                        formMessage: res.body.message
+                    });
                 } else {
+                    this.setState({
+                        formMessage: ''
+                    });
                     Snackbar({message: 'Page created'});
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
@@ -128,6 +134,9 @@ var HomePage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <form action='/api/v1/thing' method='post'>
                             <h1>Create Page</h1>
+                            {this.state.formMessage ? <div className='callout warning'>
+                                {this.state.formMessage}
+                            </div> : null}
                             <Restricted message={loggedOutMessage}>
                                 <div className='row'>
                                     <div className='small-12 columns'>

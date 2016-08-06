@@ -12,7 +12,8 @@ var AddBookNew = React.createClass({
             title: '',
             description: '',
             titleValid: true,
-            titleMessage: ''
+            titleMessage: '',
+            formMessage: ''
         };
     },
     onChangeText (e) {
@@ -75,6 +76,9 @@ var AddBookNew = React.createClass({
                                 formMessage: res2.body.message
                             });
                         } else {
+                            this.setState({
+                                formMessage: ''
+                            });
                             Snackbar({message: 'Book added'});
                             history.pushState(null, null, window.location.pathname + window.location.search);
                             Mentions.route(window.location.pathname + window.location.search);

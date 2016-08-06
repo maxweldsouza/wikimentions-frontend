@@ -10,6 +10,8 @@ var AddBookExisting = React.createClass({
         return {
             book_id: '',
             submitting: false,
+            bookValid: true,
+            bookMessage: '',
             formMessage: ''
         };
     },
@@ -22,9 +24,15 @@ var AddBookExisting = React.createClass({
         var valid = true;
         if (!this.state.book_id) {
             this.setState({
-                formMessage: 'No book selected'
+                bookValid: false,
+                bookMessage: 'No book selected'
             });
             valid = false;
+        } else {
+            this.setState({
+                bookValid: true,
+                bookMessage: ''
+            });
         }
         return valid;
     },
@@ -49,6 +57,9 @@ var AddBookExisting = React.createClass({
                         formMessage: res.body.message
                     });
                 } else {
+                    this.setState({
+                        formMessage: ''
+                    });
                     Snackbar({message: 'Book added'});
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
@@ -63,7 +74,13 @@ var AddBookExisting = React.createClass({
                     {this.state.formMessage}
                 </div> : null}
                 Search for a book
-                <Select name='book_id' onSelectValue={this.onSelect} types={['book']} placeholder='Book Title'/>
+                <Select
+                    name='book_id'
+                    onSelectValue={this.onSelect}
+                    types={['book']}
+                    valid={this.state.bookValid}
+                    message={this.state.bookMessage}
+                    placeholder='Book Title'/>
                 <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </form>
         );

@@ -5,6 +5,7 @@ var Link = require('./Link');
 var requests = require('superagent');
 var cookies = require('browser-cookies');
 var Snackbar = require('./Snackbar');
+var SubmitButton = require('./SubmitButton');
 
 var AuthorCard = React.createClass({
     removeAuthor (id) {
@@ -55,7 +56,7 @@ var AuthorCard = React.createClass({
                     </div>
                 </div>
                 <div className='shrink columns'>
-                    <a className='button secondary small' onClick={this.removeAuthor.bind(null, this.props.id)} role='button'>Remove</a>
+                    <SubmitButton title='Remove' className='button secondary small' submitting={this.state.submitting} onSubmit={this.removeAuthor.bind(null, this.props.id)}/>
                 </div>
             </div>
         );

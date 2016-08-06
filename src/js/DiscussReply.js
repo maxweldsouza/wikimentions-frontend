@@ -13,7 +13,8 @@ var DiscussReply = React.createClass({
     getInitialState () {
         return {
             content: '',
-            submitting: false
+            submitting: false,
+            formMessage: ''
         };
     },
     onChangeText (e) {
@@ -21,19 +22,11 @@ var DiscussReply = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
-    validateForm () {
-        var message;
-        if (!this.state.content) {
-            message = 'Your post is empty';
-        }
-        if (message) {
-            Snackbar({message: message});
-            return false;
-        }
-        return true;
-    },
     onSubmit () {
-        if (!this.validateForm()) {
+        if (!this.state.content) {
+            this.setState({
+                formMessage: 'Post is empty'
+            });
             return;
         }
         this.setState({
@@ -52,8 +45,13 @@ var DiscussReply = React.createClass({
                 content: ''
             });
             if (err && err.status) {
-                Snackbar({message: res.body.message});
+                this.setState({
+                    formMessage: res.body.message
+                });
             } else {
+                this.setState({
+                    formMessage: ''
+                });
                 Snackbar({message: 'Posted'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
@@ -66,14 +64,22 @@ var DiscussReply = React.createClass({
             <div className='card'>
                 <div className='small-12 columns'>
                 <Restricted message={loggedOutMessage}>
-                    Post <MarkdownHelp />
-                    <textarea type='text' name='content' placeholder='Write your post  here (Markdown is supported)' value={this.state.content} onChange={this.onChangeText} rows='5'></textarea>
-                    {this.state.content.length > 0 ? <div>
-                        <strong>Preview</strong>
-                        <Markdown
-                            markdown={this.state.content}
-                            />
+                    {this.state.formMessage ? <div className='callout warning'>
+                        {this.state.formMessage}
                     </div> : null}
+                    <div className='row'>
+                        <div className={this.state.content.length > 0 ? 'small-12 large-6 columns' : 'small-12 columns'}>
+                            Post <MarkdownHelp />
+                            <textarea type='text' name='content' placeholder='Write your post  here (Markdown is supported)' value={this.state.content} onChange={this.onChangeText} rows='5'></textarea>
+                        </div>
+                        {this.state.content.length > 0 ? <div className='small-12 large-6 columns'>
+                            <strong>Preview</strong>
+                            <Markdown
+                                className='callout'
+                                markdown={this.state.content}
+                                />
+                        </div> : null}
+                    </div>
                     <SubmitButton title='Submit' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                     </Restricted>
                 </div>

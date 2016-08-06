@@ -13,6 +13,8 @@ var AddVideo = React.createClass({
         return {
             video_id: '',
             submitting: false,
+            videoValid: true,
+            videoMessage: '',
             formMessage: ''
         };
     },
@@ -20,6 +22,22 @@ var AddVideo = React.createClass({
         this.setState({
             video_id: x.id
         });
+    },
+    validateForm () {
+        var valid = true;
+        if (!this.state.video_id) {
+            this.setState({
+                videoValid: false,
+                videoMessage: 'No video selected'
+            });
+            valid = false;
+        } else {
+            this.setState({
+                videoValid: true,
+                videoMessage: ''
+            });
+        }
+        return valid;
     },
     onSubmit () {
         this.setState({
@@ -41,6 +59,9 @@ var AddVideo = React.createClass({
                     formMessage: res.body.message
                 });
             } else {
+                this.setState({
+                    formMessage: ''
+                });
                 Snackbar({message: 'Video added'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);

@@ -13,7 +13,10 @@ var AddAuthors = React.createClass({
         return {
             opened: false,
             author: '',
-            submiting: false
+            submiting: false,
+            authorValid: true,
+            authorMessage: '',
+            formMessage: ''
         };
     },
     onOpen (e) {
@@ -32,10 +35,24 @@ var AddAuthors = React.createClass({
             author: x.id
         });
     },
-    onSubmit () {
+    validateForm () {
+        var valid = true;
         if (!this.state.author) {
-            Snackbar({message: 'You need to add an author'});
+            this.setState({
+                authorValid: false,
+                authorMessage: 'Mentioned By is empty'
+            });
+            valid = false;
         } else {
+            this.setState({
+                authorValid: true,
+                authorMessage: ''
+            });
+        }
+        return valid;
+    },
+    onSubmit () {
+        if (this.validateForm()) {
             var type;
             if (this.props.type === 'book') {
                 type = '/booksby';
@@ -55,8 +72,13 @@ var AddAuthors = React.createClass({
                     submiting: false
                 });
                 if (err && err.status) {
-                    Snackbar({message: res.body.message});
+                    this.setState({
+                        formMessage: res.body.message
+                    });
                 } else {
+                    this.setState({
+                        formMessage: ''
+                    });
                     Snackbar({message: 'Added author'});
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
@@ -76,6 +98,9 @@ var AddAuthors = React.createClass({
                     leave={{animation: 'fadeOut'}}>
                 {this.state.opened ? <div className='small-12 columns'>
                         <div className='card-container'>
+                            {this.state.formMessage ? <div className='callout warning'>
+                                {this.state.formMessage}
+                            </div> : null}
                             {this.props.authors.map((x) => {
                                 return <AuthorCard key={x.id} id={x.id} slug={x.props.slug} title={x.props.title} type={x.props.type} description={x.props.description} image={x.image} sourceType={this.props.type} sourceId={this.props.id}/>;
                             })}
@@ -84,6 +109,8 @@ var AddAuthors = React.createClass({
                                     <Select name='author'
                                         placeholder='Author'
                                         onSelectValue={this.onChangeAuthor}
+                                        valid={this.state.authorValid}
+                                        message={this.state.authorMessage}
                                         types={['person']}/>
                                     <div className='button-group small'>
                                         <SubmitButton title='Add Author' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit}/>

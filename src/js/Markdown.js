@@ -6,6 +6,11 @@ var md = new Remarkable({
 var nofollow = require('./nofollow');
 
 var Markdown = React.createClass({
+    getDefaultProps () {
+        return {
+            className: ''
+        };
+    },
     propTypes: {
         markdown: React.PropTypes.string.isRequired
     },
@@ -15,7 +20,7 @@ var Markdown = React.createClass({
         var obj = {
             __html: nofollow(md.render(this.props.markdown))
         };
-        return <div dangerouslySetInnerHTML={obj} />;// eslint-disable-line react/no-danger
+        return <div className={this.props.className} dangerouslySetInnerHTML={obj} />;// eslint-disable-line react/no-danger
     }
 });
 
