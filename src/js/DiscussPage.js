@@ -66,7 +66,7 @@ var DiscussPage = React.createClass({
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
-                    <div className='small-12 large-10 columns'>
+                    <div className='small-12 large-8 columns'>
                         <h1>{'Discussion - ' + this.props.data.discuss.props.title}</h1>
                         <PageBar
                             id={id}
