@@ -79,7 +79,7 @@ var HistoryPage = React.createClass({
                                         deleted={x.deleted}
                                         />;
                                 })}
-                                <PreviousNext path={this.props.path} page={this.props.query.page}/>
+                                <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,6 @@
 var React = require('react');
 var Book = require('./Book');
 var AddBook = require('./AddBook');
-var PreviousNext = require('./PreviousNext');
 var Pagination = require('./Pagination');
 
 var ThingBookTab = React.createClass({

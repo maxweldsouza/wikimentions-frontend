@@ -73,7 +73,7 @@ var ProfilePage = React.createClass({
                         deleted={x.deleted}
                         />;
                 })}
-                <PreviousNext path={this.props.path} page={this.props.query.page}/>
+                <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
             </div>;
         } else if (selectedTab === 'profile') {
             tabContent = self ? <EditProfile id={id}/> : null;

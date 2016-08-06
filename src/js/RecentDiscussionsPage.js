@@ -73,7 +73,7 @@ var RecentDiscussions = React.createClass({
                                         </div>
                                     </div>;
                                 })}
-                                <PreviousNext path={this.props.path} page={this.props.query.page}/>
+                                <PreviousNext path={this.props.path} page={this.props.query.page} count={this.props.data.discuss.length}/>
                             </div>
                         </div>
                     </div>
