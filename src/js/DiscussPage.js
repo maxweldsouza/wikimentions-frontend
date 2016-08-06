@@ -90,7 +90,7 @@ var DiscussPage = React.createClass({
                                     </VelocityTransitionGroup>;
                                 })}
                                 {nodata}
-                                <PreviousNext path={this.props.path} page={this.props.query.page}/>
+                                <PreviousNext path={this.props.path} page={this.props.query.page} count={discussions.length}/>
                                 <DiscussReply id={id}/>
                             </div>
                         </div>
