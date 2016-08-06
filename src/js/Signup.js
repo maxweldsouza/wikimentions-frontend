@@ -156,7 +156,7 @@ var Signup = React.createClass({
             <form action='/api/v1/signup' method='post'>
                 <Xsrf/>
                 {this.state.formError ? <div className='callout warning'>
-                    <span className='ion-alert' />{' Form has errors'}
+                    Form has errors
                 </div> : null}
                 Username
                 <Input

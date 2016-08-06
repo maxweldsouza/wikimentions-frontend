@@ -4,16 +4,21 @@
 
 .callout.primary {
     border: solid 1px lighten($primary-color, 20%);
+    color: darken($primary-color, 30%);
 }
 .callout.secondary {
     border: solid 1px lighten($secondary-color, 20%);
+    color: darken($secondary-color, 30%);
 }
 .callout.success {
     border: solid 1px lighten($success-color, 20%);
+    color: darken($success-color, 30%);
 }
 .callout.warning {
     border: solid 1px lighten($warning-color, 20%);
+    color: darken($warning-color, 30%);
 }
 .callout.alert {
     border: solid 1px lighten($alert-color, 20%);
+    color: darken($alert-color, 30%);
 }
