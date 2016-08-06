@@ -84,13 +84,7 @@ var Signup = React.createClass({
     },
     validateForm () {
         var valid = true;
-        if (!this.state.username) {
-            this.setState({
-                usernameValid: false,
-                usernameMessage: 'Username cannot be empty'
-            });
-            valid = false;
-        } else if (this.state.username.length < 3) {
+        if (this.state.username.length < 3) {
             this.setState({
                 usernameValid: false,
                 usernameMessage: 'Username must be atleast 3 characters'
@@ -206,6 +200,7 @@ var Signup = React.createClass({
                     valid={this.state.retypePasswordValid}
                     message={this.state.retypePasswordMessage}/>
                 <SubmitButton title='Signup' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.signup}/>
+                <div className='float-right'>Already have an account? <a href='/login'>Login</a></div>
             </form>
         );
     }
