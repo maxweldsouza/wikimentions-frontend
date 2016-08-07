@@ -8,7 +8,7 @@ var HistoryItem = require('./HistoryItem');
 var Time = require('./Time');
 var requests = require('superagent');
 var Restricted = require('./Restricted');
-var EditProfile = require('./EditProfile');
+var Profile = require('./Profile');
 var S = require('string');
 var PreviousNext = require('./PreviousNext');
 var TextWidget = require('./TextWidget');
@@ -76,7 +76,7 @@ var ProfilePage = React.createClass({
                 <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
             </div>;
         } else if (selectedTab === 'profile') {
-            tabContent = self ? <EditProfile id={id}/> : null;
+            tabContent = self ? <Profile id={id}/> : null;
         }
         return (
             <span>
@@ -96,7 +96,7 @@ var ProfilePage = React.createClass({
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
-                    <div className='small-12 xlarge-8 columns'>
+                    <div className='small-12 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1>{user.name}</h1>
