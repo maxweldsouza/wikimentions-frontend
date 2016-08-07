@@ -9,7 +9,7 @@ var EditProfile = React.createClass({
             submitting: false,
             email: '',
             about: '',
-
+            formMessage: ''
         };
     },
     componentDidMount () {
@@ -44,7 +44,9 @@ var EditProfile = React.createClass({
                 submiting: false
             });
             if (err && err.status) {
-                Snackbar({message: res.body.message});
+                this.setState({
+                    formMessage: res.body.message
+                });
             } else {
                 Snackbar({message: 'Profile updated'});
             }
@@ -56,6 +58,9 @@ var EditProfile = React.createClass({
                 <div className='row'>
                     <div className='large-8 columns'>
                         <h2>Profile</h2>
+                        {this.state.formMessage ? <div className='callout warning'>
+                            {this.state.formMessage}
+                        </div> : null}
                         Email
                         <input type='text' name='email' onChange={this.onChangeText} value={this.state.email}/>
                         About <MarkdownHelp />
