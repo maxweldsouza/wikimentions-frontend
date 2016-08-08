@@ -100,15 +100,31 @@ var ProfilePage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1>{user.name}</h1>
-                                <div className='row'>
-                                    <TextWidget label={'Joined'} value={<Time timestamp={user.joined} format='D/M/YY' type='timestamp'/>} />
-                                    <TextWidget label={'Level'} value={user.level} />
-                                    <div className='small-12 columns'>
-                                        <div className='callout'>
-                                            <h2>About</h2>
-                                            <Markdown
-                                                markdown={user.about}
-                                                />
+                                <div className='callout'>
+                                    <div className='row'>
+                                        <div className='small-12 medium-9 columns'>
+                                            <div className='row'>
+                                                <div className='small-4 columns'>
+                                                    Joined
+                                                </div>
+                                                <div className='small-8 columns'>
+                                                    <Time timestamp={user.joined} format='D/M/YY' type='timestamp'/>
+                                                </div>
+                                                <div className='small-4 columns'>
+                                                    Level
+                                                </div>
+                                                <div className='small-8 columns'>
+                                                    {user.level}
+                                                </div>
+                                                <div className='small-4 columns'>
+                                                    About
+                                                </div>
+                                                <div className='small-8 columns'>
+                                                    <Markdown
+                                                        markdown={user.about}
+                                                        />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
