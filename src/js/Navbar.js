@@ -94,13 +94,13 @@ var Navbar = React.createClass({
                 </li>
                 <li className='show-for-medium'>
                     <a className='navbar-link' href={'/users/' + userid + '/' + username} title='Profile'>
-                        <span className='ion-android-person icon'/>
+                        <span className='ion-android-person icon' title='Profile'/>
                         <span className='show-for-xxlarge'>{username}</span>
                     </a>
                 </li>
                 <li className='show-for-medium'>
                     <a className='navbar-link' onClick={Mentions.logout}>
-                        <span className='ion-log-out icon'/>
+                        <span className='ion-log-out icon' title='Logout'/>
                         <span className='show-for-xxlarge'>Logout</span>
                     </a>
                 </li>
@@ -114,13 +114,13 @@ var Navbar = React.createClass({
                 </li>
                 <li className='show-for-medium'>
                     <a className='navbar-link' href='/login'>
-                        <span className='ion-log-in icon'/>
+                        <span className='ion-log-in icon' title='Login'/>
                         <span className='show-for-xxlarge'>Login</span>
                     </a>
                 </li>
                 <li className='show-for-medium'>
                     <a className='navbar-link' href='/signup'>
-                        <span className='ion-android-person-add icon'/>
+                        <span className='ion-android-person-add icon' title='Signup'/>
                         <span className='show-for-xxlarge'>Signup</span>
                     </a>
                 </li>
