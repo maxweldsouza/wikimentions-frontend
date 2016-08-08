@@ -120,8 +120,8 @@ var Navbar = React.createClass({
                 </li>
                 <li className='show-for-medium'>
                     <a className='navbar-link' href='/signup'>
-                        <span className='ion-android-person-add icon' title='Signup'/>
-                        <span className='show-for-xxlarge'>Signup</span>
+                        <span className='ion-android-person-add icon' title='Sign Up'/>
+                        <span className='show-for-xxlarge'>Sign Up</span>
                     </a>
                 </li>
             </ul>;

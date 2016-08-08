@@ -21,14 +21,14 @@ var SignupModal = React.createClass({
     render () {
         return (
             <span>
-                <a onClick={this.onOpenModal}>Sign up</a>
+                <a onClick={this.onOpenModal}>Sign Up</a>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onClose={this.closeModal}
                     className='modal-content modal-small'
                     overlayClassName='modal-overlay'>
                     <div className='small-12 columns'>
-                        <h1>Sign up</h1>
+                        <h1>Sign Up</h1>
                         <Signup />
                     </div>
                 </Modal>
