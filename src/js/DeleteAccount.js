@@ -2,6 +2,7 @@ var React = require('react');
 var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
+var cookies = require('browser-cookies');
 
 var DeleteAccount = React.createClass({
     getInitialState: function() {

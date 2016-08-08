@@ -2,6 +2,9 @@ var React = require('react');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var MarkdownHelp = require('./MarkdownHelp');
+var Markdown = require('./Markdown');
+var cookies = require('browser-cookies');
+var Snackbar = require('./Snackbar');
 
 var EditProfile = React.createClass({
     getInitialState () {
@@ -9,6 +12,7 @@ var EditProfile = React.createClass({
             submitting: false,
             email: '',
             about: '',
+            preview: false,
             formMessage: ''
         };
     },
@@ -25,6 +29,9 @@ var EditProfile = React.createClass({
     onChangeText (e) {
         var temp = {};
         temp[e.target.name] = e.target.value;
+        if (e.target.name === 'about') {
+            temp.preview = true;
+        }
         this.setState(temp);
     },
     updateProfile () {
@@ -65,6 +72,13 @@ var EditProfile = React.createClass({
                         <input type='text' name='email' onChange={this.onChangeText} value={this.state.email}/>
                         About <MarkdownHelp />
                         <textarea type='text' name='about' onChange={this.onChangeText} value={this.state.about} rows={6}/>
+                        {this.state.preview ? <div>
+                            <strong>Preview</strong>
+                            <Markdown
+                                className='callout'
+                                markdown={this.state.about}
+                                />
+                        </div> : null}
                         <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.updateProfile}/>
                     </div>
                 </div>
