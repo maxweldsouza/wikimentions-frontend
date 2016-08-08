@@ -1,4 +1,9 @@
 // Sticky footer
+
+div {
+    word-break: break-word;
+}
+
 .main-component {
     display: flex;
     flex-direction: column;
@@ -18,6 +23,10 @@
         padding: 2 * $global-padding;
         border: $global-border;
         border-radius: $global-radius;
+        @include breakpoint (xlarge down) {
+            margin-top: -1px;
+            margin-bottom: -1px;
+        }
     }
 }
 
