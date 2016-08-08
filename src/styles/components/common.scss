@@ -115,4 +115,7 @@ a.secondary {
 
 time {
     color: hsla(0, 0%, 45%, 1);
+    &:hover {
+        cursor: pointer;
+    }
 }

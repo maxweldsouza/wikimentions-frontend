@@ -46,6 +46,7 @@
     "gulp-sourcemaps": "~1.6.0",
     "gulp-uglify": "^1.4.2",
     "gulp-uncache": "^0.4.0-beta1",
+    "hint.css": "^2.3.2",
     "jquery": "^3.0.0",
     "jquery-easing": "0.0.1",
     "localStorage": "^1.0.3",

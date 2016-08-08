@@ -93,14 +93,14 @@ var Navbar = React.createClass({
                     {SearchBar}
                 </li>
                 <li className='show-for-medium'>
-                    <a className='navbar-link' href={'/users/' + userid + '/' + username} title='Profile'>
-                        <span className='ion-android-person icon' title='Profile'/>
+                    <a className='navbar-link hint--bottom hint--rounded hint--no-animate' href={'/users/' + userid + '/' + username} aria-label='Profile'>
+                        <span className='ion-android-person icon'/>
                         <span className='show-for-xxlarge'>{username}</span>
                     </a>
                 </li>
                 <li className='show-for-medium'>
-                    <a className='navbar-link' onClick={Mentions.logout}>
-                        <span className='ion-log-out icon' title='Logout'/>
+                    <a className='navbar-link hint--bottom hint--rounded hint--no-animate' onClick={Mentions.logout} aria-label='Logout'>
+                        <span className='ion-log-out icon'/>
                         <span className='show-for-xxlarge'>Logout</span>
                     </a>
                 </li>
@@ -113,14 +113,14 @@ var Navbar = React.createClass({
                     {SearchBar}
                 </li>
                 <li className='show-for-medium'>
-                    <a className='navbar-link' href='/login'>
-                        <span className='ion-log-in icon' title='Login'/>
+                    <a className='navbar-link hint--bottom hint--rounded hint--no-animate' href='/login' aria-label='Login'>
+                        <span className='ion-log-in icon'/>
                         <span className='show-for-xxlarge'>Login</span>
                     </a>
                 </li>
                 <li className='show-for-medium'>
-                    <a className='navbar-link' href='/signup'>
-                        <span className='ion-android-person-add icon' title='Sign Up'/>
+                    <a className='navbar-link hint--bottom hint--rounded hint--no-animate' href='/signup' aria-label='Sign Up'>
+                        <span className='ion-android-person-add icon'/>
                         <span className='show-for-xxlarge'>Sign Up</span>
                     </a>
                 </li>

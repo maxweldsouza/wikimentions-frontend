@@ -22,6 +22,9 @@
     display: inline-block;
     height: $topbar-height;
     line-height: $topbar-height;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .site-title {

@@ -29,7 +29,7 @@ var MarkdownHelp = React.createClass({
         ];
         return (
             <span>
-                <a onClick={this.onOpenModal} className='secondary' title='Markdown help'><span className='ion-help-circled'/></a>
+                <a onClick={this.onOpenModal} className='secondary hint--right hint--rounded hint--no-animate' aria-label='Markdown help'><span className='ion-help-circled'/></a>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onClose={this.onCloseModal}

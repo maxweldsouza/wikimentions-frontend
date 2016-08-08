@@ -309,7 +309,7 @@ var ThingPage = React.createClass({
                                         </div>
                                         <div className='small-6 columns'>
                                             <CopyToClipboard text={thing.image.description}>
-                                                <button className='button secondary small float-right' title='Copy Markdown'><span className='ion-clipboard' />{'  Copy markdown'}</button>
+                                                <button className='button secondary small float-right hint--bottom-left hint--rounded hint--no-animate' aria-label='Copy description as markdown'><span className='ion-clipboard' />{'  Copy markdown'}</button>
                                             </CopyToClipboard>
                                         </div>
                                     </div>

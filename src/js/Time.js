@@ -39,7 +39,7 @@ var Time = React.createClass({
                 }
             }
             return (
-                <time title={title} dateTime={this.props.timestamp}>{result}</time>
+                <time className='hint--bottom hint--rounded hint--no-animate' aria-label={title} dateTime={this.props.timestamp}>{result}</time>
             );
         }
         return null;
