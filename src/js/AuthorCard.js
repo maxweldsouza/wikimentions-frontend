@@ -8,6 +8,11 @@ var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 
 var AuthorCard = React.createClass({
+    getInitialState () {
+        return {
+            submitting: false
+        };
+    },
     removeAuthor (id) {
         var type;
         if (this.props.sourceType === 'book') {
