@@ -118,14 +118,17 @@ var HistoryCard = React.createClass({
             </span>;
         }
         return (
-            <div className='card'>
-                <span className='small-8 columns'>
-                    <strong><a href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a></strong>
-                </span>
-                <span className='small-4 columns text-right'><Time timestamp={this.props.timestamp} type='ago'/></span>
-                <span className='small-12 columns'>
-                    {item}
-                </span>
+            <div className='small-12 columns'>
+                <div className='row'>
+                    <span className='small-8 columns'>
+                        <strong><a href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a></strong>
+                    </span>
+                    <span className='small-4 columns text-right'><Time timestamp={this.props.timestamp} type='ago'/></span>
+                    <span className='small-12 columns'>
+                        {item}
+                    </span>
+                </div>
+                <hr/>
             </div>
         );
     }

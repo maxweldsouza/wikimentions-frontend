@@ -58,28 +58,31 @@ var HistoryPage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
-                    <div className='small-12 large-8 columns'>
+                <div className='row page-body white'>
+                    <div>
                         <h1>{'History - ' + this.props.data.thing.props.title}</h1>
                         <PageBar
                             id={id}
                             slug={slug}
                             type={type}
                             />
-                        <div className='small-12 columns'>
-                            <div className="card-container">
-                                {nodata}
-                                {history.map((x) => {
-                                    return <HistoryItem
-                                        user={x.user}
-                                        username={x.username}
-                                        entry={x.entry}
-                                        entrytype={x.entrytype}
-                                        timestamp={x.timestamp}
-                                        deleted={x.deleted}
-                                        />;
-                                })}
-                                <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
+                        <div className='row'>
+                            <div className='small-12 large-9 columns'>
+                                <hr/>
+                                <div className='row'>
+                                    {nodata}
+                                    {history.map((x) => {
+                                        return <HistoryItem
+                                            user={x.user}
+                                            username={x.username}
+                                            entry={x.entry}
+                                            entrytype={x.entrytype}
+                                            timestamp={x.timestamp}
+                                            deleted={x.deleted}
+                                            />;
+                                    })}
+                                    <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
+                                </div>
                             </div>
                         </div>
                     </div>
