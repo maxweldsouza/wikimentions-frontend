@@ -4,8 +4,13 @@
     white-space: nowrap;
 }
 
+.tabs.vertical {
+    height: 100%;
+    border-right: $global-border;
+}
+
 .tabs-panel {
-    padding-top: 0;
+    padding: 0;
 }
 
 .tabs-title {
@@ -16,11 +21,15 @@
 .tabs-title > a {
     border: 0;
     font-size: 14px;
-    margin-right: 40px;
-    padding-bottom: 13px;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 11px;
+    color: $secondary-color;
+    
+    &:focus, &:hover {
+        background: $light-gray;
+    }
+}
+
+.vertical .tabs-title > a {
+    border-bottom: $global-border;
 }
 
 .tabs-title.is-active > a {
@@ -28,10 +37,12 @@
 }
 
 .tabs-title > a:hover {
-    background: transparent;
 }
 
 .tabs-content {
-    background: transparent;
     border: 0;
+}
+
+.tabs-content.vertical {
+    padding-top: $global-padding;
 }

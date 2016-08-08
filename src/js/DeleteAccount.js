@@ -46,14 +46,16 @@ var DeleteAccount = React.createClass({
     render () {
         return (
             <div className='tabs-panel is-active' role='tabpanel'>
-                <div className='large-8 columns'>
-                    <h2>Delete Account</h2>
-                    <div className='callout warning'>
-                        If you delete your account all your account information will be deleted. Any edits/contributions will NOT be deleted. This cannot be undone.
+                <div className='row'>
+                    <div className='large-8 columns'>
+                        <h2>Delete Account</h2>
+                        <div className='callout warning'>
+                            If you delete your account all your account information will be deleted. Any edits/contributions will NOT be deleted. This cannot be undone.
+                        </div>
+                        Password
+                        <input type='password' name='password' onChange={this.onChangeText} value={this.state.password}/>
+                        <SubmitButton title='Delete Account' className='button alert float-right' submitting={this.state.submitting} onSubmit={this.deleteAccount}/>
                     </div>
-                    Password
-                    <input type='password' name='password' onChange={this.onChangeText} value={this.state.password}/>
-                    <SubmitButton title='Delete Account' className='button alert float-right' submitting={this.state.submitting} onSubmit={this.deleteAccount}/>
                 </div>
             </div>
         );

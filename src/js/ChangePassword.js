@@ -47,15 +47,17 @@ var ChangePassword = React.createClass({
     render () {
         return (
             <div className='tabs-panel is-active' role='tabpanel'>
-                <div className='large-8 columns'>
-                    <h2>Change Password</h2>
-                    Old Password
-                    <input type='password' name='old' onChange={this.onChangeText} value={this.state.old}/>
-                    New Password
-                    <input type='password' name='new' onChange={this.onChangeText} value={this.state.new}/>
-                    Repeat Password
-                    <input type='password' name='repeat' onChange={this.onChangeText} value={this.state.repeat}/>
-                    <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.changePassword}/>
+                <div className='row'>
+                    <div className='large-8 columns'>
+                        <h2>Change Password</h2>
+                        Old Password
+                        <input type='password' name='old' onChange={this.onChangeText} value={this.state.old}/>
+                        New Password
+                        <input type='password' name='new' onChange={this.onChangeText} value={this.state.new}/>
+                        Repeat Password
+                        <input type='password' name='repeat' onChange={this.onChangeText} value={this.state.repeat}/>
+                        <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.changePassword}/>
+                    </div>
                 </div>
             </div>
         );
