@@ -41,10 +41,10 @@ var DiscussPage = React.createClass({
         var discussions = this.props.data.discuss.discussion;
         var nodata;
         if (discussions.length === 0) {
-            nodata = <div className='card'>
-                    <div className='small-12 columns'>
+            nodata = <div className='small-12 columns'>
+                <div className='callout warning'>
                     There are no discussions here. You can start one !
-                    </div>
+                </div>
             </div>;
         }
         return (
@@ -65,33 +65,34 @@ var DiscussPage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
-                    <div className='small-12 large-8 columns'>
+                <div className='row page-body white'>
+                    <div>
                         <h1>{'Discussion - ' + this.props.data.discuss.props.title}</h1>
                         <PageBar
                             id={id}
                             slug={slug}
                             type={type}
                             />
-                        <div className='small-12 columns'>
-                            <div className='card-container'>
-                                {discussions.map((x) => {
-                                    return <VelocityTransitionGroup
-                                        enter={{animation: {opacity: '1', easing: 'easeIn', duration: 400, display: 'flex'}}}
-                                        leave={{animation: {opacity: '0', easing: 'easeOut', duration: 400, display: 'flex'}}}>
-                                    <Comment
-                                        id={x.id}
-                                        key={x.id}
-                                        user={x.user}
-                                        name={x.username}
-                                        text={x.content}
-                                        posted={x.created}
-                                        />
-                                    </VelocityTransitionGroup>;
-                                })}
-                                {nodata}
-                                <PreviousNext path={this.props.path} page={this.props.query.page} count={discussions.length}/>
-                                <DiscussReply id={id}/>
+                        <div className='row'>
+                            <div className='small-12 large-9 columns'>
+                                <hr/>
+                                <div className='row'>
+                                    {discussions.map((x) => {
+                                        return <Comment
+                                                id={x.id}
+                                                key={x.id}
+                                                user={x.user}
+                                                name={x.username}
+                                                text={x.content}
+                                                posted={x.created}
+                                                />;
+                                    })}
+                                    {nodata}
+                                    <div className='small-12 columns'>
+                                        <PreviousNext path={this.props.path} page={this.props.query.page} count={discussions.length}/>
+                                    </div>
+                                    <DiscussReply id={id}/>
+                                </div>
                             </div>
                         </div>
                     </div>

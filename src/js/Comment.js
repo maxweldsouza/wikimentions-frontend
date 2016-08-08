@@ -8,16 +8,19 @@ var Time = require('./Time');
 var Comment = React.createClass({
     render () {
         return (
-            <div className='card'>
-                <div className="small-6 columns">
-                    <strong><a href={'/users/' + this.props.user + '/' + this.props.name}>{this.props.name}</a></strong>
+            <div className='small-12 columns'>
+                <div className='row'>
+                    <div className="small-6 columns">
+                        <strong><a href={'/users/' + this.props.user + '/' + this.props.name}>{this.props.name}</a></strong>
+                    </div>
+                    <div className="small-6 columns text-right discuss-updated"><Time timestamp={this.props.posted} type='ago'/></div>
+                    <div className="small-12 columns">
+                        <Markdown
+                            markdown={this.props.text}
+                            />
+                    </div>
                 </div>
-                <div className="small-6 columns text-right discuss-updated"><Time timestamp={this.props.posted} type='ago'/></div>
-                <div className="small-12 columns">
-                    <Markdown
-                        markdown={this.props.text}
-                        />
-                </div>
+                <hr/>
             </div>
         );
     }

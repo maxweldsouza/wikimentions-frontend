@@ -60,16 +60,15 @@ var DiscussReply = React.createClass({
     },
     render () {
         var loggedOutMessage = <span>You need to <LoginModal/> to post a message.</span>;
-        return (
-            <div className='card'>
+            return (
                 <div className='small-12 columns'>
-                <Restricted message={loggedOutMessage}>
-                    {this.state.formMessage ? <div className='callout warning'>
-                        {this.state.formMessage}
-                    </div> : null}
-                    <div className='row'>
-                        <div className={this.state.content.length > 0 ? 'small-12 large-6 columns' : 'small-12 columns'}>
-                            Post <MarkdownHelp />
+                    <Restricted message={loggedOutMessage}>
+                        {this.state.formMessage ? <div className='callout warning'>
+                            {this.state.formMessage}
+                        </div> : null}
+                        <div className='row'>
+                            <div className={this.state.content.length > 0 ? 'small-12 large-6 columns' : 'small-12 columns'}>
+                                Post <MarkdownHelp />
                             <textarea type='text' name='content' placeholder='Write your post  here (Markdown is supported)' value={this.state.content} onChange={this.onChangeText} rows='5'></textarea>
                         </div>
                         {this.state.content.length > 0 ? <div className='small-12 large-6 columns'>
@@ -81,8 +80,7 @@ var DiscussReply = React.createClass({
                         </div> : null}
                     </div>
                     <SubmitButton title='Submit' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
-                    </Restricted>
-                </div>
+                </Restricted>
             </div>
         );
     }

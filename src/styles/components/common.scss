@@ -13,6 +13,12 @@
     margin-top: 2 * $global-margin;
     margin-bottom: 2 * $global-margin;
     font-size: 14px;
+    &.white {
+        background: $white;
+        padding: 2 * $global-padding;
+        border: $global-border;
+        border-radius: $global-radius;
+    }
 }
 
 .page-footer {
