@@ -3,17 +3,16 @@ var Link = require('./Link');
 var Time = require('./Time');
 var Markdown = require('./Markdown');
 
-var HistoryCard = React.createClass({
+var HistoryItem = React.createClass({
     render () {
-        var added = this.props.deleted === 1 ? 'Deleted' : 'Added';
+        var added = this.props.deleted === 1 ? 'deleted by' : 'added by';
         var item;
+        var type;
         if (this.props.entry && this.props.entrytype === 'video_author') {
+            type = 'Author';
             item = <span className='row'>
                 <span className='small-12 columns'>
-                    {added} Author
-                </span>
-                <span className='small-12 columns'>
-                    <strong>Author:</strong> <Link
+                    Author: <Link
                         id={this.props.entry.source.id}
                         slug={this.props.entry.source.props.slug}
                         type={this.props.entry.source.props.type}>
@@ -21,7 +20,7 @@ var HistoryCard = React.createClass({
                     </Link>
                 </span>
                 <span className='small-12 columns'>
-                    <strong>Video:</strong> <Link
+                    Video: <Link
                         id={this.props.entry.destination.id}
                         slug={this.props.entry.destination.props.slug}
                         type={this.props.entry.destination.props.type}>
@@ -30,12 +29,10 @@ var HistoryCard = React.createClass({
                 </span>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'book_author') {
+            type = 'Author';
             item = <span className='row'>
                 <span className='small-12 columns'>
-                    {added} Author
-                </span>
-                <span className='small-12 columns'>
-                    <strong>Book:</strong> <Link
+                    Book: <Link
                         id={this.props.entry.destination.id}
                         slug={this.props.entry.destination.props.slug}
                         type={this.props.entry.destination.props.type}>
@@ -43,7 +40,7 @@ var HistoryCard = React.createClass({
                     </Link>
                 </span>
                 <span className='small-12 columns'>
-                    <strong>Author:</strong> <Link
+                    Author: <Link
                         id={this.props.entry.source.id}
                         slug={this.props.entry.source.props.slug}
                         type={this.props.entry.source.props.type}>{this.props.entry.source.props.title}
@@ -51,31 +48,24 @@ var HistoryCard = React.createClass({
                 </span>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'prop') {
+            type = 'Property';
             item = <span className='row'>
                 <span className='small-12 columns'>
-                    {added} Property
-                </span>
-                <span className='small-12 columns'>
-                    <strong>Page:</strong> <Link
+                    Page: <Link
                         id={this.props.entry.obj.id}
                         slug={this.props.entry.obj.props.slug}
                         type={this.props.entry.obj.props.type}>{this.props.entry.obj.props.title}
                     </Link>
                 </span>
                 <span className='small-12 columns'>
-                    <strong>Name:</strong> {this.props.entry.key}
-                </span>
-                <span className='small-12 columns'>
-                    <strong>Value:</strong> {this.props.entry.value}
+                    {this.props.entry.key}: {this.props.entry.value}
                 </span>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'mention') {
+            type = 'Mention';
             item = <span className='row'>
                 <span className='small-12 columns'>
-                    {added} Mention
-                </span>
-                <span className='small-12 columns'>
-                    <strong>Mentioned by:</strong> <Link
+                    Mentioned by: <Link
                         id={this.props.entry.mentioned_by.id}
                         slug={this.props.entry.mentioned_by.props.slug}
                         type={this.props.entry.mentioned_by.props.type}>
@@ -83,7 +73,7 @@ var HistoryCard = React.createClass({
                     </Link>
                 </span>
                 <span className='small-12 columns'>
-                    <strong>Mentioned:</strong> <Link
+                    Mentioned: <Link
                         id={this.props.entry.mentioned.id}
                         slug={this.props.entry.mentioned.props.slug}
                         type={this.props.entry.mentioned.props.type}>
@@ -91,7 +81,7 @@ var HistoryCard = React.createClass({
                     </Link>
                 </span>
                 <span className='small-12 columns'>
-                    <strong>Mentioned In</strong> <Link
+                    Mentioned In: <Link
                         id={this.props.entry.mentioned_in.id}
                         slug={this.props.entry.mentioned_in.props.slug}
                         type={this.props.entry.mentioned_in.props.type}>
@@ -100,9 +90,10 @@ var HistoryCard = React.createClass({
                 </span>
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'image') {
+            type = 'Image';
             item = <span className='row'>
                 <span className='small-12 columns'>
-                    {added} Image to page <Link
+                    <Link
                         id={this.props.entry.id}
                         slug={this.props.entry.slug}
                         type={this.props.entry.type}>
@@ -121,7 +112,7 @@ var HistoryCard = React.createClass({
             <div className='small-12 columns'>
                 <div className='row'>
                     <span className='small-8 columns'>
-                        <strong><a href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a></strong>
+                        <strong style={{fontSize: 17}}>{type}</strong> {added} <strong><a className='' href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a></strong>
                     </span>
                     <span className='small-4 columns text-right'><Time timestamp={this.props.timestamp} type='ago'/></span>
                     <span className='small-12 columns'>
@@ -134,4 +125,4 @@ var HistoryCard = React.createClass({
     }
 });
 
-module.exports = HistoryCard;
+module.exports = HistoryItem;
