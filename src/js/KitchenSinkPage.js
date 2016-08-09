@@ -41,8 +41,7 @@ var KitchenSinkPage = React.createClass({
                     <div className='small-12 columns'>
                         <h1>Kitchen Sink</h1>
                         <AdminOnly>
-                        <div className='card-container'>
-                            <div className='card'>
+                            <div className='row'>
                                 <div className='small-6 columns'>
                                     <h2>Typography</h2>
                                     <h1>Heading 1</h1>
@@ -83,8 +82,6 @@ var KitchenSinkPage = React.createClass({
                                         This is a callout.
                                     </div>
                                 </div>
-                            </div>
-                            <div className='card'>
                                 <div className='small-12 columns'>
                                     <h2>Pagination</h2>
                                     <ul className='pagination' role='navigation' aria-label='Pagination'>
@@ -119,7 +116,6 @@ var KitchenSinkPage = React.createClass({
                                     <input type='text' placeholder='Input'/>
                                 </div>
                             </div>
-                        </div>
                         </AdminOnly>
                     </div>
                 </div>

@@ -67,11 +67,12 @@ var BugPage = React.createClass({
                 <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
                         <h1>Bugs Page: {this.state.page}</h1>
-                        <div className='small-12 columns'>
                             <AdminOnly>
-                                <div className="card-container">
+                                <div className='row'>
+                                <div className='small-12 columns'>
+                                    <hr/>
                                     {this.state.bugs.map((x) => {
-                                        return <div className='card box' key={x.id}>
+                                        return <div className='row' key={x.id}>
                                             <span className='small-8 columns'>
                                                 Url: <a href={x.url}>{x.url}</a>
                                             </span>
@@ -92,10 +93,11 @@ var BugPage = React.createClass({
                                                 <div className='callout'>
                                                     {x.message}
                                                 </div>
+                                                <hr/>
                                             </span>
                                         </div>;
                                     })}
-                                    <div className='card box'>
+                                    <div className='row'>
                                         <div className='small-6 columns'>
                                             {this.state.page > 1 ? <a className='secondary' onClick={this.prevPage}>Previous</a> : null}
                                         </div>
@@ -104,8 +106,8 @@ var BugPage = React.createClass({
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </AdminOnly>
-                        </div>
                     </div>
                 </div>
             </span>
