@@ -35,11 +35,11 @@ var HistoryPage = React.createClass({
         var history = this.props.data.history.history;
         var nodata;
         if (history.length === 0) {
-            nodata = <div className='card'>
-                    <div className='small-12 columns'>
-                    Nothing to show here.
-                    </div>
-                </div>;
+            nodata = <div className='small-12 columns'>
+                <div className='callout warning'>
+                    No more entries.
+                </div>
+            </div>;
         }
         return (
             <span>
@@ -59,32 +59,28 @@ var HistoryPage = React.createClass({
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body white'>
-                    <div>
+                    <div className='small-12 large-8 columns'>
                         <h1>{'History - ' + this.props.data.thing.props.title}</h1>
                         <PageBar
                             id={id}
                             slug={slug}
                             type={type}
                             />
+                        <hr/>
                         <div className='row'>
-                            <div className='small-12 large-9 columns'>
-                                <hr/>
-                                <div className='row'>
-                                    {nodata}
-                                    {history.map((x) => {
-                                        return <HistoryItem
-                                            user={x.user}
-                                            username={x.username}
-                                            entry={x.entry}
-                                            entrytype={x.entrytype}
-                                            timestamp={x.timestamp}
-                                            deleted={x.deleted}
-                                            />;
-                                    })}
-                                    <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
-                                </div>
-                            </div>
+                            {nodata}
+                            {history.map((x) => {
+                                return <HistoryItem
+                                    user={x.user}
+                                    username={x.username}
+                                    entry={x.entry}
+                                    entrytype={x.entrytype}
+                                    timestamp={x.timestamp}
+                                    deleted={x.deleted}
+                                    />;
+                            })}
                         </div>
+                        <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
                     </div>
                 </div>
             </span>

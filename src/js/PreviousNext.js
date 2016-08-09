@@ -10,17 +10,14 @@ var PreviousNext = React.createClass({
             prev = '/' + this.props.path + '?page=' + (page - 1);
         }
         var next = '/' + this.props.path + '?page=' + (page + 1);
-        if (this.props.count === 0) {
-            return null;
-        }
         return (
             <div className='row'>
                 <div className='small-6 columns'>
                     {page > 1 ? <a className='secondary' href={prev}>Previous</a> : null}
                 </div>
-                <div className='small-6 columns text-right'>
+                {this.props.count > 0 ? <div className='small-6 columns text-right'>
                     <a className='secondary' href={next}>Next</a>
-                </div>
+                </div> : null}
             </div> : null
         );
     }
