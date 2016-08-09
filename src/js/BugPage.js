@@ -64,14 +64,14 @@ var BugPage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
+                <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
                         <h1>Bugs Page: {this.state.page}</h1>
                         <div className='small-12 columns'>
                             <AdminOnly>
                                 <div className="card-container">
                                     {this.state.bugs.map((x) => {
-                                        return <div className='card' key={x.id}>
+                                        return <div className='card box' key={x.id}>
                                             <span className='small-8 columns'>
                                                 Url: <a href={x.url}>{x.url}</a>
                                             </span>
@@ -95,7 +95,7 @@ var BugPage = React.createClass({
                                             </span>
                                         </div>;
                                     })}
-                                    <div className='card'>
+                                    <div className='card box'>
                                         <div className='small-6 columns'>
                                             {this.state.page > 1 ? <a className='secondary' onClick={this.prevPage}>Previous</a> : null}
                                         </div>

@@ -21,7 +21,7 @@ var Profile = React.createClass({
         return (
             <div className='row'>
                 <div className='small-12 large-3 columns'>
-                        <ul className="tabs vertical">
+                        <ul className='tabs vertical'>
                             {tabs.map((x) => {
                                 return <li
                                     key={x}
@@ -36,11 +36,11 @@ var Profile = React.createClass({
                         </ul>
                 </div>
                 <div className='large-9 columns'>
-                        <div className='tabs-content vertical'>
-                            {this.state.tab === 'Edit Profile' ? <EditProfile id={this.props.id}/> : null}
-                            {this.state.tab === 'Change Password' ? <ChangePassword /> : null}
-                            {this.state.tab === 'Delete Account' ? <DeleteAccount id={this.props.id}/> : null}
-                        </div>
+                    <div className='tabs-content vertical box'>
+                        {this.state.tab === 'Edit Profile' ? <EditProfile id={this.props.id}/> : null}
+                        {this.state.tab === 'Change Password' ? <ChangePassword /> : null}
+                        {this.state.tab === 'Delete Account' ? <DeleteAccount id={this.props.id}/> : null}
+                    </div>
                 </div>
             </div>
         );

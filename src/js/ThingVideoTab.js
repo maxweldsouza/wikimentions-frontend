@@ -27,7 +27,7 @@ var ThingVideoTab = React.createClass({
                 })}
                 {videos.length === 0 ? emptyvideos : null}
                 <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
-                <div className='card'>
+                <div className='card box'>
                     <div className='small-12 columns'>
                         <AddVideo id={this.props.id} />
                     </div>

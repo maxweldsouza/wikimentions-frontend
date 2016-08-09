@@ -171,9 +171,10 @@ var EditPage = React.createClass({
         var id = Number(this.props.path.split('/')[1]);
         var entry = this.props.data.thing;
         var options = [{name: 'Person', value: 'person'},
-            {name: 'Book', value: 'book'},
-            {name: 'Video', value: 'video'}];
-        var loggedOutMessage = <span>You need to <LoginModal/> to edit a page.</span>;
+        {name: 'Book', value: 'book'},
+        {name: 'Video', value: 'video'}];
+        var loggedOutMessage = <span>You need to <LoginModal/> to edit a page.
+        </span>;
         return (
             <span>
                 <Helmet
@@ -191,17 +192,17 @@ var EditPage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
+                <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
                         <h1>{'Edit - ' + entry.props.title}</h1>
                         <PageBar
                             id={id}
                             slug={entry.props.slug}
-                            type={entry.props.type}
-                            />
+                            type={entry.props.type} />
                         <Restricted message={loggedOutMessage}>
                             <div className='callout'>
-                                <a onClick={this.onOpenModal}>Upload</a> an image for this page.
+                                <a onClick={this.onOpenModal}>Upload
+                                </a> an image for this page.
                             </div>
                             <Modal
                                 isOpen={this.state.modalIsOpen}
@@ -219,6 +220,7 @@ var EditPage = React.createClass({
                                 </div>
                             </Modal>
                             <form action={'/api/v1/thing/' + id} method='post'>
+                                Type
                                 <ButtonSelect
                                     name='type'
                                     default={this.props.data.thing.props.type}
@@ -234,7 +236,7 @@ var EditPage = React.createClass({
                                 {this.state.type === 'video' ? <span>
                                     Url
                                     <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid}
-                                message={this.state.urlMessage}/>
+                                        message={this.state.urlMessage}/>
                                 </span> : null}
                                 {this.state.type === 'person' ? <span>
                                     Description (Optional)
@@ -247,29 +249,29 @@ var EditPage = React.createClass({
                                 {this.state.type === 'book' ? <span>
                                     ISBN
                                     <input
-                                    type='text'
-                                    name='isbn'
-                                    value={this.state.isbn}
-                                    onChange={this.onChangeText}/>
+                                        type='text'
+                                        name='isbn'
+                                        value={this.state.isbn}
+                                        onChange={this.onChangeText}/>
                                 </span> : null}
                                 {this.state.type === 'book' ? <span>
                                     ISBN-13
                                     <input
-                                    type='text'
-                                    name='isbn13'
-                                    value={this.state.isbn13}
-                                    onChange={this.onChangeText}/>
+                                        type='text'
+                                        name='isbn13'
+                                        value={this.state.isbn13}
+                                        onChange={this.onChangeText}/>
                                 </span> : null}
                                 <SubmitButton
                                     title='Save'
-                                    className='button primary'
+                                    className='button primary float-right'
                                     submitting={this.state.submitting}
                                     onSubmit={this.onSubmit}/>
                             </form>
                             <AdminOnly>
                                 <div>
                                     <hr/>
-                                    <label><input type="checkbox" onChange={this.onToggleConfirm}/>I'm sure</label>
+                                    <label><input type='checkbox' onChange={this.onToggleConfirm}/>I'm sure</label>
                                     <SubmitButton
                                         title='Delete Page'
                                         className='button primary float-right'

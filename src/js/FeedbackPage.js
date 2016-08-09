@@ -64,14 +64,15 @@ var FeedbackPage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
+                <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
                         <h1>Feedback Page: {this.state.page}</h1>
-                        <div className='small-12 columns'>
+                        <hr/>
+                        <div className='row'>
                             <AdminOnly>
-                                <div className="card-container">
+                        <div className='small-12 columns'>
                                     {this.state.feedback.map((x) => {
-                                        return <div className='card' key={x.id}>
+                                        return <div className='row' key={x.id}>
                                             <span className='small-8 columns'>
                                                 <strong>Type:</strong> {x.rating === 1 ? <span className='ion-checkmark' style={{color: 'hsla(144, 60%, 60%, 1)'}}/> : <span className='ion-close' style={{color: 'hsla(0, 83%, 57%, 1)'}}/>}
                                             </span>
@@ -96,10 +97,11 @@ var FeedbackPage = React.createClass({
                                             </span>
                                             <span className='small-12 columns'>
                                                 Useragent: {x.useragent}
+                                                <hr/>
                                             </span>
                                         </div>;
                                     })}
-                                    <div className='card'>
+                                    <div className='row'>
                                         <div className='small-6 columns'>
                                             {this.state.page > 1 ? <a className='secondary' onClick={this.prevPage}>Previous</a> : null}
                                         </div>
@@ -107,7 +109,7 @@ var FeedbackPage = React.createClass({
                                             <a className='secondary' onClick={this.nextPage}>Next</a>
                                         </div>
                                     </div>
-                                </div>
+                                    </div>
                             </AdminOnly>
                         </div>
                     </div>

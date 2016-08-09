@@ -129,10 +129,8 @@ var ProfilePage = React.createClass({
                                     </div>
                                 </div>
                                 {tab}
-                                <div className='small-12 columns'>
-                                    <div className='card-container'>
-                                        {tabContent}
-                                    </div>
+                                <div className='card-container'>
+                                    {tabContent}
                                 </div>
                             </div>
                         </div>

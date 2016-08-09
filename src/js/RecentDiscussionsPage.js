@@ -46,36 +46,34 @@ var RecentDiscussions = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
+                <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
                         <h1>Recent Discussions</h1>
-                        <div className='small-12 columns'>
-                            <div className='card-container'>
-                                {this.props.data.discuss.map((x) => {
-                                    return <div className='card' key={x.id}>
-                                        <div className="small-6 columns">
-                                            <strong><a href={'/users/' + x.user + '/' + x.username}>{x.username}</a></strong>
-                                        </div>
-                                        <div className="small-6 columns text-right discuss-updated"><Time timestamp={x.created} type='ago'/></div>
-                                        <div className="small-12 columns">
-                                            <Markdown
-                                                markdown={x.content}
-                                                />
-                                        </div>
-                                        <div className="small-12 columns">
-                                            Page: <strong><Link
-                                                className='secondary'
-                                                id={x.obj.id}
-                                                slug={x.obj.slug}
-                                                type={x.obj.type}>
-                                                {x.obj.title}
-                                            </Link></strong>
-                                        </div>
-                                    </div>;
-                                })}
-                                <PreviousNext path={this.props.path} page={this.props.query.page} count={this.props.data.discuss.length}/>
-                            </div>
-                        </div>
+                        <hr/>
+                        {this.props.data.discuss.map((x) => {
+                            return <div className='row' key={x.id}>
+                                <div className='small-6 columns'>
+                                    On <strong><Link
+                                        className=''
+                                        id={x.obj.id}
+                                        slug={x.obj.slug}
+                                        type={x.obj.type}>
+                                        {x.obj.title}
+                                    </Link></strong> by <strong><a href={'/users/' + x.user + '/' + x.username} className='secondary'>{x.username}</a></strong>
+                                </div>
+                                <div className='small-6 columns text-right discuss-updated'><Time timestamp={x.created} type='ago'/></div>
+                                <div className='small-12 columns'>
+                                    <Markdown
+                                        markdown={x.content}
+                                        />
+                                </div>
+                                <div className='small-12 columns'>
+
+                                    <hr/>
+                                </div>
+                            </div>;
+                        })}
+                        <PreviousNext path={this.props.path} page={this.props.query.page} count={this.props.data.discuss.length}/>
                     </div>
                 </div>
             </span>

@@ -22,7 +22,7 @@
     border: 0;
     font-size: 14px;
     color: $secondary-color;
-    
+
     &:focus, &:hover {
         background: $light-gray;
     }
@@ -41,8 +41,4 @@
 
 .tabs-content {
     border: 0;
-}
-
-.tabs-content.vertical {
-    padding-top: $global-padding;
 }

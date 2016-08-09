@@ -96,25 +96,23 @@ var HomePage = React.createClass({
                         </div>
                     </div>
                     <div className='small-12 xlarge-8 columns'>
-                        <div className='small-12 columns'>
-                            <div className='card-container'>
-                                {this.props.data.home.map((x) => {
-                                    return <HomeItem
-                                        key={x.id}
-                                        id={x.id}
-                                        title={x.props.title}
-                                        image={x.image}
-                                        description={x.props.description}
-                                        type={x.props.type}
-                                        slug={x.props.slug}
-                                        book_count={x.book_count}
-                                        video_count={x.video_count}
-                                        mentioned_count={x.mentioned_count}
-                                        mentioned_by_count={x.mentioned_by_count}/>;
-                                })}
-                                <div className='card columns'>
-                                    This list is randomly generated.
-                                </div>
+                        <div className='card-container'>
+                            {this.props.data.home.map((x) => {
+                                return <HomeItem
+                                    key={x.id}
+                                    id={x.id}
+                                    title={x.props.title}
+                                    image={x.image}
+                                    description={x.props.description}
+                                    type={x.props.type}
+                                    slug={x.props.slug}
+                                    book_count={x.book_count}
+                                    video_count={x.video_count}
+                                    mentioned_count={x.mentioned_count}
+                                    mentioned_by_count={x.mentioned_by_count}/>;
+                            })}
+                            <div className='card box columns'>
+                                This list is randomly generated.
                             </div>
                         </div>
                     </div>

@@ -35,7 +35,7 @@ var LoginPage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
+                <div className='row page-body align-center white'>
                     <div className='small-12 large-6 columns'>
                         <Login redirect='/'/>
                     </div>

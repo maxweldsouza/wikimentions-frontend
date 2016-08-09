@@ -40,24 +40,23 @@ var RecentChangesPage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                    <div className='row page-body align-center'>
+                <div className='row page-body white'>
                         <div className='small-12 large-8 columns'>
                             <h1>Recent Changes</h1>
-                            <div className='small-12 columns'>
-                                <div className="card-container">
-                                    {this.props.data.history.map((x) => {
-                                        return <HistoryItem
-                                            user={x.user}
-                                            username={x.username}
-                                            entry={x.entry}
-                                            entrytype={x.entrytype}
-                                            timestamp={x.timestamp}
-                                            deleted={x.deleted}
-                                            />;
-                                    })}
-                                    <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
-                                </div>
+                            <hr/>
+                            <div className='row'>
+                                {this.props.data.history.map((x) => {
+                                    return <HistoryItem
+                                        user={x.user}
+                                        username={x.username}
+                                        entry={x.entry}
+                                        entrytype={x.entrytype}
+                                        timestamp={x.timestamp}
+                                        deleted={x.deleted}
+                                        />;
+                                })}
                             </div>
+                            <PreviousNext path={this.props.path} page={this.props.query.page} count={this.props.data.history.length}/>
                         </div>
                     </div>
             </span>

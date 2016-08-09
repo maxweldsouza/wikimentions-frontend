@@ -37,7 +37,7 @@ var KitchenSinkPage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
+                <div className='row page-body white'>
                     <div className='small-12 columns'>
                         <h1>Kitchen Sink</h1>
                         <AdminOnly>

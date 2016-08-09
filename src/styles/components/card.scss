@@ -1,0 +1,22 @@
+.card-container {
+    background: $white;
+    border: $global-border;
+}
+
+.card {
+    background: $white;
+    border-bottom: $global-border;
+    display: flex;
+    flex-flow: row wrap;
+    //font-size: $card-description-font-size;
+    //padding-bottom: $global-margin;
+    //padding-top: $global-margin;
+    position: relative;
+    //width: 100%;
+    //word-wrap: break-word;
+}
+
+.box {
+    padding-top: $global-padding;
+    padding-bottom: $global-padding;
+}

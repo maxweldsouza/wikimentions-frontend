@@ -6,7 +6,6 @@ var _ = require('underscore');
 var config = require('./config');
 var Navbar = require('./Navbar');
 var BlogPost = require('./BlogPost');
-var Footer = require('./Footer');
 
 var BlogPostPage = React.createClass({
     statics: {
@@ -49,7 +48,7 @@ var BlogPostPage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
+                <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
                         <div className='rows'>
                             <div className='small-12 columns'>
@@ -68,7 +67,6 @@ var BlogPostPage = React.createClass({
                                 </div>
                             </div>
                         </div>
-                        <Footer />
                     </div>
                 </div>
             </div>

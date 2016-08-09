@@ -93,7 +93,7 @@ var Mention = React.createClass({
         }
 
         return (
-            <div className='card'>
+            <div className='card box'>
                 <span className='ion-chevron-down card-chevron' onClick={this.openDropdown}/>
                 <Dropdown isOpen={this.state.dropdownIsOpen} onClose={this.closeDropdown}>
                     <div className='dropdown-pane bottom-right small'>

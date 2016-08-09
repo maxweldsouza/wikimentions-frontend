@@ -11,7 +11,7 @@ var ThingBookTab = React.createClass({
         </div>;
         return (
             <div className='card-container'>
-                <div className='card'>
+                <div className='card box'>
                     {books.map((x) => {
                         return <Book
                             key={x.id}
@@ -27,7 +27,7 @@ var ThingBookTab = React.createClass({
                     {books.length === 0 ? emptybooks : null}
                 </div>
                 <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
-                <div className='card'>
+                <div className='card box'>
                     <div className='small-12 columns'>
                         <AddBook id={this.props.id}/>
                     </div>

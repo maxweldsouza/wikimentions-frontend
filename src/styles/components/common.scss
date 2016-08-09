@@ -20,12 +20,19 @@ div {
     font-size: 14px;
     &.white {
         background: $white;
-        padding: 2 * $global-padding;
+        padding: 2 * $global-padding $global-padding;
         border: $global-border;
         border-radius: $global-radius;
+
         @include breakpoint (xlarge down) {
+            margin: 2 * $global-margin $global-margin;
+        }
+        @include breakpoint (small only) {
+            padding: 2 * $global-padding 0;
             margin-top: -1px;
             margin-bottom: -1px;
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 }
@@ -60,26 +67,6 @@ div {
     font-size: 16px;
     margin-bottom: 10px;
     display: block;
-}
-
-.card-container {
-    background: $white;
-    border: $global-border;
-    margin-left: -$global-margin;
-    margin-right: -$global-margin;
-    margin-bottom: $global-margin;
-}
-
-.card {
-    border-bottom: $global-border;
-    display: flex;
-    flex-flow: row wrap;
-    font-size: $card-description-font-size;
-    padding-bottom: $global-margin;
-    padding-top: $global-margin;
-    position: relative;
-    width: 100%;
-    word-wrap: break-word;
 }
 
 .card-chevron {

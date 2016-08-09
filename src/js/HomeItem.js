@@ -7,7 +7,7 @@ import Lazy from 'react-lazyload';
 var HomeItem = React.createClass({
     render () {
         return (
-            <div className='card align-middle'>
+            <div className='card box align-middle'>
                 <div className='shrink columns'>
                     <Thumbnail
                         alt={this.props.title}
