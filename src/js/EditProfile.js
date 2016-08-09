@@ -2,7 +2,7 @@ var React = require('react');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var MarkdownHelp = require('./MarkdownHelp');
-var Markdown = require('./Markdown');
+var MarkdownInput = require('./MarkdownInput');
 var cookies = require('browser-cookies');
 var Snackbar = require('./Snackbar');
 
@@ -70,15 +70,15 @@ var EditProfile = React.createClass({
                         </div> : null}
                         Email
                         <input type='text' name='email' onChange={this.onChangeText} value={this.state.email}/>
-                        About <MarkdownHelp />
-                        <textarea type='text' name='about' onChange={this.onChangeText} value={this.state.about} rows={6}/>
-                        {this.state.preview ? <div>
-                            <strong>Preview</strong>
-                            <Markdown
-                                className='callout'
-                                markdown={this.state.about}
-                                />
-                        </div> : null}
+                        <MarkdownInput
+                            name='about'
+                            placeholder='Write something about yourself (Markdown is supported)'
+                            label='About'
+                            rows='5'
+                            content={this.state.about}
+                            onChange={this.onChangeText}
+                            sideBySide={false}
+                            />
                         <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.updateProfile}/>
                     </div>
                 </div>
