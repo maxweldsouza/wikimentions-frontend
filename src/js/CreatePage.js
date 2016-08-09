@@ -154,11 +154,12 @@ var HomePage = React.createClass({
                                             valid={this.state.titleValid}
                                             message={this.state.titleMessage}/>
                                         {this.state.type === 'video' ? <span>
-                                            Url (https://)
+                                            Url
                                             <Input type='text' name='url'
                                             value={this.state.url}
                                             onChange={this.onChangeText}
                                             valid={this.state.urlValid}
+                                            placeholder='http://'
                                             message={this.state.urlMessage}/></span> : null}
                                         {this.state.type === 'person' ? <span>Description (Optional)
                                             <input

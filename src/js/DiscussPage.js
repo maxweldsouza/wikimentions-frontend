@@ -66,34 +66,30 @@ var DiscussPage = React.createClass({
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body white'>
-                    <div>
+                    <div className='small-12 large-8 columns'>
                         <h1>{'Discussion - ' + this.props.data.discuss.props.title}</h1>
                         <PageBar
                             id={id}
                             slug={slug}
                             type={type}
                             />
+                        <hr/>
                         <div className='row'>
-                            <div className='small-12 large-9 columns'>
-                                <hr/>
-                                <div className='row'>
-                                    {discussions.map((x) => {
-                                        return <Comment
-                                                id={x.id}
-                                                key={x.id}
-                                                user={x.user}
-                                                name={x.username}
-                                                text={x.content}
-                                                posted={x.created}
-                                                />;
-                                    })}
-                                    {nodata}
-                                    <div className='small-12 columns'>
-                                        <PreviousNext path={this.props.path} page={this.props.query.page} count={discussions.length}/>
-                                    </div>
-                                    <DiscussReply id={id}/>
-                                </div>
+                            {discussions.map((x) => {
+                                return <Comment
+                                    id={x.id}
+                                    key={x.id}
+                                    user={x.user}
+                                    name={x.username}
+                                    text={x.content}
+                                    posted={x.created}
+                                    />;
+                            })}
+                            {nodata}
+                            <div className='small-12 columns'>
+                                <PreviousNext path={this.props.path} page={this.props.query.page} count={discussions.length}/>
                             </div>
+                            <DiscussReply id={id}/>
                         </div>
                     </div>
                 </div>
