@@ -5,7 +5,8 @@ var Markdown = require('./Markdown');
 var MarkdownInput = React.createClass({
     getInitialState: function() {
         return {
-            preview: false
+            preview: false,
+            firstChange: true
         };
     },
     showPreview () {
@@ -19,13 +20,16 @@ var MarkdownInput = React.createClass({
         });
     },
     onChangeText (e) {
-        this.setState({
-            preview: true
-        });
+        if (this.state.firstChange) {
+            this.setState({
+                preview: true,
+                firstChange: false
+            });
+        }
         this.props.onChange(e);
     },
     render () {
-        var layout = this.props.sideBySide ? 'small-12 large-6 columns' : 'small-12 columns';
+        var layout = this.props.sideBySide && this.state.preview? 'small-12 large-6 columns' : 'small-12 columns';
         return (
             <div className='row'>
                 <div className={layout}>
