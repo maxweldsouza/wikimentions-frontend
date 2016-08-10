@@ -4,6 +4,7 @@ var AddBookNew = require('./AddBookNew');
 var AddBookExisting = require('./AddBookExisting');
 var Restricted = require('./Restricted');
 var LoginModal = require('./LoginModal');
+var SignupModal = require('./SignupModal');
 
 var AddBook = React.createClass({
     getInitialState () {
@@ -18,7 +19,7 @@ var AddBook = React.createClass({
     },
     render () {
         var options = [{ name: 'Existing', value: 'Existing' }, { name: 'New', value: 'New' }];
-        var loggedOutMessage = <span>You need to <LoginModal/> to add a Book.</span>;
+        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to add a Book.</span>;
         return (
             <Restricted message={loggedOutMessage}>
                 <h2>Add book</h2>

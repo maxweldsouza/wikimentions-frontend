@@ -8,6 +8,7 @@ var Helmet = require('react-helmet');
 var ImageUpload = require('./ImageUpload');
 var Input = require('./Input');
 var LoginModal = require('./LoginModal');
+var SignupModal = require('./SignupModal');
 var Markdown = require('./Markdown');
 var Mention = require('./Mention');
 var Modal = require('./Modal');
@@ -173,7 +174,7 @@ var EditPage = React.createClass({
         var options = [{name: 'Person', value: 'person'},
         {name: 'Book', value: 'book'},
         {name: 'Video', value: 'video'}];
-        var loggedOutMessage = <span>You need to <LoginModal/> to edit a page.
+        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to edit a page.
         </span>;
         return (
             <span>

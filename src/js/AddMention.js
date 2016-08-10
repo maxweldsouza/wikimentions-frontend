@@ -8,6 +8,7 @@ var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var Restricted = require('./Restricted');
 var LoginModal = require('./LoginModal');
+var SignupModal = require('./SignupModal');
 var SubmitButton = require('./SubmitButton');
 
 var AddMention = React.createClass({
@@ -126,7 +127,7 @@ var AddMention = React.createClass({
     },
     render () {
         var id = this.props.id;
-        var loggedOutMessage = <span>You need to <LoginModal/> to add a Mention.</span>;
+        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to add a Mention.</span>;
         return <div className='small-12 columns'>
             <Restricted message={loggedOutMessage}>
                 <h2>Add mention</h2>

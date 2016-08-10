@@ -6,6 +6,7 @@ var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 var Restricted = require('./Restricted');
 var LoginModal = require('./LoginModal');
+var SignupModal = require('./SignupModal');
 var MarkdownInput = require('./MarkdownInput');
 
 var DiscussReply = React.createClass({
@@ -59,7 +60,7 @@ var DiscussReply = React.createClass({
         });
     },
     render () {
-        var loggedOutMessage = <span>You need to <LoginModal/> to post a message.</span>;
+        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to post a message.</span>;
             return (
                 <div className='small-12 columns'>
                     <Restricted message={loggedOutMessage}>
