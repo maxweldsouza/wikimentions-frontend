@@ -12,7 +12,7 @@ var Footer = React.createClass({
                         {config.contact}
                     </div>
                     <div className='small-12 xlarge-8 columns'>
-                        <div className='row'>
+                        <div className='row align-right'>
                             <AdminOnly>
                             <div className='small-6 large-3 columns'>
                                 <ul className='menu vertical'>
