@@ -18,15 +18,14 @@ var Link = React.createClass({
             throw new Error('No page type specified');
         }
 
-        var tab = '';
+        var tab = this.props.tab ? this.props.tab : defaultTab;
         var href;
-        if (this.props.tab && this.props.tab !== defaultTab) {
-            if (['edit', 'discuss', 'history'].indexOf(this.props.tab) >= 0) {
-                href = '/' + this.props.tab + '/' + this.props.id + '/' + this.props.slug;
-            } else {
-                tab = '/' + this.props.tab;
-                href = pagepath + this.props.id + '/' + this.props.slug + tab;
-            }
+        if (['edit', 'discuss', 'history'].indexOf(tab) >= 0) {
+            href = '/' + tab + '/' + this.props.id + '/' + this.props.slug;
+        } else if (tab !== defaultTab) {
+            href = pagepath + this.props.id + '/' + this.props.slug + '/' + tab;
+        } else {
+            href = pagepath + this.props.id + '/' + this.props.slug;
         }
         return (
             <a className={this.props.className} href={href}>{this.props.children}</a>
