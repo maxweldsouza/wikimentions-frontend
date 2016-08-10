@@ -136,9 +136,10 @@ var Navbar = React.createClass({
                     </div>
                     <div className='top-bar-left'>
                         <ul className='menu'>
-                            <li className='show-for-xxlarge'>
-                                <a className='navbar-link' href='/create'>
-                                    <span className='ion-compose icon'/>Create Page
+                            <li className='show-for-large'>
+                                <a className='navbar-link hint--bottom hint--rounded hint--no-animate' href='/create' aria-label='Create Page'>
+                                    <span className='ion-compose icon'/>
+                                    <span>Create Page</span>
                                 </a>
                             </li>
                             <li><Spinner /></li>
