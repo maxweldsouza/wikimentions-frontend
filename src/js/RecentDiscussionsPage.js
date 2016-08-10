@@ -57,7 +57,8 @@ var RecentDiscussions = React.createClass({
                                         className=''
                                         id={x.obj.id}
                                         slug={x.obj.slug}
-                                        type={x.obj.type}>
+                                        type={x.obj.type}
+                                        tab='discuss'>
                                         {x.obj.title}
                                     </Link></strong> by <strong><a href={'/users/' + x.user + '/' + x.username} className='secondary'>{x.username}</a></strong>
                                 </div>

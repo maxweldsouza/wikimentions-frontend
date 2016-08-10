@@ -19,11 +19,17 @@ var Link = React.createClass({
         }
 
         var tab = '';
+        var href;
         if (this.props.tab && this.props.tab !== defaultTab) {
-            tab = '/' + this.props.tab;
+            if (['edit', 'discuss', 'history'].indexOf(this.props.tab) >= 0) {
+                href = '/' + this.props.tab + '/' + this.props.id + '/' + this.props.slug;
+            } else {
+                tab = '/' + this.props.tab;
+                href = pagepath + this.props.id + '/' + this.props.slug + tab;
+            }
         }
         return (
-            <a className={this.props.className} href={pagepath + this.props.id + '/' + this.props.slug + tab}>{this.props.children}</a>
+            <a className={this.props.className} href={href}>{this.props.children}</a>
         );
     }
 });
