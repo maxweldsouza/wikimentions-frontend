@@ -41,11 +41,19 @@ var DiscussPage = React.createClass({
         var discussions = this.props.data.discuss.discussion;
         var nodata;
         if (discussions.length === 0) {
-            nodata = <div className='small-12 columns'>
-                <div className='callout warning'>
-                    There are no discussions here. You can start one !
-                </div>
-            </div>;
+            if (this.props.query.page === 1) {
+                nodata = <div className='small-12 columns'>
+                    <div className='callout warning'>
+                        There are no discussions here. You can start one !
+                    </div>
+                </div>;
+            } else {
+                nodata = <div className='small-12 columns'>
+                    <div className='callout warning'>
+                        No more posts !
+                    </div>
+                </div>;
+            }
         }
         return (
             <span>
@@ -88,6 +96,7 @@ var DiscussPage = React.createClass({
                             {nodata}
                             <div className='small-12 columns'>
                                 <PreviousNext path={this.props.path} page={this.props.query.page} count={discussions.length}/>
+                                <hr/>
                             </div>
                             <DiscussReply id={id}/>
                         </div>

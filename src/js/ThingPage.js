@@ -19,7 +19,7 @@ var Restricted = require('./Restricted');
 var Markdown = require('./Markdown');
 var Affiliate = require('./Affiliate');
 var Time = require('./Time');
-import CopyToClipboard from 'react-copy-to-clipboard';
+var CopyButton = require('./CopyButton');
 
 var ThingPage = React.createClass({
     statics: {
@@ -291,31 +291,34 @@ var ThingPage = React.createClass({
                                 overlayClassName='modal-overlay'>
                                 {thing.image ? <div>
                                     <h1>Image</h1>
-                                        {thing.props.type === 'book' ? <Thumbnail
-                                        alt={thing.props.title}
-                                        type={thing.props.type}
-                                        image={thing.image}
-                                        shadow={true}
-                                        displayHeight={200} /> : <Thumbnail
-                                        type={thing.props.type}
-                                        image={thing.image}
-                                        displayWidth={200} />}
-                                    <div>
-                                        Added: <Time timestamp={thing.image.added} type='ago'/>
-                                    </div>
-                                    <div className='row align-middle'>
+                                    {thing.props.type === 'book' ? <Thumbnail
+                                    alt={thing.props.title}
+                                    type={thing.props.type}
+                                    image={thing.image}
+                                    shadow={true}
+                                    displayHeight={200} /> : <Thumbnail
+                                    type={thing.props.type}
+                                    image={thing.image}
+                                    displayWidth={200} />}
+                                    <div className='row'>
                                         <div className='small-6 columns'>
                                             <strong>Description</strong>
                                         </div>
-                                        <div className='small-6 columns'>
-                                            <CopyToClipboard text={thing.image.description}>
-                                                <button className='button secondary small float-right hint--bottom-left hint--rounded hint--no-animate' aria-label='Copy description as markdown'><span className='ion-clipboard' />{'  Copy markdown'}</button>
-                                            </CopyToClipboard>
+                                        <div className='small-6 columns text-right'>
+                                            <Time
+                                                hintDirection='bottom-left'
+                                                timestamp={thing.image.added}
+                                                type='ago'/>
                                         </div>
                                     </div>
                                     <div className='callout'>
                                         <Markdown markdown={thing.image.description} />
                                     </div>
+                                    <CopyButton
+                                        className='button secondary'
+                                        hintDirection='right'
+                                        text={thing.image.description}
+                                        ariaLabel='Copy description as markdown'/>
                                     <button className='button float-right' onClick={this.onCloseModal}>Close</button>
                                 </div> : null}
                             </Modal>

@@ -10,6 +10,11 @@ var Time = React.createClass({
             server: true
         };
     },
+    getDefaultProps: function() {
+        return {
+            hintDirection: 'bottom'
+        };
+    },
     componentWillMount: function () {
         if (isNode.isBrowser()) {
             this.setState({
@@ -39,7 +44,7 @@ var Time = React.createClass({
                 }
             }
             return (
-                <time className='hint--bottom hint--rounded hint--no-animate' aria-label={title} dateTime={this.props.timestamp}>{result}</time>
+                <time className={'hint--' + this.props.hintDirection + ' hint--rounded hint--no-animate'} aria-label={title} dateTime={this.props.timestamp}>{result}</time>
             );
         }
         return null;
