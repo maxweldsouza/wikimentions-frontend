@@ -8,7 +8,7 @@ var nofollow = require('./nofollow');
 var Markdown = React.createClass({
     getDefaultProps () {
         return {
-            className: ''
+            className: 'markdown'
         };
     },
     propTypes: {

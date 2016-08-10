@@ -16,6 +16,29 @@
     //word-wrap: break-word;
 }
 
+.card-chevron {
+    color: $medium-gray;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    margin-right: 5px;
+
+    &:hover {
+        cursor: pointer;
+        color: $dark-gray;
+    }
+}
+
+.card-title {
+    font-size: $card-title-font-size;
+    font-weight: bold;
+}
+
+.card-count {
+    margin-right: 10px;
+}
+
 .box {
     padding-top: $global-padding;
     padding-bottom: $global-padding;
