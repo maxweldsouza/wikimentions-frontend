@@ -13,7 +13,7 @@
     box-shadow: $dropdown-shadow;
     background: $white;
     z-index: $z-30;
-    font-size: 14px;
+    font-size: rem-calc(14px);
     padding: 0;
     border: $dropdown-border;
 

@@ -37,7 +37,7 @@ var Pagination = React.createClass({
             next = <li className='pagination-next'><a aria-label='Next page' href={next}>Next <span className='show-for-sr'>page</span></a></li>;
         }
         return (
-            <div className='card'>
+            <div className='card box'>
                 <div className='small-12 columns'>
                     <ul className='pagination text-center' role='navigation' aria-label='Pagination'>
                         {prev}

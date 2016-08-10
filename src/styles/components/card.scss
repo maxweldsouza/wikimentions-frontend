@@ -21,8 +21,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    padding: 10px;
-    margin-right: 5px;
+    padding: $global-padding * 0.5 $global-padding;
 
     &:hover {
         cursor: pointer;
@@ -36,7 +35,7 @@
 }
 
 .card-count {
-    margin-right: 10px;
+    margin-right: $global-margin;
 }
 
 .box {

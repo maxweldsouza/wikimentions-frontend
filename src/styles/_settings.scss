@@ -230,7 +230,7 @@ $breadcrumbs-item-slash: true;
 // 11. Button
 // ----------
 
-$button-padding: 8px 16px;
+$button-padding: .5em 1em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
@@ -410,7 +410,7 @@ $orbit-control-zindex: 10;
 // --------------
 
 $pagination-font-size: rem-calc(14);
-$pagination-margin-bottom: $global-margin;
+$pagination-margin-bottom: 0;
 $pagination-item-color: $dark-gray;
 $pagination-item-padding: rem-calc(3 10);
 $pagination-item-spacing: rem-calc(1);
@@ -553,11 +553,11 @@ $topbar-input-width: auto;
 // Custom Settings
 
 $global-border: solid 1px $medium-gray;
-$page-title-font-size: 24px;
-$card-title-font-size: 16px;
-$card-description-font-size: 14px;
+$page-title-font-size: rem-calc(24px);
+$card-title-font-size: rem-calc(16px);
+$card-description-font-size: rem-calc(14px);
 $timestamp-color: $secondary-color;
-$topbar-height: 48px;
+$topbar-height: rem-calc(48px);
 $dropdown-shadow: 0 2px 8px rgba(0, 0, 0, .2);
 
 // Z-indexes

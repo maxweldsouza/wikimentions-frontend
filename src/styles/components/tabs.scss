@@ -20,7 +20,7 @@
 
 .tabs-title > a {
     border: 0;
-    font-size: 14px;
+    font-size: rem-calc(14px);
     color: $secondary-color;
 
     &:focus, &:hover {

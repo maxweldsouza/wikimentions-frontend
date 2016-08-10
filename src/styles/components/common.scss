@@ -1,9 +1,12 @@
-// Sticky footer
+html {
+    font-size: 16px;
+}
 
 div {
     word-break: break-word;
 }
 
+// Sticky footer
 .main-component {
     display: flex;
     flex-direction: column;
@@ -17,7 +20,7 @@ div {
 .page-body {
     margin-top: 2 * $global-margin;
     margin-bottom: 2 * $global-margin;
-    font-size: 14px;
+    font-size: rem-calc(14px);
     &.white {
         background: $white;
         padding: 2 * $global-padding $global-padding;
@@ -38,7 +41,7 @@ div {
 }
 
 .page-footer {
-    font-size: 14px;
+    font-size: rem-calc(14px);
     padding-bottom: 2 * $global-margin;
     padding-top: 2 * $global-margin;
     border-top: solid 2px $medium-gray;
@@ -59,12 +62,12 @@ div {
 }
 
 .footer-logo {
-    font-size: 20px;
+    font-size: rem-calc(20px);
     font-weight: bold;
 }
 
 .thing-description {
-    font-size: 16px;
+    font-size: rem-calc(16px);
     margin-bottom: 10px;
     display: block;
 }
