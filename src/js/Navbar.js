@@ -71,6 +71,7 @@ var Navbar = React.createClass({
                 onSearchTextChanged={this.onSearchTextChanged}
                 placeholder={'Search'}
                 width={400}
+                autoFocus={true}
                 moreResults={true}/>
             <button
                 className='input-group-button button primary'
@@ -154,6 +155,9 @@ var Navbar = React.createClass({
                                 <input
                                     className='search-bar input-group-field'
                                     type='text'
+                                    autoComplete='off'
+                                    spellCheck='false'
+                                    aria-label='Search'
                                     placeholder='Search'
                                     onChange={this.onChangeText}
                                     onKeyDown={this.handleKeys}

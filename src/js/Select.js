@@ -10,6 +10,7 @@ var Select = React.createClass({
             autocomplete: true,
             className: '',
             valid: true,
+            autoFocus: false,
             message: ''
         };
     },
@@ -183,6 +184,10 @@ var Select = React.createClass({
                     valid={this.props.valid}
                     message={this.props.message}
                     placeholder={this.props.placeholder}
+                    autoComplete='off'
+                    spellCheck='false'
+                    aria-label='Search'
+                    autoFocus={this.props.autoFocus}
                     onChange={this.onSearchTextChanged}
                     onKeyDown={this.handleKeys}>
                 </Input>
