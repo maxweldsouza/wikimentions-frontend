@@ -159,7 +159,7 @@ var ThingPage = React.createClass({
                             id={thing.id}
                             slug={thing.props.slug}
                             type={thing.props.type}
-                            tab={x}>{tabTitles[x]}</Link>
+                            tab={x}>{tabTitles[x]} <span className="badge">{thing[tabCounts[x]]}</span></Link>
                     </li>;
                 }
                 return <li className='tabs-title' role='tab' key={x} title={tabTooltips[x]} aria-selected={false}>
@@ -167,7 +167,7 @@ var ThingPage = React.createClass({
                         id={thing.id}
                         slug={thing.props.slug}
                         type={thing.props.type}
-                        tab={x}>{tabTitles[x]}</Link>
+                        tab={x}>{tabTitles[x]} <span className="badge">{thing[tabCounts[x]]}</span></Link>
                 </li>;
             })}
         </ul>;

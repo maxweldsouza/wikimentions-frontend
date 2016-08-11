@@ -77,6 +77,12 @@ var ThingPage = React.createClass({
             'mentioned': 'Mentioned',
             'mentionedby': 'Mentioned By'
         };
+        var tabCounts = {
+            'mentioned': 'mentioned_count',
+            'mentionedby': 'mentioned_by_count',
+            'books': 'book_count',
+            'videos': 'video_count'
+        };
         var tabTooltips = {
             'mentioned': 'People, books or videos mentioned in ' + thing.props.title,
             'mentionedby': 'People who mention ' + thing.props.title
@@ -90,7 +96,7 @@ var ThingPage = React.createClass({
                             id={thing.id}
                             slug={thing.props.slug}
                             type={thing.props.type}
-                            tab={x}>{tabTitles[x]}</Link>
+                            tab={x}>{tabTitles[x]} <span className="badge">{thing[tabCounts[x]]}</span></Link>
                     </li>;
                 }
                 return <li className='tabs-title' key={x} title={tabTooltips[x]}>
@@ -98,7 +104,7 @@ var ThingPage = React.createClass({
                         id={thing.id}
                         slug={thing.props.slug}
                         type={thing.props.type}
-                        tab={x}>{tabTitles[x]}</Link>
+                        tab={x}>{tabTitles[x]} <span className="badge">{thing[tabCounts[x]]}</span></Link>
                 </li>;
             })}
         </ul>;

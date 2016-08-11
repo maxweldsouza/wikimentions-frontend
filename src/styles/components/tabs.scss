@@ -15,6 +15,7 @@
 }
 
 .tabs-title > a {
+    line-height: inherit;
     font-size: rem-calc(14px);
     color: $secondary-color;
 }
