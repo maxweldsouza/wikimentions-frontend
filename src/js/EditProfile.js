@@ -64,22 +64,24 @@ var EditProfile = React.createClass({
             <div className='tabs-panel is-active' role='tabpanel'>
                 <div className='row'>
                     <div className='large-8 columns'>
-                        <h2>Profile</h2>
-                        {this.state.formMessage ? <div className='callout warning'>
-                            {this.state.formMessage}
-                        </div> : null}
-                        Email
-                        <input type='text' name='email' onChange={this.onChangeText} value={this.state.email}/>
-                        <MarkdownInput
-                            name='about'
-                            placeholder='Write something about yourself (Markdown is supported)'
-                            label='About'
-                            rows='5'
-                            content={this.state.about}
-                            onChange={this.onChangeText}
-                            sideBySide={false}
-                            />
-                        <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.updateProfile}/>
+                        <div className='columns box'>
+                            <h2>Profile</h2>
+                            {this.state.formMessage ? <div className='callout warning'>
+                                {this.state.formMessage}
+                            </div> : null}
+                            Email
+                            <input type='text' name='email' onChange={this.onChangeText} value={this.state.email}/>
+                            <MarkdownInput
+                                name='about'
+                                placeholder='Write something about yourself (Markdown is supported)'
+                                label='About'
+                                rows='5'
+                                content={this.state.about}
+                                onChange={this.onChangeText}
+                                sideBySide={false}
+                                />
+                            <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.updateProfile}/>
+                        </div>
                     </div>
                 </div>
             </div>

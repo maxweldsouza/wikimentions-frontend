@@ -60,7 +60,7 @@ var ProfilePage = React.createClass({
             })}
         </ul>;
         if (selectedTab === 'history') {
-            tabContent = <div className=''>
+            tabContent = <div className='box'>
                 {history.map((x, i) => {
                     return <HistoryItem
                         key={i}
@@ -76,7 +76,7 @@ var ProfilePage = React.createClass({
                 <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
             </div>;
         } else if (selectedTab === 'profile') {
-            tabContent = self ? <Profile id={id}/> : null;
+            tabContent = self ? <Profile id={id} about={user.about}/> : null;
         }
         return (
             <span>
@@ -95,45 +95,75 @@ var ProfilePage = React.createClass({
                     username={this.props.username}
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body align-center'>
+                <div className='row page-body white'>
                     <div className='small-12 columns'>
-                        <div className='row'>
-                            <div className='small-12 columns'>
-                                <h1>{user.name}</h1>
-                                <div className='callout'>
+                        <h1>{user.name}</h1>
+                        <p>
+                            <div className='row'>
+                                <div className='small-12 large-9 columns'>
                                     <div className='row'>
-                                        <div className='small-12 medium-9 columns'>
-                                            <div className='row'>
-                                                <div className='small-4 columns'>
-                                                    Joined
-                                                </div>
-                                                <div className='small-8 columns'>
-                                                    <Time timestamp={user.joined} format='D/M/YY' type='timestamp'/>
-                                                </div>
-                                                <div className='small-4 columns'>
-                                                    Level
-                                                </div>
-                                                <div className='small-8 columns'>
-                                                    {user.level}
-                                                </div>
-                                                <div className='small-4 columns'>
-                                                    About
-                                                </div>
-                                                <div className='small-8 columns'>
-                                                    <Markdown
-                                                        markdown={user.about}
-                                                        />
-                                                </div>
-                                            </div>
+                                        <div className='small-2 columns'>
+                                            Joined:
+                                        </div>
+                                        <div className='small-10 columns'>
+                                            <Time timestamp={user.joined} type='ago'/>
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='small-2 columns'>
+                                            Level:
+                                        </div>
+                                        <div className='small-10 columns'>
+                                            {user.level}
+                                        </div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='small-2 columns'>
+                                            About:
+                                        </div>
+                                        <div className='small-10 columns'>
+                                            <Markdown
+                                                markdown={user.about}
+                                                />
                                         </div>
                                     </div>
                                 </div>
-                                {tab}
-                                <div className='card-container'>
-                                    {tabContent}
-                                </div>
+                            </div>
+                        </p>
+                        <div>
+                            <div className='button-group' role='group'>
+                                <a
+                                    className={selectedTab === 'history' ? 'button' : 'button secondary'}
+                                    href={'/users/' + id + '/' + name}
+                                    aria-selected={selectedTab === 'history'}>Activity</a>
+                                <a
+                                    className={selectedTab === 'profile' ? 'button' : 'button secondary'}
+                                    href={'/users/' + id + '/' + name + '/profile'}
+                                    aria-selected={selectedTab === 'profile'}>Edit Profile</a>
                             </div>
                         </div>
+                        {selectedTab === 'profile' ? <div className='card-container'>
+                                <Profile id={id}/>
+                        </div> : null}
+                        {selectedTab === 'history' ? <div className='row'>
+                            <div className='small-12 large-9 columns'>
+                                <div className='row'>
+                                    {history.map((x, i) => {
+                                        return <HistoryItem
+                                            key={i}
+                                            user={user.id}
+                                            username={user.name}
+                                            obj_id={x.obj_id}
+                                            entry={x.entry}
+                                            entrytype={x.entrytype}
+                                            timestamp={x.timestamp}
+                                            deleted={x.deleted}
+                                            />;
+                                    })}
+                                    <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
+                                </div>
+                            </div>
+                        </div> : null}
                     </div>
                 </div>
             </span>

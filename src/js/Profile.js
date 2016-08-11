@@ -4,11 +4,12 @@ var cookies = require('browser-cookies');
 var ChangePassword = require('./ChangePassword');
 var DeleteAccount = require('./DeleteAccount');
 var EditProfile = require('./EditProfile');
+var Markdown = require('./Markdown');
 
 var Profile = React.createClass({
     getInitialState () {
         return {
-            tab: 'Edit Profile'
+            tab: 'Profile'
         };
     },
     changeTab (tab) {
@@ -17,7 +18,7 @@ var Profile = React.createClass({
         });
     },
     render () {
-        var tabs = ['Edit Profile', 'Change Password', 'Delete Account']
+        var tabs = ['Profile', 'Change Password', 'Delete Account']
         return (
             <div className='row'>
                 <div className='small-12 large-3 columns'>
@@ -36,8 +37,8 @@ var Profile = React.createClass({
                         </ul>
                 </div>
                 <div className='large-9 columns'>
-                    <div className='tabs-content vertical box'>
-                        {this.state.tab === 'Edit Profile' ? <EditProfile id={this.props.id}/> : null}
+                    <div className='tabs-content vertical'>
+                        {this.state.tab === 'Profile' ? <EditProfile id={this.props.id}/> : null}
                         {this.state.tab === 'Change Password' ? <ChangePassword /> : null}
                         {this.state.tab === 'Delete Account' ? <DeleteAccount id={this.props.id}/> : null}
                     </div>
