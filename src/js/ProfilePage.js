@@ -36,48 +36,10 @@ var ProfilePage = React.createClass({
     render () {
         var [dummy, id, name, selectedTab] = this.props.path.split('/');
         var self = this.props.userid === id;
-
         selectedTab = selectedTab ? selectedTab : 'history';
         var user = this.props.data.user;
         var history = this.props.data.history;
         var tabs = ['history'];
-        if (self) {
-            tabs.push('profile');
-        }
-        var tab, tabContent;
-        tab = <ul className='tabs' role='tablist'>
-            {tabs.map((x) => {
-                var cls = selectedTab === x ? 'tabs-title is-active' : 'tabs-title';
-                var path;
-                if (x === 'history') {
-                    path = '/users/' + id + '/' + name;
-                } else {
-                    path = '/users/' + id + '/' + name + '/' + x;
-                }
-                return <li className={cls} key={x} role='tab'>
-                    <a href={path} aria-selected={selectedTab === x}>{S(x).capitalize().s}</a>
-                </li>;
-            })}
-        </ul>;
-        if (selectedTab === 'history') {
-            tabContent = <div className='box'>
-                {history.map((x, i) => {
-                    return <HistoryItem
-                        key={i}
-                        user={user.id}
-                        username={user.name}
-                        obj_id={x.obj_id}
-                        entry={x.entry}
-                        entrytype={x.entrytype}
-                        timestamp={x.timestamp}
-                        deleted={x.deleted}
-                        />;
-                })}
-                <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
-            </div>;
-        } else if (selectedTab === 'profile') {
-            tabContent = self ? <Profile id={id} about={user.about}/> : null;
-        }
         return (
             <span>
                 <Helmet
@@ -130,19 +92,23 @@ var ProfilePage = React.createClass({
                                 </div>
                             </div>
                         </p>
-                        <div>
-                            <div className='button-group' role='group'>
-                                <a
-                                    className={selectedTab === 'history' ? 'button' : 'button secondary'}
-                                    href={'/users/' + id + '/' + name}
-                                    aria-selected={selectedTab === 'history'}>Activity</a>
-                                <a
-                                    className={selectedTab === 'profile' ? 'button' : 'button secondary'}
-                                    href={'/users/' + id + '/' + name + '/profile'}
-                                    aria-selected={selectedTab === 'profile'}>Edit Profile</a>
+                        <div className='row'>
+                            <div className='small-12 large-9 columns'>
+                                {self ? <div>
+                                    <div className='button-group' role='group'>
+                                        <a
+                                            className={selectedTab === 'history' ? 'button' : 'button secondary'}
+                                            href={'/users/' + id + '/' + name}
+                                            aria-selected={selectedTab === 'history'}>Activity</a>
+                                        <a
+                                            className={selectedTab === 'profile' ? 'button' : 'button secondary'}
+                                            href={'/users/' + id + '/' + name + '/profile'}
+                                            aria-selected={selectedTab === 'profile'}>Edit Profile</a>
+                                    </div>
+                                </div> : <div><h2>Activity</h2><hr/></div>}
                             </div>
                         </div>
-                        {selectedTab === 'profile' ? <div className='card-container'>
+                        {self && selectedTab === 'profile' ? <div className='card-container'>
                                 <Profile id={id}/>
                         </div> : null}
                         {selectedTab === 'history' ? <div className='row'>
