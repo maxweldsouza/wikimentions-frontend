@@ -14,39 +14,50 @@
     padding: 0;
 }
 
-.tabs-title {
-    display: inline-block;
-    float: none;
-}
-
 .tabs-title > a {
-    border: solid 1px transparent;
     font-size: rem-calc(14px);
     color: $secondary-color;
-    border-bottom: 0;
-    border-top-left-radius: $global-radius;
-    border-top-right-radius: $global-radius;
+}
+
+:not(.vertical) > .tabs-title {
+    display: inline-block;
+    float: none;
+
+    &.is-active > a {
+        background: $white;
+        border: $global-border;
+        border-bottom: 0;
+        font-weight: bold;
+    }
+
+    & > a {
+        border: solid 1px transparent;
+        border-bottom: 0;
+        border-top-left-radius: $global-radius;
+        border-top-right-radius: $global-radius;
+
+        &:focus, &:hover {
+            background: $white;
+            border: $global-border;
+            border-bottom: 0;
+        }
+    }
+}
+
+.vertical .tabs-title {
+    & > a {
+        border-bottom: $global-border;
+    }
+
+    &.is-active > a {
+        border: 0;
+        border-bottom: $global-border;
+        font-weight: bold;
+    }
 
     &:focus, &:hover {
         background: $light-gray;
     }
-}
-
-.vertical .tabs-title > a {
-    border-bottom: $global-border;
-}
-
-.tabs-title.is-active > a {
-    font-weight: bold;
-    background: $white;
-    border: $global-border;
-    border-bottom: 0;
-}
-
-.tabs-title > a:hover {
-    background: $white;
-    border: $global-border;
-    border-bottom: 0;
 }
 
 .tabs-content {
