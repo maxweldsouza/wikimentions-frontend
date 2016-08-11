@@ -19,7 +19,7 @@ var Thumbnail = React.createClass({
         var imageUrl, imageWidth, imageHeight, imageMd5, aspectRatio;
         var useOriginal;
         if (this.props.image) {
-            useOriginal = this.props.displayWidth >= 75;
+            useOriginal = this.props.displayWidth > 75;
             if (this.props.type === 'book' && this.props.displayHeight === 200) {
                 useOriginal = true;
             }
