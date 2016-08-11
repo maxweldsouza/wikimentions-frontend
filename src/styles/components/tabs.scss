@@ -1,6 +1,7 @@
 .tabs {
     border: 0;
     overflow-x: auto;
+    overflow-y: hidden;
     white-space: nowrap;
 }
 
@@ -19,9 +20,12 @@
 }
 
 .tabs-title > a {
-    border: 0;
+    border: solid 1px transparent;
     font-size: rem-calc(14px);
     color: $secondary-color;
+    border-bottom: 0;
+    border-top-left-radius: $global-radius;
+    border-top-right-radius: $global-radius;
 
     &:focus, &:hover {
         background: $light-gray;
@@ -34,9 +38,15 @@
 
 .tabs-title.is-active > a {
     font-weight: bold;
+    background: $white;
+    border: $global-border;
+    border-bottom: 0;
 }
 
 .tabs-title > a:hover {
+    background: $white;
+    border: $global-border;
+    border-bottom: 0;
 }
 
 .tabs-content {
