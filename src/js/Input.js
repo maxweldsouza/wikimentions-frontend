@@ -2,7 +2,7 @@ var React = require('react');
 var _ = require('underscore');
 
 var Input = React.createClass({
-    getDefaultProps: function() {
+    getDefaultProps () {
         return {
             onClear: function () {},
             value: '',

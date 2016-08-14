@@ -3,7 +3,7 @@ var MarkdownHelp = require('./MarkdownHelp');
 var Markdown = require('./Markdown');
 
 var MarkdownInput = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             preview: false,
             firstChange: true

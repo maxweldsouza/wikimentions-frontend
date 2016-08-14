@@ -61,22 +61,22 @@ var DiscussReply = React.createClass({
     },
     render () {
         var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to post a message.</span>;
-            return (
-                <div className='small-12 columns'>
-                    <Restricted message={loggedOutMessage}>
-                        {this.state.formMessage ? <div className='callout warning'>
-                            {this.state.formMessage}
-                        </div> : null}
+        return (
+            <div className='small-12 columns'>
+                <Restricted message={loggedOutMessage}>
+                    {this.state.formMessage ? <div className='callout warning'>
+                        {this.state.formMessage}
+                    </div> : null}
 
-                        <MarkdownInput
-                            name='content'
-                            placeholder='Write your post  here (Markdown is supported)'
-                            rows='5'
-                            label='Post'
-                            content={this.state.content}
-                            onChange={this.onChangeText}
-                            sideBySide={true}
-                            />
+                    <MarkdownInput
+                        name='content'
+                        placeholder='Write your post  here (Markdown is supported)'
+                        rows='5'
+                        label='Post'
+                        content={this.state.content}
+                        onChange={this.onChangeText}
+                        sideBySide={true}
+                        />
                     <SubmitButton title='Submit' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                 </Restricted>
             </div>

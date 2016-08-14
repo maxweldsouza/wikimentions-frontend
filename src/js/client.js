@@ -12,7 +12,8 @@ var Snackbar = require('./Snackbar');
 require('velocity-animate');
 require('velocity-animate/velocity.ui');
 var NProgress = require('nprogress');
-NProgress.configure({ showSpinner: false, minimum: 0.4 })
+NProgress.configure({ showSpinner: false, minimum: 0.4 });
+
 /*
 in console type Perf.printWasted();
 var Perf = require('react-addons-perf');

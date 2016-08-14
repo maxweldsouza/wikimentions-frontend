@@ -189,8 +189,7 @@ var Select = React.createClass({
                     aria-label='Search'
                     autoFocus={this.props.autoFocus}
                     onChange={this.onSearchTextChanged}
-                    onKeyDown={this.handleKeys}>
-                </Input>
+                    onKeyDown={this.handleKeys}/>
                 {this.state.searchText.length > 0 ? <span onClick={this.onClear} className='ion-backspace select-clear'/> : null}
                 <input
                     name={this.props.name}

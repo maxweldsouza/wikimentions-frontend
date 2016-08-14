@@ -2,15 +2,15 @@ var React = require('react');
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 var CopyButton = React.createClass({
-    getInitialState () {
-        return {
-            copied: false
-        };
-    },
     getDefaultProps () {
         return {
             hintDirection: 'bottom',
             className: ''
+        };
+    },
+    getInitialState () {
+        return {
+            copied: false
         };
     },
     onCopy () {

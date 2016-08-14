@@ -5,14 +5,14 @@ var isNode = require('./isNode');
 /* Having a time ago or a local timestamp prevents us from caching pages
 This component renders the timestamp no the client side insetad */
 var Time = React.createClass({
+    getDefaultProps () {
+        return {
+            hintDirection: 'bottom'
+        };
+    },
     getInitialState: function () {
         return {
             server: true
-        };
-    },
-    getDefaultProps: function() {
-        return {
-            hintDirection: 'bottom'
         };
     },
     componentWillMount: function () {

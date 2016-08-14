@@ -18,7 +18,7 @@ var Profile = React.createClass({
         });
     },
     render () {
-        var tabs = ['Profile', 'Change Password', 'Delete Account']
+        var tabs = ['Profile', 'Change Password', 'Delete Account'];
         return (
             <div className='row'>
                 <div className='small-12 large-3 columns'>

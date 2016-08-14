@@ -6,13 +6,13 @@ var md = new Remarkable({
 var nofollow = require('./nofollow');
 
 var Markdown = React.createClass({
+    propTypes: {
+        markdown: React.PropTypes.string.isRequired
+    },
     getDefaultProps () {
         return {
             className: 'markdown'
         };
-    },
-    propTypes: {
-        markdown: React.PropTypes.string.isRequired
     },
     render: function () {
         /* This is a dangerous area for security. Make sure

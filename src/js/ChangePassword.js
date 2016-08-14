@@ -5,7 +5,7 @@ var requests = require('superagent');
 var cookies = require('browser-cookies');
 
 var ChangePassword = React.createClass({
-    getInitialState: function() {
+    getInitialState () {
         return {
             submitting: false,
             old: '',

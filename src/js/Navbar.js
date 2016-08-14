@@ -87,7 +87,12 @@ var Navbar = React.createClass({
             onClick={this.props.toggleSidebar}
             aria-label='Toggle Sidebar'/>;
 
-        var searchIcon = <button className='button primary small' aria-label='Open search bar' onClick={this.onOpenSearchBar}><span className='ion-android-search navbar-icon'  style={{fontSize: 17}}/></button>;
+        var searchIcon = <button
+            className='button primary small'
+            aria-label='Open search bar'
+            onClick={this.onOpenSearchBar}>
+                <span className='ion-android-search navbar-icon'  style={{fontSize: 17}}/>
+            </button>;
         if (loggedin) {
             rhs = <ul className='menu align-right'>
                 <li className='show-for-xlarge'>
