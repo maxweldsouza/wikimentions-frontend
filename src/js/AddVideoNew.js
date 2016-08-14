@@ -21,6 +21,11 @@ var AddVideoNew = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
+    onClear (name) {
+        var temp = {};
+        temp[name] = '';
+        this.setState(temp);
+    },
     validateForm () {
         var valid = true;
         if (!this.state.title) {
@@ -104,10 +109,28 @@ var AddVideoNew = React.createClass({
         return (
             <form method='post' action={'/api/v1/thing/' + this.props.id + '/books'}>
                 Title
-                <Input type='text' name='title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid} message={this.state.titleMessage}/>
+                <Input
+                    type='text'
+                    name='title'
+                    value={this.state.title}
+                    onChange={this.onChangeText}
+                    onClear={this.onClear}
+                    valid={this.state.titleValid}
+                    message={this.state.titleMessage}/>
                 Url
-                <Input type='text' name='url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid} message={this.state.urlMessage} />
-                <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                <Input
+                    type='text'
+                    name='url'
+                    value={this.state.url}
+                    onChange={this.onChangeText}
+                    onClear={this.onClear}
+                    valid={this.state.urlValid}
+                    message={this.state.urlMessage} />
+                <SubmitButton
+                    title='Create'
+                    className='button primary float-right'
+                    submitting={this.state.submitting}
+                    onSubmit={this.onSubmit}/>
             </form>
         );
     }

@@ -49,6 +49,11 @@ var HomePage = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
+    onClear (name) {
+        var temp = {};
+        temp[name] = '';
+        this.setState(temp);
+    },
     validateForm () {
         var valid = true;
         var message;
@@ -152,6 +157,7 @@ var HomePage = React.createClass({
                                             name='title'
                                             value={this.state.title}
                                             onChange={this.onChangeText}
+                                            onClear={this.onClear}
                                             valid={this.state.titleValid}
                                             message={this.state.titleMessage}/>
                                         {this.state.type === 'video' ? <span>
@@ -159,15 +165,18 @@ var HomePage = React.createClass({
                                             <Input type='text' name='url'
                                             value={this.state.url}
                                             onChange={this.onChangeText}
+                                            onClear={this.onClear}
                                             valid={this.state.urlValid}
                                             placeholder='http://'
                                             message={this.state.urlMessage}/></span> : null}
                                         {this.state.type === 'person' ? <span>Description (Optional)
-                                            <input
+                                            <Input
                                                 type='text'
                                                 name='description'
                                                 value={this.state.description}
-                                                onChange={this.onChangeText}/>
+                                                onChange={this.onChangeText}
+                                                onClear={this.onClear}
+                                                />
                                         </span> : null}
                                     </div>
                                 </div>

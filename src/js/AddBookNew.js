@@ -21,6 +21,11 @@ var AddBookNew = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
+    onClear (name) {
+        var temp = {};
+        temp[name] = '';
+        this.setState(temp);
+    },
     validateForm () {
         var valid = true;
         if (!this.state.title) {
@@ -95,9 +100,20 @@ var AddBookNew = React.createClass({
                     {this.state.formMessage}
                 </div> : null}
                 Title
-                <Input type='text' name='title' value={this.state.title} onChange={this.onChangeText} valid={this.state.titleValid} message={this.state.titleMessage}/>
+                <Input
+                    type='text'
+                    name='title'
+                    value={this.state.title}
+                    onChange={this.onChangeText}
+                    onClear={this.onClear}
+                    valid={this.state.titleValid}
+                    message={this.state.titleMessage}/>
                 Description (Optional)
-                <input type='text' name='description' value={this.state.description} onChange={this.onChangeText} />
+                <Input
+                    type='text'
+                    name='description'
+                    value={this.state.description}
+                    onChange={this.onChangeText} />
                 <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </form>
         );

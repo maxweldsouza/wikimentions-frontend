@@ -77,6 +77,11 @@ var EditPage = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
+    onClear (name) {
+        var temp = {};
+        temp[name] = '';
+        this.setState(temp);
+    },
     validateForm () {
         var valid = true;
         var message;
@@ -231,37 +236,48 @@ var EditPage = React.createClass({
                                 <Input
                                     type='text'
                                     name='title'
-                                    value={this.state.title} onChange={this.onChangeText}
+                                    value={this.state.title}
+                                    onChange={this.onChangeText}
+                                    onClear={this.onClear}
                                     valid={this.state.titleValid}
                                     message={this.state.titleMessage}/>
                                 {this.state.type === 'video' ? <span>
                                     Url
-                                    <Input type='text' name='url' placeholder='Url' value={this.state.url} onChange={this.onChangeText} valid={this.state.urlValid}
+                                    <Input
+                                        type='text'
+                                        name='url'
+                                        value={this.state.url}
+                                        onChange={this.onChangeText}
+                                        onClear={this.onClear}
+                                        valid={this.state.urlValid}
                                         message={this.state.urlMessage}/>
                                 </span> : null}
                                 {this.state.type === 'person' ? <span>
                                     Description (Optional)
-                                    <input
+                                    <Input
                                         type='text'
                                         name='description'
                                         value={this.state.description}
-                                        onChange={this.onChangeText}/>
+                                        onChange={this.onChangeText}
+                                        onClear={this.onClear}/>
                                 </span> : null}
                                 {this.state.type === 'book' ? <span>
                                     ISBN
-                                    <input
+                                    <Input
                                         type='text'
                                         name='isbn'
                                         value={this.state.isbn}
-                                        onChange={this.onChangeText}/>
+                                        onChange={this.onChangeText}
+                                        onClear={this.onClear}/>
                                 </span> : null}
                                 {this.state.type === 'book' ? <span>
                                     ISBN-13
-                                    <input
+                                    <Input
                                         type='text'
                                         name='isbn13'
                                         value={this.state.isbn13}
-                                        onChange={this.onChangeText}/>
+                                        onChange={this.onChangeText}
+                                        onClear={this.onClear}/>
                                 </span> : null}
                                 <SubmitButton
                                     title='Save'
@@ -274,7 +290,10 @@ var EditPage = React.createClass({
                                     <hr/>
                                     <div className='row align-middle'>
                                         <div className='small-6 columns'>
-                                            <label><input type='checkbox' onChange={this.onToggleConfirm}/>I'm sure</label>
+                                            <label><input
+                                                type='checkbox'
+                                                onChange={this.onToggleConfirm}
+                                                onClear={this.onClear}/>I'm sure</label>
                                         </div>
                                         <div className='small-6 columns'>
                                             <SubmitButton
