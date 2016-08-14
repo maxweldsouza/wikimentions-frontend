@@ -8,13 +8,19 @@ var SubmitButton = React.createClass({
     },
     render () {
         var animation = {
-            animationName: 'spin',
-            animationDuration: '500ms',
+            animationName: 'spinner-animation',
+            animationDuration: '350ms',
             animationIterationCount: 'infinite',
             animationTimingFunction: 'linear'
         };
-        if (this.props.submitting || this.props.confirm === false) {
-            return <button type='button' className={this.props.className + ' disabled'} onClick={this.props.onSubmit}>{this.props.title}{this.props.submitting ? <span className='ion ion-load-c' style={animation}/> : null}</button>;
+        if (this.props.submitting) {
+            return <button
+                type='button'
+                className={this.props.className + ' loading disabled'}>{this.props.title}
+            </button>;
+        }
+        if (this.props.confirm === false) {
+            return <button type='button' className={this.props.className + ' disabled'} onClick={this.props.onSubmit}>{this.props.title}</button>;
         }
         return <button type='button' className={this.props.className} onClick={this.props.onSubmit}>{this.props.title}</button>;
     }

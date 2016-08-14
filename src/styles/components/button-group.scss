@@ -47,3 +47,23 @@
 .button:focus {
     outline: none;
 }
+
+.button.loading:after {
+    animation: spinner-animation 400ms linear infinite;
+    border: solid 2px transparent;
+    border-left-color: $white;
+    border-radius: 1em;
+    border-top-color: $white;
+    content: '';
+    display: block;
+    height: 14px;
+    width: 14px;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 8px;
+}
+
+.button.secondary.loading:after {
+    border-left-color: $secondary-color;
+    border-top-color: $secondary-color;
+}

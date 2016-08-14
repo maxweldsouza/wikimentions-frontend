@@ -23,7 +23,7 @@ var KitchenSinkPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Site Stats'}
+                    title={'Kitchen Sink'}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
@@ -55,6 +55,13 @@ var KitchenSinkPage = React.createClass({
                                         <button className='button success'>Success</button>
                                         <button className='button warning'>Warning</button>
                                         <button className='button alert'>Alert</button>
+                                    </div>
+                                    <div>
+                                        <button className='button loading disabled'>Button</button>
+                                        <button className='button secondary loading disabled'>Secondary</button>
+                                        <button className='button success loading disabled'>Success</button>
+                                        <button className='button warning loading disabled'>Warning</button>
+                                        <button className='button alert loading disabled'>Alert</button>
                                     </div>
                                     <hr/>
                                     <h2>Badge</h2>

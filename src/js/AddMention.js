@@ -26,7 +26,7 @@ var AddMention = React.createClass({
             description: '',
             references: '',
             formMessage: '',
-            submiting: false
+            submitting: false
         };
     },
     onChangeText (e) {
@@ -168,7 +168,12 @@ var AddMention = React.createClass({
                                     types={['book', 'video']}/>
                             </span>}
                             <div className='button-group float-right'>
-                                <SubmitButton type='button' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit} title='Add' />
+                                <SubmitButton
+                                    type='button'
+                                    className='button primary'
+                                    submitting={this.state.submiting}
+                                    onSubmit={this.onSubmit}
+                                    title='Add' />
                             </div>
                     </div>
                 </div>
