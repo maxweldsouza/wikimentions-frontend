@@ -1,10 +1,15 @@
 var request = require('superagent');
 var async = require('async');
 var _ = require('underscore');
+var NProgress = require('nprogress');
 
 var makeRequest = function (url, callback) {
     return function (cb) {
-        request.get(url)
+        request
+        .get(url)
+        .on('progress', function () {
+            NProgress.inc();
+        })
         .end(cb);
         return;
     };
