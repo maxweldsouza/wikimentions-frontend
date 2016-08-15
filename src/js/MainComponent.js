@@ -33,6 +33,7 @@ var KitchenSinkPage = require('./KitchenSinkPage');
 var store = require('store');
 var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
+var Feedback = require('./Feedback');
 
 var MainComponent = React.createClass({
     propTypes: {
@@ -100,7 +101,14 @@ var MainComponent = React.createClass({
                         userid={userid}
                         toggleSidebar={this.onToggleSidebar}
                         />
+                </div>
+                <div className='footer-feedback'>
+                    <div className='row align-right'>
+                        <div className='small-12 large-6 columns'>
+                            <Feedback/>
+                        </div>
                     </div>
+                </div>
                 <Footer />
             </div>
         );

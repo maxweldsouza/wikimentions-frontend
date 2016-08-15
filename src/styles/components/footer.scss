@@ -1,0 +1,8 @@
+.footer-feedback {
+    padding-top: $global-margin;
+    padding-bottom: $global-margin;
+
+    @include breakpoint (small only) {
+        background: $white;
+    }
+}

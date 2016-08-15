@@ -88,45 +88,45 @@ var Feedback = React.createClass({
     render () {
         var main;
         if (this.state.step === 'rate') {
-            main = <div>
+            main = <div style={{textAlign: 'right'}}>
                 {config.name + ' is '}
-                <div>
-                    <button className='button small secondary' onClick={this.onRate.bind(null, 'good')}>
+                <span>
+                    <button className='button small secondary no-margin-bottom' onClick={this.onRate.bind(null, 'good')}>
                         <i className='ion-checkmark'/> Great
                     </button>{' '}
-                    <button className='button small secondary' onClick={this.onRate.bind(null, 'bad')}>
+                    <button className='button small secondary no-margin-bottom' onClick={this.onRate.bind(null, 'bad')}>
                         <i className='ion-close'/> Needs Work
                     </button>
-                </div>
+                </span>
             </div>;
         } else if (this.state.step === 'feedback') {
             main = <div>
                 How can we improve ?
                 <textarea type='text' className='form-control' name='feedback' onChange={this.onChangeText}/>
-                <div>
+                <div className='float-right small button-group'>
                     <button
-                        className='button small'
-                        onClick={this.onFeedback} role='button'>Submit</button>{' '}
-                    <button
-                        className='button small secondary'
+                        className='button secondary no-margin-bottom'
                         onClick={this.startOver} role='button'>Cancel</button>
+                    <button
+                        className='button no-margin-bottom'
+                        onClick={this.onFeedback} role='button'>Send Feedback</button>{' '}
                 </div>
             </div>;
         } else if (this.state.step === 'email') {
-            main = <div>
-                Please leave your email so that we can respond.
+            main = <div className=''>
+                Would you like to leave your email?
                 <input type='email' className='form-control' name='email' onChange={this.onChangeText}/>
-                <div>
+                <div className='float-right small button-group'>
                     <button
-                        className='button small'
-                        onClick={this.onEmail} role='button'>Submit</button>{' '}
-                    <button
-                        className='button small secondary'
+                        className='button secondary no-margin-bottom'
                         onClick={this.startOver} role='button'>No Thanks</button>
+                    <button
+                        className='button no-margin-bottom'
+                        onClick={this.onEmail} role='button'>Save</button>{' '}
                 </div>
             </div>;
         } else if (this.state.step === 'done') {
-            main = <div>Thanks for your feedback! <button className='button small secondary' onClick={this.startOver}>Start Over</button></div>;
+            main = <div>Thanks for your feedback! <button className='button small secondary no-margin-bottom' onClick={this.startOver}>Start Over</button></div>;
         }
         return main;
     }

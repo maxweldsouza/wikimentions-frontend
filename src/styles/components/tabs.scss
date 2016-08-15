@@ -63,4 +63,8 @@
 
 .tabs-content {
     border: 0;
+
+    &:not(.vertical) {
+        margin-bottom: $global-margin;
+    }
 }

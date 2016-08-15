@@ -27,7 +27,7 @@ div {
         border: $global-border;
         border-radius: $global-radius;
 
-        @include breakpoint (xlarge down) {
+        @include breakpoint (large down) {
             margin: 2 * $global-margin $global-margin;
         }
         @include breakpoint (small only) {
@@ -89,4 +89,8 @@ time {
     &:hover {
         cursor: pointer;
     }
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
 }
