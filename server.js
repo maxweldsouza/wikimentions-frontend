@@ -148,7 +148,8 @@ app.get(/^(.+)$/, function(req, res, next) {
                                     res.setHeader('X-Rate-Limit-Reset', usage['exp'])
                                     memcached.set(rateLimitKey, usage, usage['exp'] - now, function (err) {});
                                 } else {
-                                    res.status(429).send('Too many requests');
+                                    res.status(429).send('Too many requests').end();
+                                    return;
                                 }
                             }
                         } else {
