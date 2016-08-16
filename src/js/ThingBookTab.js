@@ -11,21 +11,21 @@ var ThingBookTab = React.createClass({
         </div>;
         return (
             <div className='card-container'>
-                <div className='card box'>
-                    {books.map((x) => {
-                        return <Book
-                            key={x.id}
-                            id={x.id}
-                            image={x.image}
-                            type={x.props.type}
-                            slug={x.props.slug}
-                            title={x.props.title}
-                            isbn={x.isbn}
-                            isbn13={x.isbn13}
-                            />;
-                    })}
-                    {books.length === 0 ? emptybooks : null}
-                </div>
+                {books.map((x) => {
+                    return <Book
+                        key={x.id}
+                        id={x.id}
+                        image={x.image}
+                        type={x.props.type}
+                        slug={x.props.slug}
+                        title={x.props.title}
+                        mentioned_count={x.mentioned_count}
+                        mentioned_by_count={x.mentioned_by_count}
+                        isbn={x.isbn}
+                        isbn13={x.isbn13}
+                        />;
+                })}
+                {books.length === 0 ? emptybooks : null}
                 <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card box'>
                     <div className='small-12 columns'>
