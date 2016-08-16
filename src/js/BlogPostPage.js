@@ -50,7 +50,7 @@ var BlogPostPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
-                        <div className='rows'>
+                        <div className='row'>
                             <div className='small-12 columns'>
                                 <div className=''>
                                     <BlogPost

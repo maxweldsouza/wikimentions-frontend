@@ -44,9 +44,6 @@ var Sidebar = React.createClass({
                         <a className='sidebar-item sidebar-button' href='/blog'>
                             <span className='ion-document menu-item-icon'/>Blog
                         </a>
-                        <a className='sidebar-item sidebar-button' href='/contact'>
-                            <span className='ion-email menu-item-icon'/>Contact
-                        </a>
                         {loggedin ? <a className='sidebar-item sidebar-button' onClick={Mentions.logout}><span className='ion-log-out menu-item-icon'/>Log Out</a> : <a className='sidebar-item sidebar-button' href='/login'><span className='ion-log-in menu-item-icon'/>Log In</a>}
                         {loggedin ? <span></span> : <a className='sidebar-item sidebar-button' href='/signup'><span className='ion-person-add menu-item-icon'/>Sign Up</a>}
                         {loggedin ? <span className='sidebar-button sidebar-loggedin'>Logged in as <a className='' href={'/users/' + this.props.userid + '/' + this.props.username}>{this.props.username}</a></span> : null}

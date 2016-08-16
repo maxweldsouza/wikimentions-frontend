@@ -25,7 +25,7 @@ var HomeSearch = React.createClass({
         return (
             <div>
                 <h2>Search</h2>
-                <input type='text' placeholder='Search for anything' name='searchText' value={this.state.searchText} onChange={this.onChangeText} onKeyDown={this.handleKeys}/>
+                <input type='text' name='searchText' value={this.state.searchText} onChange={this.onChangeText} onKeyDown={this.handleKeys}/>
             </div>
         );
     }

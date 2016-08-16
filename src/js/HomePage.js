@@ -2,7 +2,6 @@ var _ = require('underscore');
 var ButtonSelect = require('./ButtonSelect');
 var config = require('./config');
 var cookies = require('browser-cookies');
-var Feedback = require('./Feedback');
 var Helmet = require('react-helmet');
 var HomeItem = require('./HomeItem');
 var HomeSearch = require('./HomeSearch');
@@ -74,25 +73,24 @@ var HomePage = React.createClass({
                         <div className='callout show-for-xlarge'>
                             <ul className='menu vertical row'>
                                 <li><a href='/blog'>Blog</a></li>
-                                <li><a href='/contribute'>Contribute</a></li>
                                 <li><a href='/recent-changes'>Recent Changes</a></li>
                                 <li><a href='/recent-discussions'>Recent Discussions</a></li>
                             </ul>
                         </div>
                         <div className='callout show-for-xlarge'>
-                            <h2>Did you know?</h2>
-                            <a>James Watson</a> and <a>Francis Crick</a> had read <a>Erwin Schrodinger's</a> book <a>What is Life?</a> which inspired
-                            them to work on discovering the structure of DNA.
-                        </div>
-                        <div className='callout show-for-xlarge'>
                             <h2>About</h2>
-                            <li>Pages are created and edited by users.</li>
-                            <li>A page can be a <i>person</i>, <i>book</i> or <i>video</i>.</li>
-                            <li>A <i>person</i> can mention a <i>person</i>, <i>book</i> or <i>video</i> in a <i>book</i> or <i>video.</i></li>
-                            <li>Books and videos can have one or more authors.</li>
+                            <ul>
+                                <li>Pages are created and edited by users.</li>
+                                <li>A page can be a <strong><i>person</i></strong>, <strong><i>book</i></strong> or <strong><i>video</i></strong>.</li>
+                                <li>A <strong><i>person</i></strong> can mention a <strong><i>person</i></strong>, <strong><i>book</i></strong> or <strong><i>video</i></strong> in a <strong><i>book</i></strong> or <strong><i>video.</i></strong></li>
+                                <li>Books and videos can have one or more authors.</li>
+                            </ul>
                         </div>
                         <div className='callout show-for-xlarge'>
-                            <Feedback />
+                            <h2>Recent Blog Posts</h2>
+                            <ul className='menu vertical row'>
+                                <li><a href='/blog/first-post'>First Post</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div className='small-12 xlarge-8 columns'>
