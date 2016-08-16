@@ -67,3 +67,7 @@
     border-left-color: $secondary-color;
     border-top-color: $secondary-color;
 }
+
+.button.disabled, .button[disabled] {
+    pointer-events: none;
+}
