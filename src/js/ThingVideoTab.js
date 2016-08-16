@@ -7,7 +7,7 @@ var ThingVideoTab = React.createClass({
     render () {
         var videos = this.props.videos;
         var id = this.props.id;
-        var emptyvideos = <div className='card'>
+        var emptyvideos = <div className='card box'>
             <div className="small-12 columns">
             No videos have been added for this author. You can help us by adding some.
             </div>
