@@ -36,7 +36,7 @@ var EditProfile = React.createClass({
     },
     updateProfile () {
         this.setState({
-            submiting: true
+            submitting: true
         });
         requests
         .post('/api/v1/user/' + this.props.id)
@@ -48,7 +48,7 @@ var EditProfile = React.createClass({
         })
         .end((err, res) => {
             this.setState({
-                submiting: false
+                submitting: false
             });
             if (err && err.status) {
                 this.setState({

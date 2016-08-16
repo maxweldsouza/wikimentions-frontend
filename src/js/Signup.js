@@ -45,7 +45,7 @@ var Signup = React.createClass({
     signup () {
         if (this.validateForm()) {
             this.setState({
-                submiting: true
+                submitting: true
             });
             requests
             .post('/api/v1/signup')
@@ -58,7 +58,7 @@ var Signup = React.createClass({
             })
             .end((err, res) => {
                 this.setState({
-                    submiting: false
+                    submitting: false
                 });
                 if (err && err.status) {
                     Snackbar({message: err.message ? err.message : 'Something went wrong'});

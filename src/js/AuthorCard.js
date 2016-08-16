@@ -30,7 +30,7 @@ var AuthorCard = React.createClass({
         })
         .end((err, res) => {
             this.setState({
-                submiting: false
+                submitting: false
             });
             if (err && err.status) {
                 Snackbar({message: res.body.message});

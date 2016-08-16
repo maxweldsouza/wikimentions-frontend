@@ -15,7 +15,7 @@ var ImageUpload = React.createClass({
             imageDescription: '',
             descriptionValid: true,
             descriptionMessage: '',
-            submiting: false
+            submitting: false
         };
     },
     handleScale (value) {
@@ -107,7 +107,7 @@ var ImageUpload = React.createClass({
             }
 
             this.setState({
-                submiting: true
+                submitting: true
             });
             requests
             .post('/api/v1/images/' + this.props.id)
@@ -117,7 +117,7 @@ var ImageUpload = React.createClass({
             .field('image', image)
             .end((err, res) => {
                 this.setState({
-                    submiting: false
+                    submitting: false
                 });
                 if (err && err.status) {
                     Snackbar({message: res.body.message});

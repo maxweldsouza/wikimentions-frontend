@@ -93,7 +93,7 @@ var AddMention = React.createClass({
             })
             .end((err, res) => {
                 this.setState({
-                    submiting: false
+                    submitting: false
                 });
                 if (err && err.status) {
                     this.setState({
@@ -171,7 +171,7 @@ var AddMention = React.createClass({
                                 <SubmitButton
                                     type='button'
                                     className='button primary'
-                                    submitting={this.state.submiting}
+                                    submitting={this.state.submitting}
                                     onSubmit={this.onSubmit}
                                     title='Add' />
                             </div>

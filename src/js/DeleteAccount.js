@@ -21,7 +21,7 @@ var DeleteAccount = React.createClass({
             Snackbar({message: 'Password is empty'});
         } else {
             this.setState({
-                submiting: true
+                submitting: true
             });
             requests
             .post('/api/v1/user/' + this.props.id + '/delete')
@@ -32,7 +32,7 @@ var DeleteAccount = React.createClass({
             })
             .end((err, res) => {
                 this.setState({
-                    submiting: false
+                    submitting: false
                 });
                 if (err && err.status) {
                     Snackbar({message: res.body.message});

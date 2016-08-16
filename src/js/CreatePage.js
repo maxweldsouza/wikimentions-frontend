@@ -32,7 +32,7 @@ var HomePage = React.createClass({
             url: '',
             urlValid: true,
             urlMessage: '',
-            submiting: false,
+            submitting: false,
             formMessage: ''
         };
     },
@@ -76,7 +76,7 @@ var HomePage = React.createClass({
     onSubmit () {
         if (this.validateForm()) {
             this.setState({
-                submiting: true
+                submitting: true
             });
             var data = {
                 title: this.state.title,
@@ -97,7 +97,7 @@ var HomePage = React.createClass({
             .send(data)
             .end((err, res) => {
                 this.setState({
-                    submiting: false
+                    submitting: false
                 });
                 if (err && err.status) {
                     this.setState({

@@ -23,7 +23,7 @@ var ChangePassword = React.createClass({
             Snackbar({message: "Password don't match"});
         } else {
             this.setState({
-                submiting: true
+                submitting: true
             });
             requests
             .post('/api/v1/changepassword')
@@ -35,7 +35,7 @@ var ChangePassword = React.createClass({
             })
             .end((err, res) => {
                 this.setState({
-                    submiting: false
+                    submitting: false
                 });
                 if (err && err.status) {
                     Snackbar({message: res.body.message});

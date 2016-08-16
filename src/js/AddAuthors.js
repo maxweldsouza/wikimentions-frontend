@@ -13,7 +13,7 @@ var AddAuthors = React.createClass({
         return {
             opened: false,
             author: '',
-            submiting: false,
+            submitting: false,
             authorValid: true,
             authorMessage: '',
             formMessage: ''
@@ -69,7 +69,7 @@ var AddAuthors = React.createClass({
             })
             .end((err, res) => {
                 this.setState({
-                    submiting: false
+                    submitting: false
                 });
                 if (err && err.status) {
                     this.setState({

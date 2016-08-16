@@ -24,7 +24,7 @@ var Mention = React.createClass({
         })
         .end((err, res) => {
             this.setState({
-                submiting: false
+                submitting: false
             });
             if (err && err.status) {
                 Snackbar({message: 'Delete failed'});

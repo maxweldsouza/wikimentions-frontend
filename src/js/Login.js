@@ -19,7 +19,7 @@ var Login = React.createClass({
     },
     login () {
         this.setState({
-            submiting: true
+            submitting: true
         });
         requests
         .post('/api/v1/login')
@@ -31,7 +31,7 @@ var Login = React.createClass({
         })
         .end((err, res) => {
             this.setState({
-                submiting: false
+                submitting: false
             });
             if (err && err.status) {
                 this.setState({

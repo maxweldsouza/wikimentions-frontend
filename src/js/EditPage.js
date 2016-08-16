@@ -54,7 +54,7 @@ var EditPage = React.createClass({
             url: this.props.data.thing.props.url,
             urlValid: true,
             urlMessage: '',
-            submiting: false,
+            submitting: false,
             confirmDelete: false,
             modalIsOpen: false
         };
@@ -105,7 +105,7 @@ var EditPage = React.createClass({
         var id = Number(this.props.path.split('/')[1]);
         if (this.validateForm()) {
             this.setState({
-                submiting: true
+                submitting: true
             });
             var data = {
                 title: this.state.title,
@@ -126,7 +126,7 @@ var EditPage = React.createClass({
             .send(data)
             .end((err, res) => {
                 this.setState({
-                    submiting: false
+                    submitting: false
                 });
                 if (err && err.status) {
                     Snackbar({message: res.body.message});
@@ -141,7 +141,7 @@ var EditPage = React.createClass({
     onDeletePage () {
         var id = Number(this.props.path.split('/')[1]);
         this.setState({
-            submiting: true
+            submitting: true
         });
         var data = {
             action: 'delete',
@@ -153,7 +153,7 @@ var EditPage = React.createClass({
         .send(data)
         .end((err, res) => {
             this.setState({
-                submiting: false
+                submitting: false
             });
             if (err && err.status) {
                 Snackbar({message: res.body.message});
