@@ -21,6 +21,8 @@ var ThingVideoTab = React.createClass({
                             type={x.props.type}
                             slug={x.props.slug}
                             title={x.props.title}
+                            mentioned_count={x.mentioned_count}
+                            mentioned_by_count={x.mentioned_by_count}
                             image={x.image}
                             url={x.props.url}
                             />;

@@ -32,6 +32,26 @@ var Video = React.createClass({
                                 slug={this.props.slug}
                                 type='video'>{this.props.title}</Link>
                             <div>{'[' + parsed.hostname + ']'}</div>
+                            <div className='row'>
+                                <div className='columns'>
+                                    <Link
+                                        id={this.props.id}
+                                        slug={this.props.slug}
+                                        title={this.props.title}
+                                        type={this.props.type}
+                                        className='secondary card-count'
+                                        tab='mentioned'>{'Mentions '}<span className="badge">{this.props.mentioned_count}</span>{'  '}
+                                    </Link>
+                                    <Link
+                                        id={this.props.id}
+                                        slug={this.props.slug}
+                                        title={this.props.title}
+                                        type={this.props.type}
+                                        className='secondary card-count'
+                                        tab='mentionedby'>{'Mentioned By '}<span className="badge">{this.props.mentioned_by_count}</span>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
