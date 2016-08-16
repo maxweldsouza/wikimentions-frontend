@@ -129,9 +129,9 @@ var SearchPage = React.createClass({
                                 Showing results {start} to {end} of {this.state.numFound}
                             </div> : null}
                         </div>
-                        <div className='small-12 columns'>
+                        <div>
                             <div className='card-container'>
-                                {this.state.results.length === 0 ? <div className='card'>
+                                {this.state.results.length === 0 ? <div className='card box'>
                                     <div className='small-12 columns'>
                                         No results found.
                                     </div>
