@@ -50,7 +50,10 @@
 
     & > .icon {
         font-size: rem-calc(20px);
-        margin-right: 10px;
+    }
+
+    & > *:last-child {
+        margin-left: $global-margin;
     }
 }
 
