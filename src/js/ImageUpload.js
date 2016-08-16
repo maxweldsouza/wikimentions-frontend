@@ -5,6 +5,7 @@ var cookies = require('browser-cookies');
 var Snackbar = require('./Snackbar');
 var Input = require('./Input');
 import Cropper from 'react-cropper';
+var MarkdownInput = require('./MarkdownInput');
 
 var ImageUpload = React.createClass({
     getInitialState () {
@@ -192,21 +193,17 @@ var ImageUpload = React.createClass({
                         crop={this._crop} /> : null}
                 </div>
                 <div className='small-12 xlarge-expand columns'>
-                    Description
-                    <Input
-                        textarea={true}
-                        type='text'
+                    <MarkdownInput
                         name='imageDescription'
-                        placeholder='Add a description for the image, including copyright information, a link to the original source etc.'
-                        value={this.state.imageDescription}
+                        placeholder='Add a description for the image, including copyright information, a link to the original source etc. (Markdown is supported)'
+                        rows='5'
+                        label='Description'
+                        content={this.state.imageDescription}
                         onChange={this.onChangeText}
                         valid={this.state.descriptionValid}
                         message={this.state.descriptionMessage}
-                        rows={3}/>
-                    {this.state.imageDescription ? <div>
-                        <strong>Preview</strong>
-                        <Markdown markdown={this.state.imageDescription} />
-                    </div> : null}
+                        sideBySide={false}
+                        />
                 </div>
                 <div className='small-12 columns'>
                     <div className='button-group'>
