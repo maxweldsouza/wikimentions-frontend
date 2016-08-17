@@ -18,21 +18,21 @@ var PageBar = React.createClass({
         return (
             <div className='page-bar'>
                 {this.props.noPage ? null : <span><a
-                    className='secondary hint--bottom-right hint--rounded hint--no-animate'
+                    className='secondary'
                     href={pagepath + id + '/' + slug}
                     aria-label='Back to page'>Page</a>{' · '}</span>}
                 <a
-                    className='secondary hint--bottom-right hint--rounded hint--no-animate'
+                    className='secondary'
                     href={'/edit/' + id + '/' + slug}
                     aria-label='Edit this page'>Edit</a>
                 {' · '}
                 <a
-                    className='secondary hint--bottom-right hint--rounded hint--no-animate'
+                    className='secondary'
                     href={'/discuss/' + id + '/' + slug}
                     aria-label='Discussion about this page'>Discuss</a>
                 {' · '}
                 <a
-                    className='secondary hint--bottom hint--rounded hint--no-animate'
+                    className='secondary'
                     href={'/history/' + id + '/' + slug}
                     aria-label='Page edit history'>History</a>
             </div>
