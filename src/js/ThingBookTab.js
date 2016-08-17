@@ -6,8 +6,15 @@ var Pagination = require('./Pagination');
 var ThingBookTab = React.createClass({
     render () {
         var books = this.props.books;
-        var emptybooks = <div className="small-12 columns">
+        var emptybooks = <div className='card box'>
+            <div className="small-12 columns">
             No books have been added for this author. You can help us by adding some.
+            </div>
+        </div>;
+        var nomore = <div className='card box'>
+            <div className="small-12 columns">
+            No more books to show.
+            </div>
         </div>;
         return (
             <div className='card-container'>
@@ -25,7 +32,8 @@ var ThingBookTab = React.createClass({
                         isbn13={x.isbn13}
                         />;
                 })}
-                {books.length === 0 ? emptybooks : null}
+                {this.props.page === 0 && books.length === 0 ? emptybooks : null}
+                {this.props.page !== 0 && books.length === 0 ? nomore : null}
                 <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card box'>
                     <div className='small-12 columns'>

@@ -11,6 +11,11 @@ var ThingMentionTab = React.createClass({
             No mentions have been added yet. You can help us by adding some.
             </div>
         </div>;
+        var nomore = <div className='card box'>
+            <div className="small-12 columns">
+            No more mentions to show.
+            </div>
+        </div>;
         return (
             <div className='card-container'>
                 {mentionedby.map((x) => {
@@ -25,7 +30,8 @@ var ThingMentionTab = React.createClass({
                         type={this.props.type}
                         />;
                 })}
-                {mentionedby.length === 0 ? nodata : null}
+                {this.props.page === 0 && mentionedby.length === 0 ? nodata : null}
+                {this.props.page !== 0 && mentionedby.length === 0 ? nomore : null}
                 <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card box'>
                     <AddMention id={this.props.id} mentioned={this.props.id}/>

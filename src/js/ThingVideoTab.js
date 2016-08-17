@@ -12,6 +12,11 @@ var ThingVideoTab = React.createClass({
             No videos have been added for this author. You can help us by adding some.
             </div>
         </div>;
+        var nomore = <div className='card box'>
+            <div className="small-12 columns">
+            No more videos to show.
+            </div>
+        </div>;
         return (
             <div className='card-container'>
                 {videos.map((x) => {
@@ -27,7 +32,8 @@ var ThingVideoTab = React.createClass({
                             url={x.props.url}
                             />;
                 })}
-                {videos.length === 0 ? emptyvideos : null}
+                {this.props.page === 0 && videos.length === 0 ? emptyvideos : null}
+                {this.props.page !== 0 && videos.length === 0 ? nomore : null}
                 <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card box'>
                     <div className='small-12 columns'>
