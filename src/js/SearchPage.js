@@ -114,7 +114,7 @@ var SearchPage = React.createClass({
                                     onKeyDown={this.handleKeys}>
                                 </input>
                                 <button className='button primary' onClick={this.onSearchClicked} style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}>
-                                    <span className='ion-android-search' style={{fontSize: 17}}/>
+                                    <span className='ion-android-search'/>
                                 </button>
                         </div>
                         <div className='row'>
