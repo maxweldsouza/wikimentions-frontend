@@ -1,4 +1,7 @@
-.page-bar,
-.page-bar > a {
-    font-size: rem-calc(14px);
+.page-bar {
+    margin-bottom: .5rem;
+
+    & > a {
+        font-size: rem-calc(14px);
+    }
 }
