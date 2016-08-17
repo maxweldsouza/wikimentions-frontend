@@ -43,7 +43,7 @@ var AuthorCard = React.createClass({
     },
     render () {
         return (
-            <div className='card'>
+            <div className='card box'>
                 <div className='shrink columns'>
                     <Thumbnail
                         type={this.props.type}
