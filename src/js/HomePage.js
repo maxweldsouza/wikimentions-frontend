@@ -24,8 +24,12 @@ var HomePage = React.createClass({
                         path: '/api/v1/stats'
                     },
                     {
-                        name: 'home',
-                        path: '/api/v1/home'
+                        name: 'startups',
+                        path: '/api/v1/tag/Startups'
+                    },
+                    {
+                        name: 'science',
+                        path: '/api/v1/tag/Science'
                     }
                 ]
             };
@@ -95,7 +99,29 @@ var HomePage = React.createClass({
                     </div>
                     <div className='small-12 xlarge-8 columns'>
                         <div className='card-container'>
-                            {this.props.data.home.map((x) => {
+                            <div className='card box columns'>
+                                <strong><h2 className='no-margin-bottom'>Startups</h2></strong>
+                            </div>
+                            {this.props.data.startups.map((x) => {
+                                return <HomeItem
+                                    key={x.id}
+                                    id={x.id}
+                                    title={x.props.title}
+                                    image={x.image}
+                                    description={x.props.description}
+                                    type={x.props.type}
+                                    slug={x.props.slug}
+                                    book_count={x.book_count}
+                                    video_count={x.video_count}
+                                    mentioned_count={x.mentioned_count}
+                                    mentioned_by_count={x.mentioned_by_count}/>;
+                            })}
+                        </div>
+                        <div className='card-container'>
+                            <div className='card box columns'>
+                                <strong><h2 className='no-margin-bottom'>Science</h2></strong>
+                            </div>
+                            {this.props.data.science.map((x) => {
                                 return <HomeItem
                                     key={x.id}
                                     id={x.id}
