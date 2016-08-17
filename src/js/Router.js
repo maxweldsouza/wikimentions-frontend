@@ -157,7 +157,8 @@ var getResources = function (routeObj, beforeUpdate) {
         (err, res) => {
             if (err) {
                 routeObj.error = {
-                    status: err.status
+                    status: err.status,
+                    message: err.message
                 };
             } else {
                 var timestamps = [];

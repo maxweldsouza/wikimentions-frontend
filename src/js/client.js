@@ -53,8 +53,12 @@ window.Mentions = {
         var routeObj = {
             url: url,
             onUpdate: (robj) => {
-                NProgress.inc();
-                ReactDOM.render(<MainComponent data={robj.data} path={robj.path} component={robj.component} query={robj.query}/>, document.getElementById('page-container'));
+                if (robj.error) {
+                    Snackbar({message: robj.error.message});
+                } else {
+                    NProgress.inc();
+                    ReactDOM.render(<MainComponent data={robj.data} path={robj.path} component={robj.component} query={robj.query}/>, document.getElementById('page-container'));
+                }
                 stopLoading();
             }
         };
@@ -73,8 +77,12 @@ window.Mentions = {
             url: url,
             embeddedData: data,
             onUpdate: (robj) => {
-                // Dont need to send ga pagview on first load
-                ReactDOM.render(<MainComponent data={robj.data} path={robj.path} component={robj.component} query={robj.query}/>, document.getElementById('page-container'));
+                if (robj.error) {
+                    Snackbar({message: robj.error.message});
+                } else {
+                    // Dont need to send ga pagview on first load
+                    ReactDOM.render(<MainComponent data={robj.data} path={robj.path} component={robj.component} query={robj.query}/>, document.getElementById('page-container'));
+                }
                 stopLoading();
             }
         };
