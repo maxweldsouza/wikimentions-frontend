@@ -85,7 +85,7 @@ var ThingPage = React.createClass({
         };
         var tabTooltips = {
             'mentioned': 'People, books or videos mentioned in ' + thing.props.title,
-            'mentionedby': 'People who mention ' + thing.props.title
+            'mentionedby': 'People who have mentioned ' + thing.props.title
         };
         var tabHeading = <ul className='tabs' role='tablist'>
             {tabs.map((x) => {
