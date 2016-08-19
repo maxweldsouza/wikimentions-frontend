@@ -270,6 +270,7 @@ var ThingPage = React.createClass({
                 <div className='small-12 columns'>
                     <div className='row'>
                         <div className='small-12 large-3 columns'>
+                            <div>
                             {thing.props.type !== 'video' ? <a onClick={this.onOpenModal}>
                                 {thing.props.type === 'book' ? <Thumbnail
                                 alt={thing.props.title}
@@ -323,6 +324,7 @@ var ThingPage = React.createClass({
                                 </div> : null}
                             </Modal>
                             {thing.props.type === 'book' ? <Affiliate title={thing.props.title} isbn={thing.props.isbn}/> : null}
+                            </div>
                         </div>
                             <div className='small-12 large-9 columns'>
                                 <h1>{thing.props.title}</h1>
@@ -349,6 +351,12 @@ var ThingPage = React.createClass({
                                     <div className='tabs-panel is-active'>
                                         {tabContent}
                                     </div>
+                                </div>
+                                <div>
+                                    Tags:
+                                    <a className='tag secondary button round small no-margin-bottom'>
+                                        Startups
+                                    </a>
                                 </div>
                             </div>
                         </div>

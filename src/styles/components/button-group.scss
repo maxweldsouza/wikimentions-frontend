@@ -71,3 +71,7 @@
 .button.disabled, .button[disabled] {
     pointer-events: none;
 }
+
+.button.round {
+    border-radius: 999em;
+}
