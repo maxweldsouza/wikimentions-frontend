@@ -125,6 +125,7 @@ var AddVideoNew = React.createClass({
                     onChange={this.onChangeText}
                     onClear={this.onClear}
                     valid={this.state.urlValid}
+                    placeholder='http://'
                     message={this.state.urlMessage} />
                 <SubmitButton
                     title='Create'
