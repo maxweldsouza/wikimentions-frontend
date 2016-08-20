@@ -3,6 +3,7 @@ var cookies = require('browser-cookies');
 var React = require('react');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
+var Input = require('./Input');
 
 var Feedback = React.createClass({
     getInitialState () {
@@ -18,6 +19,11 @@ var Feedback = React.createClass({
             message: ''
         };
         temp[e.target.name] = e.target.value;
+        this.setState(temp);
+    },
+    onClear (name) {
+        var temp = {};
+        temp[name] = '';
         this.setState(temp);
     },
     onRate (rate) {
@@ -115,7 +121,15 @@ var Feedback = React.createClass({
         } else if (this.state.step === 'email') {
             main = <div className=''>
                 Would you like to leave your email?
-                <input type='email' className='form-control' name='email' onChange={this.onChangeText}/>
+                <Input
+                    type='email'
+                    className='form-control'
+                    name='email'
+                    value={this.state.email}
+                    onChange={this.onChangeText}
+                    onClear={this.onClear}
+                    valid={true}
+                    message={''}/>
                 <div className='float-right small button-group'>
                     <button
                         className='button secondary no-margin-bottom'

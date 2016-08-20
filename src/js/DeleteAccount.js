@@ -3,6 +3,7 @@ var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var cookies = require('browser-cookies');
+var Input = require('./Input');
 
 var DeleteAccount = React.createClass({
     getInitialState () {
@@ -14,6 +15,11 @@ var DeleteAccount = React.createClass({
     onChangeText (e) {
         var temp = {};
         temp[e.target.name] = e.target.value;
+        this.setState(temp);
+    },
+    onClear (name) {
+        var temp = {};
+        temp[name] = '';
         this.setState(temp);
     },
     deleteAccount () {
@@ -55,7 +61,14 @@ var DeleteAccount = React.createClass({
                                 If you delete your account all your account information will be deleted. Any edits/contributions will NOT be deleted. This cannot be undone.
                             </div>
                             Password
-                            <input type='password' name='password' onChange={this.onChangeText} value={this.state.password}/>
+                            <Input
+                                type='password'
+                                name='password'
+                                onChange={this.onChangeText}
+                                value={this.state.password}
+                                onClear={this.onClear}
+                                valid={true}
+                                message={''}/>
                             <SubmitButton title='Delete Account' className='button alert float-right' submitting={this.state.submitting} onSubmit={this.deleteAccount}/>
                         </div>
                     </div>

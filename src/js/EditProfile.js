@@ -5,6 +5,7 @@ var MarkdownHelp = require('./MarkdownHelp');
 var MarkdownInput = require('./MarkdownInput');
 var cookies = require('browser-cookies');
 var Snackbar = require('./Snackbar');
+var Input = require('./Input');
 
 var EditProfile = React.createClass({
     getInitialState () {
@@ -32,6 +33,11 @@ var EditProfile = React.createClass({
         if (e.target.name === 'about') {
             temp.preview = true;
         }
+        this.setState(temp);
+    },
+    onClear (name) {
+        var temp = {};
+        temp[name] = '';
         this.setState(temp);
     },
     updateProfile () {
@@ -70,7 +76,14 @@ var EditProfile = React.createClass({
                                 {this.state.formMessage}
                             </div> : null}
                             Email
-                            <input type='text' name='email' onChange={this.onChangeText} value={this.state.email}/>
+                            <Input
+                                type='text'
+                                name='email'
+                                onChange={this.onChangeText}
+                                value={this.state.email}
+                                onClear={this.onClear}
+                                valid={true}
+                                message={''}/>
                             <MarkdownInput
                                 name='about'
                                 placeholder='Write something about yourself (Markdown is supported)'

@@ -3,6 +3,7 @@ var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var cookies = require('browser-cookies');
+var Input = require('./Input');
 
 var ChangePassword = React.createClass({
     getInitialState () {
@@ -16,6 +17,11 @@ var ChangePassword = React.createClass({
     onChangeText (e) {
         var temp = {};
         temp[e.target.name] = e.target.value;
+        this.setState(temp);
+    },
+    onClear (name) {
+        var temp = {};
+        temp[name] = '';
         this.setState(temp);
     },
     changePassword () {
@@ -53,11 +59,32 @@ var ChangePassword = React.createClass({
                         <div className='columns box'>
                             <h2>Change Password</h2>
                             Old Password
-                            <input type='password' name='old' onChange={this.onChangeText} value={this.state.old}/>
+                            <Input
+                                type='password'
+                                name='old'
+                                onChange={this.onChangeText}
+                                value={this.state.old}
+                                onClear={this.onClear}
+                                valid={true}
+                                message={''}/>
                             New Password
-                            <input type='password' name='new' onChange={this.onChangeText} value={this.state.new}/>
+                            <Input
+                                type='password'
+                                name='new'
+                                onChange={this.onChangeText}
+                                value={this.state.new}
+                                onClear={this.onClear}
+                                valid={true}
+                                message={''}/>
                             Repeat Password
-                            <input type='password' name='repeat' onChange={this.onChangeText} value={this.state.repeat}/>
+                            <Input
+                                type='password'
+                                name='repeat'
+                                onChange={this.onChangeText}
+                                value={this.state.repeat}
+                                onClear={this.onClear}
+                                valid={true}
+                                message={''}/>
                             <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.changePassword}/>
                         </div>
                     </div>
