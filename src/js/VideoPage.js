@@ -119,6 +119,7 @@ var ThingPage = React.createClass({
         var tabContent;
         if (tab === 'mentioned') {
             tabContent = <ThingMentionTab
+                            loggedin={this.props.loggedin}
                             mentions={mentions}
                             id={id}
                             path={this.props.path}
@@ -128,6 +129,7 @@ var ThingPage = React.createClass({
                         />;
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
+                            loggedin={this.props.loggedin}
                             id={id}
                             mentionedby={mentionedby}
                             path={this.props.path}

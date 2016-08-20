@@ -8,25 +8,20 @@ var store = require('store');
 var Restricted = React.createClass({
     getDefaultProps () {
         return {
-            min_level: 0
+            min_level: 0,
+            level: 1
         };
     },
     render () {
         var message = this.props.message ? this.props.message : <span>You need to <LoginModal/> / <SignupModal/></span>;
         var session;
-        var level = 0;
-        if (isNode.isBrowser()) {
-            session = cookies.get('mentions');
-            level = store.get('level');
-        }
-        var loggedin = session ? true : false;
         var allowed;
         if (this.props.min_level === 0) {
             allowed = true;
         } else if (this.props.min_level === 1) {
-            allowed = loggedin;
+            allowed = this.props.loggedin;
         } else {
-            allowed = level >= this.props.min_level;
+            allowed = this.props.level >= this.props.min_level;
         }
         if (allowed) {
             return (

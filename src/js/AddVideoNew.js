@@ -4,6 +4,7 @@ var SubmitButton = require('./SubmitButton');
 var cookies = require('browser-cookies');
 var requests = require('superagent');
 var Input = require('./Input');
+var IpWarning = require('./IpWarning');
 
 var AddVideoNew = React.createClass({
     getInitialState () {
@@ -126,6 +127,7 @@ var AddVideoNew = React.createClass({
                     valid={this.state.urlValid}
                     placeholder='http://'
                     message={this.state.urlMessage} />
+                <IpWarning loggedin={this.props.loggedin}/>
                 <SubmitButton
                     title='Create'
                     className='button primary float-right'

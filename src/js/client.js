@@ -9,6 +9,8 @@ var MainComponent = require('./MainComponent');
 var Router = require('./Router.js');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
+var store = require('store');
+
 require('velocity-animate');
 require('velocity-animate/velocity.ui');
 var NProgress = require('nprogress');
@@ -57,7 +59,14 @@ window.Mentions = {
                     Snackbar({message: robj.error.message});
                 } else {
                     NProgress.inc();
-                    ReactDOM.render(<MainComponent data={robj.data} path={robj.path} component={robj.component} query={robj.query}/>, document.getElementById('page-container'));
+                    ReactDOM.render(<MainComponent
+                        loggedin={store.get('username') ? true : false}
+                        username={store.get('username')}
+                        userid={store.get('id')}
+                        data={robj.data}
+                        path={robj.path}
+                        component={robj.component}
+                        query={robj.query}/>, document.getElementById('page-container'));
                 }
                 stopLoading();
             }
@@ -81,7 +90,14 @@ window.Mentions = {
                     Snackbar({message: robj.error.message});
                 } else {
                     // Dont need to send ga pagview on first load
-                    ReactDOM.render(<MainComponent data={robj.data} path={robj.path} component={robj.component} query={robj.query}/>, document.getElementById('page-container'));
+                    ReactDOM.render(<MainComponent
+                        loggedin={store.get('username') ? true : false}
+                        username={store.get('username')}
+                        userid={store.get('id')}
+                        data={robj.data}
+                        path={robj.path}
+                        component={robj.component}
+                        query={robj.query}/>, document.getElementById('page-container'));
                 }
                 stopLoading();
             }
@@ -101,6 +117,9 @@ window.Mentions = {
                 Snackbar({message: 'Logout failed'});
             } else {
                 Snackbar({message: 'Logged out'});
+                store.remove('username');
+                store.remove('level');
+                store.remove('id');
                 var path = window.location.pathname + window.location.search;
                 history.pushState(null, null, path);
                 Mentions.route(path);

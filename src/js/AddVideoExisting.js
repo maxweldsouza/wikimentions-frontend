@@ -7,6 +7,7 @@ var requests = require('superagent');
 var Select = require('./Select');
 var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
+var IpWarning = require('./IpWarning');
 
 var AddVideo = React.createClass({
     getInitialState () {
@@ -76,6 +77,7 @@ var AddVideo = React.createClass({
             </div> : null}
             Search for video
             <Select name='video_id' onSelectValue={this.onSelect} types={['video']}/>
+            <IpWarning loggedin={this.props.loggedin}/>
             <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
         </div>;
     }

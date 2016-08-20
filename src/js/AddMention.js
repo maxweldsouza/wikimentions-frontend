@@ -10,6 +10,7 @@ var Restricted = require('./Restricted');
 var LoginModal = require('./LoginModal');
 var SignupModal = require('./SignupModal');
 var SubmitButton = require('./SubmitButton');
+var IpWarning = require('./IpWarning');
 
 var AddMention = React.createClass({
     getInitialState () {
@@ -166,6 +167,7 @@ var AddMention = React.createClass({
                                     onSelectValue={this.onChangeMentionedIn}
                                     types={['book', 'video']}/>
                             </span>}
+                            <IpWarning loggedin={this.props.loggedin}/>
                             <div className='button-group float-right'>
                                 <SubmitButton
                                     type='button'

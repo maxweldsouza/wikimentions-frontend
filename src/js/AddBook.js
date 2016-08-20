@@ -36,9 +36,9 @@ var AddBook = React.createClass({
                             onChange={this.onChangeType}
                             />
                         {this.state.type !== 'New' ? <div>
-                            <AddBookExisting id={this.props.id}/>
+                            <AddBookExisting id={this.props.id} loggedin={this.props.loggedin}/>
                         </div> : <span>
-                            <AddBookNew id={this.props.id}/>
+                            <AddBookNew id={this.props.id} loggedin={this.props.loggedin}/>
                         </span>}
                     </div>
                 </div>

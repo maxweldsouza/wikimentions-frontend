@@ -37,7 +37,7 @@ var ThingVideoTab = React.createClass({
                 <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card box'>
                     <div className='small-12 columns'>
-                        <AddVideo id={this.props.id} />
+                        <AddVideo id={this.props.id} loggedin={this.props.loggedin}/>
                     </div>
                 </div>
             </div>

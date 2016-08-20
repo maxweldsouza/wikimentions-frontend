@@ -199,6 +199,7 @@ var ThingPage = React.createClass({
         var tabContent;
         if (tab === 'mentioned') {
             tabContent = <ThingMentionTab
+                loggedin={this.props.loggedin}
                 id={id}
                 mentions={mentions}
                 count={thing.mentioned_count}
@@ -208,6 +209,7 @@ var ThingPage = React.createClass({
                 />;
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
+                loggedin={this.props.loggedin}
                 id={id}
                 mentionedby={mentionedby}
                 count={thing.mentioned_by_count}
@@ -217,6 +219,7 @@ var ThingPage = React.createClass({
                 />;
         } else if (tab === 'books' && thing.props.type === 'person') {
             tabContent = <ThingBookTab
+                loggedin={this.props.loggedin}
                 id={id}
                 books={books}
                 count={thing.book_count}
@@ -225,6 +228,7 @@ var ThingPage = React.createClass({
                 />;
         } else if (tab === 'videos' && thing.props.type === 'person') {
             tabContent = <ThingVideoTab
+                loggedin={this.props.loggedin}
                 id={id}
                 videos={videos}
                 count={thing.video_count}

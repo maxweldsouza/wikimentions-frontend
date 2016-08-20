@@ -34,12 +34,18 @@ var store = require('store');
 var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
 var Feedback = require('./Feedback');
-var store = require('store');
 
 var MainComponent = React.createClass({
     propTypes: {
         component: React.PropTypes.string.isRequired,
         data: React.PropTypes.object.isRequired
+    },
+    getDefaultProps () {
+        return {
+            loggedin: false,
+            username: '',
+            userid: ''
+        };
     },
     getInitialState () {
         return {
@@ -77,11 +83,6 @@ var MainComponent = React.createClass({
     render () {
         var Component = require('./' + this.props.component);
         var session, username, userid, loggedin;
-        if (isNode.isBrowser()) {
-            session = cookies.get('mentions');
-            username = store.get('username');
-            userid = store.get('id');
-        }
         loggedin = session ? true : false;
         return (
             <div className='main-component'>
@@ -89,17 +90,17 @@ var MainComponent = React.createClass({
                     <Sidebar
                         showing={this.state.sidebar}
                         onToggleSidebar={this.onCloseSidebar}
-                        loggedin={loggedin}
-                        username={username}
-                        userid={userid}
+                        loggedin={this.props.loggedin}
+                        username={this.props.username}
+                        userid={this.props.userid}
                     />
                     <Component
                         data={this.props.data}
                         path={this.props.path}
                         query={this.props.query}
-                        loggedin={loggedin}
-                        username={username}
-                        userid={userid}
+                        loggedin={this.props.loggedin}
+                        username={this.props.username}
+                        userid={this.props.userid}
                         toggleSidebar={this.onToggleSidebar}
                         />
                 </div>

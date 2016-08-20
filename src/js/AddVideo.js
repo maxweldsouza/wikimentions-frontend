@@ -36,9 +36,9 @@ var AddVideo = React.createClass({
                             onChange={this.onChangeType}
                             />
                         {this.state.type !== 'New' ? <div>
-                            <AddVideoExisting id={this.props.id}/>
+                            <AddVideoExisting id={this.props.id} loggedin={this.props.loggedin}/>
                         </div> : <span>
-                            <AddVideoNew id={this.props.id}/>
+                            <AddVideoNew id={this.props.id} loggedin={this.props.loggedin}/>
                         </span>}
                     </div>
                 </div>
