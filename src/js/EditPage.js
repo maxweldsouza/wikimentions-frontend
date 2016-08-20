@@ -111,7 +111,6 @@ var EditPage = React.createClass({
                 title: this.state.title,
                 description: this.state.description,
                 type: this.state.type,
-                action: 'update',
                 _xsrf: cookies.get('_xsrf')
             };
             if (this.state.type === 'book') {
@@ -121,7 +120,7 @@ var EditPage = React.createClass({
                 data.url = this.state.url;
             }
             requests
-            .post('/api/v1/thing/' + id)
+            .put('/api/v1/thing/' + id)
             .type('form')
             .send(data)
             .end((err, res) => {
@@ -144,11 +143,10 @@ var EditPage = React.createClass({
             submitting: true
         });
         var data = {
-            action: 'delete',
             _xsrf: cookies.get('_xsrf')
         };
         requests
-        .post('/api/v1/thing/' + id)
+        .delete('/api/v1/thing/' + id)
         .type('form')
         .send(data)
         .end((err, res) => {
@@ -205,7 +203,7 @@ var EditPage = React.createClass({
                             id={id}
                             slug={entry.props.slug}
                             type={entry.props.type} />
-                        <Restricted message={loggedOutMessage}>
+                        <Restricted message={loggedOutMessage} min_level={1}>
                             <div className='callout'>
                                 <a onClick={this.onOpenModal}>Upload
                                 </a> an image for this page.

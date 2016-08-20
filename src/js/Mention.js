@@ -15,10 +15,9 @@ var Mention = React.createClass({
     },
     removeMention () {
         requests
-        .post('/api/v1/mentions')
+        .delete('/api/v1/mentions')
         .type('form')
         .send({
-            action: 'delete',
             mention_id: this.props.mention_id,
             _xsrf: cookies.get('_xsrf')
         })

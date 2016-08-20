@@ -73,6 +73,7 @@ var HistoryPage = React.createClass({
                                 return <HistoryItem
                                     user={x.user}
                                     username={x.username}
+                                    ip={x.ip}
                                     entry={x.entry}
                                     entrytype={x.entrytype}
                                     timestamp={x.timestamp}

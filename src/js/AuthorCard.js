@@ -21,11 +21,10 @@ var AuthorCard = React.createClass({
             type = '/videosby';
         }
         requests
-        .post('/api/v1/thing/' + this.props.sourceId + type)
+        .delete('/api/v1/thing/' + this.props.sourceId + type)
         .type('form')
         .send({
             author_id: id,
-            action: 'remove',
             _xsrf: cookies.get('_xsrf')
         })
         .end((err, res) => {

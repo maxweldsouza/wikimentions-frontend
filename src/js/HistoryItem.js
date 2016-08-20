@@ -112,7 +112,9 @@ var HistoryItem = React.createClass({
             <div className='small-12 columns'>
                 <div className='row'>
                     <span className='small-8 columns'>
-                        <strong style={{fontSize: 17}}>{type}</strong> {added} <strong><a className='' href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a></strong>
+                        <strong style={{fontSize: 17}}>{type}</strong> {added} <strong>
+                            {this.props.username ? <a className='' href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a> : this.props.ip}
+                        </strong>
                     </span>
                     <span className='small-4 columns text-right'><Time timestamp={this.props.timestamp} type='ago'/></span>
                     <span className='small-12 columns'>

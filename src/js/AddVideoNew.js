@@ -66,7 +66,6 @@ var AddVideoNew = React.createClass({
                 title: this.state.title,
                 url: this.state.url,
                 type: 'video',
-                action: 'create',
                 _xsrf: cookies.get('_xsrf')
             })
             .end((err, res) => {

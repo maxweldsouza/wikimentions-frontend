@@ -4,6 +4,7 @@ var Xsrf = require('./Xsrf');
 var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
+var store = require('store');
 
 var Login = React.createClass({
     getInitialState () {
@@ -45,6 +46,10 @@ var Login = React.createClass({
                     formError: false
                 });
                 Snackbar({message: 'Logged in'});
+                store.set('username', res.body.username);
+                store.set('level', res.body.level);
+                store.set('id', res.body.id);
+
                 var path = window.location.pathname + window.location.search;
                 if (this.props.redirect) {
                     path = this.props.redirect;

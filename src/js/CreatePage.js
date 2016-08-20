@@ -82,7 +82,6 @@ var HomePage = React.createClass({
                 title: this.state.title,
                 description: this.state.description,
                 type: this.state.type,
-                action: 'create',
                 _xsrf: cookies.get('_xsrf')
             };
             if (this.state.type === 'book') {

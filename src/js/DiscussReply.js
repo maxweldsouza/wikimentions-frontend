@@ -63,7 +63,7 @@ var DiscussReply = React.createClass({
         var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to post a message.</span>;
         return (
             <div className='small-12 columns'>
-                <Restricted message={loggedOutMessage}>
+                <Restricted message={loggedOutMessage} min_level={1}>
                     {this.state.formMessage ? <div className='callout warning'>
                         {this.state.formMessage}
                     </div> : null}

@@ -83,7 +83,6 @@ var AddMention = React.createClass({
             .post('/api/v1/mentions')
             .type('form')
             .send({
-                action: 'create',
                 description: this.state.description,
                 references: this.state.references,
                 mentioned_by: this.state.mentioned_by,

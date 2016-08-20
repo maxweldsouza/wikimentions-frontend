@@ -6,6 +6,7 @@ var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var zxcvbn = require('zxcvbn');
 var Input = require('./Input');
+var store = require('store');
 
 var Signup = React.createClass({
     getInitialState () {
@@ -65,6 +66,10 @@ var Signup = React.createClass({
                 } else {
                     this.closeModal();
                     Snackbar({message: 'Signed up'});
+                    store.set('username', res.body.username);
+                    store.set('level', res.body.level);
+                    store.set('id', res.body.id);
+
                     var path = window.location.pathname + window.location.search;
                     history.pushState(null, null, path);
                     Mentions.route(path);

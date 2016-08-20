@@ -113,7 +113,6 @@ var ImageUpload = React.createClass({
             requests
             .post('/api/v1/images/' + this.props.id)
             .set('X-XSRFToken', cookies.get('_xsrf'))
-            .field('action', 'add')
             .field('imageDescription', this.state.imageDescription)
             .field('image', image)
             .end((err, res) => {

@@ -15,7 +15,6 @@ var config = require('./config');
 var Link = require('./Link');
 var Thumbnail = require('./Thumbnail');
 var Modal = require('./Modal');
-var Restricted = require('./Restricted');
 var Markdown = require('./Markdown');
 var Affiliate = require('./Affiliate');
 var Time = require('./Time');

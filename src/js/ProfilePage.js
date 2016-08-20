@@ -7,7 +7,6 @@ var config = require('./config');
 var HistoryItem = require('./HistoryItem');
 var Time = require('./Time');
 var requests = require('superagent');
-var Restricted = require('./Restricted');
 var Profile = require('./Profile');
 var S = require('string');
 var PreviousNext = require('./PreviousNext');

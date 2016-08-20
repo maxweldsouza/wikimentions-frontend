@@ -54,7 +54,6 @@ var AddBookNew = React.createClass({
                 title: this.state.title,
                 description: this.state.description,
                 type: 'book',
-                action: 'create',
                 _xsrf: cookies.get('_xsrf')
             })
             .end((err, res) => {

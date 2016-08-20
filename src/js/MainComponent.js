@@ -34,6 +34,7 @@ var store = require('store');
 var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
 var Feedback = require('./Feedback');
+var store = require('store');
 
 var MainComponent = React.createClass({
     propTypes: {
@@ -78,8 +79,8 @@ var MainComponent = React.createClass({
         var session, username, userid, loggedin;
         if (isNode.isBrowser()) {
             session = cookies.get('mentions');
-            username = cookies.get('username');
-            userid = cookies.get('userid');
+            username = store.get('username');
+            userid = store.get('id');
         }
         loggedin = session ? true : false;
         return (
