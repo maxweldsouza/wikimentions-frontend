@@ -326,7 +326,10 @@ var ThingPage = React.createClass({
                                     <button className='button float-right' onClick={this.onCloseModal}>Close</button>
                                 </div> : null}
                             </Modal>
-                            {thing.props.type === 'book' ? <Affiliate title={thing.props.title} isbn={thing.props.isbn}/> : null}
+                            {thing.props.type === 'book' ? <Affiliate
+                                authors={this.props.data.bookauthors}
+                                title={thing.props.title}
+                                isbn={thing.props.isbn}/> : null}
                             </div>
                         </div>
                             <div className='small-12 large-9 columns'>
