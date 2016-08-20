@@ -203,7 +203,7 @@ var EditPage = React.createClass({
                             id={id}
                             slug={entry.props.slug}
                             type={entry.props.type} />
-                        <Restricted message={loggedOutMessage} min_level={1}>
+                        <Restricted message={loggedOutMessage} min_level={1} loggedin={this.props.loggedin}>
                             <div className='callout'>
                                 <a onClick={this.onOpenModal}>Upload
                                 </a> an image for this page.

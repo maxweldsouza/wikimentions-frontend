@@ -53,16 +53,17 @@ var MainComponent = React.createClass({
         };
     },
     componentDidMount () {
-        requests
-        .get('/api/v1/country')
-        .end((err, res) => {
-            if (err) {
-                return;
-            }
-            if (res.body.country) {
-                store.set('country', res.body.country);
-            }
-        });
+        var country = store.get('country');
+        if (!country) {
+            requests
+            .get('/api/v1/country')
+            .end((err, res) => {
+                if (err) { return; }
+                if (res.body.country) {
+                    store.set('country', res.body.country);
+                }
+            });
+        }
         console.log('Hi there !');
     },
     componentWillReceiveProps (nextProps) {
