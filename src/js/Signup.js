@@ -43,6 +43,11 @@ var Signup = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
+    onClear (name) {
+        var temp = {};
+        temp[name] = '';
+        this.setState(temp);
+    },
     signup () {
         if (this.validateForm()) {
             this.setState({
@@ -168,10 +173,19 @@ var Signup = React.createClass({
                     type='text'
                     name='username'
                     onChange={this.onChangeText}
+                    onClear={this.onClear}
+                    value={this.state.username}
                     valid={this.state.usernameValid}
                     message={this.state.usernameMessage} />
                 E-mail (optional)
-                <input type='text' name='email' />
+                <Input
+                    type='text'
+                    name='email'
+                    onChange={this.onChangeText}
+                    onClear={this.onClear}
+                    value={this.state.email}
+                    valid={true}
+                    message=''/>
                 Password
                 {this.state.password.length > 0 && !this.state.showPassword ? <a onClick={this.showPassword} className='secondary float-right'>Show Password</a> : null}
                 {this.state.password.length > 0 && this.state.showPassword ? <a onClick={this.hidePassword} className='secondary float-right'>Hide Password</a> : null}
@@ -181,12 +195,14 @@ var Signup = React.createClass({
                     valid={this.state.passwordValid}
                     message={this.state.passwordMessage}
                     onChange={this.onChangeText}
+                    onClear={this.onClear}
                     value={this.state.password}/> : <Input
                     type='password'
                     name='password'
                     valid={this.state.passwordValid}
                     message={this.state.passwordMessage}
                     onChange={this.onChangeText}
+                    onClear={this.onClear}
                     value={this.state.password}/>}
                 {this.state.password.length > 0 ? <div
                     className={cls}
@@ -202,8 +218,10 @@ var Signup = React.createClass({
                     type='password'
                     name='retypePassword'
                     onChange={this.onChangeText}
+                    onClear={this.onClear}
                     valid={this.state.retypePasswordValid}
-                    message={this.state.retypePasswordMessage}/>
+                    message={this.state.retypePasswordMessage}
+                    value={this.state.retypePassword}/>
                 <SubmitButton title='Signup' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.signup}/>
                 <div className='float-right'>Already have an account? <a href='/login'>Login</a></div>
             </form>

@@ -5,17 +5,25 @@ var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var store = require('store');
+var Input = require('./Input');
 
 var Login = React.createClass({
     getInitialState () {
         return {
             submitting: false,
-            formError: false
+            formError: false,
+            username: '',
+            password: ''
         };
     },
     onChangeText (e) {
         var temp = {};
         temp[e.target.name] = e.target.value;
+        this.setState(temp);
+    },
+    onClear (name) {
+        var temp = {};
+        temp[name] = '';
         this.setState(temp);
     },
     login () {
@@ -67,9 +75,23 @@ var Login = React.createClass({
                     <span className='ion-alert' />{'Login failed'}
                 </div> : null}
                 Username
-                <input type='text' name='username' onChange={this.onChangeText}/>
+                <Input
+                    type='text'
+                    name='username'
+                    onChange={this.onChangeText}
+                    onClear={this.onClear}
+                    value={this.state.username}
+                    valid={true}
+                    message={''} />
                 Password
-                <input type='password' name='password' onChange={this.onChangeText}/>
+                <Input
+                    type='password'
+                    name='password'
+                    onChange={this.onChangeText}
+                    onClear={this.onClear}
+                    value={this.state.password}
+                    valid={true}
+                    message={''} />
                 <SubmitButton title='Login' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.login}/>
                 <div className='float-right'>Don't have an account? <a href='/signup'>Signup</a></div>
             </div>
