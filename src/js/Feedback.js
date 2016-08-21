@@ -108,7 +108,7 @@ var Feedback = React.createClass({
         } else if (this.state.step === 'feedback') {
             main = <div>
                 How can we improve ?
-                <textarea type='text' className='form-control' name='feedback' onChange={this.onChangeText}/>
+                <textarea type='text' className='form-control' name='feedback' onChange={this.onChangeText} maxLength={65535}/>
                 <div className='float-right small button-group'>
                     <button
                         className='button secondary no-margin-bottom'

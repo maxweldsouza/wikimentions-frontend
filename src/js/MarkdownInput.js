@@ -42,7 +42,8 @@ var MarkdownInput = React.createClass({
                     placeholder={this.props.placeholder}
                     value={this.props.content}
                     onChange={this.onChangeText}
-                    rows={this.props.rows}></textarea>
+                    rows={this.props.rows}
+                    maxLength={this.props.maxLength}></textarea>
                 </div>
                 {this.state.preview ? <div className={layout}>
                     <strong>Preview</strong>

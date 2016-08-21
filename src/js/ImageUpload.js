@@ -202,6 +202,7 @@ var ImageUpload = React.createClass({
                         valid={this.state.descriptionValid}
                         message={this.state.descriptionMessage}
                         sideBySide={false}
+                        maxLength={65535}
                         />
                 </div>
                 <div className='small-12 columns'>

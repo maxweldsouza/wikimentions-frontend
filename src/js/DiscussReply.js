@@ -76,6 +76,7 @@ var DiscussReply = React.createClass({
                         content={this.state.content}
                         onChange={this.onChangeText}
                         sideBySide={true}
+                        maxLength={65535}
                         />
                     <SubmitButton title='Submit' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                 </Restricted>
