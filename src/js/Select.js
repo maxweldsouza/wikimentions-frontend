@@ -34,7 +34,8 @@ var Select = React.createClass({
     },
     _hideDropdown () {
         this.setState({
-            visible: false
+            visible: false,
+            searchText: this.state.value ? this.state.searchText : ''
         });
     },
     onSearchTextChanged (e) {
@@ -46,13 +47,15 @@ var Select = React.createClass({
             this.setState({
                 loading: true,
                 searchText: e.target.value,
-                visible: true
+                visible: true,
+                value: ''
             });
         } else if (e.target.value.length >= 0) {
             this.setState({
                 options: [],
                 searchText: e.target.value,
-                visible: false
+                visible: false,
+                value: ''
             });
         }
     },
