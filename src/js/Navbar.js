@@ -114,7 +114,6 @@ var Navbar = React.createClass({
             </ul>;
         } else {
             rhs = <ul className='menu align-right'>
-                <li className='hide-for-xlarge'>{searchIcon}</li>
                 <li className='show-for-xlarge'>
                     {SearchBar}
                 </li>
@@ -130,6 +129,7 @@ var Navbar = React.createClass({
                         <span className='show-for-xxlarge'>Sign Up</span>
                     </a>
                 </li>
+                <li className='hide-for-xlarge'>{searchIcon}</li>
             </ul>;
         }
         return (
