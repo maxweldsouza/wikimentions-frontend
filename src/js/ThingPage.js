@@ -19,6 +19,7 @@ var Markdown = require('./Markdown');
 var Affiliate = require('./Affiliate');
 var Time = require('./Time');
 var CopyButton = require('./CopyButton');
+var EditTags = require('./EditTags');
 
 var ThingPage = React.createClass({
     statics: {
@@ -365,7 +366,7 @@ var ThingPage = React.createClass({
                                             {x}
                                         </a>;
                                     })}
-                                    <a className='secondary'>Edit</a>
+                                    <EditTags tags={thing.tags} id={id}/>
                                 </div> : null}
                             </div>
                         </div>
