@@ -100,8 +100,15 @@ var HomePage = React.createClass({
                     </div>
                     <div className='small-12 xlarge-8 columns'>
                         <div className='card-container'>
-                            <div className='card box columns'>
-                                <h2 className='no-margin-bottom'>Startups</h2> (Randomly generated)
+                            <div className='card box align-middle'>
+                                <div className='small-6 columns'>
+                                    <h2 className='no-margin-bottom'>
+                                        <a href='/tags/Startups' className='secondary'>Startups</a>
+                                    </h2>
+                                </div>
+                                <div className='small-6 columns text-right'>
+                                    (Randomly generated)
+                                </div>
                             </div>
                             {this.props.data.startups.map((x) => {
                                 return <HomeItem
@@ -119,8 +126,15 @@ var HomePage = React.createClass({
                             })}
                         </div>
                         <div className='card-container'>
-                            <div className='card box columns'>
-                                <h2 className='no-margin-bottom'>Science</h2> (Randomly generated)
+                            <div className='card box align-middle'>
+                                <div className='small-6 columns'>
+                                    <h2 className='no-margin-bottom'>
+                                        <a href='/tags/Science' className='secondary'>Science</a>
+                                    </h2>
+                                </div>
+                                <div className='small-6 columns text-right'>
+                                    (Randomly generated)
+                                </div>
                             </div>
                             {this.props.data.science.map((x) => {
                                 return <HomeItem
@@ -138,8 +152,15 @@ var HomePage = React.createClass({
                             })}
                         </div>
                         <div className='card-container'>
-                            <div className='card box columns'>
-                                <h2 className='no-margin-bottom'>Programming</h2> (Randomly generated)
+                            <div className='card box align-middle'>
+                                <div className='small-6 columns'>
+                                    <h2 className='no-margin-bottom'>
+                                        <a href='/tags/Programming' className='secondary'>Programming</a>
+                                    </h2>
+                                </div>
+                                <div className='small-6 columns text-right'>
+                                    (Randomly generated)
+                                </div>
                             </div>
                             {this.props.data.programming.map((x) => {
                                 return <HomeItem
