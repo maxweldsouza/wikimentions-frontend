@@ -88,7 +88,7 @@ var HomePage = React.createClass({
                         <div className='callout show-for-xlarge'>
                             <h2>About</h2>
                             <p>
-                                WikiMentions is a site that helps you discover people, their books and videos based on their mentions. People can mention other people, books or videos in books or videos. Also it’s a wiki, so content can be added by anyone.
+                                WikiMentions helps you discover people, their books and videos based on their mentions. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
                             </p>
                         </div>
                         <div className='callout show-for-xlarge'>

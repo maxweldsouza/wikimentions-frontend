@@ -31,6 +31,7 @@ var Sidebar = require('./Sidebar');
 var SignupPage = require('./SignupPage');
 var KitchenSinkPage = require('./KitchenSinkPage');
 var store = require('store');
+var TagPage = require('./TagPage');
 var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
 var Feedback = require('./Feedback');

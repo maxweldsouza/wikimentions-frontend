@@ -358,12 +358,15 @@ var ThingPage = React.createClass({
                                         {tabContent}
                                     </div>
                                 </div>
-                                <div>
+                                {thing.tags ? <div>
                                     Tags:
-                                    <a className='tag secondary button round small no-margin-bottom'>
-                                        Startups
-                                    </a>
-                                </div>
+                                    {thing.tags.map((x) => {
+                                        return <a className='tag secondary button round small no-margin-bottom' href={'/tags/' + x}>
+                                            {x}
+                                        </a>;
+                                    })}
+                                    <a className='secondary'>Edit</a>
+                                </div> : null}
                             </div>
                         </div>
                     </div>

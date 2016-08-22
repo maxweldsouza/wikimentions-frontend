@@ -28,6 +28,7 @@ var KitchenSinkPage = require('./KitchenSinkPage');
 var Snackbar = require('./Snackbar');
 var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
+var TagPage = require('./TagPage');
 var VideoPage = require('./VideoPage');
 
 var validateResources = function (resources) {
@@ -50,6 +51,9 @@ var getComponent = function (routeObj) {
     routeObj.path = x;
     if (x === '') {
         componentName = 'HomePage';
+        routeObj.maxAge = 0;
+    } else if (/^tags\/([^/]+)$/.test(x)) {
+        componentName = 'TagPage';
         routeObj.maxAge = 0;
     } else if (/^create$/.test(x)) {
         componentName = 'CreatePage';
