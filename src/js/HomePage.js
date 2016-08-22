@@ -87,12 +87,9 @@ var HomePage = React.createClass({
                         </div>
                         <div className='callout show-for-xlarge'>
                             <h2>About</h2>
-                            <ul>
-                                <li>Pages are created and edited by users.</li>
-                                <li>A page can be a <strong><i>person</i></strong>, <strong><i>book</i></strong> or <strong><i>video</i></strong>.</li>
-                                <li>A <strong><i>person</i></strong> can mention a <strong><i>person</i></strong>, <strong><i>book</i></strong> or <strong><i>video</i></strong> in a <strong><i>book</i></strong> or <strong><i>video.</i></strong></li>
-                                <li>Books and videos can have one or more authors.</li>
-                            </ul>
+                            <p>
+                                WikiMentions is a site that helps you discover people, their books and videos based on their mentions. People can mention other people, books or videos in books or videos. Also it’s a wiki, so content can be added by anyone.
+                            </p>
                         </div>
                         <div className='callout show-for-xlarge'>
                             <h2>Recent Blog Posts</h2>
