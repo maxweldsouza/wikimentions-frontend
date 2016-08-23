@@ -49,35 +49,6 @@ var YoutubeEmbed = React.createClass({
                 width={this.props.width}
                 height={this.props.height}
                 src={'https://www.youtube.com/embed/' + queryObject.v + '?autoplay=1'} frameBorder={0}></iframe>;
-        } else if (parsed.hostname === 'embed-ssl.ted.com') {
-            embed = <iframe src={'https://' + parsed.hostname + parsed.pathname + parsed.query}
-                width='640'
-                height='360'
-                frameBorder='0'
-                scrolling='no'
-                webkitAllowFullScreen
-                mozAllowFullScreen
-                allowFullScreen></iframe>;
-        } else if (parsed.hostname === 'vimeo.com') {
-            var id = parsed.pathname.split('/')[2];
-            embed = <iframe
-                src={'https://player.vimeo.com/video/' + id}
-                width='500'
-                height='281'
-                frameBorder='0'
-                webkitAllowFullScreen
-                mozAllowFullScreen
-                allowFullScreen></iframe>;
-        } else if (parsed.hostname === 'www.cornell.edu') {
-            var url = 'https://' + parsed.hostname + parsed.pathname + '/embed';
-            embed = <iframe
-                src={url}
-                width='500'
-                height='281'
-                frameBorder='0'
-                webkitAllowFullScreen
-                mozAllowFullScreen
-                allowFullScreen></iframe>;
         } else {
             return null;
         }
