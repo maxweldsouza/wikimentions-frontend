@@ -62,12 +62,16 @@ var TagPage = React.createClass({
                             Entries are generated at random.
                         </div>
                         <div className='callout show-for-xlarge'>
-                            <h2>All Tags</h2>
-                            <ul className='menu vertical row'>
-                                <li><a href='/tags/Programming'>Programming</a></li>
-                                <li><a href='/tags/Science'>Science</a></li>
-                                <li><a href='/tags/Startups'>Startups</a></li>
-                            </ul>
+                            <h2>Tags</h2>
+                            <span className='tag'>
+                                <a className='secondary' href='/tags/Programming'>Programming</a>
+                            </span>{' '}
+                            <span className='tag'>
+                                <a className='secondary' href='/tags/Science'>Science</a>
+                            </span>{' '}
+                            <span className='tag'>
+                                <a className='secondary' href='/tags/Startups'>Startups</a>
+                            </span>
                         </div>
                         <div className='callout show-for-xlarge'>
                             <h2>About</h2>

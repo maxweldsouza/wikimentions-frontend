@@ -73,10 +73,22 @@ var HomePage = React.createClass({
                             Discover people and their work based on their mentions.
                         </div>
                         <div className='callout show-for-xlarge'>
-                            <HomeSearch />
+                            <h2>Tags</h2>
+                            <span className='tag'>
+                                <a className='secondary' href='/tags/Programming'>Programming</a>
+                            </span>{' '}
+                            <span className='tag'>
+                                <a className='secondary' href='/tags/Science'>Science</a>
+                            </span>{' '}
+                            <span className='tag'>
+                                <a className='secondary' href='/tags/Startups'>Startups</a>
+                            </span>
                         </div>
                         <div className='callout show-for-xlarge'>
-                            {this.props.loggedin ? <a onClick={Mentions.logout}>Log Out</a> : <span><LoginModal/>{' / '}<SignupModal/></span>}
+                            <h2>About</h2>
+                            <p>
+                                WikiMentions helps you discover people, their books and videos based on their mentions. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
+                            </p>
                         </div>
                         <div className='callout show-for-xlarge'>
                             <ul className='menu vertical row'>
@@ -84,12 +96,6 @@ var HomePage = React.createClass({
                                 <li><a href='/recent-changes'>Recent Changes</a></li>
                                 <li><a href='/recent-discussions'>Recent Discussions</a></li>
                             </ul>
-                        </div>
-                        <div className='callout show-for-xlarge'>
-                            <h2>About</h2>
-                            <p>
-                                WikiMentions helps you discover people, their books and videos based on their mentions. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
-                            </p>
                         </div>
                         <div className='callout show-for-xlarge'>
                             <h2>Recent Blog Posts</h2>
