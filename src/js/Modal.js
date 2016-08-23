@@ -13,7 +13,10 @@ var Modal = React.createClass({
                 </VelocityTransitionGroup>
                 <VelocityTransitionGroup enter={{animation: 'fadeIn'}} leave={{animation: 'fadeOut'}}>
                 {this.props.isOpen ? <div className={this.props.className} role='document'>
-                    <div className='ion-close modal-close' aria-label='Close'></div>
+                    <div
+                        className='ion-close modal-close'
+                        onClick={this.props.onClose}
+                        aria-label='Close'></div>
                     {this.props.children}
                 </div> : null}
                 </VelocityTransitionGroup>
