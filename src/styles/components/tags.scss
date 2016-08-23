@@ -1,2 +1,18 @@
 .tag {
+    -webkit-appearance: none;
+    background: $white;
+    border-radius: 2px;
+    border-radius: 999em;
+    border: 1px solid transparent;
+    border: solid 1px #dedede;
+    color: #404040;
+    cursor: pointer;
+    display: inline;
+    font-size: 0.8rem;
+    line-height: 1;
+    margin: 0 0 0.8rem 0;
+    padding: 0.5em 1em;
+    text-align: center;
+    transition: background-color 0.25s ease-out, color 0.25s ease-out;
+    vertical-align: middle;
 }

@@ -8,6 +8,11 @@ var Snackbar = require('./Snackbar');
 var allTags = ['Science', 'Startups', 'Programming'];
 
 var EditTags = React.createClass({
+    getDefaultProps: function() {
+        return {
+            tags: []
+        };
+    },
     getInitialState () {
         return {
             modalIsOpen: false,
@@ -80,8 +85,10 @@ var EditTags = React.createClass({
     },
     render () {
         return (
-            <div>
-                <a onClick={this.onOpenModal} className='secondary'>Edit</a>
+            <span>
+                <a onClick={this.onOpenModal} className='tag round secondary hint--right hint--rounded hint--no-animate' aria-label='Edit Tags'>
+                    <span className='ion-edit'/>
+                </a>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onClose={this.onCloseModal}
@@ -92,7 +99,7 @@ var EditTags = React.createClass({
                         <p>
                             Tags:
                             {this.props.tags.map((x) => {
-                                return <span className='tag secondary button round small no-margin-bottom' href={'/tags/' + x} key={x}>
+                                return <span className='tag round no-margin-bottom' href={'/tags/' + x} key={x}>
                                     {x} <span onClick={this.onRemoveTag.bind(null, x)} className='ion-close-circled'/>
                                 </span>;
                             })}
@@ -110,7 +117,7 @@ var EditTags = React.createClass({
                             onSubmit={this.onAddTag}/>
                     </div>
                 </Modal>
-            </div>
+            </span>
         );
     }
 });
