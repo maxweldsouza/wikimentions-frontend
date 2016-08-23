@@ -213,15 +213,13 @@ var EditPage = React.createClass({
                                 onClose={this.onCloseModal}
                                 className='modal-content'
                                 overlayClassName='modal-overlay'>
-                                <div className='small-12 columns'>
-                                    <ImageUpload
-                                        title={entry.props.title}
-                                        type={entry.props.type}
-                                        id={id}
-                                        width={250}
-                                        height={250}
-                                        onClose={this.onCloseModal}/>
-                                </div>
+                                <ImageUpload
+                                    title={entry.props.title}
+                                    type={entry.props.type}
+                                    id={id}
+                                    width={250}
+                                    height={250}
+                                    onClose={this.onCloseModal}/>
                             </Modal>
                             <form action={'/api/v1/thing/' + id} method='post'>
                                 Type
