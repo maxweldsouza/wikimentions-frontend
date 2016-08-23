@@ -4,6 +4,11 @@ var AddBook = require('./AddBook');
 var Pagination = require('./Pagination');
 
 var ThingBookTab = React.createClass({
+    getDefaultProps () {
+        return {
+            page: "1"
+        };
+    },
     render () {
         var books = this.props.books;
         var emptybooks = <div className='card box'>
@@ -32,8 +37,8 @@ var ThingBookTab = React.createClass({
                         isbn13={x.isbn13}
                         />;
                 })}
-                {this.props.page === 0 && books.length === 0 ? emptybooks : null}
-                {this.props.page !== 0 && books.length === 0 ? nomore : null}
+                {this.props.page === "1" && books.length === 0 ? emptybooks : null}
+                {this.props.page !== "1" && books.length === 0 ? nomore : null}
                 <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card box'>
                     <div className='small-12 columns'>

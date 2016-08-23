@@ -4,6 +4,11 @@ var AddVideo = require('./AddVideo');
 var Pagination = require('./Pagination');
 
 var ThingVideoTab = React.createClass({
+    getDefaultProps () {
+        return {
+            page: "1"
+        };
+    },
     render () {
         var videos = this.props.videos;
         var id = this.props.id;
@@ -32,8 +37,8 @@ var ThingVideoTab = React.createClass({
                             url={x.props.url}
                             />;
                 })}
-                {this.props.page === 0 && videos.length === 0 ? emptyvideos : null}
-                {this.props.page !== 0 && videos.length === 0 ? nomore : null}
+                {this.props.page === "1" && videos.length === 0 ? emptyvideos : null}
+                {this.props.page !== "1" && videos.length === 0 ? nomore : null}
                 <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card box'>
                     <div className='small-12 columns'>

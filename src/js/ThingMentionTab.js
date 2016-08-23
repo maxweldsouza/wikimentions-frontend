@@ -4,6 +4,11 @@ var AddMention = require('./AddMention');
 var Pagination = require('./Pagination');
 
 var ThingMentionTab = React.createClass({
+    getDefaultProps () {
+        return {
+            page: "1"
+        };
+    },
     render () {
         var mentions = this.props.mentions;
         var nodata = <div className='card box'>
@@ -36,8 +41,8 @@ var ThingMentionTab = React.createClass({
                         type={this.props.type}
                         />;
                 })}
-                {this.props.page === 0 && mentions.length === 0 ? nodata : null}
-                {this.props.page !== 0 && mentions.length === 0 ? nomore : null}
+                {this.props.page === "1" && mentions.length === 0 ? nodata : null}
+                {this.props.page !== "1" && mentions.length === 0 ? nomore : null}
                 <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card box'>
                     {addmention}
