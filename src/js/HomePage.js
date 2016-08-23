@@ -70,7 +70,7 @@ var HomePage = React.createClass({
                     <div className='small-12 xlarge-4 columns'>
                         <div className='callout warning'>
                             <h2><strong>WikiMentions</strong></h2>
-                            Discover people and their work based on their mentions.
+                            Discover people, books and videos based on mentions.
                         </div>
                         <div className='callout show-for-xlarge'>
                             <h2>Tags</h2>
