@@ -7,11 +7,12 @@ var Select = require('./Select');
 var SubmitButton = require('./SubmitButton');
 var AuthorCard = require('./AuthorCard');
 var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
+var Modal = require('./Modal');
 
 var AddAuthors = React.createClass({
     getInitialState () {
         return {
-            opened: false,
+            modalIsOpen: false,
             author: '',
             submitting: false,
             authorValid: true,
@@ -19,15 +20,15 @@ var AddAuthors = React.createClass({
             formMessage: ''
         };
     },
-    onOpen (e) {
+    onOpenModal (e) {
         this.setState({
-            opened: true
+            modalIsOpen: true
         });
         e.preventDefault();
     },
-    onClose () {
+    onCloseModal () {
         this.setState({
-            opened: false
+            modalIsOpen: false
         });
     },
     onChangeAuthor (x) {
@@ -87,37 +88,41 @@ var AddAuthors = React.createClass({
     },
     render () {
         var id = this.props.id;
-        if (this.state.opened) {
+        if (this.state.modalIsOpen) {
             return (
-                <div>
-                    <div className='card-container'>
-                        {this.state.formMessage ? <div className='callout warning'>
-                            {this.state.formMessage}
-                        </div> : null}
-                        {this.props.authors.map((x) => {
-                            return <AuthorCard key={x.id} id={x.id} slug={x.props.slug} title={x.props.title} type={x.props.type} description={x.props.description} image={x.image} sourceType={this.props.type} sourceId={this.props.id}/>;
-                        })}
-                        <div className='card box'>
-                            <div className='small-12 columns'>
-                                <Select name='author'
-                                    placeholder='Author'
-                                    onSelectValue={this.onChangeAuthor}
-                                    valid={this.state.authorValid}
-                                    message={this.state.authorMessage}
-                                    types={['person']}/>
-                                <div className='button-group small'>
-                                    <SubmitButton title='Add Author' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
-                                    <button type='button' className='button secondary' onClick={this.onClose}>Close</button>
-                                </div>
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onClose={this.onCloseModal}
+                    className='modal-content modal-small'
+                    overlayClassName='modal-overlay'>
+                    <div>
+                        <h1>Edit Authors</h1>
+                        <div className='card-container'>
+                            {this.state.formMessage ? <div className='callout warning'>
+                                {this.state.formMessage}
+                            </div> : null}
+                            {this.props.authors.map((x) => {
+                                return <AuthorCard key={x.id} id={x.id} slug={x.props.slug} title={x.props.title} type={x.props.type} description={x.props.description} image={x.image} sourceType={this.props.type} sourceId={this.props.id}/>;
+                            })}
+                        </div>
+                        <div className='box'>
+                            Add Author
+                            <Select name='author'
+                                onSelectValue={this.onChangeAuthor}
+                                valid={this.state.authorValid}
+                                message={this.state.authorMessage}
+                                types={['person']}/>
+                            <div className='button-group float-right'>
+                                <SubmitButton title='Add' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                             </div>
                         </div>
                     </div>
-                </div>
+                </Modal>
             );
         }
         return (
             <span className='edit-links'>{' '}
-                <a className='secondary' onClick={this.onOpen}>Edit Authors</a>
+                <a className='secondary' onClick={this.onOpenModal}>Edit Authors</a>
             </span>
         );
     }
