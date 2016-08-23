@@ -10,6 +10,7 @@ var Thumbnail = React.createClass({
             alt: '',
             url: '',
             shadow: false,
+            marginBottom: false,
             bordered: false
         };
     },
@@ -74,7 +75,7 @@ var Thumbnail = React.createClass({
             main = placeholder;
         }
         return (
-            <div className='image-container' style={{'width': displayWidth, 'height': displayHeight}}>
+            <div className={this.props.marginBottom ? 'image-container bottom-margin' : 'image-container'} style={{'width': displayWidth, 'height': displayHeight}}>
                 {main}
             </div>
         );
