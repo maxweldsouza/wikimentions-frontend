@@ -94,7 +94,7 @@ var EditTags = React.createClass({
                     onClose={this.onCloseModal}
                     className='modal-content modal-small'
                     overlayClassName='modal-overlay'>
-                    <div className='small-12 columns'>
+                    <div>
                         <h1>Edit Tags</h1>
                         <p>
                             Tags:

@@ -6,9 +6,9 @@
     right: 0;
     border: none;
     overflow: auto;
-    border-radius: 4px;
+    border-radius: $global-radius;
     outline: none;
-    padding: 20px;
+    padding: $global-padding * 1.5;
     background: $white;
     max-height: 75%;
     margin: auto;
@@ -44,4 +44,17 @@
     bottom: 0px;
     background-color: $reveal-overlay-background;
     z-index: $z-20;
+}
+
+.modal-close {
+    display: inline;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: $global-padding;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
 }
