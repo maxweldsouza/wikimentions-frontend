@@ -63,26 +63,26 @@ var ProfilePage = React.createClass({
                             <div className='row'>
                                 <div className='small-12 large-9 columns'>
                                     <div className='row'>
-                                        <div className='small-2 columns'>
+                                        <div className='small-4 columns'>
                                             Joined:
                                         </div>
-                                        <div className='small-10 columns'>
+                                        <div className='small-8 columns'>
                                             <Time timestamp={user.joined} type='ago'/>
                                         </div>
                                     </div>
                                     <div className='row'>
-                                        <div className='small-2 columns'>
+                                        <div className='small-4 columns'>
                                             Level:
                                         </div>
-                                        <div className='small-10 columns'>
+                                        <div className='small-8 columns'>
                                             {user.level}
                                         </div>
                                     </div>
                                     <div className='row'>
-                                        <div className='small-2 columns'>
+                                        <div className='small-4 columns'>
                                             About:
                                         </div>
-                                        <div className='small-10 columns'>
+                                        <div className='small-8 columns'>
                                             <Markdown
                                                 markdown={user.about}
                                                 />
