@@ -20,10 +20,6 @@ var HomePage = React.createClass({
             return {
                 api: [
                     {
-                        name: 'stats',
-                        path: '/api/v1/stats'
-                    },
-                    {
                         name: 'startups',
                         path: '/api/v1/tag/Startups'
                     },
@@ -47,7 +43,6 @@ var HomePage = React.createClass({
     },
     render () {
         var mentions = [];// this.state.newmentions;
-        var stats = this.props.data.stats;
         var options = ['Add New', 'Add Existing'];
         return (
             <span>
