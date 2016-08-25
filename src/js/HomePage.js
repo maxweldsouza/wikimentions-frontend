@@ -50,7 +50,7 @@ var HomePage = React.createClass({
                     title={'Home'}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        {'name': 'description', 'content': 'Discover people, books and videos based on mentions'}
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}

@@ -35,13 +35,12 @@ var TagPage = React.createClass({
     },
     render () {
         var mentions = [];// this.state.newmentions;
-        var stats = this.props.data.stats;
         var options = ['Add New', 'Add Existing'];
         var tag = this.props.path.split('/')[1];
         return (
             <span>
                 <Helmet
-                    title={'Home'}
+                    title={tag}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}

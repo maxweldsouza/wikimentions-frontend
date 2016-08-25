@@ -117,6 +117,7 @@ var ThingPage = React.createClass({
             metaRobots = {'name': 'robots', 'content': 'noindex'};
         }
         var tabContent;
+        var pageTitle, pageDescription;
         if (tab === 'mentioned') {
             tabContent = <ThingMentionTab
                             loggedin={this.props.loggedin}
@@ -127,6 +128,8 @@ var ThingPage = React.createClass({
                             count={thing.mentioned_count}
                             type={thing.props.type}
                         />;
+            pageTitle = this.props.title;
+            pageDescription = 'People, books or videos mentioned in ' + this.props.title;
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
                             loggedin={this.props.loggedin}
@@ -137,20 +140,22 @@ var ThingPage = React.createClass({
                             count={thing.mentioned_by_count}
                             type={thing.props.type}
                         />;
+            pageTitle = this.props.title;
+            pageDescription = 'People who have mentioned ' + this.props.title;
         }
         return (
             <span>
                 <Helmet
-                    title={thing.props.title}
+                    title={this.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': ''},
+                        {'name': 'description', 'content': pageDescription},
                         {name: 'twitter:card', content: 'summary'},
                         {name: 'twitter:site', content: config.twitter},
-                        {name: 'twitter:title', content: thing.props.title},
-                        {name: 'twitter:description', content: ''},
+                        {name: 'twitter:title', content: pageTitle},
+                        {name: 'twitter:description', content: pageDescription},
                         {name: 'twitter:image', content: image},
-                        {property: 'og:title', content: thing.props.title},
+                        {property: 'og:title', content: pageTitle},
                         {property: 'og:type', content: 'article'},
                         {property: 'og:url', content: config.url + this.props.path},
                         {property: 'og:description', content: ''},

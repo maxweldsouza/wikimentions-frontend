@@ -21,8 +21,8 @@ var LoginPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={'Login'}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}

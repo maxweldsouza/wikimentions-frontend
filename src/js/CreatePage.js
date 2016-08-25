@@ -124,7 +124,7 @@ var HomePage = React.createClass({
                     title={'Create Page'}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        {'name': 'description', 'content': 'Create a new page on WikiMentions'}
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}

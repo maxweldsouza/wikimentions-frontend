@@ -23,8 +23,8 @@ var SignupPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Mentions'}
-                    titleTemplate='%s - Mentions'
+                    title={'Signup'}
+                    titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}

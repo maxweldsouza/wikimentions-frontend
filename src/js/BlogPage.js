@@ -48,7 +48,7 @@ var BlogPage = React.createClass({
                     title='Blog'
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        {'name': 'description', 'content': 'The official WikiMentions blog'}
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}
