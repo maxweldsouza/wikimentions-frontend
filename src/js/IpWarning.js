@@ -7,13 +7,12 @@ var IpWarning = React.createClass({
         var loggedin;
         if (this.props.loggedin) {
             return null;
-        } else {
-            return (
-                <div className='callout warning'>
-                    Your IP address will be recorded and publicly visible. Alternatively you can <LoginModal/> / <SignupModal/>.
-                </div>
-            );
         }
+        return (
+            <div className='callout warning'>
+                Your IP address will be recorded and publicly visible. Alternatively you can <LoginModal/> / <SignupModal/>.
+            </div>
+        );
     }
 });
 

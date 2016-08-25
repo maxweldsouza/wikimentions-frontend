@@ -98,7 +98,7 @@ var DiscussPage = React.createClass({
                                 <PreviousNext path={this.props.path} page={this.props.query.page} count={discussions.length}/>
                                 <hr/>
                             </div>
-                            <DiscussReply id={id}/>
+                            <DiscussReply id={id} loggedin={this.props.loggedin}/>
                         </div>
                     </div>
                 </div>

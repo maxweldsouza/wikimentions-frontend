@@ -45,8 +45,9 @@ var RecentChangesPage = React.createClass({
                             <h1>Recent Changes</h1>
                             <hr/>
                             <div className='row'>
-                                {this.props.data.history.map((x) => {
+                                {this.props.data.history.map((x, i) => {
                                     return <HistoryItem
+                                        key={i}
                                         user={x.user}
                                         username={x.username}
                                         ip={x.ip}

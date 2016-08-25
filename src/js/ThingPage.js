@@ -365,10 +365,10 @@ var ThingPage = React.createClass({
                                     Tags:
                                     {thing.tags ? <span>
                                         {thing.tags.map((x) => {
-                                        return <a className='tag secondary round small no-margin-bottom' href={'/tags/' + x}>
-                                            {x}
+                                            return <a key={x} className='tag secondary round small no-margin-bottom' href={'/tags/' + x}>
+                                                {x}
                                         </a>;
-                                    })}
+                                        })}
                                     </span> : null}
                                     <EditTags tags={thing.tags} id={id}/>
                                 </div>

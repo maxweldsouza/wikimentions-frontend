@@ -8,7 +8,7 @@ var Snackbar = require('./Snackbar');
 var allTags = ['Science', 'Startups', 'Programming'];
 
 var EditTags = React.createClass({
-    getDefaultProps: function() {
+    getDefaultProps () {
         return {
             tags: []
         };
