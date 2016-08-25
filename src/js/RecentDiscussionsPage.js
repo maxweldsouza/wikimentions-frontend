@@ -62,7 +62,7 @@ var RecentDiscussions = React.createClass({
                                         {x.obj.title}
                                     </Link></strong> by <strong><a href={'/users/' + x.user + '/' + x.username} className='secondary'>{x.username}</a></strong>
                                 </div>
-                                <div className='small-6 columns text-right discuss-updated'><Time timestamp={x.created} type='ago'/></div>
+                                <div className='small-6 columns text-right discuss-updated'><Time timestamp={x.created} type='ago' hintDirection='bottom-left'/></div>
                                 <div className='small-12 columns'>
                                     <Markdown
                                         markdown={x.content}
