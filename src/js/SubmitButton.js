@@ -16,7 +16,7 @@ var SubmitButton = React.createClass({
         if (this.props.submitting) {
             return <button
                 type='button'
-                className={this.props.className + ' loading disabled'}>{this.props.title}
+                className={this.props.className + ' loading'}>{this.props.title}
             </button>;
         }
         if (this.props.confirm === false) {

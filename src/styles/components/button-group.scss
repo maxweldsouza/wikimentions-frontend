@@ -48,6 +48,11 @@
     outline: none;
 }
 
+.button.loading {
+    opacity: 0.25;
+    pointer-events: none;
+}
+
 .button.loading:after {
     animation: spinner-animation 400ms linear infinite;
     border: solid 2px transparent;
@@ -66,10 +71,6 @@
 .button.secondary.loading:after {
     border-left-color: $secondary-color;
     border-top-color: $secondary-color;
-}
-
-.button.disabled, .button[disabled] {
-    pointer-events: none;
 }
 
 .button.round {
