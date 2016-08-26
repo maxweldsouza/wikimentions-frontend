@@ -118,9 +118,9 @@ var Mention = React.createClass({
                                 type={main.props.type}>{main.props.title}</Link>
                         </div>
                         <div className='small-12 columns'>
-                            <span>
-                                <span className={icon}/>{' '}
-                            </span>{description}
+                            {description ? <span>
+                                <span className={icon}/>{' '} {description}
+                            </span> : null}
                         </div>
                         <div className='small-12 columns'>
                             {this.props.quote}
