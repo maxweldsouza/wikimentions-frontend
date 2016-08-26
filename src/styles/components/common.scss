@@ -98,3 +98,7 @@ time {
 .no-margin-bottom {
     margin-bottom: 0;
 }
+
+[class*="hint--"]:before, [class*="hint--"]:after {
+    z-index: $z-20;
+}
