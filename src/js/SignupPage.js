@@ -5,6 +5,7 @@ var Navbar = require('./Navbar');
 var cookies = require('browser-cookies');
 var Xsrf = require('./Xsrf');
 var Signup = require('./Signup');
+var config = require('./config');
 
 var SignupPage = React.createClass({
     statics: {

@@ -209,8 +209,8 @@ var ThingPage = React.createClass({
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
-            pageTitle = this.props.title;
-            pageDescription = 'People, books or videos mentioned - ' + this.props.title;
+            pageTitle = 'Mentioned - ' + thing.props.title;
+            pageDescription = 'People, books or videos mentioned by ' + thing.props.title;
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
                 loggedin={this.props.loggedin}
@@ -221,6 +221,8 @@ var ThingPage = React.createClass({
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
+            pageTitle = 'Mentioned by - ' + thing.props.title;
+            pageDescription = 'People, books or videos that mention ' + thing.props.title;
         } else if (tab === 'books' && thing.props.type === 'person') {
             tabContent = <ThingBookTab
                 loggedin={this.props.loggedin}
@@ -230,8 +232,8 @@ var ThingPage = React.createClass({
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
-            pageTitle = 'Books - ' + this.props.title;
-            pageDescription = 'Books authored by ' + this.props.title;
+            pageTitle = 'Books - ' + thing.props.title;
+            pageDescription = 'Books authored by ' + thing.props.title;
         } else if (tab === 'videos' && thing.props.type === 'person') {
             tabContent = <ThingVideoTab
                 loggedin={this.props.loggedin}
@@ -241,8 +243,8 @@ var ThingPage = React.createClass({
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
-            pageTitle = 'Videos - ' + this.props.title;
-            pageDescription = 'A collection of videos of ' + this.props.title;
+            pageTitle = 'Videos - ' + thing.props.title;
+            pageDescription = 'A collection of videos of ' + thing.props.title;
         }
         var imageUrl;
         if (thing.image) {
@@ -251,7 +253,7 @@ var ThingPage = React.createClass({
         return (
         <span>
             <Helmet
-                title={this.props.title}
+                title={pageTitle}
                 titleTemplate={'%s - ' + config.name}
                 meta={[
                     {'name': 'description', 'content': pageDescription},

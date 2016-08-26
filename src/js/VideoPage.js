@@ -128,8 +128,8 @@ var ThingPage = React.createClass({
                             count={thing.mentioned_count}
                             type={thing.props.type}
                         />;
-            pageTitle = this.props.title;
-            pageDescription = 'People, books or videos mentioned in ' + this.props.title;
+            pageTitle = 'Mentioned - ' + thing.props.title;
+            pageDescription = 'People, books or videos mentioned in ' + thing.props.title;
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
                             loggedin={this.props.loggedin}
@@ -140,13 +140,13 @@ var ThingPage = React.createClass({
                             count={thing.mentioned_by_count}
                             type={thing.props.type}
                         />;
-            pageTitle = this.props.title;
-            pageDescription = 'People who have mentioned ' + this.props.title;
+            pageTitle = 'Mentioned by - ' + thing.props.title;
+            pageDescription = 'People who have mentioned ' + thing.props.title;
         }
         return (
             <span>
                 <Helmet
-                    title={this.props.title}
+                    title={pageTitle}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'description', 'content': pageDescription},

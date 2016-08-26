@@ -8,6 +8,7 @@ var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var Login = require('./Login');
+var config = require('./config');
 
 var LoginPage = React.createClass({
     statics: {
