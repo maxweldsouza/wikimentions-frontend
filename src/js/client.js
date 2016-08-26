@@ -18,10 +18,10 @@ NProgress.configure({ showSpinner: false, minimum: 0.4 });
 
 /*
 in console type Perf.printWasted();
+*/
 var Perf = require('react-addons-perf');
 window.Perf = Perf;
 Perf.start();
-*/
 /* client specific isomorphic code */
 
 if (typeof window.ga === 'undefined') {
