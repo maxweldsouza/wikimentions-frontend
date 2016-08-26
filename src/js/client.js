@@ -67,6 +67,8 @@ window.Mentions = {
                         path={robj.path}
                         component={robj.component}
                         query={robj.query}/>, document.getElementById('page-container'));
+                    window.scrollTo(0, 0);
+                    ga('send', 'pageview');
                 }
                 stopLoading();
             }
@@ -195,12 +197,6 @@ $(document).on('click', 'a', function (e) {
             && $(this).attr('target') !== '_blank'
             && !controlPressed) {
         startLoading();
-        var parseUrl = document.createElement('a');
-        parseUrl.href = window.location.origin + url;
-        if (window.location.pathname !== parseUrl.pathname) {
-            window.scrollTo(0, 0);
-            ga('send', 'pageview');
-        }
         e.preventDefault();
         setTimeout(function () {
             try {
