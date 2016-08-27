@@ -27,7 +27,7 @@ var Mention = React.createClass({
                 submitting: false
             });
             if (err && err.status) {
-                Snackbar({message: 'Delete failed'});
+                Snackbar({message: res.body.message});
             } else {
                 Snackbar({message: 'Mention deleted'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
