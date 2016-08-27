@@ -28,7 +28,7 @@ var ChangePassword = React.createClass({
     changePassword () {
         if (this.state.new !== this.state.repeat) {
             this.setState({
-                formMessage: ''
+                formMessage: 'Passwords do not match'
             });
         } else {
             this.setState({
@@ -49,7 +49,7 @@ var ChangePassword = React.createClass({
                 });
                 if (err && err.status) {
                     this.setState({
-                        formMessage: res2.body.message
+                        formMessage: res.body.message
                     });
                 } else {
                     this.setState({
@@ -66,10 +66,10 @@ var ChangePassword = React.createClass({
                 <div className='row'>
                     <div className='large-8 columns'>
                         <div className='columns box'>
+                            <h2>Change Password</h2>
                             {this.state.formMessage ? <div className='callout alert'>
                                 {this.state.formMessage}
                             </div> : null}
-                            <h2>Change Password</h2>
                             Old Password
                             <Input
                                 type='password'
@@ -97,7 +97,11 @@ var ChangePassword = React.createClass({
                                 onClear={this.onClear}
                                 valid={true}
                                 message={''}/>
-                            <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.changePassword}/>
+                            <SubmitButton
+                                title='Save'
+                                className='button primary float-right'
+                                submitting={this.state.submitting}
+                                onSubmit={this.changePassword}/>
                         </div>
                     </div>
                 </div>
