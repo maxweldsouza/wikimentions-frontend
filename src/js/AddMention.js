@@ -1,17 +1,17 @@
-var React = require('react');
-
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var Select = require('./Select');
 var cookies = require('browser-cookies');
-var requests = require('superagent');
-var Snackbar = require('./Snackbar');
-var Restricted = require('./Restricted');
-var LoginModal = require('./LoginModal');
-var SignupModal = require('./SignupModal');
-var SubmitButton = require('./SubmitButton');
-var IpWarning = require('./IpWarning');
+var Helmet = require('react-helmet');
 var Input = require('./Input');
+var IpWarning = require('./IpWarning');
+var LoginModal = require('./LoginModal');
+var Navbar = require('./Navbar');
+var parseUrl = require('url-parse');
+var React = require('react');
+var requests = require('superagent');
+var Restricted = require('./Restricted');
+var Select = require('./Select');
+var SignupModal = require('./SignupModal');
+var Snackbar = require('./Snackbar');
+var SubmitButton = require('./SubmitButton');
 
 var AddMention = React.createClass({
     getInitialState () {
@@ -129,6 +129,10 @@ var AddMention = React.createClass({
     render () {
         var id = this.props.id;
         var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to add a Mention.</span>;
+        var parsed;
+        if (this.state.reference) {
+            parsed = parseUrl(this.state.reference);
+        }
         return <div className='small-12 columns'>
             <Restricted message={loggedOutMessage}>
                 <h2>Add mention</h2>
@@ -171,6 +175,9 @@ var AddMention = React.createClass({
                         </span>}
                         {this.props.type === 'person' ? <span>
                             Reference (If mention isn't in a book or video)
+                            {this.state.reference && parsed.hostname === 'www.youtube.com' ? <div className='callout warning'>
+                                Videos belong on separate pages. Create a page for this video if it doesn't already exist and add it to "Mentioned In"
+                            </div> : null}
                             <Input
                                 type='text'
                                 name='reference'
