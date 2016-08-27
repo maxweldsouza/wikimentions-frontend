@@ -29,16 +29,6 @@ var Select = React.createClass({
     componentDidMount () {
         window.addEventListener('click', this._hideDropdown, false);
     },
-    shouldComponentUpdate (nextProps, nextState) {
-        return this.state.searchText !== nextState.searchText
-            || this.state.focus !== nextState.focus
-            || this.state.editable !== nextState.editable
-            || this.state.value !== nextState.value
-            || this.state.loading !== nextState.loading
-            || this.state.error !== nextState.error
-            || this.state.visible !== nextState.visible
-            || this.state.searchText !== '';
-    },
     componentWillUnmount () {
         window.removeEventListener('click', this._hideDropdown, false);
     },

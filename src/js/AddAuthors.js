@@ -41,7 +41,7 @@ var AddAuthors = React.createClass({
         if (!this.state.author) {
             this.setState({
                 authorValid: false,
-                authorMessage: 'Mentioned By is empty'
+                authorMessage: 'No author selected'
             });
             valid = false;
         } else {

@@ -60,7 +60,11 @@ var AuthorCard = React.createClass({
                     </div>
                 </div>
                 <div className='shrink columns'>
-                    <SubmitButton title='Remove' className='button secondary small' submitting={this.state.submitting} onSubmit={this.removeAuthor.bind(null, this.props.id)}/>
+                    <SubmitButton
+                        title={<span className='ion-close' aria-label='Remove'></span>}
+                        className='button small'
+                        submitting={this.state.submitting}
+                        onSubmit={this.removeAuthor.bind(null, this.props.id)}/>
                 </div>
             </div>
         );
