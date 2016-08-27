@@ -11,7 +11,8 @@ var ChangePassword = React.createClass({
             submitting: false,
             old: '',
             new: '',
-            repeat: ''
+            repeat: '',
+            formMessage: ''
         };
     },
     onChangeText (e) {
@@ -26,10 +27,13 @@ var ChangePassword = React.createClass({
     },
     changePassword () {
         if (this.state.new !== this.state.repeat) {
-            Snackbar({message: "Password don't match"});
+            this.setState({
+                formMessage: ''
+            });
         } else {
             this.setState({
-                submitting: true
+                submitting: true,
+                formMessage: ''
             });
             requests
             .post('/api/v1/changepassword')
@@ -44,8 +48,13 @@ var ChangePassword = React.createClass({
                     submitting: false
                 });
                 if (err && err.status) {
-                    Snackbar({message: res.body.message});
+                    this.setState({
+                        formMessage: res2.body.message
+                    });
                 } else {
+                    this.setState({
+                        formMessage: ''
+                    });
                     Snackbar({message: 'Password changed'});
                 }
             });
@@ -57,6 +66,9 @@ var ChangePassword = React.createClass({
                 <div className='row'>
                     <div className='large-8 columns'>
                         <div className='columns box'>
+                            {this.state.formMessage ? <div className='callout alert'>
+                                {this.state.formMessage}
+                            </div> : null}
                             <h2>Change Password</h2>
                             Old Password
                             <Input

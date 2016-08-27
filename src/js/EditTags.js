@@ -17,6 +17,7 @@ var EditTags = React.createClass({
         return {
             modalIsOpen: false,
             submitting: false,
+            formMessage: '',
             tag: ''
         };
     },
@@ -46,8 +47,13 @@ var EditTags = React.createClass({
                 submitting: false
             });
             if (err && err.status) {
-                Snackbar({message: res.body.message});
+                this.setState({
+                    formMessage: res.body.message
+                });
             } else {
+                this.setState({
+                    formMessage: ''
+                });
                 Snackbar({message: 'Tag removed'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
@@ -70,8 +76,13 @@ var EditTags = React.createClass({
                 submitting: false
             });
             if (err && err.status) {
-                Snackbar({message: res.body.message});
+                this.setState({
+                    formMessage: res.body.message
+                });
             } else {
+                this.setState({
+                    formMessage: ''
+                });
                 Snackbar({message: 'Tag added'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
@@ -96,6 +107,9 @@ var EditTags = React.createClass({
                     overlayClassName='modal-overlay'>
                     <div>
                         <h1>Edit Tags</h1>
+                        {this.state.formMessage ? <div className='callout alert'>
+                            {this.state.formMessage}
+                        </div> : null}
                         <p>
                             Tags:
                             {this.props.tags.map((x) => {

@@ -71,7 +71,7 @@ var AddBookExisting = React.createClass({
     render () {
         return (
             <form action={'/api/v1/thing/' + this.props.id + '/books'} method='post'>
-                {this.state.formMessage ? <div className='callout warning'>
+                {this.state.formMessage ? <div className='callout alert'>
                     {this.state.formMessage}
                 </div> : null}
                 Search for a book

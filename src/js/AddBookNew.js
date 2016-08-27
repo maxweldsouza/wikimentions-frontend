@@ -96,7 +96,7 @@ var AddBookNew = React.createClass({
     render () {
         return (
             <form method='post' action={'/api/v1/thing/' + this.props.id + '/books'}>
-                {this.state.formMessage ? <div className='callout warning'>
+                {this.state.formMessage ? <div className='callout alert'>
                     {this.state.formMessage}
                 </div> : null}
                 Title

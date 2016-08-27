@@ -55,6 +55,7 @@ var EditPage = React.createClass({
             urlValid: true,
             urlMessage: '',
             submitting: false,
+            formMessage: '',
             confirmDelete: false,
             modalIsOpen: false
         };
@@ -105,7 +106,8 @@ var EditPage = React.createClass({
         var id = Number(this.props.path.split('/')[1]);
         if (this.validateForm()) {
             this.setState({
-                submitting: true
+                submitting: true,
+                formMessage: ''
             });
             var data = {
                 title: this.state.title,
@@ -128,8 +130,13 @@ var EditPage = React.createClass({
                     submitting: false
                 });
                 if (err && err.status) {
-                    Snackbar({message: res.body.message});
+                    this.setState({
+                        formMessage: res.body.message
+                    });
                 } else {
+                    this.setState({
+                        formMessage: ''
+                    });
                     Snackbar({message: 'Changes saved'});
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
@@ -222,6 +229,9 @@ var EditPage = React.createClass({
                                     onClose={this.onCloseModal}/>
                             </Modal>
                             <form action={'/api/v1/thing/' + id} method='post'>
+                                {this.state.formMessage ? <div className='callout alert'>
+                                    {this.state.formMessage}
+                                </div> : null}
                                 Type
                                 <ButtonSelect
                                     name='type'

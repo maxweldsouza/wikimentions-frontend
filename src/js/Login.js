@@ -71,7 +71,7 @@ var Login = React.createClass({
         return (
             <div>
                 <h1>Login</h1>
-                {this.state.formError ? <div className='callout warning'>
+                {this.state.formError ? <div className='callout alert'>
                     <span className='ion-alert' />{'Login failed'}
                 </div> : null}
                 Username

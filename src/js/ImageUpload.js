@@ -16,6 +16,7 @@ var ImageUpload = React.createClass({
             imageDescription: '',
             descriptionValid: true,
             descriptionMessage: '',
+            formMessage: '',
             submitting: false
         };
     },
@@ -103,12 +104,15 @@ var ImageUpload = React.createClass({
     uploadImage (image) {
         if (this.validateForm()) {
             if (!this.state.image) {
-                Snackbar({message: 'Image missing'});
+                this.setState({
+                    formMessage: 'Image missing'
+                });
                 return;
             }
 
             this.setState({
-                submitting: true
+                submitting: true,
+                formMessage: ''
             });
             requests
             .post('/api/v1/images/' + this.props.id)
@@ -120,8 +124,13 @@ var ImageUpload = React.createClass({
                     submitting: false
                 });
                 if (err && err.status) {
-                    Snackbar({message: res.body.message});
+                    this.setState({
+                        formMessage: res.body.message
+                    });
                 } else {
+                    this.setState({
+                        formMessage: ''
+                    });
                     Snackbar({message: 'Image uploaded'});
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
@@ -192,6 +201,9 @@ var ImageUpload = React.createClass({
                         crop={this._crop} /> : null}
                 </div>
                 <div className='small-12 xlarge-expand columns'>
+                    {this.state.formMessage ? <div className='callout alert'>
+                        {this.state.formMessage}
+                    </div> : null}
                     <MarkdownInput
                         name='imageDescription'
                         placeholder='Add a description for the image, including copyright information, a link to the original source etc. (Markdown is supported)'

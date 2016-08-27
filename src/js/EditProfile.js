@@ -61,6 +61,9 @@ var EditProfile = React.createClass({
                     formMessage: res.body.message
                 });
             } else {
+                this.setState({
+                    formMessage: ''
+                });
                 Snackbar({message: 'Profile updated'});
             }
         });
@@ -72,7 +75,7 @@ var EditProfile = React.createClass({
                     <div className='large-8 columns'>
                         <div className='columns box'>
                             <h2>Profile</h2>
-                            {this.state.formMessage ? <div className='callout warning'>
+                            {this.state.formMessage ? <div className='callout alert'>
                                 {this.state.formMessage}
                             </div> : null}
                             Email

@@ -64,7 +64,7 @@ var DiscussReply = React.createClass({
         return (
             <div className='small-12 columns'>
                 <Restricted message={loggedOutMessage} min_level={1} loggedin={this.props.loggedin}>
-                    {this.state.formMessage ? <div className='callout warning'>
+                    {this.state.formMessage ? <div className='callout alert'>
                         {this.state.formMessage}
                     </div> : null}
 

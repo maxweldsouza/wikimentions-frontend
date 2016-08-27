@@ -72,7 +72,7 @@ var AddVideo = React.createClass({
     render () {
         var id = this.props.id;
         return <div>
-            {this.state.formMessage ? <div className='callout warning'>
+            {this.state.formMessage ? <div className='callout alert'>
                 {this.state.formMessage}
             </div> : null}
             Search for video

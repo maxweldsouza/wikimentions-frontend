@@ -97,10 +97,10 @@ var AddAuthors = React.createClass({
                     overlayClassName='modal-overlay'>
                     <div>
                         <h1>Edit Authors</h1>
+                        {this.state.formMessage ? <div className='callout alert'>
+                            {this.state.formMessage}
+                        </div> : null}
                         <div className='card-container'>
-                            {this.state.formMessage ? <div className='callout warning'>
-                                {this.state.formMessage}
-                            </div> : null}
                             {this.props.authors.map((x) => {
                                 return <AuthorCard key={x.id} id={x.id} slug={x.props.slug} title={x.props.title} type={x.props.type} description={x.props.description} image={x.image} sourceType={this.props.type} sourceId={this.props.id}/>;
                             })}

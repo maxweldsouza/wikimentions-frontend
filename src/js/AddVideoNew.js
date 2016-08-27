@@ -14,7 +14,8 @@ var AddVideoNew = React.createClass({
             titleValid: true,
             urlValid: true,
             titleMessage: '',
-            urlMessage: ''
+            urlMessage: '',
+            formMessage: ''
         };
     },
     onChangeText (e) {
@@ -108,6 +109,9 @@ var AddVideoNew = React.createClass({
     render () {
         return (
             <form method='post' action={'/api/v1/thing/' + this.props.id + '/books'}>
+                {this.state.formMessage ? <div className='callout alert'>
+                    {this.state.formMessage}
+                </div> : null}
                 Title
                 <Input
                     type='text'

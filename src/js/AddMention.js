@@ -131,7 +131,7 @@ var AddMention = React.createClass({
         return <div className='small-12 columns'>
             <Restricted message={loggedOutMessage}>
                 <h2>Add mention</h2>
-                {this.state.formMessage ? <div className='callout warning'>
+                {this.state.formMessage ? <div className='callout alert'>
                     {this.state.formMessage}
                 </div> : null}
                 <div className='row'>
@@ -141,41 +141,41 @@ var AddMention = React.createClass({
                         </div>
                     </div>
                     <div className='small-12 large-8 large-order-1 columns'>
-                            {this.props.mentioned_by ? null : <span>
-                                Mentioned By (Person)
-                                <Select
-                                    name='mentioned_by'
-                                    valid={this.state.mentionedByValid}
-                                    message={this.state.mentionedByMessage}
-                                    onSelectValue={this.onChangeMentionedBy}
-                                    types={['person']}/>
-                            </span>}
-                            {this.props.mentioned ? null : <span>
-                                Mentioned (Person or Book or Video)
-                                <Select
-                                    valid={this.state.mentionedValid}
-                                    message={this.state.mentionedMessage}
-                                    name='mentioned'
-                                    onSelectValue={this.onChangeMentioned}/>
-                            </span>}
-                            {this.props.mentioned_in ? null : <span>
-                                Mentioned In (Book or Video)
-                                <Select
-                                    valid={this.state.mentionedInValid}
-                                    message={this.state.mentionedInMessage}
-                                    name='mentioned_in'
-                                    onSelectValue={this.onChangeMentionedIn}
-                                    types={['book', 'video']}/>
-                            </span>}
-                            <IpWarning loggedin={this.props.loggedin}/>
-                            <div className='button-group float-right'>
-                                <SubmitButton
-                                    type='button'
-                                    className='button primary'
-                                    submitting={this.state.submitting}
-                                    onSubmit={this.onSubmit}
-                                    title='Add' />
-                            </div>
+                        {this.props.mentioned_by ? null : <span>
+                            Mentioned By (Person)
+                            <Select
+                                name='mentioned_by'
+                                valid={this.state.mentionedByValid}
+                                message={this.state.mentionedByMessage}
+                                onSelectValue={this.onChangeMentionedBy}
+                                types={['person']}/>
+                        </span>}
+                        {this.props.mentioned ? null : <span>
+                            Mentioned (Person or Book or Video)
+                            <Select
+                                valid={this.state.mentionedValid}
+                                message={this.state.mentionedMessage}
+                                name='mentioned'
+                                onSelectValue={this.onChangeMentioned}/>
+                        </span>}
+                        {this.props.mentioned_in ? null : <span>
+                            Mentioned In (Book or Video)
+                            <Select
+                                valid={this.state.mentionedInValid}
+                                message={this.state.mentionedInMessage}
+                                name='mentioned_in'
+                                onSelectValue={this.onChangeMentionedIn}
+                                types={['book', 'video']}/>
+                        </span>}
+                        <IpWarning loggedin={this.props.loggedin}/>
+                        <div className='button-group float-right'>
+                            <SubmitButton
+                                type='button'
+                                className='button primary'
+                                submitting={this.state.submitting}
+                                onSubmit={this.onSubmit}
+                                title='Add' />
+                        </div>
                     </div>
                 </div>
             </Restricted>

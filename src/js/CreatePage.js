@@ -139,7 +139,7 @@ var HomePage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <form action='/api/v1/thing' method='post'>
                             <h1>Create Page</h1>
-                            {this.state.formMessage ? <div className='callout warning'>
+                            {this.state.formMessage ? <div className='callout alert'>
                                 {this.state.formMessage}
                             </div> : null}
                             <Restricted message={loggedOutMessage}>
