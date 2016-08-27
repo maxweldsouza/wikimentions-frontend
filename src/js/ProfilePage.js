@@ -39,6 +39,13 @@ var ProfilePage = React.createClass({
         var user = this.props.data.user;
         var history = this.props.data.history;
         var tabs = ['history'];
+
+        var empty = <div className='callout warning'>
+            There is no activity to show.
+        </div>;
+        var nomore = <div className='callout warning'>
+            No more entries to show.
+        </div>;
         return (
             <span>
                 <Helmet
@@ -126,6 +133,8 @@ var ProfilePage = React.createClass({
                                             />;
                                     })}
                                 </div>
+                                {!this.props.query.page && history.length === 0 ? empty : null}
+                                {this.props.query.page && history.length === 0 ? nomore : null}
                                 <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
                             </div>
                         </div> : null}
