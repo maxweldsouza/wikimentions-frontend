@@ -80,14 +80,21 @@ var HistoryItem = React.createClass({
                         {this.props.entry.mentioned.props.title}
                     </Link>
                 </span>
-                <span className='small-12 columns'>
+                {this.props.entry.mentioned_in ? <span className='small-12 columns'>
                     Mentioned In: <Link
                         id={this.props.entry.mentioned_in.id}
                         slug={this.props.entry.mentioned_in.props.slug}
                         type={this.props.entry.mentioned_in.props.type}>
                         {this.props.entry.mentioned_in.props.title}
                     </Link>
-                </span>
+                </span> : null}
+                {this.props.entry.reference ? <span className='small-12 columns'>
+                    Reference: <a
+                        className='secondary'
+                        style={{fontWeight: 'bold'}} href={this.props.entry.reference}>
+                            {this.props.entry.reference}
+                    </a>
+                </span> : null}
             </span>;
         } else if (this.props.entry && this.props.entrytype === 'image') {
             type = 'Image';
