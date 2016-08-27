@@ -1,11 +1,12 @@
+var _ = require('underscore');
+var cookies = require('browser-cookies');
+var Dropdown = require('./Dropdown');
+var Link = require('./Link');
+var parseUrl = require('url-parse');
 var React = require('react');
 var requests = require('superagent');
-var cookies = require('browser-cookies');
-var Link = require('./Link');
-var Thumbnail = require('./Thumbnail');
-var _ = require('underscore');
 var Snackbar = require('./Snackbar');
-var Dropdown = require('./Dropdown');
+var Thumbnail = require('./Thumbnail');
 
 var Mention = React.createClass({
     getInitialState () {
@@ -91,6 +92,10 @@ var Mention = React.createClass({
             icon = 'ion-person';
         }
 
+        var parsed;
+        if (this.props.reference) {
+            parsed = parseUrl(this.props.reference);
+        }
         return (
             <div className='card box'>
                 <span className='ion-chevron-down card-chevron' onClick={this.openDropdown}/>
@@ -165,6 +170,10 @@ var Mention = React.createClass({
                                 id={secondary.id}
                                 slug={secondary.props.slug}
                                 type={secondary.props.type}>{secondary.props.title}</Link></strong>
+                        </div> : null}
+                        {this.props.reference ? <div className='small-12 columns'>
+                            Reference: <a className='secondary' style={{fontWeight: 'bold'}} href={this.props.reference} target='_blank'>{parsed.hostname} <span className='ion-android-open'/>
+                            </a>
                         </div> : null}
                     </div>
                 </div>

@@ -11,6 +11,7 @@ var LoginModal = require('./LoginModal');
 var SignupModal = require('./SignupModal');
 var SubmitButton = require('./SubmitButton');
 var IpWarning = require('./IpWarning');
+var Input = require('./Input');
 
 var AddMention = React.createClass({
     getInitialState () {
@@ -25,7 +26,7 @@ var AddMention = React.createClass({
             mentionedValid: true,
             mentionedMessage: '',
             description: '',
-            references: '',
+            reference: '',
             formMessage: '',
             submitting: false
         };
@@ -49,7 +50,7 @@ var AddMention = React.createClass({
                 mentionedByMessage: ''
             });
         }
-        if (!this.state.mentioned_in) {
+        if (!this.state.mentioned_in && this.props.type !== 'person') {
             this.setState({
                 mentionedInValid: false,
                 mentionedInMessage: 'Mentioned In is empty'
@@ -85,7 +86,7 @@ var AddMention = React.createClass({
             .type('form')
             .send({
                 description: this.state.description,
-                references: this.state.references,
+                reference: this.state.reference,
                 mentioned_by: this.state.mentioned_by,
                 mentioned_in: this.state.mentioned_in,
                 mentioned: this.state.mentioned,
@@ -163,10 +164,23 @@ var AddMention = React.createClass({
                             <Select
                                 valid={this.state.mentionedInValid}
                                 message={this.state.mentionedInMessage}
+                                placeholder={this.props.type === 'person' ? 'Optional' : ''}
                                 name='mentioned_in'
                                 onSelectValue={this.onChangeMentionedIn}
                                 types={['book', 'video']}/>
                         </span>}
+                        {this.props.type === 'person' ? <span>
+                            Reference (If mention isn't in a book or video)
+                            <Input
+                                type='text'
+                                name='reference'
+                                placeholder='http://'
+                                value={this.state.reference}
+                                onChange={this.onChangeText}
+                                onClear={this.onClear}
+                                valid={true}
+                                message={true}/>
+                        </span> : null}
                         <IpWarning loggedin={this.props.loggedin}/>
                         <div className='button-group float-right'>
                             <SubmitButton

@@ -23,9 +23,9 @@ var ThingMentionTab = React.createClass({
         </div>;
         var addmention;
         if (this.props.type === 'person') {
-            addmention = <AddMention id={this.props.id} mentioned_by={this.props.id} loggedin={this.props.loggedin}/>;
+            addmention = <AddMention id={this.props.id} type={this.props.type} mentioned_by={this.props.id} loggedin={this.props.loggedin}/>;
         } else {
-            addmention = <AddMention id={this.props.id} mentioned_in={this.props.id} loggedin={this.props.loggedin}/>;
+            addmention = <AddMention id={this.props.id} type={this.props.type} mentioned_in={this.props.id} loggedin={this.props.loggedin}/>;
         }
         return (
             <div className='card-container'>
@@ -34,7 +34,7 @@ var ThingMentionTab = React.createClass({
                         key={x.mention_id}
                         mention_id={x.mention_id}
                         quote={x.quote}
-                        references={x.references}
+                        reference={x.reference}
                         mentioned={x.mentioned}
                         mentioned_in={x.mentioned_in}
                         mentioned_by={x.mentioned_by}
