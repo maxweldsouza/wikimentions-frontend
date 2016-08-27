@@ -95,9 +95,12 @@ var EditProfile = React.createClass({
                                 content={this.state.about}
                                 onChange={this.onChangeText}
                                 sideBySide={false}
-                                maxLength={255}
-                                />
-                            <SubmitButton title='Save' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.updateProfile}/>
+                                maxLength={255} />
+                            <SubmitButton
+                                title='Save'
+                                className='button primary float-right'
+                                submitting={this.state.submitting}
+                                onSubmit={this.updateProfile}/>
                         </div>
                     </div>
                 </div>

@@ -108,7 +108,7 @@ var ProfilePage = React.createClass({
                             </div>
                         </div>
                         {self && selectedTab === 'profile' ? <div className='card-container'>
-                                <Profile id={id}/>
+                            <Profile id={id}/>
                         </div> : null}
                         {selectedTab === 'history' ? <div className='row'>
                             <div className='small-12 large-9 columns'>

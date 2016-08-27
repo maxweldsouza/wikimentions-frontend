@@ -1,13 +1,12 @@
-var React = require('react');
-
 var cookies = require('browser-cookies');
+var LoginModal = require('./LoginModal');
+var MarkdownInput = require('./MarkdownInput');
+var React = require('react');
 var requests = require('superagent');
+var Restricted = require('./Restricted');
+var SignupModal = require('./SignupModal');
 var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
-var Restricted = require('./Restricted');
-var LoginModal = require('./LoginModal');
-var SignupModal = require('./SignupModal');
-var MarkdownInput = require('./MarkdownInput');
 
 var DiscussReply = React.createClass({
     getInitialState () {
@@ -63,11 +62,13 @@ var DiscussReply = React.createClass({
         var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to post a message.</span>;
         return (
             <div className='small-12 columns'>
-                <Restricted message={loggedOutMessage} min_level={1} loggedin={this.props.loggedin}>
+                <Restricted
+                    message={loggedOutMessage}
+                    min_level={1}
+                    loggedin={this.props.loggedin}>
                     {this.state.formMessage ? <div className='callout alert'>
                         {this.state.formMessage}
                     </div> : null}
-
                     <MarkdownInput
                         name='content'
                         placeholder='Write your post  here (Markdown is supported)'
@@ -76,9 +77,12 @@ var DiscussReply = React.createClass({
                         content={this.state.content}
                         onChange={this.onChangeText}
                         sideBySide={true}
-                        maxLength={65535}
-                        />
-                    <SubmitButton title='Submit' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                        maxLength={65535} />
+                    <SubmitButton
+                        title='Submit'
+                        className='button primary float-right'
+                        submitting={this.state.submitting}
+                        onSubmit={this.onSubmit} />
                 </Restricted>
             </div>
         );
