@@ -3,7 +3,7 @@ var ReactDOMServer = require('react-dom/server');
 var Helmet = require('react-helmet');
 var path = require('path');
 var express = require('express');
-var etag = require('etag')
+var etag = require('etag');
 var cookieParser = require('cookie-parser');
 var app = express();
 var fs = require('fs');
@@ -43,7 +43,7 @@ require('babel-register')({
 var Router = require('./src/js/Router');
 Router.setBaseUrl('127.0.0.1:8001');
 
-var sourceDir = production ? 'dist': 'src';
+var sourceDir = production ? 'dist' : 'src';
 
 function readFullFile (file) {
     try {
@@ -67,13 +67,13 @@ app.disable('x-powered-by');
 
 var eightdays = {
     maxAge: 8 * 24 * 3600 * 1000
-}
+};
 var farfuture = {
     maxAge: 1 * 365 * 12 * 30 * 24 * 3600 * 1000
-}
+};
 var nocache = {
     maxAge: 0
-}
+};
 
 // static files
 app.use('/favicon.ico', express.static(__dirname + '/favicon.ico', eightdays));
@@ -102,9 +102,9 @@ var isNotModified = function (ifModifiedSince, lastModified) {
         }
     }
     return false;
-}
+};
 
-app.get(/^(.+)$/, function(req, res, next) {
+app.get(/^(.+)$/, function (req, res, next) {
     try {
         var routeObj = {
             url: req.originalUrl,
@@ -162,7 +162,7 @@ app.get(/^(.+)$/, function(req, res, next) {
 
                         var content = data[contentKey];
                         var lastModified = data[modifiedKey];
-                        var ifModifiedSince= req.get('if-modified-since');
+                        var ifModifiedSince = req.get('if-modified-since');
                         if (lastModified && content && !err) {
                             res.setHeader('X-Cache', 'HIT');
                             res.setHeader('Last-Modified', lastModified);
@@ -173,11 +173,11 @@ app.get(/^(.+)$/, function(req, res, next) {
                             res.send(data[contentKey]);
                         } else {
                             res.setHeader('X-Cache', 'MISS');
-                            var content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
+                            content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
                                 data: routeObj.data,
                                 path: routeObj.path,
                                 query: routeObj.query,
-                                component: routeObj.component,
+                                component: routeObj.component
                             }));
                             var head = Helmet.rewind();
                             var page = compiledTemplate({
@@ -187,10 +187,10 @@ app.get(/^(.+)$/, function(req, res, next) {
                                 apidata: S(JSON.stringify(routeObj.data)).escapeHTML().toString(),
                                 content: content
                             });
-                            memcached.set(contentKey, page, TEN_DAYS_IN_SECS, function (err) {});
+                            memcached.set(contentKey, page, TEN_DAYS_IN_SECS, function (e) {});
                             var timestamp = moment.utc().format(TIMESTAMP_FORMAT);
                             res.setHeader('Last-Modified', timestamp);
-                            memcached.set(modifiedKey, timestamp, TEN_DAYS_IN_SECS, function (err) {});
+                            memcached.set(modifiedKey, timestamp, TEN_DAYS_IN_SECS, function (e) {});
                             res.send(page);
                         }
                     });
@@ -205,9 +205,10 @@ app.get(/^(.+)$/, function(req, res, next) {
             return next(err);
         }
     }
+    return;
 });
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     if (err) {
         var message;
         var content;
