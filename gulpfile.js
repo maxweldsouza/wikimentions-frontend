@@ -1,6 +1,6 @@
 // Include gulp
 var gulp = require('gulp');
-var checkPages = require("check-pages");
+var checkPages = require('check-pages');
 
 // Include Our Plugins
 var minifyhtml = require('gulp-htmlmin');
@@ -31,16 +31,16 @@ var sassPaths = [
 ];
 
 // Javascript
-global.assert = require("chai").assert;
+global.assert = require('chai').assert;
 
 gulp.task('git-rev', function () {
-    git.long(function(str) {
+    git.long(function (str) {
         if (production) {
             var GIT_REV_HASH = str;
-            console.log("git-rev: " + GIT_REV_HASH);
-            fs.writeFile(".GIT_REV_HASH", GIT_REV_HASH, function(err) {
-                if(err) {
-                    return console.log(err);
+            console.log('git-rev: ' + GIT_REV_HASH);
+            fs.writeFile('.GIT_REV_HASH', GIT_REV_HASH, function (err) {
+                if (err) {
+                    console.log(err);
                 }
             });
         }
@@ -52,17 +52,17 @@ gulp.task('js-tests', function () {
     return gulp.src('src/tests/*.js', {read: false})
         .pipe(mocha({
             reporter: 'nyan',
-            ui: 'qunit',
+            ui: 'qunit'
         }));
 });
 
-gulp.task('es-lint', function() {
+gulp.task('es-lint', function () {
     return gulp.src('src/js/*.js')
         .pipe(eslint())
         .pipe(eslint.format());
 });
 
-gulp.task('es-lint-tests', function() {
+gulp.task('es-lint-tests', function () {
     return gulp.src('src/tests/*.js')
         .pipe(eslint())
         .pipe(eslint.format());
@@ -79,40 +79,40 @@ var plugins = [
     'transform-object-rest-spread'
 ];
 if (production) {
-    plugins.push("transform-react-inline-elements");
+    plugins.push('transform-react-inline-elements');
 }
 
-gulp.task("browserify", function () {
+gulp.task('browserify', function () {
     return browserify({
         debug: !production,
         fullPaths: true, // set true to use disc to profile module sizes
-        entries: ["src/js/client.js"]
+        entries: ['src/js/client.js']
     })
     .transform(babelify.configure({
         plugins: plugins,
-        presets: ["es2015", 'react']
+        presets: ['es2015', 'react']
     }))
     .bundle()
-    .on("error", function (err) {
-        console.log("Error: " + err.message);
+    .on('error', function (err) {
+        console.log('Error: ' + err.message);
     })
-    .pipe(source("bundle.js"))
+    .pipe(source('bundle.js'))
     .pipe(buffer())
-    .pipe(gulp.dest("src/assets/js"))
+    .pipe(gulp.dest('src/assets/js'))
     .pipe(gulpif(production, uglify()))
-    .pipe(gulpif(production, gulp.dest("dist/assets/js")));
-    });
+    .pipe(gulpif(production, gulp.dest('dist/assets/js')));
+});
 
 // Scss styles
-gulp.task('scss-lint', function() {
+gulp.task('scss-lint', function () {
     return gulp.src('src/styles/*.scss')
          .pipe(scsslint({
              'config': 'scsslint.yml'
          }));
 });
 
-gulp.task('compile-scss', function() {
-return gulp.src('src/styles/main.scss')
+gulp.task('compile-scss', function () {
+    return gulp.src('src/styles/main.scss')
     .pipe(sass({
         includePaths: sassPaths
     }))
@@ -124,8 +124,8 @@ return gulp.src('src/styles/main.scss')
 });
 
 // Html
-gulp.task('preprocess-html', ['browserify', 'compile-scss'], function() {
-return gulp.src('src/index.html')
+gulp.task('preprocess-html', ['browserify', 'compile-scss'], function () {
+    return gulp.src('src/index.html')
     .pipe(htmlprocessor({}))
     .pipe(uncache({
         append: 'hash',
@@ -153,7 +153,7 @@ gulp.task('copy-external', function () {
 });
 
 // Watch Files For Changes
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     gulp.watch('src/js/*.js',
         ['browserify', 'js-tests', 'es-lint']);
     gulp.watch('src/tests/*.js',
@@ -164,26 +164,26 @@ gulp.task('watch', function() {
         ['browserify']);
 });
 
-gulp.task("checkDev", [], function(callback) {
-  var options = {
-    pageUrls: [
-      'http://localhost'
-    ],
-    checkLinks: true,
-    onlySameDomain: true,
-    queryHashes: false,
-    noRedirects: true,
-    noLocalLinks: false,
-    noEmptyFragments: true,
-    linksToIgnore: [],
-    checkXhtml: false,
-    checkCaching: false,
-    checkCompression: false,
-    maxResponseTime: 200,
-    userAgent: 'custom-user-agent/1.2.3',
-    summary: true
-  };
-  checkPages(console, options, callback);
+gulp.task('checkDev', [], function (callback) {
+    var options = {
+        pageUrls: [
+            'http://localhost'
+        ],
+        checkLinks: true,
+        onlySameDomain: true,
+        queryHashes: false,
+        noRedirects: true,
+        noLocalLinks: false,
+        noEmptyFragments: true,
+        linksToIgnore: [],
+        checkXhtml: false,
+        checkCaching: false,
+        checkCompression: false,
+        maxResponseTime: 200,
+        userAgent: 'custom-user-agent/1.2.3',
+        summary: true
+    };
+    checkPages(console, options, callback);
 });
 
 // Default Task
