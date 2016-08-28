@@ -222,8 +222,12 @@ app.use(function (err, req, res, next) {
                 content: message
             }));
         } else {
-            console.log(err);
-            message = 'We faced an internal error. Try again later.';
+            if (err.status === 429) {
+                message = 'You are making too many requests. Wait for some time.';
+            } else {
+                message = 'We faced an internal error. Try again later.';
+                console.log(err);
+            }
             res.send(errorCompiled({
                 status: status,
                 title: message,
