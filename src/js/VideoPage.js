@@ -183,14 +183,16 @@ var ThingPage = React.createClass({
                                     {thing.description}
                                     {authors}
                                 </span>
-                                <PageBar
-                                    id={id}
-                                    slug={thing.props.slug}
-                                    type='video'
-                                    noPage
-                                    />
                                 <div className='row'>
-                                    <div className='small-12 columns'>
+                                    <div className='small-6 columns'>
+                                        <PageBar
+                                        id={id}
+                                        slug={thing.props.slug}
+                                        type='video'
+                                        noPage
+                                        />
+                                    </div>
+                                    <div className='small-6 columns text-right'>
                                         <Share title={thing.props.title} path={this.props.path}/>
                                     </div>
                                 </div>
