@@ -77,7 +77,8 @@ var AddAuthors = React.createClass({
                     });
                 } else {
                     this.setState({
-                        formMessage: ''
+                        formMessage: '',
+                        modalIsOpen: false
                     });
                     Snackbar({message: 'Added author'});
                     history.pushState(null, null, window.location.pathname + window.location.search);
