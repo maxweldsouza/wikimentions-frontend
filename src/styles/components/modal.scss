@@ -1,7 +1,7 @@
 .modal-content {
     background: $white;
     border-radius: $global-radius;
-    border: none;
+    border: 0;
     color: $body-font-color;
     left: 0;
     margin: auto;
@@ -18,15 +18,19 @@
     @include breakpoint(xxlarge) {
         width: 40%;
     }
+
     @include breakpoint(xlarge) {
         width: 55%;
     }
+
     @include breakpoint(large) {
         width: 70%;
     }
+
     @include breakpoint(medium) {
         width: 80%;
     }
+
     @include breakpoint(small) {
         width: 90%;
     }
@@ -37,24 +41,24 @@
 }
 
 .modal-overlay {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
     background-color: $reveal-overlay-background;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
     z-index: $z-20;
 }
 
 .modal-close {
+    cursor: pointer;
     display: inline;
+    padding: $global-padding;
     position: absolute;
     right: 0;
     top: 0;
-    padding: $global-padding;
-    cursor: pointer;
 
     &:hover {
-        opacity: 0.8;
+        opacity: .8;
     }
 }
