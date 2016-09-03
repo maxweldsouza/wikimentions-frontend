@@ -187,8 +187,8 @@ gulp.task('checkDev', [], function (callback) {
 });
 
 // Default Task
-var devtasks = ['git-rev', 'es-lint', 'es-lint-tests', 'js-tests', 'browserify', 'scss-lint', 'compile-scss', 'copy-external', 'watch'];
-var prodtasks = ['git-rev', 'es-lint', 'es-lint-tests', 'js-tests', 'browserify', 'scss-lint', 'compile-scss', 'copy-external', 'preprocess-html'];
+var devtasks = ['git-rev', 'js-tests', 'browserify', 'compile-scss', 'copy-external', 'watch'];
+var prodtasks = ['git-rev', 'js-tests', 'browserify', 'compile-scss', 'copy-external', 'preprocess-html'];
 if (production) {
     gulp.task('default', prodtasks);
 } else {
