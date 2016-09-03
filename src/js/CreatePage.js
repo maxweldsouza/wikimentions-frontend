@@ -137,7 +137,7 @@ var HomePage = React.createClass({
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body white'>
-                    <div className='small-12 large-8 columns'>
+                    <div className='small-12 columns'>
                         <form>
                             <h1>Create Page</h1>
                             {this.state.formMessage ? <div className='callout alert'>
@@ -145,7 +145,12 @@ var HomePage = React.createClass({
                             </div> : null}
                             <Restricted message={loggedOutMessage}>
                                 <div className='row'>
-                                    <div className='small-12 columns'>
+                                    <div className='small-12 large-4 large-order-2 columns'>
+                                        <div className='callout warning'>
+                                            Search to check whether a page already exists before adding a new one. Make sure you have read our <a href='/guidelines'>Guidelines</a>
+                                        </div>
+                                    </div>
+                                    <div className='small-12 large-8 large-order-1  columns'>
                                         Type
                                         <ButtonSelect
                                             name='type'
