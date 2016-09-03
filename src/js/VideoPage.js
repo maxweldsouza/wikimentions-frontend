@@ -14,8 +14,10 @@ var PageBar = require('./PageBar');
 var Share = require('./Share');
 var config = require('./config');
 var Link = require('./Link');
+var parseUrl = require('url-parse');
+var queryString = require('query-string');
 
-var ThingPage = React.createClass({
+var VideoPage = React.createClass({
     statics: {
         resources (appstate) {
             var [type, id, slug, tab] = appstate.path.split('/');
@@ -58,6 +60,37 @@ var ThingPage = React.createClass({
             };
         }
     },
+    getInitialState () {
+        return {
+            embeddable: false,
+            videoImage: ''
+        };
+    },
+    componentDidMount () {
+        var parsed = parseUrl(this.props.data.thing.props.url);
+        if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
+            var queryObject = queryString.parse(parsed.query);
+            requests.get('https://www.googleapis.com/youtube/v3/videos?part=status,snippet&fields=items(snippet/thumbnails/high,status(embeddable,privacyStatus,uploadStatus))&id=' + queryObject.v + '&key=' + config.keys.youtube).end((err, res) => {
+                if (err) {
+                    return;
+                }
+                try {
+                    if (res.body.items[0].status.embeddable
+                        && res.body.items[0].status.privacyStatus === 'public'
+                        && res.body.items[0].status.uploadStatus === 'processed') {
+                        this.setState({
+                            embeddable: true
+                        });
+                        this.setState({
+                            videoImage: res.body.items[0].snippet.thumbnails.high.url
+                        });
+                    }
+                } catch (e) {
+                    return;
+                }
+            });
+        }
+    },
     render () {
         var [type, id, slug, tab] = this.props.path.split('/');
         var thing = this.props.data.thing;
@@ -66,7 +99,6 @@ var ThingPage = React.createClass({
 
         tab = tab ? tab : defaultTab;
 
-        var image = '/assets/videolarge.png';
         var authors = this.props.data.videoauthors;
         authors = <Authors authors={authors} id={id} type='video' />;
         var mentions = this.props.data.mentions;
@@ -154,12 +186,12 @@ var ThingPage = React.createClass({
                         {name: 'twitter:site', content: config.twitter},
                         {name: 'twitter:title', content: pageTitle},
                         {name: 'twitter:description', content: pageDescription},
-                        {name: 'twitter:image', content: image},
+                        {name: 'twitter:image', content: this.state.videoImage},
                         {property: 'og:title', content: pageTitle},
                         {property: 'og:type', content: 'article'},
                         {property: 'og:url', content: config.url + this.props.path},
                         {property: 'og:description', content: ''},
-                        {property: 'og:image', content: image},
+                        {property: 'og:image', content: this.state.videoImage},
                         {property: 'og:site_name', content: config.name}
                     ]}
                     link={[
@@ -176,7 +208,7 @@ var ThingPage = React.createClass({
                         <div className='row align-center'>
                             <div className='small-12 large-8 columns'>
                                 <div>
-                                    <VideoEmbed url={this.props.data.thing.props.url} embeddable={this.props.data.thing.props.embeddable}/>
+                                    <VideoEmbed url={this.props.data.thing.props.url} embeddable={this.state.embeddable}/>
                                 </div>
                                 <h1><a href={this.props.data.thing.props.url} target='_blank'>{thing.props.title} <sup><span className='ion-android-open'/></sup></a></h1>
                                 <span className='thing-description'>
@@ -211,4 +243,4 @@ var ThingPage = React.createClass({
     }
 });
 
-module.exports = ThingPage;
+module.exports = VideoPage;

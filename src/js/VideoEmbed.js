@@ -11,33 +11,6 @@ var YoutubeEmbed = React.createClass({
             height: 390
         };
     },
-    getInitialState () {
-        return {
-            embeddable: false
-        };
-    },
-    componentDidMount () {
-        var parsed = parseUrl(this.props.url);
-        if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
-            var queryObject = queryString.parse(parsed.query);
-            requests.get('https://www.googleapis.com/youtube/v3/videos?part=status&fields=items/status&id=' + queryObject.v + '&key=' + config.keys.youtube).end((err, res) => {
-                if (err) {
-                    return;
-                }
-                try {
-                    if (res.body.items[0].status.embeddable
-                        && res.body.items[0].status.privacyStatus === 'public'
-                        && res.body.items[0].status.uploadStatus === 'processed') {
-                        this.setState({
-                            embeddable: true
-                        });
-                    }
-                } catch (e) {
-                    return;
-                }
-            });
-        }
-    },
     render () {
         var embed;
         var parsed = parseUrl(this.props.url);
@@ -52,7 +25,7 @@ var YoutubeEmbed = React.createClass({
         } else {
             return null;
         }
-        if (!this.state.embeddable) {
+        if (!this.props.embeddable) {
             return null;
         }
         return (
