@@ -22,42 +22,45 @@ div {
 }
 
 .page-body {
-    margin-top: 2 * $global-margin;
-    margin-bottom: 2 * $global-margin;
     font-size: rem-calc(14px);
+    margin-bottom: 2 * $global-margin;
+    margin-top: 2 * $global-margin;
+
     &.white {
         background: $white;
-        padding: 2 * $global-padding $global-padding;
         border: $global-border;
         border-radius: $global-radius;
+        padding: 2 * $global-padding $global-padding;
 
         @include breakpoint (large down) {
             margin: 2 * $global-margin $global-margin;
         }
+
         @include breakpoint (small only) {
-            padding: 2 * $global-padding 0;
-            margin-top: -1px;
             margin-bottom: -1px;
             margin-left: 0;
             margin-right: 0;
+            margin-top: -1px;
+            padding: 2 * $global-padding 0;
         }
     }
 }
 
 .page-footer {
+    background: $white;
+    border-top: solid 2px $medium-gray;
     font-size: rem-calc(14px);
     padding-bottom: 2 * $global-margin;
     padding-top: 2 * $global-margin;
-    border-top: solid 2px $medium-gray;
-    background: $white;
     width: 100%;
 
     .menu {
         margin-bottom: $global-margin;
     }
 
-    .menu-text, .menu > li > a {
-        padding: 0.3rem 0;
+    .menu-text,
+    .menu > li > a {
+        padding: .3rem 0;
     }
 }
 
@@ -71,9 +74,9 @@ div {
 }
 
 .thing-description {
+    display: block;
     font-size: rem-calc(16px);
     margin-bottom: 10px;
-    display: block;
 }
 
 .markdown > :last-child {
@@ -90,6 +93,7 @@ a.secondary {
 
 time {
     color: hsla(0, 0%, 45%, 1);
+
     &:hover {
         cursor: pointer;
     }
@@ -99,6 +103,7 @@ time {
     margin-bottom: 0;
 }
 
-[class*="hint--"]:before, [class*="hint--"]:after {
+[class*="hint--"]:before,
+[class*="hint--"]:after {
     z-index: $z-20;
 }

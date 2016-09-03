@@ -1,46 +1,48 @@
 .top-bar {
-    font-size: rem-calc(14px);
-    padding-top: 0;
-    padding-bottom: 0;
-    border-bottom: solid 2px $medium-gray;
     background: $white;
+    border-bottom: solid 2px $medium-gray;
+    font-size: rem-calc(14px);
+    padding-bottom: 0;
+    padding-top: 0;
 }
 
-.top-bar, .top-bar ul {
+.top-bar,
+.top-bar ul {
     height: $topbar-height;
 }
 
- .top-bar ul {
+.top-bar ul {
     background: none;
 }
 
 .navicon {
+    display: inline-block;
     font-size: rem-calc(20px);
+    height: $topbar-height;
+    line-height: $topbar-height;
     padding-left: $global-padding;
     padding-right: $global-padding;
     vertical-align: middle;
-    display: inline-block;
-    height: $topbar-height;
-    line-height: $topbar-height;
+
     &:hover {
         cursor: pointer;
     }
 }
 
 .site-title {
-    font-weight: bold;
+    display: inline-block;
     font-size: rem-calc(16px);
+    font-weight: bold;
+    height: $topbar-height;
+    line-height: $topbar-height;
     padding-left: $global-padding;
     padding-right: $global-padding;
     vertical-align: middle;
-    display: inline-block;
-    height: $topbar-height;
-    line-height: $topbar-height;
-
 }
 
-.top-bar .top-bar-left, .top-bar .top-bar-right {
-    flex: 1 1 0px;
+.top-bar .top-bar-left,
+.top-bar .top-bar-right {
+    flex: 1 1 0;
 }
 
 .navbar-link {
@@ -48,17 +50,17 @@
     color: hsla(0, 0%, 50%, 1);
     font-size: rem-calc(15px);
 
-    & > .icon {
+    .icon {
         font-size: rem-calc(20px);
     }
 
-    & > *:last-child {
+    *:last-child {
         margin-left: $global-margin;
     }
 }
 
 .navbar-search {
-    background: white;
+    background: $white;
     border-bottom: solid 2px $medium-gray;
     height: $topbar-height;
     left: 0;

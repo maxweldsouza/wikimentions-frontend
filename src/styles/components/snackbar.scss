@@ -1,15 +1,15 @@
 .snackbar {
-    background: rgba(0, 0, 0, 0.88);
+    background: rgba(0, 0, 0, .88);
     border-radius: 3px 3px 0 0;
     bottom: 0;
-    color: white;
+    color: $white;
     left: 50%;
     max-width: 480px;
     opacity: 0;
     padding: 15px;
     position: fixed;
     transform: translate(-50%, 100%);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all .2s cubic-bezier(.4, 0, .2, 1);
     width: 100%;
     z-index: $z-30;
 

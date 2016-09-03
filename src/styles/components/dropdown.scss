@@ -1,25 +1,25 @@
 .dropdown-overlay {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
     background-color: transparent;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
     z-index: $z-20;
 }
 
 .dropdown-pane {
-    visibility: visible;
-    box-shadow: $dropdown-shadow;
     background: $white;
-    z-index: $z-30;
+    border: $dropdown-border;
+    box-shadow: $dropdown-shadow;
     font-size: rem-calc(14px);
     padding: 0;
-    border: $dropdown-border;
+    visibility: visible;
+    z-index: $z-30;
 
     &.bottom-right {
-        top: 30px;
         right: 15px;
+        top: 30px;
     }
 }
 

@@ -1,10 +1,10 @@
 .menu-item {
+    background: $white;
     border-bottom: $global-border;
-    padding-left: 2 * $global-margin;
-    padding-right: 2 * $global-margin;
     font-size: 16px;
     line-height: 44px;
-    background: $white;
+    padding-left: 2 * $global-margin;
+    padding-right: 2 * $global-margin;
 }
 
 .menu-item-icon {
@@ -15,7 +15,6 @@
 }
 
 .sidebar {
-    z-index: $z-30;
     background: $white;
     box-shadow: 0 0 2px rgba(0, 0, 0, .3);
     height: 100%;
@@ -24,6 +23,7 @@
     position: fixed;
     top: 0;
     width: 250px;
+    z-index: $z-30;
 }
 
 .sidebar-logo {
@@ -38,13 +38,14 @@
 }
 
 .sidebar-overlay {
-    z-index: $z-20;
     background: $reveal-overlay-background;
     height: 100%;
     left: 0;
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: $z-20;
+
     &.hidden {
         display: none;
     }
@@ -53,7 +54,7 @@
 .sidebar-submenu-header {
     //@include clickable;
     align-items: baseline;
-    color: #000;
+    color: $black;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -69,13 +70,13 @@
 }
 
 .sidebar-button {
-    display: block;
+    background: $white;
     border-bottom: $global-border;
-    padding-left: 2 * $global-margin;
-    padding-right: 2 * $global-margin;
+    display: block;
     font-size: 16px;
     line-height: 44px;
-    background: $white;
+    padding-left: 2 * $global-margin;
+    padding-right: 2 * $global-margin;
 }
 
 .sidebar-loggedin {

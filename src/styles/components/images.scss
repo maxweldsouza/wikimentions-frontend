@@ -1,13 +1,15 @@
 .img {
     border-radius: 2px;
-}
-.img.shadow {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+    .shadow {
+        box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+    }
 }
 
+
 .image-container {
-    max-width: 100%;
     margin: 0 auto;
+    max-width: 100%;
 
     &.bottom-margin {
         margin-bottom: $global-margin;
@@ -19,9 +21,9 @@
 }
 
 .react-cropper {
-    width: 270px;
     height: 270px;
     margin-bottom: $global-margin;
+    width: 270px;
 }
 
 .video-duration-container {
@@ -30,7 +32,7 @@
 }
 
 .video-duration {
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, .75);
     bottom: 0;
     color: $white;
     font-size: 11px;

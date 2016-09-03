@@ -2,12 +2,12 @@
     background: $white;
     border: none;
     color: $medium-gray;
+    display: inline-block;
     font-size: rem-calc(30px);
+    margin-bottom: 10px;
     text-align: center;
     vertical-align: middle;
-    display: inline-block;
     width: 100%;
-    margin-bottom: 10px;
 
     &.bordered {
         border: solid 1px $medium-gray;

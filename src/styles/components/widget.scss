@@ -1,10 +1,10 @@
 .text-widget-label {
-    font-size: 14px;
     color: #737373;
+    font-size: 14px;
 }
 
 .text-widget-value {
+    color: $body-font-color;
     font-size: 20px;
     font-weight: bold;
-    color: $body-font-color;
 }

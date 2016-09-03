@@ -19,14 +19,14 @@
 
 .card-chevron {
     color: $medium-gray;
+    padding: $global-padding * .5 $global-padding;
     position: absolute;
     right: 0;
     top: 0;
-    padding: $global-padding * 0.5 $global-padding;
 
     &:hover {
-        cursor: pointer;
         color: $dark-gray;
+        cursor: pointer;
     }
 }
 
@@ -36,11 +36,11 @@
 }
 
 .card-count {
-    margin-right: $global-margin;
     display: inline-block;
+    margin-right: $global-margin;
 }
 
 .box {
-    padding-top: $global-padding;
     padding-bottom: $global-padding;
+    padding-top: $global-padding;
 }

@@ -14,16 +14,16 @@
 }
 
 .select-option {
+    align-items: center;
     background: $white;
     color: $primary-color;
+    display: flex;
     font-size: rem-calc(15px);
     font-weight: bold;
     padding-bottom: 5px;
     padding-left: $global-margin;
     padding-right: $global-margin;
     padding-top: 5px;
-    display: flex;
-    align-items: center;
 
     &:hover {
         background: $medium-gray;

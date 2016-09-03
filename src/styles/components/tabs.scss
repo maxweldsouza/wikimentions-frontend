@@ -6,8 +6,8 @@
 }
 
 .tabs.vertical {
-    height: 100%;
     border-right: $global-border;
+    height: 100%;
 }
 
 .tabs-panel {
@@ -15,9 +15,9 @@
 }
 
 .tabs-title > a {
-    line-height: inherit;
-    font-size: rem-calc(14px);
     color: $secondary-color;
+    font-size: rem-calc(14px);
+    line-height: inherit;
 }
 
 :not(.vertical) > .tabs-title {
