@@ -26,8 +26,7 @@ var Login = React.createClass({
         temp[name] = '';
         this.setState(temp);
     },
-    login (e) {
-        e.preventDefault();
+    login () {
         this.setState({
             submitting: true
         });
@@ -70,7 +69,7 @@ var Login = React.createClass({
     },
     render () {
         return (
-            <form>
+            <div>
                 <h1>Login</h1>
                 {this.state.formError ? <div className='callout alert'>
                     Login failed
@@ -95,7 +94,7 @@ var Login = React.createClass({
                     message={''} />
                 <SubmitButton title='Login' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.login}/>
                 <div className='float-right'>Don't have an account? <a href='/signup'>Signup</a></div>
-            </form>
+            </div>
         );
     }
 });

@@ -48,8 +48,7 @@ var Signup = React.createClass({
         temp[name] = '';
         this.setState(temp);
     },
-    signup (e) {
-        e.preventDefault();
+    signup () {
         if (this.validateForm()) {
             this.setState({
                 submitting: true
@@ -164,8 +163,7 @@ var Signup = React.createClass({
             meterStyle = {'width': '3%'};
         }
         return (
-            <form>
-                <Xsrf/>
+            <div>
                 {this.state.formError ? <div className='callout alert'>
                     Form has errors
                 </div> : null}
@@ -225,7 +223,7 @@ var Signup = React.createClass({
                     value={this.state.retypePassword}/>
                 <SubmitButton title='Signup' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.signup}/>
                 <div className='float-right'>Already have an account? <a href='/login'>Login</a></div>
-            </form>
+            </div>
         );
     }
 });
