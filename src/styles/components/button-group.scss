@@ -1,6 +1,6 @@
 .button.secondary {
-    border: solid 1px darken($medium-gray, 5%);
     background: $white;
+    border: solid 1px darken($medium-gray, 5%);
     color: $secondary-color;
 
     &:hover {
@@ -8,40 +8,49 @@
         color: $secondary-color;
     }
 
-    &:active, &:focus {
+    &:active,
+    &:focus {
         background: $medium-gray;
         color: $secondary-color;
+    }
+
+    .loading::after {
+        border-left-color: $secondary-color;
+        border-top-color: $secondary-color;
     }
 }
 
 .button-group {
     display: inline-flex;
+
+    .button:first-child {
+        border-bottom-left-radius: $global-radius;
+        border-left-width: 1px;
+        border-top-left-radius: $global-radius;
+    }
+
+    .button:last-child {
+        border-bottom-right-radius: $global-radius;
+        border-right-width: 1px;
+        border-top-right-radius: $global-radius;
+    }
+
+    .button {
+        border-left-width: 0;
+        border-radius: 0;
+        border-right-width: 0;
+    }
+
+    .button:not(:last-child) {
+        margin-right: 0;
+    }
 }
 
-.button-group .button:first-child {
-    border-bottom-left-radius: $global-radius;
-    border-left-width: 1px;
-    border-top-left-radius: $global-radius;
-}
 
-.button-group .button:last-child {
-    border-bottom-right-radius: $global-radius;
-    border-right-width: 1px;
-    border-top-right-radius: $global-radius;
-}
 
-.button-group .button {
-    border-left-width: 0;
-    border-radius: 0;
-    border-right-width: 0;
-}
-
-.button-group .button:not(:last-child) {
-    margin-right: 0;
-}
 
 .button:active {
-    box-shadow: inset 0 2px 4px rgba(0,0,0,.2)
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .2);
 }
 
 .button:focus {
@@ -53,25 +62,20 @@
     pointer-events: none;
 }
 
-.button.loading:after {
+.button.loading::after {
     animation: spinner-animation 400ms linear infinite;
     border: solid 2px transparent;
     border-left-color: $white;
     border-radius: 1em;
     border-top-color: $white;
     content: '';
-    display: block;
-    height: 14px;
-    width: 14px;
     display: inline-block;
-    vertical-align: bottom;
+    height: 14px;
     margin-left: 8px;
+    vertical-align: bottom;
+    width: 14px;
 }
 
-.button.secondary.loading:after {
-    border-left-color: $secondary-color;
-    border-top-color: $secondary-color;
-}
 
 .button.round {
     border-radius: 999em;
