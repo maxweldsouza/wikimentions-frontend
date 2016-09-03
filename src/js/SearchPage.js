@@ -50,7 +50,7 @@ var SearchPage = React.createClass({
         if (type !== 'any') {
             query.types = [type];
         }
-        requests.get('/api/v1/search/' + x + '?' + queryString.stringify(query)).end((err, res) => {
+        requests.get('/api/v1/search/' + encodeURIComponent(x) + '?' + queryString.stringify(query)).end((err, res) => {
             if (err) {
                 Snackbar({message: 'Search failed'});
             } else {
