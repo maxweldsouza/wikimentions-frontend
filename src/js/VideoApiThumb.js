@@ -3,13 +3,23 @@ var queryString = require('query-string');
 var parseUrl = require('url-parse');
 var requests = require('superagent');
 var config = require('./config');
+var moment = require('moment');
+
+var humanizeDuration = function (ptduration) {
+    var ms = moment.duration(ptduration).asMilliseconds();
+    if (ms >= 3600000) {
+        return moment.utc(ms).format('h:mm:ss');
+    }
+    return moment.utc(ms).format('m:ss');
+};
 
 var VideoApiThumb = React.createClass({
     getInitialState () {
         return {
             thumb: '',
             width: 120,
-            height: 90
+            height: 90,
+            duration: ''
         };
     },
     componentDidMount () {
@@ -21,7 +31,7 @@ var VideoApiThumb = React.createClass({
         if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
             var queryObject = queryString.parse(parsed.query);
             videoId = queryObject.v;
-            requests.get('https://www.googleapis.com/youtube/v3/videos?part=snippet&fields=items/snippet/thumbnails/default&id=' + videoId + '&key=' + config.keys.youtube).end((err, res) => {
+            requests.get('https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet&fields=items(contentDetails/duration,snippet/thumbnails/default)&id=' + videoId + '&key=' + config.keys.youtube).end((err, res) => {
                 if (err) {
                     return;
                 }
@@ -29,7 +39,8 @@ var VideoApiThumb = React.createClass({
                     this.setState({
                         thumb: res.body.items[0].snippet.thumbnails.default.url,
                         width: res.body.items[0].snippet.thumbnails.default.width,
-                        height: res.body.items[0].snippet.thumbnails.default.height
+                        height: res.body.items[0].snippet.thumbnails.default.height,
+                        duration: humanizeDuration(res.body.items[0].contentDetails.duration)
                     });
                 } catch (e) {
                     return;
@@ -39,7 +50,10 @@ var VideoApiThumb = React.createClass({
     },
     render () {
         if (this.state.thumb) {
-            return <img src={this.state.thumb} width={this.state.width} height={this.state.height} style={this.props.style} alt={this.props.alt}/>;
+            return <span className='video-duration-container'>
+                <img src={this.state.thumb} width={this.state.width} height={this.state.height} style={this.props.style} alt={this.props.alt}/>
+                {this.state.duration ? <span className='video-duration'>{this.state.duration}</span> : null}
+            </span>;
         }
         return this.props.children;
     }
