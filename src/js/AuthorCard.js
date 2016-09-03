@@ -13,7 +13,8 @@ var AuthorCard = React.createClass({
             submitting: false
         };
     },
-    removeAuthor (id) {
+    removeAuthor (e) {
+        e.preventDefault();
         var type;
         if (this.props.sourceType === 'book') {
             type = '/booksby';
@@ -24,7 +25,7 @@ var AuthorCard = React.createClass({
         .delete('/api/v1/thing/' + this.props.sourceId + type)
         .type('form')
         .send({
-            author_id: id,
+            author_id: this.props.id,
             _xsrf: cookies.get('_xsrf')
         })
         .end((err, res) => {
@@ -42,7 +43,7 @@ var AuthorCard = React.createClass({
     },
     render () {
         return (
-            <div className='card box'>
+            <form className='card box'>
                 <div className='shrink columns'>
                     <Thumbnail
                         type={this.props.type}
@@ -64,9 +65,9 @@ var AuthorCard = React.createClass({
                         title={<span className='ion-close' aria-label='Remove'></span>}
                         className='button small'
                         submitting={this.state.submitting}
-                        onSubmit={this.removeAuthor.bind(null, this.props.id)}/>
+                        onSubmit={this.removeAuthor}/>
                 </div>
-            </div>
+            </form>
         );
     }
 });

@@ -4,7 +4,6 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var cookies = require('browser-cookies');
 var Xsrf = require('./Xsrf');
-var SubmitButton = require('./SubmitButton');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var Login = require('./Login');

@@ -48,7 +48,8 @@ var Signup = React.createClass({
         temp[name] = '';
         this.setState(temp);
     },
-    signup () {
+    signup (e) {
+        e.preventDefault();
         if (this.validateForm()) {
             this.setState({
                 submitting: true
@@ -163,7 +164,7 @@ var Signup = React.createClass({
             meterStyle = {'width': '3%'};
         }
         return (
-            <form action='/api/v1/signup' method='post'>
+            <form>
                 <Xsrf/>
                 {this.state.formError ? <div className='callout alert'>
                     Form has errors

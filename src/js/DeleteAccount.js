@@ -22,7 +22,8 @@ var DeleteAccount = React.createClass({
         temp[name] = '';
         this.setState(temp);
     },
-    deleteAccount () {
+    deleteAccount (e) {
+        e.preventDefault();
         if (!this.state.password) {
             Snackbar({message: 'Password is empty'});
         } else {
@@ -55,7 +56,7 @@ var DeleteAccount = React.createClass({
             <div className='tabs-panel is-active' role='tabpanel'>
                 <div className='row'>
                     <div className='large-8 columns'>
-                        <div className='columns box'>
+                        <form className='columns box'>
                             <h2>Delete Account</h2>
                             <div className='callout warning'>
                                 If you delete your account all your account information will be deleted. Any edits/contributions will NOT be deleted. This cannot be undone.
@@ -70,7 +71,7 @@ var DeleteAccount = React.createClass({
                                 valid={true}
                                 message={''}/>
                             <SubmitButton title='Delete Account' className='button alert float-right' submitting={this.state.submitting} onSubmit={this.deleteAccount}/>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -22,7 +22,8 @@ var DiscussReply = React.createClass({
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     },
-    onSubmit () {
+    onSubmit (e) {
+        e.preventDefault();
         if (!this.state.content) {
             this.setState({
                 formMessage: 'Post is empty'
@@ -61,7 +62,7 @@ var DiscussReply = React.createClass({
     render () {
         var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to post a message.</span>;
         return (
-            <div className='small-12 columns'>
+            <form className='small-12 columns'>
                 <Restricted
                     message={loggedOutMessage}
                     min_level={1}
@@ -84,7 +85,7 @@ var DiscussReply = React.createClass({
                         submitting={this.state.submitting}
                         onSubmit={this.onSubmit} />
                 </Restricted>
-            </div>
+            </form>
         );
     }
 });

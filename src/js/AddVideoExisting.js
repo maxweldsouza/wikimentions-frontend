@@ -40,7 +40,8 @@ var AddVideo = React.createClass({
         }
         return valid;
     },
-    onSubmit () {
+    onSubmit (e) {
+        e.preventDefault();
         if (this.validateForm()) {
             this.setState({
                 submitting: true
@@ -73,7 +74,7 @@ var AddVideo = React.createClass({
     },
     render () {
         var id = this.props.id;
-        return <div>
+        return <form>
             {this.state.formMessage ? <div className='callout alert'>
                 {this.state.formMessage}
             </div> : null}
@@ -86,7 +87,7 @@ var AddVideo = React.createClass({
                 message={this.state.videoMessage} />
             <IpWarning loggedin={this.props.loggedin}/>
             <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
-        </div>;
+        </form>;
     }
 });
 

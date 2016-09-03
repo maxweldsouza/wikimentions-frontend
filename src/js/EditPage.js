@@ -102,7 +102,8 @@ var EditPage = React.createClass({
         }
         return valid;
     },
-    onSubmit () {
+    onSubmit (e) {
+        e.preventDefault();
         var id = Number(this.props.path.split('/')[1]);
         if (this.validateForm()) {
             this.setState({
@@ -144,7 +145,8 @@ var EditPage = React.createClass({
             });
         }
     },
-    onDeletePage () {
+    onDeletePage (e) {
+        e.preventDefault();
         var id = Number(this.props.path.split('/')[1]);
         this.setState({
             submitting: true
@@ -228,7 +230,7 @@ var EditPage = React.createClass({
                                     height={250}
                                     onClose={this.onCloseModal}/>
                             </Modal>
-                            <form action={'/api/v1/thing/' + id} method='post'>
+                            <form>
                                 {this.state.formMessage ? <div className='callout alert'>
                                     {this.state.formMessage}
                                 </div> : null}
@@ -292,7 +294,7 @@ var EditPage = React.createClass({
                                     onSubmit={this.onSubmit}/>
                             </form>
                             <AdminOnly>
-                                <div>
+                                <form>
                                     <hr/>
                                     <div className='row align-middle'>
                                         <div className='small-6 columns'>
@@ -310,7 +312,7 @@ var EditPage = React.createClass({
                                                 onSubmit={this.onDeletePage}/>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </AdminOnly>
                         </Restricted>
                     </div>

@@ -52,7 +52,8 @@ var AddAuthors = React.createClass({
         }
         return valid;
     },
-    onSubmit () {
+    onSubmit (e) {
+        e.preventDefault();
         if (this.validateForm()) {
             var type;
             if (this.props.type === 'book') {
@@ -96,7 +97,7 @@ var AddAuthors = React.createClass({
                     onClose={this.onCloseModal}
                     className='modal-content modal-small'
                     overlayClassName='modal-overlay'>
-                    <div>
+                    <form>
                         <h1>Edit Authors</h1>
                         {this.state.formMessage ? <div className='callout alert'>
                             {this.state.formMessage}
@@ -114,10 +115,14 @@ var AddAuthors = React.createClass({
                                 message={this.state.authorMessage}
                                 types={['person']}/>
                             <div className='button-group float-right'>
-                                <SubmitButton title='Add' className='button primary' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                                <SubmitButton
+                                title='Add'
+                                className='button primary'
+                                submitting={this.state.submitting}
+                                onSubmit={this.onSubmit}/>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </Modal>
             );
         }

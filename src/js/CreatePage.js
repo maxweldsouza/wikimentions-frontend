@@ -73,7 +73,8 @@ var HomePage = React.createClass({
         }
         return valid;
     },
-    onSubmit () {
+    onSubmit (e) {
+        e.preventDefault();
         if (this.validateForm()) {
             this.setState({
                 submitting: true
@@ -137,7 +138,7 @@ var HomePage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
-                        <form action='/api/v1/thing' method='post'>
+                        <form>
                             <h1>Create Page</h1>
                             {this.state.formMessage ? <div className='callout alert'>
                                 {this.state.formMessage}

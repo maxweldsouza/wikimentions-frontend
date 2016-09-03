@@ -37,7 +37,8 @@ var AddBookExisting = React.createClass({
         }
         return valid;
     },
-    onSubmit () {
+    onSubmit (e) {
+        e.preventDefault();
         if (this.validateForm()) {
             this.setState({
                 submitting: true
@@ -70,7 +71,7 @@ var AddBookExisting = React.createClass({
     },
     render () {
         return (
-            <form action={'/api/v1/thing/' + this.props.id + '/books'} method='post'>
+            <form>
                 {this.state.formMessage ? <div className='callout alert'>
                     {this.state.formMessage}
                 </div> : null}

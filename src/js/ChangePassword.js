@@ -25,7 +25,8 @@ var ChangePassword = React.createClass({
         temp[name] = '';
         this.setState(temp);
     },
-    changePassword () {
+    changePassword (e) {
+        e.preventDefault();
         if (this.state.new !== this.state.repeat) {
             this.setState({
                 formMessage: 'Passwords do not match'
@@ -65,7 +66,7 @@ var ChangePassword = React.createClass({
             <div className='tabs-panel is-active' role='tabpanel'>
                 <div className='row'>
                     <div className='large-8 columns'>
-                        <div className='columns box'>
+                        <form className='columns box'>
                             <h2>Change Password</h2>
                             {this.state.formMessage ? <div className='callout alert'>
                                 {this.state.formMessage}
@@ -102,7 +103,7 @@ var ChangePassword = React.createClass({
                                 className='button primary float-right'
                                 submitting={this.state.submitting}
                                 onSubmit={this.changePassword}/>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

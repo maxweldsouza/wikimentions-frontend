@@ -60,7 +60,8 @@ var EditTags = React.createClass({
             }
         });
     },
-    onAddTag () {
+    onAddTag (e) {
+        e.preventDefault();
         this.setState({
             submitting: true
         });
@@ -105,7 +106,7 @@ var EditTags = React.createClass({
                     onClose={this.onCloseModal}
                     className='modal-content modal-small'
                     overlayClassName='modal-overlay'>
-                    <div>
+                    <form>
                         <h1>Edit Tags</h1>
                         {this.state.formMessage ? <div className='callout alert'>
                             {this.state.formMessage}
@@ -129,7 +130,7 @@ var EditTags = React.createClass({
                             className='button float-right'
                             submitting={this.state.submitting}
                             onSubmit={this.onAddTag}/>
-                    </div>
+                    </form>
                 </Modal>
             </span>
         );

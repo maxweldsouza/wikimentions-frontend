@@ -40,7 +40,8 @@ var EditProfile = React.createClass({
         temp[name] = '';
         this.setState(temp);
     },
-    updateProfile () {
+    updateProfile (e) {
+        e.preventDefault();
         this.setState({
             submitting: true
         });
@@ -73,7 +74,7 @@ var EditProfile = React.createClass({
             <div className='tabs-panel is-active' role='tabpanel'>
                 <div className='row'>
                     <div className='large-8 columns'>
-                        <div className='columns box'>
+                        <form className='columns box'>
                             <h2>Profile</h2>
                             {this.state.formMessage ? <div className='callout alert'>
                                 {this.state.formMessage}
@@ -101,7 +102,7 @@ var EditProfile = React.createClass({
                                 className='button primary float-right'
                                 submitting={this.state.submitting}
                                 onSubmit={this.updateProfile}/>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

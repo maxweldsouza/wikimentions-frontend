@@ -76,7 +76,8 @@ var AddMention = React.createClass({
         }
         return valid;
     },
-    onSubmit () {
+    onSubmit (e) {
+        e.preventDefault();
         if (this.validateForm()) {
             this.setState({
                 submitting: true
@@ -139,7 +140,7 @@ var AddMention = React.createClass({
                 {this.state.formMessage ? <div className='callout alert'>
                     {this.state.formMessage}
                 </div> : null}
-                <div className='row'>
+                <form className='row'>
                     <div className='small-12 large-4 large-order-2 columns'>
                         <div className='callout warning'>
                             People, books and videos must have existing pages on WikiMentions. <a href='/create' target='_blank'>Create</a> a page if it doesn't already exist.
@@ -198,7 +199,7 @@ var AddMention = React.createClass({
                                 title='Add' />
                         </div>
                     </div>
-                </div>
+                </form>
             </Restricted>
         </div>;
     }
