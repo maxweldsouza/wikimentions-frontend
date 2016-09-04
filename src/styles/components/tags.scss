@@ -1,18 +1,16 @@
 .tag {
     -webkit-appearance: none;
     background: $white;
-    border-radius: 2px;
-    border: 1px solid transparent;
     border: solid 1px #dedede;
+    border-radius: 999em;
     color: #404040;
     cursor: pointer;
-    display: inline;
-    font-size: 0.8rem;
+    display: inline-block;
+    font-size: .8rem;
     line-height: 1;
-    margin: 0 0 .8rem 0;
-    margin-right: 6px;
-    padding: 0.3em 1em;
+    margin: 0 .5rem .8rem 0;
+    padding: .5em 1em;
     text-align: center;
-    transition: background-color 0.25s ease-out, color 0.25s ease-out;
+    transition: background-color .25s ease-out, color .25s ease-out;
     vertical-align: middle;
 }
