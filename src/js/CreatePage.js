@@ -183,10 +183,8 @@ var HomePage = React.createClass({
                                                 onClear={this.onClear}
                                                 />
                                         </span> : null}
+                                        <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                                     </div>
-                                </div>
-                                <div>
-                                    <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
                                 </div>
                             </Restricted>
                         </form>
