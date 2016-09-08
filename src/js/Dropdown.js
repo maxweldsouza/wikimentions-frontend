@@ -3,7 +3,7 @@ var React = require('react');
 var Dropdown = React.createClass({
     render () {
         return (
-            <span style={{display: this.props.isOpen ? 'initial' : 'none'}} aria-haspopup={true} aria-expanded={this.props.isOpen}>
+            <span style={{display: this.props.isOpen ? 'inline' : 'none'}} aria-haspopup={true} aria-expanded={this.props.isOpen}>
                 {this.props.isOpen ? <div
                     className='dropdown-overlay'
                     onClick={this.props.onClose}>
