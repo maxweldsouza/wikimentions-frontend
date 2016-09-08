@@ -74,7 +74,7 @@ var Navbar = React.createClass({
                 autoFocus={true}
                 moreResults={true}/>
             <button
-                className='input-group-button button primary'
+                className='button primary'
                 style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}
                 onClick={this.search}
                 aria-label='Search'>
@@ -170,7 +170,7 @@ var Navbar = React.createClass({
                                     name='searchText'
                                     style={{borderTopRightRadius: 0, borderBottomRightRadius: 0}}></input>
                                 <button
-                                    className='button alert input-group-button'
+                                    className='button alert'
                                     aria-label='Close search bar'
                                     onClick={this.onCloseSearchBar}
                                     style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}>

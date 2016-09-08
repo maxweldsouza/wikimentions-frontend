@@ -52,6 +52,7 @@
 }
 
 .select-clear {
+    cursor: default;
     height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
     line-height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
     padding-right: $global-margin;
