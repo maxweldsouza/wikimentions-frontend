@@ -4,7 +4,7 @@ var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
 var Modal = React.createClass({
     render () {
         return (
-            <span style={{display: this.props.isOpen ? 'initial' : 'none'}} role='dialog'>
+            <span style={{display: this.props.isOpen ? 'inline' : 'none'}} role='dialog'>
                 <VelocityTransitionGroup enter={{animation: 'fadeIn'}} leave={{animation: 'fadeOut'}}>
                 {this.props.isOpen ? <div
                     className={this.props.overlayClassName}

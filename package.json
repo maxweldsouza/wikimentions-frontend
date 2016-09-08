@@ -84,6 +84,7 @@
     "zxcvbn": "^4.3.0"
   },
   "devDependencies": {
+    "babel-polyfill": "^6.13.0",
     "babel-preset-react": "^6.5.0",
     "browser-sync": "~2.12.8"
   },
