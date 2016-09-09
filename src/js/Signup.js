@@ -75,7 +75,7 @@ var Signup = React.createClass({
                     store.set('level', res.body.level);
                     store.set('id', res.body.id);
 
-                    var path = window.location.pathname + window.location.search;
+                    var path = '/';
                     history.pushState(null, null, path);
                     Mentions.route(path);
                 }
