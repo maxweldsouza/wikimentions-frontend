@@ -1,4 +1,3 @@
-require("babel-polyfill");
 var consolePolyfill = require('console-polyfill');
 var React = require('react');
 var ReactDOM = require('react-dom');
