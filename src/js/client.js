@@ -1,3 +1,4 @@
+require('core-js/es6/string');
 var consolePolyfill = require('console-polyfill');
 var React = require('react');
 var ReactDOM = require('react-dom');
