@@ -70,7 +70,7 @@ window.Mentions = {
                         component={robj.component}
                         query={robj.query}/>, document.getElementById('page-container'));
                     window.scrollTo(0, 0);
-                    ga('send', 'pageview');
+                    ga('send', 'pageview', location.pathname);
                 }
                 stopLoading();
             }
