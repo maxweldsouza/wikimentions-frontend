@@ -1,11 +1,12 @@
-var React = require('react');
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var config = require('./config');
-var Markdown = require('./Markdown');
-var Time = require('./Time');
 var AdminOnly = require('./AdminOnly');
+var config = require('./config');
+var Helmet = require('react-helmet');
+var Markdown = require('./Markdown');
+var Navbar = require('./Navbar');
+var React = require('react');
 var requests = require('superagent');
+var Snackbar = require('./Snackbar');
+var Time = require('./Time');
 
 var BugPage = React.createClass({
     statics: {
