@@ -5,7 +5,8 @@ var cookies = require('browser-cookies');
 var Snackbar = require('./Snackbar');
 var Input = require('./Input');
 var MarkdownInput = require('./MarkdownInput');
-var Cropper;
+var Cropper = null;
+var isNode = require('./isNode');
 
 var ImageUpload = React.createClass({
     getInitialState () {
@@ -20,8 +21,10 @@ var ImageUpload = React.createClass({
             submitting: false
         };
     },
-    componentDidMount () {
-        Cropper = require('react-cropper').Cropper;
+    componentWillMount () {
+        if (isNode.isBrowser()) {
+            Cropper = require('react-cropper').default;
+        }
     },
     handleScale (value) {
         this.setState({scale: value});
@@ -155,6 +158,9 @@ var ImageUpload = React.createClass({
 
     },
     render () {
+        if (isNode.isNode()) {
+            return null;
+        }
         var imageMessage;
         if (this.state.type === 'book') {
             imageMessage = 'Add an image of this book';
