@@ -9,12 +9,17 @@ var HomeItem = React.createClass({
         return (
             <div className='card box'>
                 <div className='shrink columns'>
-                    <Thumbnail
+                    <Link
+                        id={this.props.id}
+                        slug={this.props.slug}
+                        type={this.props.type}>
+                        <Thumbnail
                         alt={this.props.title}
                         type={this.props.type}
                         image={this.props.image}
                         url={this.props.url}
                         displayWidth={75} />
+                    </Link>
                 </div>
                 <div className='columns'>
                     <div className='row'>

@@ -107,12 +107,17 @@ var Mention = React.createClass({
                     </div>
                 </Dropdown>
                 <div className='shrink columns'>
-                    <Thumbnail
+                    <Link
+                        id={main.id}
+                        slug={main.props.slug}
+                        type={main.props.type}>
+                        <Thumbnail
                         alt={main.props.title}
                         type={main.props.type}
                         image={main.image}
                         url={main.props.url}
                         displayWidth={75} />
+                    </Link>
                 </div>
                 <div className='columns'>
                     <div className='row'>
