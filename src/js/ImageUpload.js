@@ -4,8 +4,8 @@ var requests = require('superagent');
 var cookies = require('browser-cookies');
 var Snackbar = require('./Snackbar');
 var Input = require('./Input');
-import Cropper from 'react-cropper';
 var MarkdownInput = require('./MarkdownInput');
+var Cropper;
 
 var ImageUpload = React.createClass({
     getInitialState () {
@@ -19,6 +19,9 @@ var ImageUpload = React.createClass({
             formMessage: '',
             submitting: false
         };
+    },
+    componentDidMount () {
+        Cropper = require('react-cropper').Cropper;
     },
     handleScale (value) {
         this.setState({scale: value});
