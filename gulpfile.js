@@ -155,11 +155,11 @@ gulp.task('copy-external', function () {
 // Watch Files For Changes
 gulp.task('watch', function () {
     gulp.watch('src/js/*.js',
-        ['browserify', 'js-tests', 'es-lint']);
+        ['browserify', 'js-tests']);
     gulp.watch('src/tests/*.js',
-        ['js-tests', 'es-lint-tests']);
+        ['js-tests']);
     gulp.watch('src/styles/**/*.scss',
-        ['scss-lint', 'compile-scss']);
+        ['compile-scss']);
     gulp.watch('src/js/config.json',
         ['browserify']);
 });

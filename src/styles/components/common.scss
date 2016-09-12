@@ -108,7 +108,7 @@ time {
     margin-bottom: $global-margin;
 }
 
-[class*="hint--"]:before,
-[class*="hint--"]:after {
+[class*="hint--"]::before,
+[class*="hint--"]::after {
     z-index: $z-20;
 }
