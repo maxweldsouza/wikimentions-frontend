@@ -118,13 +118,22 @@ gulp.task('compile-scss', function () {
     }))
     .pipe(gulp.dest('src/assets/css'))
     .pipe(autoprefixer())
+    .pipe(gulp.dest('src/assets/css'));
+});
+
+gulp.task('compile-scss-production', function () {
+    return gulp.src('src/styles/main.scss')
+    .pipe(sass({
+        includePaths: sassPaths
+    }))
+    .pipe(autoprefixer())
     .pipe(minifycss())
     .pipe(rename('main.css'))
-    .pipe(gulp.dest('dist/assets/css'));
+    .pipe(gulp.dest('src/assets/css'));
 });
 
 // Html
-gulp.task('preprocess-html', ['browserify', 'compile-scss'], function () {
+gulp.task('preprocess-html', ['browserify', 'compile-scss-production'], function () {
     return gulp.src('src/index.html')
     .pipe(htmlprocessor({}))
     .pipe(uncache({
@@ -188,7 +197,7 @@ gulp.task('checkDev', [], function (callback) {
 
 // Default Task
 var devtasks = ['git-rev', 'js-tests', 'browserify', 'compile-scss', 'copy-external', 'watch'];
-var prodtasks = ['git-rev', 'js-tests', 'browserify', 'compile-scss', 'copy-external', 'preprocess-html'];
+var prodtasks = ['git-rev', 'js-tests', 'browserify', 'compile-scss-production', 'copy-external', 'preprocess-html'];
 if (production) {
     gulp.task('default', prodtasks);
 } else {
