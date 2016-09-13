@@ -170,7 +170,7 @@ var Select = React.createClass({
     },
     render () {
         return (
-            <div style={{position: 'relative'}} onKeyDown={this.handleKeys}>
+            <div style={{position: 'relative', 'width': '100%'}} onKeyDown={this.handleKeys}>
                 <Input
                     type='text'
                     role='combobox'

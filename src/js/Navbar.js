@@ -63,7 +63,7 @@ var Navbar = React.createClass({
         var username = this.props.username;
         var loggedin = this.props.loggedin;
 
-        var SearchBar = <div className='input-group navbar-search-large' style={{marginBottom: 0, borderTopRightRadius: 0, borderBottomRightRadius: 0}}>
+        var SearchBar = <div className='input-group' style={{marginBottom: 0, borderTopRightRadius: 0, borderBottomRightRadius: 0}}>
             <Select
                 name='searchText'
                 className='input-group-field'
@@ -87,12 +87,22 @@ var Navbar = React.createClass({
             onClick={this.props.toggleSidebar}
             aria-label='Toggle Sidebar'/>;
 
-        var searchIcon = <button
-            className='button primary small'
-            aria-label='Open search bar'
-            onClick={this.onOpenSearchBar}>
+        var searchIcon;
+        if (this.state.searchBarOpen) {
+            searchIcon = <button
+                className='button alert no-margin-bottom'
+                aria-label='Close search bar'
+                onClick={this.onCloseSearchBar}>
+                <span className='ion-android-close navbar-icon'/>
+                </button>;
+        } else {
+            searchIcon = <button
+                className='button primary small'
+                aria-label='Open search bar'
+                onClick={this.onOpenSearchBar}>
                 <span className='ion-android-search navbar-icon' style={{fontSize: 17}}/>
-            </button>;
+                </button>;
+        }
         if (loggedin) {
             rhs = <ul className='menu align-right'>
                 <li className='show-for-xlarge'>
@@ -158,24 +168,22 @@ var Navbar = React.createClass({
                     {this.state.searchBarOpen ? <div className='navbar-search hide-for-xlarge'>
                         <div className='row'>
                             <div className='input-group'>
-                                <input
-                                    className='search-bar input-group-field'
-                                    type='text'
-                                    autoComplete='off'
-                                    spellCheck='false'
-                                    aria-label='Search'
-                                    placeholder='Search'
-                                    onChange={this.onChangeText}
-                                    onKeyDown={this.handleKeys}
+                                <Select
                                     name='searchText'
-                                    style={{borderTopRightRadius: 0, borderBottomRightRadius: 0}}></input>
+                                    className='input-group-field search-bar'
+                                    onSelectValue={this.onSelectSearchResult}
+                                    onSearchTextChanged={this.onSearchTextChanged}
+                                    placeholder={'Search'}
+                                    autoFocus={true}
+                                    moreResults={true}/>
                                 <button
-                                    className='button alert'
-                                    aria-label='Close search bar'
-                                    onClick={this.onCloseSearchBar}
-                                    style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}>
-                                    <span className='ion-android-close navbar-icon'/>
+                                    className='button primary no-margin-bottom'
+                                    style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}
+                                    onClick={this.search}
+                                    aria-label='Search'>
+                                    <span className='ion-android-search' style={{fontSize: 17}}/>
                                 </button>
+
                             </div>
                         </div>
                     </div> : null}
