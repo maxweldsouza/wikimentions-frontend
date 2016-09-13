@@ -134,31 +134,31 @@ app.get(/^(.+)$/, function (req, res, next) {
 
                     memcached.getMulti([contentKey, modifiedKey, rateLimitKey], function (err, data) {
                         var usage = data[rateLimitKey];
-                        if (usage) {
-                            if (usage['exp'] < now) {
-                                usage = {
-                                    'exp': now + rateLimitDuration,
-                                    'rem': rateLimitRequests
-                                }
-                                memcached.set(rateLimitKey, usage, expire=rateLimitDuration, function (err) {});
-                            } else {
-                                if (usage['rem'] > 0) {
-                                    usage['rem'] -= 1;
-                                    res.setHeader('X-Rate-Limit-Remaining', usage['rem'])
-                                    res.setHeader('X-Rate-Limit-Reset', usage['exp'])
-                                    memcached.set(rateLimitKey, usage, usage['exp'] - now, function (err) {});
-                                } else {
-                                    res.status(429).send('Too many requests').end();
-                                    return;
-                                }
-                            }
-                        } else {
-                            usage = {
-                                'exp': now + rateLimitDuration,
-                                'rem': rateLimitRequests
-                            }
-                            memcached.set(rateLimitKey, usage, expire=rateLimitDuration, function (err) {});
-                        }
+                        // if (usage) {
+                        //     if (usage['exp'] < now) {
+                        //         usage = {
+                        //             'exp': now + rateLimitDuration,
+                        //             'rem': rateLimitRequests
+                        //         }
+                        //         memcached.set(rateLimitKey, usage, expire=rateLimitDuration, function (err) {});
+                        //     } else {
+                        //         if (usage['rem'] > 0) {
+                        //             usage['rem'] -= 1;
+                        //             res.setHeader('X-Rate-Limit-Remaining', usage['rem'])
+                        //             res.setHeader('X-Rate-Limit-Reset', usage['exp'])
+                        //             memcached.set(rateLimitKey, usage, usage['exp'] - now, function (err) {});
+                        //         } else {
+                        //             res.status(429).send('Too many requests').end();
+                        //             return;
+                        //         }
+                        //     }
+                        // } else {
+                        //     usage = {
+                        //         'exp': now + rateLimitDuration,
+                        //         'rem': rateLimitRequests
+                        //     }
+                        //     memcached.set(rateLimitKey, usage, expire=rateLimitDuration, function (err) {});
+                        // }
 
                         var content = data[contentKey];
                         var lastModified = data[modifiedKey];
