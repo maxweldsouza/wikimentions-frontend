@@ -1,13 +1,13 @@
 User-Agent: *
-Disallow: /
-# Disallow: /contribute
-# Disallow: /discuss/
-# Disallow: /edit
-# Disallow: /feedback
-# Disallow: /history/
-# Disallow: /kitchen-sink
-# Disallow: /maintenance/
-# Disallow: /recent-changes
-# Disallow: /recent-discussions
-# Disallow: /search
-# Disallow: /users/
+Disallow: /contribute
+Disallow: /discuss/
+Disallow: /edit
+Disallow: /feedback
+Disallow: /history/
+Disallow: /kitchen-sink
+Disallow: /maintenance/
+Disallow: /recent-changes
+Disallow: /recent-discussions
+Disallow: /search
+Disallow: /users/
+# Disallow: /
