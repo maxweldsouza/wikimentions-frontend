@@ -17,14 +17,14 @@ var Affiliate = React.createClass({
             searchTerm = this.props.title;
         }
         return (
-            <div>
-                {country === 'US' ? <div>
-                    <a target='_blank' href={'http://www.amazon.com/gp/search?keywords=' + searchTerm + '&index=books&linkCode=qs&tag=' + config.affiliate['amazon.com']}>amazon.com <span className='ion-android-open'/></a>
-                </div> : null}
-                {country === 'IN' ? <div>
-                    <a target='_blank' href={'http://www.amazon.in/gp/search?keywords=' + searchTerm + '&index=books&linkCode=qs&tag=' + config.affiliate['amazon.com']}>amazon.in <span className='ion-android-open'/></a>
-                </div> : null}
-            </div>
+            <span>
+                {country === 'US' ? <span>
+                    <a className='button small alert' target='_blank' href={'http://www.amazon.com/gp/search?keywords=' + searchTerm + '&index=books&linkCode=qs&tag=' + config.affiliate['amazon.com']}>Buy on Amazon.com <span className='ion-android-open'/></a>
+                </span> : null}
+                {country === 'IN' ? <span>
+                    <a className='button small alert' target='_blank' href={'http://www.amazon.in/gp/search?keywords=' + searchTerm + '&index=books&linkCode=qs&tag=' + config.affiliate['amazon.com']}>Buy on Amazon.in <span className='ion-android-open'/></a>
+                </span> : null}
+            </span>
         );
     }
 });
