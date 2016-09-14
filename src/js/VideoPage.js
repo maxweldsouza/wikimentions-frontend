@@ -66,6 +66,15 @@ var VideoPage = React.createClass({
             videoImage: ''
         };
     },
+    componentWillMount () {
+        var parsed = parseUrl(this.props.data.thing.props.url);
+        if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
+            var queryObject = queryString.parse(parsed.query);
+            this.setState({
+                videoImage: 'https://i.ytimg.com/vi/' + queryObject.v + '/0.jpg'
+            });
+        }
+    },
     componentDidMount () {
         var parsed = parseUrl(this.props.data.thing.props.url);
         if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
