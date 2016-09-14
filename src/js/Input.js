@@ -15,7 +15,7 @@ var Input = React.createClass({
     },
     render () {
         var cls = this.props.valid ? this.props.className : this.props.className + ' is-invalid-input';
-        var props = _.omit(this.props, 'message', 'valid', 'textarea');
+        var props = _.omit(this.props, 'message', 'valid', 'textarea', 'onClear');
         if (this.props.textarea) {
             return (
                 <span>
