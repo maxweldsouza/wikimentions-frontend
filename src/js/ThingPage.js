@@ -261,12 +261,12 @@ var ThingPage = React.createClass({
                     {name: 'twitter:card', content: 'summary'},
                     {name: 'twitter:site', content: config.twitter},
                     {name: 'twitter:title', content: pageTitle},
-                    {name: 'twitter:description', content: ''},
+                    {name: 'twitter:description', content: pageDescription},
                     {name: 'twitter:image', content: imageUrl},
                     {property: 'og:title', content: pageTitle},
                     {property: 'og:type', content: 'article'},
                     {property: 'og:url', content: config.url + this.props.path},
-                    {property: 'og:description', content: ''},
+                    {property: 'og:description', content: pageDescription},
                     {property: 'og:image', content: imageUrl},
                     {property: 'og:site_name', content: config.name}
                 ]}
