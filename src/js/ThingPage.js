@@ -248,7 +248,7 @@ var ThingPage = React.createClass({
         }
         var imageUrl;
         if (thing.image) {
-            imageUrl = '/api/v1/static/images/' + thing.image.md5 + '-' + thing.image.width + '-' + thing.image.height + '.jpg';
+            imageUrl = config.url + 'api/v1/static/images/' + thing.image.md5 + '-' + thing.image.width + '-' + thing.image.height + '.jpg';
         }
         return (
         <span>
