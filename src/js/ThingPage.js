@@ -210,7 +210,11 @@ var ThingPage = React.createClass({
                 page={this.props.query.page}
                 />;
             pageTitle = 'Mentioned - ' + thing.props.title;
-            pageDescription = 'People, books or videos mentioned by ' + thing.props.title;
+            if (thing.props.type === 'person') {
+                pageDescription = 'People, books or videos mentioned by ' + thing.props.title;
+            } else {
+                pageDescription = 'People, books or videos mentioned in ' + thing.props.title;
+            }
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
                 loggedin={this.props.loggedin}
@@ -246,6 +250,7 @@ var ThingPage = React.createClass({
             pageTitle = 'Videos - ' + thing.props.title;
             pageDescription = 'A collection of videos of ' + thing.props.title;
         }
+        pageDescription = thing.props.description ? pageDescription + ', ' + thing.props.description : pageDescription;
         var imageUrl;
         if (thing.image) {
             imageUrl = config.url + 'api/v1/static/images/' + thing.image.md5 + '-' + thing.image.width + '-' + thing.image.height + '.jpg';
