@@ -3,6 +3,7 @@ var requests = require('superagent');
 var _ = require('underscore');
 var Thumbnail = require('./Thumbnail');
 var Input = require('./Input');
+var utils = require('./utils');
 
 var Select = React.createClass({
     getDefaultProps () {
@@ -224,7 +225,7 @@ var Select = React.createClass({
                             <div className=''>
                                 {entry.props.title}
                                 <div className='select-option-type'>
-                                    {entry.props.type}
+                                    {entry.props.type === 'person' ? utils.ellipsis(entry.props.description, 50) : entry.props.type}
                                 </div>
                             </div>
                         </div>;
