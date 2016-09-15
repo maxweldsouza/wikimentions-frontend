@@ -89,34 +89,27 @@ var Signup = React.createClass({
     },
     validateForm () {
         var valid = true;
-        if (this.state.username.length < 3) {
-            this.setState({
-                usernameValid: false,
-                usernameMessage: 'Username must be atleast 3 characters'
-            });
-            valid = false;
-        } else if (this.state.username.length > 32) {
-            this.setState({
-                usernameValid: false,
-                usernameMessage: 'Username cannot exceed 32 characters'
-            });
-            valid = false;
-        } else {
+        if (/^[a-zA-Z-_'.0-9]{3,32}$/.test(this.state.username)) {
             this.setState({
                 usernameValid: true,
                 usernameMessage: ''
+            });
+        } else {
+            this.setState({
+                usernameValid: false,
+                usernameMessage: 'Username must be between 3 and 32 characters, and can only contain letters, numbers and these special characters -_\'.'
             });
         }
         if (this.state.password.length < 8) {
             this.setState({
                 passwordValid: false,
-                passwordMessage: 'Password must be atleast 8 characters'
+                passwordMessage: 'Password must be between 8 and 160 characters'
             });
             valid = false;
         } else if (this.state.password.length > 160) {
             this.setState({
                 passwordValid: false,
-                passwordMessage: 'Password cannot exceed 160 characters'
+                passwordMessage: 'Password must be between 8 and 160 characters'
             });
             valid = false;
         } else {
