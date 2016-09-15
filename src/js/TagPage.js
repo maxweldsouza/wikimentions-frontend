@@ -13,16 +13,19 @@ var React = require('react');
 var requests = require('superagent');
 var SignupModal = require('./SignupModal');
 var Snackbar = require('./Snackbar');
+var PreviousNext = require('./PreviousNext');
 
 var TagPage = React.createClass({
     statics: {
         resources (appstate) {
             var tag = appstate.path.split('/')[1];
+            var page = appstate.query.page;
+            var query = page ? '?page=' + page : '';
             return {
                 api: [
                     {
                         name: 'tag',
-                        path: '/api/v1/tag/' + tag
+                        path: '/api/v1/tag/' + tag + query
                     }
                 ]
             };
@@ -37,6 +40,11 @@ var TagPage = React.createClass({
         var mentions = [];// this.state.newmentions;
         var options = ['Add New', 'Add Existing'];
         var tag = this.props.path.split('/')[1];
+        var nomore = <div className='card box'>
+            <div className='small-12 columns'>
+                No more entries to show.
+            </div>
+        </div>;
         return (
             <span>
                 <Helmet
@@ -95,6 +103,10 @@ var TagPage = React.createClass({
                                     mentioned_count={x.mentioned_count}
                                     mentioned_by_count={x.mentioned_by_count}/>;
                             })}
+                            {this.props.data.tag.length === 0 ? nomore : null}
+                            <div className='small-12 columns box'>
+                                <PreviousNext path={this.props.path} page={this.props.query.page} count={this.props.data.tag.length}/>
+                            </div>
                         </div>
                     </div>
                 </div>
