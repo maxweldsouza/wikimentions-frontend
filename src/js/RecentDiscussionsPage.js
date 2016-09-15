@@ -11,7 +11,7 @@ var config = require('./config');
 var Time = require('./Time');
 var Markdown = require('./Markdown');
 var Link = require('./Link');
-var PreviousNext = require('./PreviousNext');
+var Pagination = require('./Pagination');
 
 var RecentDiscussions = React.createClass({
     statics: {
@@ -74,7 +74,7 @@ var RecentDiscussions = React.createClass({
                                 </div>
                             </div>;
                         })}
-                        <PreviousNext path={this.props.path} page={this.props.query.page} count={this.props.data.discuss.length}/>
+                        <Pagination path={this.props.path} page={this.props.query.page} count={this.props.data.discuss.length}/>
                     </div>
                 </div>
             </span>

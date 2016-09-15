@@ -12,13 +12,21 @@ var Pagination = React.createClass({
         } else {
             query.page = no;
         }
+        if (_.isEmpty(query)) {
+            return '/' + this.props.path;
+        }
         return '/' + this.props.path + '?' + queryString.stringify(query);
     },
     render () {
         var current = this.props.page ? Number(this.props.page) : 1;
-        var totalPages = Math.ceil(this.props.count / 10);
-        if (totalPages < 2) {
-            return null;
+        var totalPages;
+        if (_.isUndefined(this.props.total)) {
+            totalPages = this.props.count === 0 ? current : current + 1;
+        } else {
+            totalPages = Math.ceil(this.props.total / 10);
+            if (totalPages < 2) {
+                return null;
+            }
         }
         var pages = Array(totalPages).fill();
         pages = pages.map((x, i) => {
@@ -37,7 +45,7 @@ var Pagination = React.createClass({
             next = <li className='pagination-next'><a aria-label='Next page' href={next}>Next <span className='show-for-sr'>page</span></a></li>;
         }
         return (
-            <div className='card box'>
+            <div className='box'>
                 <div className='small-12 columns'>
                     <ul className='pagination text-center' role='navigation' aria-label='Pagination'>
                         {prev}

@@ -7,7 +7,7 @@ var _ = require('underscore');
 var DiscussReply = require('./DiscussReply');
 var PageBar = require('./PageBar');
 var config = require('./config');
-var PreviousNext = require('./PreviousNext');
+var Pagination = require('./Pagination');
 var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
 var queryString = require('query-string');
 
@@ -95,8 +95,7 @@ var DiscussPage = React.createClass({
                             })}
                             {nodata}
                             <div className='small-12 columns'>
-                                <PreviousNext path={this.props.path} page={this.props.query.page} count={discussions.length}/>
-                                <hr/>
+                                <Pagination path={this.props.path} page={this.props.query.page} count={discussions.length}/>
                             </div>
                             <DiscussReply id={id} loggedin={this.props.loggedin}/>
                         </div>

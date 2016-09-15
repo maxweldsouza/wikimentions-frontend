@@ -8,7 +8,6 @@ var HomeSearch = require('./HomeSearch');
 var LoginModal = require('./LoginModal');
 var Mention = require('./Mention');
 var Navbar = require('./Navbar');
-var Pagination = require('./Pagination');
 var React = require('react');
 var requests = require('superagent');
 var SignupModal = require('./SignupModal');

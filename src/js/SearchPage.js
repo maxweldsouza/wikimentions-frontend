@@ -152,7 +152,7 @@ var SearchPage = React.createClass({
                                         mentioned_by_count={x.mentioned_by_count}/>;
                                 })}
                                 <Pagination
-                                    count={this.state.numFound} path={this.props.path}
+                                    total={this.state.numFound} path={this.props.path}
                                     page={this.props.query.page}
                                     query={this.props.query}/>
                             </div>

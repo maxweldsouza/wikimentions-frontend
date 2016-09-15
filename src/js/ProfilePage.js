@@ -9,7 +9,7 @@ var Time = require('./Time');
 var requests = require('superagent');
 var Profile = require('./Profile');
 var S = require('string');
-var PreviousNext = require('./PreviousNext');
+var Pagination = require('./Pagination');
 var TextWidget = require('./TextWidget');
 var Markdown = require('./Markdown');
 
@@ -133,7 +133,7 @@ var ProfilePage = React.createClass({
                                 </div>
                                 {!this.props.query.page && history.length === 0 ? empty : null}
                                 {this.props.query.page && history.length === 0 ? nomore : null}
-                                <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
+                                <Pagination path={this.props.path} page={this.props.query.page} count={history.length}/>
                             </div>
                         </div> : null}
                     </div>

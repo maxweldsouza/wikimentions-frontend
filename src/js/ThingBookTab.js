@@ -39,7 +39,7 @@ var ThingBookTab = React.createClass({
                 })}
                 {this.props.page === '1' && books.length === 0 ? emptybooks : null}
                 {this.props.page !== '1' && books.length === 0 ? nomore : null}
-                <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
+                <Pagination total={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card box'>
                     <div className='small-12 columns'>
                         <AddBook id={this.props.id} loggedin={this.props.loggedin}/>

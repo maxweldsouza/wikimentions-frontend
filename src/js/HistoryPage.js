@@ -3,7 +3,7 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Mention = require('./Mention');
 var _ = require('underscore');
-var PreviousNext = require('./PreviousNext');
+var Pagination = require('./Pagination');
 var HistoryItem = require('./HistoryItem');
 var PageBar = require('./PageBar');
 var config = require('./config');
@@ -81,7 +81,7 @@ var HistoryPage = React.createClass({
                                     />;
                             })}
                         </div>
-                        <PreviousNext path={this.props.path} page={this.props.query.page} count={history.length}/>
+                        <Pagination path={this.props.path} page={this.props.query.page} count={history.length}/>
                     </div>
                 </div>
             </span>

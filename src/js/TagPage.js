@@ -13,7 +13,7 @@ var React = require('react');
 var requests = require('superagent');
 var SignupModal = require('./SignupModal');
 var Snackbar = require('./Snackbar');
-var PreviousNext = require('./PreviousNext');
+var Pagination = require('./Pagination');
 
 var TagPage = React.createClass({
     statics: {
@@ -105,7 +105,7 @@ var TagPage = React.createClass({
                             })}
                             {this.props.data.tag.length === 0 ? nomore : null}
                             <div className='small-12 columns box'>
-                                <PreviousNext path={this.props.path} page={this.props.query.page} count={this.props.data.tag.length}/>
+                                <Pagination path={this.props.path} page={this.props.query.page} count={this.props.data.tag.length}/>
                             </div>
                         </div>
                     </div>

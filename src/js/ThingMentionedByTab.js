@@ -37,7 +37,7 @@ var ThingMentionTab = React.createClass({
                 })}
                 {this.props.page === '1' && mentionedby.length === 0 ? nodata : null}
                 {this.props.page !== '1' && mentionedby.length === 0 ? nomore : null}
-                <Pagination count={this.props.count} path={this.props.path} page={this.props.page}/>
+                <Pagination total={this.props.count} path={this.props.path} page={this.props.page}/>
                 <div className='card box'>
                     <AddMention
                     id={this.props.id}
