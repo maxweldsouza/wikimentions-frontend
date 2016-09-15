@@ -21,7 +21,7 @@ var Pagination = React.createClass({
         var current = this.props.page ? Number(this.props.page) : 1;
         var totalPages;
         if (_.isUndefined(this.props.total)) {
-            totalPages = this.props.count === 0 ? current : current + 1;
+            totalPages = this.props.count < 10 ? current : current + 1;
         } else {
             totalPages = Math.ceil(this.props.total / 10);
             if (totalPages < 2) {
