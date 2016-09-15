@@ -11,6 +11,7 @@ var Restricted = require('./Restricted');
 var Input = require('./Input');
 var LoginModal = require('./LoginModal');
 var SignupModal = require('./SignupModal');
+var IpWarning = require('./IpWarning');
 
 var HomePage = React.createClass({
     statics: {
@@ -23,7 +24,7 @@ var HomePage = React.createClass({
     getInitialState () {
         return {
             type: 'person',
-            title: '',
+            title: this.props.query.title ? this.props.query.title : '',
             titleValid: true,
             titleMessage: '',
             description: '',
@@ -35,6 +36,13 @@ var HomePage = React.createClass({
             submitting: false,
             formMessage: ''
         };
+    },
+    componentWillReceiveProps (nextProps) {
+        if (nextProps.query.title) {
+            this.setState({
+                title: nextProps.query.title
+            });
+        }
     },
     onChangeType (x) {
         this.setState({
@@ -151,6 +159,7 @@ var HomePage = React.createClass({
                                         </div>
                                     </div>
                                     <div className='small-12 large-8 large-order-1  columns'>
+                                        <IpWarning loggedin={this.props.loggedin}/>
                                         Type
                                         <ButtonSelect
                                             name='type'

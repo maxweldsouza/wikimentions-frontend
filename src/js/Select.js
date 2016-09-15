@@ -198,7 +198,9 @@ var Select = React.createClass({
                     />
                 {this.state.visible ? <div className='select-options'>
                     {!this.state.loading && this.state.options.length === 0 ? <div className='select-option select-option-message'>
-                        No results
+                        <span>
+                            No results. You can <a href={'/create?title=' + this.state.searchText}>Create</a> this page.
+                        </span>
                     </div> : null}
                     {this.state.loading && this.state.options.length === 0 ? <div className='select-option select-option-message'>
                         Loading...
