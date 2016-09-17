@@ -146,7 +146,7 @@ var HomePage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body white'>
                     <div className='small-12 columns'>
-                        <form>
+                        <div>
                             <h1>Create Page</h1>
                             {this.state.formMessage ? <div className='callout alert'>
                                 {this.state.formMessage}
@@ -160,43 +160,45 @@ var HomePage = React.createClass({
                                     </div>
                                     <div className='small-12 large-8 large-order-1  columns'>
                                         <IpWarning loggedin={this.props.loggedin}/>
-                                        Type
-                                        <ButtonSelect
-                                            name='type'
-                                            options={options}
-                                            default={'person'}
-                                            onChange={this.onChangeType}/>
-                                        Title (Name of person, book or video)
-                                        <Input type='text'
-                                            name='title'
-                                            value={this.state.title}
-                                            onChange={this.onChangeText}
-                                            onClear={this.onClear}
-                                            valid={this.state.titleValid}
-                                            message={this.state.titleMessage}/>
-                                        {this.state.type === 'video' ? <span>
-                                            Url
-                                            <Input type='text' name='url'
-                                            value={this.state.url}
-                                            onChange={this.onChangeText}
-                                            onClear={this.onClear}
-                                            valid={this.state.urlValid}
-                                            placeholder='http://'
-                                            message={this.state.urlMessage}/></span> : null}
-                                        {this.state.type === 'person' ? <span>Description (Optional)
-                                            <Input
-                                                type='text'
-                                                name='description'
-                                                value={this.state.description}
+                                        <form>
+                                            Type
+                                            <ButtonSelect
+                                                name='type'
+                                                options={options}
+                                                default={'person'}
+                                                onChange={this.onChangeType}/>
+                                            Title (Name of person, book or video)
+                                            <Input type='text'
+                                                name='title'
+                                                value={this.state.title}
                                                 onChange={this.onChangeText}
                                                 onClear={this.onClear}
-                                                />
-                                        </span> : null}
-                                        <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                                                valid={this.state.titleValid}
+                                                message={this.state.titleMessage}/>
+                                            {this.state.type === 'video' ? <span>
+                                                Url
+                                                <Input type='text' name='url'
+                                                value={this.state.url}
+                                                onChange={this.onChangeText}
+                                                onClear={this.onClear}
+                                                valid={this.state.urlValid}
+                                                placeholder='http://'
+                                                message={this.state.urlMessage}/></span> : null}
+                                            {this.state.type === 'person' ? <span>Description (Optional)
+                                                <Input
+                                                    type='text'
+                                                    name='description'
+                                                    value={this.state.description}
+                                                    onChange={this.onChangeText}
+                                                    onClear={this.onClear}
+                                                    />
+                                            </span> : null}
+                                            <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                                        </form>
                                     </div>
                                 </div>
                             </Restricted>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </span>

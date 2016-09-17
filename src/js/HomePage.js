@@ -5,7 +5,6 @@ var cookies = require('browser-cookies');
 var Helmet = require('react-helmet');
 var HomeItem = require('./HomeItem');
 var HomeSearch = require('./HomeSearch');
-var LoginModal = require('./LoginModal');
 var Mention = require('./Mention');
 var Navbar = require('./Navbar');
 var React = require('react');

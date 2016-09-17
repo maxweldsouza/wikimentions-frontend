@@ -4,7 +4,6 @@ var requests = require('superagent');
 var Select = require('./Select');
 var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
-var IpWarning = require('./IpWarning');
 
 var AddBookExisting = React.createClass({
     getInitialState () {
@@ -83,7 +82,6 @@ var AddBookExisting = React.createClass({
                     valid={this.state.bookValid}
                     message={this.state.bookMessage}
                     placeholder='Book Title'/>
-                <IpWarning loggedin={this.props.loggedin}/>
                 <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </form>
         );

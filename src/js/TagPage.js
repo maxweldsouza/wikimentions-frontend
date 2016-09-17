@@ -5,7 +5,6 @@ var cookies = require('browser-cookies');
 var Helmet = require('react-helmet');
 var HomeItem = require('./HomeItem');
 var HomeSearch = require('./HomeSearch');
-var LoginModal = require('./LoginModal');
 var Mention = require('./Mention');
 var Navbar = require('./Navbar');
 var Pagination = require('./Pagination');
@@ -13,7 +12,6 @@ var React = require('react');
 var requests = require('superagent');
 var SignupModal = require('./SignupModal');
 var Snackbar = require('./Snackbar');
-var Pagination = require('./Pagination');
 
 var TagPage = React.createClass({
     statics: {

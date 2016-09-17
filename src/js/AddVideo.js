@@ -5,6 +5,7 @@ var AddVideoExisting = require('./AddVideoExisting');
 var Restricted = require('./Restricted');
 var LoginModal = require('./LoginModal');
 var SignupModal = require('./SignupModal');
+var IpWarning = require('./IpWarning');
 
 var AddVideo = React.createClass({
     getInitialState () {
@@ -30,6 +31,7 @@ var AddVideo = React.createClass({
                         </div>
                     </div>
                     <div className='small-12 large-8 large-order-1 columns'>
+                        <IpWarning loggedin={this.props.loggedin}/>
                         <ButtonSelect
                             options={options}
                             default={this.state.type}

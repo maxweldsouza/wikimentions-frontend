@@ -5,7 +5,6 @@ var cookies = require('browser-cookies');
 var requests = require('superagent');
 var Snackbar = require('./Snackbar');
 var Input = require('./Input');
-var IpWarning = require('./IpWarning');
 
 var AddBookNew = React.createClass({
     getInitialState () {
@@ -115,7 +114,6 @@ var AddBookNew = React.createClass({
                     name='description'
                     value={this.state.description}
                     onChange={this.onChangeText} />
-                <IpWarning loggedin={this.props.loggedin}/>
                 <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
             </form>
         );

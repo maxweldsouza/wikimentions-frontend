@@ -138,7 +138,7 @@ var Signup = React.createClass({
     },
     render () {
         return (
-            <div>
+            <form>
                 {this.state.formError ? <div className='callout alert'>
                     Form has errors
                 </div> : null}
@@ -189,7 +189,7 @@ var Signup = React.createClass({
                     value={this.state.retypePassword}/>
                 <SubmitButton title='Signup' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.signup}/>
                 <div className='float-right'>Already have an account? <a href='/login'>Login</a></div>
-            </div>
+            </form>
         );
     }
 });

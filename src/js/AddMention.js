@@ -137,16 +137,17 @@ var AddMention = React.createClass({
         return <div className='small-12 columns'>
             <Restricted message={loggedOutMessage}>
                 <h2>Add mention</h2>
+                <IpWarning loggedin={this.props.loggedin}/>
                 {this.state.formMessage ? <div className='callout alert'>
                     {this.state.formMessage}
                 </div> : null}
-                <form className='row'>
+                <div className='row'>
                     <div className='small-12 large-4 large-order-2 columns'>
                         <div className='callout warning'>
                             People, books and videos must have existing pages on WikiMentions. <a href='/create' target='_blank'>Create</a> a page if it doesn't already exist.
                         </div>
                     </div>
-                    <div className='small-12 large-8 large-order-1 columns'>
+                    <form className='small-12 large-8 large-order-1 columns'>
                         {this.props.mentioned_by ? null : <span>
                             Mentioned By (Person)
                             <Select
@@ -189,7 +190,6 @@ var AddMention = React.createClass({
                                 valid={true}
                                 message={true}/>
                         </span> : null}
-                        <IpWarning loggedin={this.props.loggedin}/>
                         <div className='button-group float-right'>
                             <SubmitButton
                                 type='button'
@@ -198,8 +198,8 @@ var AddMention = React.createClass({
                                 onSubmit={this.onSubmit}
                                 title='Add' />
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </Restricted>
         </div>;
     }
