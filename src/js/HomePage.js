@@ -35,13 +35,14 @@ var HomePage = React.createClass({
     },
     getInitialState () {
         return {
-            pageno: 0,
-            newmentions: this.props.data.new
+            tab: 'Startups'
         };
     },
+    onChangeTab (x) {
+        this.setState({tab: x});
+    },
     render () {
-        var mentions = [];// this.state.newmentions;
-        var options = ['Add New', 'Add Existing'];
+        var tabs = ['Startups', 'Science', 'Programming'];
         return (
             <span>
                 <Helmet
@@ -66,18 +67,6 @@ var HomePage = React.createClass({
                             Discover people, books and videos based on mentions.
                         </div>
                         <div className='callout show-for-xlarge'>
-                            <h2>Tags</h2>
-                            <span className='tag'>
-                                <a className='secondary' href='/tags/Programming'>Programming</a>
-                            </span>{' '}
-                            <span className='tag'>
-                                <a className='secondary' href='/tags/Science'>Science</a>
-                            </span>{' '}
-                            <span className='tag'>
-                                <a className='secondary' href='/tags/Startups'>Startups</a>
-                            </span>
-                        </div>
-                        <div className='callout show-for-xlarge'>
                             <h2>About</h2>
                             <p>
                                 WikiMentions helps you discover people, their books and videos based on their mentions. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
@@ -98,15 +87,20 @@ var HomePage = React.createClass({
                         </div>
                     </div>
                     <div className='small-12 xlarge-8 columns'>
-                        <div className='card-container'>
+                        <ul className='tabs' role='tabslist'>
+                            {tabs.map((x) => {
+                                return <li className={this.state.tab === x ? 'tabs-title is-active' : 'tabs-title'} role='tab' title={x} aria-selected={this.state.tab === x}>
+                                    <a onClick={this.onChangeTab.bind(null, x)}>{x}</a>
+                                </li>;
+                            })}
+                        </ul>
+                        {this.state.tab === 'Startups' ? <div className='card-container'>
                             <div className='card box align-middle'>
                                 <div className='small-6 columns'>
-                                    <h2 className='no-margin-bottom'>
-                                        <a href='/tags/Startups' className='secondary'>Startups</a>
-                                    </h2>
+                                    Randomly generated every hour
                                 </div>
                                 <div className='small-6 columns text-right'>
-                                    (Randomly generated)
+                                    <a href='/tags/Startups' className='button no-margin-bottom primary'>Browse</a>
                                 </div>
                             </div>
                             {this.props.data.startups.map((x) => {
@@ -123,16 +117,14 @@ var HomePage = React.createClass({
                                     mentioned_count={x.mentioned_count}
                                     mentioned_by_count={x.mentioned_by_count}/>;
                             })}
-                        </div>
-                        <div className='card-container'>
+                        </div> : null}
+                        {this.state.tab === 'Science' ? <div className='card-container'>
                             <div className='card box align-middle'>
                                 <div className='small-6 columns'>
-                                    <h2 className='no-margin-bottom'>
-                                        <a href='/tags/Science' className='secondary'>Science</a>
-                                    </h2>
+                                    Randomly generated every hour
                                 </div>
                                 <div className='small-6 columns text-right'>
-                                    (Randomly generated)
+                                    <a href='/tags/Science' className='button no-margin-bottom primary'>Browse</a>
                                 </div>
                             </div>
                             {this.props.data.science.map((x) => {
@@ -149,16 +141,14 @@ var HomePage = React.createClass({
                                     mentioned_count={x.mentioned_count}
                                     mentioned_by_count={x.mentioned_by_count}/>;
                             })}
-                        </div>
-                        <div className='card-container'>
+                        </div> : null}
+                        {this.state.tab === 'Programming' ? <div className='card-container'>
                             <div className='card box align-middle'>
                                 <div className='small-6 columns'>
-                                    <h2 className='no-margin-bottom'>
-                                        <a href='/tags/Programming' className='secondary'>Programming</a>
-                                    </h2>
+                                    Randomly generated every hour
                                 </div>
                                 <div className='small-6 columns text-right'>
-                                    (Randomly generated)
+                                    <a href='/tags/Programming' className='button no-margin-bottom primary'>Browse</a>
                                 </div>
                             </div>
                             {this.props.data.programming.map((x) => {
@@ -175,7 +165,7 @@ var HomePage = React.createClass({
                                     mentioned_count={x.mentioned_count}
                                     mentioned_by_count={x.mentioned_by_count}/>;
                             })}
-                        </div>
+                        </div> : null}
                     </div>
                 </div>
             </span>
