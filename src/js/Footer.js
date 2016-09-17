@@ -26,6 +26,7 @@ var Footer = React.createClass({
                                     <li className="menu-text">Help</li>
                                     <li><a href='/about-us'>About Us</a></li>
                                     <li><a href='/guidelines'>Guidelines</a></li>
+                                    <li><a href='/media-kit'>Media Kit</a></li>
                                 </ul>
                             </div>
                             <div className='small-6 large-3 columns'>

@@ -124,7 +124,7 @@ var getComponent = function (routeObj) {
     } else if (/^search$/.test(x)) {
         componentName = 'SearchPage';
         routeObj.maxAge = 0;
-    } else if (/^(about-us|terms-of-use|privacy-policy|guidelines)$/.test(x)) {
+    } else if (/^(about-us|terms-of-use|privacy-policy|guidelines|media-kit)$/.test(x)) {
         componentName = 'ContentPage';
         routeObj.maxAge = 0;
     } else if (/^feedback$/.test(x)) {
