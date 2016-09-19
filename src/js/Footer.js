@@ -40,7 +40,7 @@ var Footer = React.createClass({
                         </div>
                     </div>
                     <div className='small-12 columns text-center' style={{'fontSize': '12px', marginTop: 30}}>
-                        By using {config.name} you agree to our <a href='/terms-of-use'>Terms of Use</a> and <a href='/privacy-policy'>Privacy Policy</a> which were <strong>last updated</strong> on <strong>1st August 2016.</strong>
+                        By using {config.name} you agree to our <a href='/terms-of-use'>Terms of Use</a> and <a href='/privacy-policy'>Privacy Policy</a> which were <strong>last updated</strong> on <strong>19th September 2016.</strong>
                         <AdminOnly>
                             <div>
                                 <strong>Admin: </strong>
