@@ -43,7 +43,7 @@ var AuthorCard = React.createClass({
     },
     render () {
         return (
-            <form className='card box'>
+            <form onSubmit={this.removeAuthor} className='card box'>
                 <div className='shrink columns'>
                     <Thumbnail
                         type={this.props.type}
@@ -64,8 +64,7 @@ var AuthorCard = React.createClass({
                     <SubmitButton
                         title={<span className='ion-close' aria-label='Remove'></span>}
                         className='button small'
-                        submitting={this.state.submitting}
-                        onSubmit={this.removeAuthor}/>
+                        submitting={this.state.submitting}/>
                 </div>
             </form>
         );

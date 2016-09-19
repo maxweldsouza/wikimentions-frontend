@@ -108,7 +108,7 @@ var AddVideoNew = React.createClass({
     },
     render () {
         return (
-            <form>
+            <form onSubmit={this.onSubmit}>
                 {this.state.formMessage ? <div className='callout alert'>
                     {this.state.formMessage}
                 </div> : null}
@@ -134,8 +134,7 @@ var AddVideoNew = React.createClass({
                 <SubmitButton
                     title='Create'
                     className='button primary float-right'
-                    submitting={this.state.submitting}
-                    onSubmit={this.onSubmit}/>
+                    submitting={this.state.submitting}/>
             </form>
         );
     }

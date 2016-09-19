@@ -74,7 +74,7 @@ var EditProfile = React.createClass({
             <div className='tabs-panel is-active' role='tabpanel'>
                 <div className='row'>
                     <div className='large-8 columns'>
-                        <form className='columns box'>
+                        <form onSubmit={this.updateProfile} className='columns box'>
                             <h2>Profile</h2>
                             {this.state.formMessage ? <div className='callout alert'>
                                 {this.state.formMessage}
@@ -100,8 +100,7 @@ var EditProfile = React.createClass({
                             <SubmitButton
                                 title='Save'
                                 className='button primary float-right'
-                                submitting={this.state.submitting}
-                                onSubmit={this.updateProfile}/>
+                                submitting={this.state.submitting}/>
                         </form>
                     </div>
                 </div>

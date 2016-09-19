@@ -107,7 +107,7 @@ var AddAuthors = React.createClass({
                                 return <AuthorCard key={x.id} id={x.id} slug={x.props.slug} title={x.props.title} type={x.props.type} description={x.props.description} image={x.image} sourceType={this.props.type} sourceId={this.props.id}/>;
                             })}
                         </div>
-                        <form className='box'>
+                        <form className='box' onSubmit={this.onSubmit}>
                             Add Author
                             <Select name='author'
                                 onSelectValue={this.onChangeAuthor}
@@ -118,8 +118,7 @@ var AddAuthors = React.createClass({
                                 <SubmitButton
                                 title='Add'
                                 className='button primary'
-                                submitting={this.state.submitting}
-                                onSubmit={this.onSubmit}/>
+                                submitting={this.state.submitting}/>
                             </div>
                         </form>
                     </div>

@@ -147,7 +147,7 @@ var AddMention = React.createClass({
                             People, books and videos must have existing pages on WikiMentions. <a href='/create' target='_blank'>Create</a> a page if it doesn't already exist.
                         </div>
                     </div>
-                    <form className='small-12 large-8 large-order-1 columns'>
+                    <form onSubmit={this.onSubmit} className='small-12 large-8 large-order-1 columns'>
                         {this.props.mentioned_by ? null : <span>
                             Mentioned By (Person)
                             <Select
@@ -195,7 +195,6 @@ var AddMention = React.createClass({
                                 type='button'
                                 className='button primary'
                                 submitting={this.state.submitting}
-                                onSubmit={this.onSubmit}
                                 title='Add' />
                         </div>
                     </form>

@@ -26,7 +26,8 @@ var Login = React.createClass({
         temp[name] = '';
         this.setState(temp);
     },
-    login () {
+    login (e) {
+        e.preventDefault();
         this.setState({
             submitting: true
         });
@@ -59,8 +60,8 @@ var Login = React.createClass({
                 store.set('id', res.body.id);
 
                 var path = window.location.pathname + window.location.search;
-                if (this.props.redirect) {
-                    path = this.props.redirect;
+                if (path === '/login') {
+                    path = '/';
                 }
                 history.pushState(null, null, path);
                 Mentions.route(path);
@@ -69,7 +70,7 @@ var Login = React.createClass({
     },
     render () {
         return (
-            <form>
+            <form onSubmit={this.login}>
                 <h1>Login</h1>
                 {this.state.formError ? <div className='callout alert'>
                     Login failed
@@ -92,7 +93,7 @@ var Login = React.createClass({
                     value={this.state.password}
                     valid={true}
                     message={''} />
-                <SubmitButton title='Login' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.login}/>
+                <SubmitButton title='Login' className='expanded button primary' submitting={this.state.submitting}/>
                 <div className='float-right'>Don't have an account? <a href='/signup'>Signup</a></div>
             </form>
         );

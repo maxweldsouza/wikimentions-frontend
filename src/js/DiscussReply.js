@@ -62,7 +62,7 @@ var DiscussReply = React.createClass({
     render () {
         var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to post a message.</span>;
         return (
-            <form className='small-12 columns'>
+            <form onSubmit={this.onSubmit} className='small-12 columns'>
                 <Restricted
                     message={loggedOutMessage}
                     min_level={1}
@@ -82,8 +82,7 @@ var DiscussReply = React.createClass({
                     <SubmitButton
                         title='Submit'
                         className='button primary float-right'
-                        submitting={this.state.submitting}
-                        onSubmit={this.onSubmit} />
+                        submitting={this.state.submitting}/>
                 </Restricted>
             </form>
         );

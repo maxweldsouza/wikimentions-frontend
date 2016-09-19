@@ -43,7 +43,8 @@ var Signup = React.createClass({
         temp[name] = '';
         this.setState(temp);
     },
-    signup () {
+    signup (e) {
+        e.preventDefault();
         if (this.validateForm()) {
             this.setState({
                 submitting: true
@@ -70,7 +71,10 @@ var Signup = React.createClass({
                     store.set('level', res.body.level);
                     store.set('id', res.body.id);
 
-                    var path = '/';
+                    var path = window.location.pathname + window.location.search;
+                    if (path === '/signup') {
+                        path = '/';
+                    }
                     history.pushState(null, null, path);
                     Mentions.route(path);
                 }
@@ -138,7 +142,7 @@ var Signup = React.createClass({
     },
     render () {
         return (
-            <form>
+            <form onSubmit={this.signup}>
                 {this.state.formError ? <div className='callout alert'>
                     Form has errors
                 </div> : null}
@@ -187,7 +191,7 @@ var Signup = React.createClass({
                     valid={this.state.retypePasswordValid}
                     message={this.state.retypePasswordMessage}
                     value={this.state.retypePassword}/>
-                <SubmitButton title='Signup' className='expanded button primary' submitting={this.state.submitting} onSubmit={this.signup}/>
+                <SubmitButton title='Signup' className='expanded button primary' submitting={this.state.submitting}/>
                 <div className='float-right'>Already have an account? <a href='/login'>Login</a></div>
             </form>
         );

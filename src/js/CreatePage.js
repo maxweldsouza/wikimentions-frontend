@@ -160,7 +160,7 @@ var HomePage = React.createClass({
                                     </div>
                                     <div className='small-12 large-8 large-order-1  columns'>
                                         <IpWarning loggedin={this.props.loggedin}/>
-                                        <form>
+                                        <form onSubmit={this.onSubmit}>
                                             Type
                                             <ButtonSelect
                                                 name='type'
@@ -193,7 +193,7 @@ var HomePage = React.createClass({
                                                     onClear={this.onClear}
                                                     />
                                             </span> : null}
-                                            <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                                            <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting}/>
                                         </form>
                                     </div>
                                 </div>

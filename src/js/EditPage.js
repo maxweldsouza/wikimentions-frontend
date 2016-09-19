@@ -230,7 +230,7 @@ var EditPage = React.createClass({
                                     height={250}
                                     onClose={this.onCloseModal}/>
                             </Modal>
-                            <form>
+                            <form onSubmit={this.onSubmit}>
                                 {this.state.formMessage ? <div className='callout alert'>
                                     {this.state.formMessage}
                                 </div> : null}
@@ -290,11 +290,10 @@ var EditPage = React.createClass({
                                 <SubmitButton
                                     title='Save'
                                     className='button primary float-right'
-                                    submitting={this.state.submitting}
-                                    onSubmit={this.onSubmit}/>
+                                    submitting={this.state.submitting}/>
                             </form>
                             <AdminOnly>
-                                <form>
+                                <form onSubmit={this.onDeletePage}>
                                     <hr/>
                                     <div className='row align-middle'>
                                         <div className='small-6 columns'>
@@ -308,8 +307,7 @@ var EditPage = React.createClass({
                                                 title='Delete Page'
                                                 className='button primary float-right'
                                                 confirm={this.state.confirmDelete}
-                                                submitting={this.state.submitting}
-                                                onSubmit={this.onDeletePage}/>
+                                                submitting={this.state.submitting}/>
                                         </div>
                                     </div>
                                 </form>

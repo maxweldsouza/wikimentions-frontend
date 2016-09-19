@@ -66,7 +66,7 @@ var ChangePassword = React.createClass({
             <div className='tabs-panel is-active' role='tabpanel'>
                 <div className='row'>
                     <div className='large-8 columns'>
-                        <form className='columns box'>
+                        <form onSubmit={this.changePassword} className='columns box'>
                             <h2>Change Password</h2>
                             {this.state.formMessage ? <div className='callout alert'>
                                 {this.state.formMessage}
@@ -101,8 +101,7 @@ var ChangePassword = React.createClass({
                             <SubmitButton
                                 title='Save'
                                 className='button primary float-right'
-                                submitting={this.state.submitting}
-                                onSubmit={this.changePassword}/>
+                                submitting={this.state.submitting}/>
                         </form>
                     </div>
                 </div>

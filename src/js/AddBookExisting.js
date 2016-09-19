@@ -70,7 +70,7 @@ var AddBookExisting = React.createClass({
     },
     render () {
         return (
-            <form>
+            <form onSubmit={this.onSubmit}>
                 {this.state.formMessage ? <div className='callout alert'>
                     {this.state.formMessage}
                 </div> : null}
@@ -82,7 +82,7 @@ var AddBookExisting = React.createClass({
                     valid={this.state.bookValid}
                     message={this.state.bookMessage}
                     placeholder='Book Title'/>
-                <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting} onSubmit={this.onSubmit}/>
+                <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting}/>
             </form>
         );
     }
