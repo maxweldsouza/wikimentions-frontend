@@ -96,7 +96,7 @@ var HomePage = React.createClass({
             if (this.state.type === 'book') {
                 data.isbn = this.state.isbn;
                 data.isbn13 = this.state.isbn13;
-            } else if (this.state.type === 'video') {
+            } else if (this.state.type === 'video' || this.state.type === 'person') {
                 data.url = this.state.url;
             }
             requests
@@ -193,6 +193,15 @@ var HomePage = React.createClass({
                                                     onClear={this.onClear}
                                                     />
                                             </span> : null}
+                                            {this.state.type === 'person' ? <span>
+                                                Url (Optional)
+                                                <Input type='text' name='url'
+                                                value={this.state.url}
+                                                onChange={this.onChangeText}
+                                                onClear={this.onClear}
+                                                valid={this.state.urlValid}
+                                                placeholder='http://'
+                                                message={this.state.urlMessage}/></span> : null}
                                             <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting}/>
                                         </form>
                                     </div>

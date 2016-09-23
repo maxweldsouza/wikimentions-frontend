@@ -346,7 +346,13 @@ var ThingPage = React.createClass({
                             </div>
                         </div>
                             <div className='small-12 large-9 columns'>
-                                <h1>{thing.props.title}</h1>
+                                <h1>
+                                    {thing.props.title}
+                                    {thing.props.url ? <a className='secondary' href={thing.props.url} target='_blank'>
+                                        {' '}
+                                        <span className='ion-link'/>
+                                    </a> : null}
+                                </h1>
                                 <div className='row'>
                                     <div className='small-12 columns'>
                                         <span className='thing-description'>
