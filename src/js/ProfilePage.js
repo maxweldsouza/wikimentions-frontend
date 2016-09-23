@@ -70,6 +70,14 @@ var ProfilePage = React.createClass({
                             <div className='small-12 large-9 columns'>
                                 <div className='row'>
                                     <div className='small-4 columns'>
+                                        User No:
+                                    </div>
+                                    <div className='small-8 columns'>
+                                        {user.id}
+                                    </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='small-4 columns'>
                                         Joined:
                                     </div>
                                     <div className='small-8 columns'>
