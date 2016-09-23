@@ -17,8 +17,8 @@ var Footer = React.createClass({
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Navigation</li>
                                     <li><a href='/create'>Create Page</a></li>
-                                    <li><a href='/recent-changes'>Recent Changes</a></li>
-                                    <li><a href='/recent-discussions'>Recent Discussions</a></li>
+                                    <li><a rel='nofollow' href='/recent-changes'>Recent Changes</a></li>
+                                    <li><a rel='nofollow' href='/recent-discussions'>Recent Discussions</a></li>
                                 </ul>
                             </div>
                             <div className='small-6 large-3 columns'>
@@ -44,9 +44,9 @@ var Footer = React.createClass({
                         <AdminOnly>
                             <div>
                                 <strong>Admin: </strong>
-                                <a href='/feedback'>Feedback</a>{' . '}
-                                <a href='/bugs'>Bugs</a>{' . '}
-                                <a href='/kitchen-sink'>Kitchen Sink</a>
+                                <a rel='nofollow' href='/feedback'>Feedback</a>{' . '}
+                                <a rel='nofollow' href='/bugs'>Bugs</a>{' . '}
+                                <a rel='nofollow' href='/kitchen-sink'>Kitchen Sink</a>
                             </div>
                         </AdminOnly>
                     </div>

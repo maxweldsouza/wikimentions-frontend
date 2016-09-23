@@ -35,10 +35,10 @@ var Sidebar = React.createClass({
                         <a className='sidebar-item sidebar-button' href='/create'>
                             <span className='ion-android-create menu-item-icon'/>Create Page
                         </a>
-                        <a className='sidebar-item sidebar-button' href='/recent-changes'>
+                        <a className='sidebar-item sidebar-button' href='/recent-changes' rel='nofollow'>
                             <span className='ion-flash menu-item-icon'/>Recent Changes
                         </a>
-                        <a className='sidebar-item sidebar-button' href='/recent-discussions'>
+                        <a className='sidebar-item sidebar-button' href='/recent-discussions' rel='nofollow'>
                             <span className='ion-chatbubbles menu-item-icon'/>Recent Discussions
                         </a>
                         <a className='sidebar-item sidebar-button' href='/blog'>

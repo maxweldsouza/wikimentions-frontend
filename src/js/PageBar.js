@@ -23,16 +23,19 @@ var PageBar = React.createClass({
                     aria-label='Back to page'>Page</a>{' · '}</span>}
                 <a
                     className='secondary'
+                    rel='nofollow'
                     href={'/edit/' + id + '/' + slug}
                     aria-label='Edit this page'>Edit</a>
                 {' · '}
                 <a
                     className='secondary'
+                    rel='nofollow'
                     href={'/discuss/' + id + '/' + slug}
                     aria-label='Discussion about this page'>Discuss</a>
                 {' · '}
                 <a
                     className='secondary'
+                    rel='nofollow'
                     href={'/history/' + id + '/' + slug}
                     aria-label='Page edit history'>History</a>
             </div>

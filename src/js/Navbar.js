@@ -109,7 +109,7 @@ var Navbar = React.createClass({
                     {SearchBar}
                 </li>
                 <li className='show-for-medium'>
-                    <a className='navbar-link hint--bottom hint--rounded hint--no-animate' href={'/users/' + userid + '/' + username} aria-label='Profile'>
+                    <a className='navbar-link hint--bottom hint--rounded hint--no-animate' rel='nofollow' href={'/users/' + userid + '/' + username} aria-label='Profile'>
                         <span className='ion-android-person icon'/>
                         <span className='show-for-xxlarge'>{username}</span>
                     </a>

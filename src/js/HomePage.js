@@ -75,8 +75,8 @@ var HomePage = React.createClass({
                         <div className='callout show-for-xlarge'>
                             <ul className='menu vertical row'>
                                 <li><a href='/blog'>Blog</a></li>
-                                <li><a href='/recent-changes'>Recent Changes</a></li>
-                                <li><a href='/recent-discussions'>Recent Discussions</a></li>
+                                <li><a rel='nofollow' href='/recent-changes'>Recent Changes</a></li>
+                                <li><a rel='nofollow' href='/recent-discussions'>Recent Discussions</a></li>
                             </ul>
                         </div>
                         <div className='callout show-for-xlarge'>

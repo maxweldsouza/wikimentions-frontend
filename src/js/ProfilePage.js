@@ -102,10 +102,12 @@ var ProfilePage = React.createClass({
                                     <div className='button-group' role='group'>
                                         <a
                                             className={selectedTab === 'history' ? 'button' : 'button secondary'}
+                                            rel='nofollow'
                                             href={'/users/' + id + '/' + name}
                                             aria-selected={selectedTab === 'history'}>Activity</a>
                                         <a
                                             className={selectedTab === 'profile' ? 'button' : 'button secondary'}
+                                            rel='nofollow'
                                             href={'/users/' + id + '/' + name + '/profile'}
                                             aria-selected={selectedTab === 'profile'}>Edit Profile</a>
                                     </div>

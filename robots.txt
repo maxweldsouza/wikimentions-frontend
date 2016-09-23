@@ -1,4 +1,5 @@
 User-Agent: *
+Disallow: /bugs
 Disallow: /contribute
 Disallow: /discuss/
 Disallow: /edit
@@ -10,4 +11,3 @@ Disallow: /recent-changes
 Disallow: /recent-discussions
 Disallow: /search
 Disallow: /users/
-# Disallow: /
