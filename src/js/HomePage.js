@@ -67,10 +67,48 @@ var HomePage = React.createClass({
                             Discover people, books and videos based on mentions.
                         </div>
                         <div className='callout show-for-xlarge'>
+                            <h2>Tags</h2>
+                            <div>
+                                Entries generated at random hourly.
+                            </div>
+                            <span className='tag'>
+                                <a className='secondary' href='/tags/Programming'>Programming</a>
+                            </span>{' '}
+                            <span className='tag'>
+                                <a className='secondary' href='/tags/Science'>Science</a>
+                            </span>{' '}
+                            <span className='tag'>
+                                <a className='secondary' href='/tags/Startups'>Startups</a>
+                            </span>
+                        </div>
+                        <div className='callout show-for-xlarge'>
                             <h2>About</h2>
                             <p>
                                 WikiMentions helps you discover people, their books and videos based on their mentions. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
                             </p>
+                        </div>
+                        <div className='callout show-for-xlarge'>
+                            <h2>Stats</h2>
+                            <div className='row'>
+                                <div className='small-4 columns'>
+                                    <div>Books</div>
+                                    <strong>
+                                        ~2200
+                                    </strong>
+                                </div>
+                                <div className='small-4 columns'>
+                                    <div>Videos</div>
+                                    <strong>
+                                        ~1250
+                                    </strong>
+                                </div>
+                                <div className='small-4 columns'>
+                                    <div>People</div>
+                                    <strong>
+                                        ~980
+                                    </strong>
+                                    </div>
+                            </div>
                         </div>
                         <div className='callout show-for-xlarge'>
                             <ul className='menu vertical row'>
@@ -87,65 +125,12 @@ var HomePage = React.createClass({
                         </div>
                     </div>
                     <div className='small-12 xlarge-8 columns'>
-                        <ul className='tabs' role='tabslist'>
-                            {tabs.map((x) => {
-                                return <li className={this.state.tab === x ? 'tabs-title is-active' : 'tabs-title'} role='tab' title={x} aria-selected={this.state.tab === x}>
-                                    <a onClick={this.onChangeTab.bind(null, x)}>{x}</a>
-                                </li>;
-                            })}
-                        </ul>
-                        {this.state.tab === 'Startups' ? <div className='card-container'>
+                        <div className='card-container'>
                             <div className='card box align-middle'>
                                 <div className='small-6 columns'>
-                                    Randomly generated every hour
-                                </div>
-                                <div className='small-6 columns text-right'>
-                                    <a href='/tags/Startups' className='button no-margin-bottom primary'>Browse</a>
-                                </div>
-                            </div>
-                            {this.props.data.startups.map((x) => {
-                                return <HomeItem
-                                    key={x.id}
-                                    id={x.id}
-                                    title={x.props.title}
-                                    image={x.image}
-                                    description={x.props.description}
-                                    type={x.props.type}
-                                    slug={x.props.slug}
-                                    book_count={x.book_count}
-                                    video_count={x.video_count}
-                                    mentioned_count={x.mentioned_count}
-                                    mentioned_by_count={x.mentioned_by_count}/>;
-                            })}
-                        </div> : null}
-                        {this.state.tab === 'Science' ? <div className='card-container'>
-                            <div className='card box align-middle'>
-                                <div className='small-6 columns'>
-                                    Randomly generated every hour
-                                </div>
-                                <div className='small-6 columns text-right'>
-                                    <a href='/tags/Science' className='button no-margin-bottom primary'>Browse</a>
-                                </div>
-                            </div>
-                            {this.props.data.science.map((x) => {
-                                return <HomeItem
-                                    key={x.id}
-                                    id={x.id}
-                                    title={x.props.title}
-                                    image={x.image}
-                                    description={x.props.description}
-                                    type={x.props.type}
-                                    slug={x.props.slug}
-                                    book_count={x.book_count}
-                                    video_count={x.video_count}
-                                    mentioned_count={x.mentioned_count}
-                                    mentioned_by_count={x.mentioned_by_count}/>;
-                            })}
-                        </div> : null}
-                        {this.state.tab === 'Programming' ? <div className='card-container'>
-                            <div className='card box align-middle'>
-                                <div className='small-6 columns'>
-                                    Randomly generated every hour
+                                    <h2 className='no-margin-bottom'>
+                                        <a href='/tags/Programming' className='secondary'>Programming</a>
+                                    </h2>
                                 </div>
                                 <div className='small-6 columns text-right'>
                                     <a href='/tags/Programming' className='button no-margin-bottom primary'>Browse</a>
@@ -165,7 +150,59 @@ var HomePage = React.createClass({
                                     mentioned_count={x.mentioned_count}
                                     mentioned_by_count={x.mentioned_by_count}/>;
                             })}
-                        </div> : null}
+                        </div>
+                        <div className='card-container'>
+                            <div className='card box align-middle'>
+                                <div className='small-6 columns'>
+                                    <h2 className='no-margin-bottom'>
+                                        <a href='/tags/Science' className='secondary'>Science</a>
+                                    </h2>
+                                </div>
+                                <div className='small-6 columns text-right'>
+                                    <a href='/tags/Science' className='button no-margin-bottom primary'>Browse</a>
+                                </div>
+                            </div>
+                            {this.props.data.science.map((x) => {
+                                return <HomeItem
+                                    key={x.id}
+                                    id={x.id}
+                                    title={x.props.title}
+                                    image={x.image}
+                                    description={x.props.description}
+                                    type={x.props.type}
+                                    slug={x.props.slug}
+                                    book_count={x.book_count}
+                                    video_count={x.video_count}
+                                    mentioned_count={x.mentioned_count}
+                                    mentioned_by_count={x.mentioned_by_count}/>;
+                            })}
+                        </div>
+                        <div className='card-container'>
+                            <div className='card box align-middle'>
+                                <div className='small-6 columns'>
+                                    <h2 className='no-margin-bottom'>
+                                        <a href='/tags/Startups' className='secondary'>Startups</a>
+                                    </h2>
+                                </div>
+                                <div className='small-6 columns text-right'>
+                                    <a href='/tags/Startups' className='button no-margin-bottom primary'>Browse</a>
+                                </div>
+                            </div>
+                            {this.props.data.startups.map((x) => {
+                                return <HomeItem
+                                    key={x.id}
+                                    id={x.id}
+                                    title={x.props.title}
+                                    image={x.image}
+                                    description={x.props.description}
+                                    type={x.props.type}
+                                    slug={x.props.slug}
+                                    book_count={x.book_count}
+                                    video_count={x.video_count}
+                                    mentioned_count={x.mentioned_count}
+                                    mentioned_by_count={x.mentioned_by_count}/>;
+                            })}
+                        </div>
                     </div>
                 </div>
             </span>
