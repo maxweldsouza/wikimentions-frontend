@@ -6,6 +6,7 @@ var SignupModal = require('./SignupModal');
 var Spinner = require('./Spinner');
 var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
 var Xsrf = require('./Xsrf');
+var requests = require('superagent');
 
 var Navbar = React.createClass({
     getInitialState () {
@@ -56,6 +57,17 @@ var Navbar = React.createClass({
         pagepath += x.id + '/' + x.props.slug;
         history.pushState(null, null, pagepath);
         Mentions.route(pagepath);
+    },
+    random () {
+        requests
+        .get('/api/v1/random')
+        .send()
+        .end((err, res) => {
+            if (!err) {
+                history.pushState(null, null, res.body.path);
+                Mentions.route(res.body.path);
+            }
+        });
     },
     render () {
         var rhs;
@@ -155,6 +167,12 @@ var Navbar = React.createClass({
                                 <a className='navbar-link hint--bottom hint--rounded hint--no-animate' href='/create' aria-label='Create Page'>
                                     <span className='ion-compose icon'/>
                                     <span>Create Page</span>
+                                </a>
+                            </li>
+                            <li className='show-for-xxlarge'>
+                                <a className='navbar-link hint--bottom hint--rounded hint--no-animate' onClick={this.random} aria-label='Random Page'>
+                                    <span className='ion-shuffle icon'/>
+                                    <span>Random Page</span>
                                 </a>
                             </li>
                             <li><Spinner /></li>

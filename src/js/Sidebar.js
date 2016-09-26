@@ -19,6 +19,17 @@ var Sidebar = React.createClass({
         history.pushState(null, null, url);
         Comparnion.route(url);
     },
+    random () {
+        requests
+        .get('/api/v1/random')
+        .send()
+        .end((err, res) => {
+            if (!err) {
+                history.pushState(null, null, res.body.path);
+                Mentions.route(res.body.path);
+            }
+        });
+    },
     render () {
         var sidebar = this.props.showing ? '' : 'hidden';
         var loggedin = this.props.loggedin;
@@ -34,6 +45,9 @@ var Sidebar = React.createClass({
                         </a>
                         <a className='sidebar-item sidebar-button' href='/create'>
                             <span className='ion-android-create menu-item-icon'/>Create Page
+                        </a>
+                        <a className='sidebar-item sidebar-button' onClick={this.random}>
+                            <span className='ion-shuffle menu-item-icon'/>Random Page
                         </a>
                         <a className='sidebar-item sidebar-button' href='/recent-changes' rel='nofollow'>
                             <span className='ion-flash menu-item-icon'/>Recent Changes

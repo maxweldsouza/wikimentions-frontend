@@ -186,6 +186,7 @@ $(document).keyup(function () {
 $(document).on('click', 'a', function (e) {
     var url = $(this).attr('href');
     var disabled = $(this).data('disabled');
+    var noxhr = $(this).data('noxhr');
     if (typeof url === 'undefined' || disabled) {
         e.preventDefault();
         return;
@@ -197,7 +198,8 @@ $(document).on('click', 'a', function (e) {
         }, 200, 'easeOutQuart');
     } else if (!LinkChecker.isExternal(url)
             && $(this).attr('target') !== '_blank'
-            && !controlPressed) {
+            && !controlPressed
+            && !noxhr) {
         startLoading();
         e.preventDefault();
         setTimeout(function () {
