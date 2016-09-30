@@ -43,6 +43,29 @@ var TagPage = React.createClass({
                 No more entries to show.
             </div>
         </div>;
+        var tagCard;
+        if (tag === 'Programming') {
+            tagCard = <a
+                href='/tags/Programming'
+                className='secondary tag-card'>
+                <img src='/assets/images/pexels-photo-90807.jpeg' />
+                    <span className='label'>Programming</span>
+                </a>;
+        } else if (tag === 'Science') {
+            tagCard = <a
+                href='/tags/Science'
+                className='secondary tag-card'>
+                <img src='/assets/images/sky-earth-space-working.jpg' />
+                    <span className='label'>Science</span>
+                </a>;
+        } else if (tag === 'Startups') {
+            tagCard = <a
+                href='/tags/Startups'
+                className='secondary tag-card'>
+                <img src='/assets/images/pexels-photo.jpg' />
+                    <span className='label'>Startups</span>
+                </a>;
+        }
         return (
             <span>
                 <Helmet
@@ -62,9 +85,8 @@ var TagPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body align-center'>
                     <div className='small-12 xlarge-4 columns'>
-                        <div className='callout'>
-                            <h2>Tag: {tag}</h2>
-                            Entries are generated at random.
+                        <div className='callout show-for-xlarge'>
+                            {tagCard}
                         </div>
                         <div className='callout show-for-xlarge'>
                             <h2>Tags</h2>

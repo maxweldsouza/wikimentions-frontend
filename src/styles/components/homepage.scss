@@ -1,0 +1,42 @@
+.home-tagline {
+    font-size: rem-calc(20px);
+}
+
+.home-section {
+    font-size: rem-calc(18px);
+    font-variant: small-caps;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.person-card {
+    background: $white;
+    border: $global-border;
+    display: inline-block;
+    margin-bottom: $global-margin;
+    padding: 2 * $global-padding;
+    width: 250px;
+}
+
+.person-card-title {
+    font-size: 20px;
+    display: block;
+}
+
+.person-card-img {
+    display: inline-block;
+    height: 120px;
+    margin-bottom: $global-margin;
+    text-align: center;
+    width: 120px;
+    border: solid 6px $white;
+    border-radius: 999em;
+}
+
+.person-card-description {
+    color: lighten($secondary-color, 25%);
+}
+
+.home-books {
+
+}
