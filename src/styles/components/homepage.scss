@@ -9,6 +9,12 @@
     text-align: center;
 }
 
+.video-title {
+    display: inline-block;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
 .person-card {
     background: $white;
     border: $global-border;
@@ -19,18 +25,18 @@
 }
 
 .person-card-title {
-    font-size: 20px;
     display: block;
+    font-size: 20px;
 }
 
 .person-card-img {
+    border: solid 6px $white;
+    border-radius: 999em;
     display: inline-block;
     height: 120px;
     margin-bottom: $global-margin;
     text-align: center;
     width: 120px;
-    border: solid 6px $white;
-    border-radius: 999em;
 }
 
 .person-card-description {
@@ -39,6 +45,6 @@
 
 .home-books {
     display: inline-block;
-    margin-top: $global-margin;
     margin-bottom: $global-margin;
+    margin-top: $global-margin;
 }
