@@ -14,6 +14,7 @@ var Snackbar = require('./Snackbar');
 var VideoEmbed = require('./VideoEmbed');
 var Link = require('./Link');
 var Thumbnail = require('./Thumbnail');
+var utils = require('./utils');
 
 var HomePage = React.createClass({
     statics: {
@@ -304,12 +305,16 @@ var HomePage = React.createClass({
                         <div className='small-12 columns margin-bottom'>
                             <div className='row'>
                                 <div className='small-12 large-8 columns margin-bottom'>
-                                    <VideoEmbed autoplay={false} url={featuredVideo.props.url} embeddable={true} width={640} height={360}/>
-                                    <h1><strong><Link
+                                    <Link
                                         id={featuredVideo.id}
                                         slug={featuredVideo.props.slug}
                                         className='secondary'
-                                        type={featuredVideo.props.type}>{featuredVideo.props.title}</Link></strong></h1>
+                                        type={featuredVideo.props.type}>
+                                        <div className=''>
+                                            <img src={utils.youtubeThumb(featuredVideo.props.url, 'max')} />
+                                        </div>
+                                        <h1>{featuredVideo.props.title}</h1>
+                                    </Link>
                                         <div className='callout warning'>
                                             <p>
                                             WikiMentions helps you discover books and people mentioned by prominent people. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
@@ -318,21 +323,29 @@ var HomePage = React.createClass({
                                 </div>
                                 <div className='small-12 large-4 columns'>
                                     <div className='row'>
-                                        <div className='small-12 columns margin-bottom'>
-                                            <VideoEmbed autoplay={false} url={video2.props.url} embeddable={true} width={640} height={360}/>
-                                            <strong><Link
+                                        <div className='small-6 large-12 columns margin-bottom'>
+                                            <Link
                                                 id={video2.id}
                                                 slug={video2.props.slug}
                                                 className='secondary'
-                                                type={video2.props.type}>{video2.props.title}</Link></strong>
+                                                type={video2.props.type}>
+                                                <div className=''>
+                                                    <img src={utils.youtubeThumb(video2.props.url)} />
+                                                </div>
+                                                <strong>{video2.props.title}</strong>
+                                            </Link>
                                         </div>
-                                        <div className='small-12 columns margin-bottom'>
-                                            <VideoEmbed autoplay={false} url={video3.props.url} embeddable={true} width={640} height={360}/>
-                                            <strong><Link
+                                        <div className='small-6 large-12 columns margin-bottom'>
+                                            <Link
                                                 id={video3.id}
                                                 slug={video3.props.slug}
                                                 className='secondary'
-                                                type={video3.props.type}>{video3.props.title}</Link></strong>
+                                                type={video3.props.type}>
+                                                <div className=''>
+                                                    <img src={utils.youtubeThumb(video3.props.url)} />
+                                                </div>
+                                                <strong>{video3.props.title}</strong>
+                                            </Link>
                                         </div>
                                     </div>
 
@@ -380,7 +393,7 @@ var HomePage = React.createClass({
                             <h2 className='home-section'>Featured books</h2>
                             <div className='row'>
                                 {books.map((x) => {
-                                    return <div className='small-12 medium-6 large-3 columns text-center'>
+                                    return <div className='small-6 large-3 columns text-center'>
                                         <Link
                                         id={x.id}
                                         slug={x.props.slug}

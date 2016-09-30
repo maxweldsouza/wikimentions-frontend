@@ -16,6 +16,7 @@ var config = require('./config');
 var Link = require('./Link');
 var parseUrl = require('url-parse');
 var queryString = require('query-string');
+var utils = require('./utils');
 
 var VideoPage = React.createClass({
     statics: {
@@ -67,17 +68,15 @@ var VideoPage = React.createClass({
         };
     },
     componentWillMount () {
-        var parsed = parseUrl(this.props.data.thing.props.url);
-        if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
-            var queryObject = queryString.parse(parsed.query);
+        if (utils.isYoutubeUrl(this.props.data.thing.props.url)) {
             this.setState({
-                videoImage: 'https://i.ytimg.com/vi/' + queryObject.v + '/0.jpg'
+                videoImage: utils.youtubeThumb(this.props.data.thing.props.url)
             });
         }
     },
     componentDidMount () {
         var parsed = parseUrl(this.props.data.thing.props.url);
-        if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
+        if (utils.isYoutubeUrl(this.props.data.thing.props.url)) {
             var queryObject = queryString.parse(parsed.query);
             requests.get('https://www.googleapis.com/youtube/v3/videos?part=status,snippet&fields=items(snippet/thumbnails/high,status(embeddable,privacyStatus,uploadStatus))&id=' + queryObject.v + '&key=' + config.keys.youtube).end((err, res) => {
                 if (err) {

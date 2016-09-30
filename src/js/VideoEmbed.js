@@ -3,6 +3,7 @@ var queryString = require('query-string');
 var parseUrl = require('url-parse');
 var requests = require('superagent');
 var config = require('./config');
+var utils = require('./utils');
 
 var YoutubeEmbed = React.createClass({
     getDefaultProps () {
@@ -15,7 +16,7 @@ var YoutubeEmbed = React.createClass({
     render () {
         var embed;
         var parsed = parseUrl(this.props.url);
-        if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
+        if (utils.isYoutubeUrl(this.props.url)) {
             var queryObject = queryString.parse(parsed.query);
             var autoplay = this.props.autoplay ? '?autoplay=1' : '';
             embed = <iframe
