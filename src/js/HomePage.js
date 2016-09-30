@@ -303,17 +303,22 @@ var HomePage = React.createClass({
                     <div className='row'>
                         <div className='small-12 columns margin-bottom'>
                             <div className='row'>
-                                <div className='small-12 large-6 columns margin-bottom'>
+                                <div className='small-12 large-8 columns margin-bottom'>
                                     <VideoEmbed autoplay={false} url={featuredVideo.props.url} embeddable={true} width={640} height={360}/>
                                     <h1><strong><Link
                                         id={featuredVideo.id}
                                         slug={featuredVideo.props.slug}
                                         className='secondary'
                                         type={featuredVideo.props.type}>{featuredVideo.props.title}</Link></strong></h1>
+                                        <div className='callout warning'>
+                                            <p>
+                                            WikiMentions helps you discover books and people mentioned by prominent people. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
+                                            </p>
+                                        </div>
                                 </div>
-                                <div className='small-12 large-6 columns'>
+                                <div className='small-12 large-4 columns'>
                                     <div className='row'>
-                                        <div className='small-12 medium-6 columns margin-bottom'>
+                                        <div className='small-12 columns margin-bottom'>
                                             <VideoEmbed autoplay={false} url={video2.props.url} embeddable={true} width={640} height={360}/>
                                             <strong><Link
                                                 id={video2.id}
@@ -321,7 +326,7 @@ var HomePage = React.createClass({
                                                 className='secondary'
                                                 type={video2.props.type}>{video2.props.title}</Link></strong>
                                         </div>
-                                        <div className='small-12 medium-6 columns margin-bottom'>
+                                        <div className='small-12 columns margin-bottom'>
                                             <VideoEmbed autoplay={false} url={video3.props.url} embeddable={true} width={640} height={360}/>
                                             <strong><Link
                                                 id={video3.id}
@@ -329,19 +334,10 @@ var HomePage = React.createClass({
                                                 className='secondary'
                                                 type={video3.props.type}>{video3.props.title}</Link></strong>
                                         </div>
-                                        <div className='small-12 columns'>
-                                            <div className='callout warning'>
-                                                <p>
-                                                WikiMentions helps you discover people, their books and videos based on their mentions. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
-                                                </p>
-                                            </div>
-                                        </div>
                                     </div>
+
                                 </div>
                             </div>
-                        </div>
-                        <div className='small-12 columns margin-bottom text-center'>
-                            <span className='home-tagline'>“Discover books and people mentioned by prominent people”</span>
                         </div>
                     </div>
                 </div>
