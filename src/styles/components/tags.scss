@@ -26,6 +26,7 @@
     }
 
     .label {
+        background: $white;
         border: $global-border;
         border-bottom-left-radius: $global-radius;
         border-bottom-right-radius: $global-radius;
@@ -33,6 +34,7 @@
         display: block;
         font-size: rem-calc(16px);
         line-height: 2.5;
+        text-align: center;
         width: 100%;
     }
 }
