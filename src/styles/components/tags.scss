@@ -2,15 +2,14 @@
     -webkit-appearance: none;
     background: $white;
     border: solid 1px #dedede;
-    border-bottom: 0;
     border-radius: 999em;
     color: #404040;
     cursor: pointer;
     display: inline-block;
-    font-size: .75rem;
+    font-size: rem-calc(13px);
     line-height: 1;
     margin: 0;
-    padding: .5em 1em;
+    padding: .6em 1em;
     text-align: center;
     transition: background-color .25s ease-out, color .25s ease-out;
     vertical-align: middle;

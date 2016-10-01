@@ -179,8 +179,6 @@ var HomePage = React.createClass({
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className='full-width'>
                     <div className='row'>
                         <div className='small-12 columns margin-bottom'>
                             <h2 className='home-section'>Featured people</h2>

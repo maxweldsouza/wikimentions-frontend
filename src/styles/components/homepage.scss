@@ -21,6 +21,7 @@
     display: inline-block;
     margin-bottom: $global-margin;
     padding: 2 * $global-padding;
+    text-align: center;
     width: 250px;
 }
 
@@ -35,8 +36,9 @@
     display: inline-block;
     height: 120px;
     margin-bottom: $global-margin;
-    text-align: center;
     width: 120px;
+    overflow: hidden;
+    text-align: center;
 }
 
 .person-card-description {
