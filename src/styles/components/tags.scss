@@ -34,7 +34,8 @@
         display: block;
         font-size: rem-calc(16px);
         line-height: 2.5;
-        text-align: center;
+        padding-left: $global-padding;
+        text-align: left;
         width: 100%;
     }
 }
