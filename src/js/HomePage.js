@@ -77,11 +77,11 @@ var HomePage = React.createClass({
                                             {featuredVideo.props.title}
                                         </h1>
                                     </Link>
-                                        <div className='callout warning'>
-                                            <p>
-                                            WikiMentions helps you discover books and people mentioned by prominent people. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
-                                            </p>
-                                        </div>
+                                    <div className='callout warning'>
+                                        <p>
+                                        WikiMentions helps you discover books and people mentioned by prominent people. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
+                                        </p>
+                                    </div>
                                 </div>
                                 <div className='small-12 large-4 columns'>
                                     <div className='row'>
@@ -159,7 +159,7 @@ var HomePage = React.createClass({
                             <h2 className='home-section'>Featured books</h2>
                             <div className='row'>
                                 {books.map((x) => {
-                                    return <div key={x.id} className='small-6 large-3 columns text-center'>
+                                    return <div key={x.id} className='small-6 medium-4 large-3 xlarge-2 columns text-center'>
                                         <Link
                                         id={x.id}
                                         slug={x.props.slug}
@@ -184,7 +184,7 @@ var HomePage = React.createClass({
                             <h2 className='home-section'>Featured people</h2>
                             <div className='row'>
                                 {people.map((x) => {
-                                    return <div key={x.id} className='small-12 large-4 columns text-center'>
+                                    return <div key={x.id} className='small-12 medium-6 large-4 xlarge-3 columns text-center'>
                                         <div className='person-card'>
                                             <Link
                                                 id={x.id}
@@ -204,7 +204,7 @@ var HomePage = React.createClass({
                                                 </span>
                                                 <span className='person-card-title'>{x.props.title}</span>
                                             </Link>
-                                            <div className='person-card-description'>{x.props.description}</div>
+                                            <div className='person-card-description' title={x.props.description}>{x.props.description}</div>
                                         </div>
                                     </div>;
                                 })}

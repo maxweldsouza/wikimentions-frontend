@@ -43,6 +43,9 @@
 
 .person-card-description {
     color: lighten($secondary-color, 25%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .home-books {
