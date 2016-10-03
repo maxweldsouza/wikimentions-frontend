@@ -30,6 +30,7 @@ var Spinner = require('./Spinner');
 var ThingPage = require('./ThingPage');
 var TagPage = require('./TagPage');
 var VideoPage = require('./VideoPage');
+var QuotesPage = require('./QuotesPage');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -96,6 +97,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^videos\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'VideoPage';
+        routeObj.maxAge = 0;
+    } else if (/^quotes\/([0-9]+)\/([^/]+)$/.test(x)) {
+        componentName = 'QuotesPage';
         routeObj.maxAge = 0;
     } else if (/^blog$/.test(x)) {
         componentName = 'BlogPage';

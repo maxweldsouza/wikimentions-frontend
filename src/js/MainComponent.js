@@ -35,6 +35,7 @@ var TagPage = require('./TagPage');
 var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
 var Feedback = require('./Feedback');
+var QuotesPage = require('./QuotesPage');
 
 var MainComponent = React.createClass({
     propTypes: {

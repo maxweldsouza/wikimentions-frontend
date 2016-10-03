@@ -38,6 +38,12 @@ var PageBar = React.createClass({
                     rel='nofollow'
                     href={'/history/' + id + '/' + slug}
                     aria-label='Page edit history'>History</a>
+                {' · '}
+                <a
+                    className='secondary'
+                    rel='nofollow'
+                    href={'/quotes/' + id + '/' + slug}
+                    aria-label='Quotes'>Quotes</a>
             </div>
         );
     }
