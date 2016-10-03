@@ -1,15 +1,15 @@
-var React = require('react');
-
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
 var _ = require('underscore');
 var config = require('./config');
-var Select = require('./Select');
-var SubmitButton = require('./SubmitButton');
+var cookies = require('browser-cookies');
+var Helmet = require('react-helmet');
+var Navbar = require('./Navbar');
 var queryString = require('query-string');
-var Thumbnail = require('./Thumbnail');
+var React = require('react');
 var requests = require('superagent');
+var Select = require('./Select');
 var Snackbar = require('./Snackbar');
+var SubmitButton = require('./SubmitButton');
+var Thumbnail = require('./Thumbnail');
 
 var QuotesPage = React.createClass({
     statics: {
@@ -27,6 +27,10 @@ var QuotesPage = React.createClass({
                     {
                         name: 'thing',
                         path: '/api/v1/thing/' + id + query
+                    },
+                    {
+                        name: 'quotes',
+                        path: '/api/v1/quotes/' + id
                     }
                 ]
             };
@@ -34,19 +38,58 @@ var QuotesPage = React.createClass({
     },
     getInitialState () {
         return {
+            quote: '',
             submitting: false
         };
     },
+    onChangeText (e) {
+        var temp = {
+            error: false,
+            message: ''
+        };
+        temp[e.target.name] = e.target.value;
+        this.setState(temp);
+    },
+    validateForm () {
+        var valid = true;
+        return valid;
+    },
+    onSubmit (e) {
+        e.preventDefault();
+        var id = Number(this.props.path.split('/')[1]);
+        if (this.validateForm()) {
+            this.setState({
+                submitting: true
+            });
+            requests
+            .post('/api/v1/quotes/' + id)
+            .type('form')
+            .send({
+                quote: this.state.quote,
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end((err, res) => {
+                this.setState({
+                    submitting: false
+                });
+                if (err && err.status) {
+                    this.setState({
+                        formMessage: res.body.message
+                    });
+                } else {
+                    this.setState({
+                        formMessage: '',
+                        quote: ''
+                    });
+                    Snackbar({message: 'Quote added'});
+                    history.pushState(null, null, window.location.pathname + window.location.search);
+                    Mentions.route(window.location.pathname + window.location.search);
+                }
+            });
+        }
+    },
     render () {
-        var quotes = [{
-            text: 'You can\'t blame gravity for falling in love.'
-        },
-        {
-            text: 'Look deep into nature, and then you will understand everything better.'
-        },
-        {
-            text: 'Insanity: doing the same thing over and over again and expecting different results.'
-        }];
+        var quotes = this.props.data.quotes;
         return (
             <span>
                 <Helmet
@@ -68,9 +111,9 @@ var QuotesPage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <h1>Albert Einstein - Quotes</h1>
+                                <h1>{this.props.data.thing.props.title} - Quotes</h1>
                                 <hr />
-                                <div className='row'>
+                                {quotes.length > 0 ? <div className='row'>
                                     <div className='shrink columns'>
                                         <Thumbnail
                                             alt={this.props.data.thing.props.title}
@@ -81,20 +124,20 @@ var QuotesPage = React.createClass({
                                     </div>
                                     <div className='columns'>
                                         <blockquote className='quote'>
-                                            {_.first(quotes).text}
+                                            {_.first(quotes).quote}
                                         </blockquote>
                                         <div className='text-right'>
                                             <button className='button bare large'><span className='ion-share'/></button>
                                             <button className='button bare large'><span className='ion-code'/></button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> : null}
                                 <hr />
                                 <div className='row'>
                                     {_.rest(quotes).map((x) => {
                                         return <div className='small-12 columns'>
                                             <blockquote className='quote'>
-                                                {x.text}
+                                                {x.quote}
                                             </blockquote>
                                             <div className='text-right'>
                                                 <button className='button bare large'><span className='ion-share'/></button>
@@ -104,10 +147,12 @@ var QuotesPage = React.createClass({
                                         </div>;
                                     })}
                                 </div>
-                                Add Quote
-                                <textarea rows={3}>
-                                </textarea>
-                                <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting}/>
+                                <h2>Add Quote</h2>
+                                <form className='box' onSubmit={this.onSubmit}>
+                                    <textarea type='text' name='quote' onChange={this.onChangeText} value={this.state.quote} rows={3}>
+                                    </textarea>
+                                    <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting}/>
+                                </form>
                             </div>
                         </div>
                     </div>
