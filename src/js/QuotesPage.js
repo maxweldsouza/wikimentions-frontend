@@ -6,12 +6,28 @@ var _ = require('underscore');
 var config = require('./config');
 var Select = require('./Select');
 var SubmitButton = require('./SubmitButton');
+var queryString = require('query-string');
+var Thumbnail = require('./Thumbnail');
+var requests = require('superagent');
+var Snackbar = require('./Snackbar');
 
 var QuotesPage = React.createClass({
     statics: {
         resources (appstate) {
+            var [type, id, slug] = appstate.path.split('/');
+            var queryObj = {};
+            if (appstate.query.page) {
+                queryObj.page = appstate.query.page;
+            }
+            queryObj.slug = slug;
+            var query = queryString.stringify(queryObj);
+            query = query ? '?' + query : '';
             return {
                 api: [
+                    {
+                        name: 'thing',
+                        path: '/api/v1/thing/' + id + query
+                    }
                 ]
             };
         }
@@ -55,16 +71,36 @@ var QuotesPage = React.createClass({
                                 <h1>Albert Einstein - Quotes</h1>
                                 <hr />
                                 <div className='row'>
-                                    {quotes.map((x) => {
+                                    <div className='shrink columns'>
+                                        <Thumbnail
+                                            alt={this.props.data.thing.props.title}
+                                            type={this.props.data.thing.props.type}
+                                            image={this.props.data.thing.image}
+                                            url={this.props.data.thing.props.url}
+                                            displayWidth={75} />
+                                    </div>
+                                    <div className='columns'>
+                                        <blockquote className='quote'>
+                                            {_.first(quotes).text}
+                                        </blockquote>
+                                        <div className='text-right'>
+                                            <button className='button bare large'><span className='ion-share'/></button>
+                                            <button className='button bare large'><span className='ion-code'/></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className='row'>
+                                    {_.rest(quotes).map((x) => {
                                         return <div className='small-12 columns'>
                                             <blockquote className='quote'>
-                                            {x.text}
+                                                {x.text}
                                             </blockquote>
                                             <div className='text-right'>
                                                 <button className='button bare large'><span className='ion-share'/></button>
                                                 <button className='button bare large'><span className='ion-code'/></button>
                                             </div>
-                                        <hr />
+                                            <hr />
                                         </div>;
                                     })}
                                 </div>
