@@ -76,3 +76,18 @@
 .button.round {
     border-radius: 999em;
 }
+
+.button.bare {
+    background: transparent;
+    color: lighten($secondary-color, 20%);
+    margin: 0;
+
+    &:hover {
+        color: $secondary-color;
+    }
+
+    &:active {
+        box-shadow: none;
+        color: $primary-color;
+    }
+}

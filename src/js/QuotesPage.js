@@ -4,6 +4,8 @@ var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var _ = require('underscore');
 var config = require('./config');
+var Select = require('./Select');
+var SubmitButton = require('./SubmitButton');
 
 var QuotesPage = React.createClass({
     statics: {
@@ -14,7 +16,21 @@ var QuotesPage = React.createClass({
             };
         }
     },
+    getInitialState () {
+        return {
+            submitting: false
+        };
+    },
     render () {
+        var quotes = [{
+            text: 'You can\'t blame gravity for falling in love.'
+        },
+        {
+            text: 'Look deep into nature, and then you will understand everything better.'
+        },
+        {
+            text: 'Insanity: doing the same thing over and over again and expecting different results.'
+        }];
         return (
             <span>
                 <Helmet
@@ -36,7 +52,26 @@ var QuotesPage = React.createClass({
                     <div className='small-12 large-8 columns'>
                         <div className='row'>
                             <div className='small-12 columns'>
-                                <h1>Quotes</h1>
+                                <h1>Albert Einstein - Quotes</h1>
+                                <hr />
+                                <div className='row'>
+                                    {quotes.map((x) => {
+                                        return <div className='small-12 columns'>
+                                            <blockquote className='quote'>
+                                            {x.text}
+                                            </blockquote>
+                                            <div className='text-right'>
+                                                <button className='button bare large'><span className='ion-share'/></button>
+                                                <button className='button bare large'><span className='ion-code'/></button>
+                                            </div>
+                                        <hr />
+                                        </div>;
+                                    })}
+                                </div>
+                                Add Quote
+                                <textarea rows={3}>
+                                </textarea>
+                                <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting}/>
                             </div>
                         </div>
                     </div>

@@ -56,6 +56,7 @@ var KitchenSinkPage = React.createClass({
                                         <button className='button warning'>Warning</button>
                                         <button className='button alert'>Alert</button>
                                     </div>
+                                    <button className='button bare large'><span className='ion-share'/></button>
                                     <div>
                                         <button className='button loading disabled'>Button</button>
                                         <button className='button secondary loading disabled'>Secondary</button>
