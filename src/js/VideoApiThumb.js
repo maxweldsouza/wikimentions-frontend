@@ -4,6 +4,7 @@ var parseUrl = require('url-parse');
 var requests = require('superagent');
 var config = require('./config');
 var moment = require('moment');
+var utils = require('./utils');
 
 var humanizeDuration = function (ptduration) {
     var ms = moment.duration(ptduration).asMilliseconds();
@@ -28,7 +29,7 @@ var VideoApiThumb = React.createClass({
         if (this.state.thumb) {
             return;
         }
-        if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
+        if (utils.isYoutubeUrl(this.props.url)) {
             var queryObject = queryString.parse(parsed.query);
             videoId = queryObject.v;
             requests.get('https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet&fields=items(contentDetails/duration,snippet/thumbnails/default)&id=' + videoId + '&key=' + config.keys.youtube).end((err, res) => {

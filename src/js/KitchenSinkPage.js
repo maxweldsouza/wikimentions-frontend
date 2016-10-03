@@ -1,5 +1,6 @@
 var React = require('react');
 
+var ButtonSelect = require('./ButtonSelect');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
 var Comment = require('./Comment');
@@ -9,6 +10,9 @@ var PageBar = require('./PageBar');
 var config = require('./config');
 var AdminOnly = require('./AdminOnly');
 var Thumbnail = require('./Thumbnail');
+var SubmitButton = require('./SubmitButton');
+var Select = require('./Select');
+var Input = require('./Input');
 
 var KitchenSinkPage = React.createClass({
     statics: {
@@ -38,16 +42,12 @@ var KitchenSinkPage = React.createClass({
                     userid={this.props.userid}
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body white'>
-                    <div className='small-12 columns'>
+                    <div className='small-8 columns'>
                         <h1>Kitchen Sink</h1>
                         <AdminOnly>
                             <div className='row'>
-                                <div className='small-6 columns'>
-                                    <h2>Typography</h2>
-                                    <h1>Heading 1</h1>
-                                    <h2>Heading 2</h2>
-                                    <h3>Heading 3</h3>
-                                    <hr/>
+                                <div className='small-12 columns'>
+                                    <hr />
                                     <h2>Buttons</h2>
                                     <div>
                                         <button className='button'>Button</button>
@@ -65,6 +65,13 @@ var KitchenSinkPage = React.createClass({
                                         <button className='button alert loading disabled'>Alert</button>
                                     </div>
                                     <hr/>
+
+                                    <h2>Typography</h2>
+                                    <h1>Heading 1</h1>
+                                    <h2>Heading 2</h2>
+                                    <h3>Heading 3</h3>
+
+                                    <hr/>
                                     <h2>Badge</h2>
                                     <span className='badge'>B</span>
                                     <span className='secondary badge'>S</span>
@@ -72,12 +79,9 @@ var KitchenSinkPage = React.createClass({
                                     <span className='warning badge'>W</span>
                                     <span className='alert badge'>A</span>
                                 </div>
-                                <div className='small-6 columns'>
+                                <div className='small-12 columns'>
                                     <h2>Callout</h2>
                                     <div className='callout'>
-                                        This is a callout.
-                                    </div>
-                                    <div className='callout secondary'>
                                         This is a callout.
                                     </div>
                                     <div className='callout success'>
@@ -120,8 +124,45 @@ var KitchenSinkPage = React.createClass({
 
                                     <hr/>
                                     <h2>Forms</h2>
+                                    <ButtonSelect
+                                    options={[{ name: 'Existing', value: 'Existing' }, { name: 'New', value: 'New' }]}
+                                    default={'Existing'}
+                                    />
+                                    <label>Search</label>
+                                    <Select
+                                        name='book_id'
+                                        onSelectValue={function () {}}
+                                        types={['book']}
+                                        valid={true}
+                                        message={''}
+                                        placeholder='Book Title'/>
                                     <label>Label</label>
-                                    <input type='text' placeholder='Input'/>
+                                    <Input type='text' placeholder='Input' valid={true} message=''/>
+                                    <label>Textarea</label>
+                                    <textarea type='text' placeholder='Textarea...' />
+                                    <SubmitButton title='Submit' className='button primary float-right' submitting={false}/>
+
+                                    <hr/>
+                                    <h2>Tags</h2>
+                                    <span className='tag round no-margin-bottom'>
+                                        Programming <span className='ion-close-circled'/>
+                                    </span>
+                                    <span className='tag round no-margin-bottom'>
+                                        Science <span className='ion-close-circled'/>
+                                    </span>
+                                    <span className='tag round no-margin-bottom'>
+                                        Startups <span className='ion-close-circled'/>
+                                    </span>
+
+                                    <hr />
+                                    <h2>Card </h2>
+                                    <div className='person-card'>
+                                        <span className='person-card-img'>
+                                            <img className='thumbnail' src='https://localhost/api/v1/static/images/787d501ad8c61d42e44a1f7a19c29ff9-250-250.jpg' />
+                                        </span>
+                                        <span className='person-card-title'>Carl Sagan</span>
+                                        <div className='person-card-description'>Astrophysicist</div>
+                                    </div>
                                 </div>
                             </div>
                         </AdminOnly>

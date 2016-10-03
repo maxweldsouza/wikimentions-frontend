@@ -1,0 +1,55 @@
+.home-tagline {
+    font-size: rem-calc(20px);
+}
+
+.home-section {
+    font-size: rem-calc(18px);
+    font-variant: small-caps;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.video-title {
+    display: inline-block;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+.person-card {
+    background: $white;
+    border: $global-border;
+    display: inline-block;
+    margin-bottom: $global-margin;
+    padding: 2 * $global-padding;
+    text-align: center;
+    width: 250px;
+}
+
+.person-card-title {
+    display: block;
+    font-size: 20px;
+}
+
+.person-card-img {
+    border: solid 6px $white;
+    border-radius: 999em;
+    display: inline-block;
+    height: 120px;
+    margin-bottom: $global-margin;
+    width: 120px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.person-card-description {
+    color: lighten($secondary-color, 25%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.home-books {
+    display: inline-block;
+    margin-bottom: $global-margin;
+    margin-top: $global-margin;
+}

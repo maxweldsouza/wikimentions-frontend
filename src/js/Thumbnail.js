@@ -10,6 +10,7 @@ var Thumbnail = React.createClass({
             alt: '',
             url: '',
             shadow: false,
+            round: false,
             marginBottom: false,
             bordered: false
         };
@@ -61,7 +62,9 @@ var Thumbnail = React.createClass({
         if (this.props.image) {
             main = <Lazy placeholder={placeholder}>
                 <img
-                    className={imageClass} src={imageUrl}
+                    className={imageClass}
+                    style={this.props.round ? {borderRadius: '999em'} : null}
+                    src={imageUrl}
                     width={imageWidth}
                     height={imageHeight}
                     alt={this.props.alt}/>
@@ -74,8 +77,9 @@ var Thumbnail = React.createClass({
         } else {
             main = placeholder;
         }
+        var style = {'width': displayWidth, 'height': displayHeight};
         return (
-            <div className={this.props.marginBottom ? 'image-container bottom-margin' : 'image-container'} style={{'width': displayWidth, 'height': displayHeight}}>
+            <div className={this.props.marginBottom ? 'image-container bottom-margin' : 'image-container'} style={style}>
                 {main}
             </div>
         );

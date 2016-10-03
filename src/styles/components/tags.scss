@@ -6,11 +6,36 @@
     color: #404040;
     cursor: pointer;
     display: inline-block;
-    font-size: .75rem;
+    font-size: rem-calc(13px);
     line-height: 1;
     margin: 0;
-    padding: .5em 1em;
+    padding: .6em 1em;
     text-align: center;
     transition: background-color .25s ease-out, color .25s ease-out;
     vertical-align: middle;
+}
+
+.tag-card {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: $global-margin;
+
+    img {
+        border-top-left-radius: $global-radius;
+        border-top-right-radius: $global-radius;
+    }
+
+    .label {
+        background: $white;
+        border: $global-border;
+        border-bottom-left-radius: $global-radius;
+        border-bottom-right-radius: $global-radius;
+        border-top: 0;
+        display: block;
+        font-size: rem-calc(16px);
+        line-height: 2.5;
+        padding-left: $global-padding;
+        text-align: left;
+        width: 100%;
+    }
 }
