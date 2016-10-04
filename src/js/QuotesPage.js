@@ -131,7 +131,11 @@ var QuotesPage = React.createClass({
                                             <button className='button bare large'><span className='ion-code'/></button>
                                         </div>
                                     </div>
-                                </div> : null}
+                                </div> : <div className='blankslate'>
+                                    <span className='icon ion-quote'/>
+                                    <h3>No quotes added</h3>
+                                    There are no quotes added for {this.props.data.thing.props.title}. You could help us by adding some of your favorite quotes.
+                                </div>}
                                 <hr />
                                 <div className='row'>
                                     {_.rest(quotes).map((x) => {
@@ -148,7 +152,7 @@ var QuotesPage = React.createClass({
                                     })}
                                 </div>
                                 <h2>Add Quote</h2>
-                                <form className='box' onSubmit={this.onSubmit}>
+                                <form onSubmit={this.onSubmit}>
                                     <textarea type='text' name='quote' onChange={this.onChangeText} value={this.state.quote} rows={3}>
                                     </textarea>
                                     <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting}/>

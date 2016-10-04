@@ -1,0 +1,10 @@
+.blankslate {
+    padding: 2 * $global-padding;
+    text-align: center;
+
+    .icon {
+        color: $medium-gray;
+        display: block;
+        font-size: 40px;
+    }
+}
