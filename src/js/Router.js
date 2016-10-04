@@ -4,6 +4,7 @@ var AddVideo = require('./AddVideo');
 var BlogPage = require('./BlogPage');
 var BlogPostPage = require('./BlogPostPage');
 var BugPage = require('./BugPage');
+var CollectionPage = require('./CollectionPage');
 var ContentPage = require('./ContentPage');
 var ContributePage = require('./ContributePage');
 var CreatePage = require('./CreatePage');
@@ -13,24 +14,24 @@ var FeedbackPage = require('./FeedbackPage');
 var HistoryPage = require('./HistoryPage');
 var HomePage = require('./HomePage');
 var isNode = require('./isNode');
+var KitchenSinkPage = require('./KitchenSinkPage');
 var LoginPage = require('./LoginPage');
 var MaintenancePage = require('./MaintenancePage');
 var moment = require('moment');
 var parallelRequest = require('./parallelRequest');
 var ProfilePage = require('./ProfilePage');
 var queryString = require('query-string');
+var QuotesPage = require('./QuotesPage');
 var RecentChangesPage = require('./RecentChangesPage');
 var RecentDiscussionsPage = require('./RecentDiscussionsPage');
 var request = require('superagent');
 var SearchPage = require('./SearchPage');
 var SignupPage = require('./SignupPage');
-var KitchenSinkPage = require('./KitchenSinkPage');
 var Snackbar = require('./Snackbar');
 var Spinner = require('./Spinner');
-var ThingPage = require('./ThingPage');
 var TagPage = require('./TagPage');
+var ThingPage = require('./ThingPage');
 var VideoPage = require('./VideoPage');
-var QuotesPage = require('./QuotesPage');
 
 var validateResources = function (resources) {
     _.map(resources.api, function (x) {
@@ -64,6 +65,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^signup$/.test(x)) {
         componentName = 'SignupPage';
+        routeObj.maxAge = 0;
+    } else if (/^collections\/([0-9]+)\/([^/]+)$/.test(x)) {
+        componentName = 'CollectionPage';
         routeObj.maxAge = 0;
     } else if (/^users\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'ProfilePage';

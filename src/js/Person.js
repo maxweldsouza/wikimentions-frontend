@@ -4,7 +4,7 @@ var Link = require('./Link');
 var Thumbnail = require('./Thumbnail');
 import Lazy from 'react-lazyload';
 
-var Book = React.createClass({
+var Person = React.createClass({
     render () {
         return (
             <div className='card box'>
@@ -13,7 +13,7 @@ var Book = React.createClass({
                         <div className='shrink columns'>
                             <Link id={this.props.id}
                                 slug={this.props.slug}
-                                type='book'>
+                                type='person'>
                                 <Thumbnail
                                     alt={this.props.title}
                                     type={this.props.type}
@@ -27,7 +27,7 @@ var Book = React.createClass({
                                 id={this.props.id}
                                 className='card-title'
                                 slug={this.props.slug}
-                                type='book'>{this.props.title}</Link>
+                                type='person'>{this.props.title}</Link>
                             <div>{this.props.description}</div>
                             <div className='row'>
                                 <div className='columns'>
@@ -57,4 +57,4 @@ var Book = React.createClass({
     }
 });
 
-module.exports = Book;
+module.exports = Person;
