@@ -155,6 +155,7 @@ var QuotesPage = React.createClass({
                                 <form onSubmit={this.onSubmit}>
                                     <textarea type='text' name='quote' onChange={this.onChangeText} value={this.state.quote} rows={3}>
                                     </textarea>
+                                    {this.state.quote.length > 0 ? 140 - this.state.quote.length : null}
                                     <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting}/>
                                 </form>
                             </div>
