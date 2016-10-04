@@ -128,6 +128,20 @@ var HistoryItem = React.createClass({
                     Tag: {this.props.entry.tag}
                 </span>
             </span>;
+        } else if (this.props.entry && this.props.entrytype === 'quote') {
+            type = 'Quote';
+            item = <span className='row'>
+                <span className='small-12 columns'>
+                    Page: <Link
+                        id={this.props.entry.obj.id}
+                        slug={this.props.entry.obj.props.slug}
+                        type={this.props.entry.obj.props.type}>{this.props.entry.obj.props.title}
+                    </Link>
+                </span>
+                <span className='small-12 columns'>
+                    Quote: {this.props.entry.quote}
+                </span>
+            </span>;
         }
         return (
             <div className='small-12 columns'>
