@@ -3,6 +3,7 @@ var config = require('./config');
 var cookies = require('browser-cookies');
 var Helmet = require('react-helmet');
 var Navbar = require('./Navbar');
+var Pagination = require('./Pagination');
 var queryString = require('query-string');
 var React = require('react');
 var requests = require('superagent');
@@ -151,6 +152,7 @@ var QuotesPage = React.createClass({
                                         </div>;
                                     })}
                                 </div>
+                                <Pagination path={this.props.path} page={this.props.query.page} count={quotes.length}/>
                                 <h2>Add Quote</h2>
                                 <form onSubmit={this.onSubmit}>
                                     <textarea type='text' name='quote' onChange={this.onChangeText} value={this.state.quote} rows={3}>

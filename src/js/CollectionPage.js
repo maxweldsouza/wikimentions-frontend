@@ -1,19 +1,17 @@
-var React = require('react');
-
-var Helmet = require('react-helmet');
 var _ = require('underscore');
-
+var Book = require('./Book');
 var config = require('./config');
-var Navbar = require('./Navbar');
 var cookies = require('browser-cookies');
+var Helmet = require('react-helmet');
+var Navbar = require('./Navbar');
+var Pagination = require('./Pagination');
+var Person = require('./Person');
+var React = require('react');
 var requests = require('superagent');
 var Select = require('./Select');
 var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 var Video = require('./Video');
-var Book = require('./Book');
-var Person = require('./Person');
-var Pagination = require('./Pagination');
 
 var CollectionPage = React.createClass({
     statics: {
