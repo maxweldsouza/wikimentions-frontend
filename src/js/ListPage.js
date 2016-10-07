@@ -82,22 +82,20 @@ var ListPage = React.createClass({
         var list = this.props.data.items.items;
         var title = this.props.data.list.title;
         var description = this.props.data.list.description;
+        var total = this.props.data.items.total;
+        var metaRobots;
+        if (total === 0) {
+            metaRobots = {'name': 'robots', 'content': 'noindex'};
+        } else {
+            metaRobots = {'name': 'robots', 'content': 'index'};
+        }
         return (
             <div className='flex-wrapper'>
                 <Helmet
                     title={title}
                     titleTemplate={'%s - ' + config.name + ' - Blog'}
                     meta={[
-                        {name: 'description', 'content': ''},
-                        {name: 'twitter:card', content: 'summary'},
-                        {name: 'twitter:site', content: config.twitter},
-                        {name: 'twitter:title', content: title},
-                        {name: 'twitter:description', content: description},
-                        {property: 'og:title', content: title},
-                        {property: 'og:type', content: 'article'},
-                        {property: 'og:url', content: config.url + this.props.path},
-                        {property: 'og:description', content: description},
-                        {property: 'og:site_name', content: config.name}
+                        metaRobots
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}
@@ -166,7 +164,7 @@ var ListPage = React.createClass({
                                             <hr />
                                         </div> : null}
                                     </div>
-                                    <Pagination path={this.props.path} page={this.props.query.page} count={list.length} total={this.props.data.items.count}/>
+                                    <Pagination path={this.props.path} page={this.props.query.page} count={list.length} total={total}/>
                                     <h2>Add to list</h2>
                                     <form onSubmit={this.onSubmit}>
                                         {this.state.formMessage ? <div className='callout alert'>

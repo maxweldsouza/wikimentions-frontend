@@ -91,13 +91,20 @@ var QuotesPage = React.createClass({
     },
     render () {
         var quotes = this.props.data.quotes.items;
+        var total = this.props.data.quotes.total;
+        var metaRobots;
+        if (total === 0) {
+            metaRobots = {'name': 'robots', 'content': 'noindex'};
+        } else {
+            metaRobots = {'name': 'robots', 'content': 'index'};
+        }
         return (
             <span>
                 <Helmet
                     title={'Quotes - ' + this.props.data.thing.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'robots', 'content': 'index'}
+                        metaRobots
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}
@@ -152,7 +159,7 @@ var QuotesPage = React.createClass({
                                         </div>;
                                     })}
                                 </div>
-                                <Pagination path={this.props.path} page={this.props.query.page} count={quotes.length} total={this.props.data.quotes.total}/>
+                                <Pagination path={this.props.path} page={this.props.query.page} count={quotes.length} total={total}/>
                                 <h2>Add Quote</h2>
                                 <form onSubmit={this.onSubmit}>
                                     <textarea type='text' name='quote' onChange={this.onChangeText} value={this.state.quote} rows={3}>
