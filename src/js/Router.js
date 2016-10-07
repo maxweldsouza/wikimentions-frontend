@@ -4,8 +4,8 @@ var AddVideo = require('./AddVideo');
 var BlogPage = require('./BlogPage');
 var BlogPostPage = require('./BlogPostPage');
 var BugPage = require('./BugPage');
-var CollectionCreatePage = require('./CollectionCreatePage');
-var CollectionPage = require('./CollectionPage');
+var ListCreatePage = require('./ListCreatePage');
+var ListPage = require('./ListPage');
 var ContentPage = require('./ContentPage');
 var ContributePage = require('./ContributePage');
 var CreatePage = require('./CreatePage');
@@ -67,11 +67,11 @@ var getComponent = function (routeObj) {
     } else if (/^signup$/.test(x)) {
         componentName = 'SignupPage';
         routeObj.maxAge = 0;
-    } else if (/^collections\/create$/.test(x)) {
-        componentName = 'CollectionCreatePage';
+    } else if (/^lists\/create$/.test(x)) {
+        componentName = 'ListCreatePage';
         routeObj.maxAge = 0;
-    } else if (/^collections\/([0-9]+)\/([^/]+)$/.test(x)) {
-        componentName = 'CollectionPage';
+    } else if (/^lists\/([0-9]+)\/([^/]+)$/.test(x)) {
+        componentName = 'ListPage';
         routeObj.maxAge = 0;
     } else if (/^users\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'ProfilePage';

@@ -13,7 +13,7 @@ var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 var Video = require('./Video');
 
-var CollectionPage = React.createClass({
+var ListPage = React.createClass({
     statics: {
         resources (appstate) {
             var [type, id, slug] = appstate.path.split('/');
@@ -22,12 +22,12 @@ var CollectionPage = React.createClass({
             return {
                 api: [
                     {
-                        name: 'collection',
-                        path: '/api/v1/collections/' + id
+                        name: 'list',
+                        path: '/api/v1/lists/' + id
                     },
                     {
                         name: 'items',
-                        path: '/api/v1/collections/items/' + id + query
+                        path: '/api/v1/lists/items/' + id + query
                     }
                 ]
             };
@@ -54,7 +54,7 @@ var CollectionPage = React.createClass({
             submitting: true
         });
         requests
-        .post('/api/v1/collections/items/' + id)
+        .post('/api/v1/lists/items/' + id)
         .type('form')
         .send({
             obj_id: this.state.id,
@@ -79,9 +79,9 @@ var CollectionPage = React.createClass({
         });
     },
     render () {
-        var collection = this.props.data.items;
-        var title = this.props.data.collection.title;
-        var description = this.props.data.collection.description;
+        var list = this.props.data.items;
+        var title = this.props.data.list.title;
+        var description = this.props.data.list.description;
         return (
             <div className='flex-wrapper'>
                 <Helmet
@@ -113,11 +113,11 @@ var CollectionPage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <div className=''>
-                                    <h1>Collections - {title}</h1>
+                                    <h1>List - {title}</h1>
                                     {description}
                                     <hr className='no-margin-bottom'/>
                                     <div className='margin-bottom'>
-                                        {collection.map((x) => {
+                                        {list.map((x) => {
                                             if (x.props.type === 'video') {
                                                 return <Video
                                                         key={x.id}
@@ -157,24 +157,24 @@ var CollectionPage = React.createClass({
                                                 isbn={x.isbn}
                                                 isbn13={x.isbn13}/>;
                                         })}
-                                        {collection.length === 0 ? <div>
+                                        {list.length === 0 ? <div>
                                             <div className='blankslate'>
                                                 <span className='icon ion-ios-list'/>
-                                                <h3>Collection is Empty</h3>
-                                                No items have been added to this collection. You can begin adding items below.
+                                                <h3>List is Empty</h3>
+                                                No items have been added to this list. You can begin adding items below.
                                             </div>
                                             <hr />
                                         </div> : null}
                                     </div>
-                                    <Pagination path={this.props.path} page={this.props.query.page} count={collection.length}/>
-                                    <h2>Add to Collection</h2>
+                                    <Pagination path={this.props.path} page={this.props.query.page} count={list.length}/>
+                                    <h2>Add to list</h2>
                                     <form onSubmit={this.onSubmit}>
                                         {this.state.formMessage ? <div className='callout alert'>
                                             {this.state.formMessage}
                                         </div> : null}
                                         <Select
                                             name='id'
-                                            placeholder='search'
+                                            placeholder='Search'
                                             onSelectValue={this.onSelect}
                                             valid={this.state.valid}
                                             message={this.state.message} />
@@ -190,4 +190,4 @@ var CollectionPage = React.createClass({
     }
 });
 
-module.exports = CollectionPage;
+module.exports = ListPage;

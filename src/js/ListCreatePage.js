@@ -77,7 +77,7 @@ var HomePage = React.createClass({
                 submitting: true
             });
             requests
-            .post('/api/v1/collections')
+            .post('/api/v1/lists')
             .type('form')
             .send({
                 title: this.state.title,
@@ -96,7 +96,7 @@ var HomePage = React.createClass({
                     this.setState({
                         formMessage: ''
                     });
-                    Snackbar({message: 'Collection created'});
+                    Snackbar({message: 'List created'});
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
                 }
@@ -104,14 +104,14 @@ var HomePage = React.createClass({
         }
     },
     render () {
-        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to create a collection.</span>;
+        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to create a list.</span>;
         return (
             <span>
                 <Helmet
-                    title={'Create Collection'}
+                    title={'Create list'}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
-                        {'name': 'description', 'content': 'Create a new collection on WikiMentions'}
+                        {'name': 'description', 'content': 'Create a new list on WikiMentions'}
                     ]}
                     link={[
                         {'rel': 'canonical', 'href': config.url + this.props.path}
@@ -125,7 +125,7 @@ var HomePage = React.createClass({
                 <div className='row page-body white'>
                     <div className='small-12 columns'>
                         <div>
-                            <h1>Create Collection</h1>
+                            <h1>Create list</h1>
                             {this.state.formMessage ? <div className='callout alert'>
                                 {this.state.formMessage}
                             </div> : null}
@@ -133,7 +133,7 @@ var HomePage = React.createClass({
                                 <div className='row'>
                                     <div className='small-12 large-4 large-order-2 columns'>
                                         <div className='callout warning'>
-                                            Search to check whether a collection already exists before adding a new one. Make sure you have read our <a href='/guidelines'>Guidelines</a>
+                                            Search to check whether a list already exists before adding a new one. Make sure you have read our <a href='/guidelines'>Guidelines</a>
                                         </div>
                                     </div>
                                     <div className='small-12 large-8 large-order-1  columns'>

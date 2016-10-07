@@ -142,17 +142,17 @@ var HistoryItem = React.createClass({
                     Quote: {this.props.entry.quote}
                 </span>
             </span>;
-        } else if (this.props.entry && this.props.entrytype === 'collection') {
-            type = 'Collection';
+        } else if (this.props.entry && this.props.entrytype === 'list') {
+            type = 'List';
             item = <span className='row'>
                 <span className='small-12 columns'>
-                    Collection: Collection: <a href={'/collections/' + this.props.entry.id + '/' + this.props.entry.slug}>
+                    List: <a href={'/lists/' + this.props.entry.id + '/' + this.props.entry.slug}>
                     {this.props.entry.title}
                     </a>
                 </span>
             </span>;
-        } else if (this.props.entry && this.props.entrytype === 'collection_item') {
-            type = 'Collection Item';
+        } else if (this.props.entry && this.props.entrytype === 'list_item') {
+            type = 'List Item';
             item = <span className='row'>
                 <span className='small-12 columns'>
                     Item: <Link
@@ -161,8 +161,8 @@ var HistoryItem = React.createClass({
                         type={this.props.entry.obj.props.type}>{this.props.entry.obj.props.title}
                     </Link>
                     <div>
-                        Collection: <a href={'/collections/' + this.props.entry.collection.id + '/' + this.props.entry.collection.slug}>
-                        {this.props.entry.collection.title}
+                        List: <a href={'/lists/' + this.props.entry.list.id + '/' + this.props.entry.list.slug}>
+                        {this.props.entry.list.title}
                         </a>
                     </div>
                 </span>
