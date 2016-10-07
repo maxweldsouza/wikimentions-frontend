@@ -112,7 +112,7 @@ var CollectionPage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <div className=''>
-                                    <h1>Collections - Programming Books</h1>
+                                    <h1>Collections - {title}</h1>
                                     {description}
                                     <hr className='no-margin-bottom'/>
                                     <div className='margin-bottom'>
@@ -156,6 +156,14 @@ var CollectionPage = React.createClass({
                                                 isbn={x.isbn}
                                                 isbn13={x.isbn13}/>;
                                         })}
+                                        {collection.length === 0 ? <div>
+                                            <div className='blankslate'>
+                                                <span className='icon ion-ios-list'/>
+                                                <h3>Collection is Empty</h3>
+                                                No items have been added to this collection. You can begin adding items below.
+                                            </div>
+                                            <hr />
+                                        </div> : null}
                                     </div>
                                     <h2>Add to Collection</h2>
                                     <form onSubmit={this.onSubmit}>
@@ -164,6 +172,7 @@ var CollectionPage = React.createClass({
                                         </div> : null}
                                         <Select
                                             name='id'
+                                            placeholder='search'
                                             onSelectValue={this.onSelect}
                                             valid={this.state.valid}
                                             message={this.state.message} />

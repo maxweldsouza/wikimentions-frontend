@@ -9,6 +9,7 @@ var AddVideo = require('./AddVideo');
 var BlogPage = require('./BlogPage');
 var BlogPostPage = require('./BlogPostPage');
 var BugPage = require('./BugPage');
+var CollectionCreatePage = require('./CollectionCreatePage');
 var CollectionPage = require('./CollectionPage');
 var ContentPage = require('./ContentPage');
 var ContributePage = require('./ContributePage');

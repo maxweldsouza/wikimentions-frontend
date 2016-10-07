@@ -4,6 +4,7 @@ var AddVideo = require('./AddVideo');
 var BlogPage = require('./BlogPage');
 var BlogPostPage = require('./BlogPostPage');
 var BugPage = require('./BugPage');
+var CollectionCreatePage = require('./CollectionCreatePage');
 var CollectionPage = require('./CollectionPage');
 var ContentPage = require('./ContentPage');
 var ContributePage = require('./ContributePage');
@@ -65,6 +66,9 @@ var getComponent = function (routeObj) {
         routeObj.maxAge = 0;
     } else if (/^signup$/.test(x)) {
         componentName = 'SignupPage';
+        routeObj.maxAge = 0;
+    } else if (/^collections\/create$/.test(x)) {
+        componentName = 'CollectionCreatePage';
         routeObj.maxAge = 0;
     } else if (/^collections\/([0-9]+)\/([^/]+)$/.test(x)) {
         componentName = 'CollectionPage';
