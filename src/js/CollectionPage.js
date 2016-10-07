@@ -13,11 +13,14 @@ var SubmitButton = require('./SubmitButton');
 var Video = require('./Video');
 var Book = require('./Book');
 var Person = require('./Person');
+var Pagination = require('./Pagination');
 
 var CollectionPage = React.createClass({
     statics: {
         resources (appstate) {
             var [type, id, slug] = appstate.path.split('/');
+            var page = appstate.query.page;
+            var query = page ? '?page=' + page : '';
             return {
                 api: [
                     {
@@ -26,7 +29,7 @@ var CollectionPage = React.createClass({
                     },
                     {
                         name: 'items',
-                        path: '/api/v1/collections/items/' + id
+                        path: '/api/v1/collections/items/' + id + query
                     }
                 ]
             };
@@ -165,6 +168,7 @@ var CollectionPage = React.createClass({
                                             <hr />
                                         </div> : null}
                                     </div>
+                                    <Pagination path={this.props.path} page={this.props.query.page} count={collection.length}/>
                                     <h2>Add to Collection</h2>
                                     <form onSubmit={this.onSubmit}>
                                         {this.state.formMessage ? <div className='callout alert'>
