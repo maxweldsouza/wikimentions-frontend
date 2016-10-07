@@ -142,6 +142,31 @@ var HistoryItem = React.createClass({
                     Quote: {this.props.entry.quote}
                 </span>
             </span>;
+        } else if (this.props.entry && this.props.entrytype === 'collection') {
+            type = 'Collection';
+            item = <span className='row'>
+                <span className='small-12 columns'>
+                    Collection: Collection: <a href={'/collections/' + this.props.entry.id + '/' + this.props.entry.slug}>
+                    {this.props.entry.title}
+                    </a>
+                </span>
+            </span>;
+        } else if (this.props.entry && this.props.entrytype === 'collection_item') {
+            type = 'Collection Item';
+            item = <span className='row'>
+                <span className='small-12 columns'>
+                    Item: <Link
+                        id={this.props.entry.obj.id}
+                        slug={this.props.entry.obj.props.slug}
+                        type={this.props.entry.obj.props.type}>{this.props.entry.obj.props.title}
+                    </Link>
+                    <div>
+                        Collection: <a href={'/collections/' + this.props.entry.collection.id + '/' + this.props.entry.collection.slug}>
+                        {this.props.entry.collection.title}
+                        </a>
+                    </div>
+                </span>
+            </span>;
         }
         return (
             <div className='small-12 columns'>
