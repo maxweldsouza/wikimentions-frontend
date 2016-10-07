@@ -27,11 +27,11 @@ var QuotesPage = React.createClass({
                 api: [
                     {
                         name: 'thing',
-                        path: '/api/v1/thing/' + id + query
+                        path: '/api/v1/thing/' + id
                     },
                     {
                         name: 'quotes',
-                        path: '/api/v1/quotes/' + id
+                        path: '/api/v1/quotes/' + id + query
                     }
                 ]
             };
@@ -90,11 +90,11 @@ var QuotesPage = React.createClass({
         }
     },
     render () {
-        var quotes = this.props.data.quotes;
+        var quotes = this.props.data.quotes.items;
         return (
             <span>
                 <Helmet
-                    title={'Quotes'}
+                    title={'Quotes - ' + this.props.data.thing.props.title}
                     titleTemplate={'%s - ' + config.name}
                     meta={[
                         {'name': 'robots', 'content': 'index'}
@@ -152,7 +152,7 @@ var QuotesPage = React.createClass({
                                         </div>;
                                     })}
                                 </div>
-                                <Pagination path={this.props.path} page={this.props.query.page} count={quotes.length}/>
+                                <Pagination path={this.props.path} page={this.props.query.page} count={quotes.length} total={this.props.data.quotes.total}/>
                                 <h2>Add Quote</h2>
                                 <form onSubmit={this.onSubmit}>
                                     <textarea type='text' name='quote' onChange={this.onChangeText} value={this.state.quote} rows={3}>

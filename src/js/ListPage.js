@@ -79,7 +79,7 @@ var ListPage = React.createClass({
         });
     },
     render () {
-        var list = this.props.data.items;
+        var list = this.props.data.items.items;
         var title = this.props.data.list.title;
         var description = this.props.data.list.description;
         return (
@@ -166,7 +166,7 @@ var ListPage = React.createClass({
                                             <hr />
                                         </div> : null}
                                     </div>
-                                    <Pagination path={this.props.path} page={this.props.query.page} count={list.length}/>
+                                    <Pagination path={this.props.path} page={this.props.query.page} count={list.length} total={this.props.data.items.count}/>
                                     <h2>Add to list</h2>
                                     <form onSubmit={this.onSubmit}>
                                         {this.state.formMessage ? <div className='callout alert'>
