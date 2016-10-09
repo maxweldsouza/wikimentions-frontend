@@ -11,6 +11,7 @@ var Select = require('./Select');
 var Snackbar = require('./Snackbar');
 var SubmitButton = require('./SubmitButton');
 var Thumbnail = require('./Thumbnail');
+var PageBar = require('./PageBar');
 
 var QuotesPage = React.createClass({
     statics: {
@@ -120,6 +121,10 @@ var QuotesPage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <h1>{this.props.data.thing.props.title} - Quotes</h1>
+                                <PageBar
+                                    id={this.props.data.thing.id}
+                                    slug={this.props.data.thing.props.slug}
+                                    type={this.props.data.thing.props.type} />
                                 <hr />
                                 {quotes.length > 0 ? <div className='row'>
                                     <div className='shrink columns'>
