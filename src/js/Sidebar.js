@@ -46,6 +46,9 @@ var Sidebar = React.createClass({
                         <a className='sidebar-item sidebar-button' href='/create'>
                             <span className='ion-android-create menu-item-icon'/>Create Page
                         </a>
+                        <a className='sidebar-item sidebar-button' href='/create'>
+                            <span className='ion-android-list menu-item-icon'/>Create List
+                        </a>
                         <a className='sidebar-item sidebar-button' onClick={this.random}>
                             <span className='ion-shuffle menu-item-icon'/>Random Page
                         </a>

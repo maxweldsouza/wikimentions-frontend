@@ -17,6 +17,7 @@ var Footer = React.createClass({
                                 <ul className='menu vertical'>
                                     <li className="menu-text">Navigation</li>
                                     <li><a href='/create'>Create Page</a></li>
+                                    <li><a href='/lists/create'>Create List</a></li>
                                     <li><a rel='nofollow' href='/recent-changes'>Recent Changes</a></li>
                                     <li><a rel='nofollow' href='/recent-discussions'>Recent Discussions</a></li>
                                 </ul>

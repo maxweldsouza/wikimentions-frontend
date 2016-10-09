@@ -157,7 +157,7 @@ var ListPage = React.createClass({
                                         })}
                                         {list.length === 0 ? <div>
                                             <div className='blankslate'>
-                                                <span className='icon ion-ios-list'/>
+                                                <span className='icon ion-android-list'/>
                                                 <h3>List is Empty</h3>
                                                 No items have been added to this list. You can begin adding items below.
                                             </div>
