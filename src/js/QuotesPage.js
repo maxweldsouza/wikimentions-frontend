@@ -134,10 +134,6 @@ var QuotesPage = React.createClass({
                                         <blockquote className='quote'>
                                             {_.first(quotes).quote}
                                         </blockquote>
-                                        <div className='text-right'>
-                                            <button className='button bare large'><span className='ion-share'/></button>
-                                            <button className='button bare large'><span className='ion-code'/></button>
-                                        </div>
                                     </div>
                                 </div> : <div className='blankslate'>
                                     <span className='icon ion-quote'/>
@@ -151,10 +147,6 @@ var QuotesPage = React.createClass({
                                             <blockquote className='quote'>
                                                 {x.quote}
                                             </blockquote>
-                                            <div className='text-right'>
-                                                <button className='button bare large'><span className='ion-share'/></button>
-                                                <button className='button bare large'><span className='ion-code'/></button>
-                                            </div>
                                             <hr />
                                         </div>;
                                     })}
