@@ -16,25 +16,27 @@
 }
 
 .tag-card {
-    display: inline-block;
+    display: block;
     width: 100%;
     margin-bottom: $global-margin;
+    position: relative;;
 
     img {
-        border-top-left-radius: $global-radius;
-        border-top-right-radius: $global-radius;
+        border-radius: $global-radius;
     }
 
-    .label {
-        background: $white;
-        border: $global-border;
+    & > .label {
+        background: rgba(0, 0, 0, 0.7);
         border-bottom-left-radius: $global-radius;
         border-bottom-right-radius: $global-radius;
-        border-top: 0;
+        bottom: 0;
+        color: $white;
         display: block;
-        font-size: rem-calc(16px);
+        font-size: rem-calc(18px);
+        font-weight: bold;
         line-height: 2.5;
         padding-left: $global-padding;
+        position: absolute;
         text-align: left;
         width: 100%;
     }
