@@ -70,51 +70,32 @@ var HomePage = React.createClass({
                                         slug={featuredVideo.props.slug}
                                         className='secondary'
                                         type={featuredVideo.props.type}>
-                                        <div className='home-video-thumb'>
-                                            <img src={utils.youtubeThumb(featuredVideo.props.url, 'max')} />
-                                        </div>
+                                        <img className='home-video-thumb' src={utils.youtubeThumb(featuredVideo.props.url, 'max')} />
                                         <h1 className='video-title'>
                                             {featuredVideo.props.title}
                                         </h1>
                                     </Link>
-                                    <div className='callout warning'>
-                                        <p>
-                                        WikiMentions helps you discover books and people mentioned by prominent people. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
-                                        </p>
-                                    </div>
                                 </div>
                                 <div className='small-12 large-4 columns'>
                                     <div className='row'>
-                                        <div className='small-6 large-12 columns margin-bottom'>
+                                        <div className='small-12 medium-6 large-12 columns margin-bottom'>
                                             <Link
                                                 id={video2.id}
                                                 slug={video2.props.slug}
                                                 className='secondary'
                                                 type={video2.props.type}>
-                                                <div className='home-video-thumb'>
-                                                    <img src={utils.youtubeThumb(video2.props.url)} />
-                                                </div>
+                                                <img className='home-video-thumb' src={utils.youtubeThumb(video2.props.url)} />
                                                 <strong className='video-title'>
                                                     {video2.props.title}
                                                 </strong>
                                             </Link>
                                         </div>
-                                        <div className='small-6 large-12 columns margin-bottom'>
-                                            <Link
-                                                id={video3.id}
-                                                slug={video3.props.slug}
-                                                className='secondary'
-                                                type={video3.props.type}>
-                                                <div className='home-video-thumb'>
-                                                    <img src={utils.youtubeThumb(video3.props.url)} />
-                                                </div>
-                                                <strong className='video-title'>
-                                                    {video3.props.title}
-                                                </strong>
-                                            </Link>
+                                        <div className='small-12 medium-6 large-12 columns margin-bottom'>
+                                            <div className='callout warning'>
+                                                WikiMentions helps you discover books and people mentioned by prominent people. People can mention other people, books or videos in books or videos. Content can be added and edited by anyone.
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

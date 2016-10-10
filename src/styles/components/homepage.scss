@@ -4,7 +4,8 @@
 
 .home-video-thumb {
     border-radius: $global-radius;
-    overflow: hidden;
+    display: block;
+    width: 100%;
 }
 
 .home-section {
