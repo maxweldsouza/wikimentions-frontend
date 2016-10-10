@@ -2,7 +2,6 @@ var React = require('react');
 
 var Link = require('./Link');
 var Thumbnail = require('./Thumbnail');
-import Lazy from 'react-lazyload';
 
 var Book = React.createClass({
     render () {

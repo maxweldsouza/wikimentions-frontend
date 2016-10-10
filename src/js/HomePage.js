@@ -175,6 +175,7 @@ var HomePage = React.createClass({
                                                 shadow={true}
                                                 bordered={true}
                                                 marginBottom={true}
+                                                offset={10000}
                                                 displayHeight={200} />
                                         </Link>
                                     </div>;
@@ -203,6 +204,7 @@ var HomePage = React.createClass({
                                                         round={true}
                                                         bordered={true}
                                                         marginBottom={true}
+                                                        offset={10000}
                                                         displayWidth={120} />
                                                 </span>
                                                 <span className='person-card-title'>{x.props.title}</span>

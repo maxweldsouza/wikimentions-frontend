@@ -12,7 +12,8 @@ var Thumbnail = React.createClass({
             shadow: false,
             round: false,
             marginBottom: false,
-            bordered: false
+            bordered: false,
+            offset: 0
         };
     },
     render () {
@@ -60,7 +61,7 @@ var Thumbnail = React.createClass({
         </div>;
         var main;
         if (this.props.image) {
-            main = <Lazy placeholder={placeholder}>
+            main = <Lazy offset={this.props.offset} placeholder={placeholder}>
                 <img
                     className={imageClass}
                     style={this.props.round ? {borderRadius: '999em'} : null}
@@ -70,7 +71,7 @@ var Thumbnail = React.createClass({
                     alt={this.props.alt}/>
             </Lazy>;
         } else if (this.props.type === 'video') {
-            main = <Lazy placeholder={placeholder}><VideoApiThumb url={this.props.url} alt={this.props.alt}>
+            main = <Lazy offset={this.props.offset} placeholder={placeholder}><VideoApiThumb url={this.props.url} alt={this.props.alt}>
                 {placeholder}
             </VideoApiThumb>
             </Lazy>;
