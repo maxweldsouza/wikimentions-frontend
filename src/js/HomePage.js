@@ -70,7 +70,7 @@ var HomePage = React.createClass({
                                         slug={featuredVideo.props.slug}
                                         className='secondary'
                                         type={featuredVideo.props.type}>
-                                        <div>
+                                        <div className='home-video-thumb'>
                                             <img src={utils.youtubeThumb(featuredVideo.props.url, 'max')} />
                                         </div>
                                         <h1 className='video-title'>
@@ -91,7 +91,7 @@ var HomePage = React.createClass({
                                                 slug={video2.props.slug}
                                                 className='secondary'
                                                 type={video2.props.type}>
-                                                <div>
+                                                <div className='home-video-thumb'>
                                                     <img src={utils.youtubeThumb(video2.props.url)} />
                                                 </div>
                                                 <strong className='video-title'>
@@ -105,7 +105,7 @@ var HomePage = React.createClass({
                                                 slug={video3.props.slug}
                                                 className='secondary'
                                                 type={video3.props.type}>
-                                                <div>
+                                                <div className='home-video-thumb'>
                                                     <img src={utils.youtubeThumb(video3.props.url)} />
                                                 </div>
                                                 <strong className='video-title'>
@@ -126,34 +126,56 @@ var HomePage = React.createClass({
                             <h2 className='home-section'>Browse Tags</h2>
                             <div className='row'>
                                 <div className='small-12 medium-6 large-4 columns text-center'>
-                                    <a
-                                    href='/tags/Programming'
-                                    className='secondary tag-card'>
-                                    <img src='/assets/images/pexels-photo-90807.jpeg' />
-                                        <span className='label'>Programming</span>
-                                    </a>
+                                    <div className='small-12 columns'>
+                                        <a
+                                        href='/tags/Programming'
+                                        className='secondary tag-card'>
+                                        <img src='/assets/images/pexels-photo-90807.jpeg' />
+                                            <span className='label'>Programming</span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div className='small-12 medium-6 large-4 columns text-center'>
-                                    <a
-                                    href='/tags/Science'
-                                    className='secondary tag-card'>
-                                    <img src='/assets/images/sky-earth-space-working.jpg' />
-                                        <span className='label'>Science</span>
-                                    </a>
+                                    <div className='small-12 columns'>
+                                        <a
+                                        href='/tags/Science'
+                                        className='secondary tag-card'>
+                                        <img src='/assets/images/sky-earth-space-working.jpg' />
+                                            <span className='label'>Science</span>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div className='small-12 medium-6 large-4 columns text-center'>
-                                    <a
-                                    href='/tags/Startups'
-                                    className='secondary tag-card'>
-                                    <img src='/assets/images/pexels-photo.jpg' />
-                                        <span className='label'>Startups</span>
-                                    </a>
+                                    <div className='small-12 columns'>
+                                        <a
+                                        href='/tags/Startups'
+                                        className='secondary tag-card'>
+                                        <img src='/assets/images/pexels-photo.jpg' />
+                                            <span className='label'>Startups</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className='full-width'>
+                    <div className='row'>
+                        <div className='small-12 columns margin-bottom'>
+                            <div className='row'>
+                                <div className='small-12 medium-4 columns'>
+                                        <h2 className='home-section'>Lists</h2>
+                                        <div><a className='secondary' href='/lists/1/best-python-talks'>Best Python Talks</a></div>
+                                </div>
+                                <div className='small-12 medium-8 columns'>
+                                        <h2 className='home-section'>Quotes</h2>
+                                        <blockquote>
+                                            It doesn't matter how beautiful your theory is, it doesn't matter how smart you are. If it doesn't agree with experiment, it's wrong. -<a href='/quotes/116/richard-feynman'>Richard Feynman</a>
+                                        </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className='row'>
                         <div className='small-12 columns margin-bottom'>
                             <h2 className='home-section'>Featured books</h2>

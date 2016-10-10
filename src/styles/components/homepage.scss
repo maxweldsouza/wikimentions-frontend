@@ -2,10 +2,17 @@
     font-size: rem-calc(20px);
 }
 
+.home-video-thumb {
+    border-radius: $global-radius;
+    overflow: hidden;
+}
+
 .home-section {
     font-size: rem-calc(18px);
     font-variant: small-caps;
-    margin-bottom: 35px;
+    font-weight: normal;
+    margin-bottom: $global-margin;
+    margin-top: $global-margin;
     text-align: center;
 }
 
@@ -16,8 +23,6 @@
 }
 
 .person-card {
-    background: $white;
-    border: $global-border;
     display: inline-block;
     margin-bottom: $global-margin;
     padding: 2 * $global-padding;
@@ -27,7 +32,7 @@
 
 .person-card-title {
     display: block;
-    font-size: 20px;
+    font-size: rem-calc(20px);
 }
 
 .person-card-img {
