@@ -19,16 +19,14 @@
 
 .video-title {
     display: inline-block;
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
+    margin-top: .5rem;
 }
 
 .person-card {
-    display: inline-block;
     margin-bottom: $global-margin;
+    margin-top: $global-margin;
     padding: 2 * $global-padding;
     text-align: center;
-    width: 250px;
 }
 
 .person-card-title {

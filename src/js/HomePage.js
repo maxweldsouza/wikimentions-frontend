@@ -146,12 +146,12 @@ var HomePage = React.createClass({
                             <div className='row'>
                                 <div className='small-12 medium-4 columns'>
                                         <h2 className='home-section'>Lists</h2>
-                                        <div><a className='secondary' href='/lists/1/best-python-talks'>Best Python Talks</a></div>
+                                        <div><a href='/lists/1/best-python-talks'>Best Python Talks</a></div>
                                 </div>
                                 <div className='small-12 medium-8 columns'>
                                         <h2 className='home-section'>Quotes</h2>
                                         <blockquote>
-                                            It doesn't matter how beautiful your theory is, it doesn't matter how smart you are. If it doesn't agree with experiment, it's wrong. -<a href='/quotes/116/richard-feynman'>Richard Feynman</a>
+                                            It doesn't matter how beautiful your theory is, it doesn't matter how smart you are. If it doesn't agree with experiment, it's wrong. --<a href='/quotes/116/richard-feynman'>Richard Feynman</a>
                                         </blockquote>
                                 </div>
                             </div>
@@ -203,7 +203,7 @@ var HomePage = React.createClass({
                                                         round={true}
                                                         bordered={true}
                                                         marginBottom={true}
-                                                        displayWidth={200} />
+                                                        displayWidth={120} />
                                                 </span>
                                                 <span className='person-card-title'>{x.props.title}</span>
                                             </Link>
