@@ -36,8 +36,9 @@ var HistoryPage = React.createClass({
         var nodata;
         if (history.length === 0) {
             nodata = <div className='small-12 columns'>
-                <div className='callout warning'>
-                    No more entries.
+                <div className='blankslate'>
+                    <h3>No history</h3>
+                    There is no recorded history for this page.
                 </div>
             </div>;
         }

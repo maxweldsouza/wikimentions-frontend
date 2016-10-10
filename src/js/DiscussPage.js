@@ -40,19 +40,25 @@ var DiscussPage = React.createClass({
         var type = this.props.data.discuss.props.type;
         var discussions = this.props.data.discuss.discussion;
         var nodata;
+        var pagination = <Pagination path={this.props.path} page={this.props.query.page} count={discussions.length}/>;
         if (discussions.length === 0) {
             if (this.props.query.page) {
                 nodata = <div className='small-12 columns'>
-                    <div className='callout warning'>
-                        No more posts !
+                    <div className='blankslate'>
+                        <span className='icon ion-android-chat'/>
+                        <h3>No more posts</h3>
+                        You have reached the end of discussions.
                     </div>
                 </div>;
             } else {
                 nodata = <div className='small-12 columns'>
-                    <div className='callout warning'>
-                        There are no discussions here. You can start one !
+                    <div className='blankslate'>
+                        <span className='icon ion-android-chat'/>
+                        <h3>Discussion Empty</h3>
+                        There are no posts for this page.
                     </div>
                 </div>;
+                pagination = null;
             }
         }
         return (
@@ -95,7 +101,7 @@ var DiscussPage = React.createClass({
                             })}
                             {nodata}
                             <div className='small-12 columns'>
-                                <Pagination path={this.props.path} page={this.props.query.page} count={discussions.length}/>
+                                {pagination}
                             </div>
                             <DiscussReply id={id} loggedin={this.props.loggedin}/>
                         </div>

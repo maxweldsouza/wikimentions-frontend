@@ -13,13 +13,15 @@ var ThingVideoTab = React.createClass({
         var videos = this.props.videos;
         var id = this.props.id;
         var emptyvideos = <div className='card box'>
-            <div className='small-12 columns'>
-            No videos have been added for this author. You can help us by adding some.
+            <div className='blankslate'>
+                <h3>No Videos</h3>
+                No videos have been added for this author. You can help us by adding some.
             </div>
         </div>;
         var nomore = <div className='card box'>
-            <div className='small-12 columns'>
-            No more videos to show.
+            <div className='blankslate'>
+                <h3>End of Videos</h3>
+                There are no more videos to show.
             </div>
         </div>;
         return (

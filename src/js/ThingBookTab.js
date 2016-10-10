@@ -12,13 +12,17 @@ var ThingBookTab = React.createClass({
     render () {
         var books = this.props.books;
         var emptybooks = <div className='card box'>
-            <div className='small-12 columns'>
-            No books have been added for this author. You can help us by adding some.
+            <div className='blankslate'>
+                <span className='icon ion-ios-book'/>
+                <h3>No Books</h3>
+                No books have been added for this author. You can help us by adding some.
             </div>
         </div>;
         var nomore = <div className='card box'>
-            <div className='small-12 columns'>
-            No more books to show.
+            <div className='blankslate'>
+                <span className='icon ion-ios-book'/>
+                <h3>End of items</h3>
+                No more books to show.
             </div>
         </div>;
         return (

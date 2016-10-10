@@ -12,13 +12,17 @@ var ThingMentionTab = React.createClass({
     render () {
         var mentionedby = this.props.mentionedby;
         var nodata = <div className='card box'>
-            <div className='small-12 columns'>
-            No mentions have been added yet. You can help us by adding some.
+            <div className='blankslate'>
+                <span className='icon ion-at'/>
+                <h3>No mentions</h3>
+                No mentions have been added yet. You can help us by adding some.
             </div>
         </div>;
         var nomore = <div className='card box'>
-            <div className='small-12 columns'>
-            No more mentions to show.
+            <div className='blankslate'>
+                <span className='icon ion-at'/>
+                <h3>End of items</h3>
+                There are no more mentions to show.
             </div>
         </div>;
         return (
