@@ -97,7 +97,7 @@ var ListPage = React.createClass({
             <div className='flex-wrapper'>
                 <Helmet
                     title={title}
-                    titleTemplate={'%s - ' + config.name + ' - Blog'}
+                    titleTemplate={'%s - ' + config.name + ' - Lists'}
                     meta={[
                         metaRobots
                     ]}
