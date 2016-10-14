@@ -83,6 +83,10 @@ var ListPage = React.createClass({
         var title = this.props.data.list.title;
         var description = this.props.data.list.description;
         var total = this.props.data.items.total;
+
+        var page = this.props.query.page ? this.props.query.page : 1;
+        var start = (page - 1) * list.length + 1;
+        var end = page * list.length;
         var metaRobots;
         if (total === 0) {
             metaRobots = {'name': 'robots', 'content': 'noindex'};
@@ -114,6 +118,7 @@ var ListPage = React.createClass({
                                     <h1>List - {title}</h1>
                                     {description}
                                     <hr className='no-margin-bottom'/>
+
                                     <div className='margin-bottom'>
                                         {list.map((x) => {
                                             if (x.props.type === 'video') {
@@ -165,6 +170,9 @@ var ListPage = React.createClass({
                                         </div> : null}
                                     </div>
                                     <Pagination path={this.props.path} page={this.props.query.page} count={list.length} total={total}/>
+                                    {list.length > 0 ? <div className='text-right'>
+                                        Showing results {start} to {end} of {total}
+                                    </div> : null}
                                     <h2>Add to list</h2>
                                     <form onSubmit={this.onSubmit}>
                                         {this.state.formMessage ? <div className='callout alert'>

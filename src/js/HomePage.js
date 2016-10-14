@@ -143,6 +143,28 @@ var HomePage = React.createClass({
                 <div className='full-width'>
                     <div className='row'>
                         <div className='small-12 columns margin-bottom'>
+                            <div className='row'>
+                                <div className='small-12 medium-4 columns'>
+                                        <h2 className='home-section'>Lists</h2>
+                                        <div><a href='/lists/1/best-science-books'>Science books</a></div>
+                                        <div><a href='/lists/4/programmers-that-created-programming-languages'>Programmers that created programming languages</a></div>
+                                        <div><a href='/lists/2/best-programming-books'>Programming books</a></div>
+                                        <div><a href='/lists/3/best-programming-talks'>Programming talks</a></div>
+                                </div>
+                                <div className='small-12 medium-8 columns'>
+                                        <h2 className='home-section'>Quotes</h2>
+                                        <blockquote>
+                                            It doesn't matter how beautiful your theory is, it doesn't matter how smart you are. If it doesn't agree with experiment, it's wrong. --<a href='/quotes/116/richard-feynman'>Richard Feynman</a>
+                                        </blockquote>
+                                        <blockquote>
+                                            I would like to die on mars. Just not on impact. --<a href='/quotes/339/elon-musk'>Elon Musk</a>
+                                        </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='small-12 columns margin-bottom'>
                             <h2 className='home-section'>Featured books</h2>
                             <div className='row'>
                                 {books.map((x) => {
