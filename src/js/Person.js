@@ -36,6 +36,22 @@ var Person = React.createClass({
                                         title={this.props.title}
                                         type={this.props.type}
                                         className='secondary card-count'
+                                        tab='videos'>{'Videos '}<span className="badge">{this.props.video_count}</span>{'  '}
+                                    </Link>
+                                    <Link
+                                        id={this.props.id}
+                                        slug={this.props.slug}
+                                        title={this.props.title}
+                                        type={this.props.type}
+                                        className='secondary card-count'
+                                        tab='books'>{'Books '}<span className="badge">{this.props.book_count}</span>{'  '}
+                                    </Link>
+                                    <Link
+                                        id={this.props.id}
+                                        slug={this.props.slug}
+                                        title={this.props.title}
+                                        type={this.props.type}
+                                        className='secondary card-count'
                                         tab='mentioned'>{'Mentions '}<span className="badge">{this.props.mentioned_count}</span>{'  '}
                                     </Link>
                                     <Link
