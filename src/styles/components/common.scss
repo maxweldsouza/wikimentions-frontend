@@ -24,8 +24,8 @@ div {
 
 .full-width {
     width: 100%;
-    padding-top: 4 * $global-padding;
-    padding-bottom: 4 * $global-padding;
+    padding-top: 2 * $global-padding;
+    padding-bottom: 2 * $global-padding;
 
     &.white {
         background: $white;

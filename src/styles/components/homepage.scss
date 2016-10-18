@@ -16,7 +16,7 @@
 .video-title {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), black);
     bottom: 0;
-    color: white;
+    color: $white;
     display: inline-block;
     margin: 0;
     padding: 6px 10px;
@@ -36,7 +36,6 @@
 .person-card {
     margin-bottom: $global-margin;
     margin-top: $global-margin;
-    padding: 2 * $global-padding;
     text-align: center;
 }
 
