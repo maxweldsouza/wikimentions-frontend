@@ -1,31 +1,31 @@
-var config = require('./config');
-var cookies = require('browser-cookies');
-var React = require('react');
-var requests = require('superagent');
-var Snackbar = require('./Snackbar');
-var Input = require('./Input');
+import config from './config';
+import cookies from 'browser-cookies';
+import React from 'react';
+import requests from 'superagent';
+import Snackbar from './Snackbar';
+import Input from './Input';
 
-var Feedback = React.createClass({
+class Feedback extends React.Component {
     getInitialState () {
         return {
             step: 'rate',
             feedback: '',
             email: ''
         };
-    },
+    }
     onChangeText (e) {
-        var temp = {
+        const temp = {
             error: false,
             message: ''
         };
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     onClear (name) {
-        var temp = {};
+        const temp = {};
         temp[name] = '';
         this.setState(temp);
-    },
+    }
     onRate (rate) {
         requests
         .post('/api/v1/feedback')
@@ -47,7 +47,7 @@ var Feedback = React.createClass({
                 });
             }
         });
-    },
+    }
     onFeedback () {
         requests
         .post('/api/v1/feedback')
@@ -66,7 +66,7 @@ var Feedback = React.createClass({
                 });
             }
         });
-    },
+    }
     onEmail () {
         requests
         .post('/api/v1/feedback')
@@ -85,17 +85,17 @@ var Feedback = React.createClass({
                 });
             }
         });
-    },
+    }
     startOver () {
         this.setState({
             step: 'rate'
         });
-    },
+    }
     render () {
-        var main;
+        let main;
         if (this.state.step === 'rate') {
             main = <div style={{textAlign: 'right'}}>
-                {config.name + ' is '}
+                {`${config.name} is `}
                 <span>
                     <button className='button small secondary no-margin-bottom' onClick={this.onRate.bind(null, 'good')}>
                         <i className='ion-checkmark'/> Great
@@ -144,6 +144,6 @@ var Feedback = React.createClass({
         }
         return main;
     }
-});
+}
 
-module.exports = Feedback;
+export default Feedback;

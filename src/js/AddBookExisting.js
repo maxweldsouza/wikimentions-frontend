@@ -1,11 +1,11 @@
-var React = require('react');
-var cookies = require('browser-cookies');
-var requests = require('superagent');
-var Select = require('./Select');
-var Snackbar = require('./Snackbar');
-var SubmitButton = require('./SubmitButton');
+import React from 'react';
+import cookies from 'browser-cookies';
+import requests from 'superagent';
+import Select from './Select';
+import Snackbar from './Snackbar';
+import SubmitButton from './SubmitButton';
 
-var AddBookExisting = React.createClass({
+class AddBookExisting extends React.Component {
     getInitialState () {
         return {
             book_id: '',
@@ -14,14 +14,14 @@ var AddBookExisting = React.createClass({
             bookMessage: '',
             formMessage: ''
         };
-    },
+    }
     onSelect (x) {
         this.setState({
             book_id: x.id
         });
-    },
+    }
     validateForm () {
-        var valid = true;
+        let valid = true;
         if (!this.state.book_id) {
             this.setState({
                 bookValid: false,
@@ -35,7 +35,7 @@ var AddBookExisting = React.createClass({
             });
         }
         return valid;
-    },
+    }
     onSubmit (e) {
         e.preventDefault();
         if (this.validateForm()) {
@@ -43,7 +43,7 @@ var AddBookExisting = React.createClass({
                 submitting: true
             });
             requests
-            .post('/api/v1/thing/' + this.props.id + '/books')
+            .post(`/api/v1/thing/${this.props.id}/books`)
             .type('form')
             .send({
                 book_id: this.state.book_id,
@@ -67,7 +67,7 @@ var AddBookExisting = React.createClass({
                 }
             });
         }
-    },
+    }
     render () {
         return (
             <form onSubmit={this.onSubmit}>
@@ -86,6 +86,6 @@ var AddBookExisting = React.createClass({
             </form>
         );
     }
-});
+}
 
-module.exports = AddBookExisting;
+export default AddBookExisting;

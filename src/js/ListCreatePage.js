@@ -1,26 +1,24 @@
-var React = require('react');
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var cookies = require('browser-cookies');
-var ButtonSelect = require('./ButtonSelect');
-var Snackbar = require('./Snackbar');
-var requests = require('superagent');
-var SubmitButton = require('./SubmitButton');
-var config = require('./config');
-var Restricted = require('./Restricted');
-var Input = require('./Input');
-var LoginModal = require('./LoginModal');
-var SignupModal = require('./SignupModal');
-var IpWarning = require('./IpWarning');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import cookies from 'browser-cookies';
+import ButtonSelect from './ButtonSelect';
+import Snackbar from './Snackbar';
+import requests from 'superagent';
+import SubmitButton from './SubmitButton';
+import config from './config';
+import Restricted from './Restricted';
+import Input from './Input';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
+import IpWarning from './IpWarning';
 
-var HomePage = React.createClass({
-    statics: {
-        resources (appstate) {
-            return {
-                api: []
-            };
-        }
-    },
+class HomePage extends React.Component {
+    static resources (appstate) {
+        return {
+            api: []
+        };
+    }
     getInitialState () {
         return {
             title: this.props.query.title ? this.props.query.title : '',
@@ -32,35 +30,35 @@ var HomePage = React.createClass({
             submitting: false,
             formMessage: ''
         };
-    },
+    }
     componentWillReceiveProps (nextProps) {
         if (nextProps.query.title) {
             this.setState({
                 title: nextProps.query.title
             });
         }
-    },
+    }
     onChangeType (x) {
         this.setState({
             type: x
         });
-    },
+    }
     onChangeText (e) {
-        var temp = {
+        const temp = {
             error: false,
             message: ''
         };
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     onClear (name) {
-        var temp = {};
+        const temp = {};
         temp[name] = '';
         this.setState(temp);
-    },
+    }
     validateForm () {
-        var valid = true;
-        var message;
+        let valid = true;
+        let message;
         if (!this.state.title) {
             this.setState({
                 titleValid: false,
@@ -69,7 +67,7 @@ var HomePage = React.createClass({
             valid = false;
         }
         return valid;
-    },
+    }
     onSubmit (e) {
         e.preventDefault();
         if (this.validateForm()) {
@@ -102,14 +100,14 @@ var HomePage = React.createClass({
                 }
             });
         }
-    },
+    }
     render () {
-        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to create a list.</span>;
+        const loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to create a list.</span>;
         return (
             <span>
                 <Helmet
                     title={'Create list'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'description', 'content': 'Create a new list on WikiMentions'}
                     ]}
@@ -167,6 +165,6 @@ var HomePage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = HomePage;
+export default HomePage;

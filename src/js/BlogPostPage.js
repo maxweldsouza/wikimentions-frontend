@@ -1,32 +1,28 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import _ from 'underscore';
+import config from './config';
+import Navbar from './Navbar';
+import BlogPost from './BlogPost';
 
-var Helmet = require('react-helmet');
-var _ = require('underscore');
-
-var config = require('./config');
-var Navbar = require('./Navbar');
-var BlogPost = require('./BlogPost');
-
-var BlogPostPage = React.createClass({
-    statics: {
-        resources (routeObj) {
-            var slug = routeObj.url.split('/')[1];
-            return {
-                api: [
-                    {
-                        name: 'post',
-                        path: '/api/v1/blogpost/' + slug
-                    }
-                ]
-            };
-        }
-    },
+class BlogPostPage extends React.Component {
+    static resources (routeObj) {
+        const slug = routeObj.url.split('/')[1];
+        return {
+            api: [
+                {
+                    name: 'post',
+                    path: `/api/v1/blogpost/${slug}`
+                }
+            ]
+        };
+    }
     render () {
         return (
             <div className='flex-wrapper'>
                 <Helmet
                     title={this.props.data.post.title}
-                    titleTemplate={'%s - ' + config.name + ' - Blog'}
+                    titleTemplate={`%s - ${config.name} - Blog`}
                     meta={[
                         {name: 'description', 'content': ''},
                         {name: 'twitter:card', content: 'summary'},
@@ -72,6 +68,6 @@ var BlogPostPage = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = BlogPostPage;
+export default BlogPostPage;

@@ -1,23 +1,22 @@
-var React = require('react');
-var Modal = require('./Modal');
+import React from 'react';
+import Modal from './Modal';
+import Signup from './Signup';
 
-var Signup = require('./Signup');
-
-var SignupModal = React.createClass({
+class SignupModal extends React.Component {
     getInitialState () {
         return {
             modalIsOpen: false
         };
-    },
+    }
     onOpenModal (e) {
         this.setState({
             modalIsOpen: true
         });
         e.preventDefault();
-    },
+    }
     closeModal () {
         this.setState({modalIsOpen: false});
-    },
+    }
     render () {
         return (
             <span>
@@ -35,6 +34,6 @@ var SignupModal = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = SignupModal;
+export default SignupModal;

@@ -1,13 +1,13 @@
-var React = require('react');
-var cookies = require('browser-cookies');
-var Xsrf = require('./Xsrf');
-var SubmitButton = require('./SubmitButton');
-var requests = require('superagent');
-var Snackbar = require('./Snackbar');
-var Input = require('./Input');
-var store = require('store');
+import React from 'react';
+import cookies from 'browser-cookies';
+import Xsrf from './Xsrf';
+import SubmitButton from './SubmitButton';
+import requests from 'superagent';
+import Snackbar from './Snackbar';
+import Input from './Input';
+import store from 'store';
 
-var Signup = React.createClass({
+class Signup extends React.Component {
     getInitialState () {
         return {
             submitting: false,
@@ -24,25 +24,25 @@ var Signup = React.createClass({
             showPassword: false,
             formError: false
         };
-    },
+    }
     onOpenModal () {
         this.setState({
             modalIsOpen: true
         });
-    },
+    }
     closeModal () {
         this.setState({modalIsOpen: false});
-    },
+    }
     onChangeText (e) {
-        var temp = {};
+        const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     onClear (name) {
-        var temp = {};
+        const temp = {};
         temp[name] = '';
         this.setState(temp);
-    },
+    }
     signup (e) {
         e.preventDefault();
         if (this.validateForm()) {
@@ -71,7 +71,7 @@ var Signup = React.createClass({
                     store.set('level', res.body.level);
                     store.set('id', res.body.id);
 
-                    var path = window.location.pathname + window.location.search;
+                    let path = window.location.pathname + window.location.search;
                     if (path === '/signup') {
                         path = '/';
                     }
@@ -80,19 +80,19 @@ var Signup = React.createClass({
                 }
             });
         }
-    },
+    }
     showPassword () {
         this.setState({
             showPassword: true
         });
-    },
+    }
     hidePassword () {
         this.setState({
             showPassword: false
         });
-    },
+    }
     validateForm () {
-        var valid = true;
+        let valid = true;
         if (/^[a-zA-Z-_'.0-9]{3,32}$/.test(this.state.username)) {
             this.setState({
                 usernameValid: true,
@@ -139,7 +139,7 @@ var Signup = React.createClass({
             formError: !valid
         });
         return valid;
-    },
+    }
     render () {
         return (
             <form onSubmit={this.signup}>
@@ -196,6 +196,6 @@ var Signup = React.createClass({
             </form>
         );
     }
-});
+}
 
-module.exports = Signup;
+export default Signup;

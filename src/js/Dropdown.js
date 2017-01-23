@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var Dropdown = React.createClass({
+class Dropdown extends React.Component {
     render () {
         return (
             <span style={{display: this.props.isOpen ? 'inline' : 'none'}} aria-haspopup={true} aria-expanded={this.props.isOpen}>
@@ -14,6 +14,6 @@ var Dropdown = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = Dropdown;
+export default Dropdown;

@@ -1,31 +1,33 @@
 // Include gulp
-var gulp = require('gulp');
-var checkPages = require('check-pages');
+import gulp from 'gulp';
+
+import checkPages from 'check-pages';
 
 // Include Our Plugins
-var minifyhtml = require('gulp-htmlmin');
-var mocha = require('gulp-mocha');
-var eslint = require('gulp-eslint');
-var scsslint = require('gulp-scss-lint');
-var sourcemaps = require('gulp-sourcemaps');
-var sass = require('gulp-sass');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var htmlprocessor = require('gulp-processhtml');
-var autoprefixer = require('gulp-autoprefixer');
-var minifycss = require('gulp-clean-css');
-var browserify = require('browserify');
-var babelify = require('babelify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var gulpif = require('gulp-if');
-var uncache = require('gulp-uncache');
-var git = require('git-rev');
-var fs = require('fs');
+import minifyhtml from 'gulp-htmlmin';
 
-var production = process.env.NODE_ENV === 'production';
+import mocha from 'gulp-mocha';
+import eslint from 'gulp-eslint';
+import scsslint from 'gulp-scss-lint';
+import sourcemaps from 'gulp-sourcemaps';
+import sass from 'gulp-sass';
+import uglify from 'gulp-uglify';
+import rename from 'gulp-rename';
+import htmlprocessor from 'gulp-processhtml';
+import autoprefixer from 'gulp-autoprefixer';
+import minifycss from 'gulp-clean-css';
+import browserify from 'browserify';
+import babelify from 'babelify';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import gulpif from 'gulp-if';
+import uncache from 'gulp-uncache';
+import git from 'git-rev';
+import fs from 'fs';
 
-var sassPaths = [
+const production = process.env.NODE_ENV === 'production';
+
+const sassPaths = [
     'node_modules/foundation-sites/scss',
     'node_modules/motion-ui/src'
 ];
@@ -33,12 +35,12 @@ var sassPaths = [
 // Javascript
 global.assert = require('chai').assert;
 
-gulp.task('git-rev', function () {
-    git.long(function (str) {
+gulp.task('git-rev', () => {
+    git.long(str => {
         if (production) {
-            var GIT_REV_HASH = str;
-            console.log('git-rev: ' + GIT_REV_HASH);
-            fs.writeFile('.GIT_REV_HASH', GIT_REV_HASH, function (err) {
+            const GIT_REV_HASH = str;
+            console.log(`git-rev: ${GIT_REV_HASH}`);
+            fs.writeFile('.GIT_REV_HASH', GIT_REV_HASH, err => {
                 if (err) {
                     console.log(err);
                 }
@@ -48,27 +50,21 @@ gulp.task('git-rev', function () {
     return;
 });
 
-gulp.task('js-tests', function () {
-    return gulp.src('src/tests/*.js', {read: false})
-        .pipe(mocha({
-            reporter: 'nyan',
-            ui: 'qunit'
-        }));
-});
+gulp.task('js-tests', () => gulp.src('src/tests/*.js', {read: false})
+    .pipe(mocha({
+        reporter: 'nyan',
+        ui: 'qunit'
+    })));
 
-gulp.task('es-lint', function () {
-    return gulp.src('src/js/*.js')
-        .pipe(eslint())
-        .pipe(eslint.format());
-});
+gulp.task('es-lint', () => gulp.src('src/js/*.js')
+    .pipe(eslint())
+    .pipe(eslint.format()));
 
-gulp.task('es-lint-tests', function () {
-    return gulp.src('src/tests/*.js')
-        .pipe(eslint())
-        .pipe(eslint.format());
-});
+gulp.task('es-lint-tests', () => gulp.src('src/tests/*.js')
+    .pipe(eslint())
+    .pipe(eslint.format()));
 
-var plugins = [
+const plugins = [
     // react
     'syntax-flow',
     'syntax-jsx',
@@ -76,83 +72,74 @@ var plugins = [
     'transform-react-jsx',
     'transform-react-display-name',
     'transform-react-constant-elements',
-    'transform-object-rest-spread'
+    'transform-object-rest-spread',
+    'transform-class-properties'
 ];
 if (production) {
     plugins.push('transform-react-inline-elements');
 }
 
-gulp.task('browserify', function () {
-    return browserify({
-        debug: !production,
-        fullPaths: true, // set true to use disc to profile module sizes
-        entries: ['src/js/client.js']
-    })
-    .transform(babelify.configure({
-        plugins: plugins,
-        presets: ['es2015', 'react']
-    }))
-    .bundle()
-    .on('error', function (err) {
-        console.log('Error: ' + err.message);
-    })
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe(gulp.dest('src/assets/js'))
-    .pipe(gulpif(production, uglify()))
-    .pipe(gulpif(production, gulp.dest('dist/assets/js')));
-});
+gulp.task('browserify', () => browserify({
+    debug: !production,
+    fullPaths: true, // set true to use disc to profile module sizes
+    entries: ['src/js/client.js']
+})
+.transform(babelify.configure({
+    plugins,
+    presets: ['es2015', 'react']
+}))
+.bundle()
+.on('error', err => {
+    console.log(`Error: ${err.message}`);
+})
+.pipe(source('bundle.js'))
+.pipe(buffer())
+.pipe(gulp.dest('src/assets/js'))
+.pipe(gulpif(production, uglify()))
+.pipe(gulpif(production, gulp.dest('dist/assets/js'))));
 
 // Scss styles
-gulp.task('scss-lint', function () {
-    return gulp.src('src/styles/*.scss')
-         .pipe(scsslint({
-             'config': 'scsslint.yml'
-         }));
-});
+gulp.task('scss-lint', () => gulp.src('src/styles/*.scss')
+     .pipe(scsslint({
+         'config': 'scsslint.yml'
+     })));
 
-gulp.task('compile-scss', function () {
-    return gulp.src('src/styles/main.scss')
-    .pipe(sass({
-        includePaths: sassPaths
-    }))
-    .pipe(gulp.dest('src/assets/css'))
-    .pipe(autoprefixer())
-    .pipe(gulp.dest('src/assets/css'));
-});
+gulp.task('compile-scss', () => gulp.src('src/styles/main.scss')
+.pipe(sass({
+    includePaths: sassPaths
+}))
+.pipe(gulp.dest('src/assets/css'))
+.pipe(autoprefixer())
+.pipe(gulp.dest('src/assets/css')));
 
-gulp.task('compile-scss-production', function () {
-    return gulp.src('src/styles/main.scss')
-    .pipe(sass({
-        includePaths: sassPaths
-    }))
-    .pipe(autoprefixer())
-    .pipe(minifycss())
-    .pipe(rename('main.css'))
-    .pipe(gulp.dest('src/assets/css'));
-});
+gulp.task('compile-scss-production', () => gulp.src('src/styles/main.scss')
+.pipe(sass({
+    includePaths: sassPaths
+}))
+.pipe(autoprefixer())
+.pipe(minifycss())
+.pipe(rename('main.css'))
+.pipe(gulp.dest('src/assets/css')));
 
 // Html
-gulp.task('preprocess-html', ['browserify', 'compile-scss-production'], function () {
-    return gulp.src('src/index.html')
-    .pipe(htmlprocessor({}))
-    .pipe(uncache({
-        append: 'hash',
-        rename: true,
-        srcDir: 'dist',
-        template: '{{path}}{{name}}-{{append}}.{{extension}}',
-        distDir: 'dist'
-    }))
-    .pipe(minifyhtml({
-        collapseWhitespace: true,
-        removeComments: true,
-        minifyJS: true
-    }))
-    .pipe(gulp.dest('dist'));
-});
+gulp.task('preprocess-html', ['browserify', 'compile-scss-production'], () => gulp.src('src/index.html')
+.pipe(htmlprocessor({}))
+.pipe(uncache({
+    append: 'hash',
+    rename: true,
+    srcDir: 'dist',
+    template: '{{path}}{{name}}-{{append}}.{{extension}}',
+    distDir: 'dist'
+}))
+.pipe(minifyhtml({
+    collapseWhitespace: true,
+    removeComments: true,
+    minifyJS: true
+}))
+.pipe(gulp.dest('dist')));
 
 // Copy over external libraries
-gulp.task('copy-external', function () {
+gulp.task('copy-external', () => {
     gulp.src('src/assets/**/*')
     .pipe(gulp.dest('dist/assets'));
     gulp.src('src/js/**/*')
@@ -162,7 +149,7 @@ gulp.task('copy-external', function () {
 });
 
 // Watch Files For Changes
-gulp.task('watch', function () {
+gulp.task('watch', () => {
     gulp.watch('src/js/*.js',
         ['browserify', 'js-tests']);
     gulp.watch('src/tests/*.js',
@@ -173,8 +160,8 @@ gulp.task('watch', function () {
         ['browserify']);
 });
 
-gulp.task('checkDev', [], function (callback) {
-    var options = {
+gulp.task('checkDev', [], callback => {
+    const options = {
         pageUrls: [
             'http://localhost'
         ],
@@ -196,8 +183,8 @@ gulp.task('checkDev', [], function (callback) {
 });
 
 // Default Task
-var devtasks = ['git-rev', 'js-tests', 'browserify', 'compile-scss', 'copy-external', 'watch'];
-var prodtasks = ['git-rev', 'js-tests', 'browserify', 'compile-scss-production', 'copy-external', 'preprocess-html'];
+const devtasks = ['git-rev', 'js-tests', 'browserify', 'compile-scss', 'copy-external', 'watch'];
+const prodtasks = ['git-rev', 'js-tests', 'browserify', 'compile-scss-production', 'copy-external', 'preprocess-html'];
 if (production) {
     gulp.task('default', prodtasks);
 } else {

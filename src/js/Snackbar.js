@@ -1,32 +1,32 @@
-var $ = require('jquery');
-var _ = require('underscore');
-var isNode = require('./isNode');
+import $ from 'jquery';
+import _ from 'underscore';
+import isNode from './isNode';
 
-var Snackbar = function () {
-    var visible = false;
+const Snackbar = (() => {
+    let visible = false;
     if (isNode.isBrowser()) {
         $('body').append('<div class="snackbar" id="snackbar"><span class="snackbar-message" id="snackbar-message"></span></div>');
     }
-    var i = 0;
-    return function (options) {
-        var defaults = {
+    let i = 0;
+    return options => {
+        let defaults = {
             animationDuration: 200,
             duration: 3000,
             message: ''
         };
         defaults = _.extend(defaults, options);
 
-        var message = '<span class="snackbar-message">' + defaults.message + '</span>';
+        const message = `<span class="snackbar-message">${defaults.message}</span>`;
         i = i + 1;
-        var j = i;
+        const j = i;
         if (visible) {
             $('#snackbar').removeClass('showing');
             visible = false;
-            setTimeout(function () {
+            setTimeout(() => {
                 $('.snackbar-message').replaceWith(message);
                 $('#snackbar').addClass('showing');
                 visible = true;
-                setTimeout(function () {
+                setTimeout(() => {
                     if (i === j) {
                         $('#snackbar').removeClass('showing');
                         visible = false;
@@ -37,7 +37,7 @@ var Snackbar = function () {
             $('.snackbar-message').replaceWith(message);
             $('#snackbar').addClass('showing');
             visible = true;
-            setTimeout(function () {
+            setTimeout(() => {
                 if (i === j) {
                     $('#snackbar').removeClass('showing');
                     visible = false;
@@ -45,7 +45,7 @@ var Snackbar = function () {
             }, defaults.duration);
         }
     };
-}();
+})();
 
 
-module.exports = Snackbar;
+export default Snackbar;

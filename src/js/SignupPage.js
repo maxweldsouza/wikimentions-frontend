@@ -1,31 +1,28 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import cookies from 'browser-cookies';
+import Xsrf from './Xsrf';
+import Signup from './Signup';
+import config from './config';
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var cookies = require('browser-cookies');
-var Xsrf = require('./Xsrf');
-var Signup = require('./Signup');
-var config = require('./config');
-
-var SignupPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            return {
-                api: [
-                    {
-                        name: 'signup',
-                        path: '/api/v1/signup'
-                    }
-                ]
-            };
-        }
-    },
+class SignupPage extends React.Component {
+    static resources (appstate) {
+        return {
+            api: [
+                {
+                    name: 'signup',
+                    path: '/api/v1/signup'
+                }
+            ]
+        };
+    }
     render () {
         return (
             <span>
                 <Helmet
                     title={'Signup'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
@@ -47,6 +44,6 @@ var SignupPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = SignupPage;
+export default SignupPage;

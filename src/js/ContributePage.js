@@ -1,35 +1,32 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import _ from 'underscore';
+import config from './config';
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var _ = require('underscore');
-var config = require('./config');
-
-var ContributePage = React.createClass({
-    statics: {
-        resources (appstate) {
-            return {
-                api: [
-                ]
-            };
-        }
-    },
+class ContributePage extends React.Component {
+    static resources (appstate) {
+        return {
+            api: [
+            ]
+        };
+    }
     getInitialState () {
         return {
             tab: 'edits'
         };
-    },
+    }
     changeTab (tab) {
         this.setState({
-            tab: tab
+            tab
         });
-    },
+    }
     render () {
         return (
             <span>
                 <Helmet
                     title={'Contribute'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -92,6 +89,6 @@ var ContributePage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = ContributePage;
+export default ContributePage;

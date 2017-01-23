@@ -1,26 +1,26 @@
-var React = require('react');
-var cookies = require('browser-cookies');
-var isNode = require('./isNode');
+import React from 'react';
+import cookies from 'browser-cookies';
+import isNode from './isNode';
 
-var Xsrf = React.createClass({
+class Xsrf extends React.Component {
     getInitialState () {
         return {
             xsrf: ''
         };
-    },
+    }
     componentWillMount () {
         if (isNode.isBrowser()) {
-            var cookie = cookies.get('_xsrf');
+            const cookie = cookies.get('_xsrf');
             this.setState({
                 xsrf: cookie
             });
         }
-    },
+    }
     render () {
         return (
             <input type='hidden' name='_xsrf' value={this.state.xsrf}/>
         );
     }
-});
+}
 
-module.exports = Xsrf;
+export default Xsrf;

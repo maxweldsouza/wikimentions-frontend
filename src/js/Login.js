@@ -1,13 +1,13 @@
-var React = require('react');
-var cookies = require('browser-cookies');
-var Xsrf = require('./Xsrf');
-var SubmitButton = require('./SubmitButton');
-var requests = require('superagent');
-var Snackbar = require('./Snackbar');
-var store = require('store');
-var Input = require('./Input');
+import React from 'react';
+import cookies from 'browser-cookies';
+import Xsrf from './Xsrf';
+import SubmitButton from './SubmitButton';
+import requests from 'superagent';
+import Snackbar from './Snackbar';
+import store from 'store';
+import Input from './Input';
 
-var Login = React.createClass({
+class Login extends React.Component {
     getInitialState () {
         return {
             submitting: false,
@@ -15,17 +15,17 @@ var Login = React.createClass({
             username: '',
             password: ''
         };
-    },
+    }
     onChangeText (e) {
-        var temp = {};
+        const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     onClear (name) {
-        var temp = {};
+        const temp = {};
         temp[name] = '';
         this.setState(temp);
-    },
+    }
     login (e) {
         e.preventDefault();
         this.setState({
@@ -59,7 +59,7 @@ var Login = React.createClass({
                 store.set('level', res.body.level);
                 store.set('id', res.body.id);
 
-                var path = window.location.pathname + window.location.search;
+                let path = window.location.pathname + window.location.search;
                 if (path === '/login') {
                     path = '/';
                 }
@@ -67,7 +67,7 @@ var Login = React.createClass({
                 Mentions.route(path);
             }
         });
-    },
+    }
     render () {
         return (
             <form onSubmit={this.login}>
@@ -98,6 +98,6 @@ var Login = React.createClass({
             </form>
         );
     }
-});
+}
 
-module.exports = Login;
+export default Login;

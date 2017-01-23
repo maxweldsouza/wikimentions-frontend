@@ -1,14 +1,14 @@
-var cookies = require('browser-cookies');
-var LoginModal = require('./LoginModal');
-var MarkdownInput = require('./MarkdownInput');
-var React = require('react');
-var requests = require('superagent');
-var Restricted = require('./Restricted');
-var SignupModal = require('./SignupModal');
-var Snackbar = require('./Snackbar');
-var SubmitButton = require('./SubmitButton');
+import cookies from 'browser-cookies';
+import LoginModal from './LoginModal';
+import MarkdownInput from './MarkdownInput';
+import React from 'react';
+import requests from 'superagent';
+import Restricted from './Restricted';
+import SignupModal from './SignupModal';
+import Snackbar from './Snackbar';
+import SubmitButton from './SubmitButton';
 
-var DiscussReply = React.createClass({
+class DiscussReply extends React.Component {
     getInitialState () {
         return {
             content: '',
@@ -16,12 +16,12 @@ var DiscussReply = React.createClass({
             preview: false,
             formMessage: ''
         };
-    },
+    }
     onChangeText (e) {
-        var temp = {};
+        const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     onSubmit (e) {
         e.preventDefault();
         if (!this.state.content) {
@@ -34,7 +34,7 @@ var DiscussReply = React.createClass({
             submitting: true
         });
         requests
-        .post('/api/v1/discuss/' + this.props.id)
+        .post(`/api/v1/discuss/${this.props.id}`)
         .type('form')
         .send({
             content: this.state.content,
@@ -58,9 +58,9 @@ var DiscussReply = React.createClass({
                 Mentions.route(window.location.pathname + window.location.search);
             }
         });
-    },
+    }
     render () {
-        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to post a message.</span>;
+        const loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to post a message.</span>;
         return (
             <form onSubmit={this.onSubmit} className='small-12 columns'>
                 <Restricted
@@ -87,6 +87,6 @@ var DiscussReply = React.createClass({
             </form>
         );
     }
-});
+}
 
-module.exports = DiscussReply;
+export default DiscussReply;

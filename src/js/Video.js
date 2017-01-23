@@ -1,12 +1,12 @@
-var React = require('react');
-var parseUrl = require('url-parse');
-var Link = require('./Link');
-var Thumbnail = require('./Thumbnail');
+import React from 'react';
+import parseUrl from 'url-parse';
+import Link from './Link';
+import Thumbnail from './Thumbnail';
 import Lazy from 'react-lazyload';
 
-var Video = React.createClass({
+class Video extends React.Component {
     render () {
-        var parsed = parseUrl(this.props.url);
+        const parsed = parseUrl(this.props.url);
         return (
             <div className='card box'>
                 <div className='small-12 columns'>
@@ -31,7 +31,7 @@ var Video = React.createClass({
                                 className='card-title'
                                 slug={this.props.slug}
                                 type='video'>{this.props.title}</Link>
-                            <div>{'[' + parsed.hostname + ']'}</div>
+                            <div>{`[${parsed.hostname}]`}</div>
                             <div className='row'>
                                 <div className='columns'>
                                     <Link
@@ -58,6 +58,6 @@ var Video = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Video;
+export default Video;

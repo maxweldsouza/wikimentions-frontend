@@ -1,20 +1,20 @@
-var React = require('react');
-var queryString = require('query-string');
-var parseUrl = require('url-parse');
-var requests = require('superagent');
-var config = require('./config');
-var moment = require('moment');
-var utils = require('./utils');
+import React from 'react';
+import queryString from 'query-string';
+import parseUrl from 'url-parse';
+import requests from 'superagent';
+import config from './config';
+import moment from 'moment';
+import utils from './utils';
 
-var humanizeDuration = function (ptduration) {
-    var ms = moment.duration(ptduration).asMilliseconds();
+const humanizeDuration = ptduration => {
+    const ms = moment.duration(ptduration).asMilliseconds();
     if (ms >= 3600000) {
         return moment.utc(ms).format('h:mm:ss');
     }
     return moment.utc(ms).format('m:ss');
 };
 
-var VideoApiThumb = React.createClass({
+class VideoApiThumb extends React.Component {
     getInitialState () {
         return {
             thumb: '',
@@ -22,17 +22,17 @@ var VideoApiThumb = React.createClass({
             height: 90,
             duration: ''
         };
-    },
+    }
     componentDidMount () {
-        var parsed = parseUrl(this.props.url);
-        var videoId;
+        const parsed = parseUrl(this.props.url);
+        let videoId;
         if (this.state.thumb) {
             return;
         }
         if (utils.isYoutubeUrl(this.props.url)) {
-            var queryObject = queryString.parse(parsed.query);
+            const queryObject = queryString.parse(parsed.query);
             videoId = queryObject.v;
-            requests.get('https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet&fields=items(contentDetails/duration,snippet/thumbnails/default)&id=' + videoId + '&key=' + config.keys.youtube).end((err, res) => {
+            requests.get(`https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet&fields=items(contentDetails/duration,snippet/thumbnails/default)&id=${videoId}&key=${config.keys.youtube}`).end((err, res) => {
                 if (err) {
                     return;
                 }
@@ -48,7 +48,7 @@ var VideoApiThumb = React.createClass({
                 }
             });
         }
-    },
+    }
     render () {
         if (this.state.thumb) {
             return <span className='video-duration-container'>
@@ -58,6 +58,6 @@ var VideoApiThumb = React.createClass({
         }
         return this.props.children;
     }
-});
+}
 
-module.exports = VideoApiThumb;
+export default VideoApiThumb;

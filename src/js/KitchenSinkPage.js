@@ -1,34 +1,31 @@
-var React = require('react');
+import React from 'react';
+import ButtonSelect from './ButtonSelect';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import Comment from './Comment';
+import _ from 'underscore';
+import DiscussReply from './DiscussReply';
+import PageBar from './PageBar';
+import config from './config';
+import AdminOnly from './AdminOnly';
+import Thumbnail from './Thumbnail';
+import SubmitButton from './SubmitButton';
+import Select from './Select';
+import Input from './Input';
 
-var ButtonSelect = require('./ButtonSelect');
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var Comment = require('./Comment');
-var _ = require('underscore');
-var DiscussReply = require('./DiscussReply');
-var PageBar = require('./PageBar');
-var config = require('./config');
-var AdminOnly = require('./AdminOnly');
-var Thumbnail = require('./Thumbnail');
-var SubmitButton = require('./SubmitButton');
-var Select = require('./Select');
-var Input = require('./Input');
-
-var KitchenSinkPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            return {
-                api: [
-                ]
-            };
-        }
-    },
+class KitchenSinkPage extends React.Component {
+    static resources (appstate) {
+        return {
+            api: [
+            ]
+        };
+    }
     render () {
         return (
             <span>
                 <Helmet
                     title={'Kitchen Sink'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -131,7 +128,7 @@ var KitchenSinkPage = React.createClass({
                                     <label>Search</label>
                                     <Select
                                         name='book_id'
-                                        onSelectValue={function () {}}
+                                        onSelectValue={() => {}}
                                         types={['book']}
                                         valid={true}
                                         message={''}
@@ -171,6 +168,6 @@ var KitchenSinkPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = KitchenSinkPage;
+export default KitchenSinkPage;

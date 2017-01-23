@@ -1,41 +1,41 @@
-var _ = require('underscore');
-var AddMention = require('./AddMention');
-var AddVideo = require('./AddVideo');
-var BlogPage = require('./BlogPage');
-var BlogPostPage = require('./BlogPostPage');
-var BugPage = require('./BugPage');
-var ListCreatePage = require('./ListCreatePage');
-var ListPage = require('./ListPage');
-var ContentPage = require('./ContentPage');
-var ContributePage = require('./ContributePage');
-var CreatePage = require('./CreatePage');
-var DiscussPage = require('./DiscussPage');
-var EditPage = require('./EditPage');
-var FeedbackPage = require('./FeedbackPage');
-var HistoryPage = require('./HistoryPage');
-var HomePage = require('./HomePage');
-var isNode = require('./isNode');
-var KitchenSinkPage = require('./KitchenSinkPage');
-var LoginPage = require('./LoginPage');
-var MaintenancePage = require('./MaintenancePage');
-var moment = require('moment');
-var parallelRequest = require('./parallelRequest');
-var ProfilePage = require('./ProfilePage');
-var queryString = require('query-string');
-var QuotesPage = require('./QuotesPage');
-var RecentChangesPage = require('./RecentChangesPage');
-var RecentDiscussionsPage = require('./RecentDiscussionsPage');
-var request = require('superagent');
-var SearchPage = require('./SearchPage');
-var SignupPage = require('./SignupPage');
-var Snackbar = require('./Snackbar');
-var Spinner = require('./Spinner');
-var TagPage = require('./TagPage');
-var ThingPage = require('./ThingPage');
-var VideoPage = require('./VideoPage');
+import _ from 'underscore';
+import AddMention from './AddMention';
+import AddVideo from './AddVideo';
+import BlogPage from './BlogPage';
+import BlogPostPage from './BlogPostPage';
+import BugPage from './BugPage';
+import ListCreatePage from './ListCreatePage';
+import ListPage from './ListPage';
+import ContentPage from './ContentPage';
+import ContributePage from './ContributePage';
+import CreatePage from './CreatePage';
+import DiscussPage from './DiscussPage';
+import EditPage from './EditPage';
+import FeedbackPage from './FeedbackPage';
+import HistoryPage from './HistoryPage';
+import HomePage from './HomePage';
+import isNode from './isNode';
+import KitchenSinkPage from './KitchenSinkPage';
+import LoginPage from './LoginPage';
+import MaintenancePage from './MaintenancePage';
+import moment from 'moment';
+import parallelRequest from './parallelRequest';
+import ProfilePage from './ProfilePage';
+import queryString from 'query-string';
+import QuotesPage from './QuotesPage';
+import RecentChangesPage from './RecentChangesPage';
+import RecentDiscussionsPage from './RecentDiscussionsPage';
+import request from 'superagent';
+import SearchPage from './SearchPage';
+import SignupPage from './SignupPage';
+import Snackbar from './Snackbar';
+import Spinner from './Spinner';
+import TagPage from './TagPage';
+import ThingPage from './ThingPage';
+import VideoPage from './VideoPage';
 
-var validateResources = function (resources) {
-    _.map(resources.api, function (x) {
+const validateResources = resources => {
+    _.map(resources.api, x => {
         if (!x.path) {
             throw new Error('resource path is not defined');
         }
@@ -45,11 +45,11 @@ var validateResources = function (resources) {
     });
 };
 
-var getComponent = function (routeObj) {
-    var parts = routeObj.url.split('?');
-    var x = parts[0];
-    var query = parts[1];
-    var componentName;
+const getComponent = routeObj => {
+    const parts = routeObj.url.split('?');
+    const x = parts[0];
+    const query = parts[1];
+    let componentName;
     routeObj.query = queryString.parse(query);
     routeObj.path = x;
     if (x === '') {
@@ -152,22 +152,19 @@ var getComponent = function (routeObj) {
     return routeObj;
 };
 
-var clientSide = function () {
-    return typeof window !== 'undefined';
-}();
+const clientSide = (() => typeof window !== 'undefined')();
 
-var getResources = function (routeObj, beforeUpdate) {
-    var Component = require('./' + routeObj.component);
-    var resources = Component.resources(routeObj);
+const getResources = (routeObj, beforeUpdate) => {
+    const Component = require(`./${routeObj.component}`);
+    console.log(Component.default.resources);
+    const resources = Component.default.resources(routeObj);
     validateResources(resources);
-    var names = _.map(resources.api, function (x) {
-        return x.name;
-    });
-    var paths = _.map(resources.api, (x) => {
+    const names = _.map(resources.api, x => x.name);
+    const paths = _.map(resources.api, (x) => {
         return routeObj.baseUrl + x.path;
     });
 
-    var apidata = {};
+    const apidata = {};
     parallelRequest.get(
         paths,
         (err, res) => {
@@ -177,9 +174,9 @@ var getResources = function (routeObj, beforeUpdate) {
                     message: err.message
                 };
             } else {
-                var timestamps = [];
-                var etags = [];
-                for (var i = 0; i < names.length; i++) {
+                const timestamps = [];
+                const etags = [];
+                for (let i = 0; i < names.length; i++) {
                     apidata[names[i]] = res[i].body;
                     if (res[i].body.last_modified) {
                         timestamps.push(moment(res[i].body.last_modified));
@@ -199,7 +196,7 @@ var getResources = function (routeObj, beforeUpdate) {
     return routeObj;
 };
 
-var Router = {
+const Router = {
     baseUrl: '',
     data: {},
     route (routeObj) {
@@ -221,4 +218,4 @@ var Router = {
     }
 };
 
-module.exports = Router;
+export default Router;

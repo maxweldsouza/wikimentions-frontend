@@ -1,19 +1,19 @@
-var _ = require('underscore');
-var cookies = require('browser-cookies');
-var Dropdown = require('./Dropdown');
-var Link = require('./Link');
-var parseUrl = require('url-parse');
-var React = require('react');
-var requests = require('superagent');
-var Snackbar = require('./Snackbar');
-var Thumbnail = require('./Thumbnail');
+import _ from 'underscore';
+import cookies from 'browser-cookies';
+import Dropdown from './Dropdown';
+import Link from './Link';
+import parseUrl from 'url-parse';
+import React from 'react';
+import requests from 'superagent';
+import Snackbar from './Snackbar';
+import Thumbnail from './Thumbnail';
 
-var Mention = React.createClass({
+class Mention extends React.Component {
     getInitialState () {
         return {
             dropdownIsOpen: false
         };
-    },
+    }
     removeMention () {
         requests
         .delete('/api/v1/mentions')
@@ -34,23 +34,25 @@ var Mention = React.createClass({
                 Mentions.route(window.location.pathname + window.location.search);
             }
         });
-    },
+    }
     openDropdown () {
         this.setState({
             dropdownIsOpen: true
         });
-    },
+    }
     closeDropdown () {
         this.setState({
             dropdownIsOpen: false
         });
-    },
+    }
     render () {
-        var icon, secondaryIcon;
-        var description;
+        let icon;
+        let secondaryIcon;
+        let description;
 
-        var main, secondary;
-        var inorby;
+        let main;
+        let secondary;
+        let inorby;
         if (this.props.type === 'person') {
             if (this.props.mentioned) {
                 main = this.props.mentioned;
@@ -92,7 +94,7 @@ var Mention = React.createClass({
             icon = 'ion-person';
         }
 
-        var parsed;
+        let parsed;
         if (this.props.reference) {
             parsed = parseUrl(this.props.reference);
         }
@@ -185,7 +187,6 @@ var Mention = React.createClass({
             </div>
         );
     }
-});
+}
 
-
-module.exports = Mention;
+export default Mention;

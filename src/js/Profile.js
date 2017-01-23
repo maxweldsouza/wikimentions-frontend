@@ -1,24 +1,23 @@
-var React = require('react');
-var cookies = require('browser-cookies');
+import React from 'react';
+import cookies from 'browser-cookies';
+import ChangePassword from './ChangePassword';
+import DeleteAccount from './DeleteAccount';
+import EditProfile from './EditProfile';
+import Markdown from './Markdown';
 
-var ChangePassword = require('./ChangePassword');
-var DeleteAccount = require('./DeleteAccount');
-var EditProfile = require('./EditProfile');
-var Markdown = require('./Markdown');
-
-var Profile = React.createClass({
+class Profile extends React.Component {
     getInitialState () {
         return {
             tab: 'Profile'
         };
-    },
+    }
     changeTab (tab) {
         this.setState({
-            tab: tab
+            tab
         });
-    },
+    }
     render () {
-        var tabs = ['Profile', 'Change Password', 'Delete Account'];
+        const tabs = ['Profile', 'Change Password', 'Delete Account'];
         return (
             <div className='row'>
                 <div className='small-12 large-3 columns'>
@@ -46,6 +45,6 @@ var Profile = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Profile;
+export default Profile;

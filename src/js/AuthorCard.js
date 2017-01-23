@@ -1,28 +1,28 @@
-var React = require('react');
-var Thumbnail = require('./Thumbnail');
-var _ = require('underscore');
-var Link = require('./Link');
-var requests = require('superagent');
-var cookies = require('browser-cookies');
-var Snackbar = require('./Snackbar');
-var SubmitButton = require('./SubmitButton');
+import React from 'react';
+import Thumbnail from './Thumbnail';
+import _ from 'underscore';
+import Link from './Link';
+import requests from 'superagent';
+import cookies from 'browser-cookies';
+import Snackbar from './Snackbar';
+import SubmitButton from './SubmitButton';
 
-var AuthorCard = React.createClass({
+class AuthorCard extends React.Component {
     getInitialState () {
         return {
             submitting: false
         };
-    },
+    }
     removeAuthor (e) {
         e.preventDefault();
-        var type;
+        let type;
         if (this.props.sourceType === 'book') {
-            type = '/booksby';
+            type = 'booksby';
         } else if (this.props.sourceType === 'video') {
-            type = '/videosby';
+            type = 'videosby';
         }
         requests
-        .delete('/api/v1/thing/' + this.props.sourceId + type)
+        .delete(`/api/v1/thing/${this.props.sourceId}/${type}`)
         .type('form')
         .send({
             author_id: this.props.id,
@@ -40,7 +40,7 @@ var AuthorCard = React.createClass({
                 Mentions.route(window.location.pathname + window.location.search);
             }
         });
-    },
+    }
     render () {
         return (
             <form onSubmit={this.removeAuthor} className='card box'>
@@ -69,6 +69,6 @@ var AuthorCard = React.createClass({
             </form>
         );
     }
-});
+}
 
-module.exports = AuthorCard;
+export default AuthorCard;

@@ -1,32 +1,30 @@
-var AdminOnly = require('./AdminOnly');
-var config = require('./config');
-var Helmet = require('react-helmet');
-var Markdown = require('./Markdown');
-var Navbar = require('./Navbar');
-var React = require('react');
-var requests = require('superagent');
-var Snackbar = require('./Snackbar');
-var Time = require('./Time');
+import AdminOnly from './AdminOnly';
+import config from './config';
+import Helmet from 'react-helmet';
+import Markdown from './Markdown';
+import Navbar from './Navbar';
+import React from 'react';
+import requests from 'superagent';
+import Snackbar from './Snackbar';
+import Time from './Time';
 
-var BugPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            return {
-                bugs: []
-            };
-        }
-    },
+class BugPage extends React.Component {
+    static resources (appstate) {
+        return {
+            bugs: []
+        };
+    }
     getInitialState () {
         return {
             bugs: [],
             page: 1
         };
-    },
+    }
     componentDidMount () {
         this.fetchData(1);
-    },
+    }
     fetchData (page) {
-        var url = page === 1 ? '/api/v1/bugs' : '/api/v1/bugs?page=' + page;
+        const url = page === 1 ? '/api/v1/bugs' : `/api/v1/bugs?page=${page}`;
         requests
         .get(url)
         .send()
@@ -35,24 +33,24 @@ var BugPage = React.createClass({
                 Snackbar({message: res.body.message});
             } else {
                 this.setState({
-                    page: page,
+                    page,
                     bugs: res.body
                 });
             }
         });
-    },
+    }
     prevPage () {
         this.fetchData(this.state.page - 1);
-    },
+    }
     nextPage () {
         this.fetchData(this.state.page + 1);
-    },
+    }
     render () {
         return (
             <span>
                 <Helmet
                     title={'Bug Reports'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -79,7 +77,7 @@ var BugPage = React.createClass({
                                             </span>
                                             <span className='small-4 columns text-right'><Time timestamp={x.updated} type='ago'/></span>
                                             <span className='small-4 columns'>
-                                                User: {x.user ? <a href={'/users/' + x.user.id + '/' + x.user.name}>{x.user.name}</a> : null}
+                                                User: {x.user ? <a href={`/users/${x.user.id}/${x.user.name}`}>{x.user.name}</a> : null}
                                             </span>
                                             <span className='small-4 columns'>
                                                 <div>ID: {x.id}</div>
@@ -114,6 +112,6 @@ var BugPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = BugPage;
+export default BugPage;

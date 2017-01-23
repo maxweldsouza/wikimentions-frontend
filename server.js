@@ -1,28 +1,6 @@
-var React = require('react');
-var ReactDOMServer = require('react-dom/server');
-var Helmet = require('react-helmet');
-var path = require('path');
-var express = require('express');
-var etag = require('etag');
-var cookieParser = require('cookie-parser');
-var app = express();
-var fs = require('fs');
-var _ = require('underscore');
-var S = require('string');
-var request = require('superagent');
-var moment = require('moment');
-var Memcached = require('memcached');
-var md5 = require('md5');
+const production = process.env.NODE_ENV === 'production';
 
-var TIMESTAMP_FORMAT = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
-
-global.localStorage = require('localStorage');
-var production = process.env.NODE_ENV === 'production';
-
-var memcached = new Memcached('127.0.0.1:11211');
-var TEN_DAYS_IN_SECS = 864000; // 10 days
-
-var plugins = [
+const plugins = [
     // react
     'syntax-flow',
     'syntax-jsx',
@@ -35,15 +13,35 @@ var plugins = [
 if (production) {
     plugins.push('transform-react-inline-elements');
 }
-require('babel-register')({
-    plugins: plugins,
-    presets: ['es2015']
-});
+require("babel-core").transform("code", {});
 
-var Router = require('./src/js/Router');
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import Helmet from 'react-helmet';
+import path from 'path';
+import express from 'express';
+import etag from 'etag';
+import cookieParser from 'cookie-parser';
+const app = express();
+import fs from 'fs';
+import _ from 'underscore';
+import S from 'string';
+import request from 'superagent';
+import moment from 'moment';
+import Memcached from 'memcached';
+import md5 from 'md5';
+
+const TIMESTAMP_FORMAT = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
+
+global.localStorage = require('localStorage');
+
+const memcached = new Memcached('127.0.0.1:11211');
+const TEN_DAYS_IN_SECS = 864000; // 10 days
+
+import Router from './src/js/Router';
 Router.setBaseUrl('127.0.0.1:8001');
 
-var sourceDir = production ? 'dist' : 'src';
+const sourceDir = production ? 'dist' : 'src';
 
 function readFullFile (file) {
     try {
@@ -52,7 +50,7 @@ function readFullFile (file) {
         throw err;
     }
 }
-var GIT_REV_HASH;
+let GIT_REV_HASH;
 if (production) {
     GIT_REV_HASH = readFullFile('.GIT_REV_HASH');
 } else {
@@ -65,38 +63,38 @@ app.set('etag', false);
 app.use(cookieParser());
 app.disable('x-powered-by');
 
-var eightdays = {
+const eightdays = {
     maxAge: 8 * 24 * 3600 * 1000
 };
-var farfuture = {
+const farfuture = {
     maxAge: 1 * 365 * 12 * 30 * 24 * 3600 * 1000
 };
-var nocache = {
+const nocache = {
     maxAge: 0
 };
 
 // static files
-app.use('/favicon.ico', express.static(__dirname + '/favicon.ico', eightdays));
-app.use('/robots.txt', express.static(__dirname + '/robots.txt', nocache));
+app.use('/favicon.ico', express.static(`${__dirname}/favicon.ico`, eightdays));
+app.use('/robots.txt', express.static(`${__dirname}/robots.txt`, nocache));
 app.use('/assets', express.static(path.join(__dirname, sourceDir, 'assets'), farfuture));
 
 // for uptime robot
-app.head('/', function (req, res) {
+app.head('/', (req, res) => {
     res.end();
 });
 
-var indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
-var notFoundHtml = readFullFile(path.join(__dirname, sourceDir, '404.html'));
-var errorHtml = readFullFile(path.join(__dirname, sourceDir, '500.html'));
-var MainComponent = require(path.join(__dirname, sourceDir, 'js', 'MainComponent'));
-var compiledTemplate = _.template(indexHtml);
-var notFoundCompiled = _.template(notFoundHtml);
-var errorCompiled = _.template(errorHtml);
+const indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
+const notFoundHtml = readFullFile(path.join(__dirname, sourceDir, '404.html'));
+const errorHtml = readFullFile(path.join(__dirname, sourceDir, '500.html'));
+const MainComponent = require(path.join(__dirname, sourceDir, 'js', 'MainComponent'));
+const compiledTemplate = _.template(indexHtml);
+const notFoundCompiled = _.template(notFoundHtml);
+const errorCompiled = _.template(errorHtml);
 
-var isNotModified = function (ifModifiedSince, lastModified) {
+const isNotModified = (ifModifiedSince, lastModified) => {
     if (ifModifiedSince && lastModified) {
-        var ims = new Date(ifModifiedSince);
-        var lm = moment(new Date(lastModified));
+        const ims = new Date(ifModifiedSince);
+        const lm = moment(new Date(lastModified));
         if (lm.isSameOrBefore(ims)) {
             return true;
         }
@@ -104,36 +102,36 @@ var isNotModified = function (ifModifiedSince, lastModified) {
     return false;
 };
 
-app.get(/^(.+)$/, function (req, res, next) {
+app.get(/^(.+)$/, (req, res, next) => {
     try {
-        var routeObj = {
+        const routeObj = {
             url: req.originalUrl,
             onUpdate: (routeObj) => {
                 try {
                     if (routeObj.error) {
                         return next(routeObj.error);
                     }
-                    var tag = etag(routeObj.etags.join() + routeObj.url + GIT_REV_HASH);
+                    const tag = etag(routeObj.etags.join() + routeObj.url + GIT_REV_HASH);
                     res.setHeader('ETag', tag);
                     res.setHeader('Cache-Control', 'no-cache');
 
-                    var ifNoneMatch = req.get('if-none-match');
+                    const ifNoneMatch = req.get('if-none-match');
                     if (tag === ifNoneMatch) {
                         res.status(304).end();
                         return;
                     }
 
-                    var ip = req.get('x-real-ip');
-                    var rateLimitKey = 'rl-node-' + ip;
-                    var rateLimitDuration = 60;
-                    var rateLimitRequests = 30;
-                    var now = Math.round((new Date()).getTime() / 1000);
+                    const ip = req.get('x-real-ip');
+                    const rateLimitKey = `rl-node-${ip}`;
+                    const rateLimitDuration = 60;
+                    const rateLimitRequests = 30;
+                    const now = Math.round((new Date()).getTime() / 1000);
 
-                    var contentKey = 'wb_' + tag;
-                    var modifiedKey = 'lm_' + tag;
+                    const contentKey = `wb_${tag}`;
+                    const modifiedKey = `lm_${tag}`;
 
-                    memcached.getMulti([contentKey, modifiedKey, rateLimitKey], function (err, data) {
-                        var usage = data[rateLimitKey];
+                    memcached.getMulti([contentKey, modifiedKey, rateLimitKey], (err, data) => {
+                        const usage = data[rateLimitKey];
                         // if (usage) {
                         //     if (usage['exp'] < now) {
                         //         usage = {
@@ -160,9 +158,9 @@ app.get(/^(.+)$/, function (req, res, next) {
                         //     memcached.set(rateLimitKey, usage, expire=rateLimitDuration, function (err) {});
                         // }
 
-                        var content = data[contentKey];
-                        var lastModified = data[modifiedKey];
-                        var ifModifiedSince = req.get('if-modified-since');
+                        let content = data[contentKey];
+                        const lastModified = data[modifiedKey];
+                        const ifModifiedSince = req.get('if-modified-since');
                         if (lastModified && content && !err) {
                             res.setHeader('X-Cache', 'HIT');
                             res.setHeader('Last-Modified', lastModified);
@@ -179,18 +177,18 @@ app.get(/^(.+)$/, function (req, res, next) {
                                 query: routeObj.query,
                                 component: routeObj.component
                             }));
-                            var head = Helmet.rewind();
-                            var page = compiledTemplate({
+                            const head = Helmet.rewind();
+                            const page = compiledTemplate({
                                 title: head.title.toString(),
                                 meta: head.meta.toString(),
                                 link: head.link.toString(),
                                 apidata: S(JSON.stringify(routeObj.data)).escapeHTML().toString(),
-                                content: content
+                                content
                             });
-                            memcached.set(contentKey, page, TEN_DAYS_IN_SECS, function (e) {});
-                            var timestamp = moment.utc().format(TIMESTAMP_FORMAT);
+                            memcached.set(contentKey, page, TEN_DAYS_IN_SECS, e => {});
+                            const timestamp = moment.utc().format(TIMESTAMP_FORMAT);
                             res.setHeader('Last-Modified', timestamp);
-                            memcached.set(modifiedKey, timestamp, TEN_DAYS_IN_SECS, function (e) {});
+                            memcached.set(modifiedKey, timestamp, TEN_DAYS_IN_SECS, e => {});
                             res.send(page);
                         }
                     });
@@ -208,16 +206,16 @@ app.get(/^(.+)$/, function (req, res, next) {
     return;
 });
 
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
     if (err) {
-        var message;
-        var content;
-        var status = err.status || 500;
+        let message;
+        let content;
+        const status = err.status || 500;
         res.status(status);
         if (err.status === 404) {
             message = 'We can\'t find what you\'re looking for';
             res.send(notFoundCompiled({
-                status: status,
+                status,
                 title: message,
                 content: message
             }));
@@ -229,7 +227,7 @@ app.use(function (err, req, res, next) {
                 console.log(err);
             }
             res.send(errorCompiled({
-                status: status,
+                status,
                 title: message,
                 content: message
             }));
@@ -237,11 +235,11 @@ app.use(function (err, req, res, next) {
     }
 });
 
-var port = process.env.PORT || 8000;
-app.listen(port, function () {
+const port = process.env.PORT || 8000;
+app.listen(port, () => {
     if (production) {
-        console.log('Mentions Production Server ' + port);
+        console.log(`Mentions Production Server ${port}`);
     } else {
-        console.log('Mentions Development Server ' + port);
+        console.log(`Mentions Development Server ${port}`);
     }
 });

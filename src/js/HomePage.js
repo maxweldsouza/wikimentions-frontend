@@ -1,53 +1,51 @@
-var _ = require('underscore');
-var ButtonSelect = require('./ButtonSelect');
-var config = require('./config');
-var cookies = require('browser-cookies');
-var Helmet = require('react-helmet');
-var HomeItem = require('./HomeItem');
-var HomeSearch = require('./HomeSearch');
-var Mention = require('./Mention');
-var Navbar = require('./Navbar');
-var React = require('react');
-var requests = require('superagent');
-var SignupModal = require('./SignupModal');
-var Snackbar = require('./Snackbar');
-var VideoEmbed = require('./VideoEmbed');
-var Link = require('./Link');
-var Thumbnail = require('./Thumbnail');
-var utils = require('./utils');
+import _ from 'underscore';
+import ButtonSelect from './ButtonSelect';
+import config from './config';
+import cookies from 'browser-cookies';
+import Helmet from 'react-helmet';
+import HomeItem from './HomeItem';
+import HomeSearch from './HomeSearch';
+import Mention from './Mention';
+import Navbar from './Navbar';
+import React from 'react';
+import requests from 'superagent';
+import SignupModal from './SignupModal';
+import Snackbar from './Snackbar';
+import VideoEmbed from './VideoEmbed';
+import Link from './Link';
+import Thumbnail from './Thumbnail';
+import utils from './utils';
 
-var HomePage = React.createClass({
-    statics: {
-        resources (appstate) {
-            return {
-                api: [
-                    {
-                        name: 'home',
-                        path: '/api/v1/home'
-                    }
-                ]
-            };
-        }
-    },
+class HomePage extends React.Component {
+    static resources (appstate) {
+        return {
+            api: [
+                {
+                    name: 'home',
+                    path: '/api/v1/home'
+                }
+            ]
+        };
+    }
     getInitialState () {
         return {
             tab: 'Startups'
         };
-    },
+    }
     onChangeTab (x) {
         this.setState({tab: x});
-    },
+    }
     render () {
-        var featuredVideo = this.props.data.home.featuredVideo;
-        var video2 = this.props.data.home.video2;
-        var video3 = this.props.data.home.video3;
-        var books = this.props.data.home.books;
-        var people = this.props.data.home.people;
+        const featuredVideo = this.props.data.home.featuredVideo;
+        const video2 = this.props.data.home.video2;
+        const video3 = this.props.data.home.video3;
+        const books = this.props.data.home.books;
+        const people = this.props.data.home.people;
         return (
             <span>
                 <Helmet
                     title={'Home'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'description', 'content': 'Discover people, books and videos based on mentions'}
                     ]}
@@ -244,6 +242,6 @@ var HomePage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = HomePage;
+export default HomePage;

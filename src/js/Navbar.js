@@ -1,50 +1,50 @@
-var config = require('./config');
-var LoginModal = require('./LoginModal');
-var React = require('react');
-var Select = require('./Select');
-var SignupModal = require('./SignupModal');
-var Spinner = require('./Spinner');
-var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
-var Xsrf = require('./Xsrf');
-var requests = require('superagent');
+import config from './config';
+import LoginModal from './LoginModal';
+import React from 'react';
+import Select from './Select';
+import SignupModal from './SignupModal';
+import Spinner from './Spinner';
+import {VelocityTransitionGroup} from 'velocity-react';
+import Xsrf from './Xsrf';
+import requests from 'superagent';
 
-var Navbar = React.createClass({
+class Navbar extends React.Component {
     getInitialState () {
         return {
             searchBarOpen: false,
             searchText: ''
         };
-    },
+    }
     onChangeText (e) {
-        var temp = {};
+        const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     onOpenSearchBar () {
         this.setState({
             searchBarOpen: true
         });
-    },
+    }
     onCloseSearchBar () {
         this.setState({searchBarOpen: false});
-    },
+    }
     search () {
-        var path = '/search?q=' + this.state.searchText;
+        const path = `/search?q=${this.state.searchText}`;
         history.pushState(null, null, path);
         Mentions.route(path);
-    },
+    }
     onSearchTextChanged (x) {
         this.setState({
             searchText: x
         });
-    },
+    }
     handleKeys (event) {
         if (event.key === 'Enter') {
             this.search();
         }
-    },
+    }
     onSelectSearchResult (x) {
-        var pagepath;
+        let pagepath;
         if (x.props.type === 'video') {
             pagepath = '/videos/';
         } else if (x.props.type === 'book') {
@@ -54,10 +54,10 @@ var Navbar = React.createClass({
         } else {
             throw new Error('No page type specified');
         }
-        pagepath += x.id + '/' + x.props.slug;
+        pagepath += `${x.id}/${x.props.slug}`;
         history.pushState(null, null, pagepath);
         Mentions.route(pagepath);
-    },
+    }
     random () {
         requests
         .get('/api/v1/random')
@@ -68,14 +68,14 @@ var Navbar = React.createClass({
                 Mentions.route(res.body.path);
             }
         });
-    },
+    }
     render () {
-        var rhs;
-        var userid = this.props.userid;
-        var username = this.props.username;
-        var loggedin = this.props.loggedin;
+        let rhs;
+        const userid = this.props.userid;
+        const username = this.props.username;
+        const loggedin = this.props.loggedin;
 
-        var SearchBar = <div className='input-group' style={{marginBottom: 0, borderTopRightRadius: 0, borderBottomRightRadius: 0}}>
+        const SearchBar = <div className='input-group' style={{marginBottom: 0, borderTopRightRadius: 0, borderBottomRightRadius: 0}}>
             <Select
                 name='searchText'
                 className='input-group-field'
@@ -94,12 +94,12 @@ var Navbar = React.createClass({
             </button>
         </div>;
 
-        var navicon = <span
+        const navicon = <span
             className='ion-navicon-round navicon hide-for-xxlarge'
             onClick={this.props.toggleSidebar}
             aria-label='Toggle Sidebar'/>;
 
-        var searchIcon;
+        let searchIcon;
         if (this.state.searchBarOpen) {
             searchIcon = <button
                 className='button alert no-margin-bottom'
@@ -121,7 +121,7 @@ var Navbar = React.createClass({
                     {SearchBar}
                 </li>
                 <li className='show-for-medium'>
-                    <a className='navbar-link hint--bottom hint--rounded hint--no-animate' rel='nofollow' href={'/users/' + userid + '/' + username} aria-label='Profile'>
+                    <a className='navbar-link hint--bottom hint--rounded hint--no-animate' rel='nofollow' href={`/users/${userid}/${username}`} aria-label='Profile'>
                         <span className='ion-android-person icon'/>
                         <span className='show-for-xxlarge'>{username}</span>
                     </a>
@@ -209,6 +209,6 @@ var Navbar = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Navbar;
+export default Navbar;

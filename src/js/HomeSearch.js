@@ -1,26 +1,26 @@
-var React = require('react');
+import React from 'react';
 
-var HomeSearch = React.createClass({
+class HomeSearch extends React.Component {
     getInitialState () {
         return {
             searchText: ''
         };
-    },
+    }
     onChangeText (e) {
-        var temp = {
+        const temp = {
             error: false,
             message: ''
         };
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     handleKeys (event) {
         if (event.key === 'Enter') {
-            var path = '/search?q=' + this.state.searchText;
+            const path = `/search?q=${this.state.searchText}`;
             history.pushState(null, null, path);
             Mentions.route(path);
         }
-    },
+    }
     render () {
         return (
             <div>
@@ -29,6 +29,6 @@ var HomeSearch = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = HomeSearch;
+export default HomeSearch;

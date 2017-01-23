@@ -1,18 +1,18 @@
-var React = require('react');
-var Modal = require('./Modal');
-var requests = require('superagent');
-var SubmitButton = require('./SubmitButton');
-var cookies = require('browser-cookies');
-var Snackbar = require('./Snackbar');
+import React from 'react';
+import Modal from './Modal';
+import requests from 'superagent';
+import SubmitButton from './SubmitButton';
+import cookies from 'browser-cookies';
+import Snackbar from './Snackbar';
 
-var allTags = ['Science', 'Startups', 'Programming'];
+const allTags = ['Science', 'Startups', 'Programming'];
 
-var EditTags = React.createClass({
+class EditTags extends React.Component {
     getDefaultProps () {
         return {
             tags: []
         };
-    },
+    }
     getInitialState () {
         return {
             modalIsOpen: false,
@@ -20,26 +20,26 @@ var EditTags = React.createClass({
             formMessage: '',
             tag: ''
         };
-    },
+    }
     onOpenModal () {
         this.setState({
             modalIsOpen: true
         });
-    },
+    }
     onCloseModal () {
         this.setState({
             modalIsOpen: false
         });
-    },
+    }
     onRemoveTag (tag) {
         this.setState({
             submitting: true
         });
         requests
-        .delete('/api/v1/tag/' + this.props.id)
+        .delete(`/api/v1/tag/${this.props.id}`)
         .type('form')
         .send({
-            tag: tag,
+            tag,
             _xsrf: cookies.get('_xsrf')
         })
         .end((err, res) => {
@@ -59,14 +59,14 @@ var EditTags = React.createClass({
                 Mentions.route(window.location.pathname + window.location.search);
             }
         });
-    },
+    }
     onAddTag (e) {
         e.preventDefault();
         this.setState({
             submitting: true
         });
         requests
-        .post('/api/v1/tag/' + this.props.id)
+        .post(`/api/v1/tag/${this.props.id}`)
         .type('form')
         .send({
             tag: this.state.tag,
@@ -89,12 +89,12 @@ var EditTags = React.createClass({
                 Mentions.route(window.location.pathname + window.location.search);
             }
         });
-    },
+    }
     onChangeTag (e) {
         this.setState({
             tag: e.target.value
         });
-    },
+    }
     render () {
         return (
             <span>
@@ -114,7 +114,7 @@ var EditTags = React.createClass({
                         <p>
                             Tags:
                             {this.props.tags.map((x) => {
-                                return <span className='tag round no-margin-bottom' href={'/tags/' + x} key={x}>
+                                return <span className='tag round no-margin-bottom' href={`/tags/${x}`} key={x}>
                                     {x} <span onClick={this.onRemoveTag.bind(null, x)} className='ion-close-circled'/>
                                 </span>;
                             })}
@@ -134,6 +134,6 @@ var EditTags = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = EditTags;
+export default EditTags;

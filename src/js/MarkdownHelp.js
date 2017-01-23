@@ -1,25 +1,25 @@
-var React = require('react');
-var Modal = require('./Modal');
-var Markdown = require('./Markdown');
+import React from 'react';
+import Modal from './Modal';
+import Markdown from './Markdown';
 
-var MarkdownHelp = React.createClass({
+class MarkdownHelp extends React.Component {
     getInitialState () {
         return {
             modalIsOpen: false
         };
-    },
+    }
     onOpenModal () {
         this.setState({
             modalIsOpen: true
         });
-    },
+    }
     onCloseModal () {
         this.setState({
             modalIsOpen: false
         });
-    },
+    }
     render () {
-        var mdHelp = [
+        const mdHelp = [
             ['> Blockquote', '> quote'],
             ['**Bold**', '**text**'],
             ['`Code`', '`code`'],
@@ -105,6 +105,6 @@ var MarkdownHelp = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = MarkdownHelp;
+export default MarkdownHelp;

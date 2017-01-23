@@ -1,8 +1,8 @@
-var React = require('react');
-var config = require('./config');
-var AdminOnly = require('./AdminOnly');
+import React from 'react';
+import config from './config';
+import AdminOnly from './AdminOnly';
 
-var Footer = React.createClass({
+class Footer extends React.Component {
     render () {
         return (
             <footer className='page-footer align-right' role='contentinfo'>
@@ -55,6 +55,6 @@ var Footer = React.createClass({
             </footer>
         );
     }
-});
+}
 
-module.exports = Footer;
+export default Footer;

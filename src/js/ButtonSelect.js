@@ -1,22 +1,22 @@
-var React = require('react');
+import React from 'react';
 
-var ButtonSelect = React.createClass({
+class ButtonSelect extends React.Component {
     getDefaultProps () {
         return {
             className: 'small button-group'
         };
-    },
+    }
     getInitialState () {
         return {
             selected: this.props.default
         };
-    },
+    }
     onChangeSelected (x) {
         this.setState({
             selected: x
         });
         this.props.onChange(x);
-    },
+    }
     render () {
         return (
             <div>
@@ -27,15 +27,9 @@ var ButtonSelect = React.createClass({
                 />
                 <div className={this.props.className} role='group'>
                     {this.props.options.map((x) => {
-                        var cls;
-                        if (this.state.selected === x.value) {
-                            cls = 'button';
-                        } else {
-                            cls = 'button secondary';
-                        }
                         return <button
                             aria-selected={this.state.selected === x.value}
-                            className={cls}
+                            className={this.state.selected === x.value ? 'button' : 'button secondary'}
                             key={x.value}
                             onClick={this.onChangeSelected.bind(null, x.value)}
                             type='button'>
@@ -46,6 +40,6 @@ var ButtonSelect = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = ButtonSelect;
+export default ButtonSelect;

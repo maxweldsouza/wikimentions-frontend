@@ -1,9 +1,8 @@
-var React = require('react');
+import React from 'react';
+import Link from './Link';
+import Thumbnail from './Thumbnail';
 
-var Link = require('./Link');
-var Thumbnail = require('./Thumbnail');
-
-var Book = React.createClass({
+class Book extends React.Component {
     render () {
         return (
             <div className='card box'>
@@ -54,6 +53,6 @@ var Book = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Book;
+export default Book;

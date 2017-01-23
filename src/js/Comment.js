@@ -1,20 +1,19 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import Markdown from './Markdown';
+import Time from './Time';
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var Markdown = require('./Markdown');
-var Time = require('./Time');
-
-var Comment = React.createClass({
+class Comment extends React.Component {
     render () {
         return (
             <div className='small-12 columns'>
                 <div className='row'>
-                    <div className="small-6 columns">
-                        <strong><a rel='nofollow' href={'/users/' + this.props.user + '/' + this.props.name}>{this.props.name}</a></strong>
+                    <div className='small-6 columns'>
+                        <strong><a rel='nofollow' href={`/users/${this.props.user}/${this.props.name}`}>{this.props.name}</a></strong>
                     </div>
-                    <div className="small-6 columns text-right discuss-updated"><Time timestamp={this.props.posted} type='ago' hintDirection='bottom-left'/></div>
-                    <div className="small-12 columns">
+                    <div className='small-6 columns text-right discuss-updated'><Time timestamp={this.props.posted} type='ago' hintDirection='bottom-left'/></div>
+                    <div className='small-12 columns'>
                         <Markdown
                             markdown={this.props.text}
                             />
@@ -24,6 +23,6 @@ var Comment = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Comment;
+export default Comment;

@@ -1,8 +1,8 @@
-var React = require('react');
+import React from 'react';
 import Lazy from 'react-lazyload';
-var VideoApiThumb = require('./VideoApiThumb');
+import VideoApiThumb from './VideoApiThumb';
 
-var Thumbnail = React.createClass({
+class Thumbnail extends React.Component {
     getDefaultProps () {
         return {
             image: '',
@@ -15,12 +15,16 @@ var Thumbnail = React.createClass({
             bordered: false,
             offset: 0
         };
-    },
+    }
     render () {
-        var imageClass = this.props.shadow ? 'img shadow' : 'img';
+        const imageClass = this.props.shadow ? 'img shadow' : 'img';
 
-        var imageUrl, imageWidth, imageHeight, imageMd5, aspectRatio;
-        var useOriginal;
+        let imageUrl;
+        let imageWidth;
+        let imageHeight;
+        let imageMd5;
+        let aspectRatio;
+        let useOriginal;
         if (this.props.image) {
             useOriginal = this.props.displayWidth > 75;
             if (this.props.type === 'book' && this.props.displayHeight === 200) {
@@ -35,7 +39,7 @@ var Thumbnail = React.createClass({
                 imageWidth = this.props.image.thumb_width;
                 imageHeight = this.props.image.thumb_height;
             }
-            imageUrl = '/api/v1/static/images/' + imageMd5 + '-' + imageWidth + '-' + imageHeight + '.jpg';
+            imageUrl = `/api/v1/static/images/${imageMd5}-${imageWidth}-${imageHeight}.jpg`;
             aspectRatio = imageWidth / imageHeight;
         } else {
             if (this.props.type === 'book') {
@@ -46,20 +50,20 @@ var Thumbnail = React.createClass({
                 aspectRatio = 120 / 90;
             }
         }
-        var displayWidth = this.props.displayWidth;
-        var displayHeight = this.props.displayHeight;
+        let displayWidth = this.props.displayWidth;
+        let displayHeight = this.props.displayHeight;
         if (!displayWidth) {
             displayWidth = displayHeight * aspectRatio;
         }
         if (!displayHeight) {
             displayHeight = displayWidth / aspectRatio;
         }
-        var placeholder = <div className={this.props.bordered ? 'placeholder bordered' : 'placeholder'} style={{lineHeight: displayHeight + 'px'}}>
+        const placeholder = <div className={this.props.bordered ? 'placeholder bordered' : 'placeholder'} style={{lineHeight: `${displayHeight}px`}}>
                 {this.props.type === 'person' ? <span className='ion-image' /> : null}
                 {this.props.type === 'book' ? <span className='ion-ios-book' /> : null}
                 {this.props.type === 'video' ? <span className='ion-play' /> : null}
         </div>;
-        var main;
+        let main;
         if (this.props.image) {
             main = <Lazy offset={this.props.offset} placeholder={placeholder}>
                 <img
@@ -78,13 +82,13 @@ var Thumbnail = React.createClass({
         } else {
             main = placeholder;
         }
-        var style = {'width': displayWidth, 'height': displayHeight};
+        const style = {'width': displayWidth, 'height': displayHeight};
         return (
             <div className={this.props.marginBottom ? 'image-container bottom-margin' : 'image-container'} style={style}>
                 {main}
             </div>
         );
     }
-});
+}
 
-module.exports = Thumbnail;
+export default Thumbnail;

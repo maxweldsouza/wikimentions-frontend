@@ -1,63 +1,59 @@
 /* The main component is used both on the server and the client
 * side. It takes only one prop 'path'. */
 
-var React = require('react');
+import React from 'react';
 
 /* components need to be required because they are used indirectly */
-var AddMention = require('./AddMention');
-var AddVideo = require('./AddVideo');
-var BlogPage = require('./BlogPage');
-var BlogPostPage = require('./BlogPostPage');
-var BugPage = require('./BugPage');
-var ListCreatePage = require('./ListCreatePage');
-var ListPage = require('./ListPage');
-var ContentPage = require('./ContentPage');
-var ContributePage = require('./ContributePage');
-var cookies = require('browser-cookies');
-var CreatePage = require('./CreatePage');
-var DiscussPage = require('./DiscussPage');
-var EditPage = require('./EditPage');
-var Feedback = require('./Feedback');
-var FeedbackPage = require('./FeedbackPage');
-var Footer = require('./Footer');
-var HistoryPage = require('./HistoryPage');
-var HomePage = require('./HomePage');
-var isNode = require('./isNode');
-var KitchenSinkPage = require('./KitchenSinkPage');
-var LoginPage = require('./LoginPage');
-var MaintenancePage = require('./MaintenancePage');
-var ProfilePage = require('./ProfilePage');
-var QuotesPage = require('./QuotesPage');
-var RecentChangesPage = require('./RecentChangesPage');
-var RecentDiscussionsPage = require('./RecentDiscussionsPage');
-var requests = require('superagent');
-var SearchPage = require('./SearchPage');
-var Sidebar = require('./Sidebar');
-var SignupPage = require('./SignupPage');
-var store = require('store');
-var TagPage = require('./TagPage');
-var ThingPage = require('./ThingPage');
-var VideoPage = require('./VideoPage');
+import AddMention from './AddMention';
+import AddVideo from './AddVideo';
+import BlogPage from './BlogPage';
+import BlogPostPage from './BlogPostPage';
+import BugPage from './BugPage';
+import ListCreatePage from './ListCreatePage';
+import ListPage from './ListPage';
+import ContentPage from './ContentPage';
+import ContributePage from './ContributePage';
+import cookies from 'browser-cookies';
+import CreatePage from './CreatePage';
+import DiscussPage from './DiscussPage';
+import EditPage from './EditPage';
+import Feedback from './Feedback';
+import FeedbackPage from './FeedbackPage';
+import Footer from './Footer';
+import HistoryPage from './HistoryPage';
+import HomePage from './HomePage';
+import isNode from './isNode';
+import KitchenSinkPage from './KitchenSinkPage';
+import LoginPage from './LoginPage';
+import MaintenancePage from './MaintenancePage';
+import ProfilePage from './ProfilePage';
+import QuotesPage from './QuotesPage';
+import RecentChangesPage from './RecentChangesPage';
+import RecentDiscussionsPage from './RecentDiscussionsPage';
+import requests from 'superagent';
+import SearchPage from './SearchPage';
+import Sidebar from './Sidebar';
+import SignupPage from './SignupPage';
+import store from 'store';
+import TagPage from './TagPage';
+import ThingPage from './ThingPage';
+import VideoPage from './VideoPage';
 
-var MainComponent = React.createClass({
-    propTypes: {
-        component: React.PropTypes.string.isRequired,
-        data: React.PropTypes.object.isRequired
-    },
+class MainComponent extends React.Component {
     getDefaultProps () {
         return {
             loggedin: false,
             username: '',
             userid: ''
         };
-    },
+    }
     getInitialState () {
         return {
             sidebar: false
         };
-    },
+    }
     componentDidMount () {
-        var country = store.get('country');
+        const country = store.get('country');
         if (!country) {
             requests
             .get('/api/v1/country')
@@ -69,25 +65,28 @@ var MainComponent = React.createClass({
             });
         }
         console.log('Hi there !');
-    },
+    }
     componentWillReceiveProps (nextProps) {
         this.setState({
             sidebar: false
         });
-    },
-    onCloseSidebar: function () {
+    }
+    onCloseSidebar () {
         this.setState({
             sidebar: false
         });
-    },
-    onToggleSidebar: function () {
+    }
+    onToggleSidebar () {
         this.setState({
             sidebar: !this.state.sidebar
         });
-    },
+    }
     render () {
-        var Component = require('./' + this.props.component);
-        var session, username, userid, loggedin;
+        const Component = require(`./${this.props.component}`);
+        let session;
+        let username;
+        let userid;
+        let loggedin;
         loggedin = session ? true : false;
         return (
             <div className='main-component'>
@@ -120,6 +119,6 @@ var MainComponent = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = MainComponent;
+export default MainComponent;

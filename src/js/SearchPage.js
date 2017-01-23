@@ -1,56 +1,53 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import Comment from './Comment';
+import requests from 'superagent';
+import _ from 'underscore';
+import DiscussReply from './DiscussReply';
+import PageBar from './PageBar';
+import config from './config';
+import Select from './Select';
+import HomeItem from './HomeItem';
+import Pagination from './Pagination';
+import ButtonSelect from './ButtonSelect';
+import queryString from 'query-string';
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var Comment = require('./Comment');
-var requests = require('superagent');
-var _ = require('underscore');
-var DiscussReply = require('./DiscussReply');
-var PageBar = require('./PageBar');
-var config = require('./config');
-var Select = require('./Select');
-var HomeItem = require('./HomeItem');
-var Pagination = require('./Pagination');
-var ButtonSelect = require('./ButtonSelect');
-var queryString = require('query-string');
-
-var SearchPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            return {
-                api: []
-            };
-        }
-    },
+class SearchPage extends React.Component {
+    static resources (appstate) {
+        return {
+            api: []
+        };
+    }
     getInitialState () {
         return {
             searchText: this.props.query.q,
             results: [],
             numFound: 0
         };
-    },
+    }
     componentDidMount () {
-        var type = this.props.query.type ? this.props.query.type : 'any';
+        const type = this.props.query.type ? this.props.query.type : 'any';
         this.loadData(this.state.searchText, 1, type);
-    },
+    }
     componentWillReceiveProps (nextProps) {
         this.setState({
             searchText: nextProps.query.q
         });
         this.loadData(nextProps.query.q, nextProps.query.page, nextProps.query.type);
-    },
+    }
     onSearchTextChanged (e) {
         this.setState({
             searchText: e.target.value
         });
-    },
+    }
     loadData (x, page, type) {
-        var query = {};
+        const query = {};
         query.page = page ? page : 1;
         if (type !== 'any') {
             query.types = [type];
         }
-        requests.get('/api/v1/search/' + encodeURIComponent(x) + '?' + queryString.stringify(query)).end((err, res) => {
+        requests.get(`/api/v1/search/${encodeURIComponent(x)}?${queryString.stringify(query)}`).end((err, res) => {
             if (err) {
                 Snackbar({message: 'Search failed'});
             } else {
@@ -60,37 +57,37 @@ var SearchPage = React.createClass({
                 });
             }
         });
-    },
+    }
     onSearchClicked () {
-        var type = this.props.query.type ? this.props.query.type : 'any';
+        const type = this.props.query.type ? this.props.query.type : 'any';
         this.newSearch(type);
-    },
+    }
     newSearch (type) {
-        var typeQuery = type !== 'any' ? '&type=' + type : '';
-        var path = '/search?q=' + this.state.searchText + typeQuery;
+        const typeQuery = type !== 'any' ? `&type=${type}` : '';
+        const path = `/search?q=${this.state.searchText}${typeQuery}`;
         history.pushState(null, null, path);
         Mentions.route(path);
-    },
+    }
     handleKeys (event) {
-        var type = this.props.query.type ? this.props.query.type : 'any';
+        const type = this.props.query.type ? this.props.query.type : 'any';
         if (event.key === 'Enter') {
             this.newSearch(type);
         }
-    },
+    }
     onChangeType (type) {
         this.newSearch(type);
-    },
+    }
     render () {
-        var page = this.props.query.page ? this.props.query.page : 1;
-        var options = [{name: 'Any', value: 'any'}, {name: 'Person', value: 'person'}, {name: 'Book', value: 'book'}, {name: 'Video', value: 'video'}];
-        var start = (page - 1) * this.state.results.length + 1;
-        var end = page * this.state.results.length;
-        var type = this.props.query.type ? this.props.query.type : 'any';
+        const page = this.props.query.page ? this.props.query.page : 1;
+        const options = [{name: 'Any', value: 'any'}, {name: 'Person', value: 'person'}, {name: 'Book', value: 'book'}, {name: 'Video', value: 'video'}];
+        const start = (page - 1) * this.state.results.length + 1;
+        const end = page * this.state.results.length;
+        const type = this.props.query.type ? this.props.query.type : 'any';
         return (
             <span>
                 <Helmet
                     title={'Search'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -162,6 +159,6 @@ var SearchPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = SearchPage;
+export default SearchPage;

@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var Spinner = React.createClass({
+const Spinner = React.createClass({
     shouldComponentUpdate (nextProps, nextState) {
         return false;
     },
@@ -12,4 +12,4 @@ var Spinner = React.createClass({
     }
 });
 
-module.exports = Spinner;
+export default Spinner;

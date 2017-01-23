@@ -1,26 +1,26 @@
-var React = require('react');
-var ButtonSelect = require('./ButtonSelect');
-var AddVideoNew = require('./AddVideoNew');
-var AddVideoExisting = require('./AddVideoExisting');
-var Restricted = require('./Restricted');
-var LoginModal = require('./LoginModal');
-var SignupModal = require('./SignupModal');
-var IpWarning = require('./IpWarning');
+import React from 'react';
+import ButtonSelect from './ButtonSelect';
+import AddVideoNew from './AddVideoNew';
+import AddVideoExisting from './AddVideoExisting';
+import Restricted from './Restricted';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
+import IpWarning from './IpWarning';
 
-var AddVideo = React.createClass({
+class AddVideo extends React.Component {
     getInitialState () {
         return {
             type: 'Existing'
         };
-    },
+    }
     onChangeType (x) {
         this.setState({
             type: x
         });
-    },
+    }
     render () {
-        var options = [{ name: 'Existing', value: 'Existing' }, { name: 'New', value: 'New' }];
-        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to add a Video.</span>;
+        const options = [{ name: 'Existing', value: 'Existing' }, { name: 'New', value: 'New' }];
+        const loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to add a Video.</span>;
         return (
             <Restricted message={loggedOutMessage}>
                 <h2>Add video</h2>
@@ -47,6 +47,6 @@ var AddVideo = React.createClass({
             </Restricted>
         );
     }
-});
+}
 
-module.exports = AddVideo;
+export default AddVideo;

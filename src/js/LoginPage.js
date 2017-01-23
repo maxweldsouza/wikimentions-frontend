@@ -1,28 +1,25 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import cookies from 'browser-cookies';
+import Xsrf from './Xsrf';
+import requests from 'superagent';
+import Snackbar from './Snackbar';
+import Login from './Login';
+import config from './config';
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var cookies = require('browser-cookies');
-var Xsrf = require('./Xsrf');
-var requests = require('superagent');
-var Snackbar = require('./Snackbar');
-var Login = require('./Login');
-var config = require('./config');
-
-var LoginPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            return {
-                api: []
-            };
-        }
-    },
+class LoginPage extends React.Component {
+    static resources (appstate) {
+        return {
+            api: []
+        };
+    }
     render () {
         return (
             <span>
                 <Helmet
                     title={'Login'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
@@ -43,6 +40,7 @@ var LoginPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = LoginPage;
+
+export default LoginPage;

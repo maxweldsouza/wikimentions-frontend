@@ -1,39 +1,37 @@
-var React = require('react');
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var Mention = require('./Mention');
-var _ = require('underscore');
-var Pagination = require('./Pagination');
-var HistoryItem = require('./HistoryItem');
-var PageBar = require('./PageBar');
-var config = require('./config');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import Mention from './Mention';
+import _ from 'underscore';
+import Pagination from './Pagination';
+import HistoryItem from './HistoryItem';
+import PageBar from './PageBar';
+import config from './config';
 
-var HistoryPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            var [type, id, slug] = appstate.path.split('/');
-            var page = appstate.query.page;
-            var query = page ? '?page=' + page : '';
-            return {
-                api: [
-                    {
-                        name: 'history',
-                        path: '/api/v1/history/' + id + query
-                    },
-                    {
-                        name: 'thing',
-                        path: '/api/v1/thing/' + id
-                    }
-                ]
-            };
-        }
-    },
+class HistoryPage extends React.Component {
+    static resources (appstate) {
+        const [type, id, slug] = appstate.path.split('/');
+        const page = appstate.query.page;
+        const query = page ? `?page=${page}` : '';
+        return {
+            api: [
+                {
+                    name: 'history',
+                    path: `/api/v1/history/${id}${query}`
+                },
+                {
+                    name: 'thing',
+                    path: `/api/v1/thing/${id}`
+                }
+            ]
+        };
+    }
     render () {
-        var id = Number(this.props.path.split('/')[1]);
-        var slug = this.props.data.history.props.slug;
-        var type = this.props.data.history.props.type;
-        var history = this.props.data.history.history;
-        var nodata;
+        const id = Number(this.props.path.split('/')[1]);
+        const slug = this.props.data.history.props.slug;
+        const type = this.props.data.history.props.type;
+        const history = this.props.data.history.history;
+        let nodata;
         if (history.length === 0) {
             nodata = <div className='small-12 columns'>
                 <div className='blankslate'>
@@ -45,8 +43,8 @@ var HistoryPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'History - ' + this.props.data.thing.props.title}
-                    titleTemplate={'%s - ' + config.name}
+                    title={`History - ${this.props.data.thing.props.title}`}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -61,7 +59,7 @@ var HistoryPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
-                        <h1>{'History - ' + this.props.data.thing.props.title}</h1>
+                        <h1>{`History - ${this.props.data.thing.props.title}`}</h1>
                         <PageBar
                             id={id}
                             slug={slug}
@@ -88,6 +86,6 @@ var HistoryPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = HistoryPage;
+export default HistoryPage;

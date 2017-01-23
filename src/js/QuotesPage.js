@@ -1,70 +1,68 @@
-var _ = require('underscore');
-var config = require('./config');
-var cookies = require('browser-cookies');
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var Pagination = require('./Pagination');
-var queryString = require('query-string');
-var React = require('react');
-var requests = require('superagent');
-var Select = require('./Select');
-var Snackbar = require('./Snackbar');
-var SubmitButton = require('./SubmitButton');
-var Thumbnail = require('./Thumbnail');
-var PageBar = require('./PageBar');
+import _ from 'underscore';
+import config from './config';
+import cookies from 'browser-cookies';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import Pagination from './Pagination';
+import queryString from 'query-string';
+import React from 'react';
+import requests from 'superagent';
+import Select from './Select';
+import Snackbar from './Snackbar';
+import SubmitButton from './SubmitButton';
+import Thumbnail from './Thumbnail';
+import PageBar from './PageBar';
 
-var QuotesPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            var [type, id, slug] = appstate.path.split('/');
-            var queryObj = {};
-            if (appstate.query.page) {
-                queryObj.page = appstate.query.page;
-            }
-            queryObj.slug = slug;
-            var query = queryString.stringify(queryObj);
-            query = query ? '?' + query : '';
-            return {
-                api: [
-                    {
-                        name: 'thing',
-                        path: '/api/v1/thing/' + id
-                    },
-                    {
-                        name: 'quotes',
-                        path: '/api/v1/quotes/' + id + query
-                    }
-                ]
-            };
+class QuotesPage extends React.Component {
+    static resources (appstate) {
+        const [type, id, slug] = appstate.path.split('/');
+        const queryObj = {};
+        if (appstate.query.page) {
+            queryObj.page = appstate.query.page;
         }
-    },
+        queryObj.slug = slug;
+        let query = queryString.stringify(queryObj);
+        query = query ? `?${query}` : '';
+        return {
+            api: [
+                {
+                    name: 'thing',
+                    path: `/api/v1/thing/${id}`
+                },
+                {
+                    name: 'quotes',
+                    path: `/api/v1/quotes/${id}${query}`
+                }
+            ]
+        };
+    }
     getInitialState () {
         return {
             quote: '',
             submitting: false
         };
-    },
+    }
     onChangeText (e) {
-        var temp = {
+        const temp = {
             error: false,
             message: ''
         };
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     validateForm () {
-        var valid = true;
+        const valid = true;
         return valid;
-    },
+    }
     onSubmit (e) {
         e.preventDefault();
-        var id = Number(this.props.path.split('/')[1]);
+        const id = Number(this.props.path.split('/')[1]);
         if (this.validateForm()) {
             this.setState({
                 submitting: true
             });
             requests
-            .post('/api/v1/quotes/' + id)
+            .post(`/api/v1/quotes/${id}`)
             .type('form')
             .send({
                 quote: this.state.quote,
@@ -89,11 +87,11 @@ var QuotesPage = React.createClass({
                 }
             });
         }
-    },
+    }
     render () {
-        var quotes = this.props.data.quotes.items;
-        var total = this.props.data.quotes.total;
-        var metaRobots;
+        const quotes = this.props.data.quotes.items;
+        const total = this.props.data.quotes.total;
+        let metaRobots;
         if (total === 0) {
             metaRobots = {'name': 'robots', 'content': 'noindex'};
         } else {
@@ -102,8 +100,8 @@ var QuotesPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Quotes - ' + this.props.data.thing.props.title}
-                    titleTemplate={'%s - ' + config.name}
+                    title={`Quotes - ${this.props.data.thing.props.title}`}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         metaRobots
                     ]}
@@ -171,6 +169,6 @@ var QuotesPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = QuotesPage;
+export default QuotesPage;

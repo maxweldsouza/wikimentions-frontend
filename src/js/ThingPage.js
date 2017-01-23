@@ -1,92 +1,89 @@
-var React = require('react');
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var requests = require('superagent');
-var _ = require('underscore');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import requests from 'superagent';
+import _ from 'underscore';
+import ThingMentionTab from './ThingMentionTab';
+import ThingMentionedByTab from './ThingMentionedByTab';
+import ThingBookTab from './ThingBookTab';
+import ThingVideoTab from './ThingVideoTab';
+import Authors from './Authors';
+import PageBar from './PageBar';
+import Share from './Share';
+import config from './config';
+import Link from './Link';
+import Thumbnail from './Thumbnail';
+import Modal from './Modal';
+import Markdown from './Markdown';
+import Affiliate from './Affiliate';
+import Time from './Time';
+import CopyButton from './CopyButton';
+import EditTags from './EditTags';
 
-var ThingMentionTab = require('./ThingMentionTab');
-var ThingMentionedByTab = require('./ThingMentionedByTab');
-var ThingBookTab = require('./ThingBookTab');
-var ThingVideoTab = require('./ThingVideoTab');
-var Authors = require('./Authors');
-var PageBar = require('./PageBar');
-var Share = require('./Share');
-var config = require('./config');
-var Link = require('./Link');
-var Thumbnail = require('./Thumbnail');
-var Modal = require('./Modal');
-var Markdown = require('./Markdown');
-var Affiliate = require('./Affiliate');
-var Time = require('./Time');
-var CopyButton = require('./CopyButton');
-var EditTags = require('./EditTags');
+class ThingPage extends React.Component {
+    static resources (appstate) {
+        let [type, id, slug, tab] = appstate.path.split('/');
+        const page = appstate.query.page;
+        const query = page ? `?page=${page}` : '';
+        const api = [{
+            name: 'thing',
+            path: `/api/v1/thing/${id}?slug=${slug}`
+        }];
+        let defaultTab;
 
-var ThingPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            var [type, id, slug, tab] = appstate.path.split('/');
-            var page = appstate.query.page;
-            var query = page ? '?page=' + page : '';
-            var api = [{
-                name: 'thing',
-                path: '/api/v1/thing/' + id + '?slug=' + slug
-            }];
-            var defaultTab;
-
-            if (type === 'people') {
-                defaultTab = 'videos';
-            } else {
-                defaultTab = 'mentioned';
-            }
-
-            tab = tab ? tab : defaultTab;
-
-            if (type === 'videos') {
-                api.push({
-                    name: 'videoauthors',
-                    path: '/api/v1/thing/' + id + '/videosby'
-                });
-            } else if (type === 'books') {
-                api.push({
-                    name: 'bookauthors',
-                    path: '/api/v1/thing/' + id + '/booksby'
-                });
-            }
-
-            if (tab === 'videos') {
-                api.push({
-                    name: 'videos',
-                    path: '/api/v1/thing/' + id + '/videos' + query
-                });
-            }
-            if (tab === 'books') {
-                api.push({
-                    name: 'books',
-                    path: '/api/v1/thing/' + id + '/books' + query
-                });
-            }
-            if (tab === 'mentioned') {
-                api.push({
-                    name: 'mentions',
-                    path: '/api/v1/mentions/' + id + query
-                });
-            }
-            if (tab === 'mentionedby') {
-                api.push({
-                    name: 'mentionedby',
-                    path: '/api/v1/mentionedby/' + id + query
-                });
-            }
-            return {
-                api: api
-            };
+        if (type === 'people') {
+            defaultTab = 'videos';
+        } else {
+            defaultTab = 'mentioned';
         }
-    },
+
+        tab = tab ? tab : defaultTab;
+
+        if (type === 'videos') {
+            api.push({
+                name: 'videoauthors',
+                path: `/api/v1/thing/${id}/videosby`
+            });
+        } else if (type === 'books') {
+            api.push({
+                name: 'bookauthors',
+                path: `/api/v1/thing/${id}/booksby`
+            });
+        }
+
+        if (tab === 'videos') {
+            api.push({
+                name: 'videos',
+                path: `/api/v1/thing/${id}/videos${query}`
+            });
+        }
+        if (tab === 'books') {
+            api.push({
+                name: 'books',
+                path: `/api/v1/thing/${id}/books${query}`
+            });
+        }
+        if (tab === 'mentioned') {
+            api.push({
+                name: 'mentions',
+                path: `/api/v1/mentions/${id}${query}`
+            });
+        }
+        if (tab === 'mentionedby') {
+            api.push({
+                name: 'mentionedby',
+                path: `/api/v1/mentionedby/${id}${query}`
+            });
+        }
+        return {
+            api
+        };
+    }
     getInitialState () {
         return {
             modalIsOpen: false
         };
-    },
+    }
     onOpenModal (e) {
         if (this.props.data.thing.image) {
             this.setState({
@@ -94,15 +91,15 @@ var ThingPage = React.createClass({
             });
         }
         e.preventDefault();
-    },
+    }
     onCloseModal () {
         this.setState({modalIsOpen: false});
-    },
+    }
     render () {
-        var [type, id, slug, tab] = this.props.path.split('/');
-        var thing = this.props.data.thing;
+        let [type, id, slug, tab] = this.props.path.split('/');
+        const thing = this.props.data.thing;
         id = Number(thing.id);
-        var defaultTab;
+        let defaultTab;
 
         if (type === 'people') {
             defaultTab = 'videos';
@@ -111,7 +108,7 @@ var ThingPage = React.createClass({
         }
         tab = tab ? tab : defaultTab;
 
-        var authors = [];
+        let authors = [];
         if (thing.props.type === 'book' && this.props.data.bookauthors.length > 0) {
             authors = this.props.data.bookauthors;
         } else if (thing.props.type === 'video' && this.props.data.videoauthors.length > 0) {
@@ -120,11 +117,11 @@ var ThingPage = React.createClass({
         if (thing.props.type === 'book' || thing.props.type === 'video') {
             authors = <Authors authors={authors} id={id} type={thing.props.type}/>;
         }
-        var mentions = this.props.data.mentions;
-        var mentionedby = this.props.data.mentionedby;
-        var tabs = [];
-        var books;
-        var videos;
+        const mentions = this.props.data.mentions;
+        const mentionedby = this.props.data.mentionedby;
+        let tabs = [];
+        let books;
+        let videos;
         if (thing.props.type === 'person') {
             tabs.push('videos');
             tabs.push('books');
@@ -132,27 +129,28 @@ var ThingPage = React.createClass({
             videos = this.props.data.videos;
         }
         tabs = tabs.concat(['mentioned', 'mentionedby']);
-        var tabTitles = {
+        const tabTitles = {
             'mentioned': 'Mentioned',
             'mentionedby': 'Mentioned By',
             'books': 'Books',
             'videos': 'Videos'
         };
-        var tabCounts = {
+        const tabCounts = {
             'mentioned': 'mentioned_count',
             'mentionedby': 'mentioned_by_count',
             'books': 'book_count',
             'videos': 'video_count'
         };
-        var tabTooltips = {
-            'mentioned': 'People, books or videos mentioned by ' + thing.props.title,
-            'mentionedby': 'People who have mentioned ' + thing.props.title,
-            'books': 'Books by ' + thing.props.title,
-            'videos': 'Videos by ' + thing.props.title
+        const tabTooltips = {
+            'mentioned': `People, books or videos mentioned by ${thing.props.title}`,
+            'mentionedby': `People who have mentioned ${thing.props.title}`,
+            'books': `Books by ${thing.props.title}`,
+            'videos': `Videos by ${thing.props.title}`
         };
-        var tabHeading = <ul className='tabs text-left' role='tablist'>
+        const tabHeading = <ul className='tabs text-left' role='tablist'>
             {tabs.map((x) => {
-                var cls, aria;
+                let cls;
+                let aria;
                 if (x === tab) {
                     return <li className='tabs-title is-active' role='tab' key={x} title={tabTooltips[x]} aria-selected={true}>
                         <Link
@@ -171,7 +169,7 @@ var ThingPage = React.createClass({
                 </li>;
             })}
         </ul>;
-        var metaRobots = {'name': 'robots', 'content': 'index'};
+        let metaRobots = {'name': 'robots', 'content': 'index'};
         if (thing.video_count === 0
             && thing.book_count === 0
             && thing.mentioned_count === 0
@@ -197,8 +195,9 @@ var ThingPage = React.createClass({
                 metaRobots = {'name': 'robots', 'content': 'noindex'};
             }
         }
-        var tabContent;
-        var pageTitle, pageDescription;
+        let tabContent;
+        let pageTitle;
+        let pageDescription;
         if (tab === 'mentioned') {
             tabContent = <ThingMentionTab
                 loggedin={this.props.loggedin}
@@ -209,11 +208,11 @@ var ThingPage = React.createClass({
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
-            pageTitle = 'Mentioned - ' + thing.props.title;
+            pageTitle = `Mentioned - ${thing.props.title}`;
             if (thing.props.type === 'person') {
-                pageDescription = 'People, books or videos mentioned by ' + thing.props.title;
+                pageDescription = `People, books or videos mentioned by ${thing.props.title}`;
             } else {
-                pageDescription = 'People, books or videos mentioned in ' + thing.props.title;
+                pageDescription = `People, books or videos mentioned in ${thing.props.title}`;
             }
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
@@ -225,8 +224,8 @@ var ThingPage = React.createClass({
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
-            pageTitle = 'Mentioned by - ' + thing.props.title;
-            pageDescription = 'People, books or videos that mention ' + thing.props.title;
+            pageTitle = `Mentioned by - ${thing.props.title}`;
+            pageDescription = `People, books or videos that mention ${thing.props.title}`;
         } else if (tab === 'books' && thing.props.type === 'person') {
             tabContent = <ThingBookTab
                 loggedin={this.props.loggedin}
@@ -236,8 +235,8 @@ var ThingPage = React.createClass({
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
-            pageTitle = 'Books - ' + thing.props.title;
-            pageDescription = 'Books authored by ' + thing.props.title;
+            pageTitle = `Books - ${thing.props.title}`;
+            pageDescription = `Books authored by ${thing.props.title}`;
         } else if (tab === 'videos' && thing.props.type === 'person') {
             tabContent = <ThingVideoTab
                 loggedin={this.props.loggedin}
@@ -247,19 +246,19 @@ var ThingPage = React.createClass({
                 path={this.props.path}
                 page={this.props.query.page}
                 />;
-            pageTitle = 'Videos - ' + thing.props.title;
-            pageDescription = 'A collection of videos of ' + thing.props.title;
+            pageTitle = `Videos - ${thing.props.title}`;
+            pageDescription = `A collection of videos of ${thing.props.title}`;
         }
-        pageDescription = thing.props.description ? pageDescription + ', ' + thing.props.description : pageDescription;
-        var imageUrl;
+        pageDescription = thing.props.description ? `${pageDescription}, ${thing.props.description}` : pageDescription;
+        let imageUrl;
         if (thing.image) {
-            imageUrl = config.url + 'api/v1/static/images/' + thing.image.md5 + '-' + thing.image.width + '-' + thing.image.height + '.jpg';
+            imageUrl = `${config.url}api/v1/static/images/${thing.image.md5}-${thing.image.width}-${thing.image.height}.jpg`;
         }
         return (
         <span>
             <Helmet
                 title={pageTitle}
-                titleTemplate={'%s - ' + config.name}
+                titleTemplate={`%s - ${config.name}`}
                 meta={[
                     {'name': 'description', 'content': pageDescription},
                     metaRobots,
@@ -395,7 +394,7 @@ var ThingPage = React.createClass({
                                     Tags:
                                     {thing.tags ? <span>
                                         {thing.tags.map((x) => {
-                                            return <a key={x} className='tag secondary round small no-margin-bottom' href={'/tags/' + x}>
+                                            return <a key={x} className='tag secondary round small no-margin-bottom' href={`/tags/${x}`}>
                                                 {x}
                                         </a>;
                                         })}
@@ -409,6 +408,6 @@ var ThingPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = ThingPage;
+export default ThingPage;

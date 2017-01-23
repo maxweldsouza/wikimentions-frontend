@@ -1,22 +1,21 @@
-var React = require('react');
-var Modal = require('./Modal');
+import React from 'react';
+import Modal from './Modal';
+import Login from './Login';
 
-var Login = require('./Login');
-
-var LoginModal = React.createClass({
+class LoginModal extends React.Component {
     getInitialState () {
         return {
             showing: false
         };
-    },
+    }
     onOpen () {
         this.setState({
             showing: true
         });
-    },
+    }
     onClose () {
         this.setState({showing: false});
-    },
+    }
     render () {
         return (
             <span>
@@ -33,6 +32,6 @@ var LoginModal = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = LoginModal;
+export default LoginModal;

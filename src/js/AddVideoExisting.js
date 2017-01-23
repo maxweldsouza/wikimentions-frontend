@@ -1,14 +1,13 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import cookies from 'browser-cookies';
+import requests from 'superagent';
+import Select from './Select';
+import Snackbar from './Snackbar';
+import SubmitButton from './SubmitButton';
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var cookies = require('browser-cookies');
-var requests = require('superagent');
-var Select = require('./Select');
-var Snackbar = require('./Snackbar');
-var SubmitButton = require('./SubmitButton');
-
-var AddVideo = React.createClass({
+class AddVideoExisting extends React.Component {
     getInitialState () {
         return {
             video_id: '',
@@ -17,14 +16,14 @@ var AddVideo = React.createClass({
             videoMessage: '',
             formMessage: ''
         };
-    },
+    }
     onSelect (x) {
         this.setState({
             video_id: x.id
         });
-    },
+    }
     validateForm () {
-        var valid = true;
+        let valid = true;
         if (!this.state.video_id) {
             this.setState({
                 videoValid: false,
@@ -38,7 +37,7 @@ var AddVideo = React.createClass({
             });
         }
         return valid;
-    },
+    }
     onSubmit (e) {
         e.preventDefault();
         if (this.validateForm()) {
@@ -46,7 +45,7 @@ var AddVideo = React.createClass({
                 submitting: true
             });
             requests
-            .post('/api/v1/thing/' + this.props.id + '/videos')
+            .post(`/api/v1/thing/${this.props.id}/videos`)
             .type('form')
             .send({
                 video_id: this.state.video_id,
@@ -70,9 +69,9 @@ var AddVideo = React.createClass({
                 }
             });
         }
-    },
+    }
     render () {
-        var id = this.props.id;
+        const id = this.props.id;
         return <form onSubmit={this.onSubmit}>
             {this.state.formMessage ? <div className='callout alert'>
                 {this.state.formMessage}
@@ -87,6 +86,6 @@ var AddVideo = React.createClass({
             <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting}/>
         </form>;
     }
-});
+}
 
-module.exports = AddVideo;
+export default AddVideoExisting;

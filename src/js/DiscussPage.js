@@ -1,46 +1,43 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import Comment from './Comment';
+import _ from 'underscore';
+import DiscussReply from './DiscussReply';
+import PageBar from './PageBar';
+import config from './config';
+import Pagination from './Pagination';
+import {VelocityTransitionGroup} from 'velocity-react';
+import queryString from 'query-string';
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var Comment = require('./Comment');
-var _ = require('underscore');
-var DiscussReply = require('./DiscussReply');
-var PageBar = require('./PageBar');
-var config = require('./config');
-var Pagination = require('./Pagination');
-var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
-var queryString = require('query-string');
-
-var DiscussPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            var data;
-            var [type, id, slug] = appstate.path.split('/');
-            var queryObj = {};
-            if (appstate.query.page) {
-                queryObj.page = appstate.query.page;
-            }
-            queryObj.slug = slug;
-            var query = queryString.stringify(queryObj);
-            query = query ? '?' + query : '';
-            return {
-                api: [
-                    {
-                        name: 'discuss',
-                        path: '/api/v1/discuss/' + id + query
-                    }
-                ]
-            };
+class DiscussPage extends React.Component {
+    static resources (appstate) {
+        let data;
+        const [type, id, slug] = appstate.path.split('/');
+        const queryObj = {};
+        if (appstate.query.page) {
+            queryObj.page = appstate.query.page;
         }
-    },
+        queryObj.slug = slug;
+        let query = queryString.stringify(queryObj);
+        query = query ? `?${query}` : '';
+        return {
+            api: [
+                {
+                    name: 'discuss',
+                    path: `/api/v1/discuss/${id}${query}`
+                }
+            ]
+        };
+    }
     render () {
-        var parts = this.props.path.split('/');
-        var id = Number(parts[1]);
-        var slug = parts[2];
-        var type = this.props.data.discuss.props.type;
-        var discussions = this.props.data.discuss.discussion;
-        var nodata;
-        var pagination = <Pagination path={this.props.path} page={this.props.query.page} count={discussions.length}/>;
+        const parts = this.props.path.split('/');
+        const id = Number(parts[1]);
+        const slug = parts[2];
+        const type = this.props.data.discuss.props.type;
+        const discussions = this.props.data.discuss.discussion;
+        let nodata;
+        let pagination = <Pagination path={this.props.path} page={this.props.query.page} count={discussions.length}/>;
         if (discussions.length === 0) {
             if (this.props.query.page) {
                 nodata = <div className='small-12 columns'>
@@ -64,8 +61,8 @@ var DiscussPage = React.createClass({
         return (
             <span>
                 <Helmet
-                    title={'Discussion - ' + this.props.data.discuss.props.title}
-                    titleTemplate={'%s - ' + config.name}
+                    title={`Discussion - ${this.props.data.discuss.props.title}`}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'description', 'content': ''},
                         {'name': 'robots', 'content': 'noindex'}
@@ -81,7 +78,7 @@ var DiscussPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
-                        <h1>{'Discussion - ' + this.props.data.discuss.props.title}</h1>
+                        <h1>{`Discussion - ${this.props.data.discuss.props.title}`}</h1>
                         <PageBar
                             id={id}
                             slug={slug}
@@ -110,6 +107,6 @@ var DiscussPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = DiscussPage;
+export default DiscussPage;

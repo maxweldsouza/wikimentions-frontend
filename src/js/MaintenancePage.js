@@ -1,40 +1,38 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import _ from 'underscore';
+import Link from './Link';
+import config from './config';
+const tags = ['book_without_author', 'missing_isbn', 'person_without_description'];
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var _ = require('underscore');
-var Link = require('./Link');
-var config = require('./config');
-var tags = ['book_without_author', 'missing_isbn', 'person_without_description'];
-
-var Maintenance = React.createClass({
-    statics: {
-        resources (appstate) {
-            var parts = appstate.url.split('/');
-            var tag = parts[1];
-            var limit = parts[2];
-            var offset = parts[3];
-            if (tags.indexOf(tag) < 0) {
-                throw { status: 404, message: 'Count not find what you were looking for'};
-            }
-            return {
-                api: [
-                    {
-                        name: 'data',
-                        path: '/api/v1/maintenance/' + tag + '/' + limit + '/' + offset
-                    }
-                ]
-            };
+class Maintenance extends React.Component {
+    static resources (appstate) {
+        const parts = appstate.url.split('/');
+        const tag = parts[1];
+        const limit = parts[2];
+        const offset = parts[3];
+        if (!tags.includes(tag)) {
+            throw { status: 404, message: 'Count not find what you were looking for'};
         }
-    },
+        return {
+            api: [
+                {
+                    name: 'data',
+                    path: `/api/v1/maintenance/${tag}/${limit}/${offset}`
+                }
+            ]
+        };
+    }
     render () {
-        var parts = this.props.path.split('/');
-        var tag = parts[1];
-        var limit = Number(parts[2]);
-        var offset = Number(parts[3]);
+        const parts = this.props.path.split('/');
+        const tag = parts[1];
+        const limit = Number(parts[2]);
+        const offset = Number(parts[3]);
 
-        var data = this.props.data.data[tag];
-        var title, results;
+        const data = this.props.data.data[tag];
+        let title;
+        let results;
         if (tag === 'book_without_author') {
             title = 'Books with no Author';
             results = <div>
@@ -78,18 +76,19 @@ var Maintenance = React.createClass({
                 })}
             </div>;
         }
-        var prev, next;
+        let prev;
+        let next;
         if (offset === 0) {
             prev = '#';
         } else {
-            prev = '/maintenance/' + tag + '/' + limit + '/' + (offset - limit);
+            prev = `/maintenance/${tag}/${limit}/${offset - limit}`;
         }
-        next = '/maintenance/' + tag + '/' + limit + '/' + (offset + limit);
+        next = `/maintenance/${tag}/${limit}/${offset + limit}`;
         return (
             <span>
                 <Helmet
                     title={'Maintenance'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -109,13 +108,13 @@ var Maintenance = React.createClass({
                                 <h1>{title}</h1>
                                 <div className='row'>
                                     <div className='small-4 columns'>
-                                        {'Showing results ' + offset + ' to ' + (limit + offset)}
+                                        {`Showing results ${offset} to ${limit + offset}`}
                                     </div>
                                     <div className='small-4 columns'>
                                         <span className='button-group small'>
-                                            <a className='button' href={'/maintenance/' + tag + '/50/0'}>50</a>
-                                            <a className='button' href={'/maintenance/' + tag + '/100/0'}>100</a>
-                                            <a className='button' href={'/maintenance/' + tag + '/200/0'}>200</a>
+                                            <a className='button' href={`/maintenance/${tag}/50/0`}>50</a>
+                                            <a className='button' href={`/maintenance/${tag}/100/0`}>100</a>
+                                            <a className='button' href={`/maintenance/${tag}/200/0`}>200</a>
                                         </span>
                                     </div>
                                     <div className='small-4 columns'>
@@ -136,6 +135,6 @@ var Maintenance = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = Maintenance;
+export default Maintenance;
