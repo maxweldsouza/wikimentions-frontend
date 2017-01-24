@@ -6,10 +6,12 @@ import requests from 'superagent';
 import cookies from 'browser-cookies';
 import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
+import autoBind from 'react-autobind';
 
 class AuthorCard extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             submitting: false
         };

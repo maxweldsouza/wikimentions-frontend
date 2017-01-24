@@ -2,6 +2,7 @@ import React from 'react';
 import Book from './Book';
 import AddBook from './AddBook';
 import Pagination from './Pagination';
+import autoBind from 'react-autobind';
 
 class ThingBookTab extends React.Component {
     static get defaultProps () {

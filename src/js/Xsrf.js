@@ -1,10 +1,12 @@
 import React from 'react';
 import cookies from 'browser-cookies';
 import isNode from './isNode';
+import autoBind from 'react-autobind';
 
 class Xsrf extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             xsrf: ''
         };

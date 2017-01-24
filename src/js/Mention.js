@@ -7,10 +7,12 @@ import React from 'react';
 import requests from 'superagent';
 import Snackbar from './Snackbar';
 import Thumbnail from './Thumbnail';
+import autoBind from 'react-autobind';
 
 class Mention extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             dropdownIsOpen: false
         };

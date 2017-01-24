@@ -2,6 +2,7 @@ import React from 'react';
 import Video from './Video';
 import AddVideo from './AddVideo';
 import Pagination from './Pagination';
+import autoBind from 'react-autobind';
 
 class ThingVideoTab extends React.Component {
     static get defaultProps () {

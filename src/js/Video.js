@@ -3,6 +3,7 @@ import parseUrl from 'url-parse';
 import Link from './Link';
 import Thumbnail from './Thumbnail';
 import Lazy from 'react-lazyload';
+import autoBind from 'react-autobind';
 
 class Video extends React.Component {
     render () {

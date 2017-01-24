@@ -12,6 +12,7 @@ import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
 import Thumbnail from './Thumbnail';
 import PageBar from './PageBar';
+import autoBind from 'react-autobind';
 
 class QuotesPage extends React.Component {
     static resources (appstate) {
@@ -38,6 +39,7 @@ class QuotesPage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             quote: '',
             submitting: false

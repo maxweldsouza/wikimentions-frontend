@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
+import autoBind from 'react-autobind';
 
 class IpWarning extends React.Component {
     render () {

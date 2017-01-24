@@ -15,6 +15,7 @@ import VideoEmbed from './VideoEmbed';
 import Link from './Link';
 import Thumbnail from './Thumbnail';
 import utils from './utils';
+import autoBind from 'react-autobind';
 
 class HomePage extends React.Component {
     static resources (appstate) {
@@ -29,6 +30,7 @@ class HomePage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             tab: 'Startups'
         };

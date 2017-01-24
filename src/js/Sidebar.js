@@ -6,6 +6,7 @@ import requests from 'superagent';
 import Snackbar from './Snackbar';
 import cookies from 'browser-cookies';
 import {VelocityTransitionGroup} from 'velocity-react';
+import autoBind from 'react-autobind';
 
 class Sidebar extends React.Component {
     shouldComponentUpdate (nextProps, nextState) {

@@ -16,6 +16,7 @@ import Link from './Link';
 import parseUrl from 'url-parse';
 import queryString from 'query-string';
 import utils from './utils';
+import autoBind from 'react-autobind';
 
 class VideoPage extends React.Component {
     static resources (appstate) {
@@ -60,6 +61,7 @@ class VideoPage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             embeddable: false,
             videoImage: ''

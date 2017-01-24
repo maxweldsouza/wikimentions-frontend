@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import isNode from './isNode';
+import autoBind from 'react-autobind';
 
 /* Having a time ago or a local timestamp prevents us from caching pages
 This component renders the timestamp no the client side instead */
@@ -12,6 +13,7 @@ class Time extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             server: true
         };

@@ -1,4 +1,5 @@
 import React from 'react';
+import autoBind from 'react-autobind';
 
 class SubmitButton extends React.Component {
     static get defaultProps () {

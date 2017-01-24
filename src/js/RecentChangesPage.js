@@ -5,6 +5,7 @@ import _ from 'underscore';
 import config from './config';
 import Pagination from './Pagination';
 import HistoryItem from './HistoryItem';
+import autoBind from 'react-autobind';
 
 class RecentChangesPage extends React.Component {
     static resources (appstate) {

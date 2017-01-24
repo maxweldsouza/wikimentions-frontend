@@ -1,4 +1,5 @@
 import React from 'react';
+import autoBind from 'react-autobind';
 
 class ButtonSelect extends React.Component {
     static get defaultProps () {
@@ -8,6 +9,7 @@ class ButtonSelect extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             selected: this.props.default
         };

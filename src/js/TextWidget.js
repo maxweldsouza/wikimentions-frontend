@@ -1,4 +1,5 @@
 import React from 'react';
+import autoBind from 'react-autobind';
 
 class TextWidget extends React.Component {
     render () {

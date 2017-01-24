@@ -4,6 +4,7 @@ import _ from 'underscore';
 import config from './config';
 import Navbar from './Navbar';
 import BlogPost from './BlogPost';
+import autoBind from 'react-autobind';
 
 class BlogPostPage extends React.Component {
     static resources (routeObj) {

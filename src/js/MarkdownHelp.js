@@ -1,10 +1,12 @@
 import React from 'react';
 import Modal from './Modal';
 import Markdown from './Markdown';
+import autoBind from 'react-autobind';
 
 class MarkdownHelp extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             modalIsOpen: false
         };

@@ -4,6 +4,8 @@ import Navbar from './Navbar';
 import _ from 'underscore';
 import Link from './Link';
 import config from './config';
+import autoBind from 'react-autobind';
+
 const tags = ['book_without_author', 'missing_isbn', 'person_without_description'];
 
 class Maintenance extends React.Component {

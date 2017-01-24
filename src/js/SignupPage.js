@@ -5,6 +5,7 @@ import cookies from 'browser-cookies';
 import Xsrf from './Xsrf';
 import Signup from './Signup';
 import config from './config';
+import autoBind from 'react-autobind';
 
 class SignupPage extends React.Component {
     static resources (appstate) {

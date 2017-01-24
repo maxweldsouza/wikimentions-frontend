@@ -7,10 +7,12 @@ import Input from './Input';
 import MarkdownInput from './MarkdownInput';
 let Cropper = null;
 import isNode from './isNode';
+import autoBind from 'react-autobind';
 
 class ImageUpload extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             scale: 1,
             image: '',

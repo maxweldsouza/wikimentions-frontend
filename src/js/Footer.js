@@ -1,6 +1,7 @@
 import React from 'react';
 import config from './config';
 import AdminOnly from './AdminOnly';
+import autoBind from 'react-autobind';
 
 class Footer extends React.Component {
     render () {

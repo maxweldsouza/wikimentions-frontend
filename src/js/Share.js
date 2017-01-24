@@ -1,9 +1,11 @@
 import React from 'react';
 import config from './config';
+import autoBind from 'react-autobind';
 
 class Share extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             open: false
         };

@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import Navbar from './Navbar';
 import config from './config';
 import Markdown from './Markdown';
+import autoBind from 'react-autobind';
 
 class ContentPage extends React.Component {
     static resources (appstate) {

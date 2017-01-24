@@ -6,10 +6,12 @@ import Restricted from './Restricted';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import IpWarning from './IpWarning';
+import autoBind from 'react-autobind';
 
 class AddVideo extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             type: 'Existing'
         };

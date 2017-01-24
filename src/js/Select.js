@@ -4,19 +4,12 @@ import _ from 'underscore';
 import Thumbnail from './Thumbnail';
 import Input from './Input';
 import utils from './utils';
+import autoBind from 'react-autobind';
 
 class Select extends React.Component {
-    static get defaultProps () {
-        return {
-            autocomplete: true,
-            className: '',
-            valid: true,
-            autoFocus: false,
-            message: ''
-        };
-    }
     constructor (props) {
         super(props);
+        autoBind(this);
         this.loadData = _.throttle(this.loadData, 1000);
         this.state = {
             focus: -1,
@@ -30,10 +23,10 @@ class Select extends React.Component {
         };
     }
     componentDidMount () {
-        window.addEventListener('click', this._hideDropdown.bind(this), false);
+        window.addEventListener('click', this._hideDropdown, false);
     }
     componentWillUnmount () {
-        window.removeEventListener('click', this._hideDropdown.bind(this), false);
+        window.removeEventListener('click', this._hideDropdown, false);
     }
     _hideDropdown () {
         this.setState({
@@ -125,7 +118,9 @@ class Select extends React.Component {
             typeQuery = '';
         }
         if (this.props.autocomplete) {
-            requests.get(`/api/v1/autocomplete/${encodeURIComponent(x)}${typeQuery}`).end((err, res) => {
+            requests
+            .get(`/api/v1/autocomplete/${encodeURIComponent(x)}${typeQuery}`)
+            .end((err, res) => {
                 if (err && err.status) {
                     this.setState({
                         loading: false,
@@ -141,7 +136,9 @@ class Select extends React.Component {
                 }
             });
         } else {
-            requests.get(`/api/v1/search/${encodeURIComponent(x)}${typeQuery}`).end((err, res) => {
+            requests
+            .get(`/api/v1/search/${encodeURIComponent(x)}${typeQuery}`)
+            .end((err, res) => {
                 if (err && err.status) {
                     this.setState({
                         loading: false,
@@ -245,5 +242,13 @@ class Select extends React.Component {
         );
     }
 }
+
+Select.defaultProps = {
+    autocomplete: true,
+    className: '',
+    valid: true,
+    autoFocus: false,
+    message: ''
+};
 
 export default Select;

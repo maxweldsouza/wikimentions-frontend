@@ -4,10 +4,12 @@ import SubmitButton from './SubmitButton';
 import requests from 'superagent';
 import cookies from 'browser-cookies';
 import Input from './Input';
+import autoBind from 'react-autobind';
 
 class ChangePassword extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             submitting: false,
             old: '',

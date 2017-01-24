@@ -4,6 +4,7 @@ import parseUrl from 'url-parse';
 import requests from 'superagent';
 import config from './config';
 import utils from './utils';
+import autoBind from 'react-autobind';
 
 class YoutubeEmbed extends React.Component {
     static get defaultProps () {

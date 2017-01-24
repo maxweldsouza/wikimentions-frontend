@@ -4,6 +4,7 @@ import requests from 'superagent';
 import SubmitButton from './SubmitButton';
 import cookies from 'browser-cookies';
 import Snackbar from './Snackbar';
+import autoBind from 'react-autobind';
 
 const allTags = ['Science', 'Startups', 'Programming'];
 
@@ -15,6 +16,7 @@ class EditTags extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             modalIsOpen: false,
             submitting: false,

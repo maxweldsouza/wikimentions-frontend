@@ -20,6 +20,7 @@ import requests from 'superagent';
 import Restricted from './Restricted';
 import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
+import autoBind from 'react-autobind';
 
 class EditPage extends React.Component {
     static resources (appstate) {
@@ -42,6 +43,7 @@ class EditPage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             type: this.props.data.thing.props.type,
             title: this.props.data.thing.props.title,

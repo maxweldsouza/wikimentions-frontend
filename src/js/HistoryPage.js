@@ -7,6 +7,7 @@ import Pagination from './Pagination';
 import HistoryItem from './HistoryItem';
 import PageBar from './PageBar';
 import config from './config';
+import autoBind from 'react-autobind';
 
 class HistoryPage extends React.Component {
     static resources (appstate) {

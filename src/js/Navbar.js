@@ -7,10 +7,12 @@ import Spinner from './Spinner';
 import {VelocityTransitionGroup} from 'velocity-react';
 import Xsrf from './Xsrf';
 import requests from 'superagent';
+import autoBind from 'react-autobind';
 
 class Navbar extends React.Component {
     constructor (props) {
         super(props);
+        autoBind(this);
         this.state = {
             searchBarOpen: false,
             searchText: ''

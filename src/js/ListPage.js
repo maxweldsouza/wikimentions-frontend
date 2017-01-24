@@ -12,6 +12,7 @@ import Select from './Select';
 import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
 import Video from './Video';
+import autoBind from 'react-autobind';
 
 class ListPage extends React.Component {
     static resources (appstate) {
@@ -33,6 +34,7 @@ class ListPage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             id: null,
             submitting: false,

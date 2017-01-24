@@ -12,6 +12,7 @@ import Thumbnail from './Thumbnail';
 import SubmitButton from './SubmitButton';
 import Select from './Select';
 import Input from './Input';
+import autoBind from 'react-autobind';
 
 class KitchenSinkPage extends React.Component {
     static resources (appstate) {

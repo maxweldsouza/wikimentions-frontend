@@ -6,10 +6,12 @@ import requests from 'superagent';
 import Snackbar from './Snackbar';
 import store from 'store';
 import Input from './Input';
+import autoBind from 'react-autobind';
 
 class Login extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             submitting: false,
             formError: false,

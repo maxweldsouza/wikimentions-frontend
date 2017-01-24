@@ -7,6 +7,7 @@ import React from 'react';
 import requests from 'superagent';
 import Snackbar from './Snackbar';
 import Time from './Time';
+import autoBind from 'react-autobind';
 
 class BugPage extends React.Component {
     static resources (appstate) {
@@ -16,6 +17,7 @@ class BugPage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             bugs: [],
             page: 1

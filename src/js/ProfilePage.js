@@ -11,6 +11,7 @@ import S from 'string';
 import Pagination from './Pagination';
 import TextWidget from './TextWidget';
 import Markdown from './Markdown';
+import autoBind from 'react-autobind';
 
 class ProfilePage extends React.Component {
     static resources (appstate) {

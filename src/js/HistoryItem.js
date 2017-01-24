@@ -2,6 +2,7 @@ import React from 'react';
 import Link from './Link';
 import Time from './Time';
 import Markdown from './Markdown';
+import autoBind from 'react-autobind';
 
 class HistoryItem extends React.Component {
     render () {

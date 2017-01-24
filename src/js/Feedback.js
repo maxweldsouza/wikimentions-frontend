@@ -4,10 +4,12 @@ import React from 'react';
 import requests from 'superagent';
 import Snackbar from './Snackbar';
 import Input from './Input';
+import autoBind from 'react-autobind';
 
 class Feedback extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             step: 'rate',
             feedback: '',

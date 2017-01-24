@@ -1,6 +1,7 @@
 import React from 'react';
 import Lazy from 'react-lazyload';
 import VideoApiThumb from './VideoApiThumb';
+import autoBind from 'react-autobind';
 
 class Thumbnail extends React.Component {
     static get defaultProps () {

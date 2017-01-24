@@ -2,6 +2,7 @@ import React from 'react';
 import Mention from './Mention';
 import AddMention from './AddMention';
 import Pagination from './Pagination';
+import autoBind from 'react-autobind';
 
 class ThingMentionTab extends React.Component {
     static get defaultProps () {

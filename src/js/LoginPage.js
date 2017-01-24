@@ -7,6 +7,7 @@ import requests from 'superagent';
 import Snackbar from './Snackbar';
 import Login from './Login';
 import config from './config';
+import autoBind from 'react-autobind';
 
 class LoginPage extends React.Component {
     static resources (appstate) {

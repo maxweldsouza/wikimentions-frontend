@@ -7,6 +7,7 @@ import React from 'react';
 import requests from 'superagent';
 import Time from './Time';
 import Snackbar from './Snackbar';
+import autoBind from 'react-autobind';
 
 class FeedbackPage extends React.Component {
     static resources (appstate) {
@@ -16,6 +17,7 @@ class FeedbackPage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             feedback: [],
             page: 1

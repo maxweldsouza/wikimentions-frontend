@@ -1,5 +1,6 @@
 import React from 'react';
 import {VelocityTransitionGroup} from 'velocity-react';
+import autoBind from 'react-autobind';
 
 class Modal extends React.Component {
     render () {

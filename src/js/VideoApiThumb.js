@@ -5,6 +5,7 @@ import requests from 'superagent';
 import config from './config';
 import moment from 'moment';
 import utils from './utils';
+import autoBind from 'react-autobind';
 
 const humanizeDuration = ptduration => {
     const ms = moment.duration(ptduration).asMilliseconds();
@@ -17,6 +18,7 @@ const humanizeDuration = ptduration => {
 class VideoApiThumb extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             thumb: '',
             width: 120,

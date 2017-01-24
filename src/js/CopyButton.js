@@ -1,5 +1,6 @@
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import autoBind from 'react-autobind';
 
 class CopyButton extends React.Component {
     static get defaultProps () {
@@ -10,6 +11,7 @@ class CopyButton extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             copied: false
         };

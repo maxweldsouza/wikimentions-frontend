@@ -2,6 +2,7 @@ import React from 'react';
 import cookies from 'browser-cookies';
 import isNode from './isNode';
 import config from './config';
+import autoBind from 'react-autobind';
 
 class AdminOnly extends React.Component {
     render () {

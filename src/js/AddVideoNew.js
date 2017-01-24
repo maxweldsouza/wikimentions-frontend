@@ -4,10 +4,12 @@ import SubmitButton from './SubmitButton';
 import cookies from 'browser-cookies';
 import requests from 'superagent';
 import Input from './Input';
+import autoBind from 'react-autobind';
 
 class AddVideoNew extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             title: '',
             url: '',

@@ -12,6 +12,7 @@ import Input from './Input';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import IpWarning from './IpWarning';
+import autoBind from 'react-autobind';
 
 class HomePage extends React.Component {
     static resources (appstate) {
@@ -21,6 +22,7 @@ class HomePage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             title: this.props.query.title ? this.props.query.title : '',
             titleValid: true,

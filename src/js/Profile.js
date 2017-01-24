@@ -4,10 +4,12 @@ import ChangePassword from './ChangePassword';
 import DeleteAccount from './DeleteAccount';
 import EditProfile from './EditProfile';
 import Markdown from './Markdown';
+import autoBind from 'react-autobind';
 
 class Profile extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             tab: 'Profile'
         };

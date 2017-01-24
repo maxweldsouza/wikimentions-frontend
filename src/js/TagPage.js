@@ -12,6 +12,7 @@ import React from 'react';
 import requests from 'superagent';
 import SignupModal from './SignupModal';
 import Snackbar from './Snackbar';
+import autoBind from 'react-autobind';
 
 class TagPage extends React.Component {
     static resources (appstate) {
@@ -29,6 +30,7 @@ class TagPage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             pageno: 0
         };

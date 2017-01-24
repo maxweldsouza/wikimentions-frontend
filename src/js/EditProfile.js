@@ -6,10 +6,12 @@ import MarkdownInput from './MarkdownInput';
 import cookies from 'browser-cookies';
 import Snackbar from './Snackbar';
 import Input from './Input';
+import autoBind from 'react-autobind';
 
 class EditProfile extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             submitting: false,
             email: '',

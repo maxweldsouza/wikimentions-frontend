@@ -8,10 +8,12 @@ import SubmitButton from './SubmitButton';
 import AuthorCard from './AuthorCard';
 import {VelocityTransitionGroup} from 'velocity-react';
 import Modal from './Modal';
+import autoBind from 'react-autobind';
 
 class AddAuthors extends React.Component {
     constructor (props) {
         super(props);
+        autoBind(this);
         this.state = {
             modalIsOpen: false,
             author: '',

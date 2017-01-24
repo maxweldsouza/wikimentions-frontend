@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import Navbar from './Navbar';
 import _ from 'underscore';
 import config from './config';
+import autoBind from 'react-autobind';
 
 class ContributePage extends React.Component {
     static resources (appstate) {
@@ -13,6 +14,7 @@ class ContributePage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             tab: 'edits'
         };

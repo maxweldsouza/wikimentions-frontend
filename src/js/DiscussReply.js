@@ -7,10 +7,12 @@ import Restricted from './Restricted';
 import SignupModal from './SignupModal';
 import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
+import autoBind from 'react-autobind';
 
 class DiscussReply extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             content: '',
             submitting: false,

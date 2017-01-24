@@ -1,6 +1,7 @@
 import React from 'react';
 import queryString from 'query-string';
 import _ from 'underscore';
+import autoBind from 'react-autobind';
 
 class Pagination extends React.Component {
     pagePath (no) {

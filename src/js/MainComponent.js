@@ -38,6 +38,7 @@ import store from 'store';
 import TagPage from './TagPage';
 import ThingPage from './ThingPage';
 import VideoPage from './VideoPage';
+import autoBind from 'react-autobind';
 
 class MainComponent extends React.Component {
     static get defaultProps () {
@@ -49,6 +50,7 @@ class MainComponent extends React.Component {
     }
     constructor (props) {
         super(props);
+        autoBind(this);
         this.state = {
             sidebar: false
         };

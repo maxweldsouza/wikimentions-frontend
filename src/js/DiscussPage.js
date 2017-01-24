@@ -9,6 +9,7 @@ import config from './config';
 import Pagination from './Pagination';
 import {VelocityTransitionGroup} from 'velocity-react';
 import queryString from 'query-string';
+import autoBind from 'react-autobind';
 
 class DiscussPage extends React.Component {
     static resources (appstate) {

@@ -12,6 +12,7 @@ import HomeItem from './HomeItem';
 import Pagination from './Pagination';
 import ButtonSelect from './ButtonSelect';
 import queryString from 'query-string';
+import autoBind from 'react-autobind';
 
 class SearchPage extends React.Component {
     static resources (appstate) {
@@ -21,6 +22,7 @@ class SearchPage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             searchText: this.props.query.q,
             results: [],

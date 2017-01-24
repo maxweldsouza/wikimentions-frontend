@@ -1,8 +1,10 @@
 import React from 'react';
+import autoBind from 'react-autobind';
 
 class HomeSearch extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             searchText: ''
         };

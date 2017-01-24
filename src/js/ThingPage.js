@@ -19,6 +19,7 @@ import Affiliate from './Affiliate';
 import Time from './Time';
 import CopyButton from './CopyButton';
 import EditTags from './EditTags';
+import autoBind from 'react-autobind';
 
 class ThingPage extends React.Component {
     static resources (appstate) {
@@ -81,6 +82,7 @@ class ThingPage extends React.Component {
     }
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             modalIsOpen: false
         };

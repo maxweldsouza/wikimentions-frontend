@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'underscore';
+import autoBind from 'react-autobind';
 
 class Input extends React.Component {
     static get defaultProps () {
         return {
-            onClear() {},
             value: '',
             valid: true,
             message: ''

@@ -1,10 +1,12 @@
 import React from 'react';
 import Modal from './Modal';
 import Signup from './Signup';
+import autoBind from 'react-autobind';
 
 class SignupModal extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             modalIsOpen: false
         };

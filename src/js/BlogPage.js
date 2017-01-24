@@ -4,6 +4,7 @@ import _ from 'underscore';
 import config from './config';
 import Navbar from './Navbar';
 import BlogPost from './BlogPost';
+import autoBind from 'react-autobind';
 
 const pageNoFromPath = path => {
     const parts = path.split('/');
@@ -19,6 +20,7 @@ const pageNoFromPath = path => {
 class BlogPage extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.statics = {
             resources (routeObj) {
                 const page = pageNoFromPath(routeObj.url);

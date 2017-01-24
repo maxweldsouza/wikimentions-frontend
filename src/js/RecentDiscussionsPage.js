@@ -11,6 +11,7 @@ import Time from './Time';
 import Markdown from './Markdown';
 import Link from './Link';
 import Pagination from './Pagination';
+import autoBind from 'react-autobind';
 
 class RecentDiscussions extends React.Component {
     static resources (appstate) {

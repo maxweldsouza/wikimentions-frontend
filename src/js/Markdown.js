@@ -4,6 +4,7 @@ const md = new Remarkable({
     linkify: true
 });
 import nofollow from './nofollow';
+import autoBind from 'react-autobind';
 
 class Markdown extends React.Component {
     static get defaultProps () {

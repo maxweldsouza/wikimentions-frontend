@@ -4,10 +4,12 @@ import cookies from 'browser-cookies';
 import requests from 'superagent';
 import Snackbar from './Snackbar';
 import Input from './Input';
+import autoBind from 'react-autobind';
 
 class AddBookNew extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             title: '',
             description: '',

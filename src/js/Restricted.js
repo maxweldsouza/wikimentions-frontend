@@ -4,6 +4,7 @@ import isNode from './isNode';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import store from 'store';
+import autoBind from 'react-autobind';
 
 class Restricted extends React.Component {
     static get defaultProps () {

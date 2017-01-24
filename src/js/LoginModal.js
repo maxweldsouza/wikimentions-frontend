@@ -1,10 +1,12 @@
 import React from 'react';
 import Modal from './Modal';
 import Login from './Login';
+import autoBind from 'react-autobind';
 
 class LoginModal extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             showing: false
         };

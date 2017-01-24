@@ -1,4 +1,5 @@
 import React from 'react';
+import autoBind from 'react-autobind';
 
 class Link extends React.Component {
     render () {

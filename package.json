@@ -63,6 +63,7 @@
     "react-addons-css-transition-group": "^15.0.0",
     "react-addons-perf": "^15.2.1",
     "react-addons-transition-group": "^15.0.0",
+    "react-autobind": "^1.0.6",
     "react-avatar-editor": "^4.0.0",
     "react-copy-to-clipboard": "^4.2.2",
     "react-cropper": "^0.9.4",

@@ -6,10 +6,12 @@ import requests from 'superagent';
 import Select from './Select';
 import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
+import autoBind from 'react-autobind';
 
 class AddVideoExisting extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             video_id: '',
             submitting: false,

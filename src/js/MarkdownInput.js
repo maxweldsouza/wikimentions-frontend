@@ -1,10 +1,12 @@
 import React from 'react';
 import MarkdownHelp from './MarkdownHelp';
 import Markdown from './Markdown';
+import autoBind from 'react-autobind';
 
 class MarkdownInput extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             preview: false,
             firstChange: true

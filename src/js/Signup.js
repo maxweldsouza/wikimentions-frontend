@@ -6,10 +6,12 @@ import requests from 'superagent';
 import Snackbar from './Snackbar';
 import Input from './Input';
 import store from 'store';
+import autoBind from 'react-autobind';
 
 class Signup extends React.Component {
     constructor (props) {
         super(props);
+    autoBind(this);
         this.state = {
             submitting: false,
             username: '',
