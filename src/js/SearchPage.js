@@ -19,8 +19,9 @@ class SearchPage extends React.Component {
             api: []
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             searchText: this.props.query.q,
             results: [],
             numFound: 0

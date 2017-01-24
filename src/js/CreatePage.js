@@ -19,8 +19,9 @@ class HomePage extends React.Component {
             api: []
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             type: 'person',
             title: this.props.query.title ? this.props.query.title : '',
             titleValid: true,

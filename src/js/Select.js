@@ -6,11 +6,7 @@ import Input from './Input';
 import utils from './utils';
 
 class Select extends React.Component {
-    constructor (props) {
-        super(props);
-        this.loadData = _.throttle(this.loadData, 1000);
-    }
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             autocomplete: true,
             className: '',
@@ -19,8 +15,10 @@ class Select extends React.Component {
             message: ''
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.loadData = _.throttle(this.loadData, 1000);
+        this.state = {
             focus: -1,
             editable: true,
             searchText: this.props.initialLabel ? this.props.initialLabel : '',
@@ -32,10 +30,10 @@ class Select extends React.Component {
         };
     }
     componentDidMount () {
-        window.addEventListener('click', this._hideDropdown, false);
+        window.addEventListener('click', this._hideDropdown.bind(this), false);
     }
     componentWillUnmount () {
-        window.removeEventListener('click', this._hideDropdown, false);
+        window.removeEventListener('click', this._hideDropdown.bind(this), false);
     }
     _hideDropdown () {
         this.setState({

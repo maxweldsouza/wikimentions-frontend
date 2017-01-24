@@ -9,8 +9,9 @@ import Snackbar from './Snackbar';
 import Thumbnail from './Thumbnail';
 
 class Mention extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             dropdownIsOpen: false
         };
     }

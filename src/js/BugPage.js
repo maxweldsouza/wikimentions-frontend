@@ -14,8 +14,9 @@ class BugPage extends React.Component {
             bugs: []
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             bugs: [],
             page: 1
         };

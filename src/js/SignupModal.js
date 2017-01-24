@@ -3,8 +3,9 @@ import Modal from './Modal';
 import Signup from './Signup';
 
 class SignupModal extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             modalIsOpen: false
         };
     }

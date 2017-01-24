@@ -8,8 +8,9 @@ import store from 'store';
 import Input from './Input';
 
 class Login extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             submitting: false,
             formError: false,
             username: '',

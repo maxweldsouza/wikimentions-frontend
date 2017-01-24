@@ -9,8 +9,9 @@ import Xsrf from './Xsrf';
 import requests from 'superagent';
 
 class Navbar extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             searchBarOpen: false,
             searchText: ''
         };

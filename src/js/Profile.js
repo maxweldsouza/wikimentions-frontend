@@ -6,8 +6,9 @@ import EditProfile from './EditProfile';
 import Markdown from './Markdown';
 
 class Profile extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             tab: 'Profile'
         };
     }

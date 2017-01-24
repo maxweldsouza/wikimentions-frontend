@@ -5,13 +5,14 @@ import isNode from './isNode';
 /* Having a time ago or a local timestamp prevents us from caching pages
 This component renders the timestamp no the client side instead */
 class Time extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             hintDirection: 'bottom'
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             server: true
         };
     }

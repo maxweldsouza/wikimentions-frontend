@@ -9,8 +9,9 @@ let Cropper = null;
 import isNode from './isNode';
 
 class ImageUpload extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             scale: 1,
             image: '',
             mime: '',

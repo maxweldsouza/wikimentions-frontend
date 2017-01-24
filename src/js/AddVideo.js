@@ -8,8 +8,9 @@ import SignupModal from './SignupModal';
 import IpWarning from './IpWarning';
 
 class AddVideo extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             type: 'Existing'
         };
     }

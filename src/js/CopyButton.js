@@ -2,14 +2,15 @@ import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 class CopyButton extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             hintDirection: 'bottom',
             className: ''
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             copied: false
         };
     }

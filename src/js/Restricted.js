@@ -6,7 +6,7 @@ import SignupModal from './SignupModal';
 import store from 'store';
 
 class Restricted extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             min_level: 0,
             level: 1

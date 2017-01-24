@@ -79,8 +79,9 @@ class ThingPage extends React.Component {
             api
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             modalIsOpen: false
         };
     }

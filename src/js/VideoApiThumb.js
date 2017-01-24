@@ -15,8 +15,9 @@ const humanizeDuration = ptduration => {
 };
 
 class VideoApiThumb extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             thumb: '',
             width: 120,
             height: 90,

@@ -3,8 +3,9 @@ import cookies from 'browser-cookies';
 import isNode from './isNode';
 
 class Xsrf extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             xsrf: ''
         };
     }

@@ -3,8 +3,9 @@ import Modal from './Modal';
 import Login from './Login';
 
 class LoginModal extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             showing: false
         };
     }

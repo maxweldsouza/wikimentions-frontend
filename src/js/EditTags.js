@@ -8,13 +8,14 @@ import Snackbar from './Snackbar';
 const allTags = ['Science', 'Startups', 'Programming'];
 
 class EditTags extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             tags: []
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             modalIsOpen: false,
             submitting: false,
             formMessage: '',

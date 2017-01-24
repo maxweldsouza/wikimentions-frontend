@@ -1,7 +1,7 @@
 import React from 'react';
 
 class SubmitButton extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             className: 'button'
         };

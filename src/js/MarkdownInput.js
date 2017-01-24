@@ -3,8 +3,9 @@ import MarkdownHelp from './MarkdownHelp';
 import Markdown from './Markdown';
 
 class MarkdownInput extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             preview: false,
             firstChange: true
         };

@@ -4,7 +4,7 @@ import AddBook from './AddBook';
 import Pagination from './Pagination';
 
 class ThingBookTab extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             page: '1'
         };

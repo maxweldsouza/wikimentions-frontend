@@ -40,15 +40,16 @@ import ThingPage from './ThingPage';
 import VideoPage from './VideoPage';
 
 class MainComponent extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             loggedin: false,
             username: '',
             userid: ''
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             sidebar: false
         };
     }
@@ -82,7 +83,7 @@ class MainComponent extends React.Component {
         });
     }
     render () {
-        const Component = require(`./${this.props.component}`);
+        const Component = require(`./${this.props.component}`).default;
         let session;
         let username;
         let userid;

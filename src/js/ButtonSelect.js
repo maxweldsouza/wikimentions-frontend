@@ -1,13 +1,14 @@
 import React from 'react';
 
 class ButtonSelect extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             className: 'small button-group'
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             selected: this.props.default
         };
     }

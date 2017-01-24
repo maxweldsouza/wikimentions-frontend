@@ -31,8 +31,9 @@ class ListPage extends React.Component {
             ]
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             id: null,
             submitting: false,
             formMessage: '',

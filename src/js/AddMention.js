@@ -14,8 +14,9 @@ import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
 
 class AddMention extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             mentioned_by: this.props.mentioned_by,
             mentionedByValid: true,
             mentionedByMessage: '',

@@ -6,8 +6,9 @@ import Snackbar from './Snackbar';
 import Input from './Input';
 
 class Feedback extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             step: 'rate',
             feedback: '',
             email: ''

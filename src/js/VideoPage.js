@@ -58,8 +58,9 @@ class VideoPage extends React.Component {
             api
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             embeddable: false,
             videoImage: ''
         };

@@ -40,8 +40,9 @@ class EditPage extends React.Component {
             ]
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             type: this.props.data.thing.props.type,
             title: this.props.data.thing.props.title,
             titleValid: true,

@@ -11,8 +11,9 @@ class ContributePage extends React.Component {
             ]
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             tab: 'edits'
         };
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'underscore';
 
 class Input extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             onClear() {},
             value: '',

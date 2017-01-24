@@ -6,8 +6,9 @@ import Snackbar from './Snackbar';
 import Input from './Input';
 
 class AddBookNew extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             title: '',
             description: '',
             titleValid: true,

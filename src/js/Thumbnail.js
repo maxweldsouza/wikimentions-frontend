@@ -3,7 +3,7 @@ import Lazy from 'react-lazyload';
 import VideoApiThumb from './VideoApiThumb';
 
 class Thumbnail extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             image: '',
             type: '',

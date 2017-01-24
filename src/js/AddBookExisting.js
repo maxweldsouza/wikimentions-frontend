@@ -6,8 +6,9 @@ import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
 
 class AddBookExisting extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             book_id: '',
             submitting: false,
             bookValid: true,

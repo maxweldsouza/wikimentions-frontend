@@ -10,8 +10,9 @@ import {VelocityTransitionGroup} from 'velocity-react';
 import Modal from './Modal';
 
 class AddAuthors extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             modalIsOpen: false,
             author: '',
             submitting: false,

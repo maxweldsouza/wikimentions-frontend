@@ -6,8 +6,9 @@ import cookies from 'browser-cookies';
 import Input from './Input';
 
 class ChangePassword extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             submitting: false,
             old: '',
             new: '',

@@ -2,8 +2,9 @@ import React from 'react';
 import config from './config';
 
 class Share extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             open: false
         };
     }

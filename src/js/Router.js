@@ -155,9 +155,8 @@ const getComponent = routeObj => {
 const clientSide = (() => typeof window !== 'undefined')();
 
 const getResources = (routeObj, beforeUpdate) => {
-    const Component = require(`./${routeObj.component}`);
-    console.log(Component.default.resources);
-    const resources = Component.default.resources(routeObj);
+    const Component = require(`./${routeObj.component}`).default;
+    const resources = Component.resources(routeObj);
     validateResources(resources);
     const names = _.map(resources.api, x => x.name);
     const paths = _.map(resources.api, (x) => {

@@ -6,7 +6,7 @@ import config from './config';
 import utils from './utils';
 
 class YoutubeEmbed extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             width: 640,
             height: 390,

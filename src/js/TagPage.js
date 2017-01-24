@@ -27,8 +27,9 @@ class TagPage extends React.Component {
             ]
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             pageno: 0
         };
     }

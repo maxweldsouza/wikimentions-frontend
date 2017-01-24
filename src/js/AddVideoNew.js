@@ -6,8 +6,9 @@ import requests from 'superagent';
 import Input from './Input';
 
 class AddVideoNew extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             title: '',
             url: '',
             titleValid: true,

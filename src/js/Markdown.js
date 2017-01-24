@@ -6,7 +6,7 @@ const md = new Remarkable({
 import nofollow from './nofollow';
 
 class Markdown extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             className: 'markdown'
         };

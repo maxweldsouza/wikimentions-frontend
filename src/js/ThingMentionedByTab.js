@@ -4,7 +4,7 @@ import AddMention from './AddMention';
 import Pagination from './Pagination';
 
 class ThingMentionTab extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             page: '1'
         };

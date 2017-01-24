@@ -8,8 +8,9 @@ import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
 
 class AddVideoExisting extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             video_id: '',
             submitting: false,
             videoValid: true,

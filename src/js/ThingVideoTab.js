@@ -4,7 +4,7 @@ import AddVideo from './AddVideo';
 import Pagination from './Pagination';
 
 class ThingVideoTab extends React.Component {
-    getDefaultProps () {
+    static get defaultProps () {
         return {
             page: '1'
         };

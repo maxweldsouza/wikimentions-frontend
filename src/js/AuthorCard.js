@@ -8,8 +8,9 @@ import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
 
 class AuthorCard extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             submitting: false
         };
     }

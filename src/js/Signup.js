@@ -8,8 +8,9 @@ import Input from './Input';
 import store from 'store';
 
 class Signup extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             submitting: false,
             username: '',
             usernameValid: true,

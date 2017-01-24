@@ -3,8 +3,9 @@ import Modal from './Modal';
 import Markdown from './Markdown';
 
 class MarkdownHelp extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             modalIsOpen: false
         };
     }

@@ -14,8 +14,9 @@ class FeedbackPage extends React.Component {
             api: []
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             feedback: [],
             page: 1
         };

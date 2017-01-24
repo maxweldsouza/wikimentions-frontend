@@ -36,8 +36,9 @@ class QuotesPage extends React.Component {
             ]
         };
     }
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             quote: '',
             submitting: false
         };

@@ -8,8 +8,9 @@ import Snackbar from './Snackbar';
 import Input from './Input';
 
 class EditProfile extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             submitting: false,
             email: '',
             about: '',

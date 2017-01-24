@@ -9,8 +9,9 @@ import Snackbar from './Snackbar';
 import SubmitButton from './SubmitButton';
 
 class DiscussReply extends React.Component {
-    getInitialState () {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             content: '',
             submitting: false,
             preview: false,
