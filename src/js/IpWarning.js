@@ -1,10 +1,11 @@
-var React = require('react');
-var LoginModal = require('./LoginModal');
-var SignupModal = require('./SignupModal');
+import React from 'react';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
+import autoBind from 'react-autobind';
 
-var IpWarning = React.createClass({
+class IpWarning extends React.Component {
     render () {
-        var loggedin;
+        let loggedin;
         if (this.props.loggedin) {
             return null;
         }
@@ -14,6 +15,6 @@ var IpWarning = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = IpWarning;
+export default IpWarning;

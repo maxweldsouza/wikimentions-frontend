@@ -1,39 +1,37 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import moment from 'moment';
+import Comment from './Comment';
+import _ from 'underscore';
+import DiscussReply from './DiscussReply';
+import PageBar from './PageBar';
+import config from './config';
+import Time from './Time';
+import Markdown from './Markdown';
+import Link from './Link';
+import Pagination from './Pagination';
+import autoBind from 'react-autobind';
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var moment = require('moment');
-var Comment = require('./Comment');
-var _ = require('underscore');
-var DiscussReply = require('./DiscussReply');
-var PageBar = require('./PageBar');
-var config = require('./config');
-var Time = require('./Time');
-var Markdown = require('./Markdown');
-var Link = require('./Link');
-var Pagination = require('./Pagination');
-
-var RecentDiscussions = React.createClass({
-    statics: {
-        resources (appstate) {
-            var page = appstate.query.page;
-            var query = page ? '?page=' + page : '';
-            return {
-                api: [
-                    {
-                        name: 'discuss',
-                        path: '/api/v1/recent-discussions' + query
-                    }
-                ]
-            };
-        }
-    },
+class RecentDiscussions extends React.Component {
+    static resources (appstate) {
+        const page = appstate.query.page;
+        const query = page ? `?page=${page}` : '';
+        return {
+            api: [
+                {
+                    name: 'discuss',
+                    path: `/api/v1/recent-discussions${query}`
+                }
+            ]
+        };
+    }
     render () {
         return (
             <span>
                 <Helmet
                     title={'Recent Discussions'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -60,7 +58,7 @@ var RecentDiscussions = React.createClass({
                                         type={x.obj.type}
                                         tab='discuss'>
                                         {x.obj.title}
-                                    </Link></strong> by <strong><a href={'/users/' + x.user + '/' + x.username} className='secondary'>{x.username}</a></strong>
+                                    </Link></strong> by <strong><a href={`/users/${x.user}/${x.username}`} className='secondary'>{x.username}</a></strong>
                                 </div>
                                 <div className='small-6 columns text-right discuss-updated'><Time timestamp={x.created} type='ago' hintDirection='bottom-left'/></div>
                                 <div className='small-12 columns'>
@@ -80,6 +78,6 @@ var RecentDiscussions = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = RecentDiscussions;
+export default RecentDiscussions;

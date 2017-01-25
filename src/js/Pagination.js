@@ -1,10 +1,11 @@
-var React = require('react');
-var queryString = require('query-string');
-var _ = require('underscore');
+import React from 'react';
+import queryString from 'query-string';
+import _ from 'underscore';
+import autoBind from 'react-autobind';
 
-var Pagination = React.createClass({
+class Pagination extends React.Component {
     pagePath (no) {
-        var query = this.props.query ? _.clone(this.props.query) : {};
+        const query = this.props.query ? _.clone(this.props.query) : {};
         if (no === 1) {
             if (query && query.page) {
                 delete query.page;
@@ -13,13 +14,13 @@ var Pagination = React.createClass({
             query.page = no;
         }
         if (_.isEmpty(query)) {
-            return '/' + this.props.path;
+            return `/${this.props.path}`;
         }
-        return '/' + this.props.path + '?' + queryString.stringify(query);
-    },
+        return `/${this.props.path}?${queryString.stringify(query)}`;
+    }
     render () {
-        var current = this.props.page ? Number(this.props.page) : 1;
-        var totalPages;
+        const current = this.props.page ? Number(this.props.page) : 1;
+        let totalPages;
         if (_.isUndefined(this.props.total)) {
             totalPages = this.props.count < 10 ? current : current + 1;
         } else {
@@ -28,12 +29,12 @@ var Pagination = React.createClass({
                 return null;
             }
         }
-        var pages = Array(totalPages).fill();
+        let pages = Array(totalPages).fill();
         pages = pages.map((x, i) => {
             return i + 1;
         });
-        var prev = this.pagePath(current - 1);
-        var next = this.pagePath(current + 1);
+        let prev = this.pagePath(current - 1);
+        let next = this.pagePath(current + 1);
         if (current === 1) {
             prev = <li className='pagination-previous disabled'>Previous <span className="show-for-sr">page</span></li>;
         } else {
@@ -50,11 +51,11 @@ var Pagination = React.createClass({
                     <ul className='pagination text-center' role='navigation' aria-label='Pagination'>
                         {prev}
                         {pages.map((x) => {
-                            var path = this.pagePath(x);
+                            const path = this.pagePath(x);
                             if (x === current) {
                                 return <li className='current' key={x}><span className='show-for-sr'>You're on page</span> {x}</li>;
                             }
-                            return <li key={x}><a aria-label={'Page ' + x} href={path}>{x}</a></li>;
+                            return <li key={x}><a aria-label={`Page ${x}`} href={path}>{x}</a></li>;
                         })}
                         {next}
                     </ul>
@@ -62,6 +63,6 @@ var Pagination = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Pagination;
+export default Pagination;

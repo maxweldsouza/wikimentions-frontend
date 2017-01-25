@@ -1,15 +1,14 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import _ from 'underscore';
+import config from './config';
+import Navbar from './Navbar';
+import BlogPost from './BlogPost';
+import autoBind from 'react-autobind';
 
-var Helmet = require('react-helmet');
-var _ = require('underscore');
-
-var config = require('./config');
-var Navbar = require('./Navbar');
-var BlogPost = require('./BlogPost');
-
-var pageNoFromPath = function (path) {
-    var parts = path.split('/');
-    var page;
+const pageNoFromPath = path => {
+    const parts = path.split('/');
+    let page;
     if (parts.length > 2) {
         page = Number(parts[2]);
     } else {
@@ -18,35 +17,39 @@ var pageNoFromPath = function (path) {
     return page;
 };
 
-var BlogPage = React.createClass({
-    statics: {
-        resources (routeObj) {
-            var page = pageNoFromPath(routeObj.url);
-            return {
-                api: [
-                    {
-                        name: 'posts',
-                        path: '/api/v1/blog/' + page
-                    }
-                ]
-            };
-        }
-    },
+class BlogPage extends React.Component {
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.statics = {
+            resources (routeObj) {
+                const page = pageNoFromPath(routeObj.url);
+                return {
+                    api: [
+                        {
+                            name: 'posts',
+                            path: `/api/v1/blog/${page}`
+                        }
+                    ]
+                };
+            }
+        };
+    }
     render () {
-        var page = pageNoFromPath(this.props.path);
-        var newerPosts;
+        const page = pageNoFromPath(this.props.path);
+        let newerPosts;
         if (page === 0) {
             newerPosts = null;
         } else if (page === 1) {
             newerPosts = <a href='/blog'>Newer Posts</a>;
         } else {
-            newerPosts = <a href={'/blog/page/' + (page - 1)}>Newer Posts</a>;
+            newerPosts = <a href={`/blog/page/${page - 1}`}>Newer Posts</a>;
         }
         return (
             <div className='flex-wrapper'>
                 <Helmet
                     title='Blog'
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'description', 'content': 'The official WikiMentions blog'}
                     ]}
@@ -64,7 +67,10 @@ var BlogPage = React.createClass({
                         <div className='row'>
                             <div className='small-12 columns'>
                                 <div className=''>
-                                    {this.props.data.posts.length === 0 ? <div><h1>Thats all!</h1><div className='callout'>There are no more posts to show</div></div> : null}
+                                    {this.props.data.posts.length === 0 ? <div>
+                                        <h1>Thats all!</h1>
+                                        <div className='callout'>There are no more posts to show</div>
+                                    </div> : null}
                                     {this.props.data.posts.map((x) => {
                                         return <BlogPost
                                             key={x.slug}
@@ -83,7 +89,7 @@ var BlogPage = React.createClass({
                                             {newerPosts}
                                         </div>
                                         <div className='small-12 columns'>
-                                            {this.props.data.posts.length > 0 ? <a href={'/blog/page/' + (page + 1)}>Older Posts</a> : null}
+                                            {this.props.data.posts.length > 0 ? <a href={`/blog/page/${page + 1}`}>Older Posts</a> : null}
                                         </div>
                                     </div>
                                 </div>
@@ -94,6 +100,6 @@ var BlogPage = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = BlogPage;
+export default BlogPage;

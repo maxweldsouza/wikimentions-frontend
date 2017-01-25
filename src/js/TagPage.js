@@ -1,49 +1,50 @@
-var _ = require('underscore');
-var ButtonSelect = require('./ButtonSelect');
-var config = require('./config');
-var cookies = require('browser-cookies');
-var Helmet = require('react-helmet');
-var HomeItem = require('./HomeItem');
-var HomeSearch = require('./HomeSearch');
-var Mention = require('./Mention');
-var Navbar = require('./Navbar');
-var Pagination = require('./Pagination');
-var React = require('react');
-var requests = require('superagent');
-var SignupModal = require('./SignupModal');
-var Snackbar = require('./Snackbar');
+import _ from 'underscore';
+import ButtonSelect from './ButtonSelect';
+import config from './config';
+import cookies from 'browser-cookies';
+import Helmet from 'react-helmet';
+import HomeItem from './HomeItem';
+import HomeSearch from './HomeSearch';
+import Mention from './Mention';
+import Navbar from './Navbar';
+import Pagination from './Pagination';
+import React from 'react';
+import requests from 'superagent';
+import SignupModal from './SignupModal';
+import Snackbar from './Snackbar';
+import autoBind from 'react-autobind';
 
-var TagPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            var tag = appstate.path.split('/')[1];
-            var page = appstate.query.page;
-            var query = page ? '?page=' + page : '';
-            return {
-                api: [
-                    {
-                        name: 'tag',
-                        path: '/api/v1/tag/' + tag + query
-                    }
-                ]
-            };
-        }
-    },
-    getInitialState () {
+class TagPage extends React.Component {
+    static resources (appstate) {
+        const tag = appstate.path.split('/')[1];
+        const page = appstate.query.page;
+        const query = page ? `?page=${page}` : '';
         return {
+            api: [
+                {
+                    name: 'tag',
+                    path: `/api/v1/tag/${tag}${query}`
+                }
+            ]
+        };
+    }
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             pageno: 0
         };
-    },
+    }
     render () {
-        var mentions = [];// this.state.newmentions;
-        var options = ['Add New', 'Add Existing'];
-        var tag = this.props.path.split('/')[1];
-        var nomore = <div className='card box'>
+        const mentions = [];// this.state.newmentions;
+        const options = ['Add New', 'Add Existing'];
+        const tag = this.props.path.split('/')[1];
+        const nomore = <div className='card box'>
             <div className='small-12 columns'>
                 No more entries to show.
             </div>
         </div>;
-        var tagCard;
+        let tagCard;
         if (tag === 'Programming') {
             tagCard = <a
                 href='/tags/Programming'
@@ -70,7 +71,7 @@ var TagPage = React.createClass({
             <span>
                 <Helmet
                     title={tag}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
@@ -133,6 +134,6 @@ var TagPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = TagPage;
+export default TagPage;

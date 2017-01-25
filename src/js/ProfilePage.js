@@ -1,56 +1,54 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import _ from 'underscore';
+import config from './config';
+import HistoryItem from './HistoryItem';
+import Time from './Time';
+import requests from 'superagent';
+import Profile from './Profile';
+import S from 'string';
+import Pagination from './Pagination';
+import TextWidget from './TextWidget';
+import Markdown from './Markdown';
+import autoBind from 'react-autobind';
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var _ = require('underscore');
-var config = require('./config');
-var HistoryItem = require('./HistoryItem');
-var Time = require('./Time');
-var requests = require('superagent');
-var Profile = require('./Profile');
-var S = require('string');
-var Pagination = require('./Pagination');
-var TextWidget = require('./TextWidget');
-var Markdown = require('./Markdown');
-
-var ProfilePage = React.createClass({
-    statics: {
-        resources (appstate) {
-            var [dummy, id, name, tab] = appstate.path.split('/');
-            var page = appstate.query.page;
-            var query = page ? '?page=' + page : '';
-            var api = [{
-                name: 'user',
-                path: '/api/v1/user/' + id + '?slug=' + name
-            }];
-            api.push({
-                name: 'history',
-                path: '/api/v1/userhistory/' + id + query
-            });
-            return {
-                api: api
-            };
-        }
-    },
+class ProfilePage extends React.Component {
+    static resources (appstate) {
+        const [dummy, id, name, tab] = appstate.path.split('/');
+        const page = appstate.query.page;
+        const query = page ? `?page=${page}` : '';
+        const api = [{
+            name: 'user',
+            path: `/api/v1/user/${id}?slug=${name}`
+        }];
+        api.push({
+            name: 'history',
+            path: `/api/v1/userhistory/${id}${query}`
+        });
+        return {
+            api
+        };
+    }
     render () {
-        var [dummy, id, name, selectedTab] = this.props.path.split('/');
-        var self = this.props.userid === Number(id);
+        let [dummy, id, name, selectedTab] = this.props.path.split('/');
+        const self = this.props.userid === Number(id);
         selectedTab = selectedTab ? selectedTab : 'history';
-        var user = this.props.data.user;
-        var history = this.props.data.history;
-        var tabs = ['history'];
+        const user = this.props.data.user;
+        const history = this.props.data.history;
+        const tabs = ['history'];
 
-        var empty = <div className='callout warning'>
+        const empty = <div className='callout warning'>
             There is no activity to show.
         </div>;
-        var nomore = <div className='callout warning'>
+        const nomore = <div className='callout warning'>
             No more entries to show.
         </div>;
         return (
             <span>
                 <Helmet
                     title={user.name}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -111,12 +109,12 @@ var ProfilePage = React.createClass({
                                         <a
                                             className={selectedTab === 'history' ? 'button' : 'button secondary'}
                                             rel='nofollow'
-                                            href={'/users/' + id + '/' + name}
+                                            href={`/users/${id}/${name}`}
                                             aria-selected={selectedTab === 'history'}>Activity</a>
                                         <a
                                             className={selectedTab === 'profile' ? 'button' : 'button secondary'}
                                             rel='nofollow'
-                                            href={'/users/' + id + '/' + name + '/profile'}
+                                            href={`/users/${id}/${name}/profile`}
                                             aria-selected={selectedTab === 'profile'}>Edit Profile</a>
                                     </div>
                                 </div> : <div><h2>Activity</h2><hr/></div>}
@@ -151,6 +149,6 @@ var ProfilePage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = ProfilePage;
+export default ProfilePage;

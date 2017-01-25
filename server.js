@@ -40,7 +40,7 @@ require('babel-register')({
     presets: ['es2015']
 });
 
-var Router = require('./src/js/Router');
+var Router = require('./src/js/Router').default;
 Router.setBaseUrl('127.0.0.1:8001');
 
 var sourceDir = production ? 'dist' : 'src';
@@ -88,7 +88,7 @@ app.head('/', function (req, res) {
 var indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
 var notFoundHtml = readFullFile(path.join(__dirname, sourceDir, '404.html'));
 var errorHtml = readFullFile(path.join(__dirname, sourceDir, '500.html'));
-var MainComponent = require(path.join(__dirname, sourceDir, 'js', 'MainComponent'));
+var MainComponent = require(path.join(__dirname, sourceDir, 'js', 'MainComponent')).default;
 var compiledTemplate = _.template(indexHtml);
 var notFoundCompiled = _.template(notFoundHtml);
 var errorCompiled = _.template(errorHtml);

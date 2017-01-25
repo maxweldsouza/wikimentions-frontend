@@ -1,12 +1,8 @@
-var isBrowser = function () {
-    return typeof window !== 'undefined';
-};
+const isBrowser = () => typeof window !== 'undefined';
 
-var isNode = function () {
-    return !isBrowser();
-};
+const isNode = () => !isBrowser();
 
-module.exports = {
-    isNode: isNode,
-    isBrowser: isBrowser
+export default {
+    isNode,
+    isBrowser
 };

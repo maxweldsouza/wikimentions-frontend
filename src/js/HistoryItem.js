@@ -1,13 +1,14 @@
-var React = require('react');
-var Link = require('./Link');
-var Time = require('./Time');
-var Markdown = require('./Markdown');
+import React from 'react';
+import Link from './Link';
+import Time from './Time';
+import Markdown from './Markdown';
+import autoBind from 'react-autobind';
 
-var HistoryItem = React.createClass({
+class HistoryItem extends React.Component {
     render () {
-        var added = this.props.deleted === 1 ? 'deleted by' : 'added by';
-        var item;
-        var type;
+        const added = this.props.deleted === 1 ? 'deleted by' : 'added by';
+        let item;
+        let type;
         if (this.props.entry && this.props.entrytype === 'video_author') {
             type = 'Author';
             item = <span className='row'>
@@ -108,7 +109,7 @@ var HistoryItem = React.createClass({
                     </Link>
                 </span>
                 <span className='shrink columns'>
-                    <img src={'/api/v1/static/images/' + this.props.entry.thumb_md5 + '-' + this.props.entry.thumb_width + '-' + this.props.entry.thumb_height + '.jpg'} />
+                    <img src={`/api/v1/static/images/${this.props.entry.thumb_md5}-${this.props.entry.thumb_width}-${this.props.entry.thumb_height}.jpg`} />
                 </span>
                 <span className='columns'>
                     <strong>Description:</strong> <Markdown markdown={this.props.entry.description} />
@@ -146,7 +147,7 @@ var HistoryItem = React.createClass({
             type = 'List';
             item = <span className='row'>
                 <span className='small-12 columns'>
-                    List: <a href={'/lists/' + this.props.entry.id + '/' + this.props.entry.slug}>
+                    List: <a href={`/lists/${this.props.entry.id}/${this.props.entry.slug}`}>
                     {this.props.entry.title}
                     </a>
                 </span>
@@ -161,7 +162,7 @@ var HistoryItem = React.createClass({
                         type={this.props.entry.obj.props.type}>{this.props.entry.obj.props.title}
                     </Link>
                     <div>
-                        List: <a href={'/lists/' + this.props.entry.list.id + '/' + this.props.entry.list.slug}>
+                        List: <a href={`/lists/${this.props.entry.list.id}/${this.props.entry.list.slug}`}>
                         {this.props.entry.list.title}
                         </a>
                     </div>
@@ -173,10 +174,13 @@ var HistoryItem = React.createClass({
                 <div className='row'>
                     <span className='small-8 columns'>
                         <strong style={{fontSize: 17}}>{type}</strong> {added} <strong>
-                            {this.props.username ? <a className='' rel='nofollow' href={'/users/' + this.props.user + '/' + this.props.username}>{this.props.username}</a> : this.props.ip}
+                            {this.props.username ? <a className='' rel='nofollow' href={`/users/${this.props.user}/${this.props.username}`}>{this.props.username}</a> : this.props.ip}
                         </strong>
                     </span>
-                    <span className='small-4 columns text-right'><Time timestamp={this.props.timestamp} type='ago' hintDirection='bottom-left'/></span>
+                    <span className='small-4 columns text-right'><Time
+                        timestamp={this.props.timestamp}
+                        type='ago'
+                        hintDirection='bottom-left'/></span>
                     <span className='small-12 columns'>
                         {item}
                     </span>
@@ -185,6 +189,6 @@ var HistoryItem = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = HistoryItem;
+export default HistoryItem;

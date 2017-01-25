@@ -1,27 +1,26 @@
-var React = require('react');
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var config = require('./config');
-var Markdown = require('./Markdown');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import config from './config';
+import Markdown from './Markdown';
+import autoBind from 'react-autobind';
 
-var ContentPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            var slug = appstate.url.split('/')[0];
-            return {
-                api: [{
-                    name: 'content',
-                    path: '/api/v1/content/' + slug
-                }]
-            };
-        }
-    },
+class ContentPage extends React.Component {
+    static resources (appstate) {
+        const slug = appstate.url.split('/')[0];
+        return {
+            api: [{
+                name: 'content',
+                path: `/api/v1/content/${slug}`
+            }]
+        };
+    }
     render () {
         return (
             <span>
                 <Helmet
                     title={this.props.data.content.title}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'description', 'content': ''}
                     ]}
@@ -43,6 +42,6 @@ var ContentPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = ContentPage;
+export default ContentPage;

@@ -1,26 +1,29 @@
-var React = require('react');
-var ButtonSelect = require('./ButtonSelect');
-var AddBookNew = require('./AddBookNew');
-var AddBookExisting = require('./AddBookExisting');
-var Restricted = require('./Restricted');
-var LoginModal = require('./LoginModal');
-var SignupModal = require('./SignupModal');
-var IpWarning = require('./IpWarning');
+import React from 'react';
+import ButtonSelect from './ButtonSelect';
+import AddBookNew from './AddBookNew';
+import AddBookExisting from './AddBookExisting';
+import Restricted from './Restricted';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
+import IpWarning from './IpWarning';
+import autoBind from 'react-autobind';
 
-var AddBook = React.createClass({
-    getInitialState () {
-        return {
+class AddBook extends React.Component {
+    constructor (props) {
+        super(props);
+        autoBind(this);
+        this.state = {
             type: 'Existing'
         };
-    },
+    }
     onChangeType (x) {
         this.setState({
             type: x
         });
-    },
+    }
     render () {
-        var options = [{ name: 'Existing', value: 'Existing' }, { name: 'New', value: 'New' }];
-        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to add a Book.</span>;
+        const options = [{ name: 'Existing', value: 'Existing' }, { name: 'New', value: 'New' }];
+        const loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to add a Book.</span>;
         return (
             <Restricted message={loggedOutMessage}>
                 <h2>Add book</h2>
@@ -38,7 +41,9 @@ var AddBook = React.createClass({
                             onChange={this.onChangeType}
                             />
                         {this.state.type !== 'New' ? <div>
-                            <AddBookExisting id={this.props.id} loggedin={this.props.loggedin}/>
+                            <AddBookExisting
+                                id={this.props.id}
+                                loggedin={this.props.loggedin}/>
                         </div> : <span>
                             <AddBookNew id={this.props.id} loggedin={this.props.loggedin}/>
                         </span>}
@@ -47,6 +52,6 @@ var AddBook = React.createClass({
             </Restricted>
         );
     }
-});
+}
 
-module.exports = AddBook;
+export default AddBook;

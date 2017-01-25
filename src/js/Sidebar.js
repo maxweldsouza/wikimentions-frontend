@@ -1,24 +1,25 @@
-var React = require('react');
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-var _ = require('underscore');
-var config = require('./config');
-var requests = require('superagent');
-var Snackbar = require('./Snackbar');
-var cookies = require('browser-cookies');
-var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
+import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import _ from 'underscore';
+import config from './config';
+import requests from 'superagent';
+import Snackbar from './Snackbar';
+import cookies from 'browser-cookies';
+import {VelocityTransitionGroup} from 'velocity-react';
+import autoBind from 'react-autobind';
 
-var Sidebar = React.createClass({
+class Sidebar extends React.Component {
     shouldComponentUpdate (nextProps, nextState) {
         return this.props.showing !== nextProps.showing
             || this.props.username !== nextProps.username
             || this.props.loggedin !== nextProps.loggedin
             || this.props.userid !== nextProps.userid;
-    },
+    }
     onClickItem (url) {
         this.props.onToggleSidebar();
         history.pushState(null, null, url);
         Comparnion.route(url);
-    },
+    }
     random () {
         requests
         .get('/api/v1/random')
@@ -29,10 +30,10 @@ var Sidebar = React.createClass({
                 Mentions.route(res.body.path);
             }
         });
-    },
+    }
     render () {
-        var sidebar = this.props.showing ? '' : 'hidden';
-        var loggedin = this.props.loggedin;
+        const sidebar = this.props.showing ? '' : 'hidden';
+        const loggedin = this.props.loggedin;
         return (
             <div aria-hidden={!this.props.showing} role='complementary' aria-label='Sidebar'>
                 <VelocityTransitionGroup enter={{animation: {translateX: '0px', easing: 'easeIn', duration: 100}}} leave={{animation: {translateX: '-250px', easing: 'easeOut', duration: 100}}}>
@@ -63,7 +64,7 @@ var Sidebar = React.createClass({
                         </a>
                         {loggedin ? <a className='sidebar-item sidebar-button' onClick={Mentions.logout}><span className='ion-log-out menu-item-icon'/>Log Out</a> : <a className='sidebar-item sidebar-button' href='/login'><span className='ion-log-in menu-item-icon'/>Log In</a>}
                         {loggedin ? <span></span> : <a className='sidebar-item sidebar-button' href='/signup'><span className='ion-person-add menu-item-icon'/>Sign Up</a>}
-                        {loggedin ? <span className='sidebar-button sidebar-loggedin'>Logged in as <a className='' href={'/users/' + this.props.userid + '/' + this.props.username}>{this.props.username}</a></span> : null}
+                        {loggedin ? <span className='sidebar-button sidebar-loggedin'>Logged in as <a className='' href={`/users/${this.props.userid}/${this.props.username}`}>{this.props.username}</a></span> : null}
                     </div> : null}
                 </VelocityTransitionGroup>
                 <VelocityTransitionGroup enter={{animation: 'fadeIn'}} leave={{animation: 'transition.fadeOut'}}>
@@ -74,6 +75,6 @@ var Sidebar = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Sidebar;
+export default Sidebar;

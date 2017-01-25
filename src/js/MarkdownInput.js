@@ -1,24 +1,27 @@
-var React = require('react');
-var MarkdownHelp = require('./MarkdownHelp');
-var Markdown = require('./Markdown');
+import React from 'react';
+import MarkdownHelp from './MarkdownHelp';
+import Markdown from './Markdown';
+import autoBind from 'react-autobind';
 
-var MarkdownInput = React.createClass({
-    getInitialState () {
-        return {
+class MarkdownInput extends React.Component {
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             preview: false,
             firstChange: true
         };
-    },
+    }
     showPreview () {
         this.setState({
             preview: true
         });
-    },
+    }
     hidePreview () {
         this.setState({
             preview: false
         });
-    },
+    }
     onChangeText (e) {
         if (this.state.firstChange) {
             this.setState({
@@ -27,9 +30,9 @@ var MarkdownInput = React.createClass({
             });
         }
         this.props.onChange(e);
-    },
+    }
     render () {
-        var layout = this.props.sideBySide && this.state.preview ? 'small-12 large-6 columns' : 'small-12 columns';
+        const layout = this.props.sideBySide && this.state.preview ? 'small-12 large-6 columns' : 'small-12 columns';
         return (
             <div className='row'>
                 <div className={layout}>
@@ -55,6 +58,6 @@ var MarkdownInput = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = MarkdownInput;
+export default MarkdownInput;

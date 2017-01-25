@@ -1,27 +1,25 @@
-var React = require('react');
-var Remarkable = require('remarkable');
-var md = new Remarkable({
+import React from 'react';
+import Remarkable from 'remarkable';
+const md = new Remarkable({
     linkify: true
 });
-var nofollow = require('./nofollow');
+import nofollow from './nofollow';
+import autoBind from 'react-autobind';
 
-var Markdown = React.createClass({
-    propTypes: {
-        markdown: React.PropTypes.string.isRequired
-    },
-    getDefaultProps () {
+class Markdown extends React.Component {
+    static get defaultProps () {
         return {
             className: 'markdown'
         };
-    },
-    render: function () {
+    }
+    render () {
         /* This is a dangerous area for security. Make sure
          * you know what you are doing */
-        var obj = {
+        const obj = {
             __html: nofollow(md.render(this.props.markdown))
         };
         return <div className={this.props.className} dangerouslySetInnerHTML={obj} />;// eslint-disable-line react/no-danger
     }
-});
+}
 
-module.exports = Markdown;
+export default Markdown;

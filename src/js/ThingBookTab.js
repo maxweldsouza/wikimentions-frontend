@@ -1,24 +1,25 @@
-var React = require('react');
-var Book = require('./Book');
-var AddBook = require('./AddBook');
-var Pagination = require('./Pagination');
+import React from 'react';
+import Book from './Book';
+import AddBook from './AddBook';
+import Pagination from './Pagination';
+import autoBind from 'react-autobind';
 
-var ThingBookTab = React.createClass({
-    getDefaultProps () {
+class ThingBookTab extends React.Component {
+    static get defaultProps () {
         return {
             page: '1'
         };
-    },
+    }
     render () {
-        var books = this.props.books;
-        var emptybooks = <div className='card box'>
+        const books = this.props.books;
+        const emptybooks = <div className='card box'>
             <div className='blankslate'>
                 <span className='icon ion-ios-book'/>
                 <h3>No Books</h3>
                 No books have been added for this author. You can help us by adding some.
             </div>
         </div>;
-        var nomore = <div className='card box'>
+        const nomore = <div className='card box'>
             <div className='blankslate'>
                 <span className='icon ion-ios-book'/>
                 <h3>End of items</h3>
@@ -52,6 +53,6 @@ var ThingBookTab = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = ThingBookTab;
+export default ThingBookTab;

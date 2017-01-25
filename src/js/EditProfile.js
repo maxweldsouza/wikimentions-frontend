@@ -1,52 +1,55 @@
-var React = require('react');
-var SubmitButton = require('./SubmitButton');
-var requests = require('superagent');
-var MarkdownHelp = require('./MarkdownHelp');
-var MarkdownInput = require('./MarkdownInput');
-var cookies = require('browser-cookies');
-var Snackbar = require('./Snackbar');
-var Input = require('./Input');
+import React from 'react';
+import SubmitButton from './SubmitButton';
+import requests from 'superagent';
+import MarkdownHelp from './MarkdownHelp';
+import MarkdownInput from './MarkdownInput';
+import cookies from 'browser-cookies';
+import Snackbar from './Snackbar';
+import Input from './Input';
+import autoBind from 'react-autobind';
 
-var EditProfile = React.createClass({
-    getInitialState () {
-        return {
+class EditProfile extends React.Component {
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             submitting: false,
             email: '',
             about: '',
             preview: false,
             formMessage: ''
         };
-    },
+    }
     componentDidMount () {
         requests
-        .get('/api/v1/user/' + this.props.id)
+        .get(`/api/v1/user/${this.props.id}`)
         .end((err, res) => {
             this.setState({
                 email: res.body.email,
                 about: res.body.about
             });
         });
-    },
+    }
     onChangeText (e) {
-        var temp = {};
+        const temp = {};
         temp[e.target.name] = e.target.value;
         if (e.target.name === 'about') {
             temp.preview = true;
         }
         this.setState(temp);
-    },
+    }
     onClear (name) {
-        var temp = {};
+        const temp = {};
         temp[name] = '';
         this.setState(temp);
-    },
+    }
     updateProfile (e) {
         e.preventDefault();
         this.setState({
             submitting: true
         });
         requests
-        .post('/api/v1/user/' + this.props.id)
+        .post(`/api/v1/user/${this.props.id}`)
         .type('form')
         .send({
             email: this.state.email,
@@ -68,7 +71,7 @@ var EditProfile = React.createClass({
                 Snackbar({message: 'Profile updated'});
             }
         });
-    },
+    }
     render () {
         return (
             <div className='tabs-panel is-active' role='tabpanel'>
@@ -107,6 +110,6 @@ var EditProfile = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = EditProfile;
+export default EditProfile;

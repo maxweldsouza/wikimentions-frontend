@@ -1,17 +1,20 @@
-var React = require('react');
-var ButtonSelect = require('./ButtonSelect');
-var cookies = require('browser-cookies');
-var Snackbar = require('./Snackbar');
-var requests = require('superagent');
-var Select = require('./Select');
-var SubmitButton = require('./SubmitButton');
-var AuthorCard = require('./AuthorCard');
-var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
-var Modal = require('./Modal');
+import React from 'react';
+import ButtonSelect from './ButtonSelect';
+import cookies from 'browser-cookies';
+import Snackbar from './Snackbar';
+import requests from 'superagent';
+import Select from './Select';
+import SubmitButton from './SubmitButton';
+import AuthorCard from './AuthorCard';
+import {VelocityTransitionGroup} from 'velocity-react';
+import Modal from './Modal';
+import autoBind from 'react-autobind';
 
-var AddAuthors = React.createClass({
-    getInitialState () {
-        return {
+class AddAuthors extends React.Component {
+    constructor (props) {
+        super(props);
+        autoBind(this);
+        this.state = {
             modalIsOpen: false,
             author: '',
             submitting: false,
@@ -19,25 +22,25 @@ var AddAuthors = React.createClass({
             authorMessage: '',
             formMessage: ''
         };
-    },
+    }
     onOpenModal (e) {
         this.setState({
             modalIsOpen: true
         });
         e.preventDefault();
-    },
+    }
     onCloseModal () {
         this.setState({
             modalIsOpen: false
         });
-    },
+    }
     onChangeAuthor (x) {
         this.setState({
             author: x.id
         });
-    },
+    }
     validateForm () {
-        var valid = true;
+        let valid = true;
         if (!this.state.author) {
             this.setState({
                 authorValid: false,
@@ -51,18 +54,18 @@ var AddAuthors = React.createClass({
             });
         }
         return valid;
-    },
+    }
     onSubmit (e) {
         e.preventDefault();
         if (this.validateForm()) {
-            var type;
+            let type;
             if (this.props.type === 'book') {
-                type = '/booksby';
+                type = 'booksby';
             } else if (this.props.type === 'video') {
-                type = '/videosby';
+                type = 'videosby';
             }
             requests
-            .post('/api/v1/thing/' + this.props.id + type)
+            .post(`/api/v1/thing/${this.props.id}/${type}`)
             .type('form')
             .send({
                 author_id: this.state.author,
@@ -87,9 +90,9 @@ var AddAuthors = React.createClass({
                 }
             });
         }
-    },
+    }
     render () {
-        var id = this.props.id;
+        const id = this.props.id;
         if (this.state.modalIsOpen) {
             return (
                 <Modal
@@ -104,7 +107,16 @@ var AddAuthors = React.createClass({
                         </div> : null}
                         <div className='card-container'>
                             {this.props.authors.map((x) => {
-                                return <AuthorCard key={x.id} id={x.id} slug={x.props.slug} title={x.props.title} type={x.props.type} description={x.props.description} image={x.image} sourceType={this.props.type} sourceId={this.props.id}/>;
+                                return <AuthorCard
+                                key={x.id}
+                                id={x.id}
+                                slug={x.props.slug}
+                                title={x.props.title}
+                                type={x.props.type}
+                                description={x.props.description}
+                                image={x.image}
+                                sourceType={this.props.type}
+                                sourceId={this.props.id}/>;
                             })}
                         </div>
                         <form className='box' onSubmit={this.onSubmit}>
@@ -131,6 +143,6 @@ var AddAuthors = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = AddAuthors;
+export default AddAuthors;

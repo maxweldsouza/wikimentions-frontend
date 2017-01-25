@@ -1,7 +1,8 @@
-var React = require('react');
-var VelocityTransitionGroup = require('velocity-react').VelocityTransitionGroup;
+import React from 'react';
+import {VelocityTransitionGroup} from 'velocity-react';
+import autoBind from 'react-autobind';
 
-var Modal = React.createClass({
+class Modal extends React.Component {
     render () {
         return (
             <span style={{display: this.props.isOpen ? 'inline' : 'none'}} role='dialog'>
@@ -23,6 +24,6 @@ var Modal = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = Modal;
+export default Modal;

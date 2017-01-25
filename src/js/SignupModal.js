@@ -1,23 +1,25 @@
-var React = require('react');
-var Modal = require('./Modal');
+import React from 'react';
+import Modal from './Modal';
+import Signup from './Signup';
+import autoBind from 'react-autobind';
 
-var Signup = require('./Signup');
-
-var SignupModal = React.createClass({
-    getInitialState () {
-        return {
+class SignupModal extends React.Component {
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             modalIsOpen: false
         };
-    },
+    }
     onOpenModal (e) {
         this.setState({
             modalIsOpen: true
         });
         e.preventDefault();
-    },
+    }
     closeModal () {
         this.setState({modalIsOpen: false});
-    },
+    }
     render () {
         return (
             <span>
@@ -35,6 +37,6 @@ var SignupModal = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = SignupModal;
+export default SignupModal;

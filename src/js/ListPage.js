@@ -1,60 +1,61 @@
-var _ = require('underscore');
-var Book = require('./Book');
-var config = require('./config');
-var cookies = require('browser-cookies');
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var Pagination = require('./Pagination');
-var Person = require('./Person');
-var React = require('react');
-var requests = require('superagent');
-var Select = require('./Select');
-var Snackbar = require('./Snackbar');
-var SubmitButton = require('./SubmitButton');
-var Video = require('./Video');
+import _ from 'underscore';
+import Book from './Book';
+import config from './config';
+import cookies from 'browser-cookies';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import Pagination from './Pagination';
+import Person from './Person';
+import React from 'react';
+import requests from 'superagent';
+import Select from './Select';
+import Snackbar from './Snackbar';
+import SubmitButton from './SubmitButton';
+import Video from './Video';
+import autoBind from 'react-autobind';
 
-var ListPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            var [type, id, slug] = appstate.path.split('/');
-            var page = appstate.query.page;
-            var query = page ? '?page=' + page : '';
-            return {
-                api: [
-                    {
-                        name: 'list',
-                        path: '/api/v1/lists/' + id
-                    },
-                    {
-                        name: 'items',
-                        path: '/api/v1/lists/items/' + id + query
-                    }
-                ]
-            };
-        }
-    },
-    getInitialState () {
+class ListPage extends React.Component {
+    static resources (appstate) {
+        const [type, id, slug] = appstate.path.split('/');
+        const page = appstate.query.page;
+        const query = page ? `?page=${page}` : '';
         return {
+            api: [
+                {
+                    name: 'list',
+                    path: `/api/v1/lists/${id}`
+                },
+                {
+                    name: 'items',
+                    path: `/api/v1/lists/items/${id}${query}`
+                }
+            ]
+        };
+    }
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             id: null,
             submitting: false,
             formMessage: '',
             valid: true,
             message: ''
         };
-    },
+    }
     onSelect (x) {
         this.setState({
             id: x.id
         });
-    },
+    }
     onSubmit (e) {
-        var [type, id, slug] = this.props.path.split('/');
+        const [type, id, slug] = this.props.path.split('/');
         e.preventDefault();
         this.setState({
             submitting: true
         });
         requests
-        .post('/api/v1/lists/items/' + id)
+        .post(`/api/v1/lists/items/${id}`)
         .type('form')
         .send({
             obj_id: this.state.id,
@@ -77,17 +78,17 @@ var ListPage = React.createClass({
                 Mentions.route(window.location.pathname + window.location.search);
             }
         });
-    },
+    }
     render () {
-        var list = this.props.data.items.items;
-        var title = this.props.data.list.title;
-        var description = this.props.data.list.description;
-        var total = this.props.data.items.total;
+        const list = this.props.data.items.items;
+        const title = this.props.data.list.title;
+        const description = this.props.data.list.description;
+        const total = this.props.data.items.total;
 
-        var page = this.props.query.page ? this.props.query.page : 1;
-        var start = (page - 1) * list.length + 1;
-        var end = page * list.length;
-        var metaRobots;
+        const page = this.props.query.page ? this.props.query.page : 1;
+        const start = (page - 1) * list.length + 1;
+        const end = page * list.length;
+        let metaRobots;
         if (total === 0) {
             metaRobots = {'name': 'robots', 'content': 'noindex'};
         } else {
@@ -97,7 +98,7 @@ var ListPage = React.createClass({
             <div className='flex-wrapper'>
                 <Helmet
                     title={title}
-                    titleTemplate={'%s - ' + config.name + ' - Lists'}
+                    titleTemplate={`%s - ${config.name} - Lists`}
                     meta={[
                         metaRobots
                     ]}
@@ -196,6 +197,6 @@ var ListPage = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = ListPage;
+export default ListPage;

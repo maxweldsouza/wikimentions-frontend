@@ -1,24 +1,25 @@
-var React = require('react');
-var Mention = require('./Mention');
-var AddMention = require('./AddMention');
-var Pagination = require('./Pagination');
+import React from 'react';
+import Mention from './Mention';
+import AddMention from './AddMention';
+import Pagination from './Pagination';
+import autoBind from 'react-autobind';
 
-var ThingMentionTab = React.createClass({
-    getDefaultProps () {
+class ThingMentionTab extends React.Component {
+    static get defaultProps () {
         return {
             page: '1'
         };
-    },
+    }
     render () {
-        var mentionedby = this.props.mentionedby;
-        var nodata = <div className='card box'>
+        const mentionedby = this.props.mentionedby;
+        const nodata = <div className='card box'>
             <div className='blankslate'>
                 <span className='icon ion-at'/>
                 <h3>No mentions</h3>
                 No mentions have been added yet. You can help us by adding some.
             </div>
         </div>;
-        var nomore = <div className='card box'>
+        const nomore = <div className='card box'>
             <div className='blankslate'>
                 <span className='icon ion-at'/>
                 <h3>End of items</h3>
@@ -52,6 +53,6 @@ var ThingMentionTab = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = ThingMentionTab;
+export default ThingMentionTab;

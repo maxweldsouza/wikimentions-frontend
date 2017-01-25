@@ -1,17 +1,17 @@
-var React = require('react');
-var AddAuthors = require('./AddAuthors');
+import React from 'react';
+import AddAuthors from './AddAuthors';
+import autoBind from 'react-autobind';
 
-var Authors = React.createClass({
+class Authors extends React.Component {
     render () {
-        var authors = this.props.authors;
-        var authorCount = authors.length;
+        const authors = this.props.authors;
+        const authorCount = authors.length;
         return (
             <div>
                 {authorCount > 0 ? <span>
                     {'by '}
-                    {authors.map(function (x, i) {
-                        var path = '/people/' + x.id + '/' + x.props.slug;
-                        return <a href={path} key={x.props.title}>
+                    {authors.map((x, i) => {
+                        return <a href={`/people/${x.id}/${x.props.slug}`} key={x.props.title}>
                             {x.props.title}{i === authorCount - 1 ? '' : ', '}
                         </a>;
                     })}
@@ -20,6 +20,6 @@ var Authors = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Authors;
+export default Authors;

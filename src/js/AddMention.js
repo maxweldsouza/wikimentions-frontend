@@ -1,21 +1,24 @@
-var cookies = require('browser-cookies');
-var Helmet = require('react-helmet');
-var Input = require('./Input');
-var IpWarning = require('./IpWarning');
-var LoginModal = require('./LoginModal');
-var Navbar = require('./Navbar');
-var parseUrl = require('url-parse');
-var React = require('react');
-var requests = require('superagent');
-var Restricted = require('./Restricted');
-var Select = require('./Select');
-var SignupModal = require('./SignupModal');
-var Snackbar = require('./Snackbar');
-var SubmitButton = require('./SubmitButton');
+import cookies from 'browser-cookies';
+import Helmet from 'react-helmet';
+import Input from './Input';
+import IpWarning from './IpWarning';
+import LoginModal from './LoginModal';
+import Navbar from './Navbar';
+import parseUrl from 'url-parse';
+import React from 'react';
+import requests from 'superagent';
+import Restricted from './Restricted';
+import Select from './Select';
+import SignupModal from './SignupModal';
+import Snackbar from './Snackbar';
+import SubmitButton from './SubmitButton';
+import autoBind from 'react-autobind';
 
-var AddMention = React.createClass({
-    getInitialState () {
-        return {
+class AddMention extends React.Component {
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             mentioned_by: this.props.mentioned_by,
             mentionedByValid: true,
             mentionedByMessage: '',
@@ -30,14 +33,14 @@ var AddMention = React.createClass({
             formMessage: '',
             submitting: false
         };
-    },
+    }
     onChangeText (e) {
-        var temp = {};
+        const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     validateForm () {
-        var valid = true;
+        let valid = true;
         if (!this.state.mentioned_by) {
             this.setState({
                 mentionedByValid: false,
@@ -75,7 +78,7 @@ var AddMention = React.createClass({
             });
         }
         return valid;
-    },
+    }
     onSubmit (e) {
         e.preventDefault();
         if (this.validateForm()) {
@@ -111,26 +114,26 @@ var AddMention = React.createClass({
                 }
             });
         }
-    },
+    }
     onChangeMentionedBy (x) {
         this.setState({
             mentioned_by: x.id
         });
-    },
+    }
     onChangeMentionedIn (x) {
         this.setState({
             mentioned_in: x.id
         });
-    },
+    }
     onChangeMentioned (x) {
         this.setState({
             mentioned: x.id
         });
-    },
+    }
     render () {
-        var id = this.props.id;
-        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to add a Mention.</span>;
-        var parsed;
+        const id = this.props.id;
+        const loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to add a Mention.</span>;
+        let parsed;
         if (this.state.reference) {
             parsed = parseUrl(this.state.reference);
         }
@@ -202,6 +205,6 @@ var AddMention = React.createClass({
             </Restricted>
         </div>;
     }
-});
+}
 
-module.exports = AddMention;
+export default AddMention;

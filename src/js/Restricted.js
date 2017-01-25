@@ -1,21 +1,22 @@
-var React = require('react');
-var cookies = require('browser-cookies');
-var isNode = require('./isNode');
-var LoginModal = require('./LoginModal');
-var SignupModal = require('./SignupModal');
-var store = require('store');
+import React from 'react';
+import cookies from 'browser-cookies';
+import isNode from './isNode';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
+import store from 'store';
+import autoBind from 'react-autobind';
 
-var Restricted = React.createClass({
-    getDefaultProps () {
+class Restricted extends React.Component {
+    static get defaultProps () {
         return {
             min_level: 0,
             level: 1
         };
-    },
+    }
     render () {
-        var message = this.props.message ? this.props.message : <span>You need to <LoginModal/> / <SignupModal/></span>;
-        var session;
-        var allowed;
+        const message = this.props.message ? this.props.message : <span>You need to <LoginModal/> / <SignupModal/></span>;
+        let session;
+        let allowed;
         if (this.props.min_level === 0) {
             allowed = true;
         } else if (this.props.min_level === 1) {
@@ -36,6 +37,6 @@ var Restricted = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Restricted;
+export default Restricted;

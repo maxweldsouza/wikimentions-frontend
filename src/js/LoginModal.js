@@ -1,22 +1,24 @@
-var React = require('react');
-var Modal = require('./Modal');
+import React from 'react';
+import Modal from './Modal';
+import Login from './Login';
+import autoBind from 'react-autobind';
 
-var Login = require('./Login');
-
-var LoginModal = React.createClass({
-    getInitialState () {
-        return {
+class LoginModal extends React.Component {
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             showing: false
         };
-    },
+    }
     onOpen () {
         this.setState({
             showing: true
         });
-    },
+    }
     onClose () {
         this.setState({showing: false});
-    },
+    }
     render () {
         return (
             <span>
@@ -33,6 +35,6 @@ var LoginModal = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = LoginModal;
+export default LoginModal;

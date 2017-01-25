@@ -1,13 +1,14 @@
-var React = require('react');
+import React from 'react';
+import autoBind from 'react-autobind';
 
-var SubmitButton = React.createClass({
-    getDefaultProps () {
+class SubmitButton extends React.Component {
+    static get defaultProps () {
         return {
             className: 'button'
         };
-    },
+    }
     render () {
-        var animation = {
+        const animation = {
             animationName: 'spinner-animation',
             animationDuration: '350ms',
             animationIterationCount: 'infinite',
@@ -16,14 +17,14 @@ var SubmitButton = React.createClass({
         if (this.props.submitting) {
             return <button
                 type='submit'
-                className={this.props.className + ' loading'}>{this.props.title}
+                className={`${this.props.className} loading`}>{this.props.title}
             </button>;
         }
         if (this.props.confirm === false) {
-            return <button type='submit' className={this.props.className + ' disabled'} onClick={this.props.onSubmit}>{this.props.title}</button>;
+            return <button type='submit' className={`${this.props.className} disabled`} onClick={this.props.onSubmit}>{this.props.title}</button>;
         }
         return <button type='submit' className={this.props.className} onClick={this.props.onSubmit}>{this.props.title}</button>;
     }
-});
+}
 
-module.exports = SubmitButton;
+export default SubmitButton;

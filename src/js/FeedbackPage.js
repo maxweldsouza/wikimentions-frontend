@@ -1,58 +1,58 @@
-var AdminOnly = require('./AdminOnly');
-var config = require('./config');
-var Helmet = require('react-helmet');
-var Markdown = require('./Markdown');
-var Navbar = require('./Navbar');
-var React = require('react');
-var requests = require('superagent');
-var Time = require('./Time');
-var Snackbar = require('./Snackbar');
+import AdminOnly from './AdminOnly';
+import config from './config';
+import Helmet from 'react-helmet';
+import Markdown from './Markdown';
+import Navbar from './Navbar';
+import React from 'react';
+import requests from 'superagent';
+import Time from './Time';
+import Snackbar from './Snackbar';
+import autoBind from 'react-autobind';
 
-var FeedbackPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            return {
-                api: []
-            };
-        }
-    },
-    getInitialState () {
+class FeedbackPage extends React.Component {
+    static resources (appstate) {
         return {
+            api: []
+        };
+    }
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             feedback: [],
             page: 1
         };
-    },
+    }
     componentDidMount () {
         this.fetchFeedback(1);
-    },
+    }
     fetchFeedback (page) {
-        var url = page === 1 ? '/api/v1/feedback' : '/api/v1/feedback?page=' + page;
         requests
-        .get(url)
+        .get(page === 1 ? '/api/v1/feedback' : `/api/v1/feedback?page=${page}`)
         .send()
         .end((err, res) => {
             if (err && err.status) {
                 Snackbar({message: res.body.message});
             } else {
                 this.setState({
-                    page: page,
+                    page,
                     feedback: res.body
                 });
             }
         });
-    },
+    }
     prevPage () {
         this.fetchFeedback(this.state.page - 1);
-    },
+    }
     nextPage () {
         this.fetchFeedback(this.state.page + 1);
-    },
+    }
     render () {
         return (
             <span>
                 <Helmet
                     title={'Feedback'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -82,7 +82,7 @@ var FeedbackPage = React.createClass({
                                                 Url: <a href={x.url}>{x.url}</a>
                                             </span>
                                             <span className='small-4 columns'>
-                                                User: {x.user ? <a href={'/users/' + x.user.id + '/' + x.user.name}>{x.user.name}</a> : null}
+                                                User: {x.user ? <a href={`/users/${x.user.id}/${x.user.name}`}>{x.user.name}</a> : null}
                                             </span>
                                             <span className='small-12 columns'>
                                                 Feedback: <strong>{x.content}</strong>
@@ -118,6 +118,6 @@ var FeedbackPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = FeedbackPage;
+export default FeedbackPage;

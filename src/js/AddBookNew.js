@@ -1,33 +1,35 @@
-var React = require('react');
+import React from 'react';
+import SubmitButton from './SubmitButton';
+import cookies from 'browser-cookies';
+import requests from 'superagent';
+import Snackbar from './Snackbar';
+import Input from './Input';
+import autoBind from 'react-autobind';
 
-var SubmitButton = require('./SubmitButton');
-var cookies = require('browser-cookies');
-var requests = require('superagent');
-var Snackbar = require('./Snackbar');
-var Input = require('./Input');
-
-var AddBookNew = React.createClass({
-    getInitialState () {
-        return {
+class AddBookNew extends React.Component {
+    constructor (props) {
+        super(props);
+        autoBind(this);
+        this.state = {
             title: '',
             description: '',
             titleValid: true,
             titleMessage: '',
             formMessage: ''
         };
-    },
+    }
     onChangeText (e) {
-        var temp = {};
+        const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     onClear (name) {
-        var temp = {};
+        const temp = {};
         temp[name] = '';
         this.setState(temp);
-    },
+    }
     validateForm () {
-        var valid = true;
+        let valid = true;
         if (!this.state.title) {
             this.setState({
                 titleValid: false,
@@ -41,7 +43,7 @@ var AddBookNew = React.createClass({
             });
         }
         return valid;
-    },
+    }
     onSubmit (e) {
         e.preventDefault();
         if (this.validateForm()) {
@@ -64,7 +66,7 @@ var AddBookNew = React.createClass({
                     });
                 } else {
                     requests
-                    .post('/api/v1/thing/' + this.props.id + '/books')
+                    .post(`/api/v1/thing/${this.props.id}/books`)
                     .type('form')
                     .send({
                         book_id: res.body.id,
@@ -92,7 +94,7 @@ var AddBookNew = React.createClass({
                 }
             });
         }
-    },
+    }
     render () {
         return (
             <form onSubmit={this.onSubmit}>
@@ -118,6 +120,6 @@ var AddBookNew = React.createClass({
             </form>
         );
     }
-});
+}
 
-module.exports = AddBookNew;
+export default AddBookNew;

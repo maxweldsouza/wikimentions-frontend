@@ -1,21 +1,21 @@
 require('core-js/es6/string');
 require('core-js/es6/array');
-var consolePolyfill = require('console-polyfill');
-var React = require('react');
-var ReactDOM = require('react-dom');
-var cookies = require('browser-cookies');
-var _ = require('underscore');
-var $ = require('jquery');
-var S = require('string');
-var MainComponent = require('./MainComponent');
-var Router = require('./Router.js');
-var requests = require('superagent');
-var Snackbar = require('./Snackbar');
-var store = require('store');
+import consolePolyfill from 'console-polyfill';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import cookies from 'browser-cookies';
+import _ from 'underscore';
+import $ from 'jquery';
+import S from 'string';
+import MainComponent from './MainComponent';
+import Router from './Router.js';
+import requests from 'superagent';
+import Snackbar from './Snackbar';
+import store from 'store';
 
 require('velocity-animate');
 require('velocity-animate/velocity.ui');
-var NProgress = require('nprogress');
+import NProgress from 'nprogress';
 NProgress.configure({ showSpinner: false, minimum: 0.4 });
 
 /*
@@ -36,10 +36,10 @@ if (typeof window.ga === 'undefined') {
     };
 }
 
-var startLoading = function () {
+const startLoading = () => {
     NProgress.start();
 };
-var stopLoading = function () {
+const stopLoading = () => {
     NProgress.done();
 };
 
@@ -50,12 +50,12 @@ function getTokenIfRequired () {
 }
 
 window.Mentions = {
-    route: function (url) {
+    route(url) {
         if (S(url).endsWith('/')) {
             url = url.substring(0, url.length - 1);
         }
-        var routeObj = {
-            url: url,
+        const routeObj = {
+            url,
             onUpdate: (robj) => {
                 if (robj.error) {
                     Snackbar({message: robj.error.message});
@@ -78,16 +78,16 @@ window.Mentions = {
         Router.route(routeObj);
         return;
     },
-    firstLoad: function (url) {
-        var data;
+    firstLoad(url) {
+        let data;
         try {
             getTokenIfRequired();
             data = JSON.parse(S($('#api-data').text()).unescapeHTML().toString());
         } catch (e) {
             Mentions.route(url);
         }
-        var routeObj = {
-            url: url,
+        const routeObj = {
+            url,
             embeddedData: data,
             onUpdate: (robj) => {
                 if (robj.error) {
@@ -124,7 +124,7 @@ window.Mentions = {
                 store.remove('username');
                 store.remove('level');
                 store.remove('id');
-                var path = window.location.pathname + window.location.search;
+                const path = window.location.pathname + window.location.search;
                 history.pushState(null, null, path);
                 Mentions.route(path);
             }
@@ -134,17 +134,9 @@ window.Mentions = {
 
 Mentions.firstLoad(window.location.pathname + window.location.search);
 
-var LinkChecker = {
-    'isExternal': function (href, baseurl) {
-        // href is the href attribute from any link
-        // checks whether the given href is external to
-        // the base url which by default is taken from
-        // the browser
-        baseurl = baseurl || window.location.href;
-
-        var domain = function (url) {
-            return url.replace('http://', '').replace('https://', '').split('/')[0];
-        };
+const LinkChecker = {
+    'isExternal'(href, baseurl=window.location.href) {
+        const domain = url => url.replace('http://', '').replace('https://', '').split('/')[0];
         if (href.indexOf('mailto') === 0) {
             return true;
         }
@@ -153,15 +145,10 @@ var LinkChecker = {
         }
         return false;
     },
-    'samePage': function (href, baseurl) {
-        // href is the href attribute from any link
-        // checks whether the given href is a hash
-        // url to the same page
-        baseurl = baseurl || window.location.href;
-
+    'samePage'(href, baseurl=window.location.href) {
         if (href.startsWith('http')) {
-            var currentWithoutHash = baseurl.split('#')[0];
-            var urlWithoutHash = href.split('#')[0];
+            const currentWithoutHash = baseurl.split('#')[0];
+            const urlWithoutHash = href.split('#')[0];
             return currentWithoutHash === urlWithoutHash;
         }
         if (href.startsWith('#')) {
@@ -171,22 +158,22 @@ var LinkChecker = {
     }
 };
 
-var controlPressed = false;
+let controlPressed = false;
 
-$(document).keydown(function (e) {
+$(document).keydown(e => {
     if (e.which === '17') {
         controlPressed = true;
     }
 });
 
-$(document).keyup(function () {
+$(document).keyup(() => {
     controlPressed = false;
 });
 
 $(document).on('click', 'a', function (e) {
-    var url = $(this).attr('href');
-    var disabled = $(this).data('disabled');
-    var noxhr = $(this).data('noxhr');
+    const url = $(this).attr('href');
+    const disabled = $(this).data('disabled');
+    const noxhr = $(this).data('noxhr');
     if (typeof url === 'undefined' || disabled) {
         e.preventDefault();
         return;
@@ -202,7 +189,7 @@ $(document).on('click', 'a', function (e) {
             && !noxhr) {
         startLoading();
         e.preventDefault();
-        setTimeout(function () {
+        setTimeout(() => {
             try {
                 Mentions.route(url);
                 history.pushState(null, null, url);
@@ -218,11 +205,11 @@ $(document).on('click', 'a', function (e) {
     }
 });
 
-window.addEventListener('popstate', function () {
+window.addEventListener('popstate', () => {
     Mentions.route(window.location.pathname + window.location.search);
 });
 
-window.addEventListener('error', function (e) {
+window.addEventListener('error', e => {
     requests
     .post('/api/v1/bugs')
     .type('form')

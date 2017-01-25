@@ -1,24 +1,22 @@
-var request = require('superagent');
-var async = require('async');
-var _ = require('underscore');
-var NProgress = require('nprogress');
+import request from 'superagent';
+import async from 'async';
+import _ from 'underscore';
+import NProgress from 'nprogress';
 
-var makeRequest = function (url, callback) {
-    return function (cb) {
-        request
-        .get(url)
-        .on('progress', function () {
-            NProgress.inc();
-        })
-        .end(cb);
-        return;
-    };
+const makeRequest = (url, callback) => cb => {
+    request
+    .get(url)
+    .on('progress', () => {
+        NProgress.inc();
+    })
+    .end(cb);
+    return;
 };
 
-var parallelRequests = {
+const parallelRequests = {
     get (paths, callback) {
-        var i;
-        var tasks = [];
+        let i;
+        const tasks = [];
         for (i = 0; i < paths.length; i++) {
             tasks.push(makeRequest(paths[i], callback));
         }
@@ -26,4 +24,4 @@ var parallelRequests = {
     }
 };
 
-module.exports = parallelRequests;
+export default parallelRequests;

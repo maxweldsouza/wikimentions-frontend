@@ -1,36 +1,40 @@
-var React = require('react');
+import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import autoBind from 'react-autobind';
 
-var CopyButton = React.createClass({
-    getDefaultProps () {
+class CopyButton extends React.Component {
+    static get defaultProps () {
         return {
             hintDirection: 'bottom',
             className: ''
         };
-    },
-    getInitialState () {
-        return {
+    }
+    constructor (props) {
+        super(props);
+        autoBind(this);
+        this.state = {
             copied: false
         };
-    },
+    }
     onCopy () {
         this.setState({
             copied: true
         });
-    },
+    }
     reset () {
         this.setState({
             copied: false
         });
-    },
+    }
     render () {
-        var ariaLabel, cls;
+        let ariaLabel;
+        let cls;
         if (this.state.copied) {
             ariaLabel = 'Copied';
-            cls = this.props.className + ' hint--' + this.props.hintDirection + ' hint--rounded hint--no-animate hint--success';
+            cls = `${this.props.className} hint--${this.props.hintDirection} hint--rounded hint--no-animate hint--success`;
         } else {
             ariaLabel = this.props.ariaLabel;
-            cls = this.props.className + ' hint--' + this.props.hintDirection + ' hint--rounded hint--no-animate';
+            cls = `${this.props.className} hint--${this.props.hintDirection} hint--rounded hint--no-animate`;
         }
         return (
             <CopyToClipboard text={this.props.text} onCopy={this.onCopy}>
@@ -42,6 +46,6 @@ var CopyButton = React.createClass({
             </CopyToClipboard>
         );
     }
-});
+}
 
-module.exports = CopyButton;
+export default CopyButton;

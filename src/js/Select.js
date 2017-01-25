@@ -1,22 +1,17 @@
-var React = require('react');
-var requests = require('superagent');
-var _ = require('underscore');
-var Thumbnail = require('./Thumbnail');
-var Input = require('./Input');
-var utils = require('./utils');
+import React from 'react';
+import requests from 'superagent';
+import _ from 'underscore';
+import Thumbnail from './Thumbnail';
+import Input from './Input';
+import utils from './utils';
+import autoBind from 'react-autobind';
 
-var Select = React.createClass({
-    getDefaultProps () {
-        return {
-            autocomplete: true,
-            className: '',
-            valid: true,
-            autoFocus: false,
-            message: ''
-        };
-    },
-    getInitialState () {
-        return {
+class Select extends React.Component {
+    constructor (props) {
+        super(props);
+        autoBind(this);
+        this.loadData = _.throttle(this.loadData, 1000);
+        this.state = {
             focus: -1,
             editable: true,
             searchText: this.props.initialLabel ? this.props.initialLabel : '',
@@ -26,18 +21,18 @@ var Select = React.createClass({
             error: false,
             visible: false
         };
-    },
+    }
     componentDidMount () {
         window.addEventListener('click', this._hideDropdown, false);
-    },
+    }
     componentWillUnmount () {
         window.removeEventListener('click', this._hideDropdown, false);
-    },
+    }
     _hideDropdown () {
         this.setState({
             visible: false
         });
-    },
+    }
     onSearchTextChanged (e) {
         if (this.props.onSearchTextChanged) {
             this.props.onSearchTextChanged(e.target.value);
@@ -58,7 +53,7 @@ var Select = React.createClass({
                 value: ''
             });
         }
-    },
+    }
     onSelectValue (x) {
         this.setState({
             options: [],
@@ -70,9 +65,9 @@ var Select = React.createClass({
         if (this.props.onSelectValue) {
             this.props.onSelectValue(x);
         }
-    },
+    }
     focusNext () {
-        var next;
+        let next;
         if (this.state.focus >= this.state.options.length - 1) {
             next = -1;
         } else {
@@ -81,9 +76,9 @@ var Select = React.createClass({
         this.setState({
             focus: next
         });
-    },
+    }
     focusPrev () {
-        var prev;
+        let prev;
         if (this.state.focus <= -1) {
             prev = this.state.options.length - 1;
         } else {
@@ -92,7 +87,7 @@ var Select = React.createClass({
         this.setState({
             focus: prev
         });
-    },
+    }
     handleKeys (event) {
         switch (event.key) {
             case 'ArrowDown':
@@ -114,16 +109,18 @@ var Select = React.createClass({
             default:
                 return;
         }
-    },
-    loadData: _.throttle(function (x) {
-        var typeQuery;
+    }
+    loadData (x) {
+        let typeQuery;
         if (this.props.types) {
-            typeQuery = '?types=' + this.props.types.join(',');
+            typeQuery = `?types=${this.props.types.join(',')}`;
         } else {
             typeQuery = '';
         }
         if (this.props.autocomplete) {
-            requests.get('/api/v1/autocomplete/' + encodeURIComponent(x) + typeQuery).end((err, res) => {
+            requests
+            .get(`/api/v1/autocomplete/${encodeURIComponent(x)}${typeQuery}`)
+            .end((err, res) => {
                 if (err && err.status) {
                     this.setState({
                         loading: false,
@@ -139,7 +136,9 @@ var Select = React.createClass({
                 }
             });
         } else {
-            requests.get('/api/v1/search/' + encodeURIComponent(x) + typeQuery).end((err, res) => {
+            requests
+            .get(`/api/v1/search/${encodeURIComponent(x)}${typeQuery}`)
+            .end((err, res) => {
                 if (err && err.status) {
                     this.setState({
                         loading: false,
@@ -155,20 +154,20 @@ var Select = React.createClass({
                 }
             });
         }
-    }, 1000),
+    }
     onClear () {
         this.setState({
             searchText: '',
             options: [],
             visible: false
         });
-    },
+    }
     onClickMoreResults () {
-        var path = '/search?q=' + this.state.searchText;
+        const path = `/search?q=${this.state.searchText}`;
         this.onClear();
         history.pushState(null, null, path);
         Mentions.route(path);
-    },
+    }
     render () {
         return (
             <div style={{position: 'relative', 'width': '100%'}} onKeyDown={this.handleKeys}>
@@ -199,14 +198,14 @@ var Select = React.createClass({
                 {this.state.visible ? <div className='select-options'>
                     {!this.state.loading && this.state.options.length === 0 ? <div className='select-option select-option-message'>
                         <span>
-                            No results. You can <a href={'/create?title=' + this.state.searchText}>Create</a> this page.
+                            No results. You can <a href={`/create?title=${this.state.searchText}`}>Create</a> this page.
                         </span>
                     </div> : null}
                     {this.state.loading && this.state.options.length === 0 ? <div className='select-option select-option-message'>
                         Loading...
                     </div> : null}
                     {this.state.options.map((entry, i) => {
-                        var focused = i === this.state.focus;
+                        let focused = i === this.state.focus;
                         focused = focused ? {'background': '#f3f3f3'} : {};
 
                         return <div
@@ -242,6 +241,14 @@ var Select = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = Select;
+Select.defaultProps = {
+    autocomplete: true,
+    className: '',
+    valid: true,
+    autoFocus: false,
+    message: ''
+};
+
+export default Select;

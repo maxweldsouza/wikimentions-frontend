@@ -1,10 +1,11 @@
-var React = require('react');
+import React from 'react';
+import autoBind from 'react-autobind';
 
-var Link = React.createClass({
+class Link extends React.Component {
     render () {
-        var type = this.props.type;
-        var pagepath;
-        var defaultTab;
+        const type = this.props.type;
+        let pagepath;
+        let defaultTab;
         if (type === 'video') {
             pagepath = '/videos/';
             defaultTab = 'mentioned';
@@ -18,16 +19,16 @@ var Link = React.createClass({
             throw new Error('No page type specified');
         }
 
-        var tab = this.props.tab ? this.props.tab : defaultTab;
-        var href;
-        var nofollow = false;
-        if (['edit', 'discuss', 'history'].indexOf(tab) >= 0) {
-            href = '/' + tab + '/' + this.props.id + '/' + this.props.slug;
+        const tab = this.props.tab ? this.props.tab : defaultTab;
+        let href;
+        let nofollow = false;
+        if (['edit', 'discuss', 'history'].includes(tab)) {
+            href = `/${tab}/${this.props.id}/${this.props.slug}`;
             nofollow = true;
         } else if (tab !== defaultTab) {
-            href = pagepath + this.props.id + '/' + this.props.slug + '/' + tab;
+            href = `${pagepath + this.props.id}/${this.props.slug}/${tab}`;
         } else {
-            href = pagepath + this.props.id + '/' + this.props.slug;
+            href = `${pagepath + this.props.id}/${this.props.slug}`;
         }
         if (nofollow) {
             return (
@@ -38,6 +39,6 @@ var Link = React.createClass({
             <a className={this.props.className} href={href}>{this.props.children}</a>
         );
     }
-});
+}
 
-module.exports = Link;
+export default Link;

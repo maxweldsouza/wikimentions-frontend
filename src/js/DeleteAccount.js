@@ -1,27 +1,30 @@
-var React = require('react');
-var Snackbar = require('./Snackbar');
-var SubmitButton = require('./SubmitButton');
-var requests = require('superagent');
-var cookies = require('browser-cookies');
-var Input = require('./Input');
+import React from 'react';
+import Snackbar from './Snackbar';
+import SubmitButton from './SubmitButton';
+import requests from 'superagent';
+import cookies from 'browser-cookies';
+import Input from './Input';
+import autoBind from 'react-autobind';
 
-var DeleteAccount = React.createClass({
-    getInitialState () {
-        return {
+class DeleteAccount extends React.Component {
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             submitting: false,
             password: ''
         };
-    },
+    }
     onChangeText (e) {
-        var temp = {};
+        const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     onClear (name) {
-        var temp = {};
+        const temp = {};
         temp[name] = '';
         this.setState(temp);
-    },
+    }
     deleteAccount (e) {
         e.preventDefault();
         if (!this.state.password) {
@@ -31,7 +34,7 @@ var DeleteAccount = React.createClass({
                 submitting: true
             });
             requests
-            .post('/api/v1/user/' + this.props.id + '/delete')
+            .post(`/api/v1/user/${this.props.id}/delete`)
             .type('form')
             .send({
                 password: this.state.password,
@@ -50,7 +53,7 @@ var DeleteAccount = React.createClass({
                 }
             });
         }
-    },
+    }
     render () {
         return (
             <div className='tabs-panel is-active' role='tabpanel'>
@@ -77,6 +80,6 @@ var DeleteAccount = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = DeleteAccount;
+export default DeleteAccount;

@@ -1,6 +1,7 @@
-var React = require('react');
+import React from 'react';
+import autoBind from 'react-autobind';
 
-var TextWidget = React.createClass({
+class TextWidget extends React.Component {
     render () {
         return (
             <div className='small-6 columns'>
@@ -15,6 +16,6 @@ var TextWidget = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = TextWidget;
+export default TextWidget;

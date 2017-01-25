@@ -1,10 +1,10 @@
-var React = require('react');
-var Link = require('./Link');
-var Thumbnail = require('./Thumbnail');
-var _ = require('underscore');
+import React from 'react';
+import Link from './Link';
+import Thumbnail from './Thumbnail';
+import _ from 'underscore';
 import Lazy from 'react-lazyload';
 
-var HomeItem = React.createClass({
+class HomeItem extends React.Component {
     render () {
         return (
             <div className='card box'>
@@ -71,6 +71,6 @@ var HomeItem = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = HomeItem;
+export default HomeItem;

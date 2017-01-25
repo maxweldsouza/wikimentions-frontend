@@ -1,21 +1,23 @@
-var React = require('react');
-var cookies = require('browser-cookies');
-var isNode = require('./isNode');
-var config = require('./config');
+import React from 'react';
+import cookies from 'browser-cookies';
+import isNode from './isNode';
+import config from './config';
+import autoBind from 'react-autobind';
 
-var AdminOnly = React.createClass({
+class AdminOnly extends React.Component {
     render () {
-        var session, admin;
+        let session;
+        let admin;
         if (isNode.isBrowser()) {
             session = cookies.get('mentions');
             admin = cookies.get(config.admin);
         }
-        var loggedin = session ? true : false;
+        const loggedin = session ? true : false;
         if (admin) {
             return this.props.children;
         }
         return null;
     }
-});
+}
 
-module.exports = AdminOnly;
+export default AdminOnly;

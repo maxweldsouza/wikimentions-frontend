@@ -1,24 +1,25 @@
-var React = require('react');
-var Video = require('./Video');
-var AddVideo = require('./AddVideo');
-var Pagination = require('./Pagination');
+import React from 'react';
+import Video from './Video';
+import AddVideo from './AddVideo';
+import Pagination from './Pagination';
+import autoBind from 'react-autobind';
 
-var ThingVideoTab = React.createClass({
-    getDefaultProps () {
+class ThingVideoTab extends React.Component {
+    static get defaultProps () {
         return {
             page: '1'
         };
-    },
+    }
     render () {
-        var videos = this.props.videos;
-        var id = this.props.id;
-        var emptyvideos = <div className='card box'>
+        const videos = this.props.videos;
+        const id = this.props.id;
+        const emptyvideos = <div className='card box'>
             <div className='blankslate'>
                 <h3>No Videos</h3>
                 No videos have been added for this author. You can help us by adding some.
             </div>
         </div>;
-        var nomore = <div className='card box'>
+        const nomore = <div className='card box'>
             <div className='blankslate'>
                 <h3>End of Videos</h3>
                 There are no more videos to show.
@@ -50,6 +51,6 @@ var ThingVideoTab = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = ThingVideoTab;
+export default ThingVideoTab;

@@ -1,49 +1,50 @@
-var _ = require('underscore');
-var AdminOnly = require('./AdminOnly');
-var ButtonSelect = require('./ButtonSelect');
-var config = require('./config');
-var cookies = require('browser-cookies');
-var Footer = require('./Footer');
-var Helmet = require('react-helmet');
-var ImageUpload = require('./ImageUpload');
-var Input = require('./Input');
-var LoginModal = require('./LoginModal');
-var SignupModal = require('./SignupModal');
-var Markdown = require('./Markdown');
-var Mention = require('./Mention');
-var Modal = require('./Modal');
-var Navbar = require('./Navbar');
-var PageBar = require('./PageBar');
-var queryString = require('query-string');
-var React = require('react');
-var requests = require('superagent');
-var Restricted = require('./Restricted');
-var Snackbar = require('./Snackbar');
-var SubmitButton = require('./SubmitButton');
+import _ from 'underscore';
+import AdminOnly from './AdminOnly';
+import ButtonSelect from './ButtonSelect';
+import config from './config';
+import cookies from 'browser-cookies';
+import Footer from './Footer';
+import Helmet from 'react-helmet';
+import ImageUpload from './ImageUpload';
+import Input from './Input';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
+import Markdown from './Markdown';
+import Mention from './Mention';
+import Modal from './Modal';
+import Navbar from './Navbar';
+import PageBar from './PageBar';
+import queryString from 'query-string';
+import React from 'react';
+import requests from 'superagent';
+import Restricted from './Restricted';
+import Snackbar from './Snackbar';
+import SubmitButton from './SubmitButton';
+import autoBind from 'react-autobind';
 
-var EditPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            var [type, id, slug] = appstate.path.split('/');
-            var queryObj = {};
-            if (appstate.query.page) {
-                queryObj.page = appstate.query.page;
-            }
-            queryObj.slug = slug;
-            var query = queryString.stringify(queryObj);
-            query = query ? '?' + query : '';
-            return {
-                api: [
-                    {
-                        name: 'thing',
-                        path: '/api/v1/thing/' + id + query
-                    }
-                ]
-            };
+class EditPage extends React.Component {
+    static resources (appstate) {
+        const [type, id, slug] = appstate.path.split('/');
+        const queryObj = {};
+        if (appstate.query.page) {
+            queryObj.page = appstate.query.page;
         }
-    },
-    getInitialState () {
+        queryObj.slug = slug;
+        let query = queryString.stringify(queryObj);
+        query = query ? `?${query}` : '';
         return {
+            api: [
+                {
+                    name: 'thing',
+                    path: `/api/v1/thing/${id}${query}`
+                }
+            ]
+        };
+    }
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             type: this.props.data.thing.props.type,
             title: this.props.data.thing.props.title,
             titleValid: true,
@@ -59,33 +60,33 @@ var EditPage = React.createClass({
             confirmDelete: false,
             modalIsOpen: false
         };
-    },
+    }
     onChangeType (x) {
         this.setState({
             type: x
         });
-    },
+    }
     onToggleConfirm () {
         this.setState({
             confirmDelete: !this.state.confirmDelete
         });
-    },
+    }
     onChangeText (e) {
-        var temp = {
+        const temp = {
             error: false,
             message: ''
         };
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     onClear (name) {
-        var temp = {};
+        const temp = {};
         temp[name] = '';
         this.setState(temp);
-    },
+    }
     validateForm () {
-        var valid = true;
-        var message;
+        let valid = true;
+        let message;
         if (!this.state.title) {
             this.setState({
                 titleValid: false,
@@ -101,16 +102,16 @@ var EditPage = React.createClass({
             valid = false;
         }
         return valid;
-    },
+    }
     onSubmit (e) {
         e.preventDefault();
-        var id = Number(this.props.path.split('/')[1]);
+        const id = Number(this.props.path.split('/')[1]);
         if (this.validateForm()) {
             this.setState({
                 submitting: true,
                 formMessage: ''
             });
-            var data = {
+            const data = {
                 title: this.state.title,
                 description: this.state.description,
                 type: this.state.type,
@@ -123,7 +124,7 @@ var EditPage = React.createClass({
                 data.url = this.state.url;
             }
             requests
-            .put('/api/v1/thing/' + id)
+            .put(`/api/v1/thing/${id}`)
             .type('form')
             .send(data)
             .end((err, res) => {
@@ -144,18 +145,18 @@ var EditPage = React.createClass({
                 }
             });
         }
-    },
+    }
     onDeletePage (e) {
         e.preventDefault();
-        var id = Number(this.props.path.split('/')[1]);
+        const id = Number(this.props.path.split('/')[1]);
         this.setState({
             submitting: true
         });
-        var data = {
+        const data = {
             _xsrf: cookies.get('_xsrf')
         };
         requests
-        .delete('/api/v1/thing/' + id)
+        .delete(`/api/v1/thing/${id}`)
         .type('form')
         .send(data)
         .end((err, res) => {
@@ -170,29 +171,29 @@ var EditPage = React.createClass({
                 Mentions.route(res.body.redirect);
             }
         });
-    },
+    }
     onOpenModal (e) {
         this.setState({
             modalIsOpen: true
         });
         e.preventDefault();
-    },
+    }
     onCloseModal () {
         this.setState({modalIsOpen: false});
-    },
+    }
     render () {
-        var id = Number(this.props.path.split('/')[1]);
-        var entry = this.props.data.thing;
-        var options = [{name: 'Person', value: 'person'},
+        const id = Number(this.props.path.split('/')[1]);
+        const entry = this.props.data.thing;
+        const options = [{name: 'Person', value: 'person'},
         {name: 'Book', value: 'book'},
         {name: 'Video', value: 'video'}];
-        var loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to edit a page.
+        const loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to edit a page.
         </span>;
         return (
             <span>
                 <Helmet
-                    title={'Edit - ' + entry.props.title}
-                    titleTemplate={'%s - ' + config.name}
+                    title={`Edit - ${entry.props.title}`}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -207,7 +208,7 @@ var EditPage = React.createClass({
                     toggleSidebar={this.props.toggleSidebar}/>
                 <div className='row page-body white'>
                     <div className='small-12 large-8 columns'>
-                        <h1>{'Edit - ' + entry.props.title}</h1>
+                        <h1>{`Edit - ${entry.props.title}`}</h1>
                         <PageBar
                             id={id}
                             slug={entry.props.slug}
@@ -327,6 +328,6 @@ var EditPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = EditPage;
+export default EditPage;

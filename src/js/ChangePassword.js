@@ -1,30 +1,33 @@
-var React = require('react');
-var Snackbar = require('./Snackbar');
-var SubmitButton = require('./SubmitButton');
-var requests = require('superagent');
-var cookies = require('browser-cookies');
-var Input = require('./Input');
+import React from 'react';
+import Snackbar from './Snackbar';
+import SubmitButton from './SubmitButton';
+import requests from 'superagent';
+import cookies from 'browser-cookies';
+import Input from './Input';
+import autoBind from 'react-autobind';
 
-var ChangePassword = React.createClass({
-    getInitialState () {
-        return {
+class ChangePassword extends React.Component {
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             submitting: false,
             old: '',
             new: '',
             repeat: '',
             formMessage: ''
         };
-    },
+    }
     onChangeText (e) {
-        var temp = {};
+        const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     onClear (name) {
-        var temp = {};
+        const temp = {};
         temp[name] = '';
         this.setState(temp);
-    },
+    }
     changePassword (e) {
         e.preventDefault();
         if (this.state.new !== this.state.repeat) {
@@ -60,7 +63,7 @@ var ChangePassword = React.createClass({
                 }
             });
         }
-    },
+    }
     render () {
         return (
             <div className='tabs-panel is-active' role='tabpanel'>
@@ -108,6 +111,6 @@ var ChangePassword = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = ChangePassword;
+export default ChangePassword;

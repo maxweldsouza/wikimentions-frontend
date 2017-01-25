@@ -1,33 +1,31 @@
-var React = require('react');
+import React from 'react';
+import Helmet from 'react-helmet';
+import Navbar from './Navbar';
+import _ from 'underscore';
+import config from './config';
+import Pagination from './Pagination';
+import HistoryItem from './HistoryItem';
+import autoBind from 'react-autobind';
 
-var Helmet = require('react-helmet');
-var Navbar = require('./Navbar');
-var _ = require('underscore');
-var config = require('./config');
-var Pagination = require('./Pagination');
-var HistoryItem = require('./HistoryItem');
-
-var RecentChangesPage = React.createClass({
-    statics: {
-        resources (appstate) {
-            var page = appstate.query.page;
-            var query = page ? '?page=' + page : '';
-            return {
-                api: [
-                    {
-                        name: 'history',
-                        path: '/api/v1/recent-changes' + query
-                    }
-                ]
-            };
-        }
-    },
+class RecentChangesPage extends React.Component {
+    static resources (appstate) {
+        const page = appstate.query.page;
+        const query = page ? `?page=${page}` : '';
+        return {
+            api: [
+                {
+                    name: 'history',
+                    path: `/api/v1/recent-changes${query}`
+                }
+            ]
+        };
+    }
     render () {
         return (
             <span>
                 <Helmet
                     title={'Recent Changes'}
-                    titleTemplate={'%s - ' + config.name}
+                    titleTemplate={`%s - ${config.name}`}
                     meta={[
                         {'name': 'robots', 'content': 'noindex'}
                     ]}
@@ -64,6 +62,6 @@ var RecentChangesPage = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = RecentChangesPage;
+export default RecentChangesPage;

@@ -1,21 +1,21 @@
-var React = require('react');
-var _ = require('underscore');
+import React from 'react';
+import _ from 'underscore';
+import autoBind from 'react-autobind';
 
-var Input = React.createClass({
-    getDefaultProps () {
+class Input extends React.Component {
+    static get defaultProps () {
         return {
-            onClear: function () {},
             value: '',
             valid: true,
             message: ''
         };
-    },
+    }
     onClear () {
         this.props.onClear(this.props.name);
-    },
+    }
     render () {
-        var cls = this.props.valid ? this.props.className : this.props.className + ' is-invalid-input';
-        var props = _.omit(this.props, 'message', 'valid', 'textarea', 'onClear');
+        const cls = this.props.valid ? this.props.className : `${this.props.className} is-invalid-input`;
+        const props = _.omit(this.props, 'message', 'valid', 'textarea', 'onClear');
         if (this.props.textarea) {
             return (
                 <span>
@@ -36,6 +36,6 @@ var Input = React.createClass({
             </span>
         );
     }
-});
+}
 
-module.exports = Input;
+export default Input;

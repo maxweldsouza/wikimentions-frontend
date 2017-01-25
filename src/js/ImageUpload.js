@@ -1,16 +1,19 @@
-var React = require('react');
-var Markdown = require('./Markdown');
-var requests = require('superagent');
-var cookies = require('browser-cookies');
-var Snackbar = require('./Snackbar');
-var Input = require('./Input');
-var MarkdownInput = require('./MarkdownInput');
-var Cropper = null;
-var isNode = require('./isNode');
+import React from 'react';
+import Markdown from './Markdown';
+import requests from 'superagent';
+import cookies from 'browser-cookies';
+import Snackbar from './Snackbar';
+import Input from './Input';
+import MarkdownInput from './MarkdownInput';
+let Cropper = null;
+import isNode from './isNode';
+import autoBind from 'react-autobind';
 
-var ImageUpload = React.createClass({
-    getInitialState () {
-        return {
+class ImageUpload extends React.Component {
+    constructor (props) {
+        super(props);
+    autoBind(this);
+        this.state = {
             scale: 1,
             image: '',
             mime: '',
@@ -20,26 +23,26 @@ var ImageUpload = React.createClass({
             formMessage: '',
             submitting: false
         };
-    },
+    }
     componentWillMount () {
         if (isNode.isBrowser()) {
             Cropper = require('react-cropper').default;
         }
-    },
+    }
     handleScale (value) {
         this.setState({scale: value});
-    },
+    }
     onChangeText (e) {
-        var temp = {
+        const temp = {
             error: false,
             message: ''
         };
         temp[e.target.name] = e.target.value;
         this.setState(temp);
-    },
+    }
     validateForm () {
-        var valid = true;
-        var message;
+        let valid = true;
+        let message;
         if (!this.state.imageDescription) {
             this.setState({
                 descriptionValid: false,
@@ -48,11 +51,12 @@ var ImageUpload = React.createClass({
             valid = false;
         }
         return valid;
-    },
+    }
     onUpload () {
-        var width, height;
-        var data = this.refs.cropper.getData();
-        var aspectRatio = data.width / data.height;
+        let width;
+        let height;
+        const data = this.refs.cropper.getData();
+        const aspectRatio = data.width / data.height;
         if (this.props.type === 'person') {
             width = 250;
             height = 250;
@@ -64,33 +68,34 @@ var ImageUpload = React.createClass({
             height = width / aspectRatio;
         }
         this.resize(width, height, this.uploadImage);
-    },
+    }
     resize (width, height, callback) {
-        var sourceImage = new Image();
+        const sourceImage = new Image();
 
-        sourceImage.onload = function () {
+        sourceImage.onload = () => {
             // http://stackoverflow.com/questions/17861447/html5-canvas-drawimage-how-to-apply-antialiasing
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext('2d');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
 
-            var steps = Math.ceil(Math.log(sourceImage.width / width) / Math.log(2));
+            const steps = Math.ceil(Math.log(sourceImage.width / width) / Math.log(2));
 
             // set size proportional to image
             canvas.height = height;
             canvas.width = width;
 
             // step 1 - resize to 50%
-            var oc = document.createElement('canvas'),
-                octx = oc.getContext('2d');
+            const oc = document.createElement('canvas');
 
-            var ocWidth = sourceImage.width;
-            var ocHeight = sourceImage.height;
+            const octx = oc.getContext('2d');
+
+            let ocWidth = sourceImage.width;
+            let ocHeight = sourceImage.height;
             oc.width = ocWidth;
             oc.height = ocHeight;
             octx.drawImage(sourceImage, 0, 0, ocWidth, ocHeight);
 
             // step 2 - resize 50% of step 1
-            for (var i = 1; i < steps; i++) {
+            for (let i = 1; i < steps; i++) {
                 octx.drawImage(oc, 0, 0, ocWidth, ocHeight,
                                    0, 0, ocWidth * 0.5, ocHeight * 0.5);
                 ocWidth *= 0.5;
@@ -106,7 +111,7 @@ var ImageUpload = React.createClass({
         };
 
         sourceImage.src = this.refs.cropper.getCroppedCanvas().toDataURL(this.state.mime);
-    },
+    }
     uploadImage (image) {
         if (this.validateForm()) {
             if (!this.state.image) {
@@ -121,7 +126,7 @@ var ImageUpload = React.createClass({
                 formMessage: ''
             });
             requests
-            .post('/api/v1/images/' + this.props.id)
+            .post(`/api/v1/images/${this.props.id}`)
             .set('X-XSRFToken', cookies.get('_xsrf'))
             .field('imageDescription', this.state.imageDescription)
             .field('image', image)
@@ -143,9 +148,9 @@ var ImageUpload = React.createClass({
                 }
             });
         }
-    },
+    }
     fileInput () {
-        var fileReader = new FileReader();
+        const fileReader = new FileReader();
         fileReader.onload = (e) => {
             this.setState({
                 image: e.target.result,
@@ -153,15 +158,15 @@ var ImageUpload = React.createClass({
             });
         };
         fileReader.readAsDataURL(this.refs.input.files[0]);
-    },
+    }
     _crop () {
 
-    },
+    }
     render () {
         if (isNode.isNode()) {
             return null;
         }
-        var imageMessage;
+        let imageMessage;
         if (this.state.type === 'book') {
             imageMessage = 'Add an image of this book';
         } else if (this.state.type === 'video') {
@@ -172,7 +177,7 @@ var ImageUpload = React.createClass({
         return (
             <div className='row'>
                 <div className='small-12 columns'>
-                    <h1>{this.props.title ? this.props.title + ' - ' : null}Upload Image</h1>
+                    <h1>{this.props.title ? `${this.props.title} - ` : null}Upload Image</h1>
                     <input type='file' ref='input' onChange={this.fileInput}/>
                 </div>
                 <div className='shrink columns'>
@@ -235,6 +240,6 @@ var ImageUpload = React.createClass({
             </div>
         );
     }
-});
+}
 
-module.exports = ImageUpload;
+export default ImageUpload;
