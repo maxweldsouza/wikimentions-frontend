@@ -9,7 +9,7 @@ import autoBind from 'react-autobind';
 class AddBookNew extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             title: '',
             description: '',
