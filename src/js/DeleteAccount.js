@@ -9,7 +9,7 @@ import autoBind from 'react-autobind';
 class DeleteAccount extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             submitting: false,
             password: ''

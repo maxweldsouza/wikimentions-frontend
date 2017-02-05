@@ -43,7 +43,7 @@ class EditPage extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             type: this.props.data.thing.props.type,
             title: this.props.data.thing.props.title,

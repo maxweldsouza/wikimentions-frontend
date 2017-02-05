@@ -12,7 +12,7 @@ import autoBind from 'react-autobind';
 class ImageUpload extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             scale: 1,
             image: '',

@@ -39,7 +39,7 @@ class QuotesPage extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             quote: '',
             submitting: false

@@ -34,7 +34,7 @@ class ListPage extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             id: null,
             submitting: false,

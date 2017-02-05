@@ -17,7 +17,7 @@ import autoBind from 'react-autobind';
 class AddMention extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             mentioned_by: this.props.mentioned_by,
             mentionedByValid: true,

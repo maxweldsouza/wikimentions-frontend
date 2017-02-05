@@ -11,7 +11,7 @@ import autoBind from 'react-autobind';
 class Signup extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             submitting: false,
             username: '',

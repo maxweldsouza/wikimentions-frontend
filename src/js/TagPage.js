@@ -30,7 +30,7 @@ class TagPage extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             pageno: 0
         };

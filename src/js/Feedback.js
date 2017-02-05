@@ -9,7 +9,7 @@ import autoBind from 'react-autobind';
 class Feedback extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             step: 'rate',
             feedback: '',

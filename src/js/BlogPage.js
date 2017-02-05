@@ -18,22 +18,20 @@ const pageNoFromPath = path => {
 };
 
 class BlogPage extends React.Component {
+    static resources (routeObj) {
+        const page = pageNoFromPath(routeObj.url);
+        return {
+            api: [
+                {
+                    name: 'posts',
+                    path: `/api/v1/blog/${page}`
+                }
+            ]
+        };
+    }
     constructor (props) {
         super(props);
-    autoBind(this);
-        this.statics = {
-            resources (routeObj) {
-                const page = pageNoFromPath(routeObj.url);
-                return {
-                    api: [
-                        {
-                            name: 'posts',
-                            path: `/api/v1/blog/${page}`
-                        }
-                    ]
-                };
-            }
-        };
+        autoBind(this);
     }
     render () {
         const page = pageNoFromPath(this.props.path);

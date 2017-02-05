@@ -17,7 +17,7 @@ class BugPage extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             bugs: [],
             page: 1

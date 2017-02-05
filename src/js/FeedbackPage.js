@@ -17,7 +17,7 @@ class FeedbackPage extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             feedback: [],
             page: 1

@@ -47,7 +47,7 @@ class Sidebar extends React.Component {
                         <a className='sidebar-item sidebar-button' href='/create'>
                             <span className='ion-android-create menu-item-icon'/>Create Page
                         </a>
-                        <a className='sidebar-item sidebar-button' href='/create'>
+                        <a className='sidebar-item sidebar-button' href='/lists/create'>
                             <span className='ion-android-list menu-item-icon'/>Create List
                         </a>
                         <a className='sidebar-item sidebar-button' onClick={this.random}>

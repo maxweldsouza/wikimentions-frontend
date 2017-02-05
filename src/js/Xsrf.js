@@ -6,7 +6,7 @@ import autoBind from 'react-autobind';
 class Xsrf extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             xsrf: ''
         };

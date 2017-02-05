@@ -11,7 +11,7 @@ import autoBind from 'react-autobind';
 class AddVideo extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             type: 'Existing'
         };

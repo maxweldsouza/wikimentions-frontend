@@ -115,7 +115,7 @@ class Navbar extends React.Component {
                 className='button primary small'
                 aria-label='Open search bar'
                 onClick={this.onOpenSearchBar}>
-                <span className='ion-android-search navbar-icon' style={{fontSize: 17}}/>
+                <span className='ion-android-search navbar-icon'/>
                 </button>;
         }
         if (loggedin) {

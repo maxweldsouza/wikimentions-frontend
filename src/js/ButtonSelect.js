@@ -9,7 +9,7 @@ class ButtonSelect extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             selected: this.props.default
         };

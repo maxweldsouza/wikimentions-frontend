@@ -22,7 +22,7 @@ class HomePage extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             title: this.props.query.title ? this.props.query.title : '',
             titleValid: true,

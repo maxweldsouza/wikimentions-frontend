@@ -9,7 +9,7 @@ import autoBind from 'react-autobind';
 class Profile extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             tab: 'Profile'
         };

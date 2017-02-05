@@ -61,7 +61,7 @@ class VideoPage extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             embeddable: false,
             videoImage: ''

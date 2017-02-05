@@ -5,7 +5,7 @@ import autoBind from 'react-autobind';
 class Share extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             open: false
         };

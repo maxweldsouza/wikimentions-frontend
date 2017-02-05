@@ -13,7 +13,7 @@ class Time extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             server: true
         };

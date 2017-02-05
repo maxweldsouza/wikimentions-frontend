@@ -22,7 +22,7 @@ class SearchPage extends React.Component {
     }
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             searchText: this.props.query.q,
             results: [],
