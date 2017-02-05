@@ -210,7 +210,7 @@ $accordionmenu-arrow-color: $primary-color;
 // --------
 
 $badge-background: $medium-gray;
-$badge-color: $white;
+$badge-color: foreground($badge-background);
 $badge-padding: .1em;
 $badge-minwidth: 2.1em;
 $badge-font-size: .6rem;

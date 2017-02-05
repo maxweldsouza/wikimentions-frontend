@@ -41,7 +41,7 @@
     "gulp-mocha": "~3.0.1",
     "gulp-processhtml": "^1.1.0",
     "gulp-rename": "~1.2.2",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^2.0.4",
     "gulp-scss-lint": "^0.4.0",
     "gulp-sourcemaps": "~2.4.0",
     "gulp-uglify": "^2.0.1",
