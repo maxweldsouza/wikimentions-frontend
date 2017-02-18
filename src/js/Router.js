@@ -35,126 +35,89 @@ import VideoPage from './VideoPage';
 import NProgress from 'nprogress';
 
 const validateResources = resources => {
-    _.map(resources.api, x => {
-        if (!x.path) {
-            throw new Error('resource path is not defined');
-        }
-        if (!x.name) {
-            throw new Error('resource name is not defined');
-        }
+    const valid = resources.api.every(x => {
+        return x.path && x.name;
     });
+    if (!valid) {
+        throw new Error('Invalid resource');
+    }
 };
 
-const getComponent = routeObj => {
-    const parts = routeObj.url.split('?');
-    const x = parts[0];
-    const query = parts[1];
+const urlToComponentName = url => {
+    const [path, queryS] = url.substr(1).split('?');
+    const query = queryString.parse(queryS);
     let componentName;
-    routeObj.query = queryString.parse(query);
-    routeObj.path = x;
-    if (x === '') {
+    if (path === '') {
         componentName = 'HomePage';
-        routeObj.maxAge = 0;
-    } else if (/^tags\/([^/]+)$/.test(x)) {
+    } else if (/^tags\/([^/]+)$/.test(path)) {
         componentName = 'TagPage';
-        routeObj.maxAge = 0;
-    } else if (/^create$/.test(x)) {
+    } else if (/^create$/.test(path)) {
         componentName = 'CreatePage';
-        routeObj.maxAge = 0;
-    } else if (/^login$/.test(x)) {
+    } else if (/^login$/.test(path)) {
         componentName = 'LoginPage';
-        routeObj.maxAge = 0;
-    } else if (/^signup$/.test(x)) {
+    } else if (/^signup$/.test(path)) {
         componentName = 'SignupPage';
-        routeObj.maxAge = 0;
-    } else if (/^lists\/create$/.test(x)) {
+    } else if (/^lists\/create$/.test(path)) {
         componentName = 'ListCreatePage';
-        routeObj.maxAge = 0;
-    } else if (/^lists\/([0-9]+)\/([^/]+)$/.test(x)) {
+    } else if (/^lists\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'ListPage';
-        routeObj.maxAge = 0;
-    } else if (/^users\/([0-9]+)\/([^/]+)$/.test(x)) {
+    } else if (/^users\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'ProfilePage';
-        routeObj.maxAge = 0;
-    } else if (/^users\/([0-9]+)\/([^/]+)\/(profile)$/.test(x)) {
+    } else if (/^users\/([0-9]+)\/([^/]+)\/(profile)$/.test(path)) {
         componentName = 'ProfilePage';
-        routeObj.maxAge = 0;
-    } else if (/^history\/([0-9]+)\/([^/]+)$/.test(x)) {
+    } else if (/^history\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'HistoryPage';
-        routeObj.maxAge = 0;
-    } else if (/^books\/([0-9]+)\/([^/]+)\/(mentionedby)$/.test(x)) {
+    } else if (/^books\/([0-9]+)\/([^/]+)\/(mentionedby)$/.test(path)) {
         componentName = 'ThingPage';
-        routeObj.maxAge = 0;
-    } else if (/^books\/([0-9]+)\/([^/]+)$/.test(x)) {
+    } else if (/^books\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'ThingPage';
-        routeObj.maxAge = 0;
-    } else if (/^discuss\/([0-9]+)\/([^/]+)$/.test(x)) {
+    } else if (/^discuss\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'DiscussPage';
-        routeObj.maxAge = 0;
-    } else if (/^edit\/([0-9]+)\/([^/]+)$/.test(x)) {
+    } else if (/^edit\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'EditPage';
-        routeObj.maxAge = 0;
-    } else if (/^people\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby|books)$/.test(x)) {
+    } else if (/^people\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby|books)$/.test(path)) {
         componentName = 'ThingPage';
-        routeObj.maxAge = 0;
-    } else if (/^people\/([0-9]+)\/([^/]+)$/.test(x)) {
+    } else if (/^people\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'ThingPage';
-        routeObj.maxAge = 0;
-    } else if (/^videos\/([0-9]+)\/([^/]+)\/(mentionedby)$/.test(x)) {
+    } else if (/^videos\/([0-9]+)\/([^/]+)\/(mentionedby)$/.test(path)) {
         componentName = 'VideoPage';
-        routeObj.maxAge = 0;
-    } else if (/^videos\/([0-9]+)\/([^/]+)$/.test(x)) {
+    } else if (/^videos\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'VideoPage';
-        routeObj.maxAge = 0;
-    } else if (/^quotes\/([0-9]+)\/([^/]+)$/.test(x)) {
+    } else if (/^quotes\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'QuotesPage';
-        routeObj.maxAge = 0;
-    } else if (/^blog$/.test(x)) {
+    } else if (/^blog$/.test(path)) {
         componentName = 'BlogPage';
-        routeObj.maxAge = 0;
-    } else if (/^blog\/page\/([0-9]+)$/.test(x)) {
+    } else if (/^blog\/page\/([0-9]+)$/.test(path)) {
         componentName = 'BlogPage';
-        routeObj.maxAge = 0;
-    } else if (/^blog\/(.*)$/.test(x)) {
+    } else if (/^blog\/(.*)$/.test(path)) {
         componentName = 'BlogPostPage';
-        routeObj.maxAge = 0;
-    } else if (/^contribute$/.test(x)) {
+    } else if (/^contribute$/.test(path)) {
         componentName = 'ContributePage';
-        routeObj.maxAge = 0;
-    } else if (/^recent-changes$/.test(x)) {
+    } else if (/^recent-changes$/.test(path)) {
         componentName = 'RecentChangesPage';
-        routeObj.maxAge = 0;
-    } else if (/^recent-discussions$/.test(x)) {
+    } else if (/^recent-discussions$/.test(path)) {
         componentName = 'RecentDiscussionsPage';
-        routeObj.maxAge = 0;
-    } else if (/^maintenance\/(.*)\/([0-9]+)\/([0-9]+)$/.test(x)) {
+    } else if (/^maintenance\/(.*)\/([0-9]+)\/([0-9]+)$/.test(path)) {
         componentName = 'MaintenancePage';
-        routeObj.maxAge = 0;
-    } else if (/^kitchen-sink$/.test(x)) {
+    } else if (/^kitchen-sink$/.test(path)) {
         componentName = 'KitchenSinkPage';
-        routeObj.maxAge = 0;
-    } else if (/^search$/.test(x)) {
+    } else if (/^search$/.test(path)) {
         componentName = 'SearchPage';
-        routeObj.maxAge = 0;
-    } else if (/^(about-us|terms-of-use|privacy-policy|guidelines|media-kit)$/.test(x)) {
+    } else if (/^(about-us|terms-of-use|privacy-policy|guidelines|media-kit)$/.test(path)) {
         componentName = 'ContentPage';
-        routeObj.maxAge = 0;
-    } else if (/^feedback$/.test(x)) {
+    } else if (/^feedback$/.test(path)) {
         componentName = 'FeedbackPage';
-        routeObj.maxAge = 0;
-    } else if (/^bugs$/.test(x)) {
+    } else if (/^bugs$/.test(path)) {
         componentName = 'BugPage';
-        routeObj.maxAge = 0;
     } else {
         throw { status: 404, message: 'Count not find what you were looking for'};
     }
-    routeObj.component = componentName;
-    return routeObj;
+    return componentName;
 };
 
 const clientSide = (() => typeof window !== 'undefined')();
 
-const requestPromise = function (url) {
+const requestPromise = (url) => {
     return new Promise((resolve, reject) => {
         request
         .get(url)
@@ -170,61 +133,40 @@ const requestPromise = function (url) {
     });
 };
 
-const getResources = (routeObj, beforeUpdate) => {
-    const Component = require(`./${routeObj.component}`).default;
-    const resources = Component.resources(routeObj);
+const apiCalls = (componentName, url) => {
+    const Component = require(`./${componentName}`).default;
+    const resources = Component.resources({
+        Component: componentName,
+        url
+    });
     validateResources(resources);
-    const names = _.map(resources.api, x => x.name);
-    const paths = _.map(resources.api, (x) => {
-        return routeObj.baseUrl + x.path;
-    });
+    return resources.api;
+};
 
-    const apidata = {};
-    Promise.all(paths.map(requestPromise)).then((res) => {
-        const timestamps = [];
-        const etags = [];
-        for (let i = 0; i < names.length; i++) {
-            apidata[names[i]] = res[i].body;
-            if (res[i].body.last_modified) {
-                timestamps.push(moment(res[i].body.last_modified));
+const fetchData = (api) => {
+    const names = _.map(api, x => x.name);
+    const paths = _.map(api, (x) => {
+        return '127.0.0.1:8001' + x.path;
+    });
+    return new Promise((resolve, reject) => {
+        Promise.all(paths.map(requestPromise))
+        .then((values) => {
+            const apidata = {};
+            const etags = [];
+            for (let i = 0; i < names.length; i++) {
+                apidata[names[i]] = values[i].body;
+                etags.push(values[i].headers.etag);
             }
-            etags.push(res[i].headers.etag);
-        }
-        routeObj.etags = etags;
-        routeObj.data = apidata;
-        beforeUpdate(routeObj);
-        return;
-    }, function (err) {
-        routeObj.error = {
-            status: err.status,
-            message: err.message
-        };
-        routeObj.data = apidata;
-        beforeUpdate(routeObj);
+            resolve({apidata, etags});
+        })
+        .catch(function (err) {
+            reject(err);
+        });
     });
-    return routeObj;
 };
 
-const Router = {
-    baseUrl: '',
-    data: {},
-    route (routeObj) {
-        routeObj.baseUrl = this.baseUrl;
-        routeObj.url = routeObj.url.substr(1);
-        routeObj = getComponent(routeObj);
-        if (!_.isEmpty(routeObj.embeddedData)) {
-            routeObj.data = routeObj.embeddedData;
-            this.beforeUpdate(routeObj);
-        } else {
-            routeObj = getResources(routeObj, this.beforeUpdate);
-        }
-    },
-    beforeUpdate (routeObj) {
-        routeObj.onUpdate(routeObj);
-    },
-    setBaseUrl (url) {
-        this.baseUrl = url;
-    }
+export default {
+    urlToComponentName,
+    fetchData,
+    apiCalls
 };
-
-export default Router;

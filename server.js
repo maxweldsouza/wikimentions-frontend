@@ -41,7 +41,7 @@ require('babel-register')({
 });
 
 var Router = require('./src/js/Router').default;
-Router.setBaseUrl('127.0.0.1:8001');
+//Router.setBaseUrl('127.0.0.1:8001');
 
 var sourceDir = production ? 'dist' : 'src';
 
@@ -104,108 +104,97 @@ var isNotModified = function (ifModifiedSince, lastModified) {
     return false;
 };
 
-app.get(/^(.+)$/, function (req, res, next) {
-    try {
-        var routeObj = {
-            url: req.originalUrl,
-            onUpdate: (routeObj) => {
-                try {
-                    if (routeObj.error) {
-                        return next(routeObj.error);
-                    }
-                    var tag = etag(routeObj.etags.join() + routeObj.url + GIT_REV_HASH);
-                    res.setHeader('ETag', tag);
-                    res.setHeader('Cache-Control', 'no-cache');
 
-                    var ifNoneMatch = req.get('if-none-match');
-                    if (tag === ifNoneMatch) {
-                        res.status(304).end();
+app.get(/^(.+)$/, function (req, res, next) {
+    var componentName = Router.urlToComponentName(req.originalUrl);
+    var api = Router.apiCalls(componentName, req.originalUrl);
+    Router.fetchData(api)
+    .then(({apidata, etags}) => {
+        var tag = etag(etags.join() + req.originalUrl + GIT_REV_HASH);
+        res.setHeader('ETag', tag);
+        res.setHeader('Cache-Control', 'no-cache');
+
+        var ifNoneMatch = req.get('if-none-match');
+        if (tag === ifNoneMatch) {
+            res.status(304).end();
+            return;
+        }
+
+        var ip = req.get('x-real-ip');
+        var rateLimitKey = 'rl-node-' + ip;
+        var rateLimitDuration = 60;
+        var rateLimitRequests = 30;
+        var now = Math.round((new Date()).getTime() / 1000);
+
+        var contentKey = 'wb_' + tag;
+        var modifiedKey = 'lm_' + tag;
+
+        memcached.getMulti([contentKey, modifiedKey, rateLimitKey], function (err, data) {
+            var usage = data[rateLimitKey];
+            if (usage) {
+                if (usage.exp < now) {
+                    usage = {
+                        'exp': now + rateLimitDuration,
+                        'rem': rateLimitRequests
+                    };
+                    memcached.set(rateLimitKey, usage, expire = rateLimitDuration, function () {});
+                } else {
+                    if (usage.rem > 0) {
+                        usage.rem -= 1;
+                        res.setHeader('X-Rate-Limit-Remaining', usage.rem);
+                        res.setHeader('X-Rate-Limit-Reset', usage.exp);
+                        memcached.set(rateLimitKey, usage, usage.exp - now, function () {});
+                    } else {
+                        res.status(429).send('Too many requests').end();
                         return;
                     }
-
-                    var ip = req.get('x-real-ip');
-                    var rateLimitKey = 'rl-node-' + ip;
-                    var rateLimitDuration = 60;
-                    var rateLimitRequests = 30;
-                    var now = Math.round((new Date()).getTime() / 1000);
-
-                    var contentKey = 'wb_' + tag;
-                    var modifiedKey = 'lm_' + tag;
-
-                    memcached.getMulti([contentKey, modifiedKey, rateLimitKey], function (err, data) {
-                        var usage = data[rateLimitKey];
-                        // if (usage) {
-                        //     if (usage['exp'] < now) {
-                        //         usage = {
-                        //             'exp': now + rateLimitDuration,
-                        //             'rem': rateLimitRequests
-                        //         }
-                        //         memcached.set(rateLimitKey, usage, expire=rateLimitDuration, function (err) {});
-                        //     } else {
-                        //         if (usage['rem'] > 0) {
-                        //             usage['rem'] -= 1;
-                        //             res.setHeader('X-Rate-Limit-Remaining', usage['rem'])
-                        //             res.setHeader('X-Rate-Limit-Reset', usage['exp'])
-                        //             memcached.set(rateLimitKey, usage, usage['exp'] - now, function (err) {});
-                        //         } else {
-                        //             res.status(429).send('Too many requests').end();
-                        //             return;
-                        //         }
-                        //     }
-                        // } else {
-                        //     usage = {
-                        //         'exp': now + rateLimitDuration,
-                        //         'rem': rateLimitRequests
-                        //     }
-                        //     memcached.set(rateLimitKey, usage, expire=rateLimitDuration, function (err) {});
-                        // }
-
-                        var content = data[contentKey];
-                        var lastModified = data[modifiedKey];
-                        var ifModifiedSince = req.get('if-modified-since');
-                        if (lastModified && content && !err) {
-                            res.setHeader('X-Cache', 'HIT');
-                            res.setHeader('Last-Modified', lastModified);
-                            if (isNotModified(ifModifiedSince, lastModified)) {
-                                res.status(304).end();
-                                return;
-                            }
-                            res.send(data[contentKey]);
-                        } else {
-                            res.setHeader('X-Cache', 'MISS');
-                            content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
-                                data: routeObj.data,
-                                path: routeObj.path,
-                                query: routeObj.query,
-                                component: routeObj.component
-                            }));
-                            var head = Helmet.rewind();
-                            var page = compiledTemplate({
-                                title: head.title.toString(),
-                                meta: head.meta.toString(),
-                                link: head.link.toString(),
-                                apidata: S(JSON.stringify(routeObj.data)).escapeHTML().toString(),
-                                content: content
-                            });
-                            memcached.set(contentKey, page, TEN_DAYS_IN_SECS, function (e) {});
-                            var timestamp = moment.utc().format(TIMESTAMP_FORMAT);
-                            res.setHeader('Last-Modified', timestamp);
-                            memcached.set(modifiedKey, timestamp, TEN_DAYS_IN_SECS, function (e) {});
-                            res.send(page);
-                        }
-                    });
-                } catch (err) {
-                    return next(err);
                 }
+            } else {
+                usage = {
+                    'exp': now + rateLimitDuration,
+                    'rem': rateLimitRequests
+                };
+                memcached.set(rateLimitKey, usage, expire = rateLimitDuration, function () {});
             }
-        };
-        Router.route(routeObj);
-    } catch (err) {
-        if (err) {
-            return next(err);
-        }
-    }
-    return;
+
+            var content = data[contentKey];
+            var lastModified = data[modifiedKey];
+            var ifModifiedSince = req.get('if-modified-since');
+            if (lastModified && content && !err) {
+                res.setHeader('X-Cache', 'HIT');
+                res.setHeader('Last-Modified', lastModified);
+                if (isNotModified(ifModifiedSince, lastModified)) {
+                    res.status(304).end();
+                    return;
+                }
+                res.send(data[contentKey]);
+            } else {
+                res.setHeader('X-Cache', 'MISS');
+                content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
+                    data: apidata,
+                    path: req.originalUrl.substr(1).split('?')[0],
+                    query: req.originalUrl.substr(1).split('?')[1],
+                    component: componentName
+                }));
+                var head = Helmet.rewind();
+                var page = compiledTemplate({
+                    title: head.title.toString(),
+                    meta: head.meta.toString(),
+                    link: head.link.toString(),
+                    apidata: S(JSON.stringify(apidata)).escapeHTML().toString(),
+                    content: content
+                });
+                memcached.set(contentKey, page, TEN_DAYS_IN_SECS, function (e) {});
+                var timestamp = moment.utc().format(TIMESTAMP_FORMAT);
+                res.setHeader('Last-Modified', timestamp);
+                memcached.set(modifiedKey, timestamp, TEN_DAYS_IN_SECS, function (e) {});
+                res.send(page);
+            }
+        });
+    })
+    .catch((err) => {
+        next(err);
+    });
 });
 
 app.use(function (err, req, res, next) {
