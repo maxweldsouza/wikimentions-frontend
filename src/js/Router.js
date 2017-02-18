@@ -19,7 +19,6 @@ import KitchenSinkPage from './KitchenSinkPage';
 import LoginPage from './LoginPage';
 import MaintenancePage from './MaintenancePage';
 import moment from 'moment';
-import parallelRequest from './parallelRequest';
 import ProfilePage from './ProfilePage';
 import queryString from 'query-string';
 import QuotesPage from './QuotesPage';
@@ -33,6 +32,7 @@ import Spinner from './Spinner';
 import TagPage from './TagPage';
 import ThingPage from './ThingPage';
 import VideoPage from './VideoPage';
+import NProgress from 'nprogress';
 
 const validateResources = resources => {
     _.map(resources.api, x => {
@@ -154,6 +154,22 @@ const getComponent = routeObj => {
 
 const clientSide = (() => typeof window !== 'undefined')();
 
+const makeRequest = function (url) {
+    return new Promise((resolve, reject) => {
+        request
+        .get(url)
+        .on('progress', () => {
+            NProgress.inc();
+        })
+        .end((err, res) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(res);
+        });
+    });
+};
+
 const getResources = (routeObj, beforeUpdate) => {
     const Component = require(`./${routeObj.component}`).default;
     const resources = Component.resources(routeObj);
@@ -164,34 +180,31 @@ const getResources = (routeObj, beforeUpdate) => {
     });
 
     const apidata = {};
-    parallelRequest.get(
-        paths,
-        (err, res) => {
-            if (err) {
-                routeObj.error = {
-                    status: err.status,
-                    message: err.message
-                };
-            } else {
-                const timestamps = [];
-                const etags = [];
-                for (let i = 0; i < names.length; i++) {
-                    apidata[names[i]] = res[i].body;
-                    if (res[i].body.last_modified) {
-                        timestamps.push(moment(res[i].body.last_modified));
-                    }
-                    etags.push(res[i].headers.etag);
-                }
-                routeObj.etags = etags;
-                if (timestamps.length === names.length) {
-                    routeObj.lastModified = moment.max(timestamps);
-                }
+    Promise.all(paths.map(makeRequest)).then((res) => {
+        const timestamps = [];
+        const etags = [];
+        for (let i = 0; i < names.length; i++) {
+            apidata[names[i]] = res[i].body;
+            if (res[i].body.last_modified) {
+                timestamps.push(moment(res[i].body.last_modified));
             }
-            routeObj.data = apidata;
-            beforeUpdate(routeObj);
-            return;
+            etags.push(res[i].headers.etag);
         }
-    );
+        routeObj.etags = etags;
+        if (timestamps.length === names.length) {
+            routeObj.lastModified = moment.max(timestamps);
+        }
+        routeObj.data = apidata;
+        beforeUpdate(routeObj);
+        return;
+    }, function (err) {
+        routeObj.error = {
+            status: err.status,
+            message: err.message
+        };
+        routeObj.data = apidata;
+        beforeUpdate(routeObj);
+    });
     return routeObj;
 };
 
