@@ -154,7 +154,7 @@ const getComponent = routeObj => {
 
 const clientSide = (() => typeof window !== 'undefined')();
 
-const makeRequest = function (url) {
+const requestPromise = function (url) {
     return new Promise((resolve, reject) => {
         request
         .get(url)
@@ -180,7 +180,7 @@ const getResources = (routeObj, beforeUpdate) => {
     });
 
     const apidata = {};
-    Promise.all(paths.map(makeRequest)).then((res) => {
+    Promise.all(paths.map(requestPromise)).then((res) => {
         const timestamps = [];
         const etags = [];
         for (let i = 0; i < names.length; i++) {
@@ -191,9 +191,6 @@ const getResources = (routeObj, beforeUpdate) => {
             etags.push(res[i].headers.etag);
         }
         routeObj.etags = etags;
-        if (timestamps.length === names.length) {
-            routeObj.lastModified = moment.max(timestamps);
-        }
         routeObj.data = apidata;
         beforeUpdate(routeObj);
         return;
