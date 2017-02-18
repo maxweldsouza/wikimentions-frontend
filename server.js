@@ -41,16 +41,12 @@ require('babel-register')({
 });
 
 var Router = require('./src/js/Router').default;
-//Router.setBaseUrl('127.0.0.1:8001');
+// Router.setBaseUrl('127.0.0.1:8001');
 
 var sourceDir = production ? 'dist' : 'src';
 
 function readFullFile (file) {
-    try {
-        return fs.readFileSync(file, {encoding: 'utf8'});
-    } catch (err) {
-        throw err;
-    }
+    return fs.readFileSync(file, {encoding: 'utf8'});
 }
 var GIT_REV_HASH;
 if (production) {
@@ -104,7 +100,6 @@ var isNotModified = function (ifModifiedSince, lastModified) {
     return false;
 };
 
-
 app.get(/^(.+)$/, function (req, res, next) {
     var componentName = Router.urlToComponentName(req.originalUrl);
     var api = Router.apiCalls(componentName, req.originalUrl);
@@ -138,16 +133,14 @@ app.get(/^(.+)$/, function (req, res, next) {
                         'rem': rateLimitRequests
                     };
                     memcached.set(rateLimitKey, usage, expire = rateLimitDuration, function () {});
+                } else if (usage.rem > 0) {
+                    usage.rem -= 1;
+                    res.setHeader('X-Rate-Limit-Remaining', usage.rem);
+                    res.setHeader('X-Rate-Limit-Reset', usage.exp);
+                    memcached.set(rateLimitKey, usage, usage.exp - now, function () {});
                 } else {
-                    if (usage.rem > 0) {
-                        usage.rem -= 1;
-                        res.setHeader('X-Rate-Limit-Remaining', usage.rem);
-                        res.setHeader('X-Rate-Limit-Reset', usage.exp);
-                        memcached.set(rateLimitKey, usage, usage.exp - now, function () {});
-                    } else {
-                        res.status(429).send('Too many requests').end();
-                        return;
-                    }
+                    res.status(429).send('Too many requests').end();
+                    return;
                 }
             } else {
                 usage = {
