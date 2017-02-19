@@ -1,15 +1,16 @@
 require('core-js/es6/string');
 require('core-js/es6/array');
-import consolePolyfill from 'console-polyfill';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import cookies from 'browser-cookies';
 import _ from 'underscore';
 import $ from 'jquery';
-import S from 'string';
+import consolePolyfill from 'console-polyfill';
+import cookies from 'browser-cookies';
 import MainComponent from './MainComponent';
-import Router from './Router.js';
+import queryString from 'query-string';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import requests from 'superagent';
+import Router from './Router.js';
+import S from 'string';
 import Snackbar from './Snackbar';
 import store from 'store';
 
@@ -50,64 +51,50 @@ function getTokenIfRequired () {
 }
 
 window.Mentions = {
-    route(url) {
+    route (url) {
         if (S(url).endsWith('/')) {
             url = url.substring(0, url.length - 1);
         }
-        const routeObj = {
-            url,
-            onUpdate: (robj) => {
-                if (robj.error) {
-                    Snackbar({message: robj.error.message});
-                } else {
-                    NProgress.inc();
-                    ReactDOM.render(<MainComponent
-                        loggedin={store.get('username') ? true : false}
-                        username={store.get('username')}
-                        userid={store.get('id')}
-                        data={robj.data}
-                        path={robj.path}
-                        component={robj.component}
-                        query={robj.query}/>, document.getElementById('page-container'));
-                    window.scrollTo(0, 0);
-                    ga('send', 'pageview', location.pathname);
-                }
-                stopLoading();
-            }
-        };
-        Router.route(routeObj);
-        return;
+
+        let componentName = Router.urlToComponentName(url);
+        let api = Router.apiCalls(componentName, url);
+        Router.fetchData(api)
+        .then(({apidata, etags}) => {
+            NProgress.inc();
+            ReactDOM.render(<MainComponent
+                loggedin={store.get('username') ? true : false}
+                username={store.get('username')}
+                userid={store.get('id')}
+                data={apidata}
+                path={url.substr(1).split('?')[0]}
+                component={componentName}
+                query={queryString.parse(url.split('?')[1])}/>, document.getElementById('page-container'));
+            window.scrollTo(0, 0);
+            ga('send', 'pageview', location.pathname);
+            stopLoading();
+        }).catch((err) => {
+            Snackbar({message: err.message});
+            stopLoading();
+        });
     },
-    firstLoad(url) {
-        let data;
+    firstLoad (url) {
         try {
+            let componentName = Router.urlToComponentName(url);
             getTokenIfRequired();
-            data = JSON.parse(S($('#api-data').text()).unescapeHTML().toString());
+            const data = JSON.parse(S($('#api-data').text()).unescapeHTML().toString());
+            ReactDOM.render(<MainComponent
+                loggedin={store.get('username') ? true : false}
+                username={store.get('username')}
+                userid={store.get('id')}
+                data={data}
+                path={url.substr(1).split('?')[0]}
+                component={componentName}
+                query={queryString.parse(url.split('?')[1])}/>, document.getElementById('page-container'));
+            stopLoading();
         } catch (e) {
+            Snackbar({message: e.message});
             Mentions.route(url);
         }
-        const routeObj = {
-            url,
-            embeddedData: data,
-            onUpdate: (robj) => {
-                if (robj.error) {
-                    Snackbar({message: robj.error.message});
-                } else {
-                    // Dont need to send ga pagview on first load
-                    ReactDOM.render(<MainComponent
-                        loggedin={store.get('username') ? true : false}
-                        username={store.get('username')}
-                        userid={store.get('id')}
-                        data={robj.data}
-                        path={robj.path}
-                        component={robj.component}
-                        query={robj.query}/>, document.getElementById('page-container'));
-                }
-                stopLoading();
-            }
-        };
-        Router.route(routeObj);
-        return;
     },
     logout () {
         requests
@@ -135,7 +122,7 @@ window.Mentions = {
 Mentions.firstLoad(window.location.pathname + window.location.search);
 
 const LinkChecker = {
-    'isExternal'(href, baseurl=window.location.href) {
+    'isExternal' (href, baseurl = window.location.href) {
         const domain = url => url.replace('http://', '').replace('https://', '').split('/')[0];
         if (href.indexOf('mailto') === 0) {
             return true;
@@ -145,7 +132,7 @@ const LinkChecker = {
         }
         return false;
     },
-    'samePage'(href, baseurl=window.location.href) {
+    'samePage' (href, baseurl = window.location.href) {
         if (href.startsWith('http')) {
             const currentWithoutHash = baseurl.split('#')[0];
             const urlWithoutHash = href.split('#')[0];

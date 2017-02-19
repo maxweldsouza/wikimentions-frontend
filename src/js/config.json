@@ -15,5 +15,6 @@
         "twitter": "https://twitter.com/wikimentions"
     },
     "contact": "wikimentions@gmail.com",
-    "admin": "q4BjK5gAwYhsmVsOnvFy"
+    "admin": "q4BjK5gAwYhsmVsOnvFy",
+    "api_endpoint": "http://127.0.0.1:8001"
 }

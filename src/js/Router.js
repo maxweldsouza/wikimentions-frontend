@@ -33,6 +33,7 @@ import TagPage from './TagPage';
 import ThingPage from './ThingPage';
 import VideoPage from './VideoPage';
 import NProgress from 'nprogress';
+import config from './config';
 
 const validateResources = resources => {
     const valid = resources.api.every(x => {
@@ -45,7 +46,7 @@ const validateResources = resources => {
 
 const urlToComponentName = url => {
     const [path, queryS] = url.substr(1).split('?');
-    const query = queryString.parse(queryS);
+
     let componentName;
     if (path === '') {
         componentName = 'HomePage';
@@ -135,9 +136,11 @@ const requestPromise = (url) => {
 
 const apiCalls = (componentName, url) => {
     const Component = require(`./${componentName}`).default;
+    const query = queryString.parse(url.split('?')[1]);
     const resources = Component.resources({
         Component: componentName,
-        url
+        path: url.substr(1),
+        query
     });
     validateResources(resources);
     return resources.api;
@@ -146,7 +149,10 @@ const apiCalls = (componentName, url) => {
 const fetchData = (api) => {
     const names = _.map(api, x => x.name);
     const paths = _.map(api, (x) => {
-        return '127.0.0.1:8001' + x.path;
+        if (clientSide) {
+            return x.path;
+        }
+        return config.api_endpoint + x.path;
     });
     return new Promise((resolve, reject) => {
         Promise.all(paths.map(requestPromise))

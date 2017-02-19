@@ -1,19 +1,19 @@
+var _ = require('underscore');
+var cookieParser = require('cookie-parser');
+var etag = require('etag');
+var express = require('express');
+var fs = require('fs');
+var Helmet = require('react-helmet');
+var md5 = require('md5');
+var Memcached = require('memcached');
+var moment = require('moment');
+var path = require('path');
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
-var Helmet = require('react-helmet');
-var path = require('path');
-var express = require('express');
-var etag = require('etag');
-var cookieParser = require('cookie-parser');
-var app = express();
-var fs = require('fs');
-var _ = require('underscore');
-var S = require('string');
 var request = require('superagent');
-var moment = require('moment');
-var Memcached = require('memcached');
-var md5 = require('md5');
+var S = require('string');
 
+var app = express();
 var TIMESTAMP_FORMAT = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
 
 global.localStorage = require('localStorage');
@@ -48,12 +48,8 @@ var sourceDir = production ? 'dist' : 'src';
 function readFullFile (file) {
     return fs.readFileSync(file, {encoding: 'utf8'});
 }
-var GIT_REV_HASH;
-if (production) {
-    GIT_REV_HASH = readFullFile('.GIT_REV_HASH');
-} else {
-    GIT_REV_HASH = md5(Date.now().toString());
-}
+
+var GIT_REV_HASH = production ? readFullFile('.GIT_REV_HASH') : md5(Date.now().toString());
 
 console.log('GIT_REV_HASH: ', GIT_REV_HASH);
 
@@ -112,7 +108,6 @@ app.get(/^(.+)$/, function (req, res, next) {
         var ifNoneMatch = req.get('if-none-match');
         if (tag === ifNoneMatch) {
             res.status(304).end();
-            return;
         }
 
         var ip = req.get('x-real-ip');
@@ -125,6 +120,8 @@ app.get(/^(.+)$/, function (req, res, next) {
         var modifiedKey = 'lm_' + tag;
 
         memcached.getMulti([contentKey, modifiedKey, rateLimitKey], function (err, data) {
+            // TODO check err
+            // TODO baseurl
             var usage = data[rateLimitKey];
             if (usage) {
                 if (usage.exp < now) {
@@ -140,7 +137,6 @@ app.get(/^(.+)$/, function (req, res, next) {
                     memcached.set(rateLimitKey, usage, usage.exp - now, function () {});
                 } else {
                     res.status(429).send('Too many requests').end();
-                    return;
                 }
             } else {
                 usage = {
