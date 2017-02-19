@@ -1,6 +1,3 @@
-/* The main component is used both on the server and the client
-* side. It takes only one prop 'path'. */
-
 import React from 'react';
 
 /* components need to be required because they are used indirectly */
