@@ -121,8 +121,9 @@ app.get(/^(.+)$/, function (req, res, next) {
         var modifiedKey = 'lm_' + tag;
 
         memcached.getMulti([contentKey, modifiedKey, rateLimitKey], function (err, data) {
-            // TODO check err
-            // TODO baseurl
+            if (err) {
+                next(err);
+            }
             var usage = data[rateLimitKey];
             if (usage) {
                 if (usage.exp < now) {
