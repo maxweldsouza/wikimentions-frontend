@@ -124,4 +124,16 @@ class MainComponent extends React.Component {
     }
 }
 
+MainComponent.propTypes = {
+    query: React.PropTypes.object,
+    path: function (props, propName, componentName) {
+        if (props[propName][0] === '/') {
+            return new Error(
+                'Invalid prop `' + propName + '` supplied to' +
+                ' `' + componentName + '`. Validation failed.'
+            );
+        }
+    }
+};
+
 export default MainComponent;

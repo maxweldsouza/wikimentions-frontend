@@ -8,6 +8,7 @@ var md5 = require('md5');
 var Memcached = require('memcached');
 var moment = require('moment');
 var path = require('path');
+var queryString = require('query-string');
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var request = require('superagent');
@@ -162,7 +163,7 @@ app.get(/^(.+)$/, function (req, res, next) {
                 content = ReactDOMServer.renderToStaticMarkup(React.createElement(MainComponent, {
                     data: apidata,
                     path: req.originalUrl.substr(1).split('?')[0],
-                    query: req.originalUrl.substr(1).split('?')[1],
+                    query: queryString.parse(req.originalUrl.substr(1).split('?')[1]),
                     component: componentName
                 }));
                 var head = Helmet.rewind();
