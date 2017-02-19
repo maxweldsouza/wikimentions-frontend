@@ -42,7 +42,6 @@ require('babel-register')({
 });
 
 var Router = require('./src/js/Router').default;
-// Router.setBaseUrl('127.0.0.1:8001');
 
 var sourceDir = production ? 'dist' : 'src';
 

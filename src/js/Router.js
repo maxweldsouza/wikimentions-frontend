@@ -147,8 +147,8 @@ const apiCalls = (componentName, url) => {
 };
 
 const fetchData = (api) => {
-    const names = _.map(api, x => x.name);
-    const paths = _.map(api, (x) => {
+    const names = api.map(x => x.name);
+    const paths = api.map((x) => {
         if (clientSide) {
             return x.path;
         }
