@@ -105,7 +105,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -p --config webpack.config.prod.js --define process.env.NODE_ENV='\"production\"' --progress --colors",
+    "build": "webpack -p --config webpack.config.prod.js --define process.env.NODE_ENV='\"production\"' --progress --colors && babel src/js --out-dir dist/js && babel server.js --out-file server-compiled.js",
     "start": "webpack-dev-server --progress"
   },
   "author": "Maxwel Dsouza",
