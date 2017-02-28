@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const extractSass = new ExtractTextPlugin({
     filename: 'css/[name]-[contenthash:6].css',
@@ -10,7 +12,10 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-    entry: './src/js/client.js',
+    entry: {
+        main: './src/js/client.js',
+        remarkable: 'remarkable'
+    },
     devtool: 'source-map',
     module: {
         rules: [
@@ -47,7 +52,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist/assets'),
         publicPath: '/assets/',
-        filename: 'js/bundle-[chunkhash:6].js',
+        filename: 'js/[name]-[chunkhash:6].js',
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
@@ -76,6 +81,10 @@ module.exports = {
                 useShortDoctype: true,
             },
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['remarkable', 'manifest'] // Specify the common bundle's name.
+        }),
+        new BundleAnalyzerPlugin(),
         extractSass,
     ],
 };

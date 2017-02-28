@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Navbar from './Navbar';
-import moment from 'moment';
 import Comment from './Comment';
 import _ from 'underscore';
 import DiscussReply from './DiscussReply';

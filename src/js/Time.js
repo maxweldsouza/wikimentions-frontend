@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment';
+import { utc } from 'moment';
 import isNode from './isNode';
 import autoBind from 'react-autobind';
 
@@ -27,7 +27,7 @@ class Time extends React.Component {
     }
     render () {
         if (this.props.timestamp) {
-            const time = moment.utc(this.props.timestamp);
+            const time = utc(this.props.timestamp);
             let result;
             const title = time.local().format('LLL');
             if (this.state.server) {

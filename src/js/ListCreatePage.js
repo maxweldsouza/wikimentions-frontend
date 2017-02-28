@@ -14,7 +14,7 @@ import SignupModal from './SignupModal';
 import IpWarning from './IpWarning';
 import autoBind from 'react-autobind';
 
-class HomePage extends React.Component {
+class ListCreatePage extends React.Component {
     static resources (appstate) {
         return {
             api: []
@@ -170,4 +170,4 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default ListCreatePage;

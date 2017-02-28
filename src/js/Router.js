@@ -18,7 +18,6 @@ import isNode from './isNode';
 import KitchenSinkPage from './KitchenSinkPage';
 import LoginPage from './LoginPage';
 import MaintenancePage from './MaintenancePage';
-import moment from 'moment';
 import ProfilePage from './ProfilePage';
 import queryString from 'query-string';
 import QuotesPage from './QuotesPage';

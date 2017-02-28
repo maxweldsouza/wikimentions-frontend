@@ -64,7 +64,7 @@ const isNotModified = (ifModifiedSince, lastModified) => {
     return false;
 };
 
-app.get(/^(.+)$/, (req, res, next) => {
+app.get('*', (req, res, next) => {
     const componentName = Router.urlToComponentName(req.originalUrl);
     const api = Router.apiCalls(componentName, req.originalUrl);
     Router.fetchData(api)
@@ -155,10 +155,9 @@ app.get(/^(.+)$/, (req, res, next) => {
     });
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
     if (err) {
         let message;
-        let content;
         const status = err.status || 500;
         res.status(status);
         if (err.status === 404) {
