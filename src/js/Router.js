@@ -26,7 +26,7 @@ import RecentDiscussionsPage from './RecentDiscussionsPage';
 import request from 'superagent';
 import SearchPage from './SearchPage';
 import SignupPage from './SignupPage';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import Spinner from './Spinner';
 import TagPage from './TagPage';
 import ThingPage from './ThingPage';

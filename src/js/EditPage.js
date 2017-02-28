@@ -18,7 +18,7 @@ import queryString from 'query-string';
 import React from 'react';
 import requests from 'superagent';
 import Restricted from './Restricted';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import SubmitButton from './SubmitButton';
 import autoBind from 'react-autobind';
 
@@ -139,7 +139,7 @@ class EditPage extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    Snackbar({message: 'Changes saved'});
+                    snackbar({message: 'Changes saved'});
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
                 }
@@ -164,9 +164,9 @@ class EditPage extends React.Component {
                 submitting: false
             });
             if (err && err.status) {
-                Snackbar({message: res.body.message});
+                snackbar({message: res.body.message});
             } else {
-                Snackbar({message: 'Page deleted'});
+                snackbar({message: 'Page deleted'});
                 history.pushState(null, null, res.body.redirect);
                 Mentions.route(res.body.redirect);
             }

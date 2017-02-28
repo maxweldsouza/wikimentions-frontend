@@ -11,7 +11,7 @@ import Pagination from './Pagination';
 import React from 'react';
 import requests from 'superagent';
 import SignupModal from './SignupModal';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import autoBind from 'react-autobind';
 
 class TagPage extends React.Component {

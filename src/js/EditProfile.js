@@ -4,7 +4,7 @@ import requests from 'superagent';
 import MarkdownHelp from './MarkdownHelp';
 import MarkdownInput from './MarkdownInput';
 import cookies from 'browser-cookies';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import Input from './Input';
 import autoBind from 'react-autobind';
 
@@ -68,7 +68,7 @@ class EditProfile extends React.Component {
                 this.setState({
                     formMessage: ''
                 });
-                Snackbar({message: 'Profile updated'});
+                snackbar({message: 'Profile updated'});
             }
         });
     }

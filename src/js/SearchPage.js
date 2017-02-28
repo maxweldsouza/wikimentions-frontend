@@ -52,7 +52,7 @@ class SearchPage extends React.Component {
         }
         requests.get(`/api/v1/search/${encodeURIComponent(x)}?${queryString.stringify(query)}`).end((err, res) => {
             if (err) {
-                Snackbar({message: 'Search failed'});
+                snackbar({message: 'Search failed'});
             } else {
                 this.setState({
                     results: res.body.results,

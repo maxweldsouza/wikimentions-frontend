@@ -8,7 +8,7 @@ import queryString from 'query-string';
 import React from 'react';
 import requests from 'superagent';
 import Select from './Select';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import SubmitButton from './SubmitButton';
 import Thumbnail from './Thumbnail';
 import PageBar from './PageBar';
@@ -84,7 +84,7 @@ class QuotesPage extends React.Component {
                         formMessage: '',
                         quote: ''
                     });
-                    Snackbar({message: 'Quote added'});
+                    snackbar({message: 'Quote added'});
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
                 }

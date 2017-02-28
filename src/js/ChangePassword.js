@@ -1,5 +1,5 @@
 import React from 'react';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import SubmitButton from './SubmitButton';
 import requests from 'superagent';
 import cookies from 'browser-cookies';
@@ -59,7 +59,7 @@ class ChangePassword extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    Snackbar({message: 'Password changed'});
+                    snackbar({message: 'Password changed'});
                 }
             });
         }

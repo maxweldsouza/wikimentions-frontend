@@ -10,7 +10,7 @@ import requests from 'superagent';
 import Restricted from './Restricted';
 import Select from './Select';
 import SignupModal from './SignupModal';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import SubmitButton from './SubmitButton';
 import autoBind from 'react-autobind';
 
@@ -108,7 +108,7 @@ class AddMention extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    Snackbar({message: 'Mention added'});
+                    snackbar({message: 'Mention added'});
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
                 }

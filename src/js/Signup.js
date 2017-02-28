@@ -3,7 +3,7 @@ import cookies from 'browser-cookies';
 import Xsrf from './Xsrf';
 import SubmitButton from './SubmitButton';
 import requests from 'superagent';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import Input from './Input';
 import store from 'store';
 import autoBind from 'react-autobind';
@@ -66,10 +66,10 @@ class Signup extends React.Component {
                     submitting: false
                 });
                 if (err && err.status) {
-                    Snackbar({message: err.message ? err.message : 'Something went wrong'});
+                    snackbar({message: err.message ? err.message : 'Something went wrong'});
                 } else {
                     this.closeModal();
-                    Snackbar({message: 'Signed up'});
+                    snackbar({message: 'Signed up'});
                     store.set('username', res.body.username);
                     store.set('level', res.body.level);
                     store.set('id', res.body.id);

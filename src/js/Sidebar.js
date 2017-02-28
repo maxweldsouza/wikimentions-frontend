@@ -3,7 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import _ from 'underscore';
 import config from './config';
 import requests from 'superagent';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import cookies from 'browser-cookies';
 import {VelocityTransitionGroup} from 'velocity-react';
 import autoBind from 'react-autobind';

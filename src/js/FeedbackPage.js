@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 import React from 'react';
 import requests from 'superagent';
 import Time from './Time';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import autoBind from 'react-autobind';
 
 class FeedbackPage extends React.Component {
@@ -32,7 +32,7 @@ class FeedbackPage extends React.Component {
         .send()
         .end((err, res) => {
             if (err && err.status) {
-                Snackbar({message: res.body.message});
+                snackbar({message: res.body.message});
             } else {
                 this.setState({
                     page,

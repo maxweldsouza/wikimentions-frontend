@@ -3,7 +3,7 @@ import cookies from 'browser-cookies';
 import Xsrf from './Xsrf';
 import SubmitButton from './SubmitButton';
 import requests from 'superagent';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import store from 'store';
 import Input from './Input';
 import autoBind from 'react-autobind';
@@ -57,7 +57,7 @@ class Login extends React.Component {
                 this.setState({
                     formError: false
                 });
-                Snackbar({message: 'Logged in'});
+                snackbar({message: 'Logged in'});
                 store.set('username', res.body.username);
                 store.set('level', res.body.level);
                 store.set('id', res.body.id);

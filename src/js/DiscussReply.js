@@ -5,7 +5,7 @@ import React from 'react';
 import requests from 'superagent';
 import Restricted from './Restricted';
 import SignupModal from './SignupModal';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import SubmitButton from './SubmitButton';
 import autoBind from 'react-autobind';
 
@@ -56,7 +56,7 @@ class DiscussReply extends React.Component {
                 this.setState({
                     formMessage: ''
                 });
-                Snackbar({message: 'Posted'});
+                snackbar({message: 'Posted'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }

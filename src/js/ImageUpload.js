@@ -2,7 +2,7 @@ import React from 'react';
 import Markdown from './Markdown';
 import requests from 'superagent';
 import cookies from 'browser-cookies';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import Input from './Input';
 import MarkdownInput from './MarkdownInput';
 let Cropper = null;
@@ -142,7 +142,7 @@ class ImageUpload extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    Snackbar({message: 'Image uploaded'});
+                    snackbar({message: 'Image uploaded'});
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
                 }

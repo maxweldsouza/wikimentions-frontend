@@ -10,7 +10,7 @@ import Navbar from './Navbar';
 import React from 'react';
 import requests from 'superagent';
 import SignupModal from './SignupModal';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import VideoEmbed from './VideoEmbed';
 import Link from './Link';
 import Thumbnail from './Thumbnail';

@@ -2,7 +2,7 @@ import config from './config';
 import cookies from 'browser-cookies';
 import React from 'react';
 import requests from 'superagent';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import Input from './Input';
 import autoBind from 'react-autobind';
 
@@ -42,7 +42,7 @@ class Feedback extends React.Component {
         })
         .end((err, res) => {
             if (err) {
-                Snackbar({message: res.body.message});
+                snackbar({message: res.body.message});
             } else {
                 this.setState({
                     step: 'feedback',
@@ -62,7 +62,7 @@ class Feedback extends React.Component {
         })
         .end((err, res) => {
             if (err) {
-                Snackbar({message: res.body.message});
+                snackbar({message: res.body.message});
             } else {
                 this.setState({
                     step: 'email'
@@ -81,7 +81,7 @@ class Feedback extends React.Component {
         })
         .end((err, res) => {
             if (err) {
-                Snackbar({message: res.body.message});
+                snackbar({message: res.body.message});
             } else {
                 this.setState({
                     step: 'done'

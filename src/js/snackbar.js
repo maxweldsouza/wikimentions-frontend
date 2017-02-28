@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import isNode from './isNode';
 
-const Snackbar = (() => {
+const snackbar = (() => {
     let visible = false;
     if (isNode.isBrowser()) {
         $('body').append('<div class="snackbar" id="snackbar"><span class="snackbar-message" id="snackbar-message"></span></div>');
@@ -48,4 +48,4 @@ const Snackbar = (() => {
 })();
 
 
-export default Snackbar;
+export default snackbar;

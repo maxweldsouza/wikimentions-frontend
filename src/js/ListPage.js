@@ -9,7 +9,7 @@ import Person from './Person';
 import React from 'react';
 import requests from 'superagent';
 import Select from './Select';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import SubmitButton from './SubmitButton';
 import Video from './Video';
 import autoBind from 'react-autobind';
@@ -73,7 +73,7 @@ class ListPage extends React.Component {
                 this.setState({
                     formMessage: ''
                 });
-                Snackbar({message: 'Added item'});
+                snackbar({message: 'Added item'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }

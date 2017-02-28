@@ -1,12 +1,10 @@
 import React from 'react';
-import ButtonSelect from './ButtonSelect';
 import cookies from 'browser-cookies';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import requests from 'superagent';
 import Select from './Select';
 import SubmitButton from './SubmitButton';
 import AuthorCard from './AuthorCard';
-import {VelocityTransitionGroup} from 'velocity-react';
 import Modal from './Modal';
 import autoBind from 'react-autobind';
 
@@ -84,7 +82,7 @@ class AddAuthors extends React.Component {
                         formMessage: '',
                         modalIsOpen: false
                     });
-                    Snackbar({message: 'Added author'});
+                    snackbar({ message: 'Added author' });
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
                 }
@@ -92,7 +90,6 @@ class AddAuthors extends React.Component {
         }
     }
     render () {
-        const id = this.props.id;
         if (this.state.modalIsOpen) {
             return (
                 <Modal
@@ -106,7 +103,7 @@ class AddAuthors extends React.Component {
                             {this.state.formMessage}
                         </div> : null}
                         <div className='card-container'>
-                            {this.props.authors.map((x) => {
+                            {this.props.authors.map(x => {
                                 return <AuthorCard
                                 key={x.id}
                                 id={x.id}

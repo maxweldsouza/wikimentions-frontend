@@ -3,7 +3,7 @@ import Modal from './Modal';
 import requests from 'superagent';
 import SubmitButton from './SubmitButton';
 import cookies from 'browser-cookies';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import autoBind from 'react-autobind';
 
 const allTags = ['Science', 'Startups', 'Programming'];
@@ -57,7 +57,7 @@ class EditTags extends React.Component {
                 this.setState({
                     formMessage: ''
                 });
-                Snackbar({message: 'Tag removed'});
+                snackbar({message: 'Tag removed'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
@@ -87,7 +87,7 @@ class EditTags extends React.Component {
                 this.setState({
                     formMessage: ''
                 });
-                Snackbar({message: 'Tag added'});
+                snackbar({message: 'Tag added'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }

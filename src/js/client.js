@@ -12,7 +12,7 @@ import ReactDOM from 'react-dom';
 import requests from 'superagent';
 import Router from './Router.js';
 import S from 'string';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import store from 'store';
 
 require('velocity-animate');
@@ -74,7 +74,7 @@ window.Mentions = {
             ga('send', 'pageview', location.pathname);
             stopLoading();
         }).catch((err) => {
-            Snackbar({message: err.message});
+            snackbar({message: err.message});
             stopLoading();
         });
     },
@@ -93,7 +93,7 @@ window.Mentions = {
                 query={queryString.parse(url.split('?')[1])}/>, document.getElementById('page-container'));
             stopLoading();
         } catch (e) {
-            Snackbar({message: e.message});
+            snackbar({message: e.message});
             Mentions.route(url);
         }
     },
@@ -106,9 +106,9 @@ window.Mentions = {
         })
         .end((err, res) => {
             if (err && err.status) {
-                Snackbar({message: 'Logout failed'});
+                snackbar({message: 'Logout failed'});
             } else {
-                Snackbar({message: 'Logged out'});
+                snackbar({message: 'Logged out'});
                 store.remove('username');
                 store.remove('level');
                 store.remove('id');
@@ -183,9 +183,9 @@ $(document).on('click', 'a', function (e) {
                 history.pushState(null, null, url);
             } catch (err) {
                 if (err.status === 404) {
-                    Snackbar({message: '404: Not found'});
+                    snackbar({message: '404: Not found'});
                 } else {
-                    Snackbar({message: 'Something went wrong'});
+                    snackbar({message: 'Something went wrong'});
                 }
                 stopLoading();
             }

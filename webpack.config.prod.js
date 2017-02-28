@@ -84,7 +84,6 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             names: ['remarkable', 'manifest'] // Specify the common bundle's name.
         }),
-        new BundleAnalyzerPlugin(),
         extractSass,
     ],
 };

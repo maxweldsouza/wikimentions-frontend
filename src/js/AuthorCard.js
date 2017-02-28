@@ -4,14 +4,14 @@ import _ from 'underscore';
 import Link from './Link';
 import requests from 'superagent';
 import cookies from 'browser-cookies';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import SubmitButton from './SubmitButton';
 import autoBind from 'react-autobind';
 
 class AuthorCard extends React.Component {
     constructor (props) {
         super(props);
-    autoBind(this);
+        autoBind(this);
         this.state = {
             submitting: false
         };
@@ -36,9 +36,9 @@ class AuthorCard extends React.Component {
                 submitting: false
             });
             if (err && err.status) {
-                Snackbar({message: res.body.message});
+                snackbar({message: res.body.message});
             } else {
-                Snackbar({message: 'Removed author'});
+                snackbar({message: 'Removed author'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }

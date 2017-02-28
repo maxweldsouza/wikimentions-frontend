@@ -2,7 +2,7 @@ import React from 'react';
 import SubmitButton from './SubmitButton';
 import cookies from 'browser-cookies';
 import requests from 'superagent';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import Input from './Input';
 import autoBind from 'react-autobind';
 
@@ -86,7 +86,7 @@ class AddBookNew extends React.Component {
                             this.setState({
                                 formMessage: ''
                             });
-                            Snackbar({message: 'Book added'});
+                            snackbar({message: 'Book added'});
                             history.pushState(null, null, window.location.pathname + window.location.search);
                             Mentions.route(window.location.pathname + window.location.search);
                         }

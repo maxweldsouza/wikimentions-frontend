@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import cookies from 'browser-cookies';
 import Xsrf from './Xsrf';
 import requests from 'superagent';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import Login from './Login';
 import config from './config';
 import autoBind from 'react-autobind';

@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import Navbar from './Navbar';
 import cookies from 'browser-cookies';
 import ButtonSelect from './ButtonSelect';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import requests from 'superagent';
 import SubmitButton from './SubmitButton';
 import config from './config';
@@ -97,7 +97,7 @@ class ListCreatePage extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    Snackbar({message: 'List created'});
+                    snackbar({message: 'List created'});
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
                 }

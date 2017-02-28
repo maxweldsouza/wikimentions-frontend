@@ -5,7 +5,7 @@ import Link from './Link';
 import parseUrl from 'url-parse';
 import React from 'react';
 import requests from 'superagent';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import Thumbnail from './Thumbnail';
 import autoBind from 'react-autobind';
 
@@ -30,9 +30,9 @@ class Mention extends React.Component {
                 submitting: false
             });
             if (err && err.status) {
-                Snackbar({message: res.body.message});
+                snackbar({message: res.body.message});
             } else {
-                Snackbar({message: 'Mention deleted'});
+                snackbar({message: 'Mention deleted'});
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }

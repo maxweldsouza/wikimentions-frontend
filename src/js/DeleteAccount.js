@@ -1,5 +1,5 @@
 import React from 'react';
-import Snackbar from './Snackbar';
+import snackbar from './snackbar';
 import SubmitButton from './SubmitButton';
 import requests from 'superagent';
 import cookies from 'browser-cookies';
@@ -28,7 +28,7 @@ class DeleteAccount extends React.Component {
     deleteAccount (e) {
         e.preventDefault();
         if (!this.state.password) {
-            Snackbar({message: 'Password is empty'});
+            snackbar({message: 'Password is empty'});
         } else {
             this.setState({
                 submitting: true
@@ -45,9 +45,9 @@ class DeleteAccount extends React.Component {
                     submitting: false
                 });
                 if (err && err.status) {
-                    Snackbar({message: res.body.message});
+                    snackbar({message: res.body.message});
                 } else {
-                    Snackbar({message: 'Account permanently deleted'});
+                    snackbar({message: 'Account permanently deleted'});
                     history.pushState(null, null, '/');
                     Mentions.route('/');
                 }
