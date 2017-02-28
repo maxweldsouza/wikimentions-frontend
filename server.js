@@ -14,29 +14,24 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import request from 'superagent';
 import S from 'string';
-
-const app = express();
-const TIMESTAMP_FORMAT = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
-
-global.localStorage = require('localStorage');
-const production = process.env.NODE_ENV === 'production';
-
-const memcached = new Memcached('127.0.0.1:11211');
-const TEN_DAYS_IN_SECS = 864000; // 10 days
-
-const sourceDir = production ? 'dist' : 'src';
-
 import Router from './dist/js/Router';
+global.localStorage = require('localStorage');
 
-function readFullFile (file) {
+function readFileContentsSync (file) {
     return fs.readFileSync(file, {encoding: 'utf8'});
 }
 
-let GIT_REV_HASH = production ? readFullFile('.GIT_REV_HASH') : md5(Date.now().toString());
+const TIMESTAMP_FORMAT = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
+const TEN_DAYS_IN_SECS = 864000; // 10 days
+const PRODUCTION = process.env.NODE_ENV === 'production';
+const SOURCE_DIR = PRODUCTION ? 'dist' : 'src';
+let GIT_REV_HASH = PRODUCTION ? readFileContentsSync('.GIT_REV_HASH') : md5(Date.now().toString());
 GIT_REV_HASH = md5(Date.now().toString());
-
 console.log('GIT_REV_HASH: ', GIT_REV_HASH);
 
+const memcached = new Memcached('127.0.0.1:11211');
+
+const app = express();
 app.set('etag', false);
 app.use(cookieParser());
 app.disable('x-powered-by');
@@ -54,16 +49,16 @@ const nocache = {
 // static files
 app.use('/favicon.ico', express.static(`${__dirname}/favicon.ico`, eightdays));
 app.use('/robots.txt', express.static(`${__dirname}/robots.txt`, nocache));
-app.use('/assets', express.static(path.join(__dirname, sourceDir, 'assets'), farfuture));
+app.use('/assets', express.static(path.join(__dirname, SOURCE_DIR, 'assets'), farfuture));
 
 // for uptime robot
 app.head('/', (req, res) => {
     res.end();
 });
 
-const indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
-const notFoundHtml = readFullFile(path.join(__dirname, 'src', '404.html'));
-const errorHtml = readFullFile(path.join(__dirname, 'src', '500.html'));
+const indexHtml = readFileContentsSync(path.join(__dirname, SOURCE_DIR, 'index.html'));
+const notFoundHtml = readFileContentsSync(path.join(__dirname, 'src', '404.html'));
+const errorHtml = readFileContentsSync(path.join(__dirname, 'src', '500.html'));
 const MainComponent = require(path.join(__dirname, 'dist', 'js', 'MainComponent')).default;
 const compiledTemplate = handlebars.compile(indexHtml);
 const notFoundCompiled = _.template(notFoundHtml);
@@ -202,7 +197,7 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
-    if (production) {
+    if (PRODUCTION) {
         console.log(`Mentions Production Server ${port}`);
     } else {
         console.log(`Mentions Development Server ${port}`);
