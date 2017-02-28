@@ -1,5 +1,4 @@
 import handlebars from 'handlebars';
-import _ from 'underscore';
 import cookieParser from 'cookie-parser';
 import etag from 'etag';
 import express from 'express';
@@ -12,15 +11,12 @@ import path from 'path';
 import queryString from 'query-string';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import request from 'superagent';
-import S from 'string';
 import Router from './dist/js/Router';
 import MainComponent from './dist/js/MainComponent';
 global.localStorage = require('localStorage');
 
-function readFileContentsSync (file) {
-    return fs.readFileSync(file, {encoding: 'utf8'});
-}
+const readFileContentsSync = file =>
+    fs.readFileSync(file, {encoding: 'utf8'});
 
 const TIMESTAMP_FORMAT = 'ddd, MMM DD YYYY HH:mm:ss [GMT]';
 const TEN_DAYS_IN_SECS = 864000; // 10 days
@@ -37,17 +33,10 @@ app.set('etag', false);
 app.use(cookieParser());
 app.disable('x-powered-by');
 
-const eightdays = {
-    maxAge: 8 * 24 * 3600 * 1000
-};
-const farfuture = {
-    maxAge: 1 * 365 * 12 * 30 * 24 * 3600 * 1000
-};
-const nocache = {
-    maxAge: 0
-};
+const eightdays = { maxAge: 8 * 24 * 3600 * 1000 };
+const farfuture = { maxAge: 1 * 365 * 12 * 30 * 24 * 3600 * 1000 };
+const nocache = { maxAge: 0 };
 
-// static files
 app.use('/favicon.ico', express.static(path.join(__dirname, 'public', 'favicon.ico'), eightdays));
 app.use('/robots.txt', express.static(path.join(__dirname, 'public', 'robots.txt'), nocache));
 app.use('/assets', express.static(path.join(__dirname, SOURCE_DIR, 'assets'), farfuture));
@@ -61,8 +50,8 @@ const indexHtml = readFileContentsSync(path.join(__dirname, SOURCE_DIR, 'index.h
 const notFoundHtml = readFileContentsSync(path.join(__dirname, 'src', '404.html'));
 const errorHtml = readFileContentsSync(path.join(__dirname, 'src', '500.html'));
 const compiledTemplate = handlebars.compile(indexHtml);
-const notFoundCompiled = _.template(notFoundHtml);
-const errorCompiled = _.template(errorHtml);
+const notFoundCompiled = handlebars.compile(notFoundHtml);
+const errorCompiled = handlebars.compile(errorHtml);
 
 const isNotModified = (ifModifiedSince, lastModified) => {
     if (ifModifiedSince && lastModified) {
@@ -129,7 +118,7 @@ app.get(/^(.+)$/, (req, res, next) => {
             let content = data[contentKey];
             const lastModified = data[modifiedKey];
             const ifModifiedSince = req.get('if-modified-since');
-            if (lastModified && content && !err) {
+            if (lastModified && content) {
                 res.setHeader('X-Cache', 'HIT');
                 res.setHeader('Last-Modified', lastModified);
                 if (isNotModified(ifModifiedSince, lastModified)) {
@@ -150,7 +139,7 @@ app.get(/^(.+)$/, (req, res, next) => {
                     title: head.title.toString(),
                     meta: head.meta.toString(),
                     link: head.link.toString(),
-                    apidata: S(JSON.stringify(apidata)).escapeHTML().toString(),
+                    apidata: JSON.stringify(apidata),
                     content
                 });
                 memcached.set(contentKey, page, TEN_DAYS_IN_SECS, e => {});

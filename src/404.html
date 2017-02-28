@@ -7,7 +7,7 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="mobile-web-app-capable" content="yes">
 
-        <title><%= title %></title>
+        <title>{{ title }}</title>
         <style>
             html {
                 font-size: 100%;
@@ -23,11 +23,10 @@
             }
         </style>
         </head>
-
         <body>
             <div style="margin: 10%;background: rgba(0, 0, 0, 0.3);padding: 20px;">
-                <div style="font-size: 120px;font-weight: bold;"><%= status %></div>
-                <div style="font-size: 20px;"><%= content %></div>
+                <div style="font-size: 120px;font-weight: bold;">{{ status }}</div>
+                <div style="font-size: 20px;">{{{ content }}}</div>
             </div>
         </body>
 </html>
