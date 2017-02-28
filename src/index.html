@@ -39,11 +39,7 @@
         <meta name="msapplication-TileImage" content="/assets/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
-        <!-- htmlmin:ignore -->
-        <%= title %>
-        <%= meta %>
-        <%= link %>
-        <!-- htmlmin:ignore -->
+
 
         <link href='//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
 
@@ -53,14 +49,14 @@
 
 
         <!-- htmlmin:ignore -->
-        <script id='api-data' type='application/json'><%= apidata %></script>
+        <script id='api-data' type='application/json'></script>
         <!-- htmlmin:ignore -->
 
         </head>
 
         <body>
             <!-- htmlmin:ignore -->
-            <div id="page-container"><%= content %></div>
+            <div id="page-container"></div>
             <!-- htmlmin:ignore -->
 
             <!-- offline.js needs to load before bundle.js https://github.com/HubSpot/offline/issues/209 -->
