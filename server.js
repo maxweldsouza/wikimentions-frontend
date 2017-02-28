@@ -78,9 +78,9 @@ app.head('/', function (req, res) {
 });
 
 var indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
-var notFoundHtml = readFullFile(path.join(__dirname, sourceDir, '404.html'));
-var errorHtml = readFullFile(path.join(__dirname, sourceDir, '500.html'));
-var MainComponent = require(path.join(__dirname, sourceDir, 'js', 'MainComponent')).default;
+var notFoundHtml = readFullFile(path.join(__dirname, 'src', '404.html'));
+var errorHtml = readFullFile(path.join(__dirname, 'src', '500.html'));
+var MainComponent = require(path.join(__dirname, 'src', 'js', 'MainComponent')).default;
 var compiledTemplate = _.template(indexHtml);
 var notFoundCompiled = _.template(notFoundHtml);
 var errorCompiled = _.template(errorHtml);
