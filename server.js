@@ -1,3 +1,4 @@
+var handlebars = require('handlebars');
 var _ = require('underscore');
 var cookieParser = require('cookie-parser');
 var etag = require('etag');
@@ -50,6 +51,7 @@ function readFullFile (file) {
 }
 
 var GIT_REV_HASH = production ? readFullFile('.GIT_REV_HASH') : md5(Date.now().toString());
+GIT_REV_HASH = md5(Date.now().toString());
 
 console.log('GIT_REV_HASH: ', GIT_REV_HASH);
 
@@ -81,7 +83,7 @@ var indexHtml = readFullFile(path.join(__dirname, sourceDir, 'index.html'));
 var notFoundHtml = readFullFile(path.join(__dirname, 'src', '404.html'));
 var errorHtml = readFullFile(path.join(__dirname, 'src', '500.html'));
 var MainComponent = require(path.join(__dirname, 'src', 'js', 'MainComponent')).default;
-var compiledTemplate = _.template(indexHtml);
+var compiledTemplate = handlebars.compile(indexHtml);
 var notFoundCompiled = _.template(notFoundHtml);
 var errorCompiled = _.template(errorHtml);
 

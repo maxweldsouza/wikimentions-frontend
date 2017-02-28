@@ -1,5 +1,6 @@
 require('core-js/es6/string');
 require('core-js/es6/array');
+import styles from '../styles/main.scss';
 import _ from 'underscore';
 import $ from 'jquery';
 import consolePolyfill from 'console-polyfill';

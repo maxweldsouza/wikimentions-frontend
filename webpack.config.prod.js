@@ -24,11 +24,6 @@ module.exports = {
                 exclude: [/node_modules/],
             },
             {
-                test: /\.hbs$/,
-                use: ['handlebars-loader'],
-                exclude: [/node_modules/],
-            },
-            {
                 test: /\.scss$/,
                 use: extractSass.extract({
                     loader: [{
@@ -39,6 +34,10 @@ module.exports = {
                     {
                         loader: 'sass-loader', options: {
                             sourceMap: true,
+                            includePaths: [
+                                'node_modules/foundation-sites/scss',
+                                'node_modules/motion-ui/src'
+                            ]
                         },
                     }],
                 }),
