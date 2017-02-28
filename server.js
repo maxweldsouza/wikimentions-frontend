@@ -15,6 +15,7 @@ import ReactDOMServer from 'react-dom/server';
 import request from 'superagent';
 import S from 'string';
 import Router from './dist/js/Router';
+import MainComponent from './dist/js/MainComponent';
 global.localStorage = require('localStorage');
 
 function readFileContentsSync (file) {
@@ -47,8 +48,8 @@ const nocache = {
 };
 
 // static files
-app.use('/favicon.ico', express.static(`${__dirname}/favicon.ico`, eightdays));
-app.use('/robots.txt', express.static(`${__dirname}/robots.txt`, nocache));
+app.use('/favicon.ico', express.static(path.join(__dirname, 'public', 'favicon.ico'), eightdays));
+app.use('/robots.txt', express.static(path.join(__dirname, 'public', 'robots.txt'), nocache));
 app.use('/assets', express.static(path.join(__dirname, SOURCE_DIR, 'assets'), farfuture));
 
 // for uptime robot
@@ -59,7 +60,6 @@ app.head('/', (req, res) => {
 const indexHtml = readFileContentsSync(path.join(__dirname, SOURCE_DIR, 'index.html'));
 const notFoundHtml = readFileContentsSync(path.join(__dirname, 'src', '404.html'));
 const errorHtml = readFileContentsSync(path.join(__dirname, 'src', '500.html'));
-const MainComponent = require(path.join(__dirname, 'dist', 'js', 'MainComponent')).default;
 const compiledTemplate = handlebars.compile(indexHtml);
 const notFoundCompiled = _.template(notFoundHtml);
 const errorCompiled = _.template(errorHtml);
