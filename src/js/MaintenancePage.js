@@ -1,16 +1,14 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Navbar from './Navbar';
-import _ from 'underscore';
 import Link from './Link';
 import config from './config';
-import autoBind from 'react-autobind';
 
 const tags = ['book_without_author', 'missing_isbn', 'person_without_description'];
 
 class Maintenance extends React.Component {
     static resources (appstate) {
-        const parts = appstate.url.split('/');
+        const parts = appstate.path.split('/');
         const tag = parts[1];
         const limit = parts[2];
         const offset = parts[3];
@@ -79,13 +77,12 @@ class Maintenance extends React.Component {
             </div>;
         }
         let prev;
-        let next;
         if (offset === 0) {
             prev = '#';
         } else {
             prev = `/maintenance/${tag}/${limit}/${offset - limit}`;
         }
-        next = `/maintenance/${tag}/${limit}/${offset + limit}`;
+        const next = `/maintenance/${tag}/${limit}/${offset + limit}`;
         return (
             <span>
                 <Helmet

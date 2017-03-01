@@ -6,7 +6,7 @@ import Markdown from './Markdown';
 
 class ContentPage extends React.Component {
     static resources (appstate) {
-        const slug = appstate.url.split('/')[0];
+        const slug = appstate.path.split('/')[0];
         return {
             api: [{
                 name: 'content',
