@@ -240,7 +240,7 @@ class VideoPage extends React.Component {
                                 </div>
                                 {tabHeading}
                                 <div className='tabs-content'>
-                                    <div className='tabs-panel is-active'>
+                                    <div className='tabs-panel is-active' aria-hidden='false'>
                                         {tabContent}
                                     </div>
                                 </div>

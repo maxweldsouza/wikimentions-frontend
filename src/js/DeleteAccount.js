@@ -56,7 +56,7 @@ class DeleteAccount extends React.Component {
     }
     render () {
         return (
-            <div className='tabs-panel is-active' role='tabpanel'>
+            <div className='tabs-panel is-active' role='tabpanel' aria-hidden='false'>
                 <div className='row'>
                     <div className='large-8 columns'>
                         <form onSubmit={this.deleteAccount} className='columns box'>

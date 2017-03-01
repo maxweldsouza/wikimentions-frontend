@@ -389,7 +389,7 @@ class ThingPage extends React.Component {
                                 </div> : null}
                                 {tabHeading}
                                 <div className='tabs-content text-left'>
-                                    <div className='tabs-panel is-active'>
+                                    <div className='tabs-panel is-active' aria-hidden='false'>
                                         {tabContent}
                                     </div>
                                 </div>
