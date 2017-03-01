@@ -93,7 +93,7 @@ class Navbar extends React.Component {
                 style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
                 onClick={this.search}
                 aria-label='Search'>
-                <span className='ion-android-search' style={{ fontSize: 17 }}/>
+                <span className='ion-android-search'/>
             </button>
         </div>;
 

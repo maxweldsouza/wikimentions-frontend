@@ -170,7 +170,7 @@ class Select extends React.Component {
     }
     render () {
         return (
-            <div style={{ position: 'relative', 'width': '100%' }} onKeyDown={this.handleKeys}>
+            <div style={{ position: 'relative', 'width': '100%', display: 'flex' }} onKeyDown={this.handleKeys}>
                 <Input
                     type='text'
                     role='combobox'
