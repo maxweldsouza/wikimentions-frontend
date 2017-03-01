@@ -12,10 +12,7 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-    entry: {
-        main: './src/js/client.js',
-        remarkable: 'remarkable'
-    },
+    entry: './src/js/client.js',
     devtool: 'source-map',
     module: {
         rules: [
@@ -81,10 +78,10 @@ module.exports = {
                 useShortDoctype: true,
             },
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['remarkable', 'manifest'] // Specify the common bundle's name.
-        }),
-        new BundleAnalyzerPlugin(),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     names: ['moment', 'manifest'] // Specify the common bundle's name.
+        // }),
+        // new BundleAnalyzerPlugin(),
         extractSass,
     ],
 };

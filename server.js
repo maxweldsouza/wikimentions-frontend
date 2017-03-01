@@ -23,6 +23,7 @@ const TEN_DAYS_IN_SECS = 864000; // 10 days
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const SOURCE_DIR = PRODUCTION ? 'dist' : 'src';
 let GIT_REV_HASH = PRODUCTION ? readFileContentsSync('.GIT_REV_HASH') : md5(Date.now().toString());
+GIT_REV_HASH = md5(Date.now().toString());
 console.log('GIT_REV_HASH: ', GIT_REV_HASH);
 
 const memcached = new Memcached('127.0.0.1:11211');
