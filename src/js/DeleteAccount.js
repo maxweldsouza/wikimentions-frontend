@@ -28,7 +28,7 @@ class DeleteAccount extends React.Component {
     deleteAccount (e) {
         e.preventDefault();
         if (!this.state.password) {
-            snackbar({message: 'Password is empty'});
+            snackbar({ message: 'Password is empty' });
         } else {
             this.setState({
                 submitting: true
@@ -45,9 +45,9 @@ class DeleteAccount extends React.Component {
                     submitting: false
                 });
                 if (err && err.status) {
-                    snackbar({message: res.body.message});
+                    snackbar({ message: res.body.message });
                 } else {
-                    snackbar({message: 'Account permanently deleted'});
+                    snackbar({ message: 'Account permanently deleted' });
                     history.pushState(null, null, '/');
                     Mentions.route('/');
                 }

@@ -1,16 +1,11 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Navbar from './Navbar';
-import cookies from 'browser-cookies';
-import Xsrf from './Xsrf';
-import requests from 'superagent';
-import snackbar from './snackbar';
 import Login from './Login';
 import config from './config';
-import autoBind from 'react-autobind';
 
 class LoginPage extends React.Component {
-    static resources (appstate) {
+    static resources () {
         return {
             api: []
         };
@@ -22,10 +17,10 @@ class LoginPage extends React.Component {
                     title={'Login'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        { 'name': 'description', 'content': '' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        { 'rel': 'canonical', 'href': '' }
                     ]}
                     />
                 <Navbar
@@ -42,6 +37,5 @@ class LoginPage extends React.Component {
         );
     }
 }
-
 
 export default LoginPage;

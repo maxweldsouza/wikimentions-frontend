@@ -59,7 +59,7 @@ class ChangePassword extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    snackbar({message: 'Password changed'});
+                    snackbar({ message: 'Password changed' });
                 }
             });
         }

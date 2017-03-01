@@ -27,6 +27,7 @@
     "cookie-parser": "^1.4.1",
     "core-js": "^2.4.1",
     "css-loader": "^0.26.2",
+    "eslint": "^3.16.1",
     "eslint-loader": "^1.6.3",
     "eslint-plugin-react": "^6.9.0",
     "etag": "^1.7.0",
@@ -106,6 +107,7 @@
     "webpack": "^2.2.1"
   },
   "scripts": {
+    "lint": "eslint src/js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "transpile": "babel src/js --out-dir dist/js && babel server.js --out-file server-compiled.js && cp src/js/config.json dist/js/config.json",
     "postbuild": "npm run transpile",

@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import Book from './Book';
 import config from './config';
 import cookies from 'browser-cookies';
@@ -73,7 +72,7 @@ class ListPage extends React.Component {
                 this.setState({
                     formMessage: ''
                 });
-                snackbar({message: 'Added item'});
+                snackbar({ message: 'Added item' });
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
@@ -90,9 +89,9 @@ class ListPage extends React.Component {
         const end = page * list.length;
         let metaRobots;
         if (total === 0) {
-            metaRobots = {'name': 'robots', 'content': 'noindex'};
+            metaRobots = { 'name': 'robots', 'content': 'noindex' };
         } else {
-            metaRobots = {'name': 'robots', 'content': 'index'};
+            metaRobots = { 'name': 'robots', 'content': 'index' };
         }
         return (
             <div className='flex-wrapper'>
@@ -103,7 +102,7 @@ class ListPage extends React.Component {
                         metaRobots
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -121,7 +120,7 @@ class ListPage extends React.Component {
                                     <hr className='no-margin-bottom'/>
 
                                     <div className='margin-bottom'>
-                                        {list.map((x) => {
+                                        {list.map(x => {
                                             if (x.props.type === 'video') {
                                                 return <Video
                                                         key={x.id}

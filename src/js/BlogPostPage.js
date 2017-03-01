@@ -1,10 +1,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import _ from 'underscore';
 import config from './config';
 import Navbar from './Navbar';
 import BlogPost from './BlogPost';
-import autoBind from 'react-autobind';
 
 class BlogPostPage extends React.Component {
     static resources (routeObj) {
@@ -25,19 +23,19 @@ class BlogPostPage extends React.Component {
                     title={this.props.data.post.title}
                     titleTemplate={`%s - ${config.name} - Blog`}
                     meta={[
-                        {name: 'description', 'content': ''},
-                        {name: 'twitter:card', content: 'summary'},
-                        {name: 'twitter:site', content: config.twitter},
-                        {name: 'twitter:title', content: this.props.data.post.title},
-                        {name: 'twitter:description', content: ''},
-                        {property: 'og:title', content: this.props.data.post.title},
-                        {property: 'og:type', content: 'article'},
-                        {property: 'og:url', content: config.url + this.props.path},
-                        {property: 'og:description', content: ''},
-                        {property: 'og:site_name', content: config.name}
+                        { name: 'description', 'content': '' },
+                        { name: 'twitter:card', content: 'summary' },
+                        { name: 'twitter:site', content: config.twitter },
+                        { name: 'twitter:title', content: this.props.data.post.title },
+                        { name: 'twitter:description', content: '' },
+                        { property: 'og:title', content: this.props.data.post.title },
+                        { property: 'og:type', content: 'article' },
+                        { property: 'og:url', content: config.url + this.props.path },
+                        { property: 'og:description', content: '' },
+                        { property: 'og:site_name', content: config.name }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar

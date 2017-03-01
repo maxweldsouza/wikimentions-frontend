@@ -1,10 +1,9 @@
 import React from 'react';
-import autoBind from 'react-autobind';
 
 class Dropdown extends React.Component {
     render () {
         return (
-            <span style={{display: this.props.isOpen ? 'inline' : 'none'}} aria-haspopup={true} aria-expanded={this.props.isOpen}>
+            <span style={{ display: this.props.isOpen ? 'inline' : 'none' }} aria-haspopup={true} aria-expanded={this.props.isOpen}>
                 {this.props.isOpen ? <div
                     className='dropdown-overlay'
                     onClick={this.props.onClose}>

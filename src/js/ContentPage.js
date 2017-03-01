@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 import Navbar from './Navbar';
 import config from './config';
 import Markdown from './Markdown';
-import autoBind from 'react-autobind';
 
 class ContentPage extends React.Component {
     static resources (appstate) {
@@ -22,10 +21,10 @@ class ContentPage extends React.Component {
                     title={this.props.data.content.title}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        { 'name': 'description', 'content': '' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar

@@ -1,9 +1,7 @@
 import React from 'react';
-import Markdown from './Markdown';
 import requests from 'superagent';
 import cookies from 'browser-cookies';
 import snackbar from './snackbar';
-import Input from './Input';
 import MarkdownInput from './MarkdownInput';
 let Cropper = null;
 import isNode from './isNode';
@@ -30,7 +28,7 @@ class ImageUpload extends React.Component {
         }
     }
     handleScale (value) {
-        this.setState({scale: value});
+        this.setState({ scale: value });
     }
     onChangeText (e) {
         const temp = {
@@ -42,7 +40,6 @@ class ImageUpload extends React.Component {
     }
     validateForm () {
         let valid = true;
-        let message;
         if (!this.state.imageDescription) {
             this.setState({
                 descriptionValid: false,
@@ -151,7 +148,7 @@ class ImageUpload extends React.Component {
     }
     fileInput () {
         const fileReader = new FileReader();
-        fileReader.onload = (e) => {
+        fileReader.onload = e => {
             this.setState({
                 image: e.target.result,
                 mime: this.refs.input.files[0].type

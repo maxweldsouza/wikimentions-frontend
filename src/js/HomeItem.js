@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from './Link';
 import Thumbnail from './Thumbnail';
-import _ from 'underscore';
-import Lazy from 'react-lazyload';
 
 class HomeItem extends React.Component {
     render () {

@@ -1,6 +1,5 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import _ from 'underscore';
 import config from './config';
 import Navbar from './Navbar';
 import BlogPost from './BlogPost';
@@ -49,10 +48,10 @@ class BlogPage extends React.Component {
                     title='Blog'
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'description', 'content': 'The official WikiMentions blog'}
+                        { 'name': 'description', 'content': 'The official WikiMentions blog' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -69,7 +68,7 @@ class BlogPage extends React.Component {
                                         <h1>Thats all!</h1>
                                         <div className='callout'>There are no more posts to show</div>
                                     </div> : null}
-                                    {this.props.data.posts.map((x) => {
+                                    {this.props.data.posts.map(x => {
                                         return <BlogPost
                                             key={x.slug}
                                             title={x.title}

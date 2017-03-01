@@ -1,7 +1,6 @@
 import React from 'react';
 import SubmitButton from './SubmitButton';
 import requests from 'superagent';
-import MarkdownHelp from './MarkdownHelp';
 import MarkdownInput from './MarkdownInput';
 import cookies from 'browser-cookies';
 import snackbar from './snackbar';
@@ -68,7 +67,7 @@ class EditProfile extends React.Component {
                 this.setState({
                     formMessage: ''
                 });
-                snackbar({message: 'Profile updated'});
+                snackbar({ message: 'Profile updated' });
             }
         });
     }

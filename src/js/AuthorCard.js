@@ -1,6 +1,5 @@
 import React from 'react';
 import Thumbnail from './Thumbnail';
-import _ from 'underscore';
 import Link from './Link';
 import requests from 'superagent';
 import cookies from 'browser-cookies';
@@ -36,9 +35,9 @@ class AuthorCard extends React.Component {
                 submitting: false
             });
             if (err && err.status) {
-                snackbar({message: res.body.message});
+                snackbar({ message: res.body.message });
             } else {
-                snackbar({message: 'Removed author'});
+                snackbar({ message: 'Removed author' });
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }

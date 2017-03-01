@@ -100,7 +100,7 @@ class AddVideoNew extends React.Component {
                             this.setState({
                                 formMessage: ''
                             });
-                            snackbar({message: 'Video added'});
+                            snackbar({ message: 'Video added' });
                             history.pushState(null, null, window.location.pathname + window.location.search);
                             Mentions.route(window.location.pathname + window.location.search);
                         }

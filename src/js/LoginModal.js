@@ -17,7 +17,7 @@ class LoginModal extends React.Component {
         });
     }
     onClose () {
-        this.setState({showing: false});
+        this.setState({ showing: false });
     }
     render () {
         return (

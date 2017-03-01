@@ -42,7 +42,7 @@ class Feedback extends React.Component {
         })
         .end((err, res) => {
             if (err) {
-                snackbar({message: res.body.message});
+                snackbar({ message: res.body.message });
             } else {
                 this.setState({
                     step: 'feedback',
@@ -62,7 +62,7 @@ class Feedback extends React.Component {
         })
         .end((err, res) => {
             if (err) {
-                snackbar({message: res.body.message});
+                snackbar({ message: res.body.message });
             } else {
                 this.setState({
                     step: 'email'
@@ -81,7 +81,7 @@ class Feedback extends React.Component {
         })
         .end((err, res) => {
             if (err) {
-                snackbar({message: res.body.message});
+                snackbar({ message: res.body.message });
             } else {
                 this.setState({
                     step: 'done'
@@ -97,7 +97,7 @@ class Feedback extends React.Component {
     render () {
         let main;
         if (this.state.step === 'rate') {
-            main = <div style={{textAlign: 'right'}}>
+            main = <div style={{ textAlign: 'right' }}>
                 {`${config.name} is `}
                 <span>
                     <button className='button small secondary no-margin-bottom' onClick={this.onRate.bind(null, 'good')}>

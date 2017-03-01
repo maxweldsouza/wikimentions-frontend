@@ -1,16 +1,12 @@
-import _ from 'underscore';
 import AdminOnly from './AdminOnly';
 import ButtonSelect from './ButtonSelect';
 import config from './config';
 import cookies from 'browser-cookies';
-import Footer from './Footer';
 import Helmet from 'react-helmet';
 import ImageUpload from './ImageUpload';
 import Input from './Input';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
-import Markdown from './Markdown';
-import Mention from './Mention';
 import Modal from './Modal';
 import Navbar from './Navbar';
 import PageBar from './PageBar';
@@ -86,7 +82,6 @@ class EditPage extends React.Component {
     }
     validateForm () {
         let valid = true;
-        let message;
         if (!this.state.title) {
             this.setState({
                 titleValid: false,
@@ -139,7 +134,7 @@ class EditPage extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    snackbar({message: 'Changes saved'});
+                    snackbar({ message: 'Changes saved' });
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
                 }
@@ -164,9 +159,9 @@ class EditPage extends React.Component {
                 submitting: false
             });
             if (err && err.status) {
-                snackbar({message: res.body.message});
+                snackbar({ message: res.body.message });
             } else {
-                snackbar({message: 'Page deleted'});
+                snackbar({ message: 'Page deleted' });
                 history.pushState(null, null, res.body.redirect);
                 Mentions.route(res.body.redirect);
             }
@@ -179,14 +174,14 @@ class EditPage extends React.Component {
         e.preventDefault();
     }
     onCloseModal () {
-        this.setState({modalIsOpen: false});
+        this.setState({ modalIsOpen: false });
     }
     render () {
         const id = Number(this.props.path.split('/')[1]);
         const entry = this.props.data.thing;
-        const options = [{name: 'Person', value: 'person'},
-        {name: 'Book', value: 'book'},
-        {name: 'Video', value: 'video'}];
+        const options = [{ name: 'Person', value: 'person' },
+        { name: 'Book', value: 'book' },
+        { name: 'Video', value: 'video' }];
         const loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to edit a page.
         </span>;
         return (
@@ -195,10 +190,10 @@ class EditPage extends React.Component {
                     title={`Edit - ${entry.props.title}`}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar

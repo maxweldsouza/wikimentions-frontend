@@ -1,12 +1,11 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Navbar from './Navbar';
-import _ from 'underscore';
 import config from './config';
 import autoBind from 'react-autobind';
 
 class ContributePage extends React.Component {
-    static resources (appstate) {
+    static resources () {
         return {
             api: [
             ]
@@ -31,10 +30,10 @@ class ContributePage extends React.Component {
                     title={'Contribute'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar

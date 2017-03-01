@@ -29,7 +29,7 @@ class ButtonSelect extends React.Component {
                     value={this.state.selected ? this.state.selected : ''}
                 />
                 <div className={this.props.className} role='group'>
-                    {this.props.options.map((x) => {
+                    {this.props.options.map(x => {
                         return <button
                             aria-selected={this.state.selected === x.value}
                             className={this.state.selected === x.value ? 'button' : 'button secondary'}

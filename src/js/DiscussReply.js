@@ -56,7 +56,7 @@ class DiscussReply extends React.Component {
                 this.setState({
                     formMessage: ''
                 });
-                snackbar({message: 'Posted'});
+                snackbar({ message: 'Posted' });
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }

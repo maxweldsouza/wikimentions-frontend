@@ -1,9 +1,6 @@
 import React from 'react';
-import Helmet from 'react-helmet';
-import Navbar from './Navbar';
 import Markdown from './Markdown';
 import Time from './Time';
-import autoBind from 'react-autobind';
 
 class Comment extends React.Component {
     render () {

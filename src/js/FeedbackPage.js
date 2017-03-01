@@ -1,7 +1,6 @@
 import AdminOnly from './AdminOnly';
 import config from './config';
 import Helmet from 'react-helmet';
-import Markdown from './Markdown';
 import Navbar from './Navbar';
 import React from 'react';
 import requests from 'superagent';
@@ -10,7 +9,7 @@ import snackbar from './snackbar';
 import autoBind from 'react-autobind';
 
 class FeedbackPage extends React.Component {
-    static resources (appstate) {
+    static resources () {
         return {
             api: []
         };
@@ -32,7 +31,7 @@ class FeedbackPage extends React.Component {
         .send()
         .end((err, res) => {
             if (err && err.status) {
-                snackbar({message: res.body.message});
+                snackbar({ message: res.body.message });
             } else {
                 this.setState({
                     page,
@@ -54,10 +53,10 @@ class FeedbackPage extends React.Component {
                     title={'Feedback'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -72,10 +71,10 @@ class FeedbackPage extends React.Component {
                         <div className='row'>
                             <AdminOnly>
                         <div className='small-12 columns'>
-                                    {this.state.feedback.map((x) => {
+                                    {this.state.feedback.map(x => {
                                         return <div className='row' key={x.id}>
                                             <span className='small-8 columns'>
-                                                <strong>Type:</strong> {x.rating === 1 ? <span className='ion-checkmark' style={{color: 'hsla(144, 60%, 60%, 1)'}}/> : <span className='ion-close' style={{color: 'hsla(0, 83%, 57%, 1)'}}/>}
+                                                <strong>Type:</strong> {x.rating === 1 ? <span className='ion-checkmark' style={{ color: 'hsla(144, 60%, 60%, 1)'}} /> : <span className='ion-close' style={{ color: 'hsla(0, 83%, 57%, 1)' }}/>}
                                             </span>
                                             <span className='small-4 columns text-right'><Time timestamp={x.updated} type='ago'/></span>
                                             <span className='small-8 columns'>

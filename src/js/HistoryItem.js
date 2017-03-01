@@ -2,7 +2,6 @@ import React from 'react';
 import Link from './Link';
 import Time from './Time';
 import Markdown from './Markdown';
-import autoBind from 'react-autobind';
 
 class HistoryItem extends React.Component {
     render () {
@@ -92,7 +91,7 @@ class HistoryItem extends React.Component {
                 {this.props.entry.reference ? <span className='small-12 columns'>
                     Reference: <a
                         className='secondary'
-                        style={{fontWeight: 'bold'}} href={this.props.entry.reference}>
+                        style={{ fontWeight: 'bold' }} href={this.props.entry.reference}>
                             {this.props.entry.reference}
                     </a>
                 </span> : null}
@@ -173,7 +172,7 @@ class HistoryItem extends React.Component {
             <div className='small-12 columns'>
                 <div className='row'>
                     <span className='small-8 columns'>
-                        <strong style={{fontSize: 17}}>{type}</strong> {added} <strong>
+                        <strong style={{ fontSize: 17 }}>{type}</strong> {added} <strong>
                             {this.props.username ? <a className='' rel='nofollow' href={`/users/${this.props.user}/${this.props.username}`}>{this.props.username}</a> : this.props.ip}
                         </strong>
                     </span>

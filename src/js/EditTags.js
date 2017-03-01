@@ -57,7 +57,7 @@ class EditTags extends React.Component {
                 this.setState({
                     formMessage: ''
                 });
-                snackbar({message: 'Tag removed'});
+                snackbar({ message: 'Tag removed' });
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
@@ -87,7 +87,7 @@ class EditTags extends React.Component {
                 this.setState({
                     formMessage: ''
                 });
-                snackbar({message: 'Tag added'});
+                snackbar({ message: 'Tag added' });
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
@@ -116,7 +116,7 @@ class EditTags extends React.Component {
                         </div> : null}
                         <p>
                             Tags:
-                            {this.props.tags.map((x) => {
+                            {this.props.tags.map(x => {
                                 return <span className='tag round no-margin-bottom' href={`/tags/${x}`} key={x}>
                                     {x} <span onClick={this.onRemoveTag.bind(null, x)} className='ion-close-circled'/>
                                 </span>;
@@ -124,7 +124,7 @@ class EditTags extends React.Component {
                         </p>
                         <select onChange={this.onChangeTag} value={this.state.tag}>
                             <option value='' disabled>Add Tag...</option>
-                            {allTags.map((x) => {
+                            {allTags.map(x => {
                                 return <option value={x} key={x}>{x}</option>;
                             })}
                         </select>

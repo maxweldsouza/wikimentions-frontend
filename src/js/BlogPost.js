@@ -2,7 +2,6 @@ import React from 'react';
 import Markdown from './Markdown';
 import Share from './Share';
 import Time from './Time';
-import autoBind from 'react-autobind';
 
 class BlogPost extends React.Component {
     render () {

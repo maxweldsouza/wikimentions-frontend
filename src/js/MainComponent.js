@@ -66,7 +66,7 @@ class MainComponent extends React.Component {
         }
         console.log('Hi there !');
     }
-    componentWillReceiveProps (nextProps) {
+    componentWillReceiveProps () {
         this.setState({
             sidebar: false
         });

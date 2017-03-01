@@ -15,7 +15,7 @@ import IpWarning from './IpWarning';
 import autoBind from 'react-autobind';
 
 class HomePage extends React.Component {
-    static resources (appstate) {
+    static resources () {
         return {
             api: []
         };
@@ -65,7 +65,6 @@ class HomePage extends React.Component {
     }
     validateForm () {
         let valid = true;
-        let message;
         if (!this.state.title) {
             this.setState({
                 titleValid: false,
@@ -116,7 +115,7 @@ class HomePage extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    snackbar({message: 'Page created'});
+                    snackbar({ message: 'Page created' });
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
                 }
@@ -124,9 +123,9 @@ class HomePage extends React.Component {
         }
     }
     render () {
-        const options = [{name: 'Person', value: 'person'},
-            {name: 'Book', value: 'book'},
-            {name: 'Video', value: 'video'}];
+        const options = [{ name: 'Person', value: 'person' },
+            { name: 'Book', value: 'book' },
+            { name: 'Video', value: 'video' }];
         const loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to create a page.</span>;
         return (
             <span>
@@ -134,10 +133,10 @@ class HomePage extends React.Component {
                     title={'Create Page'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'description', 'content': 'Create a new page on WikiMentions'}
+                        { 'name': 'description', 'content': 'Create a new page on WikiMentions' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar

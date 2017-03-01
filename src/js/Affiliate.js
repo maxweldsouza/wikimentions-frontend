@@ -2,7 +2,6 @@ import React from 'react';
 import config from './config';
 import store from 'store';
 import _ from 'underscore';
-import autoBind from 'react-autobind';
 
 class Affiliate extends React.Component {
     render () {

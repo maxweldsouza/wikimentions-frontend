@@ -1,7 +1,6 @@
 import AdminOnly from './AdminOnly';
 import config from './config';
 import Helmet from 'react-helmet';
-import Markdown from './Markdown';
 import Navbar from './Navbar';
 import React from 'react';
 import requests from 'superagent';
@@ -10,7 +9,7 @@ import Time from './Time';
 import autoBind from 'react-autobind';
 
 class BugPage extends React.Component {
-    static resources (appstate) {
+    static resources () {
         return {
             bugs: []
         };
@@ -33,7 +32,7 @@ class BugPage extends React.Component {
         .send()
         .end((err, res) => {
             if (err && err.status) {
-                snackbar({message: res.body.message});
+                snackbar({ message: res.body.message });
             } else {
                 this.setState({
                     page,
@@ -55,10 +54,10 @@ class BugPage extends React.Component {
                     title={'Bug Reports'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -73,7 +72,7 @@ class BugPage extends React.Component {
                                 <div className='row'>
                                 <div className='small-12 columns'>
                                     <hr/>
-                                    {this.state.bugs.map((x) => {
+                                    {this.state.bugs.map(x => {
                                         return <div className='row' key={x.id}>
                                             <span className='small-8 columns'>
                                                 Url: <a href={x.url}>{x.url}</a>

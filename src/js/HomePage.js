@@ -1,24 +1,14 @@
-import _ from 'underscore';
-import ButtonSelect from './ButtonSelect';
 import config from './config';
-import cookies from 'browser-cookies';
 import Helmet from 'react-helmet';
-import HomeItem from './HomeItem';
-import HomeSearch from './HomeSearch';
-import Mention from './Mention';
 import Navbar from './Navbar';
 import React from 'react';
-import requests from 'superagent';
-import SignupModal from './SignupModal';
-import snackbar from './snackbar';
-import VideoEmbed from './VideoEmbed';
 import Link from './Link';
 import Thumbnail from './Thumbnail';
 import utils from './utils';
 import autoBind from 'react-autobind';
 
 class HomePage extends React.Component {
-    static resources (appstate) {
+    static resources () {
         return {
             api: [
                 {
@@ -36,7 +26,7 @@ class HomePage extends React.Component {
         };
     }
     onChangeTab (x) {
-        this.setState({tab: x});
+        this.setState({ tab: x });
     }
     render () {
         const featuredVideo = this.props.data.home.featuredVideo;
@@ -50,10 +40,10 @@ class HomePage extends React.Component {
                     title={'Home'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'description', 'content': 'Discover people, books and videos based on mentions'}
+                        { 'name': 'description', 'content': 'Discover people, books and videos based on mentions' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -186,7 +176,7 @@ class HomePage extends React.Component {
                         <div className='small-12 columns margin-bottom'>
                             <h2 className='home-section'>Featured books</h2>
                             <div className='row'>
-                                {books.map((x) => {
+                                {books.map(x => {
                                     return <div key={x.id} className='small-6 medium-4 large-3 xlarge-2 columns text-center'>
                                         <Link
                                         id={x.id}
@@ -212,7 +202,7 @@ class HomePage extends React.Component {
                         <div className='small-12 columns margin-bottom'>
                             <h2 className='home-section'>Featured people</h2>
                             <div className='row'>
-                                {people.map((x) => {
+                                {people.map(x => {
                                     return <div key={x.id} className='small-12 medium-6 large-4 xlarge-3 columns text-center'>
                                         <div className='person-card'>
                                             <Link

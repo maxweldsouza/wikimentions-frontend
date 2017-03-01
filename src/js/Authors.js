@@ -1,6 +1,5 @@
 import React from 'react';
 import AddAuthors from './AddAuthors';
-import autoBind from 'react-autobind';
 
 class Authors extends React.Component {
     render () {

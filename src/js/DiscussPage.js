@@ -2,18 +2,14 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Navbar from './Navbar';
 import Comment from './Comment';
-import _ from 'underscore';
 import DiscussReply from './DiscussReply';
 import PageBar from './PageBar';
 import config from './config';
 import Pagination from './Pagination';
-import {VelocityTransitionGroup} from 'velocity-react';
 import queryString from 'query-string';
-import autoBind from 'react-autobind';
 
 class DiscussPage extends React.Component {
     static resources (appstate) {
-        let data;
         const [type, id, slug] = appstate.path.split('/');
         const queryObj = {};
         if (appstate.query.page) {
@@ -65,11 +61,11 @@ class DiscussPage extends React.Component {
                     title={`Discussion - ${this.props.data.discuss.props.title}`}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'description', 'content': ''},
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'description', 'content': '' },
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -87,7 +83,7 @@ class DiscussPage extends React.Component {
                             />
                         <hr/>
                         <div className='row'>
-                            {discussions.map((x) => {
+                            {discussions.map(x => {
                                 return <Comment
                                     id={x.id}
                                     key={x.id}

@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from './Link';
 import Thumbnail from './Thumbnail';
-import autoBind from 'react-autobind';
 
 class Book extends React.Component {
     render () {

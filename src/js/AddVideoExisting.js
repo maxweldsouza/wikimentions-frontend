@@ -1,6 +1,4 @@
 import React from 'react';
-import Helmet from 'react-helmet';
-import Navbar from './Navbar';
 import cookies from 'browser-cookies';
 import requests from 'superagent';
 import Select from './Select';
@@ -66,7 +64,7 @@ class AddVideoExisting extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    snackbar({message: 'Video added'});
+                    snackbar({ message: 'Video added' });
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
                 }
@@ -74,7 +72,6 @@ class AddVideoExisting extends React.Component {
         }
     }
     render () {
-        const id = this.props.id;
         return <form onSubmit={this.onSubmit}>
             {this.state.formMessage ? <div className='callout alert'>
                 {this.state.formMessage}

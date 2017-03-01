@@ -1,7 +1,6 @@
 import React from 'react';
 import config from './config';
 import AdminOnly from './AdminOnly';
-import autoBind from 'react-autobind';
 
 class Footer extends React.Component {
     render () {
@@ -41,7 +40,7 @@ class Footer extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className='small-12 columns text-center' style={{'fontSize': '12px', marginTop: 30}}>
+                    <div className='small-12 columns text-center' style={{ 'fontSize': '12px', marginTop: 30 }}>
                         By using {config.name} you agree to our <a href='/terms-of-use'>Terms of Use</a> and <a href='/privacy-policy'>Privacy Policy</a> which were <strong>last updated</strong> on <strong>23rd September 2016.</strong>
                         <AdminOnly>
                             <div>

@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Navbar from './Navbar';
 import cookies from 'browser-cookies';
-import ButtonSelect from './ButtonSelect';
 import snackbar from './snackbar';
 import requests from 'superagent';
 import SubmitButton from './SubmitButton';
@@ -15,7 +14,7 @@ import IpWarning from './IpWarning';
 import autoBind from 'react-autobind';
 
 class ListCreatePage extends React.Component {
-    static resources (appstate) {
+    static resources () {
         return {
             api: []
         };
@@ -61,7 +60,6 @@ class ListCreatePage extends React.Component {
     }
     validateForm () {
         let valid = true;
-        let message;
         if (!this.state.title) {
             this.setState({
                 titleValid: false,
@@ -97,7 +95,7 @@ class ListCreatePage extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    snackbar({message: 'List created'});
+                    snackbar({ message: 'List created' });
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
                 }
@@ -112,10 +110,10 @@ class ListCreatePage extends React.Component {
                     title={'Create list'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'description', 'content': 'Create a new list on WikiMentions'}
+                        { 'name': 'description', 'content': 'Create a new list on WikiMentions' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar

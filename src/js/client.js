@@ -1,7 +1,6 @@
 require('core-js/es6/string');
 require('core-js/es6/array');
 import styles from '../styles/main.scss';
-import _ from 'underscore';
 import $ from 'jquery';
 import consolePolyfill from 'console-polyfill';
 import cookies from 'browser-cookies';
@@ -45,11 +44,11 @@ const stopLoading = () => {
     NProgress.done();
 };
 
-function getTokenIfRequired () {
+const getTokenIfRequired = () => {
     if (!cookies.get('_xsrf')) {
         requests.get('/api/v1/token').end();
     }
-}
+};
 
 window.Mentions = {
     route (url) {
@@ -57,8 +56,8 @@ window.Mentions = {
             url = url.substring(0, url.length - 1);
         }
 
-        let componentName = Router.urlToComponentName(url);
-        let api = Router.apiCalls(componentName, url);
+        const componentName = Router.urlToComponentName(url);
+        const api = Router.apiCalls(componentName, url);
         Router.fetchData(api)
         .then(({apidata, etags}) => {
             NProgress.inc();
@@ -73,14 +72,14 @@ window.Mentions = {
             window.scrollTo(0, 0);
             ga('send', 'pageview', location.pathname);
             stopLoading();
-        }).catch((err) => {
-            snackbar({message: err.message});
+        }).catch(err => {
+            snackbar({ message: err.message });
             stopLoading();
         });
     },
     firstLoad (url) {
         try {
-            let componentName = Router.urlToComponentName(url);
+            const componentName = Router.urlToComponentName(url);
             getTokenIfRequired();
             const data = JSON.parse(S($('#api-data').text()).unescapeHTML().toString());
             ReactDOM.render(<MainComponent
@@ -93,7 +92,7 @@ window.Mentions = {
                 query={queryString.parse(url.split('?')[1])}/>, document.getElementById('page-container'));
             stopLoading();
         } catch (e) {
-            snackbar({message: e.message});
+            snackbar({ message: e.message });
             Mentions.route(url);
         }
     },
@@ -104,11 +103,11 @@ window.Mentions = {
         .send({
             _xsrf: cookies.get('_xsrf')
         })
-        .end((err, res) => {
+        .end(err => {
             if (err && err.status) {
-                snackbar({message: 'Logout failed'});
+                snackbar({ message: 'Logout failed' });
             } else {
-                snackbar({message: 'Logged out'});
+                snackbar({ message: 'Logged out' });
                 store.remove('username');
                 store.remove('level');
                 store.remove('id');
@@ -169,7 +168,7 @@ $(document).on('click', 'a', function (e) {
         e.preventDefault();
         // smooth scroll
         $('html, body').animate({
-            scrollTop: $( $.attr(this, 'href') ).offset().top - 80
+            scrollTop: $($.attr(this, 'href')).offset().top - 80
         }, 200, 'easeOutQuart');
     } else if (!LinkChecker.isExternal(url)
             && $(this).attr('target') !== '_blank'
@@ -183,9 +182,9 @@ $(document).on('click', 'a', function (e) {
                 history.pushState(null, null, url);
             } catch (err) {
                 if (err.status === 404) {
-                    snackbar({message: '404: Not found'});
+                    snackbar({ message: '404: Not found' });
                 } else {
-                    snackbar({message: 'Something went wrong'});
+                    snackbar({ message: 'Something went wrong' });
                 }
                 stopLoading();
             }

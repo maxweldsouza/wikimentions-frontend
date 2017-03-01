@@ -1,9 +1,7 @@
 import cookies from 'browser-cookies';
-import Helmet from 'react-helmet';
 import Input from './Input';
 import IpWarning from './IpWarning';
 import LoginModal from './LoginModal';
-import Navbar from './Navbar';
 import parseUrl from 'url-parse';
 import React from 'react';
 import requests from 'superagent';
@@ -108,7 +106,7 @@ class AddMention extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    snackbar({message: 'Mention added'});
+                    snackbar({ message: 'Mention added' });
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
                 }

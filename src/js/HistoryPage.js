@@ -1,13 +1,10 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Navbar from './Navbar';
-import Mention from './Mention';
-import _ from 'underscore';
 import Pagination from './Pagination';
 import HistoryItem from './HistoryItem';
 import PageBar from './PageBar';
 import config from './config';
-import autoBind from 'react-autobind';
 
 class HistoryPage extends React.Component {
     static resources (appstate) {
@@ -47,10 +44,10 @@ class HistoryPage extends React.Component {
                     title={`History - ${this.props.data.thing.props.title}`}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -69,7 +66,7 @@ class HistoryPage extends React.Component {
                         <hr/>
                         <div className='row'>
                             {nodata}
-                            {history.map((x) => {
+                            {history.map(x => {
                                 return <HistoryItem
                                     user={x.user}
                                     username={x.username}
