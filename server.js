@@ -39,7 +39,8 @@ const nocache = { maxAge: 0 };
 
 app.use('/favicon.ico', express.static(path.join(__dirname, 'public', 'favicon.ico'), eightdays));
 app.use('/robots.txt', express.static(path.join(__dirname, 'public', 'robots.txt'), nocache));
-app.use('/assets', express.static(path.join(__dirname, SOURCE_DIR, 'assets'), farfuture));
+app.use('/assets', express.static(path.join(__dirname, 'src', 'assets'), farfuture));
+app.use('/bundles', express.static(path.join(__dirname, SOURCE_DIR, 'bundles'), farfuture));
 
 // for uptime robot
 app.head('/', (req, res) => {
