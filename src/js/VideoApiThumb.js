@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import parseUrl from 'url-parse';
 import requests from 'superagent';
 import config from './config';
-import moment from 'moment';
+import moment from 'moment/min/moment.min.js';
 import utils from './utils';
 import autoBind from 'react-autobind';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { utc } from 'moment';
+import { utc } from 'moment/min/moment.min.js';
 import isNode from './isNode';
 import autoBind from 'react-autobind';
 
