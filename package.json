@@ -4,6 +4,7 @@
   "description": "mentions web server",
   "main": "server.js",
   "dependencies": {
+    "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "browser-cookies": "^1.0.8",
     "compression": "^1.2.2",
     "console-polyfill": "^0.2.2",

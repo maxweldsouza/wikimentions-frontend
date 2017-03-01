@@ -22,7 +22,6 @@ const toTime = (moment, time, format, type) => {
     return time.local().format(format);
 };
 
-
 class Time extends React.Component {
     static get defaultProps () {
         return {
@@ -37,15 +36,16 @@ class Time extends React.Component {
         };
     }
     componentDidMount () {
-        require.ensure(['moment'], require => {
-            const moment = require('moment');
+        import('moment')
+        .then(moment => {
             const time = moment.utc(this.props.timestamp);
             this.setState({
                 time: toTime(moment, time, this.props.format, this.props.type),
                 title: toTitle(moment, time),
                 server: false
             });
-        });
+        })
+        .catch(err => console.log('Failed to load moment', err));
     }
     render () {
         if (this.state.server) {
