@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const extractSass = new ExtractTextPlugin({
-    filename: '[name]-[contenthash:6].css',
+    filename: '[name]-[contenthash:8].css',
     disable: false,
 });
 
@@ -49,7 +49,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist/bundles'),
         publicPath: '/bundles/',
-        filename: '[name]-[chunkhash:6].js',
+        filename: '[name]-[chunkhash:8].js',
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
