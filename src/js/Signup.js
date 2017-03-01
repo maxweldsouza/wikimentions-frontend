@@ -34,7 +34,7 @@ class Signup extends React.Component {
         });
     }
     closeModal () {
-        this.setState({modalIsOpen: false});
+        this.setState({ modalIsOpen: false });
     }
     onChangeText (e) {
         const temp = {};
@@ -66,10 +66,10 @@ class Signup extends React.Component {
                     submitting: false
                 });
                 if (err && err.status) {
-                    snackbar({message: err.message ? err.message : 'Something went wrong'});
+                    snackbar({ message: err.message ? err.message : 'Something went wrong' });
                 } else {
                     this.closeModal();
-                    snackbar({message: 'Signed up'});
+                    snackbar({ message: 'Signed up' });
                     store.set('username', res.body.username);
                     store.set('level', res.body.level);
                     store.set('id', res.body.id);

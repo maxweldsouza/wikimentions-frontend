@@ -25,10 +25,10 @@ class SignupPage extends React.Component {
                     title={'Signup'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        { 'name': 'description', 'content': '' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': ''}
+                        { 'rel': 'canonical', 'href': '' }
                     ]}
                     />
                 <Navbar

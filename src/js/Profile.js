@@ -25,7 +25,7 @@ class Profile extends React.Component {
             <div className='row'>
                 <div className='small-12 large-3 columns'>
                         <ul className='tabs vertical'>
-                            {tabs.map((x) => {
+                            {tabs.map(x => {
                                 return <li
                                     key={x}
                                     role='presentation'

@@ -50,10 +50,10 @@ class ProfilePage extends React.Component {
                     title={user.name}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar

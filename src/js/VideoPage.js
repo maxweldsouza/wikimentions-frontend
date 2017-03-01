@@ -83,9 +83,9 @@ class VideoPage extends React.Component {
                     return;
                 }
                 try {
-                    if (res.body.items[0].status.embeddable
-                        && res.body.items[0].status.privacyStatus === 'public'
-                        && res.body.items[0].status.uploadStatus === 'processed') {
+                    if (res.body.items[0].status.embeddable &&
+                        res.body.items[0].status.privacyStatus === 'public' &&
+                        res.body.items[0].status.uploadStatus === 'processed') {
                         this.setState({
                             embeddable: true
                         });
@@ -128,7 +128,7 @@ class VideoPage extends React.Component {
             'mentionedby': `People who have mentioned ${thing.props.title}`
         };
         const tabHeading = <ul className='tabs' role='tablist'>
-            {tabs.map((x) => {
+            {tabs.map(x => {
                 let cls;
                 let aria;
                 if (x === tab) {
@@ -149,13 +149,13 @@ class VideoPage extends React.Component {
                 </li>;
             })}
         </ul>;
-        let metaRobots = {'name': 'robots', 'content': 'index'};
-        if (thing.mentioned_count === 0
-            && thing.mentioned_by_count === 0) {
-            metaRobots = {'name': 'robots', 'content': 'noindex'};
+        let metaRobots = { 'name': 'robots', 'content': 'index' };
+        if (thing.mentioned_count === 0 &&
+            thing.mentioned_by_count === 0) {
+            metaRobots = { 'name': 'robots', 'content': 'noindex' };
         }
         if (tab === 'mentionedby' && thing.mentioned_by_count === 0) {
-            metaRobots = {'name': 'robots', 'content': 'noindex'};
+            metaRobots = { 'name': 'robots', 'content': 'noindex' };
         }
         let tabContent;
         let pageTitle;
@@ -191,21 +191,21 @@ class VideoPage extends React.Component {
                     title={pageTitle}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'description', 'content': pageDescription},
-                        {name: 'twitter:card', content: 'summary'},
-                        {name: 'twitter:site', content: config.twitter},
-                        {name: 'twitter:title', content: pageTitle},
-                        {name: 'twitter:description', content: pageDescription},
-                        {name: 'twitter:image', content: this.state.videoImage},
-                        {property: 'og:title', content: pageTitle},
-                        {property: 'og:type', content: 'article'},
-                        {property: 'og:url', content: config.url + this.props.path},
-                        {property: 'og:description', content: ''},
-                        {property: 'og:image', content: this.state.videoImage},
-                        {property: 'og:site_name', content: config.name}
+                        { 'name': 'description', 'content': pageDescription },
+                        { name: 'twitter:card', content: 'summary' },
+                        { name: 'twitter:site', content: config.twitter },
+                        { name: 'twitter:title', content: pageTitle },
+                        { name: 'twitter:description', content: pageDescription },
+                        { name: 'twitter:image', content: this.state.videoImage },
+                        { property: 'og:title', content: pageTitle },
+                        { property: 'og:type', content: 'article' },
+                        { property: 'og:url', content: config.url + this.props.path },
+                        { property: 'og:description', content: '' },
+                        { property: 'og:image', content: this.state.videoImage },
+                        { property: 'og:site_name', content: config.name }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar

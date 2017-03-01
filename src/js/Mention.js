@@ -30,9 +30,9 @@ class Mention extends React.Component {
                 submitting: false
             });
             if (err && err.status) {
-                snackbar({message: res.body.message});
+                snackbar({ message: res.body.message });
             } else {
-                snackbar({message: 'Mention deleted'});
+                snackbar({ message: 'Mention deleted' });
                 history.pushState(null, null, window.location.pathname + window.location.search);
                 Mentions.route(window.location.pathname + window.location.search);
             }
@@ -64,16 +64,14 @@ class Mention extends React.Component {
             }
             secondary = this.props.mentioned_in;
             inorby = 'In ';
+        } else if (this.props.mentioned) {
+            main = this.props.mentioned;
+            secondary = this.props.mentioned_by;
+            inorby = 'By ';
         } else {
-            if (this.props.mentioned) {
-                main = this.props.mentioned;
-                secondary = this.props.mentioned_by;
-                inorby = 'By ';
-            } else {
-                main = this.props.mentioned_by;
-                secondary = this.props.mentioned_in;
-                inorby = 'In ';
-            }
+            main = this.props.mentioned_by;
+            secondary = this.props.mentioned_in;
+            inorby = 'In ';
         }
         description = main.props && main.props.description ? main.props.description : '';
 
@@ -182,7 +180,7 @@ class Mention extends React.Component {
                                 type={secondary.props.type}>{secondary.props.title}</Link></strong>
                         </div> : null}
                         {this.props.reference ? <div className='small-12 columns'>
-                            Reference: <a className='secondary' style={{fontWeight: 'bold'}} href={this.props.reference} target='_blank'>{parsed.hostname} <span className='ion-android-open'/>
+                            Reference: <a className='secondary' style={{ fontWeight: 'bold' }} href={this.props.reference} target='_blank'>{parsed.hostname} <span className='ion-android-open'/>
                             </a>
                         </div> : null}
                     </div>

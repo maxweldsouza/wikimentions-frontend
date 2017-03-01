@@ -64,7 +64,7 @@ class AddBookExisting extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    snackbar({message: 'Book added'});
+                    snackbar({ message: 'Book added' });
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
                 }

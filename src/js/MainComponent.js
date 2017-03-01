@@ -58,7 +58,9 @@ class MainComponent extends React.Component {
             requests
             .get('/api/v1/country')
             .end((err, res) => {
-                if (err) { return; }
+                if (err) {
+                    return;
+                }
                 if (res.body.country) {
                     store.set('country', res.body.country);
                 }
@@ -87,7 +89,7 @@ class MainComponent extends React.Component {
         let username;
         let userid;
         let loggedin;
-        loggedin = session ? true : false;
+        loggedin = Boolean(session);
         return (
             <div className='main-component'>
                 <div className='main-content'>
@@ -123,7 +125,7 @@ class MainComponent extends React.Component {
 
 MainComponent.propTypes = {
     query: React.PropTypes.object,
-    path: function (props, propName, componentName) {
+    path (props, propName, componentName) {
         if (props[propName][0] === '/') {
             return new Error(
                 'Invalid prop `' + propName + '` supplied to' +

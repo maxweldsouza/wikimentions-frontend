@@ -28,7 +28,7 @@ class ThingBookTab extends React.Component {
         </div>;
         return (
             <div className='card-container'>
-                {books.map((x) => {
+                {books.map(x => {
                     return <Book
                         key={x.id}
                         id={x.id}

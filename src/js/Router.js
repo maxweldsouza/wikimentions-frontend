@@ -110,14 +110,14 @@ const urlToComponentName = url => {
     } else if (/^bugs$/.test(path)) {
         componentName = 'BugPage';
     } else {
-        throw { status: 404, message: 'Count not find what you were looking for'};
+        throw { status: 404, message: 'Count not find what you were looking for' };
     }
     return componentName;
 };
 
 const clientSide = (() => typeof window !== 'undefined')();
 
-const requestPromise = (url) => {
+const requestPromise = url => {
     return new Promise((resolve, reject) => {
         request
         .get(url)
@@ -145,9 +145,9 @@ const apiCalls = (componentName, url) => {
     return resources.api;
 };
 
-const fetchData = (api) => {
+const fetchData = api => {
     const names = api.map(x => x.name);
-    const paths = api.map((x) => {
+    const paths = api.map(x => {
         if (clientSide) {
             return x.path;
         }
@@ -155,14 +155,14 @@ const fetchData = (api) => {
     });
     return new Promise((resolve, reject) => {
         Promise.all(paths.map(requestPromise))
-        .then((values) => {
+        .then(values => {
             const apidata = {};
             const etags = [];
             for (let i = 0; i < names.length; i++) {
                 apidata[names[i]] = values[i].body;
                 etags.push(values[i].headers.etag);
             }
-            resolve({apidata, etags});
+            resolve({ apidata, etags });
         })
         .catch(function (err) {
             reject(err);

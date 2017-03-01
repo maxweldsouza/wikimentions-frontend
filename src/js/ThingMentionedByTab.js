@@ -28,7 +28,7 @@ class ThingMentionTab extends React.Component {
         </div>;
         return (
             <div className='card-container'>
-                {mentionedby.map((x) => {
+                {mentionedby.map(x => {
                     return <Mention
                         key={x.mention_id}
                         mention_id={x.mention_id}

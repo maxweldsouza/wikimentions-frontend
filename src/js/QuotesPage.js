@@ -84,7 +84,7 @@ class QuotesPage extends React.Component {
                         formMessage: '',
                         quote: ''
                     });
-                    snackbar({message: 'Quote added'});
+                    snackbar({ message: 'Quote added' });
                     history.pushState(null, null, window.location.pathname + window.location.search);
                     Mentions.route(window.location.pathname + window.location.search);
                 }
@@ -96,9 +96,9 @@ class QuotesPage extends React.Component {
         const total = this.props.data.quotes.total;
         let metaRobots;
         if (total === 0) {
-            metaRobots = {'name': 'robots', 'content': 'noindex'};
+            metaRobots = { 'name': 'robots', 'content': 'noindex' };
         } else {
-            metaRobots = {'name': 'robots', 'content': 'index'};
+            metaRobots = { 'name': 'robots', 'content': 'index' };
         }
         return (
             <span>
@@ -109,7 +109,7 @@ class QuotesPage extends React.Component {
                         metaRobots
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -148,7 +148,7 @@ class QuotesPage extends React.Component {
                                 </div>}
                                 <hr />
                                 <div className='row'>
-                                    {_.rest(quotes).map((x) => {
+                                    {_.rest(quotes).map(x => {
                                         return <div className='small-12 columns'>
                                             <blockquote className='quote'>
                                                 {x.quote}

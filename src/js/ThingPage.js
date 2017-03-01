@@ -96,7 +96,7 @@ class ThingPage extends React.Component {
         e.preventDefault();
     }
     onCloseModal () {
-        this.setState({modalIsOpen: false});
+        this.setState({ modalIsOpen: false });
     }
     render () {
         let [type, id, slug, tab] = this.props.path.split('/');
@@ -151,7 +151,7 @@ class ThingPage extends React.Component {
             'videos': `Videos by ${thing.props.title}`
         };
         const tabHeading = <ul className='tabs text-left' role='tablist'>
-            {tabs.map((x) => {
+            {tabs.map(x => {
                 let cls;
                 let aria;
                 if (x === tab) {
@@ -172,30 +172,30 @@ class ThingPage extends React.Component {
                 </li>;
             })}
         </ul>;
-        let metaRobots = {'name': 'robots', 'content': 'index'};
-        if (thing.video_count === 0
-            && thing.book_count === 0
-            && thing.mentioned_count === 0
-            && thing.mentioned_by_count === 0) {
-            metaRobots = {'name': 'robots', 'content': 'noindex'};
+        let metaRobots = { 'name': 'robots', 'content': 'index' };
+        if (thing.video_count === 0 &&
+            thing.book_count === 0 &&
+            thing.mentioned_count === 0 &&
+            thing.mentioned_by_count === 0) {
+            metaRobots = { 'name': 'robots', 'content': 'noindex' };
         }
         if (thing.props.type === 'person') {
             if (tab === 'books' && thing.book_count === 0) {
-                metaRobots = {'name': 'robots', 'content': 'noindex'};
+                metaRobots = { 'name': 'robots', 'content': 'noindex' };
             }
             if (tab === 'mentioned' && thing.mentioned_count === 0) {
-                metaRobots = {'name': 'robots', 'content': 'noindex'};
+                metaRobots = { 'name': 'robots', 'content': 'noindex' };
             }
             if (tab === 'mentionedby' && thing.mentioned_by_count === 0) {
-                metaRobots = {'name': 'robots', 'content': 'noindex'};
+                metaRobots = { 'name': 'robots', 'content': 'noindex' };
             }
         } else {
-            if (thing.mentioned_count === 0
-                && thing.mentioned_by_count === 0) {
-                metaRobots = {'name': 'robots', 'content': 'noindex'};
+            if (thing.mentioned_count === 0 &&
+                thing.mentioned_by_count === 0) {
+                metaRobots = { 'name': 'robots', 'content': 'noindex' };
             }
             if (tab === 'mentionedby' && thing.mentioned_by_count === 0) {
-                metaRobots = {'name': 'robots', 'content': 'noindex'};
+                metaRobots = { 'name': 'robots', 'content': 'noindex' };
             }
         }
         let tabContent;
@@ -263,22 +263,22 @@ class ThingPage extends React.Component {
                 title={pageTitle}
                 titleTemplate={`%s - ${config.name}`}
                 meta={[
-                    {'name': 'description', 'content': pageDescription},
+                    { 'name': 'description', 'content': pageDescription },
                     metaRobots,
-                    {name: 'twitter:card', content: 'summary'},
-                    {name: 'twitter:site', content: config.twitter},
-                    {name: 'twitter:title', content: pageTitle},
-                    {name: 'twitter:description', content: pageDescription},
-                    {name: 'twitter:image', content: imageUrl},
-                    {property: 'og:title', content: pageTitle},
-                    {property: 'og:type', content: 'article'},
-                    {property: 'og:url', content: config.url + this.props.path},
-                    {property: 'og:description', content: pageDescription},
-                    {property: 'og:image', content: imageUrl},
-                    {property: 'og:site_name', content: config.name}
+                    { name: 'twitter:card', content: 'summary' },
+                    { name: 'twitter:site', content: config.twitter },
+                    { name: 'twitter:title', content: pageTitle },
+                    { name: 'twitter:description', content: pageDescription },
+                    { name: 'twitter:image', content: imageUrl },
+                    { property: 'og:title', content: pageTitle },
+                    { property: 'og:type', content: 'article' },
+                    { property: 'og:url', content: config.url + this.props.path },
+                    { property: 'og:description', content: pageDescription },
+                    { property: 'og:image', content: imageUrl },
+                    { property: 'og:site_name', content: config.name }
                 ]}
                 link={[
-                    {'rel': 'canonical', 'href': config.url + this.props.path}
+                    { 'rel': 'canonical', 'href': config.url + this.props.path }
                 ]}
                 />
             <Navbar
@@ -396,7 +396,7 @@ class ThingPage extends React.Component {
                                 <div>
                                     Tags:
                                     {thing.tags ? <span>
-                                        {thing.tags.map((x) => {
+                                        {thing.tags.map(x => {
                                             return <a key={x} className='tag secondary round small no-margin-bottom' href={`/tags/${x}`}>
                                                 {x}
                                         </a>;

@@ -74,7 +74,7 @@ class FeedbackPage extends React.Component {
                                     {this.state.feedback.map(x => {
                                         return <div className='row' key={x.id}>
                                             <span className='small-8 columns'>
-                                                <strong>Type:</strong> {x.rating === 1 ? <span className='ion-checkmark' style={{ color: 'hsla(144, 60%, 60%, 1)'}} /> : <span className='ion-close' style={{ color: 'hsla(0, 83%, 57%, 1)' }}/>}
+                                                <strong>Type:</strong> {x.rating === 1 ? <span className='ion-checkmark' style={{ color: 'hsla(144, 60%, 60%, 1)' }} /> : <span className='ion-close' style={{ color: 'hsla(0, 83%, 57%, 1)' }}/>}
                                             </span>
                                             <span className='small-4 columns text-right'><Time timestamp={x.updated} type='ago'/></span>
                                             <span className='small-8 columns'>

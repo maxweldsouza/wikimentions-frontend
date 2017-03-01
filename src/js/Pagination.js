@@ -50,7 +50,7 @@ class Pagination extends React.Component {
                 <div className='small-12 columns'>
                     <ul className='pagination text-center' role='navigation' aria-label='Pagination'>
                         {prev}
-                        {pages.map((x) => {
+                        {pages.map(x => {
                             const path = this.pagePath(x);
                             if (x === current) {
                                 return <li className='current' key={x}><span className='show-for-sr'>You're on page</span> {x}</li>;

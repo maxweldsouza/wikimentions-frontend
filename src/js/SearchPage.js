@@ -52,7 +52,7 @@ class SearchPage extends React.Component {
         }
         requests.get(`/api/v1/search/${encodeURIComponent(x)}?${queryString.stringify(query)}`).end((err, res) => {
             if (err) {
-                snackbar({message: 'Search failed'});
+                snackbar({ message: 'Search failed' });
             } else {
                 this.setState({
                     results: res.body.results,
@@ -82,7 +82,7 @@ class SearchPage extends React.Component {
     }
     render () {
         const page = this.props.query.page ? this.props.query.page : 1;
-        const options = [{name: 'Any', value: 'any'}, {name: 'Person', value: 'person'}, {name: 'Book', value: 'book'}, {name: 'Video', value: 'video'}];
+        const options = [{ name: 'Any', value: 'any' }, { name: 'Person', value: 'person' }, { name: 'Book', value: 'book' }, { name: 'Video', value: 'video' }];
         const start = (page - 1) * this.state.results.length + 1;
         const end = page * this.state.results.length;
         const type = this.props.query.type ? this.props.query.type : 'any';
@@ -92,10 +92,10 @@ class SearchPage extends React.Component {
                     title={'Search'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -113,7 +113,7 @@ class SearchPage extends React.Component {
                                     onChange={this.onSearchTextChanged}
                                     onKeyDown={this.handleKeys}>
                                 </input>
-                                <button className='button primary' onClick={this.onSearchClicked} style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}>
+                                <button className='button primary' onClick={this.onSearchClicked} style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}>
                                     <span className='ion-android-search'/>
                                 </button>
                         </div>
@@ -136,7 +136,7 @@ class SearchPage extends React.Component {
                                         No results found.
                                     </div>
                                 </div> : null}
-                                {this.state.results.map((x) => {
+                                {this.state.results.map(x => {
                                     return <HomeItem
                                         key={x.id}
                                         id={x.id}

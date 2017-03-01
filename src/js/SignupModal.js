@@ -18,7 +18,7 @@ class SignupModal extends React.Component {
         e.preventDefault();
     }
     closeModal () {
-        this.setState({modalIsOpen: false});
+        this.setState({ modalIsOpen: false });
     }
     render () {
         return (

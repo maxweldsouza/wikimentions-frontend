@@ -15,7 +15,7 @@ class Maintenance extends React.Component {
         const limit = parts[2];
         const offset = parts[3];
         if (!tags.includes(tag)) {
-            throw { status: 404, message: 'Count not find what you were looking for'};
+            throw { status: 404, message: 'Count not find what you were looking for' };
         }
         return {
             api: [
@@ -38,7 +38,7 @@ class Maintenance extends React.Component {
         if (tag === 'book_without_author') {
             title = 'Books with no Author';
             results = <div>
-                {data.map((x) => {
+                {data.map(x => {
                     return <div>
                         <Link
                         type='book'
@@ -52,7 +52,7 @@ class Maintenance extends React.Component {
         } else if (tag === 'missing_isbn') {
             title = 'Books with Missing ISBN';
             results = <div>
-                {data.map((x) => {
+                {data.map(x => {
                     return <div>
                         <Link
                         type='book'
@@ -66,7 +66,7 @@ class Maintenance extends React.Component {
         } else if (tag === 'person_without_description') {
             title = 'People Pages without Description';
             results = <div>
-                {data.map((x) => {
+                {data.map(x => {
                     return <div>
                         <Link
                         type='person'
@@ -92,10 +92,10 @@ class Maintenance extends React.Component {
                     title={'Maintenance'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar

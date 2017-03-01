@@ -139,7 +139,7 @@ class ImageUpload extends React.Component {
                     this.setState({
                         formMessage: ''
                     });
-                    snackbar({message: 'Image uploaded'});
+                    snackbar({ message: 'Image uploaded' });
                     history.pushState(null, null, res.body.redirect);
                     Mentions.route(res.body.redirect);
                 }

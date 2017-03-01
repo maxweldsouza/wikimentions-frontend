@@ -42,14 +42,12 @@ class Thumbnail extends React.Component {
             }
             imageUrl = `/api/v1/static/images/${imageMd5}-${imageWidth}-${imageHeight}.jpg`;
             aspectRatio = imageWidth / imageHeight;
-        } else {
-            if (this.props.type === 'book') {
-                aspectRatio = 0.75;
-            } else if (this.props.type === 'person') {
-                aspectRatio = 1;
-            } else if (this.props.type === 'video') {
-                aspectRatio = 120 / 90;
-            }
+        } else if (this.props.type === 'book') {
+            aspectRatio = 0.75;
+        } else if (this.props.type === 'person') {
+            aspectRatio = 1;
+        } else if (this.props.type === 'video') {
+            aspectRatio = 120 / 90;
         }
         let displayWidth = this.props.displayWidth;
         let displayHeight = this.props.displayHeight;
@@ -59,7 +57,7 @@ class Thumbnail extends React.Component {
         if (!displayHeight) {
             displayHeight = displayWidth / aspectRatio;
         }
-        const placeholder = <div className={this.props.bordered ? 'placeholder bordered' : 'placeholder'} style={{lineHeight: `${displayHeight}px`}}>
+        const placeholder = <div className={this.props.bordered ? 'placeholder bordered' : 'placeholder'} style={{ lineHeight: `${displayHeight}px` }}>
                 {this.props.type === 'person' ? <span className='ion-image' /> : null}
                 {this.props.type === 'book' ? <span className='ion-ios-book' /> : null}
                 {this.props.type === 'video' ? <span className='ion-play' /> : null}
@@ -69,7 +67,7 @@ class Thumbnail extends React.Component {
             main = <Lazy offset={this.props.offset} placeholder={placeholder}>
                 <img
                     className={imageClass}
-                    style={this.props.round ? {borderRadius: '999em'} : null}
+                    style={this.props.round ? { borderRadius: '999em' } : null}
                     src={imageUrl}
                     width={imageWidth}
                     height={imageHeight}
@@ -83,7 +81,7 @@ class Thumbnail extends React.Component {
         } else {
             main = placeholder;
         }
-        const style = {'width': displayWidth, 'height': displayHeight};
+        const style = { 'width': displayWidth, 'height': displayHeight };
         return (
             <div className={this.props.marginBottom ? 'image-container bottom-margin' : 'image-container'} style={style}>
                 {main}

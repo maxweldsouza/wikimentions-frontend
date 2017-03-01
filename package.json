@@ -107,6 +107,7 @@
     "webpack": "^2.2.1"
   },
   "scripts": {
+    "fixlint": "eslint src/js --fix",
     "lint": "eslint src/js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "transpile": "babel src/js --out-dir dist/js && babel server.js --out-file server-compiled.js && cp src/js/config.json dist/js/config.json",

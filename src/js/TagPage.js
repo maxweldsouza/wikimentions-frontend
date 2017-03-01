@@ -73,10 +73,10 @@ class TagPage extends React.Component {
                     title={tag}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'description', 'content': ''}
+                        { 'name': 'description', 'content': '' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -110,7 +110,7 @@ class TagPage extends React.Component {
                     </div>
                     <div className='small-12 xlarge-8 columns'>
                         <div className='card-container'>
-                            {this.props.data.tag.map((x) => {
+                            {this.props.data.tag.map(x => {
                                 return <HomeItem
                                     key={x.id}
                                     id={x.id}

@@ -90,24 +90,24 @@ class Select extends React.Component {
     }
     handleKeys (event) {
         switch (event.key) {
-            case 'ArrowDown':
-                this.focusNext();
-                event.preventDefault();
-                break;
-            case 'ArrowUp':
-                this.focusPrev();
-                event.preventDefault();
-                break;
-            case 'Enter':
-                if (this.state.focus === -1 && this.props.moreResults) {
-                    this.onClickMoreResults();
-                }
-                if (this.state.focus >= 0) {
-                    this.onSelectValue(this.state.options[this.state.focus]);
-                }
-                break;
-            default:
-                return;
+        case 'ArrowDown':
+            this.focusNext();
+            event.preventDefault();
+            break;
+        case 'ArrowUp':
+            this.focusPrev();
+            event.preventDefault();
+            break;
+        case 'Enter':
+            if (this.state.focus === -1 && this.props.moreResults) {
+                this.onClickMoreResults();
+            }
+            if (this.state.focus >= 0) {
+                this.onSelectValue(this.state.options[this.state.focus]);
+            }
+            break;
+        default:
+            return;
         }
     }
     loadData (x) {
@@ -170,13 +170,13 @@ class Select extends React.Component {
     }
     render () {
         return (
-            <div style={{position: 'relative', 'width': '100%'}} onKeyDown={this.handleKeys}>
+            <div style={{ position: 'relative', 'width': '100%' }} onKeyDown={this.handleKeys}>
                 <Input
                     type='text'
                     role='combobox'
                     aria-haspopup={true}
                     aria-expanded={this.state.visible}
-                    style={{width: this.props.width}}
+                    style={{ width: this.props.width }}
                     className={this.props.className}
                     value={this.state.searchText}
                     valid={this.props.valid}
@@ -206,7 +206,7 @@ class Select extends React.Component {
                     </div> : null}
                     {this.state.options.map((entry, i) => {
                         let focused = i === this.state.focus;
-                        focused = focused ? {'background': '#f3f3f3'} : {};
+                        focused = focused ? { 'background': '#f3f3f3' } : {};
 
                         return <div
                             key={entry.id}

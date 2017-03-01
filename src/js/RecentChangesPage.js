@@ -27,10 +27,10 @@ class RecentChangesPage extends React.Component {
                     title={'Recent Changes'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar

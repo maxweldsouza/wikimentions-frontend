@@ -27,7 +27,7 @@ class ThingVideoTab extends React.Component {
         </div>;
         return (
             <div className='card-container'>
-                {videos.map((x) => {
+                {videos.map(x => {
                     return <Video
                             key={x.id}
                             id={x.id}

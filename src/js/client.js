@@ -59,10 +59,10 @@ window.Mentions = {
         const componentName = Router.urlToComponentName(url);
         const api = Router.apiCalls(componentName, url);
         Router.fetchData(api)
-        .then(({apidata, etags}) => {
+        .then(({ apidata, etags }) => {
             NProgress.inc();
             ReactDOM.render(<MainComponent
-                loggedin={store.get('username') ? true : false}
+                loggedin={Boolean(store.get('username'))}
                 username={store.get('username')}
                 userid={store.get('id')}
                 data={apidata}
@@ -83,7 +83,7 @@ window.Mentions = {
             getTokenIfRequired();
             const data = JSON.parse(S($('#api-data').text()).unescapeHTML().toString());
             ReactDOM.render(<MainComponent
-                loggedin={store.get('username') ? true : false}
+                loggedin={Boolean(store.get('username'))}
                 username={store.get('username')}
                 userid={store.get('id')}
                 data={data}
@@ -170,10 +170,10 @@ $(document).on('click', 'a', function (e) {
         $('html, body').animate({
             scrollTop: $($.attr(this, 'href')).offset().top - 80
         }, 200, 'easeOutQuart');
-    } else if (!LinkChecker.isExternal(url)
-            && $(this).attr('target') !== '_blank'
-            && !controlPressed
-            && !noxhr) {
+    } else if (!LinkChecker.isExternal(url) &&
+            $(this).attr('target') !== '_blank' &&
+            !controlPressed &&
+            !noxhr) {
         startLoading();
         e.preventDefault();
         setTimeout(() => {

@@ -13,7 +13,7 @@ class Video extends React.Component {
                 <div className='small-12 columns'>
                     <div className='row'>
                         <div className='shrink columns'>
-                            <div style={{maxWidth: 150}}>
+                            <div style={{ maxWidth: 150 }}>
                                 <Link id={this.props.id}
                                     slug={this.props.slug}
                                     type='video'>

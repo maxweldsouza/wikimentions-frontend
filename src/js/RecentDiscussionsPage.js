@@ -32,10 +32,10 @@ class RecentDiscussions extends React.Component {
                     title={'Recent Discussions'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        {'name': 'robots', 'content': 'noindex'}
+                        { 'name': 'robots', 'content': 'noindex' }
                     ]}
                     link={[
-                        {'rel': 'canonical', 'href': config.url + this.props.path}
+                        { 'rel': 'canonical', 'href': config.url + this.props.path }
                     ]}
                     />
                 <Navbar
@@ -47,7 +47,7 @@ class RecentDiscussions extends React.Component {
                     <div className='small-12 large-8 columns'>
                         <h1>Recent Discussions</h1>
                         <hr/>
-                        {this.props.data.discuss.map((x) => {
+                        {this.props.data.discuss.map(x => {
                             return <div className='row' key={x.id}>
                                 <div className='small-6 columns'>
                                     On <strong><Link

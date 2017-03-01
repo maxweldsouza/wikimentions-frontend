@@ -17,7 +17,7 @@ const snackbar = (() => {
         defaults = _.extend(defaults, options);
 
         const message = `<span class="snackbar-message">${defaults.message}</span>`;
-        i = i + 1;
+        i += 1;
         const j = i;
         if (visible) {
             $('#snackbar').removeClass('showing');

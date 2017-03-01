@@ -4,7 +4,7 @@ import React from 'react';
 import Select from './Select';
 import SignupModal from './SignupModal';
 import Spinner from './Spinner';
-import {VelocityTransitionGroup} from 'velocity-react';
+import { VelocityTransitionGroup } from 'velocity-react';
 import Xsrf from './Xsrf';
 import requests from 'superagent';
 import autoBind from 'react-autobind';
@@ -29,7 +29,7 @@ class Navbar extends React.Component {
         });
     }
     onCloseSearchBar () {
-        this.setState({searchBarOpen: false});
+        this.setState({ searchBarOpen: false });
     }
     search () {
         const path = `/search?q=${this.state.searchText}`;
@@ -78,7 +78,7 @@ class Navbar extends React.Component {
         const username = this.props.username;
         const loggedin = this.props.loggedin;
 
-        const SearchBar = <div className='input-group' style={{marginBottom: 0, borderTopRightRadius: 0, borderBottomRightRadius: 0}}>
+        const SearchBar = <div className='input-group' style={{ marginBottom: 0, borderTopRightRadius: 0, borderBottomRightRadius: 0 }}>
             <Select
                 name='searchText'
                 className='input-group-field'
@@ -90,10 +90,10 @@ class Navbar extends React.Component {
                 moreResults={true}/>
             <button
                 className='button primary'
-                style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}
+                style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
                 onClick={this.search}
                 aria-label='Search'>
-                <span className='ion-android-search' style={{fontSize: 17}}/>
+                <span className='ion-android-search' style={{ fontSize: 17 }}/>
             </button>
         </div>;
 
@@ -185,7 +185,7 @@ class Navbar extends React.Component {
                         {rhs}
                     </div>
                 </nav>
-                <VelocityTransitionGroup enter={{animation: 'transition.fadeIn'}} leave={{animation: 'transition.fadeOut'}}>
+                <VelocityTransitionGroup enter={{ animation: 'transition.fadeIn' }} leave={{ animation: 'transition.fadeOut' }}>
                     {this.state.searchBarOpen ? <div className='navbar-search hide-for-xlarge'>
                         <div className='row'>
                             <div className='input-group'>
@@ -199,10 +199,10 @@ class Navbar extends React.Component {
                                     moreResults={true}/>
                                 <button
                                     className='button primary no-margin-bottom'
-                                    style={{borderTopLeftRadius: 0, borderBottomLeftRadius: 0}}
+                                    style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
                                     onClick={this.search}
                                     aria-label='Search'>
-                                    <span className='ion-android-search' style={{fontSize: 17}}/>
+                                    <span className='ion-android-search' style={{ fontSize: 17 }}/>
                                 </button>
 
                             </div>
