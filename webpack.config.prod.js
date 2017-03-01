@@ -78,9 +78,6 @@ module.exports = {
                 useShortDoctype: true,
             },
         }),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     names: ['moment', 'manifest'] // Specify the common bundle's name.
-        // }),
         // new BundleAnalyzerPlugin(),
         extractSass,
     ],

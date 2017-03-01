@@ -3,15 +3,15 @@ import requests from 'superagent';
 import cookies from 'browser-cookies';
 import snackbar from './snackbar';
 import MarkdownInput from './MarkdownInput';
-let Cropper = null;
-import isNode from './isNode';
 import autoBind from 'react-autobind';
+let Cropper = null;
 
 class ImageUpload extends React.Component {
     constructor (props) {
         super(props);
         autoBind(this);
         this.state = {
+            server: true,
             scale: 1,
             image: '',
             mime: '',
@@ -22,10 +22,15 @@ class ImageUpload extends React.Component {
             submitting: false
         };
     }
-    componentWillMount () {
-        if (isNode.isBrowser()) {
-            Cropper = require('react-cropper').default;
-        }
+    componentDidMount () {
+        import('react-cropper')
+        .then(cropper => {
+            Cropper = cropper.default;
+            this.setState({
+                server: false
+            });
+        })
+        .catch(err => console.log('Failed to load moment', err));
     }
     handleScale (value) {
         this.setState({ scale: value });
@@ -160,7 +165,7 @@ class ImageUpload extends React.Component {
 
     }
     render () {
-        if (isNode.isNode()) {
+        if (this.state.server) {
             return null;
         }
         let imageMessage;
