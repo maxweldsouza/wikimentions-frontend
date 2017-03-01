@@ -26,7 +26,7 @@ class Input extends React.Component {
             );
         }
         return (
-            <span style={{ position: 'relative', display: 'block' }} >
+            <span className='input-container' >
                 <input {...props} className={cls}/>
                 {this.props.value.length > 0 ? <span onClick={this.onClear} className='ion-backspace select-clear'/> : null}
                 {this.props.valid ? null : <span className='form-error is-visible'>
