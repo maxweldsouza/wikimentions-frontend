@@ -135,10 +135,11 @@ const requestPromise = url => {
 
 const apiCalls = (componentName, url) => {
     const Component = require(`./${componentName}`).default;
-    const query = queryString.parse(url.split('?')[1]);
+    const [path, q] = url.split('?');
+    const query = queryString.parse(q);
     const resources = Component.resources({
         Component: componentName,
-        path: url.substr(1),
+        path: path.substr(1),
         query
     });
     validateResources(resources);
