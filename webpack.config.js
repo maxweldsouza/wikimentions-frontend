@@ -13,6 +13,10 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.hbs$/,
+                use: 'handlebars-loader',
+            },
+            {
                 test: /\.svg$/,
                 use: 'file-loader?name=[name].[ext]',
             },
@@ -32,6 +36,10 @@ module.exports = {
                     {
                         loader: 'sass-loader', options: {
                             sourceMap: true,
+                            includePaths: [
+                                'node_modules/foundation-sites/scss',
+                                'node_modules/motion-ui/src'
+                            ]
                         },
                     }],
                 }),

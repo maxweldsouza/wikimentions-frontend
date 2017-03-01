@@ -33,12 +33,12 @@ module.exports = {
                 use: extractSass.extract({
                     loader: [{
                         loader: 'css-loader', options: {
-                            sourceMap: true,
+                            sourceMap: false,
                         },
                     },
                     {
                         loader: 'sass-loader', options: {
-                            sourceMap: true,
+                            sourceMap: false,
                             includePaths: [
                                 'node_modules/foundation-sites/scss',
                                 'node_modules/motion-ui/src'
