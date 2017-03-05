@@ -1,5 +1,8 @@
+.GIT_REV_HASH
+.sasscache
 dist
 node_modules
+npm-debug.log
+src/assets/css/main.css
 src/css
 src/images
-src/assets/css/main.css
