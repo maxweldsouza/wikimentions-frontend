@@ -1,5 +1,5 @@
 .GIT_REV_HASH
-.sasscache
+.sass-cache
 dist
 node_modules
 npm-debug.log
