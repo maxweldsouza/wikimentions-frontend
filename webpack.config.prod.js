@@ -8,7 +8,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const extractSass = new ExtractTextPlugin({
     filename: '[name]-[contenthash:8].css',
-    disable: false,
+    disable: false
 });
 
 module.exports = {
@@ -18,20 +18,20 @@ module.exports = {
         rules: [
             {
                 test: /\.svg$/,
-                use: 'file-loader?name=[name]-[hash:6].[ext]&publicPath=assets/images/&outputPath=images/',
+                use: 'file-loader?name=[name]-[hash:6].[ext]&publicPath=assets/images/&outputPath=images/'
             },
             {
                 test: /\.js$/,
                 use: ['babel-loader'],
-                exclude: [/node_modules/],
+                exclude: [/node_modules/]
             },
             {
                 test: /\.scss$/,
                 use: extractSass.extract({
                     loader: [{
                         loader: 'css-loader', options: {
-                            sourceMap: false,
-                        },
+                            sourceMap: false
+                        }
                     },
                     {
                         loader: 'sass-loader', options: {
@@ -40,16 +40,16 @@ module.exports = {
                                 'node_modules/foundation-sites/scss',
                                 'node_modules/motion-ui/src'
                             ]
-                        },
-                    }],
-                }),
-            },
-        ],
+                        }
+                    }]
+                })
+            }
+        ]
     },
     output: {
         path: path.resolve(__dirname, 'dist/bundles'),
         publicPath: '/bundles/',
-        filename: '[name]-[chunkhash:8].js',
+        filename: '[name]-[chunkhash:8].js'
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
@@ -58,12 +58,12 @@ module.exports = {
             sourceMap: true,
             mangle: {
                 screw_ie8: true,
-                keep_fnames: true,
+                keep_fnames: true
             },
             compress: {
-                screw_ie8: true,
+                screw_ie8: true
             },
-            comments: false,
+            comments: false
         }),
         new HtmlWebpackPlugin({
             // https://github.com/kangax/html-minifier#options-quick-reference
@@ -75,10 +75,10 @@ module.exports = {
                 minifyCSS: true,
                 minifyJS: true,
                 removeComments: true,
-                useShortDoctype: true,
-            },
+                useShortDoctype: true
+            }
         }),
         // new BundleAnalyzerPlugin(),
-        extractSass,
-    ],
+        extractSass
+    ]
 };
