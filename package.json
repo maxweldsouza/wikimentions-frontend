@@ -78,7 +78,8 @@
     "transpile": "babel src/js --out-dir dist/js && babel server-es6.js --out-file server.js && cp src/js/config.json dist/js/config.json",
     "postbuild": "npm run transpile && git rev-parse HEAD > .GIT_REV_HASH",
     "build": "webpack -p --config webpack.config.prod.js --define process.env.NODE_ENV='\"production\"' --progress --colors",
-    "start": "webpack-dev-server --progress"
+    "start": "webpack-dev-server --progress",
+    "serve": "NODE_ENV=production node server.js"
   },
   "author": "Maxwel Dsouza",
   "license": "UNLICENSED"
