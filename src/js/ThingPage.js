@@ -1,8 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Navbar from './Navbar';
-import requests from 'superagent';
-import _ from 'underscore';
 import ThingMentionTab from './ThingMentionTab';
 import ThingMentionedByTab from './ThingMentionedByTab';
 import ThingBookTab from './ThingBookTab';
@@ -145,7 +143,7 @@ class ThingPage extends React.Component {
             'videos': 'video_count'
         };
         const tabTooltips = {
-            'mentioned': `People, books or videos mentioned by ${thing.props.title}`,
+            'mentioned': `People or books mentioned by ${thing.props.title}`,
             'mentionedby': `People who have mentioned ${thing.props.title}`,
             'books': `Books by ${thing.props.title}`,
             'videos': `Videos by ${thing.props.title}`
@@ -213,9 +211,9 @@ class ThingPage extends React.Component {
                 />;
             pageTitle = `Mentioned - ${thing.props.title}`;
             if (thing.props.type === 'person') {
-                pageDescription = `People, books or videos mentioned by ${thing.props.title}`;
+                pageDescription = `People or books mentioned by ${thing.props.title}`;
             } else {
-                pageDescription = `People, books or videos mentioned in ${thing.props.title}`;
+                pageDescription = `People or books mentioned in ${thing.props.title}`;
             }
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
@@ -228,7 +226,7 @@ class ThingPage extends React.Component {
                 page={this.props.query.page}
                 />;
             pageTitle = `Mentioned by - ${thing.props.title}`;
-            pageDescription = `People, books or videos that mention ${thing.props.title}`;
+            pageDescription = `People or books that mention ${thing.props.title}`;
         } else if (tab === 'books' && thing.props.type === 'person') {
             tabContent = <ThingBookTab
                 loggedin={this.props.loggedin}
