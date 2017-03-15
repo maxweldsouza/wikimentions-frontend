@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
     filename: '[name].css',
-    disable: false,
+    disable: false
 });
 
 module.exports = {
@@ -14,24 +14,24 @@ module.exports = {
         rules: [
             {
                 test: /\.hbs$/,
-                use: 'handlebars-loader',
+                use: 'handlebars-loader'
             },
             {
                 test: /\.svg$/,
-                use: 'file-loader?name=[name].[ext]',
+                use: 'file-loader?name=[name].[ext]'
             },
             {
                 test: /\.js$/,
                 use: 'babel-loader',
-                exclude: [/node_modules/],
+                exclude: [/node_modules/]
             },
             {
                 test: /\.scss$/,
                 use: extractSass.extract({
                     loader: [{
                         loader: 'css-loader', options: {
-                            sourceMap: true,
-                        },
+                            sourceMap: true
+                        }
                     },
                     {
                         loader: 'sass-loader', options: {
@@ -40,26 +40,28 @@ module.exports = {
                                 'node_modules/foundation-sites/scss',
                                 'node_modules/motion-ui/src'
                             ]
-                        },
-                    }],
-                }),
-            },
-        ],
+                        }
+                    }]
+                })
+            }
+        ]
     },
     output: {
         path: path.resolve(__dirname, 'dev'),
-        filename: 'bundle.js',
+        publicPath: '/',
+        filename: 'bundle.js'
     },
     devServer: {
-        contentBase: path.join(__dirname, 'dev'),
+        contentBase: [path.join(__dirname, 'dev'), path.join(__dirname, 'src')],
+        historyApiFallback: true,
         compress: true,
-        port: 8000,
+        port: 8000
     },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'My App',
-            template: 'src/index.html',
+            template: 'src/index.hbs'
         }),
-        extractSass,
-    ],
+        extractSass
+    ]
 };
