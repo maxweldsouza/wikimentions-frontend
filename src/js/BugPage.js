@@ -11,7 +11,7 @@ import autoBind from 'react-autobind';
 class BugPage extends React.Component {
     static resources () {
         return {
-            bugs: []
+            api: []
         };
     }
     constructor (props) {
