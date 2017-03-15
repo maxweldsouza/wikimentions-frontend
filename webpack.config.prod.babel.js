@@ -1,17 +1,17 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 
 const extractSass = new ExtractTextPlugin({
     filename: '[name]-[contenthash:8].css',
     disable: false
 });
 
-module.exports = {
+export default {
     entry: './src/js/client.js',
     devtool: 'source-map',
     module: {

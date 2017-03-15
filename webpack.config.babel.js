@@ -1,13 +1,13 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const extractSass = new ExtractTextPlugin({
     filename: '[name].css',
     disable: false
 });
 
-module.exports = {
+export default {
     entry: './src/js/client.js',
     devtool: 'source-map',
     module: {
