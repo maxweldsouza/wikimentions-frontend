@@ -6,7 +6,7 @@ import config from './config';
 import utils from './utils';
 import autoBind from 'react-autobind';
 
-const humanizeDuration = ptduration => {
+const humanizeDuration = (moment, ptduration) => {
     const ms = moment.duration(ptduration).asMilliseconds();
     if (ms >= 3600000) {
         return moment.utc(ms).format('h:mm:ss');
@@ -36,18 +36,21 @@ class VideoApiThumb extends React.Component {
             videoId = queryObject.v;
             requests.get(`https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet&fields=items(contentDetails/duration,snippet/thumbnails/default)&id=${videoId}&key=${config.keys.youtube}`).end((err, res) => {
                 if (err) {
+                    console.log(err);
                     return;
                 }
-                try {
-                    this.setState({
-                        thumb: res.body.items[0].snippet.thumbnails.default.url,
-                        width: res.body.items[0].snippet.thumbnails.default.width,
-                        height: res.body.items[0].snippet.thumbnails.default.height,
-                        duration: humanizeDuration(res.body.items[0].contentDetails.duration)
-                    });
-                } catch (e) {
-                    return;
-                }
+                import('moment').then(moment => {
+                    try {
+                        this.setState({
+                            thumb: res.body.items[0].snippet.thumbnails.default.url,
+                            width: res.body.items[0].snippet.thumbnails.default.width,
+                            height: res.body.items[0].snippet.thumbnails.default.height,
+                            duration: humanizeDuration(moment, res.body.items[0].contentDetails.duration)
+                        });
+                    } catch (e) {
+                        console.log(e);
+                    }
+                })
             });
         }
     }
