@@ -143,7 +143,7 @@ class ThingPage extends React.Component {
             'videos': 'video_count'
         };
         const tabTooltips = {
-            'mentioned': `People or books mentioned by ${thing.props.title}`,
+            'mentioned': `Books and people mentioned by ${thing.props.title}`,
             'mentionedby': `People who have mentioned ${thing.props.title}`,
             'books': `Books by ${thing.props.title}`,
             'videos': `Videos by ${thing.props.title}`
@@ -211,9 +211,9 @@ class ThingPage extends React.Component {
                 />;
             pageTitle = `Mentioned - ${thing.props.title}`;
             if (thing.props.type === 'person') {
-                pageDescription = `People or books mentioned by ${thing.props.title}`;
+                pageDescription = `Books and people mentioned by ${thing.props.title}`;
             } else {
-                pageDescription = `People or books mentioned in ${thing.props.title}`;
+                pageDescription = `Books and people mentioned in ${thing.props.title}`;
             }
         } else if (tab === 'mentionedby') {
             tabContent = <ThingMentionedByTab
