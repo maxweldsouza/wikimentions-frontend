@@ -6,6 +6,7 @@ import Link from './Link';
 import Thumbnail from './Thumbnail';
 import utils from './utils';
 import autoBind from 'react-autobind';
+import TweetEmbed from 'react-tweet-embed';
 
 class HomePage extends React.Component {
     static resources () {
@@ -113,6 +114,21 @@ class HomePage extends React.Component {
                 <div className='full-width white'>
                     <div className='row'>
                         <div className='small-12 columns margin-bottom'>
+                            <h2 className='home-section'>What People Are Saying</h2>
+                            <div className='row'>
+                                <div className='small-12 large-6 columns text-center'>
+                                    <TweetEmbed id='841342731049926657' options={{ cards: 'hidden', align: 'center' }} ></TweetEmbed>
+                                </div>
+                                <div className='small-12 large-6 columns text-center'>
+                                    <TweetEmbed id='841342689815744512' options={{ cards: 'hidden', align: 'center' }} ></TweetEmbed>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='full-width'>
+                    <div className='row'>
+                        <div className='small-12 columns margin-bottom'>
                             <h2 className='home-section'>Browse Tags</h2>
                             <div className='row'>
                                 <div className='small-12 medium-6 large-4 columns text-center'>
@@ -147,10 +163,6 @@ class HomePage extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className='full-width'>
-                    <div className='row'>
                         <div className='small-12 columns margin-bottom'>
                             <div className='row'>
                                 <div className='small-12 medium-4 columns'>
