@@ -1,19 +1,17 @@
 import React from 'react';
 
-class Dropdown extends React.Component {
-    render () {
-        return (
-            <span style={{ display: this.props.isOpen ? 'inline' : 'none' }} aria-haspopup={true} aria-expanded={this.props.isOpen}>
-                {this.props.isOpen ? <div
-                    className='dropdown-overlay'
-                    onClick={this.props.onClose}>
-                </div> : null}
-                {this.props.isOpen ? <div className={this.props.className}>
-                    {this.props.children}
-                </div> : null}
-            </span>
-        );
-    }
-}
+const Dropdown = ({ isOpen, onClose, className, children }) => {
+    return (
+        <span style={{ display: isOpen ? 'inline' : 'none' }} aria-haspopup={true} aria-expanded={isOpen}>
+            {isOpen ? <div
+                className='dropdown-overlay'
+                onClick={onClose}>
+            </div> : null}
+            {isOpen ? <div className={className}>
+                {children}
+            </div> : null}
+        </span>
+    );
+};
 
 export default Dropdown;
