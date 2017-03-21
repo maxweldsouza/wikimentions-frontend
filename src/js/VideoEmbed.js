@@ -14,12 +14,13 @@ const YoutubeEmbed = ({
     const parsed = parseUrl(url);
     if (utils.isYoutubeUrl(url)) {
         const queryObject = queryString.parse(parsed.query);
+        const query = autoplay ? '?autoplay=1' : '';
         embed = <iframe
             id='ytplayer'
             type='text/html'
             width={width}
             height={height}
-            src={`https://www.youtube.com/embed/${queryObject.v}${autoplay}`} frameBorder={0}></iframe>;
+            src={`https://www.youtube.com/embed/${queryObject.v}${query}`} frameBorder={0}></iframe>;
     } else {
         return null;
     }
