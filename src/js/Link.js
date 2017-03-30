@@ -28,12 +28,11 @@ const Link = ({ type, tab, id, slug, className, children }) => {
         href = `${pagepath + id}/${slug}`;
     }
     if (nofollow) {
-        return <a
-            rel='nofollow'
-            className={className}
-            href={href}>
-            {children}
-        </a>;
+        return (
+            <a rel="nofollow" className={className} href={href}>
+                {children}
+            </a>
+        );
     }
     return <a className={className} href={href}>{children}</a>;
 };

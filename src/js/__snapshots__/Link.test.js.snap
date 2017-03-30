@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link renders correctly 1`] = `
+<a
+  className={undefined}
+  href="/people/1/target-name"
+/>
+`;
+
+exports[`Link renders correctly 2`] = `
+<a
+  className={undefined}
+  href="/videos/1/target-name"
+/>
+`;
+
+exports[`Link renders correctly 3`] = `
+<a
+  className={undefined}
+  href="/books/1/target-name"
+/>
+`;
