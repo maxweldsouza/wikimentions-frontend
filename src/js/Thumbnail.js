@@ -56,7 +56,7 @@ const Thumbnail = (
     if (!dh) {
         dh = displayWidth / aspectRatio;
     }
-    const placeholder = (
+    const placeholder =
         <div
             className={bordered ? 'placeholder bordered' : 'placeholder'}
             style={{ lineHeight: `${dh}px` }}
@@ -65,10 +65,10 @@ const Thumbnail = (
             {type === 'book' ? <span className="ion-ios-book" /> : null}
             {type === 'video' ? <span className="ion-play" /> : null}
         </div>
-    );
+    ;
     let main;
     if (image) {
-        main = (
+        main =
             <Lazy offset={offset} placeholder={placeholder}>
                 <img
                     className={imageClass}
@@ -79,15 +79,15 @@ const Thumbnail = (
                     alt={alt}
                 />
             </Lazy>
-        );
+        ;
     } else if (type === 'video') {
-        main = (
+        main =
             <Lazy offset={offset} placeholder={placeholder}>
                 <VideoApiThumb url={url} alt={alt}>
                     {placeholder}
                 </VideoApiThumb>
             </Lazy>
-        );
+        ;
     } else {
         main = placeholder;
     }

@@ -17,7 +17,7 @@ const YoutubeEmbed = (
     if (utils.isYoutubeUrl(url)) {
         const queryObject = queryString.parse(parsed.query);
         const query = autoplay ? '?autoplay=1' : '';
-        embed = (
+        embed =
             <iframe
                 id="ytplayer"
                 type="text/html"
@@ -26,7 +26,7 @@ const YoutubeEmbed = (
                 src={`https://www.youtube.com/embed/${queryObject.v}${query}`}
                 frameBorder={0}
             />
-        );
+        ;
     } else {
         return null;
     }
