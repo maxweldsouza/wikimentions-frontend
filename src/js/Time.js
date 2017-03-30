@@ -23,36 +23,49 @@ const toTime = (moment, time, format, type) => {
 };
 
 class Time extends React.Component {
-    static get defaultProps () {
+    static get defaultProps() {
         return {
             hintDirection: 'bottom'
         };
     }
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
             server: true
         };
     }
-    componentDidMount () {
+    componentDidMount() {
         import('moment')
-        .then(moment => {
-            const time = moment.utc(this.props.timestamp);
-            this.setState({
-                time: toTime(moment, time, this.props.format, this.props.type),
-                title: toTitle(moment, time),
-                server: false
-            });
-        })
-        .catch(err => console.log('Failed to load moment', err));
+            .then(moment => {
+                const time = moment.utc(this.props.timestamp);
+                this.setState({
+                    time: toTime(
+                        moment,
+                        time,
+                        this.props.format,
+                        this.props.type
+                    ),
+                    title: toTitle(moment, time),
+                    server: false
+                });
+            })
+            .catch(err => console.log('Failed to load moment', err));
     }
-    render () {
+    render() {
         if (this.state.server) {
             return null;
         }
         return (
-            <time className={`hint--${this.props.hintDirection} hint--rounded hint--no-animate`} aria-label={this.state.title} dateTime={this.props.timestamp}>{this.state.time}</time>
+            <time
+                className={
+                    `hint--${this.props.hintDirection} hint--rounded hint--no-animate`
+                }
+                aria-label={this.state.title}
+                dateTime={this.props.timestamp}
+            >
+                {this.state.time}
+            </time>
         );
     }
 }

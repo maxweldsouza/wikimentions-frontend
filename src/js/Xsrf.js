@@ -4,14 +4,14 @@ import isNode from './isNode';
 import autoBind from 'react-autobind';
 
 class Xsrf extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
             xsrf: ''
         };
     }
-    componentWillMount () {
+    componentWillMount() {
         if (isNode.isBrowser()) {
             const cookie = cookies.get('_xsrf');
             this.setState({
@@ -19,10 +19,8 @@ class Xsrf extends React.Component {
             });
         }
     }
-    render () {
-        return (
-            <input type='hidden' name='_xsrf' value={this.state.xsrf}/>
-        );
+    render() {
+        return <input type="hidden" name="_xsrf" value={this.state.xsrf} />;
     }
 }
 

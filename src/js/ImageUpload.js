@@ -7,7 +7,7 @@ import autoBind from 'react-autobind';
 let Cropper = null;
 
 class ImageUpload extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
@@ -22,20 +22,20 @@ class ImageUpload extends React.Component {
             submitting: false
         };
     }
-    componentDidMount () {
+    componentDidMount() {
         import('react-cropper')
-        .then(cropper => {
-            Cropper = cropper.default;
-            this.setState({
-                server: false
-            });
-        })
-        .catch(err => console.log('Failed to load moment', err));
+            .then(cropper => {
+                Cropper = cropper.default;
+                this.setState({
+                    server: false
+                });
+            })
+            .catch(err => console.log('Failed to load moment', err));
     }
-    handleScale (value) {
+    handleScale(value) {
         this.setState({ scale: value });
     }
-    onChangeText (e) {
+    onChangeText(e) {
         const temp = {
             error: false,
             message: ''
@@ -43,7 +43,7 @@ class ImageUpload extends React.Component {
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     }
-    validateForm () {
+    validateForm() {
         let valid = true;
         if (!this.state.imageDescription) {
             this.setState({
@@ -54,7 +54,7 @@ class ImageUpload extends React.Component {
         }
         return valid;
     }
-    onUpload () {
+    onUpload() {
         let width;
         let height;
         const data = this.refs.cropper.getData();
@@ -71,7 +71,7 @@ class ImageUpload extends React.Component {
         }
         this.resize(width, height, this.uploadImage);
     }
-    resize (width, height, callback) {
+    resize(width, height, callback) {
         const sourceImage = new Image();
 
         sourceImage.onload = () => {
@@ -79,7 +79,9 @@ class ImageUpload extends React.Component {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
 
-            const steps = Math.ceil(Math.log(sourceImage.width / width) / Math.log(2));
+            const steps = Math.ceil(
+                Math.log(sourceImage.width / width) / Math.log(2)
+            );
 
             // set size proportional to image
             canvas.height = height;
@@ -98,23 +100,43 @@ class ImageUpload extends React.Component {
 
             // step 2 - resize 50% of step 1
             for (let i = 1; i < steps; i++) {
-                octx.drawImage(oc, 0, 0, ocWidth, ocHeight,
-                                   0, 0, ocWidth * 0.5, ocHeight * 0.5);
+                octx.drawImage(
+                    oc,
+                    0,
+                    0,
+                    ocWidth,
+                    ocHeight,
+                    0,
+                    0,
+                    ocWidth * 0.5,
+                    ocHeight * 0.5
+                );
                 ocWidth *= 0.5;
                 ocHeight *= 0.5;
             }
 
             // step 3, resize to final size
-            ctx.drawImage(oc, 0, 0, ocWidth, ocHeight,
-                              0, 0, canvas.width, canvas.height);
+            ctx.drawImage(
+                oc,
+                0,
+                0,
+                ocWidth,
+                ocHeight,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
 
             // Convert the canvas to a data URL in PNG format
             callback(canvas.toDataURL());
         };
 
-        sourceImage.src = this.refs.cropper.getCroppedCanvas().toDataURL(this.state.mime);
+        sourceImage.src = this.refs.cropper
+            .getCroppedCanvas()
+            .toDataURL(this.state.mime);
     }
-    uploadImage (image) {
+    uploadImage(image) {
         if (this.validateForm()) {
             if (!this.state.image) {
                 this.setState({
@@ -128,30 +150,30 @@ class ImageUpload extends React.Component {
                 formMessage: ''
             });
             requests
-            .post(`/api/v1/images/${this.props.id}`)
-            .set('X-XSRFToken', cookies.get('_xsrf'))
-            .field('imageDescription', this.state.imageDescription)
-            .field('image', image)
-            .end((err, res) => {
-                this.setState({
-                    submitting: false
+                .post(`/api/v1/images/${this.props.id}`)
+                .set('X-XSRFToken', cookies.get('_xsrf'))
+                .field('imageDescription', this.state.imageDescription)
+                .field('image', image)
+                .end((err, res) => {
+                    this.setState({
+                        submitting: false
+                    });
+                    if (err && err.status) {
+                        this.setState({
+                            formMessage: res.body.message
+                        });
+                    } else {
+                        this.setState({
+                            formMessage: ''
+                        });
+                        snackbar({ message: 'Image uploaded' });
+                        history.pushState(null, null, res.body.redirect);
+                        Mentions.route(res.body.redirect);
+                    }
                 });
-                if (err && err.status) {
-                    this.setState({
-                        formMessage: res.body.message
-                    });
-                } else {
-                    this.setState({
-                        formMessage: ''
-                    });
-                    snackbar({ message: 'Image uploaded' });
-                    history.pushState(null, null, res.body.redirect);
-                    Mentions.route(res.body.redirect);
-                }
-            });
         }
     }
-    fileInput () {
+    fileInput() {
         const fileReader = new FileReader();
         fileReader.onload = e => {
             this.setState({
@@ -161,10 +183,8 @@ class ImageUpload extends React.Component {
         };
         fileReader.readAsDataURL(this.refs.input.files[0]);
     }
-    _crop () {
-
-    }
-    render () {
+    _crop() {}
+    render() {
         if (this.state.server) {
             return null;
         }
@@ -177,66 +197,87 @@ class ImageUpload extends React.Component {
             imageMessage = 'Add a picture of this person';
         }
         return (
-            <div className='row'>
-                <div className='small-12 columns'>
-                    <h1>{this.props.title ? `${this.props.title} - ` : null}Upload Image</h1>
-                    <input type='file' ref='input' onChange={this.fileInput}/>
+            <div className="row">
+                <div className="small-12 columns">
+                    <h1>
+                        {this.props.title ? `${this.props.title} - ` : null}
+                        Upload Image
+                    </h1>
+                    <input type="file" ref="input" onChange={this.fileInput} />
                 </div>
-                <div className='shrink columns'>
-                    {this.props.type === 'person' ? <Cropper
-                        ref='cropper'
-                        src={this.state.image}
-                        className='react-cropper'
-                        // Cropper.js options
-                        viewMode={1}
-                        aspectRatio={1}
-                        minCropBoxWidth={250}
-                        minCropBoxHeight={250}
-                        cropBoxResizable={false}
-                        guides={false}
-                        crop={this._crop} /> : null}
-                    {this.props.type === 'book' ? <Cropper
-                        ref='cropper'
-                        src={this.state.image}
-                        className='react-cropper'
-                        // Cropper.js options
-                        autoCropArea={1}
-                        viewMode={1}
-                        minCropBoxHeight={200}
-                        guides={false}
-                        crop={this._crop} /> : null}
-                    {this.props.type === 'video' ? <Cropper
-                        ref='cropper'
-                        src={this.state.image}
-                        className='react-cropper'
-                        // Cropper.js options
-                        autoCropArea={1}
-                        viewMode={1}
-                        minCropBoxWidth={120}
-                        guides={false}
-                        crop={this._crop} /> : null}
+                <div className="shrink columns">
+                    {this.props.type === 'person'
+                        ? <Cropper
+                              ref="cropper"
+                              src={this.state.image}
+                              className="react-cropper"
+                              // Cropper.js options
+                              viewMode={1}
+                              aspectRatio={1}
+                              minCropBoxWidth={250}
+                              minCropBoxHeight={250}
+                              cropBoxResizable={false}
+                              guides={false}
+                              crop={this._crop}
+                          />
+                        : null}
+                    {this.props.type === 'book'
+                        ? <Cropper
+                              ref="cropper"
+                              src={this.state.image}
+                              className="react-cropper"
+                              // Cropper.js options
+                              autoCropArea={1}
+                              viewMode={1}
+                              minCropBoxHeight={200}
+                              guides={false}
+                              crop={this._crop}
+                          />
+                        : null}
+                    {this.props.type === 'video'
+                        ? <Cropper
+                              ref="cropper"
+                              src={this.state.image}
+                              className="react-cropper"
+                              // Cropper.js options
+                              autoCropArea={1}
+                              viewMode={1}
+                              minCropBoxWidth={120}
+                              guides={false}
+                              crop={this._crop}
+                          />
+                        : null}
                 </div>
-                <div className='small-12 xlarge-expand columns'>
-                    {this.state.formMessage ? <div className='callout alert'>
-                        {this.state.formMessage}
-                    </div> : null}
+                <div className="small-12 xlarge-expand columns">
+                    {this.state.formMessage
+                        ? <div className="callout alert">
+                              {this.state.formMessage}
+                          </div>
+                        : null}
                     <MarkdownInput
-                        name='imageDescription'
-                        placeholder='Add a description for the image, including copyright information, a link to the original source etc. (Markdown is supported)'
-                        rows='5'
-                        label='Description'
+                        name="imageDescription"
+                        placeholder="Add a description for the image, including copyright information, a link to the original source etc. (Markdown is supported)"
+                        rows="5"
+                        label="Description"
                         content={this.state.imageDescription}
                         onChange={this.onChangeText}
                         valid={this.state.descriptionValid}
                         message={this.state.descriptionMessage}
                         sideBySide={false}
                         maxLength={65535}
-                        />
+                    />
                 </div>
-                <div className='small-12 columns'>
-                    <div className='button-group'>
-                        <button className='button' onClick={this.onUpload}>Upload</button>
-                        <button className='button secondary' onClick={this.props.onClose}>Close</button>
+                <div className="small-12 columns">
+                    <div className="button-group">
+                        <button className="button" onClick={this.onUpload}>
+                            Upload
+                        </button>
+                        <button
+                            className="button secondary"
+                            onClick={this.props.onClose}
+                        >
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>

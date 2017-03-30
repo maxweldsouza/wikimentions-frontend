@@ -15,7 +15,7 @@ const humanizeDuration = (moment, ptduration) => {
 };
 
 class VideoApiThumb extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
@@ -25,7 +25,7 @@ class VideoApiThumb extends React.Component {
             duration: ''
         };
     }
-    componentDidMount () {
+    componentDidMount() {
         const parsed = parseUrl(this.props.url);
         let videoId;
         if (this.state.thumb) {
@@ -34,32 +34,57 @@ class VideoApiThumb extends React.Component {
         if (utils.isYoutubeUrl(this.props.url)) {
             const queryObject = queryString.parse(parsed.query);
             videoId = queryObject.v;
-            requests.get(`https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet&fields=items(contentDetails/duration,snippet/thumbnails/default)&id=${videoId}&key=${config.keys.youtube}`).end((err, res) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                import('moment').then(moment => {
-                    try {
-                        this.setState({
-                            thumb: res.body.items[0].snippet.thumbnails.default.url,
-                            width: res.body.items[0].snippet.thumbnails.default.width,
-                            height: res.body.items[0].snippet.thumbnails.default.height,
-                            duration: humanizeDuration(moment, res.body.items[0].contentDetails.duration)
-                        });
-                    } catch (e) {
-                        console.log(e);
+            requests
+                .get(
+                    `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,snippet&fields=items(contentDetails/duration,snippet/thumbnails/default)&id=${videoId}&key=${config.keys.youtube}`
+                )
+                .end((err, res) => {
+                    if (err) {
+                        console.log(err);
+                        return;
                     }
-                })
-            });
+                    import('moment').then(moment => {
+                        try {
+                            this.setState({
+                                thumb: res.body.items[
+                                    0
+                                ].snippet.thumbnails.default.url,
+                                width: res.body.items[
+                                    0
+                                ].snippet.thumbnails.default.width,
+                                height: res.body.items[
+                                    0
+                                ].snippet.thumbnails.default.height,
+                                duration: humanizeDuration(
+                                    moment,
+                                    res.body.items[0].contentDetails.duration
+                                )
+                            });
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    });
+                });
         }
     }
-    render () {
+    render() {
         if (this.state.thumb) {
-            return <span className='video-duration-container'>
-                <img src={this.state.thumb} width={this.state.width} height={this.state.height} style={this.props.style} alt={this.props.alt}/>
-                {this.state.duration ? <span className='video-duration'>{this.state.duration}</span> : null}
-            </span>;
+            return (
+                <span className="video-duration-container">
+                    <img
+                        src={this.state.thumb}
+                        width={this.state.width}
+                        height={this.state.height}
+                        style={this.props.style}
+                        alt={this.props.alt}
+                    />
+                    {this.state.duration
+                        ? <span className="video-duration">
+                              {this.state.duration}
+                          </span>
+                        : null}
+                </span>
+            );
         }
         return this.props.children;
     }

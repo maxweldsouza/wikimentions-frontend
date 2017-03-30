@@ -7,7 +7,7 @@ import Input from './Input';
 import autoBind from 'react-autobind';
 
 class AddVideoNew extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
@@ -20,17 +20,17 @@ class AddVideoNew extends React.Component {
             formMessage: ''
         };
     }
-    onChangeText (e) {
+    onChangeText(e) {
         const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     }
-    onClear (name) {
+    onClear(name) {
         const temp = {};
         temp[name] = '';
         this.setState(temp);
     }
-    validateForm () {
+    validateForm() {
         let valid = true;
         if (!this.state.title) {
             this.setState({
@@ -58,86 +58,99 @@ class AddVideoNew extends React.Component {
         }
         return valid;
     }
-    onSubmit (e) {
+    onSubmit(e) {
         e.preventDefault();
         if (this.validateForm()) {
             this.setState({
                 submitting: true
             });
             requests
-            .post('/api/v1/thing')
-            .type('form')
-            .send({
-                title: this.state.title,
-                url: this.state.url,
-                type: 'video',
-                _xsrf: cookies.get('_xsrf')
-            })
-            .end((err, res) => {
-                if (err && err.status) {
-                    this.setState({
-                        formMessage: res.body.message
-                    });
-                } else {
-                    requests
-                    .post(`/api/v1/thing/${this.props.id}/videos`)
-                    .type('form')
-                    .send({
-                        video_id: res.body.id,
-                        _xsrf: cookies.get('_xsrf')
-                    })
-                    .end((err2, res2) => {
+                .post('/api/v1/thing')
+                .type('form')
+                .send({
+                    title: this.state.title,
+                    url: this.state.url,
+                    type: 'video',
+                    _xsrf: cookies.get('_xsrf')
+                })
+                .end((err, res) => {
+                    if (err && err.status) {
                         this.setState({
-                            submitting: false,
-                            title: '',
-                            url: ''
+                            formMessage: res.body.message
                         });
-                        if (err2 && err2.status) {
-                            this.setState({
-                                formMessage: res2.body.message
+                    } else {
+                        requests
+                            .post(`/api/v1/thing/${this.props.id}/videos`)
+                            .type('form')
+                            .send({
+                                video_id: res.body.id,
+                                _xsrf: cookies.get('_xsrf')
+                            })
+                            .end((err2, res2) => {
+                                this.setState({
+                                    submitting: false,
+                                    title: '',
+                                    url: ''
+                                });
+                                if (err2 && err2.status) {
+                                    this.setState({
+                                        formMessage: res2.body.message
+                                    });
+                                } else {
+                                    this.setState({
+                                        formMessage: ''
+                                    });
+                                    snackbar({ message: 'Video added' });
+                                    history.pushState(
+                                        null,
+                                        null,
+                                        window.location.pathname +
+                                            window.location.search
+                                    );
+                                    Mentions.route(
+                                        window.location.pathname +
+                                            window.location.search
+                                    );
+                                }
                             });
-                        } else {
-                            this.setState({
-                                formMessage: ''
-                            });
-                            snackbar({ message: 'Video added' });
-                            history.pushState(null, null, window.location.pathname + window.location.search);
-                            Mentions.route(window.location.pathname + window.location.search);
-                        }
-                    });
-                }
-            });
+                    }
+                });
         }
     }
-    render () {
+    render() {
         return (
             <form onSubmit={this.onSubmit}>
-                {this.state.formMessage ? <div className='callout alert'>
-                    {this.state.formMessage}
-                </div> : null}
+                {this.state.formMessage
+                    ? <div className="callout alert">
+                          {this.state.formMessage}
+                      </div>
+                    : null}
                 Title
                 <Input
-                    type='text'
-                    name='title'
+                    type="text"
+                    name="title"
                     value={this.state.title}
                     onChange={this.onChangeText}
                     onClear={this.onClear}
                     valid={this.state.titleValid}
-                    message={this.state.titleMessage}/>
+                    message={this.state.titleMessage}
+                />
                 Url
                 <Input
-                    type='text'
-                    name='url'
+                    type="text"
+                    name="url"
                     value={this.state.url}
                     onChange={this.onChangeText}
                     onClear={this.onClear}
                     valid={this.state.urlValid}
-                    placeholder='http://'
-                    message={this.state.urlMessage} />
+                    placeholder="http://"
+                    message={this.state.urlMessage}
+                />
                 <SubmitButton
-                    title='Create'
-                    className='button primary float-right'
-                    submitting={this.state.submitting}/>
+                    title="Create"
+                    className="button primary float-right"
+                    submitting={this.state.submitting}
+                />
             </form>
         );
     }

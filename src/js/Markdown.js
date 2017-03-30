@@ -5,27 +5,27 @@ import nofollow from './nofollow';
 import autoBind from 'react-autobind';
 
 class Markdown extends React.Component {
-    constructor () {
+    constructor() {
         super();
-        this.state = { server: true }
+        this.state = { server: true };
     }
-    static get defaultProps () {
+    static get defaultProps() {
         return {
             className: 'markdown'
         };
     }
-    componentDidMount () {
+    componentDidMount() {
         import('remarkable')
-        .then(Remarkable => {
-            const md = new Remarkable({
-                linkify: true
-            });
-            this.md = md;
-            this.setState({ server: false });
-        })
-        .catch(err => console.log('Failed to load remarkable', err));
+            .then(Remarkable => {
+                const md = new Remarkable({
+                    linkify: true
+                });
+                this.md = md;
+                this.setState({ server: false });
+            })
+            .catch(err => console.log('Failed to load remarkable', err));
     }
-    render () {
+    render() {
         if (this.state.server) {
             return null;
         }
@@ -34,7 +34,12 @@ class Markdown extends React.Component {
         const obj = {
             __html: nofollow(this.md.render(this.props.markdown))
         };
-        return <div className={this.props.className} dangerouslySetInnerHTML={obj} />;// eslint-disable-line react/no-danger
+        return (
+            <div
+                className={this.props.className}
+                dangerouslySetInnerHTML={obj}
+            />
+        ); // eslint-disable-line react/no-danger
     }
 }
 

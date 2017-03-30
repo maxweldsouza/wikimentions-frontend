@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 const extractSass = new ExtractTextPlugin({
     filename: '[name]-[contenthash:8].css',
@@ -28,20 +28,24 @@ export default {
             {
                 test: /\.scss$/,
                 use: extractSass.extract({
-                    loader: [{
-                        loader: 'css-loader', options: {
-                            sourceMap: false
+                    loader: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: false
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: false,
+                                includePaths: [
+                                    'node_modules/foundation-sites/scss',
+                                    'node_modules/motion-ui/src'
+                                ]
+                            }
                         }
-                    },
-                    {
-                        loader: 'sass-loader', options: {
-                            sourceMap: false,
-                            includePaths: [
-                                'node_modules/foundation-sites/scss',
-                                'node_modules/motion-ui/src'
-                            ]
-                        }
-                    }]
+                    ]
                 })
             }
         ]

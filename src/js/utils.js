@@ -20,7 +20,10 @@ const youtubeThumb = (url, size) => {
         size = 'large';
     }
     img = sizes[size];
-    if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
+    if (
+        parsed.hostname === 'www.youtube.com' ||
+        parsed.hostname === 'youtube.com'
+    ) {
         const queryObject = queryString.parse(parsed.query);
         return `https://i.ytimg.com/vi/${queryObject.v}/${img}`;
     }
@@ -28,7 +31,8 @@ const youtubeThumb = (url, size) => {
 
 const isYoutubeUrl = url => {
     const parsed = parseUrl(url);
-    return parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com';
+    return parsed.hostname === 'www.youtube.com' ||
+        parsed.hostname === 'youtube.com';
 };
 
 export default {

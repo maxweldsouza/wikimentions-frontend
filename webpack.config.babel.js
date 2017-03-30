@@ -28,20 +28,24 @@ export default {
             {
                 test: /\.scss$/,
                 use: extractSass.extract({
-                    loader: [{
-                        loader: 'css-loader', options: {
-                            sourceMap: true
+                    loader: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true,
+                                includePaths: [
+                                    'node_modules/foundation-sites/scss',
+                                    'node_modules/motion-ui/src'
+                                ]
+                            }
                         }
-                    },
-                    {
-                        loader: 'sass-loader', options: {
-                            sourceMap: true,
-                            includePaths: [
-                                'node_modules/foundation-sites/scss',
-                                'node_modules/motion-ui/src'
-                            ]
-                        }
-                    }]
+                    ]
                 })
             }
         ]

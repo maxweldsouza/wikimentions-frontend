@@ -75,7 +75,9 @@ const urlToComponentName = url => {
         componentName = 'DiscussPage';
     } else if (/^edit\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'EditPage';
-    } else if (/^people\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby|books)$/.test(path)) {
+    } else if (
+        /^people\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby|books)$/.test(path)
+    ) {
         componentName = 'ThingPage';
     } else if (/^people\/([0-9]+)\/([^/]+)$/.test(path)) {
         componentName = 'ThingPage';
@@ -103,14 +105,21 @@ const urlToComponentName = url => {
         componentName = 'KitchenSinkPage';
     } else if (/^search$/.test(path)) {
         componentName = 'SearchPage';
-    } else if (/^(about-us|terms-of-use|privacy-policy|guidelines|media-kit)$/.test(path)) {
+    } else if (
+        /^(about-us|terms-of-use|privacy-policy|guidelines|media-kit)$/.test(
+            path
+        )
+    ) {
         componentName = 'ContentPage';
     } else if (/^feedback$/.test(path)) {
         componentName = 'FeedbackPage';
     } else if (/^bugs$/.test(path)) {
         componentName = 'BugPage';
     } else {
-        throw { status: 404, message: 'Count not find what you were looking for' };
+        throw {
+            status: 404,
+            message: 'Count not find what you were looking for'
+        };
     }
     return componentName;
 };
@@ -120,16 +129,16 @@ const clientSide = (() => typeof window !== 'undefined')();
 const requestPromise = url => {
     return new Promise((resolve, reject) => {
         request
-        .get(url)
-        .on('progress', () => {
-            NProgress.inc();
-        })
-        .end((err, res) => {
-            if (err) {
-                reject(err);
-            }
-            resolve(res);
-        });
+            .get(url)
+            .on('progress', () => {
+                NProgress.inc();
+            })
+            .end((err, res) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(res);
+            });
     });
 };
 
@@ -156,18 +165,18 @@ const fetchData = api => {
     });
     return new Promise((resolve, reject) => {
         Promise.all(paths.map(requestPromise))
-        .then(values => {
-            const apidata = {};
-            const etags = [];
-            for (let i = 0; i < names.length; i++) {
-                apidata[names[i]] = values[i].body;
-                etags.push(values[i].headers.etag);
-            }
-            resolve({ apidata, etags });
-        })
-        .catch(function (err) {
-            reject(err);
-        });
+            .then(values => {
+                const apidata = {};
+                const etags = [];
+                for (let i = 0; i < names.length; i++) {
+                    apidata[names[i]] = values[i].body;
+                    etags.push(values[i].headers.etag);
+                }
+                resolve({ apidata, etags });
+            })
+            .catch(function(err) {
+                reject(err);
+            });
     });
 };
 

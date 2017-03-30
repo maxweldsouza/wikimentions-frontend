@@ -7,7 +7,7 @@ import Input from './Input';
 import autoBind from 'react-autobind';
 
 class ChangePassword extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
@@ -18,17 +18,17 @@ class ChangePassword extends React.Component {
             formMessage: ''
         };
     }
-    onChangeText (e) {
+    onChangeText(e) {
         const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     }
-    onClear (name) {
+    onClear(name) {
         const temp = {};
         temp[name] = '';
         this.setState(temp);
     }
-    changePassword (e) {
+    changePassword(e) {
         e.preventDefault();
         if (this.state.new !== this.state.repeat) {
             this.setState({
@@ -40,71 +40,84 @@ class ChangePassword extends React.Component {
                 formMessage: ''
             });
             requests
-            .post('/api/v1/changepassword')
-            .type('form')
-            .send({
-                old: this.state.old,
-                new: this.state.new,
-                _xsrf: cookies.get('_xsrf')
-            })
-            .end((err, res) => {
-                this.setState({
-                    submitting: false
+                .post('/api/v1/changepassword')
+                .type('form')
+                .send({
+                    old: this.state.old,
+                    new: this.state.new,
+                    _xsrf: cookies.get('_xsrf')
+                })
+                .end((err, res) => {
+                    this.setState({
+                        submitting: false
+                    });
+                    if (err && err.status) {
+                        this.setState({
+                            formMessage: res.body.message
+                        });
+                    } else {
+                        this.setState({
+                            formMessage: ''
+                        });
+                        snackbar({ message: 'Password changed' });
+                    }
                 });
-                if (err && err.status) {
-                    this.setState({
-                        formMessage: res.body.message
-                    });
-                } else {
-                    this.setState({
-                        formMessage: ''
-                    });
-                    snackbar({ message: 'Password changed' });
-                }
-            });
         }
     }
-    render () {
+    render() {
         return (
-            <div className='tabs-panel is-active' role='tabpanel' aria-hidden='false'>
-                <div className='row'>
-                    <div className='large-8 columns'>
-                        <form onSubmit={this.changePassword} className='columns box'>
+            <div
+                className="tabs-panel is-active"
+                role="tabpanel"
+                aria-hidden="false"
+            >
+                <div className="row">
+                    <div className="large-8 columns">
+                        <form
+                            onSubmit={this.changePassword}
+                            className="columns box"
+                        >
                             <h2>Change Password</h2>
-                            {this.state.formMessage ? <div className='callout alert'>
-                                {this.state.formMessage}
-                            </div> : null}
+                            {this.state.formMessage
+                                ? <div className="callout alert">
+                                      {this.state.formMessage}
+                                  </div>
+                                : null}
                             Old Password
                             <Input
-                                type='password'
-                                name='old'
+                                type="password"
+                                name="old"
                                 onChange={this.onChangeText}
                                 value={this.state.old}
                                 onClear={this.onClear}
                                 valid={true}
-                                message={''}/>
+                                message={''}
+                            />
                             New Password
                             <Input
-                                type='password'
-                                name='new'
+                                type="password"
+                                name="new"
                                 onChange={this.onChangeText}
                                 value={this.state.new}
                                 onClear={this.onClear}
                                 valid={true}
-                                message={''}/>
+                                message={''}
+                            />
                             Repeat Password
                             <Input
-                                type='password'
-                                name='repeat'
+                                type="password"
+                                name="repeat"
                                 onChange={this.onChangeText}
                                 value={this.state.repeat}
                                 onClear={this.onClear}
                                 valid={true}
-                                message={''}/>
+                                message={''}
+                            />
                             <SubmitButton
-                                title='Save'
-                                className='button primary float-right'
-                                submitting={this.state.submitting}/>
+                                title="Save"
+                                className="button primary float-right"
+                                submitting={this.state.submitting}
+                            />
                         </form>
                     </div>
                 </div>

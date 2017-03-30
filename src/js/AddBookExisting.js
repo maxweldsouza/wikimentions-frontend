@@ -7,7 +7,7 @@ import SubmitButton from './SubmitButton';
 import autoBind from 'react-autobind';
 
 class AddBookExisting extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
@@ -18,12 +18,12 @@ class AddBookExisting extends React.Component {
             formMessage: ''
         };
     }
-    onSelect (x) {
+    onSelect(x) {
         this.setState({
             book_id: x.id
         });
     }
-    validateForm () {
+    validateForm() {
         let valid = true;
         if (!this.state.book_id) {
             this.setState({
@@ -39,53 +39,66 @@ class AddBookExisting extends React.Component {
         }
         return valid;
     }
-    onSubmit (e) {
+    onSubmit(e) {
         e.preventDefault();
         if (this.validateForm()) {
             this.setState({
                 submitting: true
             });
             requests
-            .post(`/api/v1/thing/${this.props.id}/books`)
-            .type('form')
-            .send({
-                book_id: this.state.book_id,
-                _xsrf: cookies.get('_xsrf')
-            })
-            .end((err, res) => {
-                this.setState({
-                    submitting: false
+                .post(`/api/v1/thing/${this.props.id}/books`)
+                .type('form')
+                .send({
+                    book_id: this.state.book_id,
+                    _xsrf: cookies.get('_xsrf')
+                })
+                .end((err, res) => {
+                    this.setState({
+                        submitting: false
+                    });
+                    if (err && err.status) {
+                        this.setState({
+                            formMessage: res.body.message
+                        });
+                    } else {
+                        this.setState({
+                            formMessage: ''
+                        });
+                        snackbar({ message: 'Book added' });
+                        history.pushState(
+                            null,
+                            null,
+                            window.location.pathname + window.location.search
+                        );
+                        Mentions.route(
+                            window.location.pathname + window.location.search
+                        );
+                    }
                 });
-                if (err && err.status) {
-                    this.setState({
-                        formMessage: res.body.message
-                    });
-                } else {
-                    this.setState({
-                        formMessage: ''
-                    });
-                    snackbar({ message: 'Book added' });
-                    history.pushState(null, null, window.location.pathname + window.location.search);
-                    Mentions.route(window.location.pathname + window.location.search);
-                }
-            });
         }
     }
-    render () {
+    render() {
         return (
             <form onSubmit={this.onSubmit}>
-                {this.state.formMessage ? <div className='callout alert'>
-                    {this.state.formMessage}
-                </div> : null}
+                {this.state.formMessage
+                    ? <div className="callout alert">
+                          {this.state.formMessage}
+                      </div>
+                    : null}
                 Search for a book
                 <Select
-                    name='book_id'
+                    name="book_id"
                     onSelectValue={this.onSelect}
                     types={['book']}
                     valid={this.state.bookValid}
                     message={this.state.bookMessage}
-                    placeholder='Book Title'/>
-                <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting}/>
+                    placeholder="Book Title"
+                />
+                <SubmitButton
+                    title="Add"
+                    className="button primary float-right"
+                    submitting={this.state.submitting}
+                />
             </form>
         );
     }

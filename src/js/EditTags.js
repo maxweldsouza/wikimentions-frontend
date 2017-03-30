@@ -9,12 +9,12 @@ import autoBind from 'react-autobind';
 const allTags = ['Science', 'Startups', 'Programming'];
 
 class EditTags extends React.Component {
-    static get defaultProps () {
+    static get defaultProps() {
         return {
             tags: []
         };
     }
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
@@ -24,114 +24,151 @@ class EditTags extends React.Component {
             tag: ''
         };
     }
-    onOpenModal () {
+    onOpenModal() {
         this.setState({
             modalIsOpen: true
         });
     }
-    onCloseModal () {
+    onCloseModal() {
         this.setState({
             modalIsOpen: false
         });
     }
-    onRemoveTag (tag) {
+    onRemoveTag(tag) {
         this.setState({
             submitting: true
         });
         requests
-        .delete(`/api/v1/tag/${this.props.id}`)
-        .type('form')
-        .send({
-            tag,
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
-            this.setState({
-                submitting: false
+            .delete(`/api/v1/tag/${this.props.id}`)
+            .type('form')
+            .send({
+                tag,
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end((err, res) => {
+                this.setState({
+                    submitting: false
+                });
+                if (err && err.status) {
+                    this.setState({
+                        formMessage: res.body.message
+                    });
+                } else {
+                    this.setState({
+                        formMessage: ''
+                    });
+                    snackbar({ message: 'Tag removed' });
+                    history.pushState(
+                        null,
+                        null,
+                        window.location.pathname + window.location.search
+                    );
+                    Mentions.route(
+                        window.location.pathname + window.location.search
+                    );
+                }
             });
-            if (err && err.status) {
-                this.setState({
-                    formMessage: res.body.message
-                });
-            } else {
-                this.setState({
-                    formMessage: ''
-                });
-                snackbar({ message: 'Tag removed' });
-                history.pushState(null, null, window.location.pathname + window.location.search);
-                Mentions.route(window.location.pathname + window.location.search);
-            }
-        });
     }
-    onAddTag (e) {
+    onAddTag(e) {
         e.preventDefault();
         this.setState({
             submitting: true
         });
         requests
-        .post(`/api/v1/tag/${this.props.id}`)
-        .type('form')
-        .send({
-            tag: this.state.tag,
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
-            this.setState({
-                submitting: false
+            .post(`/api/v1/tag/${this.props.id}`)
+            .type('form')
+            .send({
+                tag: this.state.tag,
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end((err, res) => {
+                this.setState({
+                    submitting: false
+                });
+                if (err && err.status) {
+                    this.setState({
+                        formMessage: res.body.message
+                    });
+                } else {
+                    this.setState({
+                        formMessage: ''
+                    });
+                    snackbar({ message: 'Tag added' });
+                    history.pushState(
+                        null,
+                        null,
+                        window.location.pathname + window.location.search
+                    );
+                    Mentions.route(
+                        window.location.pathname + window.location.search
+                    );
+                }
             });
-            if (err && err.status) {
-                this.setState({
-                    formMessage: res.body.message
-                });
-            } else {
-                this.setState({
-                    formMessage: ''
-                });
-                snackbar({ message: 'Tag added' });
-                history.pushState(null, null, window.location.pathname + window.location.search);
-                Mentions.route(window.location.pathname + window.location.search);
-            }
-        });
     }
-    onChangeTag (e) {
+    onChangeTag(e) {
         this.setState({
             tag: e.target.value
         });
     }
-    render () {
+    render() {
         return (
             <span>
-                <a onClick={this.onOpenModal} className='tag round secondary hint--right hint--rounded hint--no-animate' aria-label='Edit Tags'>
-                    <span className='ion-edit'/>
+                <a
+                    onClick={this.onOpenModal}
+                    className="tag round secondary hint--right hint--rounded hint--no-animate"
+                    aria-label="Edit Tags"
+                >
+                    <span className="ion-edit" />
                 </a>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onClose={this.onCloseModal}
-                    className='modal-content modal-small'
-                    overlayClassName='modal-overlay'>
+                    className="modal-content modal-small"
+                    overlayClassName="modal-overlay"
+                >
                     <form onSubmit={this.onAddTag}>
                         <h1>Edit Tags</h1>
-                        {this.state.formMessage ? <div className='callout alert'>
-                            {this.state.formMessage}
-                        </div> : null}
+                        {this.state.formMessage
+                            ? <div className="callout alert">
+                                  {this.state.formMessage}
+                              </div>
+                            : null}
                         <p>
                             Tags:
                             {this.props.tags.map(x => {
-                                return <span className='tag round no-margin-bottom' href={`/tags/${x}`} key={x}>
-                                    {x} <span onClick={this.onRemoveTag.bind(null, x)} className='ion-close-circled'/>
-                                </span>;
+                                return (
+                                    <span
+                                        className="tag round no-margin-bottom"
+                                        href={`/tags/${x}`}
+                                        key={x}
+                                    >
+                                        {x}
+                                        {' '}
+                                        <span
+                                            onClick={this.onRemoveTag.bind(
+                                                null,
+                                                x
+                                            )}
+                                            className="ion-close-circled"
+                                        />
+                                    </span>
+                                );
                             })}
                         </p>
-                        <select onChange={this.onChangeTag} value={this.state.tag}>
-                            <option value='' disabled>Add Tag...</option>
+                        <select
+                            onChange={this.onChangeTag}
+                            value={this.state.tag}
+                        >
+                            <option value="" disabled>Add Tag...</option>
                             {allTags.map(x => {
                                 return <option value={x} key={x}>{x}</option>;
                             })}
                         </select>
                         <SubmitButton
-                            title='Add'
-                            className='button float-right'
-                            submitting={this.state.submitting}/>
+                            title="Add"
+                            className="button float-right"
+                            submitting={this.state.submitting}
+                        />
                     </form>
                 </Modal>
             </span>

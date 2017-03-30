@@ -14,7 +14,7 @@ import Video from './Video';
 import autoBind from 'react-autobind';
 
 class ListPage extends React.Component {
-    static resources (appstate) {
+    static resources(appstate) {
         const [type, id, slug] = appstate.path.split('/');
         const page = appstate.query.page;
         const query = page ? `?page=${page}` : '';
@@ -31,7 +31,7 @@ class ListPage extends React.Component {
             ]
         };
     }
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
@@ -42,43 +42,49 @@ class ListPage extends React.Component {
             message: ''
         };
     }
-    onSelect (x) {
+    onSelect(x) {
         this.setState({
             id: x.id
         });
     }
-    onSubmit (e) {
+    onSubmit(e) {
         const [type, id, slug] = this.props.path.split('/');
         e.preventDefault();
         this.setState({
             submitting: true
         });
         requests
-        .post(`/api/v1/lists/items/${id}`)
-        .type('form')
-        .send({
-            obj_id: this.state.id,
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
-            this.setState({
-                submitting: false
+            .post(`/api/v1/lists/items/${id}`)
+            .type('form')
+            .send({
+                obj_id: this.state.id,
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end((err, res) => {
+                this.setState({
+                    submitting: false
+                });
+                if (err && err.status) {
+                    this.setState({
+                        formMessage: res.body.message
+                    });
+                } else {
+                    this.setState({
+                        formMessage: ''
+                    });
+                    snackbar({ message: 'Added item' });
+                    history.pushState(
+                        null,
+                        null,
+                        window.location.pathname + window.location.search
+                    );
+                    Mentions.route(
+                        window.location.pathname + window.location.search
+                    );
+                }
             });
-            if (err && err.status) {
-                this.setState({
-                    formMessage: res.body.message
-                });
-            } else {
-                this.setState({
-                    formMessage: ''
-                });
-                snackbar({ message: 'Added item' });
-                history.pushState(null, null, window.location.pathname + window.location.search);
-                Mentions.route(window.location.pathname + window.location.search);
-            }
-        });
     }
-    render () {
+    render() {
         const list = this.props.data.items.items;
         const title = this.props.data.list.title;
         const description = this.props.data.list.description;
@@ -89,104 +95,157 @@ class ListPage extends React.Component {
         const end = page * list.length;
         let metaRobots;
         if (total === 0) {
-            metaRobots = { 'name': 'robots', 'content': 'noindex' };
+            metaRobots = { name: 'robots', content: 'noindex' };
         } else {
-            metaRobots = { 'name': 'robots', 'content': 'index' };
+            metaRobots = { name: 'robots', content: 'index' };
         }
         return (
-            <div className='flex-wrapper'>
+            <div className="flex-wrapper">
                 <Helmet
                     title={title}
                     titleTemplate={`%s - ${config.name} - Lists`}
-                    meta={[
-                        metaRobots
-                    ]}
+                    meta={[metaRobots]}
                     link={[
-                        { 'rel': 'canonical', 'href': config.url + this.props.path }
+                        { rel: 'canonical', href: config.url + this.props.path }
                     ]}
-                    />
+                />
                 <Navbar
                     loggedin={this.props.loggedin}
                     username={this.props.username}
                     userid={this.props.userid}
-                    toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body white'>
-                    <div className='small-12 large-8 columns'>
-                        <div className='row'>
-                            <div className='small-12 columns'>
-                                <div className=''>
+                    toggleSidebar={this.props.toggleSidebar}
+                />
+                <div className="row page-body white">
+                    <div className="small-12 large-8 columns">
+                        <div className="row">
+                            <div className="small-12 columns">
+                                <div className="">
                                     <h1>List - {title}</h1>
                                     {description}
-                                    <hr className='no-margin-bottom'/>
+                                    <hr className="no-margin-bottom" />
 
-                                    <div className='margin-bottom'>
+                                    <div className="margin-bottom">
                                         {list.map(x => {
                                             if (x.props.type === 'video') {
-                                                return <Video
+                                                return (
+                                                    <Video
                                                         key={x.id}
                                                         id={x.id}
                                                         type={x.props.type}
                                                         slug={x.props.slug}
                                                         title={x.props.title}
-                                                        mentioned_count={x.mentioned_count}
-                                                        mentioned_by_count={x.mentioned_by_count}
+                                                        mentioned_count={
+                                                            x.mentioned_count
+                                                        }
+                                                        mentioned_by_count={
+                                                            x.mentioned_by_count
+                                                        }
                                                         image={x.image}
-                                                        url={x.props.url}/>;
-                                            } else if (x.props.type === 'book') {
-                                                return <Book
+                                                        url={x.props.url}
+                                                    />
+                                                );
+                                            } else if (
+                                                x.props.type === 'book'
+                                            ) {
+                                                return (
+                                                    <Book
+                                                        key={x.id}
+                                                        id={x.id}
+                                                        image={x.image}
+                                                        type={x.props.type}
+                                                        slug={x.props.slug}
+                                                        title={x.props.title}
+                                                        description={
+                                                            x.props.description
+                                                        }
+                                                        mentioned_count={
+                                                            x.mentioned_count
+                                                        }
+                                                        mentioned_by_count={
+                                                            x.mentioned_by_count
+                                                        }
+                                                        isbn={x.isbn}
+                                                        isbn13={x.isbn13}
+                                                    />
+                                                );
+                                            }
+                                            return (
+                                                <Person
                                                     key={x.id}
                                                     id={x.id}
                                                     image={x.image}
                                                     type={x.props.type}
                                                     slug={x.props.slug}
                                                     title={x.props.title}
-                                                    description={x.props.description}
-                                                    mentioned_count={x.mentioned_count}
-                                                    mentioned_by_count={x.mentioned_by_count}
+                                                    description={
+                                                        x.props.description
+                                                    }
+                                                    book_count={x.book_count}
+                                                    video_count={x.video_count}
+                                                    mentioned_count={
+                                                        x.mentioned_count
+                                                    }
+                                                    mentioned_by_count={
+                                                        x.mentioned_by_count
+                                                    }
                                                     isbn={x.isbn}
                                                     isbn13={x.isbn13}
-                                                    />;
-                                            }
-                                            return <Person
-                                                key={x.id}
-                                                id={x.id}
-                                                image={x.image}
-                                                type={x.props.type}
-                                                slug={x.props.slug}
-                                                title={x.props.title}
-                                                description={x.props.description}
-                                                book_count={x.book_count}
-                                                video_count={x.video_count}
-                                                mentioned_count={x.mentioned_count}
-                                                mentioned_by_count={x.mentioned_by_count}
-                                                isbn={x.isbn}
-                                                isbn13={x.isbn13}/>;
+                                                />
+                                            );
                                         })}
-                                        {list.length === 0 ? <div>
-                                            <div className='blankslate'>
-                                                <span className='icon ion-android-list'/>
-                                                <h3>List is Empty</h3>
-                                                No items have been added to this list. You can begin adding items below.
-                                            </div>
-                                            <hr />
-                                        </div> : null}
+                                        {list.length === 0
+                                            ? <div>
+                                                  <div className="blankslate">
+                                                      <span
+                                                          className="icon ion-android-list"
+                                                      />
+                                                      <h3>List is Empty</h3>
+                                                      No items have been added to this list. You can begin adding items below.
+                                                  </div>
+                                                  <hr />
+                                              </div>
+                                            : null}
                                     </div>
-                                    <Pagination path={this.props.path} page={this.props.query.page} count={list.length} total={total}/>
-                                    {list.length > 0 ? <div className='text-right'>
-                                        Showing results {start} to {end} of {total}
-                                    </div> : null}
+                                    <Pagination
+                                        path={this.props.path}
+                                        page={this.props.query.page}
+                                        count={list.length}
+                                        total={total}
+                                    />
+                                    {list.length > 0
+                                        ? <div className="text-right">
+                                              Showing results
+                                              {' '}
+                                              {start}
+                                              {' '}
+                                              to
+                                              {' '}
+                                              {end}
+                                              {' '}
+                                              of
+                                              {' '}
+                                              {total}
+                                          </div>
+                                        : null}
                                     <h2>Add to list</h2>
                                     <form onSubmit={this.onSubmit}>
-                                        {this.state.formMessage ? <div className='callout alert'>
-                                            {this.state.formMessage}
-                                        </div> : null}
+                                        {this.state.formMessage
+                                            ? <div className="callout alert">
+                                                  {this.state.formMessage}
+                                              </div>
+                                            : null}
                                         <Select
-                                            name='id'
-                                            placeholder='Search'
+                                            name="id"
+                                            placeholder="Search"
                                             onSelectValue={this.onSelect}
                                             valid={this.state.valid}
-                                            message={this.state.message} />
-                                        <SubmitButton title='Add' className='button primary float-right' submitting={this.state.submitting}/>
+                                            message={this.state.message}
+                                        />
+                                        <SubmitButton
+                                            title="Add"
+                                            className="button primary float-right"
+                                            submitting={this.state.submitting}
+                                        />
                                     </form>
                                 </div>
                             </div>

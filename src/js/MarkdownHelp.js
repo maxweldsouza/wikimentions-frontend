@@ -4,24 +4,24 @@ import Markdown from './Markdown';
 import autoBind from 'react-autobind';
 
 class MarkdownHelp extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
             modalIsOpen: false
         };
     }
-    onOpenModal () {
+    onOpenModal() {
         this.setState({
             modalIsOpen: true
         });
     }
-    onCloseModal () {
+    onCloseModal() {
         this.setState({
             modalIsOpen: false
         });
     }
-    render () {
+    render() {
         const mdHelp = [
             ['> Blockquote', '> quote'],
             ['**Bold**', '**text**'],
@@ -32,12 +32,19 @@ class MarkdownHelp extends React.Component {
         ];
         return (
             <span>
-                <a onClick={this.onOpenModal} className='secondary hint--right hint--rounded hint--no-animate' aria-label='Markdown help'><span className='ion-help-circled'/></a>
+                <a
+                    onClick={this.onOpenModal}
+                    className="secondary hint--right hint--rounded hint--no-animate"
+                    aria-label="Markdown help"
+                >
+                    <span className="ion-help-circled" />
+                </a>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onClose={this.onCloseModal}
-                    className='modal-content modal-small'
-                    overlayClassName='modal-overlay'>
+                    className="modal-content modal-small"
+                    overlayClassName="modal-overlay"
+                >
                     <h1>Markdown Help</h1>
                     <table>
                         <thead>
@@ -98,12 +105,17 @@ class MarkdownHelp extends React.Component {
                                     </blockquote>
                                 </td>
                                 <td>
-                                    > quote
+                                    &gt; quote
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <button className='button float-right' onClick={this.onCloseModal}>Close</button>
+                    <button
+                        className="button float-right"
+                        onClick={this.onCloseModal}
+                    >
+                        Close
+                    </button>
                 </Modal>
             </span>
         );

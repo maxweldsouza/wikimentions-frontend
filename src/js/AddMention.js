@@ -13,7 +13,7 @@ import SubmitButton from './SubmitButton';
 import autoBind from 'react-autobind';
 
 class AddMention extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
@@ -32,12 +32,12 @@ class AddMention extends React.Component {
             submitting: false
         };
     }
-    onChangeText (e) {
+    onChangeText(e) {
         const temp = {};
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     }
-    validateForm () {
+    validateForm() {
         let valid = true;
         if (!this.state.mentioned_by) {
             this.setState({
@@ -77,131 +77,180 @@ class AddMention extends React.Component {
         }
         return valid;
     }
-    onSubmit (e) {
+    onSubmit(e) {
         e.preventDefault();
         if (this.validateForm()) {
             this.setState({
                 submitting: true
             });
             requests
-            .post('/api/v1/mentions')
-            .type('form')
-            .send({
-                description: this.state.description,
-                reference: this.state.reference,
-                mentioned_by: this.state.mentioned_by,
-                mentioned_in: this.state.mentioned_in,
-                mentioned: this.state.mentioned,
-                _xsrf: cookies.get('_xsrf')
-            })
-            .end((err, res) => {
-                this.setState({
-                    submitting: false
+                .post('/api/v1/mentions')
+                .type('form')
+                .send({
+                    description: this.state.description,
+                    reference: this.state.reference,
+                    mentioned_by: this.state.mentioned_by,
+                    mentioned_in: this.state.mentioned_in,
+                    mentioned: this.state.mentioned,
+                    _xsrf: cookies.get('_xsrf')
+                })
+                .end((err, res) => {
+                    this.setState({
+                        submitting: false
+                    });
+                    if (err && err.status) {
+                        this.setState({
+                            formMessage: res.body.message
+                        });
+                    } else {
+                        this.setState({
+                            formMessage: ''
+                        });
+                        snackbar({ message: 'Mention added' });
+                        history.pushState(
+                            null,
+                            null,
+                            window.location.pathname + window.location.search
+                        );
+                        Mentions.route(
+                            window.location.pathname + window.location.search
+                        );
+                    }
                 });
-                if (err && err.status) {
-                    this.setState({
-                        formMessage: res.body.message
-                    });
-                } else {
-                    this.setState({
-                        formMessage: ''
-                    });
-                    snackbar({ message: 'Mention added' });
-                    history.pushState(null, null, window.location.pathname + window.location.search);
-                    Mentions.route(window.location.pathname + window.location.search);
-                }
-            });
         }
     }
-    onChangeMentionedBy (x) {
+    onChangeMentionedBy(x) {
         this.setState({
             mentioned_by: x.id
         });
     }
-    onChangeMentionedIn (x) {
+    onChangeMentionedIn(x) {
         this.setState({
             mentioned_in: x.id
         });
     }
-    onChangeMentioned (x) {
+    onChangeMentioned(x) {
         this.setState({
             mentioned: x.id
         });
     }
-    render () {
+    render() {
         const id = this.props.id;
-        const loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to add a Mention.</span>;
+        const loggedOutMessage = (
+            <span>
+                You need to <LoginModal /> / <SignupModal /> to add a Mention.
+            </span>
+        );
         let parsed;
         if (this.state.reference) {
             parsed = parseUrl(this.state.reference);
         }
-        return <div className='small-12 columns'>
-            <Restricted message={loggedOutMessage}>
-                <h2>Add mention</h2>
-                <IpWarning loggedin={this.props.loggedin}/>
-                {this.state.formMessage ? <div className='callout alert'>
-                    {this.state.formMessage}
-                </div> : null}
-                <div className='row'>
-                    <div className='small-12 large-4 large-order-2 columns'>
-                        <div className='callout warning'>
-                            People, books and videos must have existing pages on WikiMentions. <a href='/create' target='_blank'>Create</a> a page if it doesn't already exist.
+        return (
+            <div className="small-12 columns">
+                <Restricted message={loggedOutMessage}>
+                    <h2>Add mention</h2>
+                    <IpWarning loggedin={this.props.loggedin} />
+                    {this.state.formMessage
+                        ? <div className="callout alert">
+                              {this.state.formMessage}
+                          </div>
+                        : null}
+                    <div className="row">
+                        <div className="small-12 large-4 large-order-2 columns">
+                            <div className="callout warning">
+                                People, books and videos must have existing pages on WikiMentions.
+                                {' '}
+                                <a href="/create" target="_blank">Create</a>
+                                {' '}
+                                a page if it doesn't already exist.
+                            </div>
                         </div>
+                        <form
+                            onSubmit={this.onSubmit}
+                            className="small-12 large-8 large-order-1 columns"
+                        >
+                            {this.props.mentioned_by
+                                ? null
+                                : <span>
+                                      Mentioned By (Person)
+                                      <Select
+                                          name="mentioned_by"
+                                          valid={this.state.mentionedByValid}
+                                          message={
+                                              this.state.mentionedByMessage
+                                          }
+                                          onSelectValue={
+                                              this.onChangeMentionedBy
+                                          }
+                                          types={['person']}
+                                      />
+                                  </span>}
+                            {this.props.mentioned
+                                ? null
+                                : <span>
+                                      Mentioned (Person or Book or Video)
+                                      <Select
+                                          valid={this.state.mentionedValid}
+                                          message={this.state.mentionedMessage}
+                                          name="mentioned"
+                                          onSelectValue={this.onChangeMentioned}
+                                      />
+                                  </span>}
+                            {this.props.mentioned_in
+                                ? null
+                                : <span>
+                                      Mentioned In (Book or Video)
+                                      <Select
+                                          valid={this.state.mentionedInValid}
+                                          message={
+                                              this.state.mentionedInMessage
+                                          }
+                                          placeholder={
+                                              this.props.type === 'person'
+                                                  ? 'Optional'
+                                                  : ''
+                                          }
+                                          name="mentioned_in"
+                                          onSelectValue={
+                                              this.onChangeMentionedIn
+                                          }
+                                          types={['book', 'video']}
+                                      />
+                                  </span>}
+                            {this.props.type === 'person'
+                                ? <span>
+                                      Reference (If mention isn't in a book or video)
+                                      {this.state.reference &&
+                                          parsed.hostname === 'www.youtube.com'
+                                          ? <div className="callout warning">
+                                                Videos belong on separate pages. Create a page for this video if it doesn't already exist and add it to "Mentioned In"
+                                            </div>
+                                          : null}
+                                      <Input
+                                          type="text"
+                                          name="reference"
+                                          placeholder="http://"
+                                          value={this.state.reference}
+                                          onChange={this.onChangeText}
+                                          onClear={this.onClear}
+                                          valid={true}
+                                          message={true}
+                                      />
+                                  </span>
+                                : null}
+                            <div className="button-group float-right">
+                                <SubmitButton
+                                    type="button"
+                                    className="button primary"
+                                    submitting={this.state.submitting}
+                                    title="Add"
+                                />
+                            </div>
+                        </form>
                     </div>
-                    <form onSubmit={this.onSubmit} className='small-12 large-8 large-order-1 columns'>
-                        {this.props.mentioned_by ? null : <span>
-                            Mentioned By (Person)
-                            <Select
-                                name='mentioned_by'
-                                valid={this.state.mentionedByValid}
-                                message={this.state.mentionedByMessage}
-                                onSelectValue={this.onChangeMentionedBy}
-                                types={['person']}/>
-                        </span>}
-                        {this.props.mentioned ? null : <span>
-                            Mentioned (Person or Book or Video)
-                            <Select
-                                valid={this.state.mentionedValid}
-                                message={this.state.mentionedMessage}
-                                name='mentioned'
-                                onSelectValue={this.onChangeMentioned}/>
-                        </span>}
-                        {this.props.mentioned_in ? null : <span>
-                            Mentioned In (Book or Video)
-                            <Select
-                                valid={this.state.mentionedInValid}
-                                message={this.state.mentionedInMessage}
-                                placeholder={this.props.type === 'person' ? 'Optional' : ''}
-                                name='mentioned_in'
-                                onSelectValue={this.onChangeMentionedIn}
-                                types={['book', 'video']}/>
-                        </span>}
-                        {this.props.type === 'person' ? <span>
-                            Reference (If mention isn't in a book or video)
-                            {this.state.reference && parsed.hostname === 'www.youtube.com' ? <div className='callout warning'>
-                                Videos belong on separate pages. Create a page for this video if it doesn't already exist and add it to "Mentioned In"
-                            </div> : null}
-                            <Input
-                                type='text'
-                                name='reference'
-                                placeholder='http://'
-                                value={this.state.reference}
-                                onChange={this.onChangeText}
-                                onClear={this.onClear}
-                                valid={true}
-                                message={true}/>
-                        </span> : null}
-                        <div className='button-group float-right'>
-                            <SubmitButton
-                                type='button'
-                                className='button primary'
-                                submitting={this.state.submitting}
-                                title='Add' />
-                        </div>
-                    </form>
-                </div>
-            </Restricted>
-        </div>;
+                </Restricted>
+            </div>
+        );
     }
 }
 

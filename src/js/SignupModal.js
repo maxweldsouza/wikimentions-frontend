@@ -4,32 +4,33 @@ import Signup from './Signup';
 import autoBind from 'react-autobind';
 
 class SignupModal extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
             modalIsOpen: false
         };
     }
-    onOpenModal (e) {
+    onOpenModal(e) {
         this.setState({
             modalIsOpen: true
         });
         e.preventDefault();
     }
-    closeModal () {
+    closeModal() {
         this.setState({ modalIsOpen: false });
     }
-    render () {
+    render() {
         return (
             <span>
                 <a onClick={this.onOpenModal}>Sign Up</a>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onClose={this.closeModal}
-                    className='modal-content modal-small'
-                    overlayClassName='modal-overlay'>
-                    <div className='small-12 columns'>
+                    className="modal-content modal-small"
+                    overlayClassName="modal-overlay"
+                >
+                    <div className="small-12 columns">
                         <h1>Sign Up</h1>
                         <Signup />
                     </div>

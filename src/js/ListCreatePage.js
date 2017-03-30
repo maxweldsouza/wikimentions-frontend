@@ -14,12 +14,12 @@ import IpWarning from './IpWarning';
 import autoBind from 'react-autobind';
 
 class ListCreatePage extends React.Component {
-    static resources () {
+    static resources() {
         return {
             api: []
         };
     }
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
@@ -33,19 +33,19 @@ class ListCreatePage extends React.Component {
             formMessage: ''
         };
     }
-    componentWillReceiveProps (nextProps) {
+    componentWillReceiveProps(nextProps) {
         if (nextProps.query.title) {
             this.setState({
                 title: nextProps.query.title
             });
         }
     }
-    onChangeType (x) {
+    onChangeType(x) {
         this.setState({
             type: x
         });
     }
-    onChangeText (e) {
+    onChangeText(e) {
         const temp = {
             error: false,
             message: ''
@@ -53,12 +53,12 @@ class ListCreatePage extends React.Component {
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     }
-    onClear (name) {
+    onClear(name) {
         const temp = {};
         temp[name] = '';
         this.setState(temp);
     }
-    validateForm () {
+    validateForm() {
         let valid = true;
         if (!this.state.title) {
             this.setState({
@@ -69,93 +69,124 @@ class ListCreatePage extends React.Component {
         }
         return valid;
     }
-    onSubmit (e) {
+    onSubmit(e) {
         e.preventDefault();
         if (this.validateForm()) {
             this.setState({
                 submitting: true
             });
             requests
-            .post('/api/v1/lists')
-            .type('form')
-            .send({
-                title: this.state.title,
-                description: this.state.description,
-                _xsrf: cookies.get('_xsrf')
-            })
-            .end((err, res) => {
-                this.setState({
-                    submitting: false
+                .post('/api/v1/lists')
+                .type('form')
+                .send({
+                    title: this.state.title,
+                    description: this.state.description,
+                    _xsrf: cookies.get('_xsrf')
+                })
+                .end((err, res) => {
+                    this.setState({
+                        submitting: false
+                    });
+                    if (err && err.status) {
+                        this.setState({
+                            formMessage: res.body.message
+                        });
+                    } else {
+                        this.setState({
+                            formMessage: ''
+                        });
+                        snackbar({ message: 'List created' });
+                        history.pushState(null, null, res.body.redirect);
+                        Mentions.route(res.body.redirect);
+                    }
                 });
-                if (err && err.status) {
-                    this.setState({
-                        formMessage: res.body.message
-                    });
-                } else {
-                    this.setState({
-                        formMessage: ''
-                    });
-                    snackbar({ message: 'List created' });
-                    history.pushState(null, null, res.body.redirect);
-                    Mentions.route(res.body.redirect);
-                }
-            });
         }
     }
-    render () {
-        const loggedOutMessage = <span>You need to <LoginModal/> / <SignupModal/> to create a list.</span>;
+    render() {
+        const loggedOutMessage = (
+            <span>
+                You need to <LoginModal /> / <SignupModal /> to create a list.
+            </span>
+        );
         return (
             <span>
                 <Helmet
                     title={'Create list'}
                     titleTemplate={`%s - ${config.name}`}
                     meta={[
-                        { 'name': 'description', 'content': 'Create a new list on WikiMentions' }
+                        {
+                            name: 'description',
+                            content: 'Create a new list on WikiMentions'
+                        }
                     ]}
                     link={[
-                        { 'rel': 'canonical', 'href': config.url + this.props.path }
+                        { rel: 'canonical', href: config.url + this.props.path }
                     ]}
-                    />
+                />
                 <Navbar
                     loggedin={this.props.loggedin}
                     username={this.props.username}
                     userid={this.props.userid}
-                    toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body white'>
-                    <div className='small-12 columns'>
+                    toggleSidebar={this.props.toggleSidebar}
+                />
+                <div className="row page-body white">
+                    <div className="small-12 columns">
                         <div>
                             <h1>Create list</h1>
-                            {this.state.formMessage ? <div className='callout alert'>
-                                {this.state.formMessage}
-                            </div> : null}
+                            {this.state.formMessage
+                                ? <div className="callout alert">
+                                      {this.state.formMessage}
+                                  </div>
+                                : null}
                             <Restricted message={loggedOutMessage}>
-                                <div className='row'>
-                                    <div className='small-12 large-4 large-order-2 columns'>
-                                        <div className='callout warning'>
-                                            Search to check whether a list already exists before adding a new one. Make sure you have read our <a href='/guidelines'>Guidelines</a>
+                                <div className="row">
+                                    <div
+                                        className="small-12 large-4 large-order-2 columns"
+                                    >
+                                        <div className="callout warning">
+                                            Search to check whether a list already exists before adding a new one. Make sure you have read our
+                                            {' '}
+                                            <a href="/guidelines">Guidelines</a>
                                         </div>
                                     </div>
-                                    <div className='small-12 large-8 large-order-1  columns'>
-                                        <IpWarning loggedin={this.props.loggedin}/>
+                                    <div
+                                        className="small-12 large-8 large-order-1  columns"
+                                    >
+                                        <IpWarning
+                                            loggedin={this.props.loggedin}
+                                        />
                                         <form onSubmit={this.onSubmit}>
                                             Title
-                                            <Input type='text'
-                                                name='title'
+                                            <Input
+                                                type="text"
+                                                name="title"
                                                 value={this.state.title}
                                                 onChange={this.onChangeText}
                                                 onClear={this.onClear}
                                                 valid={this.state.titleValid}
-                                                message={this.state.titleMessage}/>
-                                            <span>Description (Optional)
+                                                message={
+                                                    this.state.titleMessage
+                                                }
+                                            />
+                                            <span>
+                                                Description (Optional)
                                                 <textarea
-                                                    type='text'
-                                                    name='description'
+                                                    type="text"
+                                                    name="description"
                                                     rows={3}
-                                                    value={this.state.description}
+                                                    value={
+                                                        this.state.description
+                                                    }
                                                     onChange={this.onChangeText}
-                                                    />
+                                                />
                                             </span>
-                                            <SubmitButton title='Create' className='button primary float-right' submitting={this.state.submitting}/>
+                                            <SubmitButton
+                                                title="Create"
+                                                className="button primary float-right"
+                                                submitting={
+                                                    this.state.submitting
+                                                }
+                                            />
                                         </form>
                                     </div>
                                 </div>

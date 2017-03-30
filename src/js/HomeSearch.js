@@ -2,14 +2,14 @@ import React from 'react';
 import autoBind from 'react-autobind';
 
 class HomeSearch extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
             searchText: ''
         };
     }
-    onChangeText (e) {
+    onChangeText(e) {
         const temp = {
             error: false,
             message: ''
@@ -17,18 +17,24 @@ class HomeSearch extends React.Component {
         temp[e.target.name] = e.target.value;
         this.setState(temp);
     }
-    handleKeys (event) {
+    handleKeys(event) {
         if (event.key === 'Enter') {
             const path = `/search?q=${this.state.searchText}`;
             history.pushState(null, null, path);
             Mentions.route(path);
         }
     }
-    render () {
+    render() {
         return (
             <div>
                 <h2>Search</h2>
-                <input type='text' name='searchText' value={this.state.searchText} onChange={this.onChangeText} onKeyDown={this.handleKeys}/>
+                <input
+                    type="text"
+                    name="searchText"
+                    value={this.state.searchText}
+                    onChange={this.onChangeText}
+                    onKeyDown={this.handleKeys}
+                />
             </div>
         );
     }

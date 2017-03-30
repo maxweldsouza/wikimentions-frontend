@@ -38,26 +38,24 @@ import VideoPage from './VideoPage';
 import autoBind from 'react-autobind';
 
 class MainComponent extends React.Component {
-    static get defaultProps () {
+    static get defaultProps() {
         return {
             loggedin: false,
             username: '',
             userid: ''
         };
     }
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
             sidebar: false
         };
     }
-    componentDidMount () {
+    componentDidMount() {
         const country = store.get('country');
         if (!country) {
-            requests
-            .get('/api/v1/country')
-            .end((err, res) => {
+            requests.get('/api/v1/country').end((err, res) => {
                 if (err) {
                     return;
                 }
@@ -68,22 +66,22 @@ class MainComponent extends React.Component {
         }
         console.log('Hi there !');
     }
-    componentWillReceiveProps () {
+    componentWillReceiveProps() {
         this.setState({
             sidebar: false
         });
     }
-    onCloseSidebar () {
+    onCloseSidebar() {
         this.setState({
             sidebar: false
         });
     }
-    onToggleSidebar () {
+    onToggleSidebar() {
         this.setState({
             sidebar: !this.state.sidebar
         });
     }
-    render () {
+    render() {
         const Component = require(`./${this.props.component}`).default;
         let session;
         let username;
@@ -91,8 +89,8 @@ class MainComponent extends React.Component {
         let loggedin;
         loggedin = Boolean(session);
         return (
-            <div className='main-component'>
-                <div className='main-content'>
+            <div className="main-component">
+                <div className="main-content">
                     <Sidebar
                         showing={this.state.sidebar}
                         onToggleSidebar={this.onCloseSidebar}
@@ -108,12 +106,12 @@ class MainComponent extends React.Component {
                         username={this.props.username}
                         userid={this.props.userid}
                         toggleSidebar={this.onToggleSidebar}
-                        />
+                    />
                 </div>
-                <div className='footer-feedback'>
-                    <div className='row align-right'>
-                        <div className='small-12 large-6 columns'>
-                            <Feedback/>
+                <div className="footer-feedback">
+                    <div className="row align-right">
+                        <div className="small-12 large-6 columns">
+                            <Feedback />
                         </div>
                     </div>
                 </div>
@@ -125,11 +123,15 @@ class MainComponent extends React.Component {
 
 MainComponent.propTypes = {
     query: React.PropTypes.object,
-    path (props, propName, componentName) {
+    path(props, propName, componentName) {
         if (props[propName][0] === '/') {
             return new Error(
-                'Invalid prop `' + propName + '` supplied to' +
-                ' `' + componentName + '`. Validation failed.'
+                'Invalid prop `' +
+                    propName +
+                    '` supplied to' +
+                    ' `' +
+                    componentName +
+                    '`. Validation failed.'
             );
         }
     }

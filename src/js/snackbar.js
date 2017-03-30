@@ -5,7 +5,9 @@ import isNode from './isNode';
 const snackbar = (() => {
     let visible = false;
     if (isNode.isBrowser()) {
-        $('body').append('<div class="snackbar" id="snackbar"><span class="snackbar-message" id="snackbar-message"></span></div>');
+        $('body').append(
+            '<div class="snackbar" id="snackbar"><span class="snackbar-message" id="snackbar-message"></span></div>'
+        );
     }
     let i = 0;
     return options => {
@@ -22,30 +24,38 @@ const snackbar = (() => {
         if (visible) {
             $('#snackbar').removeClass('showing');
             visible = false;
-            setTimeout(() => {
-                $('.snackbar-message').replaceWith(message);
-                $('#snackbar').addClass('showing');
-                visible = true;
-                setTimeout(() => {
-                    if (i === j) {
-                        $('#snackbar').removeClass('showing');
-                        visible = false;
-                    }
-                }, defaults.duration);
-            }, defaults.animationDuration);
+            setTimeout(
+                () => {
+                    $('.snackbar-message').replaceWith(message);
+                    $('#snackbar').addClass('showing');
+                    visible = true;
+                    setTimeout(
+                        () => {
+                            if (i === j) {
+                                $('#snackbar').removeClass('showing');
+                                visible = false;
+                            }
+                        },
+                        defaults.duration
+                    );
+                },
+                defaults.animationDuration
+            );
         } else {
             $('.snackbar-message').replaceWith(message);
             $('#snackbar').addClass('showing');
             visible = true;
-            setTimeout(() => {
-                if (i === j) {
-                    $('#snackbar').removeClass('showing');
-                    visible = false;
-                }
-            }, defaults.duration);
+            setTimeout(
+                () => {
+                    if (i === j) {
+                        $('#snackbar').removeClass('showing');
+                        visible = false;
+                    }
+                },
+                defaults.duration
+            );
         }
     };
 })();
-
 
 export default snackbar;

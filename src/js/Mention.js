@@ -10,45 +10,51 @@ import Thumbnail from './Thumbnail';
 import autoBind from 'react-autobind';
 
 class Mention extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
             dropdownIsOpen: false
         };
     }
-    removeMention () {
+    removeMention() {
         requests
-        .delete('/api/v1/mentions')
-        .type('form')
-        .send({
-            mention_id: this.props.mention_id,
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
-            this.setState({
-                submitting: false
+            .delete('/api/v1/mentions')
+            .type('form')
+            .send({
+                mention_id: this.props.mention_id,
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end((err, res) => {
+                this.setState({
+                    submitting: false
+                });
+                if (err && err.status) {
+                    snackbar({ message: res.body.message });
+                } else {
+                    snackbar({ message: 'Mention deleted' });
+                    history.pushState(
+                        null,
+                        null,
+                        window.location.pathname + window.location.search
+                    );
+                    Mentions.route(
+                        window.location.pathname + window.location.search
+                    );
+                }
             });
-            if (err && err.status) {
-                snackbar({ message: res.body.message });
-            } else {
-                snackbar({ message: 'Mention deleted' });
-                history.pushState(null, null, window.location.pathname + window.location.search);
-                Mentions.route(window.location.pathname + window.location.search);
-            }
-        });
     }
-    openDropdown () {
+    openDropdown() {
         this.setState({
             dropdownIsOpen: true
         });
     }
-    closeDropdown () {
+    closeDropdown() {
         this.setState({
             dropdownIsOpen: false
         });
     }
-    render () {
+    render() {
         let icon;
         let secondaryIcon;
         let description;
@@ -73,7 +79,9 @@ class Mention extends React.Component {
             secondary = this.props.mentioned_in;
             inorby = 'In ';
         }
-        description = main.props && main.props.description ? main.props.description : '';
+        description = main.props && main.props.description
+            ? main.props.description
+            : '';
 
         if (secondary && 'props' in secondary && 'type' in secondary.props) {
             if (secondary.props.type === 'book') {
@@ -100,89 +108,160 @@ class Mention extends React.Component {
             parsed = parseUrl(this.props.reference);
         }
         return (
-            <div className='card box'>
-                <span className='ion-chevron-down card-chevron' onClick={this.openDropdown}/>
-                <Dropdown isOpen={this.state.dropdownIsOpen} onClose={this.closeDropdown}>
-                    <div className='dropdown-pane bottom-right small'>
+            <div className="card box">
+                <span
+                    className="ion-chevron-down card-chevron"
+                    onClick={this.openDropdown}
+                />
+                <Dropdown
+                    isOpen={this.state.dropdownIsOpen}
+                    onClose={this.closeDropdown}
+                >
+                    <div className="dropdown-pane bottom-right small">
                         <ul className="dropdown menu vertical">
-                            <li><a className='secondary' onClick={this.removeMention}>Remove</a></li>
+                            <li>
+                                <a
+                                    className="secondary"
+                                    onClick={this.removeMention}
+                                >
+                                    Remove
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </Dropdown>
-                <div className='shrink columns'>
+                <div className="shrink columns">
                     <Link
                         id={main.id}
                         slug={main.props.slug}
-                        type={main.props.type}>
-                        <Thumbnail
-                        alt={main.props.title}
                         type={main.props.type}
-                        image={main.image}
-                        url={main.props.url}
-                        displayWidth={75} />
+                    >
+                        <Thumbnail
+                            alt={main.props.title}
+                            type={main.props.type}
+                            image={main.image}
+                            url={main.props.url}
+                            displayWidth={75}
+                        />
                     </Link>
                 </div>
-                <div className='columns'>
-                    <div className='row'>
-                        <div className='small-12 columns card-title'>
+                <div className="columns">
+                    <div className="row">
+                        <div className="small-12 columns card-title">
                             <Link
                                 id={main.id}
                                 slug={main.props.slug}
-                                type={main.props.type}>{main.props.title}</Link>
+                                type={main.props.type}
+                            >
+                                {main.props.title}
+                            </Link>
                         </div>
-                        <div className='small-12 columns'>
-                            {description ? <span>
-                                <span className={icon}/>{' '} {description}
-                            </span> : null}
+                        <div className="small-12 columns">
+                            {description
+                                ? <span>
+                                      <span className={icon} />
+                                      {' '}
+                                      {' '}
+                                      {description}
+                                  </span>
+                                : null}
                         </div>
-                        <div className='small-12 columns'>
+                        <div className="small-12 columns">
                             {this.props.quote}
                         </div>
-                        <div className='small-12 columns'>
-                            {main.props.type === 'person' ? <Link
-                                id={main.id}
-                                slug={main.props.slug}
-                                title={main.props.title}
-                                type={main.props.type}
-                                className='secondary card-count'
-                                tab='videos'>{'Videos '}<span className="badge">{main.video_count}</span>{'  '}
-                            </Link> : null}
-                            {main.props.type === 'person' ? <Link
-                                id={main.id}
-                                slug={main.props.slug}
-                                title={main.props.title}
-                                type={main.props.type}
-                                className='secondary card-count'
-                                tab='books'>{'Books '}<span className="badge">{main.book_count}</span>{'  '}
-                            </Link> : null}
+                        <div className="small-12 columns">
+                            {main.props.type === 'person'
+                                ? <Link
+                                      id={main.id}
+                                      slug={main.props.slug}
+                                      title={main.props.title}
+                                      type={main.props.type}
+                                      className="secondary card-count"
+                                      tab="videos"
+                                  >
+                                      {'Videos '}
+                                      <span className="badge">
+                                          {main.video_count}
+                                      </span>
+                                      {'  '}
+                                  </Link>
+                                : null}
+                            {main.props.type === 'person'
+                                ? <Link
+                                      id={main.id}
+                                      slug={main.props.slug}
+                                      title={main.props.title}
+                                      type={main.props.type}
+                                      className="secondary card-count"
+                                      tab="books"
+                                  >
+                                      {'Books '}
+                                      <span className="badge">
+                                          {main.book_count}
+                                      </span>
+                                      {'  '}
+                                  </Link>
+                                : null}
                             <Link
                                 id={main.id}
                                 slug={main.props.slug}
                                 title={main.props.title}
                                 type={main.props.type}
-                                className='secondary card-count'
-                                tab='mentioned'>{'Mentions '}<span className="badge">{main.mentioned_count}</span>{'  '}
+                                className="secondary card-count"
+                                tab="mentioned"
+                            >
+                                {'Mentions '}
+                                <span className="badge">
+                                    {main.mentioned_count}
+                                </span>
+                                {'  '}
                             </Link>
                             <Link
                                 id={main.id}
                                 slug={main.props.slug}
                                 title={main.props.title}
                                 type={main.props.type}
-                                className='secondary card-count'
-                                tab='mentionedby'>{'Mentioned By '}<span className="badge">{main.mentioned_by_count}</span>
+                                className="secondary card-count"
+                                tab="mentionedby"
+                            >
+                                {'Mentioned By '}
+                                <span className="badge">
+                                    {main.mentioned_by_count}
+                                </span>
                             </Link>
                         </div>
-                        {secondary ? <div className='small-12 columns'>
-                            {inorby} <span className={secondaryIcon}/> <strong><Link
-                                className='secondary'
-                                id={secondary.id}
-                                slug={secondary.props.slug}
-                                type={secondary.props.type}>{secondary.props.title}</Link></strong>
-                        </div> : null}
-                        {this.props.reference ? <div className='small-12 columns'>
-                            Reference: <a className='secondary' style={{ fontWeight: 'bold' }} href={this.props.reference} target='_blank'>{parsed.hostname} <span className='ion-android-open'/>
-                            </a>
-                        </div> : null}
+                        {secondary
+                            ? <div className="small-12 columns">
+                                  {inorby}
+                                  {' '}
+                                  <span className={secondaryIcon} />
+                                  {' '}
+                                  <strong>
+                                      <Link
+                                          className="secondary"
+                                          id={secondary.id}
+                                          slug={secondary.props.slug}
+                                          type={secondary.props.type}
+                                      >
+                                          {secondary.props.title}
+                                      </Link>
+                                  </strong>
+                              </div>
+                            : null}
+                        {this.props.reference
+                            ? <div className="small-12 columns">
+                                  Reference: <a
+                                      className="secondary"
+                                      style={{ fontWeight: 'bold' }}
+                                      href={this.props.reference}
+                                      target="_blank"
+                                  >
+                                      {parsed.hostname}
+                                      {' '}
+                                      <span className="ion-android-open" />
+                                  </a>
+                              </div>
+                            : null}
                     </div>
                 </div>
             </div>

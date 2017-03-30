@@ -28,7 +28,7 @@ Perf.start();
 /* client specific isomorphic code */
 
 if (typeof window.ga === 'undefined') {
-    window.ga = function () {
+    window.ga = function() {
         if (arguments.length > 1 && typeof arguments[1] !== 'string') {
             console.log(JSON.stringify(arguments[1])); // eslint-disable-line no-console
         } else {
@@ -51,7 +51,7 @@ const getTokenIfRequired = () => {
 };
 
 window.Mentions = {
-    route (url) {
+    route(url) {
         if (S(url).endsWith('/')) {
             url = url.substring(0, url.length - 1);
         }
@@ -59,71 +59,84 @@ window.Mentions = {
         const componentName = Router.urlToComponentName(url);
         const api = Router.apiCalls(componentName, url);
         Router.fetchData(api)
-        .then(({ apidata, etags }) => {
-            NProgress.inc();
-            ReactDOM.render(<MainComponent
-                loggedin={Boolean(store.get('username'))}
-                username={store.get('username')}
-                userid={store.get('id')}
-                data={apidata}
-                path={url.substr(1).split('?')[0]}
-                component={componentName}
-                query={queryString.parse(url.split('?')[1])}/>, document.getElementById('page-container'));
-            window.scrollTo(0, 0);
-            ga('send', 'pageview', location.pathname);
-            stopLoading();
-        }).catch(err => {
-            snackbar({ message: err.message });
-            stopLoading();
-        });
+            .then(({ apidata, etags }) => {
+                NProgress.inc();
+                ReactDOM.render(
+                    <MainComponent
+                        loggedin={Boolean(store.get('username'))}
+                        username={store.get('username')}
+                        userid={store.get('id')}
+                        data={apidata}
+                        path={url.substr(1).split('?')[0]}
+                        component={componentName}
+                        query={queryString.parse(url.split('?')[1])}
+                    />,
+                    document.getElementById('page-container')
+                );
+                window.scrollTo(0, 0);
+                ga('send', 'pageview', location.pathname);
+                stopLoading();
+            })
+            .catch(err => {
+                snackbar({ message: err.message });
+                stopLoading();
+            });
     },
-    firstLoad (url) {
+    firstLoad(url) {
         try {
             const componentName = Router.urlToComponentName(url);
             getTokenIfRequired();
-            const data = JSON.parse(S($('#api-data').text()).unescapeHTML().toString());
-            ReactDOM.render(<MainComponent
-                loggedin={Boolean(store.get('username'))}
-                username={store.get('username')}
-                userid={store.get('id')}
-                data={data}
-                path={url.substr(1).split('?')[0]}
-                component={componentName}
-                query={queryString.parse(url.split('?')[1])}/>, document.getElementById('page-container'));
+            const data = JSON.parse(
+                S($('#api-data').text()).unescapeHTML().toString()
+            );
+            ReactDOM.render(
+                <MainComponent
+                    loggedin={Boolean(store.get('username'))}
+                    username={store.get('username')}
+                    userid={store.get('id')}
+                    data={data}
+                    path={url.substr(1).split('?')[0]}
+                    component={componentName}
+                    query={queryString.parse(url.split('?')[1])}
+                />,
+                document.getElementById('page-container')
+            );
             stopLoading();
         } catch (e) {
             snackbar({ message: e.message });
             Mentions.route(url);
         }
     },
-    logout () {
+    logout() {
         requests
-        .post('/api/v1/logout')
-        .type('form')
-        .send({
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end(err => {
-            if (err && err.status) {
-                snackbar({ message: 'Logout failed' });
-            } else {
-                snackbar({ message: 'Logged out' });
-                store.remove('username');
-                store.remove('level');
-                store.remove('id');
-                const path = window.location.pathname + window.location.search;
-                history.pushState(null, null, path);
-                Mentions.route(path);
-            }
-        });
+            .post('/api/v1/logout')
+            .type('form')
+            .send({
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end(err => {
+                if (err && err.status) {
+                    snackbar({ message: 'Logout failed' });
+                } else {
+                    snackbar({ message: 'Logged out' });
+                    store.remove('username');
+                    store.remove('level');
+                    store.remove('id');
+                    const path = window.location.pathname +
+                        window.location.search;
+                    history.pushState(null, null, path);
+                    Mentions.route(path);
+                }
+            });
     }
 };
 
 Mentions.firstLoad(window.location.pathname + window.location.search);
 
 const LinkChecker = {
-    'isExternal' (href, baseurl = window.location.href) {
-        const domain = url => url.replace('http://', '').replace('https://', '').split('/')[0];
+    isExternal(href, baseurl = window.location.href) {
+        const domain = url =>
+            url.replace('http://', '').replace('https://', '').split('/')[0];
         if (href.indexOf('mailto') === 0) {
             return true;
         }
@@ -132,7 +145,7 @@ const LinkChecker = {
         }
         return false;
     },
-    'samePage' (href, baseurl = window.location.href) {
+    samePage(href, baseurl = window.location.href) {
         if (href.startsWith('http')) {
             const currentWithoutHash = baseurl.split('#')[0];
             const urlWithoutHash = href.split('#')[0];
@@ -157,7 +170,7 @@ $(document).keyup(() => {
     controlPressed = false;
 });
 
-$(document).on('click', 'a', function (e) {
+$(document).on('click', 'a', function(e) {
     const url = $(this).attr('href');
     const disabled = $(this).data('disabled');
     const noxhr = $(this).data('noxhr');
@@ -167,28 +180,37 @@ $(document).on('click', 'a', function (e) {
     } else if (LinkChecker.samePage(url)) {
         e.preventDefault();
         // smooth scroll
-        $('html, body').animate({
-            scrollTop: $($.attr(this, 'href')).offset().top - 80
-        }, 200, 'easeOutQuart');
-    } else if (!LinkChecker.isExternal(url) &&
-            $(this).attr('target') !== '_blank' &&
-            !controlPressed &&
-            !noxhr) {
+        $('html, body').animate(
+            {
+                scrollTop: $($.attr(this, 'href')).offset().top - 80
+            },
+            200,
+            'easeOutQuart'
+        );
+    } else if (
+        !LinkChecker.isExternal(url) &&
+        $(this).attr('target') !== '_blank' &&
+        !controlPressed &&
+        !noxhr
+    ) {
         startLoading();
         e.preventDefault();
-        setTimeout(() => {
-            try {
-                Mentions.route(url);
-                history.pushState(null, null, url);
-            } catch (err) {
-                if (err.status === 404) {
-                    snackbar({ message: '404: Not found' });
-                } else {
-                    snackbar({ message: 'Something went wrong' });
+        setTimeout(
+            () => {
+                try {
+                    Mentions.route(url);
+                    history.pushState(null, null, url);
+                } catch (err) {
+                    if (err.status === 404) {
+                        snackbar({ message: '404: Not found' });
+                    } else {
+                        snackbar({ message: 'Something went wrong' });
+                    }
+                    stopLoading();
                 }
-                stopLoading();
-            }
-        }, 0);
+            },
+            0
+        );
     }
 });
 
@@ -198,15 +220,14 @@ window.addEventListener('popstate', () => {
 
 window.addEventListener('error', e => {
     requests
-    .post('/api/v1/bugs')
-    .type('form')
-    .send({
-        message: e.error.stack,
-        useragent: window.navigator.userAgent,
-        platform: window.navigator.platform,
-        url: window.location.pathname + window.location.search,
-        _xsrf: cookies.get('_xsrf')
-    })
-    .end((err, res) => {
-    });
+        .post('/api/v1/bugs')
+        .type('form')
+        .send({
+            message: e.error.stack,
+            useragent: window.navigator.userAgent,
+            platform: window.navigator.platform,
+            url: window.location.pathname + window.location.search,
+            _xsrf: cookies.get('_xsrf')
+        })
+        .end((err, res) => {});
 });

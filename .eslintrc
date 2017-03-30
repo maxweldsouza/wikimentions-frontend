@@ -1,7 +1,8 @@
 {
     "extends": ["plugin:react/recommended"],
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "parserOptions": {
         "ecmaVersion": 6,
@@ -148,7 +149,7 @@
         "semi": 2,
         "sort-vars": 2,
         "space-before-blocks": 2,
-        "space-before-function-paren": 2,
+        "space-before-function-paren": 0,
         "space-in-parens": 2,
         "space-infix-ops": 2,
         "space-unary-ops": 2,

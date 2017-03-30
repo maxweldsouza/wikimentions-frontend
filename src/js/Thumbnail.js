@@ -2,19 +2,21 @@ import React from 'react';
 import Lazy from 'react-lazyload';
 import VideoApiThumb from './VideoApiThumb';
 
-const Thumbnail = ({
-    image = '',
-    type = '',
-    alt = '',
-    url = '',
-    shadow = false,
-    round = false,
-    marginBottom = false,
-    bordered = false,
-    offset = 0,
-    displayWidth,
-    displayHeight
-}) => {
+const Thumbnail = (
+    {
+        image = '',
+        type = '',
+        alt = '',
+        url = '',
+        shadow = false,
+        round = false,
+        marginBottom = false,
+        bordered = false,
+        offset = 0,
+        displayWidth,
+        displayHeight
+    }
+) => {
     const imageClass = shadow ? 'img shadow' : 'img';
 
     let imageUrl;
@@ -54,34 +56,54 @@ const Thumbnail = ({
     if (!dh) {
         dh = displayWidth / aspectRatio;
     }
-    const placeholder = <div className={bordered ? 'placeholder bordered' : 'placeholder'} style={{ lineHeight: `${dh}px` }}>
-            {type === 'person' ? <span className='ion-image' /> : null}
-            {type === 'book' ? <span className='ion-ios-book' /> : null}
-            {type === 'video' ? <span className='ion-play' /> : null}
-    </div>;
+    const placeholder = (
+        <div
+            className={bordered ? 'placeholder bordered' : 'placeholder'}
+            style={{ lineHeight: `${dh}px` }}
+        >
+            {type === 'person' ? <span className="ion-image" /> : null}
+            {type === 'book' ? <span className="ion-ios-book" /> : null}
+            {type === 'video' ? <span className="ion-play" /> : null}
+        </div>
+    );
     let main;
     if (image) {
-        main = <Lazy offset={offset} placeholder={placeholder}>
-            <img
-                className={imageClass}
-                style={round ? { borderRadius: '999em' } : null}
-                src={imageUrl}
-                width={imageWidth}
-                height={imageHeight}
-                alt={alt}/>
-        </Lazy>;
+        main = (
+            <Lazy offset={offset} placeholder={placeholder}>
+                <img
+                    className={imageClass}
+                    style={round ? { borderRadius: '999em' } : null}
+                    src={imageUrl}
+                    width={imageWidth}
+                    height={imageHeight}
+                    alt={alt}
+                />
+            </Lazy>
+        );
     } else if (type === 'video') {
-        main = <Lazy offset={offset} placeholder={placeholder}><VideoApiThumb url={url} alt={alt}>
-            {placeholder}
-        </VideoApiThumb>
-        </Lazy>;
+        main = (
+            <Lazy offset={offset} placeholder={placeholder}>
+                <VideoApiThumb url={url} alt={alt}>
+                    {placeholder}
+                </VideoApiThumb>
+            </Lazy>
+        );
     } else {
         main = placeholder;
     }
-    const style = { 'width': dw, 'height': dh };
-    return <div className={marginBottom ? 'image-container bottom-margin' : 'image-container'} style={style}>
+    const style = { width: dw, height: dh };
+    return (
+        <div
+            className={
+                marginBottom
+                    ? 'image-container bottom-margin'
+                    : 'image-container'
+            }
+            style={style}
+        >
             {main}
-        </div>;
+        </div>
+    );
 };
 
 export default Thumbnail;

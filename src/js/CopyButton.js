@@ -3,30 +3,30 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import autoBind from 'react-autobind';
 
 class CopyButton extends React.Component {
-    static get defaultProps () {
+    static get defaultProps() {
         return {
             hintDirection: 'bottom',
             className: ''
         };
     }
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
             copied: false
         };
     }
-    onCopy () {
+    onCopy() {
         this.setState({
             copied: true
         });
     }
-    reset () {
+    reset() {
         this.setState({
             copied: false
         });
     }
-    render () {
+    render() {
         let ariaLabel;
         let cls;
         if (this.state.copied) {
@@ -41,8 +41,10 @@ class CopyButton extends React.Component {
                 <button
                     onMouseLeave={this.reset}
                     className={cls}
-                    aria-label={ariaLabel}>
-                    <span className='ion-clipboard' />{this.props.title}</button>
+                    aria-label={ariaLabel}
+                >
+                    <span className="ion-clipboard" />{this.props.title}
+                </button>
             </CopyToClipboard>
         );
     }

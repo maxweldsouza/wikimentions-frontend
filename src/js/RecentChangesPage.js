@@ -8,7 +8,7 @@ import HistoryItem from './HistoryItem';
 import autoBind from 'react-autobind';
 
 class RecentChangesPage extends React.Component {
-    static resources (appstate) {
+    static resources(appstate) {
         const page = appstate.query.page;
         const query = page ? `?page=${page}` : '';
         return {
@@ -20,31 +20,31 @@ class RecentChangesPage extends React.Component {
             ]
         };
     }
-    render () {
+    render() {
         return (
             <span>
                 <Helmet
                     title={'Recent Changes'}
                     titleTemplate={`%s - ${config.name}`}
-                    meta={[
-                        { 'name': 'robots', 'content': 'noindex' }
-                    ]}
+                    meta={[{ name: 'robots', content: 'noindex' }]}
                     link={[
-                        { 'rel': 'canonical', 'href': config.url + this.props.path }
+                        { rel: 'canonical', href: config.url + this.props.path }
                     ]}
-                    />
+                />
                 <Navbar
                     loggedin={this.props.loggedin}
                     username={this.props.username}
                     userid={this.props.userid}
-                    toggleSidebar={this.props.toggleSidebar}/>
-                <div className='row page-body white'>
-                        <div className='small-12 large-8 columns'>
-                            <h1>Recent Changes</h1>
-                            <hr/>
-                            <div className='row'>
-                                {this.props.data.history.map((x, i) => {
-                                    return <HistoryItem
+                    toggleSidebar={this.props.toggleSidebar}
+                />
+                <div className="row page-body white">
+                    <div className="small-12 large-8 columns">
+                        <h1>Recent Changes</h1>
+                        <hr />
+                        <div className="row">
+                            {this.props.data.history.map((x, i) => {
+                                return (
+                                    <HistoryItem
                                         key={i}
                                         user={x.user}
                                         username={x.username}
@@ -53,12 +53,17 @@ class RecentChangesPage extends React.Component {
                                         entrytype={x.entrytype}
                                         timestamp={x.timestamp}
                                         deleted={x.deleted}
-                                        />;
-                                })}
-                            </div>
-                            <Pagination path={this.props.path} page={this.props.query.page} count={this.props.data.history.length}/>
+                                    />
+                                );
+                            })}
                         </div>
+                        <Pagination
+                            path={this.props.path}
+                            page={this.props.query.page}
+                            count={this.props.data.history.length}
+                        />
                     </div>
+                </div>
             </span>
         );
     }

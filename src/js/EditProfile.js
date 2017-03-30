@@ -8,7 +8,7 @@ import Input from './Input';
 import autoBind from 'react-autobind';
 
 class EditProfile extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         autoBind(this);
         this.state = {
@@ -19,17 +19,15 @@ class EditProfile extends React.Component {
             formMessage: ''
         };
     }
-    componentDidMount () {
-        requests
-        .get(`/api/v1/user/${this.props.id}`)
-        .end((err, res) => {
+    componentDidMount() {
+        requests.get(`/api/v1/user/${this.props.id}`).end((err, res) => {
             this.setState({
                 email: res.body.email,
                 about: res.body.about
             });
         });
     }
-    onChangeText (e) {
+    onChangeText(e) {
         const temp = {};
         temp[e.target.name] = e.target.value;
         if (e.target.name === 'about') {
@@ -37,72 +35,84 @@ class EditProfile extends React.Component {
         }
         this.setState(temp);
     }
-    onClear (name) {
+    onClear(name) {
         const temp = {};
         temp[name] = '';
         this.setState(temp);
     }
-    updateProfile (e) {
+    updateProfile(e) {
         e.preventDefault();
         this.setState({
             submitting: true
         });
         requests
-        .post(`/api/v1/user/${this.props.id}`)
-        .type('form')
-        .send({
-            email: this.state.email,
-            about: this.state.about,
-            _xsrf: cookies.get('_xsrf')
-        })
-        .end((err, res) => {
-            this.setState({
-                submitting: false
+            .post(`/api/v1/user/${this.props.id}`)
+            .type('form')
+            .send({
+                email: this.state.email,
+                about: this.state.about,
+                _xsrf: cookies.get('_xsrf')
+            })
+            .end((err, res) => {
+                this.setState({
+                    submitting: false
+                });
+                if (err && err.status) {
+                    this.setState({
+                        formMessage: res.body.message
+                    });
+                } else {
+                    this.setState({
+                        formMessage: ''
+                    });
+                    snackbar({ message: 'Profile updated' });
+                }
             });
-            if (err && err.status) {
-                this.setState({
-                    formMessage: res.body.message
-                });
-            } else {
-                this.setState({
-                    formMessage: ''
-                });
-                snackbar({ message: 'Profile updated' });
-            }
-        });
     }
-    render () {
+    render() {
         return (
-            <div className='tabs-panel is-active' role='tabpanel' aria-hidden='false'>
-                <div className='row'>
-                    <div className='large-8 columns'>
-                        <form onSubmit={this.updateProfile} className='columns box'>
+            <div
+                className="tabs-panel is-active"
+                role="tabpanel"
+                aria-hidden="false"
+            >
+                <div className="row">
+                    <div className="large-8 columns">
+                        <form
+                            onSubmit={this.updateProfile}
+                            className="columns box"
+                        >
                             <h2>Profile</h2>
-                            {this.state.formMessage ? <div className='callout alert'>
-                                {this.state.formMessage}
-                            </div> : null}
+                            {this.state.formMessage
+                                ? <div className="callout alert">
+                                      {this.state.formMessage}
+                                  </div>
+                                : null}
                             Email
                             <Input
-                                type='text'
-                                name='email'
+                                type="text"
+                                name="email"
                                 onChange={this.onChangeText}
                                 value={this.state.email}
                                 onClear={this.onClear}
                                 valid={true}
-                                message={''}/>
+                                message={''}
+                            />
                             <MarkdownInput
-                                name='about'
-                                placeholder='Write something about yourself (Markdown is supported)'
-                                label='About'
-                                rows='5'
+                                name="about"
+                                placeholder="Write something about yourself (Markdown is supported)"
+                                label="About"
+                                rows="5"
                                 content={this.state.about}
                                 onChange={this.onChangeText}
                                 sideBySide={false}
-                                maxLength={255} />
+                                maxLength={255}
+                            />
                             <SubmitButton
-                                title='Save'
-                                className='button primary float-right'
-                                submitting={this.state.submitting}/>
+                                title="Save"
+                                className="button primary float-right"
+                                submitting={this.state.submitting}
+                            />
                         </form>
                     </div>
                 </div>
