@@ -95,6 +95,7 @@ app.get('*', (req, res, next) => {
             const ifNoneMatch = req.get('if-none-match');
             if (tag === ifNoneMatch) {
                 res.status(304).end();
+                return;
             }
 
             const ip = req.get('x-real-ip');
