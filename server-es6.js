@@ -137,6 +137,7 @@ app.get('*', (req, res, next) => {
                             );
                         } else {
                             res.status(429).send('Too many requests').end();
+                            return;
                         }
                     } else {
                         usage = {
