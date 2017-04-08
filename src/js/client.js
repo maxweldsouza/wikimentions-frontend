@@ -56,8 +56,8 @@ window.Mentions = {
             url = url.substring(0, url.length - 1);
         }
 
-        const componentName = Router.urlToComponentName(url);
-        const api = Router.apiCalls(componentName, url);
+        const component = Router.urlToComponent(url);
+        const api = Router.apiCalls(component, url);
         Router.fetchData(api)
             .then(({ apidata, etags }) => {
                 NProgress.inc();
@@ -68,7 +68,7 @@ window.Mentions = {
                         userid={store.get('id')}
                         data={apidata}
                         path={url.substr(1).split('?')[0]}
-                        component={componentName}
+                        component={component}
                         query={queryString.parse(url.split('?')[1])}
                     />,
                     document.getElementById('page-container')
@@ -84,7 +84,7 @@ window.Mentions = {
     },
     firstLoad(url) {
         try {
-            const componentName = Router.urlToComponentName(url);
+            const component = Router.urlToComponent(url);
             getTokenIfRequired();
             const data = JSON.parse(
                 S($('#api-data').text()).unescapeHTML().toString()
@@ -96,7 +96,7 @@ window.Mentions = {
                     userid={store.get('id')}
                     data={data}
                     path={url.substr(1).split('?')[0]}
-                    component={componentName}
+                    component={component}
                     query={queryString.parse(url.split('?')[1])}
                 />,
                 document.getElementById('page-container')

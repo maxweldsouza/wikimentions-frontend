@@ -1,40 +1,9 @@
 import React from 'react';
-
-/* components need to be required because they are used indirectly */
-import AddMention from './AddMention';
-import AddVideo from './AddVideo';
-import BlogPage from './BlogPage';
-import BlogPostPage from './BlogPostPage';
-import BugPage from './BugPage';
-import ListCreatePage from './ListCreatePage';
-import ListPage from './ListPage';
-import ContentPage from './ContentPage';
-import ContributePage from './ContributePage';
-import cookies from 'browser-cookies';
-import CreatePage from './CreatePage';
-import DiscussPage from './DiscussPage';
-import EditPage from './EditPage';
 import Feedback from './Feedback';
-import FeedbackPage from './FeedbackPage';
 import Footer from './Footer';
-import HistoryPage from './HistoryPage';
-import HomePage from './HomePage';
-import isNode from './isNode';
-import KitchenSinkPage from './KitchenSinkPage';
-import LoginPage from './LoginPage';
-import MaintenancePage from './MaintenancePage';
-import ProfilePage from './ProfilePage';
-import QuotesPage from './QuotesPage';
-import RecentChangesPage from './RecentChangesPage';
-import RecentDiscussionsPage from './RecentDiscussionsPage';
 import requests from 'superagent';
-import SearchPage from './SearchPage';
 import Sidebar from './Sidebar';
-import SignupPage from './SignupPage';
 import store from 'store';
-import TagPage from './TagPage';
-import ThingPage from './ThingPage';
-import VideoPage from './VideoPage';
 import autoBind from 'react-autobind';
 
 class MainComponent extends React.Component {
@@ -82,7 +51,7 @@ class MainComponent extends React.Component {
         });
     }
     render() {
-        const Component = require(`./${this.props.component}`).default;
+        const Component = this.props.component;
         let session;
         let username;
         let userid;
