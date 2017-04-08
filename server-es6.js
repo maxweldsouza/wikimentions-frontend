@@ -84,8 +84,8 @@ const isNotModified = (ifModifiedSince, lastModified) => {
 };
 
 app.get('*', (req, res, next) => {
-    const componentName = Router.urlToComponentName(req.originalUrl);
-    const api = Router.apiCalls(componentName, req.originalUrl);
+    const component = Router.urlToComponent(req.originalUrl);
+    const api = Router.apiCalls(component, req.originalUrl);
     Router.fetchData(api)
         .then(({ apidata, etags }) => {
             const tag = etag(etags.join() + req.originalUrl + GIT_REV_HASH);
@@ -173,7 +173,7 @@ app.get('*', (req, res, next) => {
                                 query: queryString.parse(
                                     req.originalUrl.substr(1).split('?')[1]
                                 ),
-                                component: componentName
+                                component
                             })
                         );
                         const head = Helmet.rewind();

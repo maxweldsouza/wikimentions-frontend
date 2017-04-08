@@ -1,6 +1,3 @@
-import _ from 'underscore';
-import AddMention from './AddMention';
-import AddVideo from './AddVideo';
 import BlogPage from './BlogPage';
 import BlogPostPage from './BlogPostPage';
 import BugPage from './BugPage';
@@ -14,7 +11,6 @@ import EditPage from './EditPage';
 import FeedbackPage from './FeedbackPage';
 import HistoryPage from './HistoryPage';
 import HomePage from './HomePage';
-import isNode from './isNode';
 import KitchenSinkPage from './KitchenSinkPage';
 import LoginPage from './LoginPage';
 import MaintenancePage from './MaintenancePage';
@@ -26,8 +22,6 @@ import RecentDiscussionsPage from './RecentDiscussionsPage';
 import request from 'superagent';
 import SearchPage from './SearchPage';
 import SignupPage from './SignupPage';
-import snackbar from './snackbar';
-import Spinner from './Spinner';
 import TagPage from './TagPage';
 import ThingPage from './ThingPage';
 import VideoPage from './VideoPage';
@@ -43,78 +37,78 @@ const validateResources = resources => {
     }
 };
 
-const urlToComponentName = url => {
+const urlToComponent = url => {
     const [path, queryS] = url.substr(1).split('?');
 
     let componentName;
     if (path === '') {
-        componentName = 'HomePage';
+        componentName = HomePage;
     } else if (/^tags\/([^/]+)$/.test(path)) {
-        componentName = 'TagPage';
+        componentName = TagPage;
     } else if (/^create$/.test(path)) {
-        componentName = 'CreatePage';
+        componentName = CreatePage;
     } else if (/^login$/.test(path)) {
-        componentName = 'LoginPage';
+        componentName = LoginPage;
     } else if (/^signup$/.test(path)) {
-        componentName = 'SignupPage';
+        componentName = SignupPage;
     } else if (/^lists\/create$/.test(path)) {
-        componentName = 'ListCreatePage';
+        componentName = ListCreatePage;
     } else if (/^lists\/([0-9]+)\/([^/]+)$/.test(path)) {
-        componentName = 'ListPage';
+        componentName = ListPage;
     } else if (/^users\/([0-9]+)\/([^/]+)$/.test(path)) {
-        componentName = 'ProfilePage';
+        componentName = ProfilePage;
     } else if (/^users\/([0-9]+)\/([^/]+)\/(profile)$/.test(path)) {
-        componentName = 'ProfilePage';
+        componentName = ProfilePage;
     } else if (/^history\/([0-9]+)\/([^/]+)$/.test(path)) {
-        componentName = 'HistoryPage';
+        componentName = HistoryPage;
     } else if (/^books\/([0-9]+)\/([^/]+)\/(mentionedby)$/.test(path)) {
-        componentName = 'ThingPage';
+        componentName = ThingPage;
     } else if (/^books\/([0-9]+)\/([^/]+)$/.test(path)) {
-        componentName = 'ThingPage';
+        componentName = ThingPage;
     } else if (/^discuss\/([0-9]+)\/([^/]+)$/.test(path)) {
-        componentName = 'DiscussPage';
+        componentName = DiscussPage;
     } else if (/^edit\/([0-9]+)\/([^/]+)$/.test(path)) {
-        componentName = 'EditPage';
+        componentName = EditPage;
     } else if (
         /^people\/([0-9]+)\/([^/]+)\/(mentioned|mentionedby|books)$/.test(path)
     ) {
-        componentName = 'ThingPage';
+        componentName = ThingPage;
     } else if (/^people\/([0-9]+)\/([^/]+)$/.test(path)) {
-        componentName = 'ThingPage';
+        componentName = ThingPage;
     } else if (/^videos\/([0-9]+)\/([^/]+)\/(mentionedby)$/.test(path)) {
-        componentName = 'VideoPage';
+        componentName = VideoPage;
     } else if (/^videos\/([0-9]+)\/([^/]+)$/.test(path)) {
-        componentName = 'VideoPage';
+        componentName = VideoPage;
     } else if (/^quotes\/([0-9]+)\/([^/]+)$/.test(path)) {
-        componentName = 'QuotesPage';
+        componentName = QuotesPage;
     } else if (/^blog$/.test(path)) {
-        componentName = 'BlogPage';
+        componentName = BlogPage;
     } else if (/^blog\/page\/([0-9]+)$/.test(path)) {
-        componentName = 'BlogPage';
+        componentName = BlogPage;
     } else if (/^blog\/(.*)$/.test(path)) {
-        componentName = 'BlogPostPage';
+        componentName = BlogPostPage;
     } else if (/^contribute$/.test(path)) {
-        componentName = 'ContributePage';
+        componentName = ContributePage;
     } else if (/^recent-changes$/.test(path)) {
-        componentName = 'RecentChangesPage';
+        componentName = RecentChangesPage;
     } else if (/^recent-discussions$/.test(path)) {
-        componentName = 'RecentDiscussionsPage';
+        componentName = RecentDiscussionsPage;
     } else if (/^maintenance\/(.*)\/([0-9]+)\/([0-9]+)$/.test(path)) {
-        componentName = 'MaintenancePage';
+        componentName = MaintenancePage;
     } else if (/^kitchen-sink$/.test(path)) {
-        componentName = 'KitchenSinkPage';
+        componentName = KitchenSinkPage;
     } else if (/^search$/.test(path)) {
-        componentName = 'SearchPage';
+        componentName = SearchPage;
     } else if (
         /^(about-us|terms-of-use|privacy-policy|guidelines|media-kit)$/.test(
             path
         )
     ) {
-        componentName = 'ContentPage';
+        componentName = ContentPage;
     } else if (/^feedback$/.test(path)) {
-        componentName = 'FeedbackPage';
+        componentName = FeedbackPage;
     } else if (/^bugs$/.test(path)) {
-        componentName = 'BugPage';
+        componentName = BugPage;
     } else {
         throw {
             status: 404,
@@ -142,12 +136,10 @@ const requestPromise = url => {
     });
 };
 
-const apiCalls = (componentName, url) => {
-    const Component = require(`./${componentName}`).default;
+const apiCalls = (Component, url) => {
     const [path, q] = url.split('?');
     const query = queryString.parse(q);
     const resources = Component.resources({
-        Component: componentName,
         path: path.substr(1),
         query
     });
@@ -181,7 +173,7 @@ const fetchData = api => {
 };
 
 export default {
-    urlToComponentName,
+    urlToComponent,
     fetchData,
     apiCalls
 };
