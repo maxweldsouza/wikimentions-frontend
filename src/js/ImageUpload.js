@@ -6,6 +6,14 @@ import MarkdownInput from './MarkdownInput';
 import autoBind from 'react-autobind';
 let Cropper = null;
 
+const space = ' ';
+const bookImageDescription = `Source: []()${space}${space}
+License: Non-free, fair use, cover art${space}${space}`;
+
+const personImageDescription = `Source: []()${space}${space}
+Author: []()${space}${space}
+License: []()${space}${space}`;
+
 class ImageUpload extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +23,7 @@ class ImageUpload extends React.Component {
             scale: 1,
             image: '',
             mime: '',
-            imageDescription: '',
+            imageDescription: props.type === 'book' ? bookImageDescription : personImageDescription,
             descriptionValid: true,
             descriptionMessage: '',
             formMessage: '',
