@@ -189,19 +189,19 @@ class KitchenSinkPage extends React.Component {
                                         <div className="small-4 columns">
                                             <img
                                                 className="thumbnail"
-                                                src="https://localhost/api/v1/static/images/4994a3944f9bd4e5045064c2ed1572ec-250-250.jpg"
+                                                src="https://d198s6k47dh00z.cloudfront.net/4994a3944f9bd4e5045064c2ed1572ec-250-250.jpg"
                                             />
                                         </div>
                                         <div className="small-4 columns">
                                             <img
                                                 className="thumbnail"
-                                                src="https://localhost/api/v1/static/images/84d376998b880e07e7a12262ff86f6dd-250-250.jpg"
+                                                src="https://d198s6k47dh00z.cloudfront.net/84d376998b880e07e7a12262ff86f6dd-250-250.jpg"
                                             />
                                         </div>
                                         <div className="small-4 columns">
                                             <img
                                                 className="thumbnail"
-                                                src="https://localhost/api/v1/static/images/787d501ad8c61d42e44a1f7a19c29ff9-250-250.jpg"
+                                                src="https://d198s6k47dh00z.cloudfront.net/787d501ad8c61d42e44a1f7a19c29ff9-250-250.jpg"
                                             />
                                         </div>
                                     </div>

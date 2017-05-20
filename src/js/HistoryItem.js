@@ -140,7 +140,7 @@ class HistoryItem extends React.Component {
                     <span className="shrink columns">
                         <img
                             src={
-                                `/api/v1/static/images/${this.props.entry.thumb_md5}-${this.props.entry.thumb_width}-${this.props.entry.thumb_height}.jpg`
+                                `https://d198s6k47dh00z.cloudfront.net/${this.props.entry.thumb_md5}-${this.props.entry.thumb_width}-${this.props.entry.thumb_height}.jpg`
                             }
                         />
                     </span>

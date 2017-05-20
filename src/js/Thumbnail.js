@@ -39,7 +39,7 @@ const Thumbnail = (
             imageWidth = image.thumb_width;
             imageHeight = image.thumb_height;
         }
-        imageUrl = `/api/v1/static/images/${imageMd5}-${imageWidth}-${imageHeight}.jpg`;
+        imageUrl = `https://d198s6k47dh00z.cloudfront.net/${imageMd5}-${imageWidth}-${imageHeight}.jpg`;
         aspectRatio = imageWidth / imageHeight;
     } else if (type === 'book') {
         aspectRatio = 0.75;
