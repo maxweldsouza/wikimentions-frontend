@@ -21,7 +21,7 @@ const Affiliate = ({ isbn, authors, title }) => {
                           className="button small alert"
                           target="_blank"
                           href={
-                              `http://www.amazon.com/gp/search?keywords=${searchTerm}&index=books&linkCode=qs&tag=${config.affiliate['amazon.com']}`
+                              `http://www.amazon.com/gp/search?keywords=${searchTerm}&index=books`
                           }
                       >
                           Buy on Amazon.com
@@ -36,7 +36,7 @@ const Affiliate = ({ isbn, authors, title }) => {
                           className="button small alert"
                           target="_blank"
                           href={
-                              `http://www.amazon.in/gp/search?keywords=${searchTerm}&index=books&linkCode=qs&tag=${config.affiliate['amazon.in']}`
+                              `http://www.amazon.in/gp/search?keywords=${searchTerm}&index=books`
                           }
                       >
                           Buy on Amazon.in <span className="ion-android-open" />
