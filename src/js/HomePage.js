@@ -173,6 +173,17 @@ class HomePage extends React.Component {
                                         }}
                                     />
                                 </div>
+                                <div
+                                    className="small-12 columns text-center"
+                                >
+                                    <TweetEmbed
+                                        id="847483186816835584"
+                                        options={{
+                                            cards: 'hidden',
+                                            align: 'center'
+                                        }}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
