@@ -164,7 +164,7 @@ app.get('*', (req, res, next) => {
                         res.send(data[contentKey]);
                     } else {
                         res.setHeader('X-Cache', 'MISS');
-                        content = ReactDOMServer.renderToStaticMarkup(
+                        content = ReactDOMServer.renderToString(
                             React.createElement(MainComponent, {
                                 data: apidata,
                                 path: req.originalUrl.substr(1).split('?')[0],
