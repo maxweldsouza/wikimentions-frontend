@@ -56,7 +56,6 @@ export default {
         filename: 'bundle.js'
     },
     devServer: {
-        disableHostCheck: true,
         contentBase: [path.join(__dirname, 'dev'), path.join(__dirname, 'src')],
         historyApiFallback: true,
         compress: true,
