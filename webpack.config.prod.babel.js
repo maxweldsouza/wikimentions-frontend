@@ -17,6 +17,10 @@ export default {
     module: {
         rules: [
             {
+                test: /\.js.snap$/,
+                use: 'ignore-loader'
+            },
+            {
                 test: /\.svg$/,
                 use: 'file-loader?name=[name]-[hash:6].[ext]&publicPath=assets/images/&outputPath=images/'
             },
