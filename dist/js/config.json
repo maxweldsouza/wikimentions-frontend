@@ -1,0 +1,20 @@
+{
+    "name": "WikiMentions",
+    "twitter": "@wikimentions",
+    "url": "https://wikimentions.com/",
+    "keys": {
+        "youtube": "AIzaSyBv9NuJUlESr8MpLzSjt-LpBmWqVOg0_L8"
+    },
+    "affiliate": {
+        "amazon.com": "wikimentions-20",
+        "amazon.in": "wikimentions-21",
+        "flipkart": ""
+    },
+    "social": {
+        "facebook": "https://facebook.com/wikimentions",
+        "twitter": "https://twitter.com/wikimentions"
+    },
+    "contact": "wikimentions@gmail.com",
+    "admin": "q4BjK5gAwYhsmVsOnvFy",
+    "api_endpoint": "http://127.0.0.1:8001"
+}

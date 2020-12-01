@@ -3,7 +3,6 @@
 server.js
 disc.html
 deploy.sh
-dist
 node_modules
 npm-debug.log
 src/assets/css/main.css
