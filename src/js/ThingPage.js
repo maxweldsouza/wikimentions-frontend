@@ -479,17 +479,6 @@ class ThingPage extends React.Component {
                                             path={this.props.path}
                                         />
                                     </div>
-                                    <div className="columns">
-                                        {thing.props.type === 'book'
-                                            ? <Affiliate
-                                                  authors={
-                                                      this.props.data.bookauthors
-                                                  }
-                                                  title={thing.props.title}
-                                                  isbn={thing.props.isbn}
-                                              />
-                                            : null}
-                                    </div>
                                 </div>
                                 <div className="row">
                                     <div className="small-12 columns">
