@@ -8,7 +8,7 @@
 }
 
 .home-video-thumb {
-    border-radius: $global-radius;
+    border-radius: 15px;
     display: block;
     width: 100%;
 }
@@ -22,6 +22,7 @@
     padding: 6px 10px;
     position: absolute;
     width: 100%;
+    border-radius: 15px;
 }
 
 .home-section {
