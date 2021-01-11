@@ -145,7 +145,7 @@ class Mention extends React.Component {
                         />
                     </Link>
                 </div>
-                <div className="columns">
+                <div className="columns no-padding-left">
                     <div className="row">
                         <div className="small-12 columns card-title">
                             <Link

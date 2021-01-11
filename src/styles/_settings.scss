@@ -48,7 +48,7 @@
 
 $global-font-size: 100%;
 $global-width: rem-calc(1024);
-$global-lineheight: 1.65;
+$global-lineheight: 1.7;
 $foundation-palette: (
   primary: #e72323,
   secondary: hsla(0, 0%, 25%, 1),
@@ -67,8 +67,8 @@ $body-background: $light-gray;
 $body-font-color: $dark-gray;
 $body-font-family: 'Source Sans Pro', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
-$global-margin: .8rem;
-$global-padding: .8rem;
+$global-margin: 1.2rem;
+$global-padding: 1.2rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
 $global-radius: 5px;
@@ -97,8 +97,8 @@ $breakpoint-classes: (small medium large xlarge xxlarge);
 $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
-  small: 20px,
-  medium: 30px,
+  small: 2.4rem,
+  medium: 2.4rem,
 );
 $grid-column-align-edge: true;
 $block-grid-max: 8;
