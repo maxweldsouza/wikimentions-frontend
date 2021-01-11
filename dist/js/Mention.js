@@ -212,7 +212,7 @@ var Mention = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'columns' },
+                    { className: 'columns no-padding-left' },
                     _react2.default.createElement(
                         'div',
                         { className: 'row' },

@@ -248,9 +248,9 @@ var fetchData = function fetchData(api) {
         return x.name;
     });
     var paths = api.map(function (x) {
-        if (clientSide) {
-            return x.path;
-        }
+        // if (clientSide) {
+        //     return x.path;
+        // }
         return _config2.default.api_endpoint + x.path;
     });
     return new Promise(function (resolve, reject) {

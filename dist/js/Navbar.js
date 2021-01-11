@@ -168,8 +168,7 @@ var Navbar = function (_React$Component) {
                     {
                         className: 'button primary',
                         style: {
-                            borderTopLeftRadius: 0,
-                            borderBottomLeftRadius: 0
+                            borderRadius: '999em'
                         },
                         onClick: this.search,
                         'aria-label': 'Search'
