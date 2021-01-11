@@ -182,7 +182,7 @@ class Select extends React.Component {
                     aria-haspopup={true}
                     aria-expanded={this.state.visible}
                     style={{ width: this.props.width }}
-                    className={this.props.className}
+                    className={`select-round ${this.props.className}`}
                     value={this.state.searchText}
                     valid={this.props.valid}
                     message={this.props.message}
