@@ -98,8 +98,6 @@ class Navbar extends React.Component {
                     className="button primary"
                     style={{
                         borderRadius: '999em',
-                        borderTopLeftRadius: 0,
-                        borderBottomLeftRadius: 0,
                     }}
                     onClick={this.search}
                     aria-label="Search"

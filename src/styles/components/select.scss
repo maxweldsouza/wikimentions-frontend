@@ -63,6 +63,5 @@
 
 .input-group-field.select-round {
     border-radius: 999em;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    margin-right: $global-margin;
 }
