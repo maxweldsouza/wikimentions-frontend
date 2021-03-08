@@ -249,41 +249,35 @@ var HomePage = function (_React$Component) {
                                 _react2.default.createElement(
                                     'div',
                                     {
-                                        className: 'small-12 large-6 columns text-center'
+                                        className: 'small-12 large-6 columns text-center margin-bottom'
                                     },
-                                    _react2.default.createElement(_reactTweetEmbed2.default, {
-                                        id: '841342731049926657',
-                                        options: {
-                                            cards: 'hidden',
-                                            align: 'center'
-                                        }
-                                    })
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: 'https://twitter.com/donttrythis/status/847483186816835584' },
+                                        _react2.default.createElement('img', { src: '/assets/images/tweets/james-grime.webp', loading: 'lazy', width: '550', height: '287' })
+                                    )
                                 ),
                                 _react2.default.createElement(
                                     'div',
                                     {
-                                        className: 'small-12 large-6 columns text-center'
+                                        className: 'small-12 large-6 columns text-center margin-bottom'
                                     },
-                                    _react2.default.createElement(_reactTweetEmbed2.default, {
-                                        id: '841342689815744512',
-                                        options: {
-                                            cards: 'hidden',
-                                            align: 'center'
-                                        }
-                                    })
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: 'https://twitter.com/jamesgrime/status/841342731049926657' },
+                                        _react2.default.createElement('img', { src: '/assets/images/tweets/savage1.webp', loading: 'lazy', width: '550', height: '267' })
+                                    )
                                 ),
                                 _react2.default.createElement(
                                     'div',
                                     {
-                                        className: 'small-12 columns text-center'
+                                        className: 'small-12 columns text-center margin-bottom'
                                     },
-                                    _react2.default.createElement(_reactTweetEmbed2.default, {
-                                        id: '847483186816835584',
-                                        options: {
-                                            cards: 'hidden',
-                                            align: 'center'
-                                        }
-                                    })
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: 'https://twitter.com/donttrythis/status/841342689815744512' },
+                                        _react2.default.createElement('img', { src: '/assets/images/tweets/savage2.webp', loading: 'lazy', width: '550', height: '220' })
+                                    )
                                 )
                             )
                         )
