@@ -152,37 +152,25 @@ class HomePage extends React.Component {
                             </h2>
                             <div className="row">
                                 <div
-                                    className="small-12 large-6 columns text-center"
+                                    className="small-12 large-6 columns text-center margin-bottom"
                                 >
-                                    <TweetEmbed
-                                        id="841342731049926657"
-                                        options={{
-                                            cards: 'hidden',
-                                            align: 'center'
-                                        }}
-                                    />
+                                    <a href='https://twitter.com/donttrythis/status/847483186816835584'>
+                                        <img src="/assets/images/tweets/james-grime.webp" loading="lazy" width="550" height="287"/>
+                                    </a>
                                 </div>
                                 <div
-                                    className="small-12 large-6 columns text-center"
+                                    className="small-12 large-6 columns text-center margin-bottom"
                                 >
-                                    <TweetEmbed
-                                        id="841342689815744512"
-                                        options={{
-                                            cards: 'hidden',
-                                            align: 'center'
-                                        }}
-                                    />
+                                    <a href='https://twitter.com/jamesgrime/status/841342731049926657'>
+                                        <img src="/assets/images/tweets/savage1.webp" loading="lazy" width="550" height="267" />
+                                    </a>
                                 </div>
                                 <div
-                                    className="small-12 columns text-center"
+                                    className="small-12 columns text-center margin-bottom"
                                 >
-                                    <TweetEmbed
-                                        id="847483186816835584"
-                                        options={{
-                                            cards: 'hidden',
-                                            align: 'center'
-                                        }}
-                                    />
+                                    <a href='https://twitter.com/donttrythis/status/841342689815744512'>
+                                        <img src="/assets/images/tweets/savage2.webp" loading="lazy" width="550" height="220" />
+                                    </a>
                                 </div>
                             </div>
                         </div>
