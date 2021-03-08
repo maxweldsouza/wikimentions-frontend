@@ -6,7 +6,6 @@ import Link from './Link';
 import Thumbnail from './Thumbnail';
 import utils from './utils';
 import autoBind from 'react-autobind';
-import TweetEmbed from 'react-tweet-embed';
 
 class HomePage extends React.Component {
     static resources() {
