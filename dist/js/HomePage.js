@@ -38,10 +38,6 @@ var _reactAutobind = require('react-autobind');
 
 var _reactAutobind2 = _interopRequireDefault(_reactAutobind);
 
-var _reactTweetEmbed = require('react-tweet-embed');
-
-var _reactTweetEmbed2 = _interopRequireDefault(_reactTweetEmbed);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -315,7 +311,7 @@ var HomePage = function (_React$Component) {
                                                 className: 'secondary tag-card'
                                             },
                                             _react2.default.createElement('img', {
-                                                src: '/assets/images/pexels-photo-90807.jpeg'
+                                                src: '/assets/images/pexels-photo-90807.webp'
                                             }),
                                             _react2.default.createElement(
                                                 'span',
@@ -340,7 +336,7 @@ var HomePage = function (_React$Component) {
                                                 className: 'secondary tag-card'
                                             },
                                             _react2.default.createElement('img', {
-                                                src: '/assets/images/sky-earth-space-working.jpg'
+                                                src: '/assets/images/sky-earth-space-working.webp'
                                             }),
                                             _react2.default.createElement(
                                                 'span',
@@ -365,7 +361,7 @@ var HomePage = function (_React$Component) {
                                                 className: 'secondary tag-card'
                                             },
                                             _react2.default.createElement('img', {
-                                                src: '/assets/images/pexels-photo.jpg'
+                                                src: '/assets/images/pexels-photo.webp'
                                             }),
                                             _react2.default.createElement(
                                                 'span',

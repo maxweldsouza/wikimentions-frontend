@@ -124,7 +124,7 @@ var TagPage = function (_React$Component) {
                 tagCard = _react2.default.createElement(
                     'a',
                     { href: '/tags/Programming', className: 'secondary tag-card' },
-                    _react2.default.createElement('img', { src: '/assets/images/pexels-photo-90807.jpeg' }),
+                    _react2.default.createElement('img', { src: '/assets/images/pexels-photo-90807.webp' }),
                     _react2.default.createElement(
                         'span',
                         { className: 'label' },
@@ -135,7 +135,7 @@ var TagPage = function (_React$Component) {
                 tagCard = _react2.default.createElement(
                     'a',
                     { href: '/tags/Science', className: 'secondary tag-card' },
-                    _react2.default.createElement('img', { src: '/assets/images/sky-earth-space-working.jpg' }),
+                    _react2.default.createElement('img', { src: '/assets/images/sky-earth-space-working.webp' }),
                     _react2.default.createElement(
                         'span',
                         { className: 'label' },
@@ -146,7 +146,7 @@ var TagPage = function (_React$Component) {
                 tagCard = _react2.default.createElement(
                     'a',
                     { href: '/tags/Startups', className: 'secondary tag-card' },
-                    _react2.default.createElement('img', { src: '/assets/images/pexels-photo.jpg' }),
+                    _react2.default.createElement('img', { src: '/assets/images/pexels-photo.webp' }),
                     _react2.default.createElement(
                         'span',
                         { className: 'label' },

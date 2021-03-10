@@ -16,5 +16,5 @@
     },
     "contact": "wikimentions@gmail.com",
     "admin": "q4BjK5gAwYhsmVsOnvFy",
-    "api_endpoint": "https://wikimentions.com"
+    "api_endpoint": "http://127.0.0.1:8001"
 }

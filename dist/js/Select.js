@@ -239,9 +239,7 @@ var Select = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 {
-                    style: {
-                        position: 'relative', width: '100%', display: 'flex'
-                    },
+                    style: { position: 'relative', width: '100%', display: 'flex' },
                     onKeyDown: this.handleKeys
                 },
                 _react2.default.createElement(_Input2.default, {
