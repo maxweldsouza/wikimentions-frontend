@@ -50,21 +50,21 @@ class TagPage extends React.Component {
         if (tag === 'Programming') {
             tagCard = (
                 <a href="/tags/Programming" className="secondary tag-card">
-                    <img src="/assets/images/pexels-photo-90807.jpeg" />
+                    <img src="/assets/images/pexels-photo-90807.webp" />
                     <span className="label">Programming</span>
                 </a>
             );
         } else if (tag === 'Science') {
             tagCard = (
                 <a href="/tags/Science" className="secondary tag-card">
-                    <img src="/assets/images/sky-earth-space-working.jpg" />
+                    <img src="/assets/images/sky-earth-space-working.webp" />
                     <span className="label">Science</span>
                 </a>
             );
         } else if (tag === 'Startups') {
             tagCard = (
                 <a href="/tags/Startups" className="secondary tag-card">
-                    <img src="/assets/images/pexels-photo.jpg" />
+                    <img src="/assets/images/pexels-photo.webp" />
                     <span className="label">Startups</span>
                 </a>
             );

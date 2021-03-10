@@ -189,7 +189,7 @@ class HomePage extends React.Component {
                                             className="secondary tag-card"
                                         >
                                             <img
-                                                src="/assets/images/pexels-photo-90807.jpeg"
+                                                src="/assets/images/pexels-photo-90807.webp"
                                             />
                                             <span className="label">
                                                 Programming
@@ -206,7 +206,7 @@ class HomePage extends React.Component {
                                             className="secondary tag-card"
                                         >
                                             <img
-                                                src="/assets/images/sky-earth-space-working.jpg"
+                                                src="/assets/images/sky-earth-space-working.webp"
                                             />
                                             <span className="label">
                                                 Science
@@ -223,7 +223,7 @@ class HomePage extends React.Component {
                                             className="secondary tag-card"
                                         >
                                             <img
-                                                src="/assets/images/pexels-photo.jpg"
+                                                src="/assets/images/pexels-photo.webp"
                                             />
                                             <span className="label">
                                                 Startups
